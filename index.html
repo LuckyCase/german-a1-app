@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>План подготовки к A1 Deutsch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .exam-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .info-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin: 10px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f1f3f5;
+            padding: 0;
+            overflow-x: auto;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 20px;
+            background: #f1f3f5;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #495057;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+        
+        .tab:hover {
+            background: #e9ecef;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .week-section {
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .week-section::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+        
+        .week-section h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .day-task {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #feca57;
+        }
+        
+        .day-task h4 {
+            color: #495057;
+            margin-bottom: 8px;
+        }
+        
+        .task-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .task-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .task-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #51cf66;
+            font-weight: bold;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .resource-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .resource-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .resource-card a {
+            color: #feca57;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .resource-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .progress-tracker {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .progress-bar-container {
+            background: #e9ecef;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #51cf66 0%, #37b24d 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .checklist-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checklist-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .checklist-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        
+        .tips-box {
+            background: linear-gradient(135deg, #feca57 0%, #ff6b6b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .tips-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .tips-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tips-box li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .tips-box li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+        }
+        
+        .vocab-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .vocab-category {
+            margin: 20px 0;
+        }
+        
+        .vocab-category h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .vocab-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 3px solid #feca57;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #dee2e6;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇩🇪 Подготовка к экзамену A1</h1>
+            <p>Ваш путь к получению ВНЖ через немецкий язык</p>
+        </div>
+        
+        <div class="exam-info">
+            <div class="info-card">
+                <h3>Чтение</h3>
+                <div class="number">25 мин</div>
+                <p>15 баллов</p>
+            </div>
+            <div class="info-card">
+                <h3>Аудирование</h3>
+                <div class="number">20 мин</div>
+                <p>15 баллов</p>
+            </div>
+            <div class="info-card">
+                <h3>Письмо</h3>
+                <div class="number">20 мин</div>
+                <p>15 баллов</p>
+            </div>
+            <div class="info-card">
+                <h3>Говорение</h3>
+                <div class="number">15 мин</div>
+                <p>15 баллов</p>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'plan')">📅 План 8 недель</button>
+            <button class="tab" onclick="openTab(event, 'resources')">📚 Ресурсы</button>
+            <button class="tab" onclick="openTab(event, 'vocab')">📝 Лексика A1</button>
+            <button class="tab" onclick="openTab(event, 'tips')">💡 Советы</button>
+            <button class="tab" onclick="openTab(event, 'progress')">📊 Прогресс</button>
+        </div>
+        
+        <div id="plan" class="tab-content active">
+            <div class="week-section">
+                <h3>Недели 1-2: Основы (Grundlagen)</h3>
+                <div class="day-task">
+                    <h4>🔤 Алфавит и произношение</h4>
+                    <ul class="task-list">
+                        <li>Выучить немецкий алфавит и особые буквы (ä, ö, ü, ß)</li>
+                        <li>Практика произношения 20 мин/день</li>
+                        <li>Научиться читать простые слова</li>
+                    </ul>
+                </div>
+                <div class="day-task">
+                    <h4>👋 Приветствия и представление</h4>
+                    <ul class="task-list">
+                        <li>Guten Morgen, Guten Tag, Guten Abend</li>
+                        <li>Ich heiße... / Mein Name ist...</li>
+                        <li>Woher kommen Sie? - Ich komme aus...</li>
+                        <li>Wie geht es Ihnen?</li>
+                    </ul>
+                </div>
+                <div class="day-task">
+                    <h4>📖 Грамматика</h4>
+                    <ul class="task-list">
+                        <li>Личные местоимения (ich, du, er, sie, es, wir, ihr, sie)</li>
+                        <li>Глаголы sein и haben в настоящем времени</li>
+                        <li>Артикли: der, die, das</li>
+                        <li>Числа 0-100</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="week-section">
+                <h3>Недели 3-4: Повседневная жизнь (Alltag)</h3>
+                <div class="day-task">
+                    <h4>🏠 Дом и семья</h4>
+                    <ul class="task-list">
+                        <li>Названия комнат и мебели</li>
+                        <li>Члены семьи (Mutter, Vater, Bruder, Schwester)</li>
+                        <li>Mein/meine (мой/моя)</li>
+                    </ul>
+                </div>
+                <div class="day-task">
+                    <h4>🛒 Покупки и еда</h4>
+                    <ul class="task-list">
+                        <li>Продукты (Brot, Milch, Käse, Obst, Gemüse)</li>
+                        <li>Was kostet das? (Сколько это стоит?)</li>
+                        <li>Ich möchte... (Я хотел бы...)</li>
+                        <li>Практика диалогов в магазине</li>
+                    </ul>
+                </div>
+                <div class="day-task">
+                    <h4>⏰ Время и дни недели</h4>
+                    <ul class="task-list">
+                        <li>Wie spät ist es? / Wie viel Uhr ist es?</li>
+                        <li>Дни недели (Montag - Sonntag)</li>
+                        <li>Месяцы и времена года</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="week-section">
+                <h3>Недели 5-6: Коммуникация (Kommunikation)</h3>
+                <div class="day-task">
+                    <h4>💼 Работа и профессии</h4>
+                    <ul class="task-list">
+                        <li>Was sind Sie von Beruf? (Кто вы по профессии?)</li>
+                        <li>Ich bin... / Ich arbeite als...</li>
+                        <li>Названия профессий</li>
+                    </ul>
+                </div>
+                <div class="day-task">
+                    <h4>🚇 Транспорт и направления</h4>
+                    <ul class="task-list">
+                        <li>Wo ist...? (Где находится...?)</li>
+                        <li>links, rechts, geradeaus</li>
+                        <li>Виды транспорта (Bus, Bahn, Auto, Fahrrad)</li>
+                    </ul>
+                </div>
+                <div class="day-task">
+                    <h4>📞 Телефон и почта</h4>
+                    <ul class="task-list">
+                        <li>Написание коротких сообщений</li>
+                        <li>Заполнение простых форм</li>
+                        <li>E-Mail писать на немецком</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="week-section">
+                <h3>Недели 7-8: Подготовка к экзамену (Prüfungsvorbereitung)</h3>
+                <div class="day-task">
+                    <h4>📝 Тренировка секций</h4>
+                    <ul class="task-list">
+                        <li>Lesen: 3 пробных теста в неделю</li>
+                        <li>Hören: ежедневно слушать аудио A1</li>
+                        <li>Schreiben: писать короткие тексты (60-80 слов)</li>
+                        <li>Sprechen: практика с партнером или самостоятельно</li>
+                    </ul>
+                </div>
+                <div class="day-task">
+                    <h4>🎯 Полные пробные экзамены</h4>
+                    <ul class="task-list">
+                        <li>Неделя 7: 2 полных теста</li>
+                        <li>Неделя 8: 3 полных теста в условиях экзамена</li>
+                        <li>Анализ ошибок после каждого теста</li>
+                        <li>Повторение слабых мест</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="resources" class="tab-content">
+            <h2 style="color: #667eea; margin-bottom: 25px;">🎓 Полезные ресурсы</h2>
+            
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3>🏛️ Goethe-Institut</h3>
+                    <p>Официальные пробные тесты и материалы для подготовки</p>
+                    <a href="https://www.goethe.de/en/spr/prf/ueb/pa1.html" target="_blank">Открыть →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>📱 DW Learn German</h3>
+                    <p>Бесплатные уроки, упражнения и аудио для начинающих</p>
+                    <a href="https://learngerman.dw.com/en/overview" target="_blank">Открыть →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>📺 Easy German (YouTube)</h3>
+                    <p>Видео с субтитрами для начинающих</p>
+                    <a href="https://www.youtube.com/@EasyGerman" target="_blank">Открыть →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>📚 Nicos Weg (A1)</h3>
+                    <p>Интерактивный курс от DW - история + упражнения</p>
+                    <a href="https://learngerman.dw.com/en/nicos-weg/c-36519687" target="_blank">Открыть →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>🎮 Duolingo</h3>
+                    <p>Ежедневная практика лексики и грамматики</p>
+                    <a href="https://www.duolingo.com/course/de/en/Learn-German" target="_blank">Открыть →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>📖 Schubert Verlag</h3>
+                    <p>Онлайн упражнения по грамматике A1</p>
+                    <a href="https://www.schubert-verlag.de/aufgaben/uebungen_a1/a1_uebungen_index.htm" target="_blank">Открыть →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>🎧 Deutsch lernen durch Hören</h3>
+                    <p>Podcast для начинающих - медленная немецкая речь</p>
+                    <a href="https://www.youtube.com/@DldH" target="_blank">Открыть →</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>📝 Vocabulix</h3>
+                    <p>Тренировка словарного запаса с карточками</p>
+                    <a href="https://www.vocabulix.com/german/german.html" target="_blank">Открыть →</a>
+                </div>
+            </div>
+            
+            <div class="tips-box" style="margin-top: 30px;">
+                <h3>📥 Приложения для телефона</h3>
+                <ul>
+                    <li><strong>Duolingo</strong> - ежедневная практика</li>
+                    <li><strong>Anki</strong> - карточки для запоминания слов</li>
+                    <li><strong>German A1 Goethe</strong> - пробные тесты</li>
+                    <li><strong>DW Learn German</strong> - уроки и упражнения</li>
+                    <li><strong>Memrise</strong> - лексика в контексте</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="vocab" class="tab-content">
+            <h2 style="color: #667eea; margin-bottom: 25px;">📝 Ключевая лексика A1</h2>
+            
+            <div class="vocab-section">
+                <div class="vocab-category">
+                    <h4>👤 Личная информация</h4>
+                    <div class="vocab-grid">
+                        <div class="vocab-item">Name (имя)</div>
+                        <div class="vocab-item">Alter (возраст)</div>
+                        <div class="vocab-item">Adresse (адрес)</div>
+                        <div class="vocab-item">Telefonnummer (телефон)</div>
+                        <div class="vocab-item">E-Mail (электронная почта)</div>
+                        <div class="vocab-item">Beruf (профессия)</div>
+                    </div>
+                </div>
+                
+                <div class="vocab-category">
+                    <h4>👨‍👩‍👧‍👦 Семья</h4>
+                    <div class="vocab-grid">
+                        <div class="vocab-item">die Mutter (мать)</div>
+                        <div class="vocab-item">der Vater (отец)</div>
+                        <div class="vocab-item">die Schwester (сестра)</div>
+                        <div class="vocab-item">der Bruder (брат)</div>
+                        <div class="vocab-item">die Oma (бабушка)</div>
+                        <div class="vocab-item">der Opa (дедушка)</div>
+                        <div class="vocab-item">das Kind (ребенок)</div>
+                        <div class="vocab-item">der Mann (муж)</div>
+                        <div class="vocab-item">die Frau (жена)</div>
+                    </div>
+                </div>
+                
+                <div class="vocab-category">
+                    <h4>🍎 Еда и напитки</h4>
+                    <div class="vocab-grid">
+                        <div class="vocab-item">das Brot (хлеб)</div>
+                        <div class="vocab-item">die Milch (молоко)</div>
+                        <div class="vocab-item">der Käse (сыр)</div>
+                        <div class="vocab-item">das Obst (фрукты)</div>
+                        <div class="vocab-item">das Gemüse (овощи)</div>
+                        <div class="vocab-item">das Wasser (вода)</div>
+                        <div class="vocab-item">der Kaffee (кофе)</div>
+                        <div class="vocab-item">der Tee (чай)</div>
+                        <div class="vocab-item">das Ei (яйцо)</div>
+                    </div>
+                </div>
+                
+                <div class="vocab-category">
+                    <h4>🏠 Дом</h4>
+                    <div class="vocab-grid">
+                        <div class="vocab-item">die Wohnung (квартира)</div>
+                        <div class="vocab-item">das Zimmer (комната)</div>
+                        <div class="vocab-item">die Küche (кухня)</div>
+                        <div class="vocab-item">das Bad (ванная)</div>
+                        <div class="vocab-item">das Bett (кровать)</div>
+                        <div class="vocab-item">der Tisch (стол)</div>
+                        <div class="vocab-item">der Stuhl (стул)</div>
+                        <div class="vocab-item">die Tür (дверь)</div>
+                    </div>
+                </div>
+                
+                <div class="vocab-category">
+                    <h4>⏰ Время</h4>
+                    <div class="vocab-grid">
+                        <div class="vocab-item">Montag (понедельник)</div>
+                        <div class="vocab-item">Dienstag (вторник)</div>
+                        <div class="vocab-item">Mittwoch (среда)</div>
+                        <div class="vocab-item">Donnerstag (четверг)</div>
+                        <div class="vocab-item">Freitag (пятница)</div>
+                        <div class="vocab-item">Samstag (суббота)</div>
+                        <div class="vocab-item">Sonntag (воскресенье)</div>
+                        <div class="vocab-item">heute (сегодня)</div>
+                        <div class="vocab-item">morgen (завтра)</div>
+                    </div>
+                </div>
+                
+                <div class="vocab-category">
+                    <h4>🎯 Важные глаголы</h4>
+                    <div class="vocab-grid">
+                        <div class="vocab-item">sein (быть)</div>
+                        <div class="vocab-item">haben (иметь)</div>
+                        <div class="vocab-item">machen (делать)</div>
+                        <div class="vocab-item">gehen (идти)</div>
+                        <div class="vocab-item">kommen (приходить)</div>
+                        <div class="vocab-item">wohnen (жить)</div>
+                        <div class="vocab-item">arbeiten (работать)</div>
+                        <div class="vocab-item">essen (есть)</div>
+                        <div class="vocab-item">trinken (пить)</div>
+                        <div class="vocab-item">sprechen (говорить)</div>
+                        <div class="vocab-item">kaufen (покупать)</div>
+                        <div class="vocab-item">heißen (называться)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tips-box">
+                <h3>💡 Как учить слова эффективно</h3>
+                <ul>
+                    <li>Учите 10-15 новых слов каждый день</li>
+                    <li>Всегда учите слова с артиклями (der, die, das)</li>
+                    <li>Используйте карточки (Anki, Quizlet)</li>
+                    <li>Составляйте простые предложения с новыми словами</li>
+                    <li>Повторяйте слова через интервалы (1 день, 3 дня, неделя)</li>
+                    <li>Учите слова в контексте, не изолированно</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="tips" class="tab-content">
+            <h2 style="color: #667eea; margin-bottom: 25px;">💡 Советы для успешной сдачи</h2>
+            
+            <div class="tips-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <h3>🎧 Аудирование (Hören)</h3>
+                <ul>
+                    <li>Слушайте аудио минимум 20 минут каждый день</li>
+                    <li>Аудио проигрывается 1-2 раза - тренируйтесь так же</li>
+                    <li>Обращайте внимание на числа, время, цены</li>
+                    <li>Слушайте Easy German на YouTube с субтитрами</li>
+                    <li>Числа вызывают трудности: dreizehn (13) vs dreißig (30)</li>
+                    <li>Делайте заметки во время прослушивания</li>
+                </ul>
+            </div>
+            
+            <div class="tips-box" style="background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);">
+                <h3>📖 Чтение (Lesen)</h3>
+                <ul>
+                    <li>Читайте каждый день хотя бы 15 минут</li>
+                    <li>Начинайте с простых текстов и объявлений</li>
+                    <li>Не зацикливайтесь на незнакомых словах - смотрите контекст</li>
+                    <li>Практикуйтесь находить ключевую информацию быстро</li>
+                    <li>Типичные тексты: объявления, короткие письма, расписания</li>
+                    <li>Учитесь определять True/False (Richtig/Falsch)</li>
+                </ul>
+            </div>
+            
+            <div class="tips-box" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);">
+                <h3>✍️ Письмо (Schreiben)</h3>
+                <ul>
+                    <li>Практикуйте написание коротких писем (60-80 слов)</li>
+                    <li>Структура: Приветствие → Основная часть → Прощание</li>
+                    <li>Типичные задания: ответ на email, запрос информации</li>
+                    <li>Используйте простые предложения - это уровень A1</li>
+                    <li>Проверяйте артикли и окончания глаголов</li>
+                    <li>Шаблоны: "Liebe/r...", "Mit freundlichen Grüßen"</li>
+                </ul>
+            </div>
+            
+            <div class="tips-box" style="background: linear-gradient(135deg, #feca57 0%, #ff9ff3 100%);">
+                <h3>🗣️ Говорение (Sprechen)</h3>
+                <ul>
+                    <li>Практикуйте вслух каждый день - даже наедине</li>
+                    <li>Часть 1: представьтесь (Name, Alter, Herkunft, Beruf)</li>
+                    <li>Часть 2: задавайте простые вопросы собеседнику</li>
+                    <li>Часть 3: попросите о чем-то (формулируйте просьбы)</li>
+                    <li>Не бойтесь ошибок - главное коммуникация</li>
+                    <li>Говорите медленно и четко</li>
+                    <li>Найдите партнера для практики (Tandem, HelloTalk)</li>
+                </ul>
+            </div>
+            
+            <div class="tips-box" style="background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);">
+                <h3>🎯 В день экзамена</h3>
+                <ul>
+                    <li>Хорошо выспитесь накануне</li>
+                    <li>Приходите за 30 минут до начала</li>
+                    <li>Возьмите паспорт и подтверждение регистрации</li>
+                    <li>Возьмите ручку (синяя или черная паста)</li>
+                    <li>Телефон выключите полностью</li>
+                    <li>Читайте инструкции внимательно</li>
+                    <li>Управляйте временем - не застревайте на одном вопросе</li>
+                    <li>Если не знаете ответ - угадывайте, не оставляйте пустым</li>
+                </ul>
+            </div>
+            
+            <div class="vocab-section">
+                <h3 style="color: #667eea; margin-bottom: 15px;">⚡ Ежедневный режим</h3>
+                <div class="day-task">
+                    <h4>Оптимальная программа дня (60-90 минут)</h4>
+                    <ul class="task-list">
+                        <li>15 мин: новая лексика (10-15 слов)</li>
+                        <li>20 мин: грамматические упражнения</li>
+                        <li>15 мин: аудирование</li>
+                        <li>15 мин: чтение</li>
+                        <li>10 мин: письмо</li>
+                        <li>10 мин: говорение вслух</li>
+                        <li>5 мин: повторение старых слов</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="progress" class="tab-content">
+            <h2 style="color: #667eea; margin-bottom: 25px;">📊 Трекер прогресса</h2>
+            
+            <div class="progress-tracker">
+                <h3 style="margin-bottom: 15px;">Ваш прогресс подготовки</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="mainProgress">0%</div>
+                </div>
+                <p id="progressText" style="text-align: center; margin-top: 10px; font-weight: bold;">
+                    Отмечено задач: 0 из 24
+                </p>
+            </div>
+            
+            <div class="vocab-section">
+                <h3 style="color: #667eea; margin-bottom: 15px;">✅ Чек-лист подготовки</h3>
+                
+                <h4 style="margin: 20px 0 10px 0; color: #495057;">Недели 1-2: Основы</h4>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Выучил алфавит и произношение (ä, ö, ü, ß)</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Освоил приветствия и представление себя</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Выучил личные местоимения и глаголы sein/haben</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Знаю артикли (der, die, das) и числа 0-100</span>
+                </div>
+                
+                <h4 style="margin: 20px 0 10px 0; color: #495057;">Недели 3-4: Повседневная жизнь</h4>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Выучил лексику: дом, семья, мебель</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Могу вести диалог в магазине (покупки, цены)</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Знаю дни недели, месяцы и как говорить о времени</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Выучил 200+ базовых слов</span>
+                </div>
+                
+                <h4 style="margin: 20px 0 10px 0; color: #495057;">Недели 5-6: Коммуникация</h4>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Могу рассказать о своей работе/профессии</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Умею спрашивать и объяснять направления</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Могу написать короткое письмо (email)</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Умею заполнять простые формы</span>
+                </div>
+                
+                <h4 style="margin: 20px 0 10px 0; color: #495057;">Недели 7-8: Тренировка</h4>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Сделал 5+ пробных тестов по чтению</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Сделал 5+ пробных тестов по аудированию</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Написал 10+ коротких писем/текстов</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Практиковал говорение 5+ раз с партнером</span>
+                </div>
+                
+                <h4 style="margin: 20px 0 10px 0; color: #495057;">Финальная подготовка</h4>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Прошел 3+ полных пробных экзамена</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Знаю формат каждой секции экзамена</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Проработал свои слабые места</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Выучил 400-600 слов базовой лексики</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Зарегистрировался на экзамен</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Знаю дорогу до центра тестирования</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Подготовил документы (паспорт, подтверждение)</span>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <span>Чувствую себя уверенно и готов к экзамену! 🎉</span>
+                </div>
+            </div>
+            
+            <div class="tips-box" style="margin-top: 30px;">
+                <h3>🎯 Критерии оценки экзамена</h3>
+                <ul>
+                    <li><strong>Всего баллов:</strong> 60 (по 15 за каждую секцию)</li>
+                    <li><strong>Для сдачи нужно:</strong> минимум 36 баллов (60%)</li>
+                    <li><strong>Оценка Lesen:</strong> понимание простых текстов</li>
+                    <li><strong>Оценка Hören:</strong> понимание на слух</li>
+                    <li><strong>Оценка Schreiben:</strong> грамматика + содержание</li>
+                    <li><strong>Оценка Sprechen:</strong> коммуникация + произношение</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            const tabs = document.getElementsByClassName('tab');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        function toggleCheck(element) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('completed');
+            updateProgress();
+            saveProgress();
+        }
+        
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const checked = document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').length;
+            const total = checkboxes.length;
+            const percentage = Math.round((checked / total) * 100);
+            
+            const progressBar = document.getElementById('mainProgress');
+            const progressText = document.getElementById('progressText');
+            
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = percentage + '%';
+            progressText.textContent = `Отмечено задач: ${checked} из ${total}`;
+        }
+        
+        function saveProgress() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const checkedStates = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem('a1Progress', JSON.stringify(checkedStates));
+        }
+        
+        function loadProgress() {
+            const saved = localStorage.getItem('a1Progress');
+            if (saved) {
+                const checkedStates = JSON.parse(saved);
+                const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+                checkboxes.forEach((cb, index) => {
+                    if (checkedStates[index]) {
+                        cb.checked = true;
+                        cb.parentElement.classList.add('completed');
+                    }
+                });
+                updateProgress();
+            }
+        }
+        
+        window.onload = function() {
+            loadProgress();
+        };
+    </script>
+</body>
+</html>
