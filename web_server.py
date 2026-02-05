@@ -1048,8 +1048,8 @@ HTML_TEMPLATE = """
             audioBtn.textContent = '🔊 Прослушать';
             audioBtn.disabled = false;
             
-            // Get options
-            const response = await fetch('/api/words/random?count=3&exclude=' + word.word_id);
+            // Get options from the same category
+            const response = await fetch(`/api/words/random?count=3&exclude=${word.word_id}&category=${currentCategory}`);
             const wrongWords = await response.json();
             const options = [word, ...wrongWords].sort(() => Math.random() - 0.5);
             
@@ -1666,8 +1666,22 @@ def api_words():
 def api_random_words():
     count = int(request.args.get('count', 3))
     exclude = request.args.get('exclude', '')
-    all_words = get_all_words()
-    filtered = [w for w in all_words if w.get('word_id') != exclude]
+    category = request.args.get('category', '')
+    
+    # If category specified, get words from that category only
+    if category:
+        words = get_words_by_category(category)
+    else:
+        words = get_all_words()
+    
+    filtered = [w for w in words if w.get('word_id') != exclude]
+    
+    # If not enough words in category, supplement from all words
+    if len(filtered) < count:
+        all_words = get_all_words()
+        extra = [w for w in all_words if w.get('word_id') != exclude and w not in filtered]
+        filtered.extend(extra)
+    
     import random
     return jsonify(random.sample(filtered, min(count, len(filtered))))
 
