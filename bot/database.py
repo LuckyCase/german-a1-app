@@ -188,6 +188,9 @@ async def get_or_create_user(user_id: int, username: str = None, first_name: str
 
 async def update_word_progress(user_id: int, word_id: str, is_correct: bool):
     """Update user's progress for a specific word."""
+    # Ensure user exists in database
+    await get_or_create_user(user_id, None, None)
+    
     pool = await get_pool()
 
     async with pool.acquire() as conn:
@@ -268,6 +271,9 @@ async def get_user_stats(user_id: int) -> dict:
 
 async def save_grammar_result(user_id: int, test_id: str, score: int, total: int):
     """Save grammar test result."""
+    # Ensure user exists in database
+    await get_or_create_user(user_id, None, None)
+    
     pool = await get_pool()
 
     async with pool.acquire() as conn:
@@ -281,6 +287,9 @@ async def update_daily_stats(user_id: int, words: int = 0, tests: int = 0, corre
     """Update daily statistics for user."""
     import logging
     logger = logging.getLogger(__name__)
+    
+    # Ensure user exists in database
+    await get_or_create_user(user_id, None, None)
     
     today = datetime.now().strftime("%Y-%m-%d")
     pool = await get_pool()
@@ -318,6 +327,9 @@ async def get_users_for_reminder(hour: int, minute: int) -> list:
 
 async def set_reminder(user_id: int, enabled: bool, hour: int = 9, minute: int = 0):
     """Set reminder settings for user."""
+    # Ensure user exists in database
+    await get_or_create_user(user_id, None, None)
+    
     pool = await get_pool()
 
     async with pool.acquire() as conn:
@@ -329,6 +341,9 @@ async def set_reminder(user_id: int, enabled: bool, hour: int = 9, minute: int =
 
 async def save_phrase_progress(user_id: int, phrase_id: str, category_id: str, is_correct: bool):
     """Save phrase progress for user."""
+    # Ensure user exists in database
+    await get_or_create_user(user_id, None, None)
+    
     pool = await get_pool()
     now = datetime.now()
 
@@ -357,6 +372,9 @@ async def save_phrase_progress(user_id: int, phrase_id: str, category_id: str, i
 
 async def save_dialogue_progress(user_id: int, dialogue_id: str, exercises_completed: int, exercises_correct: int):
     """Save dialogue progress for user."""
+    # Ensure user exists in database
+    await get_or_create_user(user_id, None, None)
+    
     pool = await get_pool()
     now = datetime.now()
 

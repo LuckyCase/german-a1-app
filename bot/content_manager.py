@@ -189,6 +189,17 @@ def get_words_by_category(category_id: str) -> list:
     ]
 
 
+def get_category_distractors(category_id: str) -> list:
+    """Получить список distractors (отвлекающих слов) из категории."""
+    vocabulary = _load_all_vocabulary()
+    
+    if category_id not in vocabulary:
+        return []
+    
+    category = vocabulary[category_id]
+    return category.get("distractors", [])
+
+
 def get_categories() -> list:
     """Получить список всех категорий (совместимость с vocabulary.py)."""
     vocabulary = _load_all_vocabulary()

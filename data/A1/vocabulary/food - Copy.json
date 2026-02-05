@@ -8,198 +8,146 @@
     {
       "de": "das Brot",
       "ru": "хлеб",
-      "category": "bread",
       "example": "Ich kaufe Brot.",
       "example_ru": "Я покупаю хлеб."
     },
     {
       "de": "das Brötchen",
       "ru": "булочка",
-      "category": "bread",
       "example": "Zum Frühstück esse ich Brötchen.",
       "example_ru": "На завтрак я ем булочки."
     },
     {
       "de": "die Butter",
       "ru": "масло",
-      "category": "dairy",
-      "example": "Butter auf dem Brot.",
-      "example_ru": "Масло на хлебе."
+      "example": "Butter aufs Brot.",
+      "example_ru": "Масло на хлеб."
     },
     {
       "de": "der Käse",
       "ru": "сыр",
-      "category": "dairy",
       "example": "Ich mag Käse.",
       "example_ru": "Я люблю сыр."
     },
     {
       "de": "die Milch",
       "ru": "молоко",
-      "category": "dairy",
       "example": "Ich trinke Milch.",
       "example_ru": "Я пью молоко."
     },
     {
-      "de": "der Joghurt",
-      "ru": "йогурт",
-      "category": "dairy",
-      "example": "Joghurt ist gesund.",
-      "example_ru": "Йогурт полезен."
-    },
-    {
       "de": "das Ei",
       "ru": "яйцо",
-      "category": "protein",
       "example": "Ich esse ein Ei.",
       "example_ru": "Я ем яйцо."
     },
     {
       "de": "das Fleisch",
       "ru": "мясо",
-      "category": "protein",
       "example": "Ich esse kein Fleisch.",
       "example_ru": "Я не ем мясо."
     },
     {
       "de": "der Fisch",
       "ru": "рыба",
-      "category": "protein",
-      "example": "Der Fisch ist gesund.",
+      "example": "Fisch ist gesund.",
       "example_ru": "Рыба полезна."
     },
     {
-      "de": "die Gurke",
-      "ru": "огурец",
-      "category": "vegetable",
-      "example": "Gurken sind knackig.",
-      "example_ru": "Огурцы хрустящие."
-    },
-    {
-      "de": "die Tomate",
-      "ru": "помидор",
-      "category": "vegetable",
-      "example": "Tomaten sind lecker.",
-      "example_ru": "Помидоры вкусные."
-    },
-    {
-      "de": "die Zucchini",
-      "ru": "цукини",
-      "category": "vegetable",
-      "example": "Zucchini ist vielseitig.",
-      "example_ru": "Цукини универсальны."
-    },
-    {
-      "de": "die Banane",
-      "ru": "банан",
-      "category": "fruit",
-      "example": "Ich esse eine Banane.",
-      "example_ru": "Я ем банан."
-    },
-    {
-      "de": "der Apfel",
-      "ru": "яблоко",
-      "category": "fruit",
-      "example": "Der Apfel ist rot.",
-      "example_ru": "Яблоко красное."
-    },
-    {
-      "de": "die Orange",
-      "ru": "апельсин",
-      "category": "fruit",
-      "example": "Orangen sind süß.",
-      "example_ru": "Апельсины сладкие."
+      "de": "das Obst",
+      "ru": "фрукты",
+      "example": "Ich esse viel Obst.",
+      "example_ru": "Я ем много фруктов."
     },
     {
       "de": "das Gemüse",
       "ru": "овощи",
-      "category": "vegetable",
-      "example": "Das Gemüse ist gesund.",
+      "example": "Gemüse ist gesund.",
       "example_ru": "Овощи полезны."
+    },
+    {
+      "de": "der Apfel",
+      "ru": "яблоко",
+      "example": "Der Apfel ist rot.",
+      "example_ru": "Яблоко красное."
+    },
+    {
+      "de": "die Banane",
+      "ru": "банан",
+      "example": "Ich esse eine Banane.",
+      "example_ru": "Я ем банан."
+    },
+    {
+      "de": "die Tomate",
+      "ru": "помидор",
+      "example": "Tomaten sind lecker.",
+      "example_ru": "Помидоры вкусные."
     },
     {
       "de": "die Kartoffel",
       "ru": "картофель",
-      "category": "vegetable",
       "example": "Ich mag Kartoffeln.",
       "example_ru": "Я люблю картофель."
     },
     {
       "de": "der Reis",
       "ru": "рис",
-      "category": "grain",
       "example": "Reis mit Gemüse.",
       "example_ru": "Рис с овощами."
     },
     {
       "de": "die Nudeln",
       "ru": "макароны",
-      "category": "grain",
       "example": "Kinder mögen Nudeln.",
       "example_ru": "Дети любят макароны."
     },
     {
       "de": "das Wasser",
       "ru": "вода",
-      "category": "drink",
       "example": "Ich trinke Wasser.",
       "example_ru": "Я пью воду."
     },
     {
       "de": "der Kaffee",
       "ru": "кофе",
-      "category": "drink",
-      "example": "Ein Kaffee, bitte.",
+      "example": "Einen Kaffee, bitte.",
       "example_ru": "Кофе, пожалуйста."
     },
     {
       "de": "der Tee",
       "ru": "чай",
-      "category": "drink",
       "example": "Ich trinke gern Tee.",
       "example_ru": "Я люблю пить чай."
     },
     {
       "de": "der Saft",
       "ru": "сок",
-      "category": "drink",
       "example": "Orangensaft schmeckt gut.",
       "example_ru": "Апельсиновый сок вкусный."
     },
     {
       "de": "das Bier",
       "ru": "пиво",
-      "category": "drink",
       "example": "Ein Bier, bitte.",
       "example_ru": "Пиво, пожалуйста."
     },
     {
       "de": "der Wein",
       "ru": "вино",
-      "category": "drink",
       "example": "Ein Glas Wein.",
       "example_ru": "Бокал вина."
     },
     {
       "de": "der Zucker",
       "ru": "сахар",
-      "category": "spice",
       "example": "Kaffee mit Zucker.",
       "example_ru": "Кофе с сахаром."
     },
     {
       "de": "das Salz",
       "ru": "соль",
-      "category": "spice",
       "example": "Salz und Pfeffer.",
       "example_ru": "Соль и перец."
-    },
-    {
-      "de": "der Pfeffer",
-      "ru": "перец",
-      "category": "spice",
-      "example": "Pfeffer macht das Gericht würzig.",
-      "example_ru": "Перец делает блюдо острее."
     }
   ]
 }

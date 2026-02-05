@@ -16,7 +16,8 @@ from bot.content_manager import (
     get_all_words, get_categories, get_words_by_category, 
     get_all_tests, get_test_questions, init_content,
     get_phrases_categories, get_phrases_by_category,
-    get_dialogue_topics, get_dialogue, get_dialogue_exercises
+    get_dialogue_topics, get_dialogue, get_dialogue_exercises,
+    get_category_distractors
 )
 from bot.database import (
     get_user_stats, update_word_progress, save_grammar_result, 
@@ -1668,6 +1669,8 @@ def api_random_words():
     exclude = request.args.get('exclude', '')
     category = request.args.get('category', '')
     
+    import random
+    
     # If category specified, get words from that category only
     if category:
         words = get_words_by_category(category)
@@ -1676,13 +1679,27 @@ def api_random_words():
     
     filtered = [w for w in words if w.get('word_id') != exclude]
     
-    # If not enough words in category, supplement from all words
+    # If not enough words in category, use distractors first
+    if len(filtered) < count and category:
+        distractors = get_category_distractors(category)
+        if distractors:
+            # Create fake word objects from distractors
+            needed = count - len(filtered)
+            selected_distractors = random.sample(distractors, min(needed, len(distractors)))
+            for d in selected_distractors:
+                filtered.append({
+                    "de": "",
+                    "ru": d,
+                    "word_id": f"distractor_{d}",
+                    "category_id": category
+                })
+    
+    # If still not enough, supplement from all words
     if len(filtered) < count:
         all_words = get_all_words()
         extra = [w for w in all_words if w.get('word_id') != exclude and w not in filtered]
         filtered.extend(extra)
     
-    import random
     return jsonify(random.sample(filtered, min(count, len(filtered))))
 
 @app.route('/api/tests')
