@@ -1,16 +1,87 @@
 """
-Web server for Telegram Web App
+Web server for Telegram Web App + Bot Webhook
+Combined server for Render free tier (single web service)
 """
 from flask import Flask, render_template_string, jsonify, request
 from flask_cors import CORS
 import os
+import asyncio
+import logging
+
 from bot.data.vocabulary import get_all_words, get_categories, get_words_by_category
 from bot.data.grammar import get_all_tests, get_test_questions
-from bot.database import get_user_stats, update_word_progress, save_grammar_result, update_daily_stats
-import asyncio
+from bot.database import get_user_stats, update_word_progress, save_grammar_result, update_daily_stats, init_db
+from bot.config import TELEGRAM_BOT_TOKEN
+
+# Telegram bot imports
+from telegram import Update
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler
+
+from bot.handlers.common import start, help_command, menu_callback
+from bot.handlers.flashcards import get_flashcards_handler
+from bot.handlers.grammar import get_grammar_handler
+from bot.handlers.progress import show_progress, progress_callback
+from bot.handlers.reminders import reminder_settings, reminder_callback
+from bot.handlers.audio import audio_command
+
+# Setup logging
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO
+)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 CORS(app)
+
+# Global bot application instance
+bot_application = None
+
+
+def create_bot_application():
+    """Create and configure the bot application."""
+    application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
+
+    # Add command handlers
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("help", help_command))
+    application.add_handler(CommandHandler("progress", show_progress))
+    application.add_handler(CommandHandler("reminder", reminder_settings))
+    application.add_handler(CommandHandler("audio", audio_command))
+
+    # Add callback handlers
+    application.add_handler(CallbackQueryHandler(menu_callback, pattern="^menu_"))
+    application.add_handler(CallbackQueryHandler(progress_callback, pattern="^(progress_|start_flashcards|start_grammar)"))
+    application.add_handler(CallbackQueryHandler(reminder_callback, pattern="^rem_"))
+
+    # Add conversation handlers
+    application.add_handler(get_flashcards_handler())
+    application.add_handler(get_grammar_handler())
+
+    return application
+
+
+async def init_bot():
+    """Initialize bot application."""
+    global bot_application
+    if bot_application is None:
+        # Initialize database
+        await init_db()
+        # Create bot application
+        bot_application = create_bot_application()
+        await bot_application.initialize()
+        logger.info("Bot application initialized")
+    return bot_application
+
+
+# Initialize bot on startup
+def init_app():
+    """Initialize application on startup."""
+    try:
+        asyncio.run(init_bot())
+        logger.info("Application initialized successfully")
+    except Exception as e:
+        logger.error(f"Failed to initialize application: {e}")
 
 # Read HTML template
 HTML_TEMPLATE = """
@@ -783,6 +854,96 @@ def api_audio(text):
         )
     except Exception as e:
         return jsonify({'error': f'Failed to generate audio: {str(e)}'}), 500
+
+
+# ============= TELEGRAM BOT WEBHOOK ENDPOINTS =============
+
+@app.route('/webhook', methods=['POST'])
+async def webhook():
+    """Handle incoming Telegram updates via webhook."""
+    global bot_application
+
+    try:
+        # Ensure bot is initialized
+        if bot_application is None:
+            await init_bot()
+
+        # Parse the update
+        update = Update.de_json(request.get_json(), bot_application.bot)
+
+        # Process the update
+        await bot_application.process_update(update)
+
+        return 'OK', 200
+    except Exception as e:
+        logger.error(f"Error processing webhook: {e}")
+        return 'Error', 500
+
+
+@app.route('/setup-webhook')
+def setup_webhook():
+    """Setup webhook URL with Telegram. Call once after deploy."""
+    import requests
+
+    # Get the external URL from environment or construct it
+    render_url = os.getenv('RENDER_EXTERNAL_URL', '')
+    if not render_url:
+        # Try to get from request
+        render_url = request.host_url.rstrip('/')
+
+    webhook_url = f"{render_url}/webhook"
+
+    try:
+        # Set webhook via Telegram API
+        response = requests.get(
+            f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/setWebhook',
+            params={'url': webhook_url},
+            timeout=10
+        )
+        result = response.json()
+
+        if result.get('ok'):
+            logger.info(f"Webhook set successfully to: {webhook_url}")
+        else:
+            logger.error(f"Failed to set webhook: {result}")
+
+        return jsonify({
+            'webhook_url': webhook_url,
+            'telegram_response': result
+        })
+    except Exception as e:
+        logger.error(f"Error setting webhook: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/webhook-info')
+def webhook_info():
+    """Get current webhook info from Telegram."""
+    import requests
+
+    try:
+        response = requests.get(
+            f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getWebhookInfo',
+            timeout=10
+        )
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/health')
+def health():
+    """Health check endpoint."""
+    return jsonify({
+        'status': 'healthy',
+        'bot_initialized': bot_application is not None
+    })
+
+
+# ============= APPLICATION STARTUP =============
+
+# Initialize on module load for gunicorn
+init_app()
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))

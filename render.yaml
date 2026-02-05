@@ -1,34 +1,24 @@
 # Render Blueprint specification
 # https://render.com/docs/blueprint-spec
+#
+# Single web service combining:
+# - Telegram Bot (webhook mode)
+# - Web App (Flask)
 
 services:
-  # Worker Service - Telegram Bot (polling mode)
-  - type: worker
+  - type: web
     name: german-a1-bot
     runtime: python
     region: frankfurt
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python -m bot.main
+    startCommand: gunicorn web_server:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120
     envVars:
       - key: TELEGRAM_BOT_TOKEN
         sync: false  # Set manually in Render dashboard
       - key: DATABASE_URL
         sync: false  # Supabase PostgreSQL connection string
-      - key: WEB_APP_URL
-        sync: false  # URL of the web service
-    autoDeploy: true
-
-  # Web Service - Flask Web App for Telegram Mini App
-  - type: web
-    name: german-a1-webapp
-    runtime: python
-    region: frankfurt
-    plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn web_server:app --bind 0.0.0.0:$PORT
-    envVars:
-      - key: DATABASE_URL
-        sync: false  # Same Supabase connection string
-    healthCheckPath: /
+      - key: RENDER_EXTERNAL_URL
+        sync: false  # Set to https://german-a1-bot.onrender.com
+    healthCheckPath: /health
     autoDeploy: true
