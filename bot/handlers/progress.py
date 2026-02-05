@@ -131,7 +131,15 @@ async def progress_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text(message, reply_markup=InlineKeyboardMarkup(keyboard))
 
     elif query.data == "start_flashcards":
-        await query.edit_message_text("Используйте команду /flashcards чтобы начать изучение слов.")
+        await query.answer()
+        # Import here to avoid circular imports
+        from bot.handlers.flashcards import flashcards_start
+        # Create update with callback_query to trigger flashcards_start
+        await flashcards_start(update, context)
 
     elif query.data == "start_grammar":
-        await query.edit_message_text("Используйте команду /grammar чтобы пройти грамматический тест.")
+        await query.answer()
+        # Import here to avoid circular imports
+        from bot.handlers.grammar import grammar_start
+        # Create update with callback_query to trigger grammar_start
+        await grammar_start(update, context)

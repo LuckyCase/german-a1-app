@@ -1,55 +1,47 @@
 import io
-import os
 from gtts import gTTS
 from telegram import Update
 from telegram.ext import ContextTypes
 
-# Cache directory for audio files
-AUDIO_CACHE_DIR = "data/audio_cache"
-
 
 async def send_word_audio(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str):
-    """Generate and send audio pronunciation for a word."""
+    """Generate and send audio pronunciation for a word.
+
+    Generates audio on-the-fly using gTTS without file caching.
+
+    Returns:
+        Message: The sent voice message, or None if failed.
+    """
     if not text:
-        return
-
-    # Create cache directory if it doesn't exist
-    os.makedirs(AUDIO_CACHE_DIR, exist_ok=True)
-
-    # Create a safe filename from the text
-    safe_filename = "".join(c if c.isalnum() else "_" for c in text)
-    cache_path = os.path.join(AUDIO_CACHE_DIR, f"{safe_filename}.mp3")
+        return None
 
     try:
-        # Check if we have cached audio
-        if os.path.exists(cache_path):
-            with open(cache_path, "rb") as audio_file:
-                await context.bot.send_voice(
-                    chat_id=update.effective_chat.id,
-                    voice=audio_file,
-                    caption=f"{text}"
-                )
-        else:
-            # Generate audio using gTTS
-            tts = gTTS(text=text, lang='de', slow=False)
+        chat_id = update.effective_chat.id
 
-            # Save to cache
-            tts.save(cache_path)
+        # Generate audio directly to memory
+        tts = gTTS(text=text, lang='de', slow=False)
+        audio_buffer = io.BytesIO()
+        tts.write_to_fp(audio_buffer)
+        audio_buffer.seek(0)
+        audio_buffer.name = "audio.mp3"
 
-            # Send the audio
-            with open(cache_path, "rb") as audio_file:
-                await context.bot.send_voice(
-                    chat_id=update.effective_chat.id,
-                    voice=audio_file,
-                    caption=f"{text}"
-                )
+        message = await context.bot.send_voice(
+            chat_id=chat_id,
+            voice=audio_buffer,
+            caption=f"{text}"
+        )
+        return message
 
     except Exception as e:
         # If audio generation fails, just notify the user
-        await context.bot.send_message(
-            chat_id=update.effective_chat.id,
-            text=f"Не удалось создать аудио: {str(e)}"
-        )
+        try:
+            await context.bot.send_message(
+                chat_id=update.effective_chat.id,
+                text=f"Не удалось создать аудио: {str(e)}"
+            )
+        except:
+            pass
+        return None
 
 
 async def audio_command(update: Update, context: ContextTypes.DEFAULT_TYPE):

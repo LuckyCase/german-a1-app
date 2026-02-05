@@ -1,9 +1,10 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ContextTypes
 
 from bot.database import get_or_create_user
 from bot.data.vocabulary import get_categories
 from bot.data.grammar import get_all_tests
+from bot.config import WEB_APP_URL
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -32,6 +33,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     keyboard = [
+        [
+            InlineKeyboardButton("🌐 Открыть Web App", web_app=WebAppInfo(url=WEB_APP_URL))
+        ],
         [
             InlineKeyboardButton("📚 Учить слова", callback_data="menu_flashcards"),
             InlineKeyboardButton("📝 Грамматика", callback_data="menu_grammar")

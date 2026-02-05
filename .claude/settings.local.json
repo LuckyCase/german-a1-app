@@ -3,7 +3,11 @@
     "allow": [
       "Bash(pip install:*)",
       "Bash(python -m bot.main:*)",
-      "Bash(timeout /t 5)"
+      "Bash(timeout /t 5)",
+      "Bash(dir:*)",
+      "Bash(python:*)",
+      "Bash(git -C D:PythonProjectsTelegramBot status --short)",
+      "Bash(cd:*)"
     ]
   }
 }

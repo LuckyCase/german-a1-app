@@ -1,4 +1,5 @@
 import random
+import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, CallbackQueryHandler
 
@@ -12,26 +13,63 @@ CATEGORY_SELECT, LEARNING, ANSWER = range(3)
 
 async def flashcards_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start flashcards learning session."""
-    categories = get_categories()
+    try:
+        categories = get_categories()
 
-    keyboard = []
-    for cat in categories:
-        keyboard.append([
-            InlineKeyboardButton(
-                f"{cat['name']} ({cat['count']} слов)",
-                callback_data=f"fc_cat_{cat['id']}"
+        if not categories:
+            error_text = "Ошибка: категории не найдены. Проверьте файл vocabulary.py"
+            if update.message:
+                await update.message.reply_text(error_text)
+            elif update.callback_query:
+                await update.callback_query.answer()
+                await update.callback_query.edit_message_text(error_text)
+            return ConversationHandler.END
+
+        keyboard = []
+        for cat in categories:
+            keyboard.append([
+                InlineKeyboardButton(
+                    f"{cat['name']} ({cat['count']} слов)",
+                    callback_data=f"fc_cat_{cat['id']}"
+                )
+            ])
+        keyboard.append([InlineKeyboardButton("Все слова (случайно)", callback_data="fc_cat_all")])
+        keyboard.append([InlineKeyboardButton("Отмена", callback_data="fc_cancel")])
+
+        reply_markup = InlineKeyboardMarkup(keyboard)
+
+        # Support both message and callback_query
+        if update.message:
+            await update.message.reply_text(
+                "Выберите категорию для изучения:",
+                reply_markup=reply_markup
             )
-        ])
-    keyboard.append([InlineKeyboardButton("Все слова (случайно)", callback_data="fc_cat_all")])
-    keyboard.append([InlineKeyboardButton("Отмена", callback_data="fc_cancel")])
-
-    reply_markup = InlineKeyboardMarkup(keyboard)
-
-    await update.message.reply_text(
-        "Выберите категорию для изучения:",
-        reply_markup=reply_markup
-    )
-    return CATEGORY_SELECT
+        elif update.callback_query:
+            await update.callback_query.answer()
+            await update.callback_query.edit_message_text(
+                "Выберите категорию для изучения:",
+                reply_markup=reply_markup
+            )
+        else:
+            # Fallback if neither message nor callback_query
+            logger = logging.getLogger(__name__)
+            logger.error("flashcards_start: No message or callback_query in update")
+            return ConversationHandler.END
+        
+        return CATEGORY_SELECT
+    except Exception as e:
+        logger = logging.getLogger(__name__)
+        logger.error(f"Error in flashcards_start: {e}", exc_info=True)
+        error_text = f"Произошла ошибка: {str(e)}"
+        try:
+            if update.message:
+                await update.message.reply_text(error_text)
+            elif update.callback_query:
+                await update.callback_query.answer()
+                await update.callback_query.edit_message_text(error_text)
+        except:
+            pass
+        return ConversationHandler.END
 
 
 async def category_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -74,11 +112,35 @@ async def show_next_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
+    # Delete previous audio message if exists
+    audio_msg_id = context.user_data.get("fc_audio_message_id")
+    if audio_msg_id:
+        try:
+            await context.bot.delete_message(
+                chat_id=query.message.chat_id,
+                message_id=audio_msg_id
+            )
+        except Exception:
+            pass  # Message already deleted or unavailable
+        context.user_data.pop("fc_audio_message_id", None)
+
     words = context.user_data.get("fc_words", [])
     index = context.user_data.get("fc_index", 0)
 
     if index >= len(words):
         # Session complete
+        # Delete audio message if exists
+        audio_msg_id = context.user_data.get("fc_audio_message_id")
+        if audio_msg_id:
+            try:
+                await context.bot.delete_message(
+                    chat_id=query.message.chat_id,
+                    message_id=audio_msg_id
+                )
+            except Exception:
+                pass  # Message already deleted or unavailable
+            context.user_data.pop("fc_audio_message_id", None)
+
         correct = context.user_data.get("fc_correct", 0)
         wrong = context.user_data.get("fc_wrong", 0)
         total = correct + wrong
@@ -138,7 +200,21 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if query.data == "fc_audio":
         word = context.user_data.get("fc_current_word", {})
-        await send_word_audio(update, context, word.get("de", ""))
+        # Delete previous audio message if exists
+        audio_msg_id = context.user_data.get("fc_audio_message_id")
+        if audio_msg_id:
+            try:
+                await context.bot.delete_message(
+                    chat_id=query.message.chat_id,
+                    message_id=audio_msg_id
+                )
+            except Exception:
+                pass  # Message already deleted or unavailable
+        
+        # Send new audio and save message_id
+        audio_message = await send_word_audio(update, context, word.get("de", ""))
+        if audio_message:
+            context.user_data["fc_audio_message_id"] = audio_message.message_id
         return ANSWER
 
     answer_index = int(query.data.replace("fc_ans_", ""))
@@ -179,7 +255,21 @@ async def handle_audio_result(update: Update, context: ContextTypes.DEFAULT_TYPE
     await query.answer()
 
     word = context.user_data.get("fc_current_word", {})
-    await send_word_audio(update, context, word.get("de", ""))
+    # Delete previous audio message if exists
+    audio_msg_id = context.user_data.get("fc_audio_message_id")
+    if audio_msg_id:
+        try:
+            await context.bot.delete_message(
+                chat_id=query.message.chat_id,
+                message_id=audio_msg_id
+            )
+        except Exception:
+            pass  # Message already deleted or unavailable
+    
+    # Send new audio and save message_id
+    audio_message = await send_word_audio(update, context, word.get("de", ""))
+    if audio_message:
+        context.user_data["fc_audio_message_id"] = audio_message.message_id
     return LEARNING
 
 
@@ -187,6 +277,18 @@ async def finish_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Finish the learning session early."""
     query = update.callback_query
     await query.answer()
+
+    # Delete audio message if exists
+    audio_msg_id = context.user_data.get("fc_audio_message_id")
+    if audio_msg_id:
+        try:
+            await context.bot.delete_message(
+                chat_id=query.message.chat_id,
+                message_id=audio_msg_id
+            )
+        except Exception:
+            pass  # Message already deleted or unavailable
+        context.user_data.pop("fc_audio_message_id", None)
 
     correct = context.user_data.get("fc_correct", 0)
     wrong = context.user_data.get("fc_wrong", 0)
@@ -233,5 +335,7 @@ def get_flashcards_handler():
             ]
         },
         fallbacks=[CommandHandler("cancel", cancel_flashcards)],
-        per_message=False
+        per_message=False,
+        per_chat=True,
+        per_user=True,
     )

@@ -38,14 +38,15 @@ def main():
     application.add_handler(CommandHandler("reminder", reminder_settings))
     application.add_handler(CommandHandler("audio", audio_command))
 
-    # Add conversation handlers
+    # Add callback handlers BEFORE conversation handlers (order matters!)
+    # These must be registered first to catch callbacks when no conversation is active
+    application.add_handler(CallbackQueryHandler(menu_callback, pattern="^menu_"))
+    application.add_handler(CallbackQueryHandler(progress_callback, pattern="^(progress_|start_flashcards|start_grammar)"))
+    application.add_handler(CallbackQueryHandler(reminder_callback, pattern="^rem_"))
+
+    # Add conversation handlers (these should come after regular callback handlers)
     application.add_handler(get_flashcards_handler())
     application.add_handler(get_grammar_handler())
-
-    # Add callback handlers
-    application.add_handler(CallbackQueryHandler(menu_callback, pattern="^menu_"))
-    application.add_handler(CallbackQueryHandler(progress_callback, pattern="^progress_"))
-    application.add_handler(CallbackQueryHandler(reminder_callback, pattern="^rem_"))
 
     # Setup reminder job
     setup_reminder_job(application)

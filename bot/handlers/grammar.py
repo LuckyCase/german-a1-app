@@ -26,11 +26,21 @@ async def grammar_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    await update.message.reply_text(
-        "Выберите грамматический тест:\n\n"
-        "Каждый тест проверяет определённую тему грамматики уровня A1.",
-        reply_markup=reply_markup
-    )
+    # Support both message and callback_query
+    if update.message:
+        await update.message.reply_text(
+            "Выберите грамматический тест:\n\n"
+            "Каждый тест проверяет определённую тему грамматики уровня A1.",
+            reply_markup=reply_markup
+        )
+    elif update.callback_query:
+        await update.callback_query.answer()
+        await update.callback_query.edit_message_text(
+            "Выберите грамматический тест:\n\n"
+            "Каждый тест проверяет определённую тему грамматики уровня A1.",
+            reply_markup=reply_markup
+        )
+    
     return TEST_SELECT
 
 
@@ -273,5 +283,7 @@ def get_grammar_handler():
             ]
         },
         fallbacks=[CommandHandler("cancel", cancel_grammar)],
-        per_message=False
+        per_message=False,
+        per_chat=True,
+        per_user=True,
     )
