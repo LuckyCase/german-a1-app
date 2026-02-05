@@ -7,6 +7,10 @@ from flask_cors import CORS
 import os
 import asyncio
 import logging
+import nest_asyncio
+
+# Allow nested event loops (needed for Flask + asyncpg)
+nest_asyncio.apply()
 
 from bot.data.vocabulary import get_all_words, get_categories, get_words_by_category
 from bot.data.grammar import get_all_tests, get_test_questions
@@ -893,7 +897,8 @@ def webhook():
             return 'OK', 200
     
     # Use asyncio.run() which creates a new event loop for each call
-    # This is thread-safe and works with gunicorn workers
+    # nest_asyncio allows this to work even if there's already a loop
+    # Each request gets its own event loop and connection pool
     try:
         return asyncio.run(_process_webhook())
     except Exception as e:

@@ -1,6 +1,7 @@
 import asyncpg
 import os
 import threading
+import asyncio
 from datetime import datetime
 from bot.config import DATABASE_URL
 
@@ -10,24 +11,56 @@ _local = threading.local()
 
 
 async def get_pool():
-    """Get or create connection pool for current thread."""
-    if not hasattr(_local, 'pool') or _local.pool is None:
-        if not DATABASE_URL:
-            raise ValueError("DATABASE_URL is not set! Please configure database connection.")
-        _local.pool = await asyncpg.create_pool(
-            DATABASE_URL,
-            min_size=1,
-            max_size=10,
-            command_timeout=60
-        )
-    return _local.pool
+    """Get or create connection pool for current thread and event loop."""
+    # Get current event loop
+    try:
+        current_loop = asyncio.get_running_loop()
+    except RuntimeError:
+        current_loop = None
+    
+    # Check if we have a pool for this thread
+    if not hasattr(_local, 'pools'):
+        _local.pools = {}
+    
+    # Use loop id as key (or thread id if no loop)
+    pool_key = id(current_loop) if current_loop else threading.get_ident()
+    
+    # Check if pool exists and is valid
+    if pool_key in _local.pools:
+        pool = _local.pools[pool_key]
+        # Check if pool is still valid (not closed)
+        try:
+            if not pool.is_closing():
+                return pool
+        except:
+            pass
+        # Pool is invalid, remove it
+        del _local.pools[pool_key]
+    
+    # Create new pool
+    if not DATABASE_URL:
+        raise ValueError("DATABASE_URL is not set! Please configure database connection.")
+    
+    pool = await asyncpg.create_pool(
+        DATABASE_URL,
+        min_size=1,
+        max_size=10,
+        command_timeout=60
+    )
+    _local.pools[pool_key] = pool
+    return pool
 
 
 async def close_pool():
-    """Close the connection pool for current thread."""
-    if hasattr(_local, 'pool') and _local.pool is not None:
-        await _local.pool.close()
-        _local.pool = None
+    """Close all connection pools for current thread."""
+    if hasattr(_local, 'pools'):
+        for pool in _local.pools.values():
+            try:
+                if not pool.is_closing():
+                    await pool.close()
+            except:
+                pass
+        _local.pools = {}
 
 
 async def init_db():
