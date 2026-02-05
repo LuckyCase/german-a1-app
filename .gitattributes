@@ -3,6 +3,7 @@
 
 # Explicitly declare text files you want to always be normalized and converted
 # to native line endings on checkout.
+# Все текстовые файлы используют LF (Unix) окончания строк
 *.py text eol=lf
 *.md text eol=lf
 *.txt text eol=lf
@@ -12,6 +13,10 @@
 *.html text eol=lf
 *.css text eol=lf
 *.js text eol=lf
+*.env text eol=lf
+*.gitignore text eol=lf
+*.gitattributes text eol=lf
+Procfile text eol=lf
 
 # Denote all files that are truly binary and should not be modified.
 *.png binary

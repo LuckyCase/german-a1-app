@@ -1529,7 +1529,16 @@ def api_update_word_progress():
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
     
-    asyncio.run(update_word_progress(user_id, data['word_id'], data['is_correct']))
+    is_correct = data.get('is_correct', False)
+    
+    # Обновляем progress таблицу
+    asyncio.run(update_word_progress(user_id, data['word_id'], is_correct))
+    
+    # Обновляем daily_stats: words=1 только если правильно, correct=1/0, total=1
+    words = 1 if is_correct else 0
+    correct = 1 if is_correct else 0
+    asyncio.run(update_daily_stats(user_id, words=words, correct=correct, total=1))
+    
     return jsonify({'success': True})
 
 @app.route('/api/progress/grammar', methods=['POST'])
@@ -1622,9 +1631,18 @@ def api_update_phrase_progress():
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
     
+    is_correct = data.get('is_correct', False)
+    
+    # Обновляем phrase_progress таблицу
     asyncio.run(save_phrase_progress(
-        user_id, data['phrase_id'], data['category_id'], data['is_correct']
+        user_id, data['phrase_id'], data['category_id'], is_correct
     ))
+    
+    # Обновляем daily_stats (фразы считаем как слова)
+    words = 1 if is_correct else 0
+    correct = 1 if is_correct else 0
+    asyncio.run(update_daily_stats(user_id, words=words, correct=correct, total=1))
+    
     return jsonify({'success': True})
 
 
@@ -1637,10 +1655,23 @@ def api_update_dialogue_progress():
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
     
+    exercises_completed = data.get('exercises_completed', 0)
+    exercises_correct = data.get('exercises_correct', 0)
+    
+    # Обновляем dialogue_progress таблицу
     asyncio.run(save_dialogue_progress(
         user_id, data['dialogue_id'], 
-        data['exercises_completed'], data['exercises_correct']
+        exercises_completed, exercises_correct
     ))
+    
+    # Обновляем daily_stats (диалоги считаем как тесты)
+    asyncio.run(update_daily_stats(
+        user_id, 
+        tests=1,  # один диалог = один тест
+        correct=exercises_correct, 
+        total=exercises_completed
+    ))
+    
     return jsonify({'success': True})
 
 

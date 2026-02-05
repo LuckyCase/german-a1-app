@@ -25,6 +25,9 @@ env/
 *.swo
 *.sublime-project
 *.sublime-workspace
+.claude/
+.cursor/
+.cursorrules
 
 # OS
 .DS_Store
