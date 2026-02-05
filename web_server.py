@@ -74,14 +74,12 @@ async def init_bot():
     return bot_application
 
 
-# Initialize bot on startup
+# Initialize bot on startup (lazy initialization - will be done on first webhook)
 def init_app():
     """Initialize application on startup."""
-    try:
-        asyncio.run(init_bot())
-        logger.info("Application initialized successfully")
-    except Exception as e:
-        logger.error(f"Failed to initialize application: {e}")
+    # Don't initialize bot here - do it lazily on first webhook request
+    # This avoids event loop conflicts with gunicorn workers
+    logger.info("Application ready - bot will be initialized on first request")
 
 # Read HTML template
 HTML_TEMPLATE = """
@@ -859,24 +857,33 @@ def api_audio(text):
 # ============= TELEGRAM BOT WEBHOOK ENDPOINTS =============
 
 @app.route('/webhook', methods=['POST'])
-async def webhook():
+def webhook():
     """Handle incoming Telegram updates via webhook."""
     global bot_application
 
+    async def _process_webhook():
+        """Process webhook in async context."""
+        try:
+            # Ensure bot is initialized
+            if bot_application is None:
+                await init_bot()
+
+            # Parse the update
+            update = Update.de_json(request.get_json(), bot_application.bot)
+
+            # Process the update
+            await bot_application.process_update(update)
+            return 'OK', 200
+        except Exception as e:
+            logger.error(f"Error processing webhook: {e}", exc_info=True)
+            return 'Error', 500
+    
+    # Use asyncio.run() which creates a new event loop for each call
+    # This is thread-safe and works with gunicorn workers
     try:
-        # Ensure bot is initialized
-        if bot_application is None:
-            await init_bot()
-
-        # Parse the update
-        update = Update.de_json(request.get_json(), bot_application.bot)
-
-        # Process the update
-        await bot_application.process_update(update)
-
-        return 'OK', 200
+        return asyncio.run(_process_webhook())
     except Exception as e:
-        logger.error(f"Error processing webhook: {e}")
+        logger.error(f"Error in webhook: {e}", exc_info=True)
         return 'Error', 500
 
 
