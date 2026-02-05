@@ -1,0 +1,93 @@
+{
+  "id": "personal",
+  "name": "Личная информация",
+  "name_de": "Persönliche Informationen",
+  "description": "Слова для рассказа о себе",
+  "level": "A1",
+  "words": [
+    {
+      "de": "der Name",
+      "ru": "имя",
+      "example": "Mein Name ist Anna.",
+      "example_ru": "Меня зовут Анна."
+    },
+    {
+      "de": "der Vorname",
+      "ru": "имя (первое)",
+      "example": "Mein Vorname ist Peter.",
+      "example_ru": "Моё имя Петер."
+    },
+    {
+      "de": "der Nachname",
+      "ru": "фамилия",
+      "example": "Mein Nachname ist Müller.",
+      "example_ru": "Моя фамилия Мюллер."
+    },
+    {
+      "de": "das Alter",
+      "ru": "возраст",
+      "example": "Ich bin 25 Jahre alt.",
+      "example_ru": "Мне 25 лет."
+    },
+    {
+      "de": "die Adresse",
+      "ru": "адрес",
+      "example": "Meine Adresse ist Hauptstraße 10.",
+      "example_ru": "Мой адрес: Хауптштрассе, 10."
+    },
+    {
+      "de": "die Telefonnummer",
+      "ru": "номер телефона",
+      "example": "Meine Telefonnummer ist 0176-12345.",
+      "example_ru": "Мой номер телефона 0176-12345."
+    },
+    {
+      "de": "die E-Mail",
+      "ru": "электронная почта",
+      "example": "Meine E-Mail ist anna@mail.de",
+      "example_ru": "Мой email — anna@mail.de"
+    },
+    {
+      "de": "der Beruf",
+      "ru": "профессия",
+      "example": "Mein Beruf ist Lehrer.",
+      "example_ru": "Моя профессия — учитель."
+    },
+    {
+      "de": "das Land",
+      "ru": "страна",
+      "example": "Ich komme aus Russland.",
+      "example_ru": "Я из России."
+    },
+    {
+      "de": "die Stadt",
+      "ru": "город",
+      "example": "Ich wohne in Berlin.",
+      "example_ru": "Я живу в Берлине."
+    },
+    {
+      "de": "die Sprache",
+      "ru": "язык",
+      "example": "Ich spreche Deutsch.",
+      "example_ru": "Я говорю по-немецки."
+    },
+    {
+      "de": "verheiratet",
+      "ru": "женат/замужем",
+      "example": "Ich bin verheiratet.",
+      "example_ru": "Я женат/замужем."
+    },
+    {
+      "de": "ledig",
+      "ru": "холост/не замужем",
+      "example": "Er ist ledig.",
+      "example_ru": "Он холост."
+    },
+    {
+      "de": "geboren",
+      "ru": "родившийся",
+      "example": "Ich bin 1990 geboren.",
+      "example_ru": "Я родился в 1990 году."
+    }
+  ]
+}

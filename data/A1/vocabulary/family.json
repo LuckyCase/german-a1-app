@@ -1,0 +1,99 @@
+{
+  "id": "family",
+  "name": "Семья",
+  "name_de": "Familie",
+  "description": "Члены семьи и родственники",
+  "level": "A1",
+  "words": [
+    {
+      "de": "die Familie",
+      "ru": "семья",
+      "example": "Meine Familie ist groß.",
+      "example_ru": "Моя семья большая."
+    },
+    {
+      "de": "die Mutter",
+      "ru": "мать",
+      "example": "Meine Mutter heißt Maria.",
+      "example_ru": "Мою маму зовут Мария."
+    },
+    {
+      "de": "der Vater",
+      "ru": "отец",
+      "example": "Mein Vater arbeitet viel.",
+      "example_ru": "Мой отец много работает."
+    },
+    {
+      "de": "die Eltern",
+      "ru": "родители",
+      "example": "Meine Eltern wohnen in Moskau.",
+      "example_ru": "Мои родители живут в Москве."
+    },
+    {
+      "de": "die Schwester",
+      "ru": "сестра",
+      "example": "Ich habe eine Schwester.",
+      "example_ru": "У меня есть сестра."
+    },
+    {
+      "de": "der Bruder",
+      "ru": "брат",
+      "example": "Mein Bruder ist 20 Jahre alt.",
+      "example_ru": "Моему брату 20 лет."
+    },
+    {
+      "de": "die Großmutter",
+      "ru": "бабушка",
+      "example": "Meine Großmutter kocht gut.",
+      "example_ru": "Моя бабушка хорошо готовит."
+    },
+    {
+      "de": "der Großvater",
+      "ru": "дедушка",
+      "example": "Mein Großvater ist 80.",
+      "example_ru": "Моему дедушке 80 лет."
+    },
+    {
+      "de": "die Oma",
+      "ru": "бабушка (разг.)",
+      "example": "Oma backt Kuchen.",
+      "example_ru": "Бабушка печёт пирог."
+    },
+    {
+      "de": "der Opa",
+      "ru": "дедушка (разг.)",
+      "example": "Opa liest Zeitung.",
+      "example_ru": "Дедушка читает газету."
+    },
+    {
+      "de": "das Kind",
+      "ru": "ребёнок",
+      "example": "Das Kind spielt.",
+      "example_ru": "Ребёнок играет."
+    },
+    {
+      "de": "der Sohn",
+      "ru": "сын",
+      "example": "Mein Sohn geht zur Schule.",
+      "example_ru": "Мой сын ходит в школу."
+    },
+    {
+      "de": "die Tochter",
+      "ru": "дочь",
+      "example": "Meine Tochter ist 5.",
+      "example_ru": "Моей дочери 5 лет."
+    },
+    {
+      "de": "der Mann",
+      "ru": "муж/мужчина",
+      "example": "Mein Mann arbeitet.",
+      "example_ru": "Мой муж работает."
+    },
+    {
+      "de": "die Frau",
+      "ru": "жена/женщина",
+      "example": "Meine Frau ist Ärztin.",
+      "example_ru": "Моя жена — врач."
+    }
+  ]
+}

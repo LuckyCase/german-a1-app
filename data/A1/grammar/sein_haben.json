@@ -1,0 +1,102 @@
+{
+  "id": "sein_haben",
+  "name": "Глаголы sein и haben",
+  "name_de": "Verben sein und haben",
+  "description": "Спряжение глаголов sein (быть) и haben (иметь)",
+  "level": "A1",
+  "theory": {
+    "title": "Глаголы sein и haben",
+    "content": "Это два самых важных глагола в немецком языке. Они неправильные и спрягаются особым образом.",
+    "tables": [
+      {
+        "title": "sein (быть)",
+        "rows": [
+          ["ich", "bin"],
+          ["du", "bist"],
+          ["er/sie/es", "ist"],
+          ["wir", "sind"],
+          ["ihr", "seid"],
+          ["sie/Sie", "sind"]
+        ]
+      },
+      {
+        "title": "haben (иметь)",
+        "rows": [
+          ["ich", "habe"],
+          ["du", "hast"],
+          ["er/sie/es", "hat"],
+          ["wir", "haben"],
+          ["ihr", "habt"],
+          ["sie/Sie", "haben"]
+        ]
+      }
+    ],
+    "examples": [
+      "Ich bin Student. — Я студент.",
+      "Du hast Zeit. — У тебя есть время.",
+      "Sie ist Ärztin. — Она врач."
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich ___ Student.",
+      "options": ["bin", "bist", "ist"],
+      "correct": 0,
+      "explanation": "ich bin (я есть)"
+    },
+    {
+      "question": "Du ___ müde.",
+      "options": ["bin", "bist", "ist"],
+      "correct": 1,
+      "explanation": "du bist (ты есть)"
+    },
+    {
+      "question": "Er ___ Lehrer.",
+      "options": ["bin", "bist", "ist"],
+      "correct": 2,
+      "explanation": "er ist (он есть)"
+    },
+    {
+      "question": "Wir ___ aus Russland.",
+      "options": ["sind", "seid", "ist"],
+      "correct": 0,
+      "explanation": "wir sind (мы есть)"
+    },
+    {
+      "question": "Ihr ___ nett.",
+      "options": ["sind", "seid", "ist"],
+      "correct": 1,
+      "explanation": "ihr seid (вы есть)"
+    },
+    {
+      "question": "Ich ___ ein Auto.",
+      "options": ["habe", "hast", "hat"],
+      "correct": 0,
+      "explanation": "ich habe (я имею)"
+    },
+    {
+      "question": "Du ___ Zeit.",
+      "options": ["habe", "hast", "hat"],
+      "correct": 1,
+      "explanation": "du hast (ты имеешь)"
+    },
+    {
+      "question": "Sie ___ eine Schwester.",
+      "options": ["habe", "hast", "hat"],
+      "correct": 2,
+      "explanation": "sie hat (она имеет)"
+    },
+    {
+      "question": "Wir ___ Hunger.",
+      "options": ["haben", "habt", "hat"],
+      "correct": 0,
+      "explanation": "wir haben (мы имеем)"
+    },
+    {
+      "question": "Sie (они) ___ Kinder.",
+      "options": ["haben", "habt", "hat"],
+      "correct": 0,
+      "explanation": "sie haben (они имеют)"
+    }
+  ]
+}

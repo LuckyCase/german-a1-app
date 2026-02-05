@@ -12,8 +12,7 @@ import nest_asyncio
 # Allow nested event loops (needed for Flask + asyncpg)
 nest_asyncio.apply()
 
-from bot.data.vocabulary import get_all_words, get_categories, get_words_by_category
-from bot.data.grammar import get_all_tests, get_test_questions
+from bot.content_manager import get_all_words, get_categories, get_words_by_category, get_all_tests, get_test_questions, init_content
 from bot.database import get_user_stats, update_word_progress, save_grammar_result, update_daily_stats, init_db
 from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
 
@@ -63,6 +62,8 @@ async def init_bot():
 # Initialize bot on startup (lazy initialization - will be done on first webhook)
 def init_app():
     """Initialize application on startup."""
+    # Initialize content from JSON files
+    init_content()
     # Don't initialize bot here - do it lazily on first webhook request
     # This avoids event loop conflicts with gunicorn workers
     logger.info("Application ready - bot will be initialized on first request")
@@ -250,7 +251,7 @@ HTML_TEMPLATE = """
         .card-title {
             font-size: 1rem;
             font-weight: 700;
-            color: var(--text-secondary);
+            color: var(--tg-theme-hint-color, var(--text-secondary));
             margin-bottom: 16px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -309,7 +310,7 @@ HTML_TEMPLATE = """
         
         /* Category/Test buttons */
         .category-btn {
-            background: var(--bg-secondary);
+            background: var(--tg-theme-secondary-bg-color, var(--bg-secondary));
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             padding: 16px;
@@ -319,23 +320,26 @@ HTML_TEMPLATE = """
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: var(--tg-theme-text-color, var(--text-primary));
         }
         
         .category-btn:active {
             background: var(--primary);
             border-color: var(--primary);
             transform: scale(0.98);
+            color: white;
         }
         
         .category-btn .name {
             font-weight: 700;
             font-size: 1rem;
+            color: var(--tg-theme-text-color, var(--text-primary));
         }
         
         .category-btn .count {
-            color: var(--text-secondary);
+            color: var(--tg-theme-hint-color, var(--text-secondary));
             font-size: 0.85rem;
-            background: rgba(255,255,255,0.1);
+            background: var(--tg-theme-button-color, rgba(99, 102, 241, 0.2));
             padding: 4px 10px;
             border-radius: 20px;
         }
@@ -366,11 +370,11 @@ HTML_TEMPLATE = """
             font-size: clamp(1.8rem, 6vw, 2.5rem);
             font-weight: 800;
             margin-bottom: 8px;
-            color: white;
+            color: var(--tg-theme-text-color, white);
         }
         
         .flashcard-example {
-            color: var(--text-secondary);
+            color: var(--tg-theme-hint-color, var(--text-secondary));
             font-size: 0.95rem;
             font-style: italic;
             margin-bottom: 16px;
@@ -378,7 +382,7 @@ HTML_TEMPLATE = """
         
         .flashcard-progress {
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--tg-theme-hint-color, var(--text-secondary));
             margin-bottom: 16px;
         }
         
@@ -387,10 +391,10 @@ HTML_TEMPLATE = """
             align-items: center;
             gap: 6px;
             padding: 10px 20px;
-            background: rgba(255,255,255,0.1);
+            background: var(--tg-theme-button-color, rgba(99, 102, 241, 0.2));
             border: 1px solid var(--border-color);
             border-radius: 30px;
-            color: var(--text-primary);
+            color: var(--tg-theme-button-text-color, var(--text-primary));
             font-family: inherit;
             font-size: 0.9rem;
             font-weight: 600;
@@ -413,10 +417,10 @@ HTML_TEMPLATE = """
         .option {
             width: 100%;
             padding: 16px 20px;
-            background: var(--bg-secondary);
+            background: var(--tg-theme-secondary-bg-color, var(--bg-secondary));
             border: 2px solid var(--border-color);
             border-radius: var(--radius-md);
-            color: var(--text-primary);
+            color: var(--tg-theme-text-color, var(--text-primary));
             font-family: inherit;
             font-size: 1rem;
             font-weight: 600;
@@ -450,11 +454,12 @@ HTML_TEMPLATE = """
         }
         
         .stat-card {
-            background: var(--bg-secondary);
+            background: var(--tg-theme-secondary-bg-color, var(--bg-secondary));
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             padding: 20px 16px;
             text-align: center;
+            color: var(--tg-theme-text-color, var(--text-primary));
         }
         
         .stat-value {
@@ -468,7 +473,7 @@ HTML_TEMPLATE = """
         
         .stat-label {
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--tg-theme-hint-color, var(--text-secondary));
             margin-top: 4px;
         }
         
@@ -493,14 +498,14 @@ HTML_TEMPLATE = """
             text-align: center;
             margin-top: 8px;
             font-size: 0.85rem;
-            color: var(--text-secondary);
+            color: var(--tg-theme-hint-color, var(--text-secondary));
         }
         
         /* Loading & Error */
         .loading {
             text-align: center;
             padding: 40px;
-            color: var(--text-secondary);
+            color: var(--tg-theme-hint-color, var(--text-secondary));
         }
         
         .loading::after {
@@ -530,11 +535,12 @@ HTML_TEMPLATE = """
         
         /* Question card */
         .question-card {
-            background: var(--bg-secondary);
+            background: var(--tg-theme-secondary-bg-color, var(--bg-secondary));
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: 24px;
             margin-bottom: 20px;
+            color: var(--tg-theme-text-color, var(--text-primary));
         }
         
         .question-number {
@@ -558,7 +564,7 @@ HTML_TEMPLATE = """
             padding: 8px 0;
             background: none;
             border: none;
-            color: var(--text-secondary);
+            color: var(--tg-theme-hint-color, var(--text-secondary));
             font-family: inherit;
             font-size: 0.9rem;
             cursor: pointer;

@@ -1,0 +1,105 @@
+{
+  "id": "transport",
+  "name": "Транспорт и город",
+  "name_de": "Verkehr und Stadt",
+  "description": "Транспорт, ориентация в городе",
+  "level": "A1",
+  "words": [
+    {
+      "de": "der Bus",
+      "ru": "автобус",
+      "example": "Ich fahre mit dem Bus.",
+      "example_ru": "Я еду на автобусе."
+    },
+    {
+      "de": "die Bahn",
+      "ru": "поезд",
+      "example": "Die Bahn kommt um 10 Uhr.",
+      "example_ru": "Поезд прибывает в 10 часов."
+    },
+    {
+      "de": "die U-Bahn",
+      "ru": "метро",
+      "example": "Die U-Bahn ist schnell.",
+      "example_ru": "Метро быстрое."
+    },
+    {
+      "de": "die Straßenbahn",
+      "ru": "трамвай",
+      "example": "Die Straßenbahn Linie 5.",
+      "example_ru": "Трамвай линии 5."
+    },
+    {
+      "de": "das Auto",
+      "ru": "машина",
+      "example": "Ich habe kein Auto.",
+      "example_ru": "У меня нет машины."
+    },
+    {
+      "de": "das Fahrrad",
+      "ru": "велосипед",
+      "example": "Ich fahre Fahrrad.",
+      "example_ru": "Я езжу на велосипеде."
+    },
+    {
+      "de": "das Taxi",
+      "ru": "такси",
+      "example": "Ich nehme ein Taxi.",
+      "example_ru": "Я беру такси."
+    },
+    {
+      "de": "der Flughafen",
+      "ru": "аэропорт",
+      "example": "Zum Flughafen, bitte.",
+      "example_ru": "В аэропорт, пожалуйста."
+    },
+    {
+      "de": "der Bahnhof",
+      "ru": "вокзал",
+      "example": "Der Bahnhof ist hier.",
+      "example_ru": "Вокзал здесь."
+    },
+    {
+      "de": "die Haltestelle",
+      "ru": "остановка",
+      "example": "Die Haltestelle ist dort.",
+      "example_ru": "Остановка там."
+    },
+    {
+      "de": "die Straße",
+      "ru": "улица",
+      "example": "Die Hauptstraße ist lang.",
+      "example_ru": "Главная улица длинная."
+    },
+    {
+      "de": "der Platz",
+      "ru": "площадь",
+      "example": "Der Marktplatz ist schön.",
+      "example_ru": "Рыночная площадь красивая."
+    },
+    {
+      "de": "links",
+      "ru": "налево",
+      "example": "Gehen Sie links.",
+      "example_ru": "Идите налево."
+    },
+    {
+      "de": "rechts",
+      "ru": "направо",
+      "example": "Dann rechts.",
+      "example_ru": "Потом направо."
+    },
+    {
+      "de": "geradeaus",
+      "ru": "прямо",
+      "example": "Immer geradeaus.",
+      "example_ru": "Всё время прямо."
+    },
+    {
+      "de": "die Fahrkarte",
+      "ru": "билет",
+      "example": "Eine Fahrkarte, bitte.",
+      "example_ru": "Билет, пожалуйста."
+    }
+  ]
+}

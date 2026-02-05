@@ -1,0 +1,153 @@
+{
+  "id": "verbs",
+  "name": "Важные глаголы",
+  "name_de": "Wichtige Verben",
+  "description": "Основные глаголы уровня A1",
+  "level": "A1",
+  "words": [
+    {
+      "de": "sein",
+      "ru": "быть",
+      "example": "Ich bin Student.",
+      "example_ru": "Я студент."
+    },
+    {
+      "de": "haben",
+      "ru": "иметь",
+      "example": "Ich habe ein Auto.",
+      "example_ru": "У меня есть машина."
+    },
+    {
+      "de": "machen",
+      "ru": "делать",
+      "example": "Was machst du?",
+      "example_ru": "Что ты делаешь?"
+    },
+    {
+      "de": "gehen",
+      "ru": "идти",
+      "example": "Ich gehe nach Hause.",
+      "example_ru": "Я иду домой."
+    },
+    {
+      "de": "kommen",
+      "ru": "приходить",
+      "example": "Woher kommen Sie?",
+      "example_ru": "Откуда вы?"
+    },
+    {
+      "de": "wohnen",
+      "ru": "жить",
+      "example": "Ich wohne in Berlin.",
+      "example_ru": "Я живу в Берлине."
+    },
+    {
+      "de": "arbeiten",
+      "ru": "работать",
+      "example": "Ich arbeite als Lehrer.",
+      "example_ru": "Я работаю учителем."
+    },
+    {
+      "de": "lernen",
+      "ru": "учить",
+      "example": "Ich lerne Deutsch.",
+      "example_ru": "Я учу немецкий."
+    },
+    {
+      "de": "sprechen",
+      "ru": "говорить",
+      "example": "Sprechen Sie Deutsch?",
+      "example_ru": "Вы говорите по-немецки?"
+    },
+    {
+      "de": "verstehen",
+      "ru": "понимать",
+      "example": "Ich verstehe nicht.",
+      "example_ru": "Я не понимаю."
+    },
+    {
+      "de": "essen",
+      "ru": "есть",
+      "example": "Ich esse gern Pizza.",
+      "example_ru": "Я люблю есть пиццу."
+    },
+    {
+      "de": "trinken",
+      "ru": "пить",
+      "example": "Ich trinke Kaffee.",
+      "example_ru": "Я пью кофе."
+    },
+    {
+      "de": "schlafen",
+      "ru": "спать",
+      "example": "Ich schlafe 8 Stunden.",
+      "example_ru": "Я сплю 8 часов."
+    },
+    {
+      "de": "lesen",
+      "ru": "читать",
+      "example": "Ich lese ein Buch.",
+      "example_ru": "Я читаю книгу."
+    },
+    {
+      "de": "schreiben",
+      "ru": "писать",
+      "example": "Ich schreibe eine E-Mail.",
+      "example_ru": "Я пишу имейл."
+    },
+    {
+      "de": "kaufen",
+      "ru": "покупать",
+      "example": "Ich kaufe Brot.",
+      "example_ru": "Я покупаю хлеб."
+    },
+    {
+      "de": "kosten",
+      "ru": "стоить",
+      "example": "Was kostet das?",
+      "example_ru": "Сколько это стоит?"
+    },
+    {
+      "de": "brauchen",
+      "ru": "нуждаться",
+      "example": "Ich brauche Hilfe.",
+      "example_ru": "Мне нужна помощь."
+    },
+    {
+      "de": "möchten",
+      "ru": "хотеть",
+      "example": "Ich möchte Kaffee.",
+      "example_ru": "Я хочу кофе."
+    },
+    {
+      "de": "können",
+      "ru": "мочь/уметь",
+      "example": "Ich kann schwimmen.",
+      "example_ru": "Я умею плавать."
+    },
+    {
+      "de": "müssen",
+      "ru": "должен",
+      "example": "Ich muss gehen.",
+      "example_ru": "Мне надо идти."
+    },
+    {
+      "de": "heißen",
+      "ru": "называться",
+      "example": "Ich heiße Anna.",
+      "example_ru": "Меня зовут Анна."
+    },
+    {
+      "de": "finden",
+      "ru": "находить/считать",
+      "example": "Ich finde das gut.",
+      "example_ru": "Я считаю это хорошим."
+    },
+    {
+      "de": "nehmen",
+      "ru": "брать",
+      "example": "Ich nehme das.",
+      "example_ru": "Я беру это."
+    }
+  ]
+}

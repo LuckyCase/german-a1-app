@@ -1,0 +1,117 @@
+{
+  "id": "home",
+  "name": "Дом и жильё",
+  "name_de": "Wohnung und Haus",
+  "description": "Дом, квартира, мебель",
+  "level": "A1",
+  "words": [
+    {
+      "de": "das Haus",
+      "ru": "дом",
+      "example": "Das Haus ist groß.",
+      "example_ru": "Дом большой."
+    },
+    {
+      "de": "die Wohnung",
+      "ru": "квартира",
+      "example": "Meine Wohnung hat 3 Zimmer.",
+      "example_ru": "В моей квартире 3 комнаты."
+    },
+    {
+      "de": "das Zimmer",
+      "ru": "комната",
+      "example": "Mein Zimmer ist klein.",
+      "example_ru": "Моя комната маленькая."
+    },
+    {
+      "de": "die Küche",
+      "ru": "кухня",
+      "example": "Die Küche ist modern.",
+      "example_ru": "Кухня современная."
+    },
+    {
+      "de": "das Bad",
+      "ru": "ванная",
+      "example": "Das Bad ist sauber.",
+      "example_ru": "Ванная чистая."
+    },
+    {
+      "de": "das Schlafzimmer",
+      "ru": "спальня",
+      "example": "Das Schlafzimmer ist ruhig.",
+      "example_ru": "Спальня тихая."
+    },
+    {
+      "de": "das Wohnzimmer",
+      "ru": "гостиная",
+      "example": "Das Wohnzimmer ist hell.",
+      "example_ru": "Гостиная светлая."
+    },
+    {
+      "de": "der Balkon",
+      "ru": "балкон",
+      "example": "Wir haben einen Balkon.",
+      "example_ru": "У нас есть балкон."
+    },
+    {
+      "de": "der Garten",
+      "ru": "сад",
+      "example": "Der Garten ist schön.",
+      "example_ru": "Сад красивый."
+    },
+    {
+      "de": "die Tür",
+      "ru": "дверь",
+      "example": "Die Tür ist offen.",
+      "example_ru": "Дверь открыта."
+    },
+    {
+      "de": "das Fenster",
+      "ru": "окно",
+      "example": "Das Fenster ist groß.",
+      "example_ru": "Окно большое."
+    },
+    {
+      "de": "der Tisch",
+      "ru": "стол",
+      "example": "Der Tisch ist aus Holz.",
+      "example_ru": "Стол из дерева."
+    },
+    {
+      "de": "der Stuhl",
+      "ru": "стул",
+      "example": "Der Stuhl ist bequem.",
+      "example_ru": "Стул удобный."
+    },
+    {
+      "de": "das Bett",
+      "ru": "кровать",
+      "example": "Das Bett ist weich.",
+      "example_ru": "Кровать мягкая."
+    },
+    {
+      "de": "der Schrank",
+      "ru": "шкаф",
+      "example": "Der Schrank ist voll.",
+      "example_ru": "Шкаф полный."
+    },
+    {
+      "de": "das Sofa",
+      "ru": "диван",
+      "example": "Das Sofa ist neu.",
+      "example_ru": "Диван новый."
+    },
+    {
+      "de": "die Lampe",
+      "ru": "лампа",
+      "example": "Die Lampe ist an.",
+      "example_ru": "Лампа включена."
+    },
+    {
+      "de": "die Miete",
+      "ru": "аренда",
+      "example": "Die Miete ist 500 Euro.",
+      "example_ru": "Аренда стоит 500 евро."
+    }
+  ]
+}

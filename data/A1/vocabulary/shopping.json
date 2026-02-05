@@ -1,0 +1,93 @@
+{
+  "id": "shopping",
+  "name": "Покупки",
+  "name_de": "Einkaufen",
+  "description": "Магазины, деньги, покупки",
+  "level": "A1",
+  "words": [
+    {
+      "de": "das Geschäft",
+      "ru": "магазин",
+      "example": "Das Geschäft ist offen.",
+      "example_ru": "Магазин открыт."
+    },
+    {
+      "de": "der Supermarkt",
+      "ru": "супермаркет",
+      "example": "Ich gehe zum Supermarkt.",
+      "example_ru": "Я иду в супермаркет."
+    },
+    {
+      "de": "der Laden",
+      "ru": "магазин",
+      "example": "Der Laden ist geschlossen.",
+      "example_ru": "Магазин закрыт."
+    },
+    {
+      "de": "das Geld",
+      "ru": "деньги",
+      "example": "Ich habe kein Geld.",
+      "example_ru": "У меня нет денег."
+    },
+    {
+      "de": "der Euro",
+      "ru": "евро",
+      "example": "Das kostet 5 Euro.",
+      "example_ru": "Это стоит 5 евро."
+    },
+    {
+      "de": "der Cent",
+      "ru": "цент",
+      "example": "50 Cent, bitte.",
+      "example_ru": "50 центов, пожалуйста."
+    },
+    {
+      "de": "der Preis",
+      "ru": "цена",
+      "example": "Der Preis ist gut.",
+      "example_ru": "Цена хорошая."
+    },
+    {
+      "de": "teuer",
+      "ru": "дорогой",
+      "example": "Das ist zu teuer.",
+      "example_ru": "Это слишком дорого."
+    },
+    {
+      "de": "billig",
+      "ru": "дешёвый",
+      "example": "Das ist billig.",
+      "example_ru": "Это дёшево."
+    },
+    {
+      "de": "günstig",
+      "ru": "выгодный",
+      "example": "Das Angebot ist günstig.",
+      "example_ru": "Предложение выгодное."
+    },
+    {
+      "de": "bezahlen",
+      "ru": "платить",
+      "example": "Wo kann ich bezahlen?",
+      "example_ru": "Где я могу заплатить?"
+    },
+    {
+      "de": "die Kasse",
+      "ru": "касса",
+      "example": "An der Kasse, bitte.",
+      "example_ru": "На кассе, пожалуйста."
+    },
+    {
+      "de": "offen",
+      "ru": "открыто",
+      "example": "Der Laden ist offen.",
+      "example_ru": "Магазин открыт."
+    },
+    {
+      "de": "geschlossen",
+      "ru": "закрыто",
+      "example": "Heute geschlossen.",
+      "example_ru": "Сегодня закрыто."
+    }
+  ]
+}

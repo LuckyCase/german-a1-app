@@ -1,0 +1,95 @@
+{
+  "id": "present_tense",
+  "name": "Настоящее время (Präsens)",
+  "name_de": "Präsens",
+  "description": "Спряжение глаголов в настоящем времени",
+  "level": "A1",
+  "theory": {
+    "title": "Настоящее время — Präsens",
+    "content": "Большинство глаголов в настоящем времени спрягаются по следующей схеме:\n\nОснова глагола + личное окончание",
+    "tables": [
+      {
+        "title": "Окончания глаголов (на примере lernen — учить)",
+        "rows": [
+          ["ich", "lern-e"],
+          ["du", "lern-st"],
+          ["er/sie/es", "lern-t"],
+          ["wir", "lern-en"],
+          ["ihr", "lern-t"],
+          ["sie/Sie", "lern-en"]
+        ]
+      }
+    ],
+    "examples": [
+      "Ich lerne Deutsch. — Я учу немецкий.",
+      "Er arbeitet viel. — Он много работает.",
+      "Wir wohnen in Berlin. — Мы живём в Берлине."
+    ],
+    "tips": [
+      "Если основа глагола заканчивается на -t или -d, добавляется -e: arbeiten → du arbeitest",
+      "Некоторые глаголы меняют корневую гласную: sprechen → du sprichst, lesen → du liest"
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich ___ Deutsch. (lernen)",
+      "options": ["lerne", "lernst", "lernt"],
+      "correct": 0,
+      "explanation": "ich lerne (я учу)"
+    },
+    {
+      "question": "Du ___ viel. (arbeiten)",
+      "options": ["arbeite", "arbeitest", "arbeitet"],
+      "correct": 1,
+      "explanation": "du arbeitest (ты работаешь)"
+    },
+    {
+      "question": "Er ___ Kaffee. (trinken)",
+      "options": ["trinke", "trinkst", "trinkt"],
+      "correct": 2,
+      "explanation": "er trinkt (он пьёт)"
+    },
+    {
+      "question": "Wir ___ in Berlin. (wohnen)",
+      "options": ["wohne", "wohnst", "wohnen"],
+      "correct": 2,
+      "explanation": "wir wohnen (мы живём)"
+    },
+    {
+      "question": "Sie ___ ein Buch. (lesen)",
+      "options": ["lese", "liest", "lesen"],
+      "correct": 1,
+      "explanation": "sie liest (она читает) — неправильный глагол"
+    },
+    {
+      "question": "Ich ___ gern Pizza. (essen)",
+      "options": ["esse", "isst", "esst"],
+      "correct": 0,
+      "explanation": "ich esse (я ем)"
+    },
+    {
+      "question": "Du ___ gut Deutsch. (sprechen)",
+      "options": ["spreche", "sprichst", "spricht"],
+      "correct": 1,
+      "explanation": "du sprichst (ты говоришь) — неправильный глагол"
+    },
+    {
+      "question": "Er ___ nach Hause. (gehen)",
+      "options": ["gehe", "gehst", "geht"],
+      "correct": 2,
+      "explanation": "er geht (он идёт)"
+    },
+    {
+      "question": "Ihr ___ aus Deutschland. (kommen)",
+      "options": ["komme", "kommt", "kommen"],
+      "correct": 1,
+      "explanation": "ihr kommt (вы приходите)"
+    },
+    {
+      "question": "Sie ___ Anna. (heißen)",
+      "options": ["heiße", "heißt", "heißen"],
+      "correct": 1,
+      "explanation": "sie heißt (её зовут)"
+    }
+  ]
+}

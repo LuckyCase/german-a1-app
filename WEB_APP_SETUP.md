@@ -85,12 +85,18 @@ python -m bot.main
 
 ```
 TelegramBot/
-├── web_server.py          # Flask веб-сервер для Web App
+├── web_server.py          # Flask веб-сервер для Web App + Webhook
 ├── bot/
-│   ├── main.py           # Telegram бот
+│   ├── main.py           # Telegram бот (polling режим)
+│   ├── content_manager.py # Загрузка данных из JSON
 │   ├── handlers/
 │   │   └── common.py     # Обновлён для кнопки Web App
 │   └── config.py         # Добавлен WEB_APP_URL
+├── data/
+│   └── A1/               # JSON файлы с учебными данными
+│       ├── vocabulary/   # Словарь (11 категорий)
+│       ├── grammar/      # Грамматика (8 тем)
+│       └── metadata.json # Метаданные
 └── requirements.txt      # Добавлены Flask зависимости
 ```
 

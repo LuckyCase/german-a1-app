@@ -4,6 +4,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler
 
 from bot.config import TELEGRAM_BOT_TOKEN
 from bot.database import init_db
+from bot.content_manager import init_content
 from bot.handlers.common import start, help_command, menu_callback
 from bot.handlers.flashcards import get_flashcards_handler
 from bot.handlers.grammar import get_grammar_handler
@@ -27,6 +28,9 @@ def main():
 
     # Initialize database
     asyncio.run(init_db())
+    
+    # Initialize content from JSON files
+    init_content()
 
     # Create application
     application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()

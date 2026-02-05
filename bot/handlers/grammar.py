@@ -2,7 +2,7 @@ import random
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, CallbackQueryHandler
 
-from bot.data.grammar import get_all_tests, get_test, get_test_questions
+from bot.content_manager import get_all_tests, get_test, get_test_questions
 from bot.database import save_grammar_result, update_daily_stats
 
 # Conversation states

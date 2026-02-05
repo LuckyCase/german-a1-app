@@ -1,0 +1,129 @@
+{
+  "id": "adjectives",
+  "name": "Прилагательные",
+  "name_de": "Adjektive",
+  "description": "Основные прилагательные для описания",
+  "level": "A1",
+  "words": [
+    {
+      "de": "groß",
+      "ru": "большой",
+      "example": "Das Haus ist groß.",
+      "example_ru": "Дом большой."
+    },
+    {
+      "de": "klein",
+      "ru": "маленький",
+      "example": "Die Wohnung ist klein.",
+      "example_ru": "Квартира маленькая."
+    },
+    {
+      "de": "gut",
+      "ru": "хороший",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "schlecht",
+      "ru": "плохой",
+      "example": "Das Wetter ist schlecht.",
+      "example_ru": "Погода плохая."
+    },
+    {
+      "de": "neu",
+      "ru": "новый",
+      "example": "Das Auto ist neu.",
+      "example_ru": "Машина новая."
+    },
+    {
+      "de": "alt",
+      "ru": "старый",
+      "example": "Das Haus ist alt.",
+      "example_ru": "Дом старый."
+    },
+    {
+      "de": "jung",
+      "ru": "молодой",
+      "example": "Er ist jung.",
+      "example_ru": "Он молодой."
+    },
+    {
+      "de": "schön",
+      "ru": "красивый",
+      "example": "Die Stadt ist schön.",
+      "example_ru": "Город красивый."
+    },
+    {
+      "de": "schnell",
+      "ru": "быстрый",
+      "example": "Der Zug ist schnell.",
+      "example_ru": "Поезд быстрый."
+    },
+    {
+      "de": "langsam",
+      "ru": "медленный",
+      "example": "Sprechen Sie langsam.",
+      "example_ru": "Говорите медленно."
+    },
+    {
+      "de": "einfach",
+      "ru": "простой",
+      "example": "Das ist einfach.",
+      "example_ru": "Это просто."
+    },
+    {
+      "de": "schwer",
+      "ru": "тяжёлый/трудный",
+      "example": "Deutsch ist schwer.",
+      "example_ru": "Немецкий сложный."
+    },
+    {
+      "de": "leicht",
+      "ru": "лёгкий",
+      "example": "Das ist leicht.",
+      "example_ru": "Это легко."
+    },
+    {
+      "de": "warm",
+      "ru": "тёплый",
+      "example": "Es ist warm.",
+      "example_ru": "Тепло."
+    },
+    {
+      "de": "kalt",
+      "ru": "холодный",
+      "example": "Es ist kalt.",
+      "example_ru": "Холодно."
+    },
+    {
+      "de": "heiß",
+      "ru": "горячий",
+      "example": "Der Kaffee ist heiß.",
+      "example_ru": "Кофе горячий."
+    },
+    {
+      "de": "lecker",
+      "ru": "вкусный",
+      "example": "Das Essen ist lecker.",
+      "example_ru": "Еда вкусная."
+    },
+    {
+      "de": "müde",
+      "ru": "усталый",
+      "example": "Ich bin müde.",
+      "example_ru": "Я устал."
+    },
+    {
+      "de": "krank",
+      "ru": "больной",
+      "example": "Ich bin krank.",
+      "example_ru": "Я болен."
+    },
+    {
+      "de": "gesund",
+      "ru": "здоровый",
+      "example": "Obst ist gesund.",
+      "example_ru": "Фрукты полезны."
+    }
+  ]
+}

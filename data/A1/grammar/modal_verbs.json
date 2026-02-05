@@ -1,0 +1,87 @@
+{
+  "id": "modal_verbs",
+  "name": "Модальные глаголы",
+  "name_de": "Modalverben",
+  "description": "können, müssen, möchten и др.",
+  "level": "A1",
+  "theory": {
+    "title": "Модальные глаголы",
+    "content": "Модальные глаголы выражают возможность, необходимость, желание и т.д.\n\nОсобенность: основной глагол стоит в конце предложения в инфинитиве.",
+    "tables": [
+      {
+        "title": "Спряжение модальных глаголов",
+        "rows": [
+          ["", "können (мочь)", "müssen (должен)", "möchten (хотеть)", "wollen (хотеть)", "dürfen (иметь разрешение)"],
+          ["ich", "kann", "muss", "möchte", "will", "darf"],
+          ["du", "kannst", "musst", "möchtest", "willst", "darfst"],
+          ["er/sie/es", "kann", "muss", "möchte", "will", "darf"],
+          ["wir", "können", "müssen", "möchten", "wollen", "dürfen"],
+          ["ihr", "könnt", "müsst", "möchtet", "wollt", "dürft"],
+          ["sie/Sie", "können", "müssen", "möchten", "wollen", "dürfen"]
+        ]
+      }
+    ],
+    "examples": [
+      "Ich kann schwimmen. — Я умею плавать.",
+      "Du musst arbeiten. — Ты должен работать.",
+      "Wir möchten essen. — Мы хотели бы поесть.",
+      "Darf ich fragen? — Можно спросить?"
+    ],
+    "tips": [
+      "möchten — вежливая форма желания",
+      "wollen — более категоричное желание",
+      "können — возможность или умение",
+      "dürfen — разрешение"
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich ___ Deutsch sprechen. (können)",
+      "options": ["kann", "kannst", "können"],
+      "correct": 0,
+      "explanation": "ich kann (я могу)"
+    },
+    {
+      "question": "Du ___ heute arbeiten. (müssen)",
+      "options": ["muss", "musst", "müssen"],
+      "correct": 1,
+      "explanation": "du musst (ты должен)"
+    },
+    {
+      "question": "Er ___ einen Kaffee. (möchten)",
+      "options": ["möchte", "möchtest", "möchten"],
+      "correct": 0,
+      "explanation": "er möchte (он хотел бы)"
+    },
+    {
+      "question": "Wir ___ ins Kino gehen. (wollen)",
+      "options": ["will", "wollt", "wollen"],
+      "correct": 2,
+      "explanation": "wir wollen (мы хотим)"
+    },
+    {
+      "question": "___ ich Sie etwas fragen? (dürfen)",
+      "options": ["Darf", "Darfst", "Dürfen"],
+      "correct": 0,
+      "explanation": "Darf ich...? (Могу ли я...?)"
+    },
+    {
+      "question": "Ihr ___ hier nicht rauchen. (dürfen)",
+      "options": ["darf", "dürft", "dürfen"],
+      "correct": 1,
+      "explanation": "ihr dürft (вам разрешено)"
+    },
+    {
+      "question": "Sie ___ gut schwimmen. (können)",
+      "options": ["kann", "kannst", "können"],
+      "correct": 0,
+      "explanation": "sie kann (она умеет)"
+    },
+    {
+      "question": "Ich ___ morgen früh aufstehen. (müssen)",
+      "options": ["muss", "musst", "müssen"],
+      "correct": 0,
+      "explanation": "ich muss (я должен)"
+    }
+  ]
+}

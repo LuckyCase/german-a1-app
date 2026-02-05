@@ -1,0 +1,96 @@
+{
+  "id": "questions",
+  "name": "Вопросительные слова",
+  "name_de": "Fragewörter",
+  "description": "Wer, Was, Wo, Woher, Wohin, Wann, Wie",
+  "level": "A1",
+  "theory": {
+    "title": "Вопросительные слова — W-Fragen",
+    "content": "В немецком языке вопросы с вопросительным словом называются W-Fragen, потому что все вопросительные слова начинаются с W.",
+    "tables": [
+      {
+        "title": "Основные вопросительные слова",
+        "rows": [
+          ["Wer?", "Кто?", "Wer ist das? — Кто это?"],
+          ["Was?", "Что?", "Was machst du? — Что ты делаешь?"],
+          ["Wo?", "Где?", "Wo wohnst du? — Где ты живёшь?"],
+          ["Woher?", "Откуда?", "Woher kommst du? — Откуда ты?"],
+          ["Wohin?", "Куда?", "Wohin gehst du? — Куда ты идёшь?"],
+          ["Wann?", "Когда?", "Wann kommst du? — Когда ты придёшь?"],
+          ["Wie?", "Как?", "Wie geht es dir? — Как дела?"],
+          ["Warum?", "Почему?", "Warum lernst du Deutsch? — Почему ты учишь немецкий?"],
+          ["Wie viel?", "Сколько?", "Wie viel kostet das? — Сколько это стоит?"],
+          ["Wie alt?", "Сколько лет?", "Wie alt bist du? — Сколько тебе лет?"]
+        ]
+      }
+    ],
+    "tips": [
+      "После вопросительного слова глагол стоит на втором месте",
+      "Wo — статичное положение (где?)",
+      "Wohin — направление движения (куда?)",
+      "Woher — происхождение (откуда?)"
+    ]
+  },
+  "questions": [
+    {
+      "question": "___ heißen Sie?",
+      "options": ["Wer", "Was", "Wie"],
+      "correct": 2,
+      "explanation": "Wie heißen Sie? (Как вас зовут?)"
+    },
+    {
+      "question": "___ kommen Sie?",
+      "options": ["Wo", "Woher", "Wohin"],
+      "correct": 1,
+      "explanation": "Woher kommen Sie? (Откуда вы?)"
+    },
+    {
+      "question": "___ wohnen Sie?",
+      "options": ["Wo", "Woher", "Wohin"],
+      "correct": 0,
+      "explanation": "Wo wohnen Sie? (Где вы живёте?)"
+    },
+    {
+      "question": "___ fahren Sie?",
+      "options": ["Wo", "Woher", "Wohin"],
+      "correct": 2,
+      "explanation": "Wohin fahren Sie? (Куда вы едете?)"
+    },
+    {
+      "question": "___ ist das?",
+      "options": ["Wer", "Was", "Wie"],
+      "correct": 0,
+      "explanation": "Wer ist das? (Кто это?) — о человеке"
+    },
+    {
+      "question": "___ kostet das?",
+      "options": ["Wer", "Was", "Wie viel"],
+      "correct": 2,
+      "explanation": "Wie viel kostet das? (Сколько это стоит?)"
+    },
+    {
+      "question": "___ ist Ihr Beruf?",
+      "options": ["Wer", "Was", "Wie"],
+      "correct": 1,
+      "explanation": "Was ist Ihr Beruf? (Какая у вас профессия?)"
+    },
+    {
+      "question": "___ kommst du?",
+      "options": ["Wann", "Wo", "Was"],
+      "correct": 0,
+      "explanation": "Wann kommst du? (Когда ты придёшь?)"
+    },
+    {
+      "question": "___ alt sind Sie?",
+      "options": ["Was", "Wie", "Wer"],
+      "correct": 1,
+      "explanation": "Wie alt sind Sie? (Сколько вам лет?)"
+    },
+    {
+      "question": "___ geht es Ihnen?",
+      "options": ["Was", "Wie", "Wer"],
+      "correct": 1,
+      "explanation": "Wie geht es Ihnen? (Как у вас дела?)"
+    }
+  ]
+}

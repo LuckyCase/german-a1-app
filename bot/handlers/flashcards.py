@@ -3,7 +3,7 @@ import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, CallbackQueryHandler
 
-from bot.data.vocabulary import get_all_words, get_words_by_category, get_categories, VOCABULARY
+from bot.content_manager import get_all_words, get_words_by_category, get_categories
 from bot.database import update_word_progress, update_daily_stats
 from bot.handlers.audio import send_word_audio
 
@@ -88,7 +88,11 @@ async def category_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data["fc_category_name"] = "Все слова"
     else:
         words = get_words_by_category(category_id)
-        context.user_data["fc_category_name"] = VOCABULARY[category_id]["name"]
+        # Получаем название категории из первого слова
+        if words:
+            context.user_data["fc_category_name"] = words[0].get("category_name", category_id)
+        else:
+            context.user_data["fc_category_name"] = category_id
 
     random.shuffle(words)
     context.user_data["fc_words"] = words

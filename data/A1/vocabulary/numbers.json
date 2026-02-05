@@ -1,0 +1,129 @@
+{
+  "id": "numbers",
+  "name": "Числа",
+  "name_de": "Zahlen",
+  "description": "Числительные от 0 до 1000",
+  "level": "A1",
+  "words": [
+    {
+      "de": "null",
+      "ru": "ноль",
+      "example": "Null Grad.",
+      "example_ru": "Ноль градусов."
+    },
+    {
+      "de": "eins",
+      "ru": "один",
+      "example": "Ich habe eins.",
+      "example_ru": "У меня один."
+    },
+    {
+      "de": "zwei",
+      "ru": "два",
+      "example": "Zwei Kaffee, bitte.",
+      "example_ru": "Два кофе, пожалуйста."
+    },
+    {
+      "de": "drei",
+      "ru": "три",
+      "example": "Drei Euro.",
+      "example_ru": "Три евро."
+    },
+    {
+      "de": "vier",
+      "ru": "четыре",
+      "example": "Vier Personen.",
+      "example_ru": "Четыре человека."
+    },
+    {
+      "de": "fünf",
+      "ru": "пять",
+      "example": "Fünf Minuten.",
+      "example_ru": "Пять минут."
+    },
+    {
+      "de": "sechs",
+      "ru": "шесть",
+      "example": "Um sechs Uhr.",
+      "example_ru": "В шесть часов."
+    },
+    {
+      "de": "sieben",
+      "ru": "семь",
+      "example": "Sieben Tage.",
+      "example_ru": "Семь дней."
+    },
+    {
+      "de": "acht",
+      "ru": "восемь",
+      "example": "Acht Stunden.",
+      "example_ru": "Восемь часов."
+    },
+    {
+      "de": "neun",
+      "ru": "девять",
+      "example": "Neun Euro.",
+      "example_ru": "Девять евро."
+    },
+    {
+      "de": "zehn",
+      "ru": "десять",
+      "example": "Zehn Prozent.",
+      "example_ru": "Десять процентов."
+    },
+    {
+      "de": "elf",
+      "ru": "одиннадцать",
+      "example": "Um elf Uhr.",
+      "example_ru": "В одиннадцать часов."
+    },
+    {
+      "de": "zwölf",
+      "ru": "двенадцать",
+      "example": "Zwölf Monate.",
+      "example_ru": "Двенадцать месяцев."
+    },
+    {
+      "de": "dreizehn",
+      "ru": "тринадцать",
+      "example": "Dreizehn Euro.",
+      "example_ru": "Тринадцать евро."
+    },
+    {
+      "de": "zwanzig",
+      "ru": "двадцать",
+      "example": "Zwanzig Minuten.",
+      "example_ru": "Двадцать минут."
+    },
+    {
+      "de": "dreißig",
+      "ru": "тридцать",
+      "example": "Dreißig Grad.",
+      "example_ru": "Тридцать градусов."
+    },
+    {
+      "de": "vierzig",
+      "ru": "сорок",
+      "example": "Vierzig Euro.",
+      "example_ru": "Сорок евро."
+    },
+    {
+      "de": "fünfzig",
+      "ru": "пятьдесят",
+      "example": "Fünfzig Prozent.",
+      "example_ru": "Пятьдесят процентов."
+    },
+    {
+      "de": "hundert",
+      "ru": "сто",
+      "example": "Hundert Euro.",
+      "example_ru": "Сто евро."
+    },
+    {
+      "de": "tausend",
+      "ru": "тысяча",
+      "example": "Tausend Kilometer.",
+      "example_ru": "Тысяча километров."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "articles",
+  "name": "Артикли (der, die, das)",
+  "name_de": "Artikel",
+  "description": "Определённые артикли в немецком языке",
+  "level": "A1",
+  "theory": {
+    "title": "Определённые артикли",
+    "content": "В немецком языке есть три рода существительных:\n\n• der — мужской род (Maskulinum)\n• die — женский род (Femininum)\n• das — средний род (Neutrum)\n\nРод существительного нужно запоминать вместе со словом!",
+    "examples": [
+      "der Mann (мужчина) — мужской род",
+      "die Frau (женщина) — женский род",
+      "das Kind (ребёнок) — средний род"
+    ],
+    "tips": [
+      "Слова на -ung, -heit, -keit, -schaft — женского рода (die)",
+      "Слова на -chen, -lein — среднего рода (das)",
+      "Названия месяцев и дней недели — мужского рода (der)"
+    ]
+  },
+  "questions": [
+    {
+      "question": "___ Tisch ist groß.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 0,
+      "explanation": "Tisch — мужской род (der Tisch)"
+    },
+    {
+      "question": "___ Lampe ist neu.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Lampe — женский род (die Lampe)"
+    },
+    {
+      "question": "___ Kind spielt.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 2,
+      "explanation": "Kind — средний род (das Kind)"
+    },
+    {
+      "question": "___ Buch ist interessant.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 2,
+      "explanation": "Buch — средний род (das Buch)"
+    },
+    {
+      "question": "___ Frau arbeitet.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Frau — женский род (die Frau)"
+    },
+    {
+      "question": "___ Mann kommt.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 0,
+      "explanation": "Mann — мужской род (der Mann)"
+    },
+    {
+      "question": "___ Auto ist teuer.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 2,
+      "explanation": "Auto — средний род (das Auto)"
+    },
+    {
+      "question": "___ Kaffee ist heiß.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 0,
+      "explanation": "Kaffee — мужской род (der Kaffee)"
+    },
+    {
+      "question": "___ Milch ist kalt.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Milch — женский род (die Milch)"
+    },
+    {
+      "question": "___ Wasser ist frisch.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 2,
+      "explanation": "Wasser — средний род (das Wasser)"
+    }
+  ]
+}

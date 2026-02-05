@@ -1,0 +1,74 @@
+{
+  "id": "word_order",
+  "name": "Порядок слов",
+  "name_de": "Wortstellung",
+  "description": "Порядок слов в немецком предложении",
+  "level": "A1",
+  "theory": {
+    "title": "Порядок слов в предложении",
+    "content": "Главное правило немецкого языка: глагол всегда стоит на ВТОРОМ месте в повествовательном предложении.",
+    "examples": [
+      "Ich gehe heute ins Kino. — Я иду сегодня в кино.",
+      "Heute gehe ich ins Kino. — Сегодня я иду в кино.",
+      "Morgen komme ich. — Завтра я приду."
+    ],
+    "tips": [
+      "Глагол ВСЕГДА на 2-м месте!",
+      "Подлежащее может быть на 1-м или 3-м месте",
+      "Если предложение начинается с обстоятельства, подлежащее идёт после глагола",
+      "Отделяемые приставки идут в конец предложения: Ich stehe um 7 Uhr auf."
+    ]
+  },
+  "questions": [
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Ich heute gehe ins Kino.",
+        "Ich gehe heute ins Kino.",
+        "Heute ich gehe ins Kino."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте: Ich gehe heute ins Kino."
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Morgen ich komme.",
+        "Ich morgen komme.",
+        "Morgen komme ich."
+      ],
+      "correct": 2,
+      "explanation": "Глагол на втором месте, после обстоятельства времени"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Er nach Berlin fährt.",
+        "Er fährt nach Berlin.",
+        "Nach Berlin er fährt."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Um 8 Uhr stehe ich auf.",
+        "Um 8 Uhr ich stehe auf.",
+        "Ich um 8 Uhr stehe auf."
+      ],
+      "correct": 0,
+      "explanation": "Отделяемая приставка в конце предложения"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Deutsch ich lerne gern.",
+        "Ich lerne Deutsch gern.",
+        "Ich Deutsch lerne gern."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте, наречие в конце"
+    }
+  ]
+}

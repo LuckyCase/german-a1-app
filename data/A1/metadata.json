@@ -1,0 +1,71 @@
+{
+  "level": "A1",
+  "name": "A1 — Начальный уровень",
+  "name_de": "A1 — Anfänger",
+  "description": "Базовый уровень немецкого языка по стандартам Goethe-Institut",
+  "version": "1.0.0",
+  "last_updated": "2026-02-05",
+  "content": {
+    "vocabulary": {
+      "path": "vocabulary/",
+      "categories": [
+        {"id": "personal", "file": "personal.json", "name": "Личная информация"},
+        {"id": "family", "file": "family.json", "name": "Семья"},
+        {"id": "food", "file": "food.json", "name": "Еда и напитки"},
+        {"id": "home", "file": "home.json", "name": "Дом и жильё"},
+        {"id": "time", "file": "time.json", "name": "Время"},
+        {"id": "verbs", "file": "verbs.json", "name": "Важные глаголы"},
+        {"id": "transport", "file": "transport.json", "name": "Транспорт и город"},
+        {"id": "shopping", "file": "shopping.json", "name": "Покупки"},
+        {"id": "numbers", "file": "numbers.json", "name": "Числа"},
+        {"id": "adjectives", "file": "adjectives.json", "name": "Прилагательные"},
+        {"id": "phrases", "file": "phrases.json", "name": "Важные фразы"}
+      ],
+      "total_words": 262
+    },
+    "grammar": {
+      "path": "grammar/",
+      "topics": [
+        {"id": "articles", "file": "articles.json", "name": "Артикли (der, die, das)"},
+        {"id": "sein_haben", "file": "sein_haben.json", "name": "Глаголы sein и haben"},
+        {"id": "present_tense", "file": "present_tense.json", "name": "Настоящее время (Präsens)"},
+        {"id": "negation", "file": "negation.json", "name": "Отрицание (nicht / kein)"},
+        {"id": "word_order", "file": "word_order.json", "name": "Порядок слов"},
+        {"id": "akkusativ", "file": "akkusativ.json", "name": "Аккузатив (Akkusativ)"},
+        {"id": "modal_verbs", "file": "modal_verbs.json", "name": "Модальные глаголы"},
+        {"id": "questions", "file": "questions.json", "name": "Вопросительные слова"}
+      ],
+      "total_questions": 78
+    },
+    "phrases": {
+      "path": "phrases/",
+      "categories": [],
+      "status": "planned"
+    },
+    "dialogues": {
+      "path": "dialogues/",
+      "topics": [],
+      "status": "planned"
+    },
+    "exercises": {
+      "path": "exercises/",
+      "types": [],
+      "status": "planned"
+    },
+    "culture": {
+      "path": "culture/",
+      "topics": [],
+      "status": "planned"
+    }
+  },
+  "exam_info": {
+    "name": "Goethe-Zertifikat A1: Start Deutsch 1",
+    "parts": [
+      {"name": "Hören", "description": "Аудирование", "duration": "20 минут"},
+      {"name": "Lesen", "description": "Чтение", "duration": "25 минут"},
+      {"name": "Schreiben", "description": "Письмо", "duration": "20 минут"},
+      {"name": "Sprechen", "description": "Говорение", "duration": "15 минут"}
+    ],
+    "passing_score": "60%"
+  }
+}

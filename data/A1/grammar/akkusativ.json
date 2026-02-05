@@ -1,0 +1,92 @@
+{
+  "id": "akkusativ",
+  "name": "Аккузатив (Akkusativ)",
+  "name_de": "Akkusativ",
+  "description": "Винительный падеж в немецком языке",
+  "level": "A1",
+  "theory": {
+    "title": "Винительный падеж — Akkusativ",
+    "content": "Аккузатив используется для прямого дополнения (кого? что?) и после некоторых предлогов.\n\nТолько МУЖСКОЙ род меняет артикль!",
+    "tables": [
+      {
+        "title": "Определённые артикли",
+        "rows": [
+          ["", "Nominativ", "Akkusativ"],
+          ["м.р.", "der", "den"],
+          ["ж.р.", "die", "die"],
+          ["ср.р.", "das", "das"],
+          ["мн.ч.", "die", "die"]
+        ]
+      },
+      {
+        "title": "Неопределённые артикли",
+        "rows": [
+          ["", "Nominativ", "Akkusativ"],
+          ["м.р.", "ein", "einen"],
+          ["ж.р.", "eine", "eine"],
+          ["ср.р.", "ein", "ein"]
+        ]
+      }
+    ],
+    "examples": [
+      "Ich sehe den Mann. — Я вижу мужчину. (der → den)",
+      "Ich kaufe einen Computer. — Я покупаю компьютер. (ein → einen)",
+      "Ich trinke die Milch. — Я пью молоко. (без изменений)"
+    ],
+    "tips": [
+      "Запомните: меняется ТОЛЬКО мужской род!",
+      "der → den, ein → einen, kein → keinen",
+      "Женский и средний род не меняются"
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich sehe ___ Mann. (der)",
+      "options": ["der", "den", "dem"],
+      "correct": 1,
+      "explanation": "der → den в Akkusativ (муж. род)"
+    },
+    {
+      "question": "Ich kaufe ___ Buch. (das)",
+      "options": ["das", "den", "dem"],
+      "correct": 0,
+      "explanation": "das не меняется в Akkusativ"
+    },
+    {
+      "question": "Ich trinke ___ Kaffee. (ein)",
+      "options": ["ein", "einen", "einem"],
+      "correct": 1,
+      "explanation": "ein → einen в Akkusativ (муж. род)"
+    },
+    {
+      "question": "Ich habe ___ Schwester. (eine)",
+      "options": ["eine", "einen", "einer"],
+      "correct": 0,
+      "explanation": "eine не меняется в Akkusativ (жен. род)"
+    },
+    {
+      "question": "Er liest ___ Zeitung. (die)",
+      "options": ["die", "der", "den"],
+      "correct": 0,
+      "explanation": "die не меняется в Akkusativ (жен. род)"
+    },
+    {
+      "question": "Wir brauchen ___ Computer. (ein)",
+      "options": ["ein", "einen", "einem"],
+      "correct": 1,
+      "explanation": "ein → einen в Akkusativ (муж. род)"
+    },
+    {
+      "question": "Sie sucht ___ Wohnung. (eine)",
+      "options": ["eine", "einen", "einer"],
+      "correct": 0,
+      "explanation": "eine не меняется в Akkusativ"
+    },
+    {
+      "question": "Ich esse ___ Apfel. (der)",
+      "options": ["der", "den", "dem"],
+      "correct": 1,
+      "explanation": "der → den в Akkusativ"
+    }
+  ]
+}

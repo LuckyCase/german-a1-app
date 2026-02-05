@@ -1,0 +1,141 @@
+{
+  "id": "time",
+  "name": "Время",
+  "name_de": "Zeit",
+  "description": "Время, дни недели, даты",
+  "level": "A1",
+  "words": [
+    {
+      "de": "die Zeit",
+      "ru": "время",
+      "example": "Ich habe keine Zeit.",
+      "example_ru": "У меня нет времени."
+    },
+    {
+      "de": "die Uhr",
+      "ru": "часы",
+      "example": "Wie viel Uhr ist es?",
+      "example_ru": "Который час?"
+    },
+    {
+      "de": "die Stunde",
+      "ru": "час",
+      "example": "Eine Stunde später.",
+      "example_ru": "Час спустя."
+    },
+    {
+      "de": "die Minute",
+      "ru": "минута",
+      "example": "Warte eine Minute.",
+      "example_ru": "Подожди минуту."
+    },
+    {
+      "de": "der Tag",
+      "ru": "день",
+      "example": "Guten Tag!",
+      "example_ru": "Добрый день!"
+    },
+    {
+      "de": "die Woche",
+      "ru": "неделя",
+      "example": "Nächste Woche.",
+      "example_ru": "На следующей неделе."
+    },
+    {
+      "de": "der Monat",
+      "ru": "месяц",
+      "example": "Diesen Monat.",
+      "example_ru": "В этом месяце."
+    },
+    {
+      "de": "das Jahr",
+      "ru": "год",
+      "example": "Dieses Jahr.",
+      "example_ru": "В этом году."
+    },
+    {
+      "de": "heute",
+      "ru": "сегодня",
+      "example": "Heute ist Montag.",
+      "example_ru": "Сегодня понедельник."
+    },
+    {
+      "de": "morgen",
+      "ru": "завтра",
+      "example": "Bis morgen!",
+      "example_ru": "До завтра!"
+    },
+    {
+      "de": "gestern",
+      "ru": "вчера",
+      "example": "Gestern war ich krank.",
+      "example_ru": "Вчера я болел."
+    },
+    {
+      "de": "jetzt",
+      "ru": "сейчас",
+      "example": "Jetzt gehe ich.",
+      "example_ru": "Сейчас я иду."
+    },
+    {
+      "de": "später",
+      "ru": "позже",
+      "example": "Bis später!",
+      "example_ru": "До скорого!"
+    },
+    {
+      "de": "früh",
+      "ru": "рано",
+      "example": "Ich stehe früh auf.",
+      "example_ru": "Я встаю рано."
+    },
+    {
+      "de": "spät",
+      "ru": "поздно",
+      "example": "Es ist spät.",
+      "example_ru": "Уже поздно."
+    },
+    {
+      "de": "Montag",
+      "ru": "понедельник",
+      "example": "Am Montag arbeite ich.",
+      "example_ru": "В понедельник я работаю."
+    },
+    {
+      "de": "Dienstag",
+      "ru": "вторник",
+      "example": "Am Dienstag habe ich Deutsch.",
+      "example_ru": "Во вторник у меня немецкий."
+    },
+    {
+      "de": "Mittwoch",
+      "ru": "среда",
+      "example": "Mittwoch ist mein freier Tag.",
+      "example_ru": "Среда — мой выходной."
+    },
+    {
+      "de": "Donnerstag",
+      "ru": "четверг",
+      "example": "Am Donnerstag komme ich.",
+      "example_ru": "В четверг я приду."
+    },
+    {
+      "de": "Freitag",
+      "ru": "пятница",
+      "example": "Freitag ist toll!",
+      "example_ru": "Пятница — отлично!"
+    },
+    {
+      "de": "Samstag",
+      "ru": "суббота",
+      "example": "Am Samstag gehe ich einkaufen.",
+      "example_ru": "В субботу я иду за покупками."
+    },
+    {
+      "de": "Sonntag",
+      "ru": "воскресенье",
+      "example": "Am Sonntag schlafe ich lange.",
+      "example_ru": "В воскресенье я сплю долго."
+    }
+  ]
+}

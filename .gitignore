@@ -15,8 +15,8 @@ env/
 .env.*.local
 
 # Database and data files
-/data/
 *.db
+# НЕ игнорируем /data/ - там учебные материалы в JSON!
 
 # IDE
 .idea/
@@ -30,6 +30,9 @@ env/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Windows special files
+nul
 
 # Logs
 *.log

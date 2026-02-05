@@ -1,0 +1,99 @@
+{
+  "id": "phrases",
+  "name": "Важные фразы",
+  "name_de": "Wichtige Sätze",
+  "description": "Базовые фразы для общения",
+  "level": "A1",
+  "words": [
+    {
+      "de": "Guten Morgen",
+      "ru": "Доброе утро",
+      "example": "Guten Morgen, Herr Müller!",
+      "example_ru": "Доброе утро, господин Мюллер!"
+    },
+    {
+      "de": "Guten Tag",
+      "ru": "Добрый день",
+      "example": "Guten Tag, wie geht es Ihnen?",
+      "example_ru": "Добрый день, как у вас дела?"
+    },
+    {
+      "de": "Guten Abend",
+      "ru": "Добрый вечер",
+      "example": "Guten Abend zusammen!",
+      "example_ru": "Добрый вечер всем!"
+    },
+    {
+      "de": "Auf Wiedersehen",
+      "ru": "До свидания",
+      "example": "Auf Wiedersehen!",
+      "example_ru": "До свидания!"
+    },
+    {
+      "de": "Tschüss",
+      "ru": "Пока",
+      "example": "Tschüss, bis morgen!",
+      "example_ru": "Пока, до завтра!"
+    },
+    {
+      "de": "Bitte",
+      "ru": "Пожалуйста",
+      "example": "Ja, bitte.",
+      "example_ru": "Да, пожалуйста."
+    },
+    {
+      "de": "Danke",
+      "ru": "Спасибо",
+      "example": "Danke schön!",
+      "example_ru": "Большое спасибо!"
+    },
+    {
+      "de": "Entschuldigung",
+      "ru": "Извините",
+      "example": "Entschuldigung, wo ist...?",
+      "example_ru": "Извините, где находится...?"
+    },
+    {
+      "de": "Es tut mir leid",
+      "ru": "Мне жаль",
+      "example": "Es tut mir leid.",
+      "example_ru": "Мне очень жаль."
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Простите? (переспрос)",
+      "example": "Wie bitte? Noch einmal.",
+      "example_ru": "Простите? Ещё раз."
+    },
+    {
+      "de": "Ich verstehe nicht",
+      "ru": "Я не понимаю",
+      "example": "Ich verstehe nicht.",
+      "example_ru": "Я не понимаю."
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "example": "Sprechen Sie Englisch?",
+      "example_ru": "Вы говорите по-английски?"
+    },
+    {
+      "de": "Wie viel kostet das?",
+      "ru": "Сколько это стоит?",
+      "example": "Wie viel kostet das?",
+      "example_ru": "Сколько это стоит?"
+    },
+    {
+      "de": "Wo ist...?",
+      "ru": "Где находится...?",
+      "example": "Wo ist der Bahnhof?",
+      "example_ru": "Где вокзал?"
+    },
+    {
+      "de": "Ich hätte gern...",
+      "ru": "Я бы хотел...",
+      "example": "Ich hätte gern einen Kaffee.",
+      "example_ru": "Я бы хотел кофе."
+    }
+  ]
+}
