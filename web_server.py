@@ -868,31 +868,44 @@ def webhook():
     async def _process_webhook():
         """Process webhook in async context."""
         try:
+            logger.info("Webhook: Starting request processing...")
+            
             # Check if DATABASE_URL is set
             if not DATABASE_URL:
-                logger.error("DATABASE_URL is not set!")
+                logger.error("Webhook: DATABASE_URL is not set!")
                 return 'Database not configured', 500
+            
+            logger.info(f"Webhook: DATABASE_URL is set (prefix: {DATABASE_URL[:20]}...)")
 
             # Ensure bot is initialized
             if bot_application is None:
-                logger.info("Initializing bot application...")
-                await init_bot()
-                logger.info("Bot application initialized successfully")
+                logger.info("Webhook: Bot not initialized, starting initialization...")
+                try:
+                    await init_bot()
+                    logger.info("Webhook: Bot initialized successfully")
+                except Exception as init_error:
+                    logger.error(f"Webhook: Bot initialization failed: {init_error}", exc_info=True)
+                    return 'OK', 200  # Return OK to avoid retries
 
             # Parse the update
             update_data = request.get_json()
+            logger.info(f"Webhook: Received update data: {str(update_data)[:200]}...")
+            
             if not update_data:
-                logger.warning("Empty update data received")
+                logger.warning("Webhook: Empty update data received")
                 return 'OK', 200
 
             update = Update.de_json(update_data, bot_application.bot)
+            logger.info(f"Webhook: Parsed update, type: {update.effective_message.text if update.effective_message else 'callback'}")
 
             # Process the update synchronously
+            logger.info("Webhook: Processing update...")
             await bot_application.process_update(update)
+            logger.info("Webhook: Update processed successfully")
             
             return 'OK', 200
         except Exception as e:
-            logger.error(f"Error processing webhook: {e}", exc_info=True)
+            logger.error(f"Webhook: Error processing: {e}", exc_info=True)
             # Still return OK to Telegram to avoid retries
             return 'OK', 200
     
@@ -965,6 +978,97 @@ def health():
         'status': 'healthy',
         'bot_initialized': bot_application is not None
     })
+
+
+@app.route('/debug')
+def debug_info():
+    """Debug endpoint to check configuration and database connection."""
+    import sys
+    
+    debug_data = {
+        'python_version': sys.version,
+        'telegram_token_set': bool(TELEGRAM_BOT_TOKEN),
+        'telegram_token_prefix': TELEGRAM_BOT_TOKEN[:10] + '...' if TELEGRAM_BOT_TOKEN else None,
+        'database_url_set': bool(DATABASE_URL),
+        'database_url_prefix': DATABASE_URL[:30] + '...' if DATABASE_URL else None,
+        'bot_initialized': bot_application is not None,
+        'environment': {
+            'RENDER': os.getenv('RENDER'),
+            'RENDER_EXTERNAL_URL': os.getenv('RENDER_EXTERNAL_URL'),
+            'PORT': os.getenv('PORT'),
+        }
+    }
+    
+    # Test database connection
+    async def test_db():
+        try:
+            from bot.database import get_pool
+            pool = await get_pool()
+            async with pool.acquire() as conn:
+                result = await conn.fetchval('SELECT 1')
+                return {'db_connection': 'OK', 'test_query': result}
+        except Exception as e:
+            return {'db_connection': 'FAILED', 'db_error': str(e), 'db_error_type': type(e).__name__}
+    
+    try:
+        db_result = asyncio.run(test_db())
+        debug_data.update(db_result)
+    except Exception as e:
+        debug_data['db_connection'] = 'FAILED'
+        debug_data['db_error'] = str(e)
+        debug_data['db_error_type'] = type(e).__name__
+    
+    return jsonify(debug_data)
+
+
+@app.route('/debug/init-bot')
+def debug_init_bot():
+    """Debug endpoint to manually initialize bot and see errors."""
+    async def _init():
+        try:
+            logger.info("Debug: Starting bot initialization...")
+            
+            # Check DATABASE_URL
+            if not DATABASE_URL:
+                return {'error': 'DATABASE_URL is not set'}
+            
+            logger.info(f"Debug: DATABASE_URL prefix: {DATABASE_URL[:30]}...")
+            
+            # Try to initialize database
+            logger.info("Debug: Initializing database...")
+            await init_db()
+            logger.info("Debug: Database initialized")
+            
+            # Try to create bot application
+            logger.info("Debug: Creating bot application...")
+            global bot_application
+            if bot_application is None:
+                bot_application = create_bot_application()
+                await bot_application.initialize()
+            logger.info("Debug: Bot application created")
+            
+            return {
+                'status': 'OK',
+                'bot_initialized': True,
+                'message': 'Bot initialized successfully'
+            }
+        except Exception as e:
+            logger.error(f"Debug init error: {e}", exc_info=True)
+            return {
+                'status': 'FAILED',
+                'error': str(e),
+                'error_type': type(e).__name__
+            }
+    
+    try:
+        result = asyncio.run(_init())
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({
+            'status': 'FAILED',
+            'error': str(e),
+            'error_type': type(e).__name__
+        })
 
 
 # ============= APPLICATION STARTUP =============
