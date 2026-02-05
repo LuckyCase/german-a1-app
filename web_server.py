@@ -197,6 +197,10 @@ HTML_TEMPLATE = """
             top: -10px;
         }
         
+        .header.hidden {
+            display: none;
+        }
+        
         .header::before {
             content: '🇩🇪';
             position: absolute;
@@ -887,6 +891,11 @@ HTML_TEMPLATE = """
         
         function handleScroll() {
             const header = document.getElementById('main-header');
+            // Only handle scroll if header is visible (not hidden)
+            if (header.classList.contains('hidden')) {
+                return;
+            }
+            
             const scrollY = window.scrollY || document.documentElement.scrollTop;
             
             if (scrollY > 50 && headerShown) {
@@ -919,6 +928,11 @@ HTML_TEMPLATE = """
             document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
             document.getElementById(sectionId).style.display = 'block';
             
+            // Hide header when entering sections
+            const header = document.getElementById('main-header');
+            header.classList.add('hidden');
+            header.classList.remove('compact');
+            
             // Load data for specific sections
             if (sectionId === 'flashcards') {
                 loadCategories();
@@ -932,12 +946,20 @@ HTML_TEMPLATE = """
                 loadProgress();
             }
             
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
             tg.HapticFeedback.selectionChanged();
         }
         
         function backToMainMenu() {
             document.getElementById('main-menu').style.display = 'grid';
             document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            
+            // Show header when returning to main menu
+            const header = document.getElementById('main-header');
+            header.classList.remove('hidden', 'compact');
+            headerShown = true;
             
             // Reset views
             document.getElementById('categories-view').style.display = 'block';
