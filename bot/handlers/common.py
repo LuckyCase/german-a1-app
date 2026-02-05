@@ -1,120 +1,106 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ContextTypes
+import logging
 
-from bot.database import get_or_create_user
-from bot.data.vocabulary import get_categories
-from bot.data.grammar import get_all_tests
-from bot.config import WEB_APP_URL
+from bot.database import get_or_create_user, get_pool
+from bot.config import WEB_APP_URL, TELEGRAM_BOT_TOKEN, DATABASE_URL
+
+logger = logging.getLogger(__name__)
+
+
+async def check_bot_status() -> dict:
+    """Check bot systems status."""
+    status = {
+        "telegram": False,
+        "database": False,
+        "web_app": False,
+        "errors": []
+    }
+    
+    # Check Telegram token
+    if TELEGRAM_BOT_TOKEN:
+        status["telegram"] = True
+    else:
+        status["errors"].append("Telegram токен не настроен")
+    
+    # Check Database
+    if DATABASE_URL:
+        try:
+            pool = await get_pool()
+            async with pool.acquire() as conn:
+                await conn.fetchval('SELECT 1')
+            status["database"] = True
+        except Exception as e:
+            status["errors"].append(f"БД: {str(e)[:50]}")
+    else:
+        status["errors"].append("DATABASE_URL не настроен")
+    
+    # Check Web App URL
+    if WEB_APP_URL:
+        status["web_app"] = True
+    else:
+        status["errors"].append("WEB_APP_URL не настроен")
+    
+    return status
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle /start command."""
+    """Handle /start command - show status and Web App button."""
     user = update.effective_user
-    await get_or_create_user(user.id, user.username, user.first_name)
-
-    welcome_message = (
+    
+    # Check system status
+    status = await check_bot_status()
+    all_ok = status["telegram"] and status["database"] and status["web_app"]
+    
+    # Try to register user if database is working
+    if status["database"]:
+        try:
+            await get_or_create_user(user.id, user.username, user.first_name)
+        except Exception as e:
+            logger.error(f"Failed to register user: {e}")
+    
+    # Build status message
+    status_icons = {
+        True: "✅",
+        False: "❌"
+    }
+    
+    message = (
         f"Hallo, {user.first_name}! 👋\n\n"
-        f"Добро пожаловать в бот для изучения немецкого языка уровня A1! 🇩🇪\n\n"
-        f"Этот бот поможет вам подготовиться к экзамену Goethe-Zertifikat A1.\n\n"
-        f"📚 Что я умею:\n"
-        f"• Карточки со словами (flashcards)\n"
-        f"• Тесты по грамматике\n"
-        f"• Аудио произношение\n"
-        f"• Отслеживание прогресса\n"
-        f"• Ежедневные напоминания\n\n"
-        f"🎯 Команды:\n"
-        f"/flashcards - учить слова\n"
-        f"/grammar - грамматические тесты\n"
-        f"/progress - ваш прогресс\n"
-        f"/reminder - настроить напоминания\n"
-        f"/audio <текст> - прослушать произношение\n"
-        f"/help - справка\n\n"
-        f"Viel Erfolg! Удачи в изучении! 🍀"
+        f"🇩🇪 **German A1 Learning Bot**\n\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n"
+        f"📊 **Статус систем:**\n\n"
+        f"{status_icons[status['telegram']]} Telegram API\n"
+        f"{status_icons[status['database']]} База данных\n"
+        f"{status_icons[status['web_app']]} Web приложение\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n\n"
     )
-
-    keyboard = [
-        [
-            InlineKeyboardButton("🌐 Открыть Web App", web_app=WebAppInfo(url=WEB_APP_URL))
-        ],
-        [
-            InlineKeyboardButton("📚 Учить слова", callback_data="menu_flashcards"),
-            InlineKeyboardButton("📝 Грамматика", callback_data="menu_grammar")
-        ],
-        [
-            InlineKeyboardButton("📊 Прогресс", callback_data="menu_progress"),
-            InlineKeyboardButton("⏰ Напоминания", callback_data="menu_reminder")
-        ]
-    ]
-
-    await update.message.reply_text(
-        welcome_message,
-        reply_markup=InlineKeyboardMarkup(keyboard)
-    )
-
-
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle /help command."""
-    categories = get_categories()
-    tests = get_all_tests()
-
-    help_text = (
-        "📖 Справка по боту\n"
-        "═══════════════════\n\n"
-        "🎯 Основные команды:\n\n"
-        "/start - главное меню\n"
-        "/flashcards - изучение слов с карточками\n"
-        "/grammar - грамматические тесты\n"
-        "/progress - ваша статистика\n"
-        "/reminder - настройка напоминаний\n"
-        "/audio <текст> - произношение текста\n"
-        "/help - эта справка\n\n"
-        f"📚 Категории слов ({sum(c['count'] for c in categories)} слов):\n"
-    )
-
-    for cat in categories:
-        help_text += f"  • {cat['name']} ({cat['count']})\n"
-
-    help_text += f"\n📝 Грамматические тесты ({len(tests)}):\n"
-
-    for test in tests:
-        help_text += f"  • {test['name']}\n"
-
-    help_text += (
-        "\n💡 Советы:\n"
-        "• Занимайтесь каждый день по 15-20 минут\n"
-        "• Учите слова с артиклями (der, die, das)\n"
-        "• Используйте аудио для улучшения произношения\n"
-        "• Повторяйте сложные слова чаще\n\n"
-        "Viel Erfolg! 🇩🇪"
-    )
-
-    await update.message.reply_text(help_text)
-
-
-async def menu_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle menu button callbacks."""
-    query = update.callback_query
-    await query.answer()
-
-    if query.data == "menu_flashcards":
-        await query.edit_message_text(
-            "📚 Изучение слов\n\n"
-            "Используйте команду /flashcards чтобы начать сессию изучения слов.\n\n"
-            "Вы увидите немецкое слово и должны выбрать правильный перевод из вариантов."
+    
+    if all_ok:
+        message += (
+            "🎉 Все системы работают!\n\n"
+            "Нажмите кнопку ниже, чтобы открыть приложение для изучения немецкого языка."
         )
-    elif query.data == "menu_grammar":
-        await query.edit_message_text(
-            "📝 Грамматика\n\n"
-            "Используйте команду /grammar чтобы пройти грамматический тест.\n\n"
-            "Доступны тесты по артиклям, глаголам, падежам и другим темам A1."
+        
+        keyboard = [[
+            InlineKeyboardButton(
+                "🚀 Открыть приложение", 
+                web_app=WebAppInfo(url=WEB_APP_URL)
+            )
+        ]]
+        
+        await update.message.reply_text(
+            message,
+            reply_markup=InlineKeyboardMarkup(keyboard),
+            parse_mode="Markdown"
         )
-    elif query.data == "menu_progress":
-        await query.edit_message_text(
-            "📊 Прогресс\n\n"
-            "Используйте команду /progress чтобы посмотреть вашу статистику изучения."
+    else:
+        message += (
+            "⚠️ Обнаружены проблемы:\n\n"
         )
-    elif query.data == "menu_reminder":
-        await query.edit_message_text(
-            "⏰ Напоминания\n\n"
-            "Используйте команду /reminder чтобы настроить ежедневные напоминания."
-        )
+        for error in status["errors"]:
+            message += f"• {error}\n"
+        
+        message += "\nПопробуйте позже или обратитесь к администратору."
+        
+        await update.message.reply_text(message, parse_mode="Markdown")

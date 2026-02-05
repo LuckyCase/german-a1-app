@@ -19,14 +19,9 @@ from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
 
 # Telegram bot imports
 from telegram import Update
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler
+from telegram.ext import Application, CommandHandler
 
-from bot.handlers.common import start, help_command, menu_callback
-from bot.handlers.flashcards import get_flashcards_handler
-from bot.handlers.grammar import get_grammar_handler
-from bot.handlers.progress import show_progress, progress_callback
-from bot.handlers.reminders import reminder_settings, reminder_callback
-from bot.handlers.audio import audio_command
+from bot.handlers.common import start
 
 # Setup logging
 logging.basicConfig(
@@ -46,21 +41,8 @@ def create_bot_application():
     """Create and configure the bot application."""
     application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
-    # Add command handlers
+    # Only /start command - everything else is in Web App
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(CommandHandler("help", help_command))
-    application.add_handler(CommandHandler("progress", show_progress))
-    application.add_handler(CommandHandler("reminder", reminder_settings))
-    application.add_handler(CommandHandler("audio", audio_command))
-
-    # Add callback handlers
-    application.add_handler(CallbackQueryHandler(menu_callback, pattern="^menu_"))
-    application.add_handler(CallbackQueryHandler(progress_callback, pattern="^(progress_|start_flashcards|start_grammar)"))
-    application.add_handler(CallbackQueryHandler(reminder_callback, pattern="^rem_"))
-
-    # Add conversation handlers
-    application.add_handler(get_flashcards_handler())
-    application.add_handler(get_grammar_handler())
 
     return application
 
@@ -85,326 +67,633 @@ def init_app():
     # This avoids event loop conflicts with gunicorn workers
     logger.info("Application ready - bot will be initialized on first request")
 
-# Read HTML template
+# Modern responsive HTML template
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>German A1 Bot - Web App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>German A1 - Lernen</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --success: #10b981;
+            --success-light: #34d399;
+            --error: #ef4444;
+            --error-light: #f87171;
+            --warning: #f59e0b;
+            --bg-primary: var(--tg-theme-bg-color, #0f0f23);
+            --bg-secondary: var(--tg-theme-secondary-bg-color, #1a1a2e);
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --text-primary: var(--tg-theme-text-color, #ffffff);
+            --text-secondary: var(--tg-theme-hint-color, #a0a0b0);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--tg-theme-bg-color, #ffffff);
-            color: var(--tg-theme-text-color, #000000);
-            padding: 0;
-            margin: 0;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
         }
         
-        .container {
-            max-width: 100%;
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 60%, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .app {
+            max-width: 480px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 16px;
+            padding-bottom: 100px;
         }
         
+        /* Header */
         .header {
             text-align: center;
-            padding: 20px;
-            background: var(--tg-theme-header-bg-color, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
-            color: var(--tg-theme-header-text-color, #ffffff);
-            border-radius: 15px;
+            padding: 24px 16px;
             margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '🇩🇪';
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.05;
+            right: -20px;
+            top: -20px;
         }
         
         .header h1 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #c7d2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
         }
         
-        .tabs {
+        .header p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Navigation tabs */
+        .nav {
             display: flex;
-            background: var(--tg-theme-secondary-bg-color, #f1f3f5);
-            border-radius: 10px;
-            padding: 5px;
+            gap: 8px;
+            padding: 6px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
             margin-bottom: 20px;
-            overflow-x: auto;
+            border: 1px solid var(--border-color);
         }
         
-        .tab {
+        .nav-tab {
             flex: 1;
-            padding: 12px;
+            padding: 12px 8px;
             background: transparent;
             border: none;
-            cursor: pointer;
-            font-size: 0.9em;
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--tg-theme-hint-color, #6c757d);
-            border-radius: 8px;
-            transition: all 0.3s;
-            white-space: nowrap;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
         }
         
-        .tab.active {
-            background: var(--tg-theme-button-color, #667eea);
-            color: var(--tg-theme-button-text-color, #ffffff);
+        .nav-tab span {
+            font-size: 1.2rem;
         }
         
-        .tab-content {
+        .nav-tab.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* Content sections */
+        .section {
             display: none;
-            animation: fadeIn 0.3s;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .tab-content.active {
+        .section.active {
             display: block;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
+        /* Cards */
         .card {
-            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
-            border-radius: 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
             padding: 20px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
         }
         
-        .card h3 {
-            color: var(--tg-theme-link-color, #667eea);
-            margin-bottom: 15px;
-            font-size: 1.2em;
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .button {
-            background: var(--tg-theme-button-color, #667eea);
-            color: var(--tg-theme-button-text-color, #ffffff);
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 16px 20px;
             border: none;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 1em;
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-primary:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--primary-light);
+            padding: 12px;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        /* Category/Test buttons */
+        .category-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .category-btn:active {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(0.98);
+        }
+        
+        .category-btn .name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .category-btn .count {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        
+        /* Flashcard */
+        .flashcard {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flashcard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+        
+        .flashcard-word {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .flashcard-example {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+        
+        .flashcard-progress {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        .audio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            width: 100%;
-            margin: 10px 0;
-            transition: opacity 0.3s;
+            transition: all 0.2s ease;
         }
         
-        .button:active {
-            opacity: 0.8;
+        .audio-btn:active {
+            background: var(--primary);
+            border-color: var(--primary);
         }
         
-        .button-secondary {
-            background: var(--tg-theme-secondary-bg-color, #e9ecef);
-            color: var(--tg-theme-text-color, #000000);
-        }
-        
-        .word-item {
-            background: var(--tg-theme-bg-color, #ffffff);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            border-left: 4px solid var(--tg-theme-button-color, #667eea);
-        }
-        
-        .word-item h4 {
-            font-size: 1.3em;
-            margin-bottom: 5px;
-            color: var(--tg-theme-text-color, #000000);
-        }
-        
-        .word-item p {
-            color: var(--tg-theme-hint-color, #6c757d);
-            font-size: 0.9em;
-            margin: 5px 0;
-        }
-        
+        /* Options */
         .options {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 15px;
         }
         
-        .option-button {
-            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
-            color: var(--tg-theme-text-color, #000000);
-            border: 2px solid var(--tg-theme-button-color, #667eea);
-            padding: 12px;
-            border-radius: 8px;
+        .option {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s ease;
+            text-align: left;
         }
         
-        .option-button:active {
-            background: var(--tg-theme-button-color, #667eea);
-            color: var(--tg-theme-button-text-color, #ffffff);
+        .option:active {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
         }
         
-        .option-button.correct {
-            background: #51cf66;
-            color: white;
-            border-color: #51cf66;
+        .option.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--success);
+            color: var(--success-light);
         }
         
-        .option-button.wrong {
-            background: #ff6b6b;
-            color: white;
-            border-color: #ff6b6b;
+        .option.wrong {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--error);
+            color: var(--error-light);
         }
         
-        .progress-bar {
-            background: var(--tg-theme-secondary-bg-color, #e9ecef);
-            height: 25px;
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 15px 0;
-        }
-        
-        .progress-fill {
-            background: var(--tg-theme-button-color, #667eea);
-            height: 100%;
-            width: 0%;
-            transition: width 0.5s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-        
+        /* Progress stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 15px 0;
+            gap: 12px;
         }
         
-        .stat-item {
-            background: var(--tg-theme-bg-color, #ffffff);
-            padding: 15px;
-            border-radius: 10px;
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px 16px;
             text-align: center;
         }
         
-        .stat-item .number {
-            font-size: 2em;
-            font-weight: bold;
-            color: var(--tg-theme-button-color, #667eea);
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .stat-item .label {
-            font-size: 0.9em;
-            color: var(--tg-theme-hint-color, #6c757d);
-            margin-top: 5px;
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
         }
         
+        /* Progress bar */
+        .progress-bar {
+            height: 12px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Loading & Error */
         .loading {
             text-align: center;
             padding: 40px;
-            color: var(--tg-theme-hint-color, #6c757d);
+            color: var(--text-secondary);
         }
         
-        .error {
-            background: #ff6b6b;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
+        .loading::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 30px;
+            margin: 16px auto 0;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
         
-        .button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         
-        #audio-button {
-            width: auto;
-            display: inline-block;
-            padding: 10px 15px;
-            margin-top: 10px;
+        .error-msg {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error-light);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            text-align: center;
         }
+        
+        /* Question card */
+        .question-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .question-number {
+            font-size: 0.8rem;
+            color: var(--primary-light);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+        
+        /* Back button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 0;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 360px) {
+            .app { padding: 12px; }
+            .header { padding: 20px 12px; }
+            .flashcard { padding: 24px 16px; }
+            .nav-tab { padding: 10px 6px; font-size: 0.75rem; }
+        }
+        
+        @media (min-width: 481px) {
+            .app { padding: 24px; }
+        }
+        
+        /* Safe area for notched phones */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .app {
+                padding-bottom: calc(100px + env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* Hidden audio element */
+        audio { display: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🇩🇪 German A1 Bot</h1>
-            <p>Изучайте немецкий язык легко!</p>
-        </div>
+    <div class="app">
+        <header class="header">
+            <h1>German A1</h1>
+            <p>Учи немецкий легко и эффективно</p>
+        </header>
         
-        <div class="tabs">
-            <button class="tab active" onclick="openTab('flashcards')">📚 Слова</button>
-            <button class="tab" onclick="openTab('grammar')">📝 Грамматика</button>
-            <button class="tab" onclick="openTab('progress')">📊 Прогресс</button>
-        </div>
+        <nav class="nav">
+            <button class="nav-tab active" data-tab="flashcards">
+                <span>📚</span>
+                Слова
+            </button>
+            <button class="nav-tab" data-tab="grammar">
+                <span>📝</span>
+                Грамматика
+            </button>
+            <button class="nav-tab" data-tab="progress">
+                <span>📊</span>
+                Прогресс
+            </button>
+        </nav>
         
-        <!-- Flashcards Tab -->
-        <div id="flashcards" class="tab-content active">
-            <div class="card">
-                <h3>Выберите категорию</h3>
-                <div id="categories-list">
-                    <div class="loading">Загрузка категорий...</div>
+        <!-- Flashcards Section -->
+        <section id="flashcards" class="section active">
+            <div id="categories-view">
+                <div class="card">
+                    <h2 class="card-title">Выберите категорию</h2>
+                    <div id="categories-list" class="btn-group">
+                        <div class="loading">Загрузка...</div>
+                    </div>
                 </div>
             </div>
-            <div id="flashcard-content" style="display: none;">
-                <div class="word-item">
-                    <h4 id="word-de"></h4>
-                    <p id="word-example"></p>
-                    <button class="button button-secondary" onclick="playAudio()" id="audio-button" style="margin-top: 10px;">
+            
+            <div id="flashcard-view" style="display: none;">
+                <button class="back-btn" onclick="backToCategories()">← Назад к категориям</button>
+                
+                <div class="flashcard">
+                    <div class="flashcard-progress" id="word-progress">Слово 1 из 10</div>
+                    <div class="flashcard-word" id="word-de">Wort</div>
+                    <div class="flashcard-example" id="word-example">Beispiel</div>
+                    <button class="audio-btn" id="audio-btn" onclick="playAudio()">
                         🔊 Прослушать
                     </button>
-                    <audio id="word-audio" style="display: none;"></audio>
                 </div>
+                
                 <div class="options" id="word-options"></div>
-                <button class="button" onclick="nextWord()" id="next-button" style="display: none;">Следующее слово</button>
+                
+                <button class="btn btn-primary" id="next-btn" style="display: none; margin-top: 16px;" onclick="nextWord()">
+                    Следующее слово →
+                </button>
             </div>
-        </div>
+        </section>
         
-        <!-- Grammar Tab -->
-        <div id="grammar" class="tab-content">
-            <div class="card">
-                <h3>Выберите тест</h3>
-                <div id="tests-list">
-                    <div class="loading">Загрузка тестов...</div>
-                </div>
-            </div>
-            <div id="grammar-content" style="display: none;">
+        <!-- Grammar Section -->
+        <section id="grammar" class="section">
+            <div id="tests-view">
                 <div class="card">
-                    <h3 id="question-text"></h3>
-                    <div class="options" id="question-options"></div>
-                    <button class="button" onclick="nextQuestion()" id="next-question-button" style="display: none;">Следующий вопрос</button>
+                    <h2 class="card-title">Выберите тест</h2>
+                    <div id="tests-list" class="btn-group">
+                        <div class="loading">Загрузка...</div>
+                    </div>
                 </div>
             </div>
-        </div>
+            
+            <div id="grammar-view" style="display: none;">
+                <button class="back-btn" onclick="backToTests()">← Назад к тестам</button>
+                
+                <div class="question-card">
+                    <div class="question-number" id="question-number">Вопрос 1 из 10</div>
+                    <div class="question-text" id="question-text">Вопрос...</div>
+                </div>
+                
+                <div class="options" id="question-options"></div>
+                
+                <button class="btn btn-primary" id="next-question-btn" style="display: none; margin-top: 16px;" onclick="nextQuestion()">
+                    Следующий вопрос →
+                </button>
+            </div>
+        </section>
         
-        <!-- Progress Tab -->
-        <div id="progress" class="tab-content">
+        <!-- Progress Section -->
+        <section id="progress" class="section">
             <div class="card">
-                <h3>Ваш прогресс</h3>
+                <h2 class="card-title">Ваша статистика</h2>
                 <div id="progress-stats">
-                    <div class="loading">Загрузка статистики...</div>
+                    <div class="loading">Загрузка...</div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
+    
+    <audio id="word-audio"></audio>
     
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
         tg.expand();
+        tg.enableClosingConfirmation();
         
-        // Get user ID from Telegram Web App
-        const userId = tg.initDataUnsafe?.user?.id || tg.initDataUnsafe?.user_id;
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--bg-primary', tg.themeParams.bg_color || '#0f0f23');
+        document.documentElement.style.setProperty('--bg-secondary', tg.themeParams.secondary_bg_color || '#1a1a2e');
+        document.documentElement.style.setProperty('--text-primary', tg.themeParams.text_color || '#ffffff');
+        document.documentElement.style.setProperty('--text-secondary', tg.themeParams.hint_color || '#a0a0b0');
+        
+        const userId = tg.initDataUnsafe?.user?.id;
         
         let currentCategory = null;
         let currentWords = [];
@@ -414,17 +703,24 @@ HTML_TEMPLATE = """
         let currentQuestionIndex = 0;
         let userScore = 0;
         
-        function openTab(tabName) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById(tabName).classList.add('active');
-            
-            if (tabName === 'progress') {
-                loadProgress();
-            }
-        }
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                
+                if (tabId === 'progress') loadProgress();
+                
+                tg.HapticFeedback.selectionChanged();
+            });
+        });
         
+        // Categories
         async function loadCategories() {
             try {
                 const response = await fetch('/api/categories');
@@ -433,72 +729,82 @@ HTML_TEMPLATE = """
                 list.innerHTML = '';
                 
                 categories.forEach(cat => {
-                    const button = document.createElement('button');
-                    button.className = 'button';
-                    button.textContent = `${cat.name} (${cat.count} слов)`;
-                    button.onclick = () => startFlashcards(cat.id);
-                    list.appendChild(button);
+                    const btn = document.createElement('button');
+                    btn.className = 'category-btn';
+                    btn.innerHTML = `
+                        <span class="name">${cat.name}</span>
+                        <span class="count">${cat.count} слов</span>
+                    `;
+                    btn.onclick = () => startFlashcards(cat.id);
+                    list.appendChild(btn);
                 });
             } catch (error) {
                 document.getElementById('categories-list').innerHTML = 
-                    '<div class="error">Ошибка загрузки категорий</div>';
+                    '<div class="error-msg">Ошибка загрузки категорий</div>';
             }
         }
         
         async function startFlashcards(categoryId) {
             try {
                 const response = await fetch(`/api/words?category=${categoryId}`);
-                const words = await response.json();
-                currentWords = words;
+                currentWords = await response.json();
                 currentWordIndex = 0;
                 currentCategory = categoryId;
-                document.getElementById('categories-list').style.display = 'none';
-                document.getElementById('flashcard-content').style.display = 'block';
+                
+                document.getElementById('categories-view').style.display = 'none';
+                document.getElementById('flashcard-view').style.display = 'block';
+                
                 showNextWord();
             } catch (error) {
                 tg.showAlert('Ошибка загрузки слов');
             }
         }
         
+        function backToCategories() {
+            document.getElementById('flashcard-view').style.display = 'none';
+            document.getElementById('categories-view').style.display = 'block';
+        }
+        
         async function showNextWord() {
             if (currentWordIndex >= currentWords.length) {
-                tg.showAlert(`Сессия завершена! Изучено ${currentWords.length} слов.`);
-                document.getElementById('flashcard-content').style.display = 'none';
-                document.getElementById('categories-list').style.display = 'block';
+                tg.showAlert(`🎉 Отлично! Изучено ${currentWords.length} слов!`);
+                backToCategories();
                 return;
             }
             
             const word = currentWords[currentWordIndex];
+            document.getElementById('word-progress').textContent = 
+                `Слово ${currentWordIndex + 1} из ${currentWords.length}`;
             document.getElementById('word-de').textContent = word.de;
             document.getElementById('word-example').textContent = word.example || '';
             
-            // Reset audio - remove event handlers first to prevent error triggers
+            // Reset audio
             const audio = document.getElementById('word-audio');
-            const audioButton = document.getElementById('audio-button');
+            const audioBtn = document.getElementById('audio-btn');
             audio.pause();
             audio.onerror = null;
             audio.onloadeddata = null;
             audio.src = '';
-            audioButton.textContent = '🔊 Прослушать';
-            audioButton.disabled = false;
+            audioBtn.textContent = '🔊 Прослушать';
+            audioBtn.disabled = false;
             
-            // Get wrong options
+            // Get options
             const response = await fetch('/api/words/random?count=3&exclude=' + word.word_id);
             const wrongWords = await response.json();
-            
             const options = [word, ...wrongWords].sort(() => Math.random() - 0.5);
+            
             const optionsDiv = document.getElementById('word-options');
             optionsDiv.innerHTML = '';
             
             options.forEach((opt, index) => {
-                const button = document.createElement('button');
-                button.className = 'option-button';
-                button.textContent = opt.ru;
-                button.onclick = () => selectAnswer(index, opt.word_id === word.word_id);
-                optionsDiv.appendChild(button);
+                const btn = document.createElement('button');
+                btn.className = 'option';
+                btn.textContent = opt.ru;
+                btn.onclick = () => selectAnswer(btn, opt.word_id === word.word_id, word.ru);
+                optionsDiv.appendChild(btn);
             });
             
-            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
         }
         
         async function playAudio() {
@@ -506,70 +812,55 @@ HTML_TEMPLATE = """
             if (!word) return;
             
             const audio = document.getElementById('word-audio');
-            const audioButton = document.getElementById('audio-button');
+            const audioBtn = document.getElementById('audio-btn');
             
-            // If audio is already loaded and playing, just play it
             if (audio.src && audio.src.includes(encodeURIComponent(word.de))) {
                 audio.currentTime = 0;
-                audio.play().catch(err => {
-                    console.error('Error playing audio:', err);
-                    tg.showAlert('Ошибка воспроизведения аудио');
-                });
+                audio.play().catch(() => tg.showAlert('Ошибка воспроизведения'));
                 return;
             }
             
-            // Load audio from server
-            audioButton.textContent = '⏳ Загрузка...';
-            audioButton.disabled = true;
+            audioBtn.textContent = '⏳ Загрузка...';
+            audioBtn.disabled = true;
             
             try {
-                const audioUrl = `/api/audio/${encodeURIComponent(word.de)}`;
-                audio.src = audioUrl;
+                audio.src = `/api/audio/${encodeURIComponent(word.de)}`;
                 
                 audio.onloadeddata = () => {
-                    audioButton.textContent = '🔊 Прослушать';
-                    audioButton.disabled = false;
-                    audio.play().catch(err => {
-                        console.error('Error playing audio:', err);
-                        tg.showAlert('Ошибка воспроизведения аудио');
-                        audioButton.textContent = '🔊 Прослушать';
-                        audioButton.disabled = false;
+                    audioBtn.textContent = '🔊 Прослушать';
+                    audioBtn.disabled = false;
+                    audio.play().catch(() => {
+                        tg.showAlert('Ошибка воспроизведения');
+                        audioBtn.textContent = '🔊 Прослушать';
                     });
                 };
                 
                 audio.onerror = () => {
-                    audioButton.textContent = '🔊 Прослушать';
-                    audioButton.disabled = false;
+                    audioBtn.textContent = '🔊 Прослушать';
+                    audioBtn.disabled = false;
                     tg.showAlert('Ошибка загрузки аудио');
                 };
                 
                 audio.load();
             } catch (error) {
-                console.error('Error loading audio:', error);
-                tg.showAlert('Ошибка загрузки аудио');
-                audioButton.textContent = '🔊 Прослушать';
-                audioButton.disabled = false;
+                audioBtn.textContent = '🔊 Прослушать';
+                audioBtn.disabled = false;
             }
         }
         
-        async function selectAnswer(optionIndex, isCorrect) {
-            const buttons = document.querySelectorAll('.option-button');
-            buttons.forEach((btn, idx) => {
+        async function selectAnswer(selectedBtn, isCorrect, correctAnswer) {
+            const buttons = document.querySelectorAll('#word-options .option');
+            buttons.forEach(btn => {
                 btn.onclick = null;
-                if (idx === optionIndex) {
+                if (btn === selectedBtn) {
                     btn.classList.add(isCorrect ? 'correct' : 'wrong');
-                } else if (isCorrect && idx !== optionIndex) {
-                    // Show correct answer
-                    const word = currentWords[currentWordIndex];
-                    if (btn.textContent === word.ru) {
-                        btn.classList.add('correct');
-                    }
+                } else if (btn.textContent === correctAnswer && !isCorrect) {
+                    btn.classList.add('correct');
                 }
             });
             
-            // Save progress
             const word = currentWords[currentWordIndex];
-            await fetch('/api/progress/word', {
+            fetch('/api/progress/word', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -579,13 +870,8 @@ HTML_TEMPLATE = """
                 })
             });
             
-            if (isCorrect) {
-                tg.HapticFeedback.notificationOccurred('success');
-            } else {
-                tg.HapticFeedback.notificationOccurred('error');
-            }
-            
-            document.getElementById('next-button').style.display = 'block';
+            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            document.getElementById('next-btn').style.display = 'block';
         }
         
         function nextWord() {
@@ -593,6 +879,7 @@ HTML_TEMPLATE = """
             showNextWord();
         }
         
+        // Grammar tests
         async function loadTests() {
             try {
                 const response = await fetch('/api/tests');
@@ -601,32 +888,41 @@ HTML_TEMPLATE = """
                 list.innerHTML = '';
                 
                 tests.forEach(test => {
-                    const button = document.createElement('button');
-                    button.className = 'button';
-                    button.textContent = `${test.name} (${test.questions_count} вопросов)`;
-                    button.onclick = () => startTest(test.id);
-                    list.appendChild(button);
+                    const btn = document.createElement('button');
+                    btn.className = 'category-btn';
+                    btn.innerHTML = `
+                        <span class="name">${test.name}</span>
+                        <span class="count">${test.questions_count} вопросов</span>
+                    `;
+                    btn.onclick = () => startTest(test.id);
+                    list.appendChild(btn);
                 });
             } catch (error) {
                 document.getElementById('tests-list').innerHTML = 
-                    '<div class="error">Ошибка загрузки тестов</div>';
+                    '<div class="error-msg">Ошибка загрузки тестов</div>';
             }
         }
         
         async function startTest(testId) {
             try {
                 const response = await fetch(`/api/tests/${testId}/questions`);
-                const questions = await response.json();
-                currentQuestions = questions;
+                currentQuestions = await response.json();
                 currentQuestionIndex = 0;
                 currentTest = testId;
                 userScore = 0;
-                document.getElementById('tests-list').style.display = 'none';
-                document.getElementById('grammar-content').style.display = 'block';
+                
+                document.getElementById('tests-view').style.display = 'none';
+                document.getElementById('grammar-view').style.display = 'block';
+                
                 showNextQuestion();
             } catch (error) {
                 tg.showAlert('Ошибка загрузки теста');
             }
+        }
+        
+        function backToTests() {
+            document.getElementById('grammar-view').style.display = 'none';
+            document.getElementById('tests-view').style.display = 'block';
         }
         
         function showNextQuestion() {
@@ -636,45 +932,38 @@ HTML_TEMPLATE = """
             }
             
             const question = currentQuestions[currentQuestionIndex];
-            document.getElementById('question-text').textContent = 
-                `Вопрос ${currentQuestionIndex + 1} из ${currentQuestions.length}\n\n${question.question}`;
+            document.getElementById('question-number').textContent = 
+                `Вопрос ${currentQuestionIndex + 1} из ${currentQuestions.length}`;
+            document.getElementById('question-text').textContent = question.question;
             
             const optionsDiv = document.getElementById('question-options');
             optionsDiv.innerHTML = '';
             
             question.options.forEach((option, index) => {
-                const button = document.createElement('button');
-                button.className = 'option-button';
-                button.textContent = option;
-                button.onclick = () => selectGrammarAnswer(index, question.correct === index);
-                optionsDiv.appendChild(button);
+                const btn = document.createElement('button');
+                btn.className = 'option';
+                btn.textContent = option;
+                btn.onclick = () => selectGrammarAnswer(btn, index === question.correct, question.options[question.correct]);
+                optionsDiv.appendChild(btn);
             });
             
-            document.getElementById('next-question-button').style.display = 'none';
+            document.getElementById('next-question-btn').style.display = 'none';
         }
         
-        async function selectGrammarAnswer(optionIndex, isCorrect) {
-            const buttons = document.querySelectorAll('#question-options .option-button');
-            buttons.forEach((btn, idx) => {
+        async function selectGrammarAnswer(selectedBtn, isCorrect, correctAnswer) {
+            const buttons = document.querySelectorAll('#question-options .option');
+            buttons.forEach(btn => {
                 btn.onclick = null;
-                if (idx === optionIndex) {
+                if (btn === selectedBtn) {
                     btn.classList.add(isCorrect ? 'correct' : 'wrong');
-                } else if (isCorrect && idx !== optionIndex) {
-                    const question = currentQuestions[currentQuestionIndex];
-                    if (idx === question.correct) {
-                        btn.classList.add('correct');
-                    }
+                } else if (btn.textContent === correctAnswer && !isCorrect) {
+                    btn.classList.add('correct');
                 }
             });
             
-            if (isCorrect) {
-                userScore++;
-                tg.HapticFeedback.notificationOccurred('success');
-            } else {
-                tg.HapticFeedback.notificationOccurred('error');
-            }
-            
-            document.getElementById('next-question-button').style.display = 'block';
+            if (isCorrect) userScore++;
+            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            document.getElementById('next-question-btn').style.display = 'block';
         }
         
         function nextQuestion() {
@@ -686,8 +975,7 @@ HTML_TEMPLATE = """
             const total = currentQuestions.length;
             const percentage = Math.round((userScore / total) * 100);
             
-            // Save result
-            await fetch('/api/progress/grammar', {
+            fetch('/api/progress/grammar', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -698,51 +986,51 @@ HTML_TEMPLATE = """
                 })
             });
             
-            tg.showAlert(`Тест завершён!\\nРезультат: ${userScore} из ${total} (${percentage}%)`);
-            
-            document.getElementById('grammar-content').style.display = 'none';
-            document.getElementById('tests-list').style.display = 'block';
+            tg.showAlert(`🎉 Тест завершён!\\nРезультат: ${userScore} из ${total} (${percentage}%)`);
+            backToTests();
         }
         
+        // Progress
         async function loadProgress() {
             try {
                 const response = await fetch(`/api/progress?user_id=${userId}`);
                 const stats = await response.json();
+                const accuracy = stats.total_correct + stats.total_wrong > 0 
+                    ? Math.round((stats.total_correct / (stats.total_correct + stats.total_wrong)) * 100) 
+                    : 0;
                 
-                const statsDiv = document.getElementById('progress-stats');
-                statsDiv.innerHTML = `
+                document.getElementById('progress-stats').innerHTML = `
                     <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="number">${stats.total_words}</div>
-                            <div class="label">Изучено слов</div>
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.total_words || 0}</div>
+                            <div class="stat-label">Изучено слов</div>
                         </div>
-                        <div class="stat-item">
-                            <div class="number">${stats.mastered_words}</div>
-                            <div class="label">Освоено</div>
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.mastered_words || 0}</div>
+                            <div class="stat-label">Освоено</div>
                         </div>
-                        <div class="stat-item">
-                            <div class="number">${stats.tests_completed}</div>
-                            <div class="label">Тестов пройдено</div>
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.tests_completed || 0}</div>
+                            <div class="stat-label">Тестов</div>
                         </div>
-                        <div class="stat-item">
-                            <div class="number">${Math.round(stats.accuracy || 0)}%</div>
-                            <div class="label">Точность</div>
+                        <div class="stat-card">
+                            <div class="stat-value">${accuracy}%</div>
+                            <div class="stat-label">Точность</div>
                         </div>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${stats.words_percentage || 0}%">
-                            ${Math.round(stats.words_percentage || 0)}%
-                        </div>
+                        <div class="progress-fill" style="width: ${Math.min(100, (stats.total_words || 0) / 2)}%"></div>
                     </div>
+                    <div class="progress-text">Прогресс изучения: ${stats.total_words || 0} / 200 слов</div>
                 `;
             } catch (error) {
                 document.getElementById('progress-stats').innerHTML = 
-                    '<div class="error">Ошибка загрузки статистики</div>';
+                    '<div class="error-msg">Ошибка загрузки статистики</div>';
             }
         }
         
         // Initialize
-        window.onload = function() {
+        window.onload = () => {
             loadCategories();
             loadTests();
         };
