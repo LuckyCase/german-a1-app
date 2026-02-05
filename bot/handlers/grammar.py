@@ -2,16 +2,84 @@ import random
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, CallbackQueryHandler
 
-from bot.content_manager import get_all_tests, get_test, get_test_questions
+from bot.content_manager import (
+    get_all_tests, get_test, get_test_questions,
+    get_current_level_str, get_levels_with_content, set_level
+)
 from bot.database import save_grammar_result, update_daily_stats
 
 # Conversation states
-TEST_SELECT, QUESTION, RESULT = range(3)
+LEVEL_SELECT, TEST_SELECT, QUESTION, RESULT = range(4)
 
 
 async def grammar_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start grammar test selection."""
+    # Проверяем, есть ли несколько уровней с контентом
+    levels = get_levels_with_content()
+    
+    if len(levels) > 1:
+        # Показываем выбор уровня
+        keyboard = []
+        for level in levels:
+            keyboard.append([
+                InlineKeyboardButton(
+                    f"{'✓ ' if level['is_current'] else ''}{level['display_name']}",
+                    callback_data=f"gr_level_{level['major']}_{level['sub']}"
+                )
+            ])
+        keyboard.append([InlineKeyboardButton("Отмена", callback_data="gr_cancel")])
+        
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        
+        if update.message:
+            await update.message.reply_text(
+                f"Текущий уровень: {get_current_level_str()}\n\n"
+                "Выберите уровень для тестирования:",
+                reply_markup=reply_markup
+            )
+        elif update.callback_query:
+            await update.callback_query.answer()
+            await update.callback_query.edit_message_text(
+                f"Текущий уровень: {get_current_level_str()}\n\n"
+                "Выберите уровень для тестирования:",
+                reply_markup=reply_markup
+            )
+        return LEVEL_SELECT
+    else:
+        # Только один уровень - сразу показываем тесты
+        return await show_tests(update, context)
+
+
+async def level_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle level selection."""
+    query = update.callback_query
+    await query.answer()
+
+    if query.data == "gr_cancel":
+        await query.edit_message_text("Тестирование отменено. Используйте /grammar чтобы начать снова.")
+        return ConversationHandler.END
+
+    # Парсим выбранный уровень
+    parts = query.data.replace("gr_level_", "").split("_")
+    if len(parts) == 2:
+        major, sub = parts
+        set_level(major, sub)
+        context.user_data["gr_level"] = (major, sub)
+    
+    return await show_tests(update, context)
+
+
+async def show_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show available grammar tests."""
     tests = get_all_tests()
+
+    if not tests:
+        error_text = f"Тесты для уровня {get_current_level_str()} не найдены."
+        if update.message:
+            await update.message.reply_text(error_text)
+        elif update.callback_query:
+            await update.callback_query.edit_message_text(error_text)
+        return ConversationHandler.END
 
     keyboard = []
     for test in tests:
@@ -25,21 +93,17 @@ async def grammar_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard.append([InlineKeyboardButton("Отмена", callback_data="gr_cancel")])
 
     reply_markup = InlineKeyboardMarkup(keyboard)
+    text = (
+        f"Уровень: {get_current_level_str()}\n\n"
+        "Выберите грамматический тест:\n\n"
+        f"Каждый тест проверяет определённую тему грамматики."
+    )
 
     # Support both message and callback_query
     if update.message:
-        await update.message.reply_text(
-            "Выберите грамматический тест:\n\n"
-            "Каждый тест проверяет определённую тему грамматики уровня A1.",
-            reply_markup=reply_markup
-        )
+        await update.message.reply_text(text, reply_markup=reply_markup)
     elif update.callback_query:
-        await update.callback_query.answer()
-        await update.callback_query.edit_message_text(
-            "Выберите грамматический тест:\n\n"
-            "Каждый тест проверяет определённую тему грамматики уровня A1.",
-            reply_markup=reply_markup
-        )
+        await update.callback_query.edit_message_text(text, reply_markup=reply_markup)
     
     return TEST_SELECT
 
@@ -57,6 +121,9 @@ async def test_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if test_id == "random":
         tests = get_all_tests()
+        if not tests:
+            await query.edit_message_text("Тесты не найдены. Попробуйте снова.")
+            return ConversationHandler.END
         test_id = random.choice(tests)["id"]
 
     test = get_test(test_id)
@@ -75,6 +142,7 @@ async def test_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["gr_answers"] = []
 
     await query.edit_message_text(
+        f"Уровень: {get_current_level_str()}\n"
         f"Тест: {test['name']}\n"
         f"{test['description']}\n\n"
         f"Вопросов: {len(questions)}\n\n"
@@ -183,7 +251,8 @@ async def show_results(update: Update, context: ContextTypes.DEFAULT_TYPE):
         grade = "Нужно повторить материал 📖"
 
     await query.edit_message_text(
-        f"Тест завершён: {test_name}\n\n"
+        f"Тест завершён: {test_name}\n"
+        f"Уровень: {get_current_level_str()}\n\n"
         f"Результат: {score} из {total}\n"
         f"Процент: {percentage:.0f}%\n"
         f"Оценка: {grade}\n\n"
@@ -238,24 +307,7 @@ async def start_new_test(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.pop("gr_score", None)
     context.user_data.pop("gr_answers", None)
 
-    tests = get_all_tests()
-
-    keyboard = []
-    for test in tests:
-        keyboard.append([
-            InlineKeyboardButton(
-                f"{test['name']} ({test['questions_count']} вопросов)",
-                callback_data=f"gr_test_{test['id']}"
-            )
-        ])
-    keyboard.append([InlineKeyboardButton("Случайный тест", callback_data="gr_test_random")])
-    keyboard.append([InlineKeyboardButton("Отмена", callback_data="gr_cancel")])
-
-    await query.edit_message_text(
-        "Выберите грамматический тест:",
-        reply_markup=InlineKeyboardMarkup(keyboard)
-    )
-    return TEST_SELECT
+    return await show_tests(update, context)
 
 
 async def cancel_grammar(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -269,6 +321,10 @@ def get_grammar_handler():
     return ConversationHandler(
         entry_points=[CommandHandler("grammar", grammar_start)],
         states={
+            LEVEL_SELECT: [
+                CallbackQueryHandler(level_selected, pattern="^gr_level_"),
+                CallbackQueryHandler(level_selected, pattern="^gr_cancel$")
+            ],
             TEST_SELECT: [
                 CallbackQueryHandler(test_selected, pattern="^gr_test_"),
                 CallbackQueryHandler(test_selected, pattern="^gr_cancel$")

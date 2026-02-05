@@ -17,12 +17,15 @@ from bot.content_manager import (
     get_all_tests, get_test_questions, init_content,
     get_phrases_categories, get_phrases_by_category,
     get_dialogue_topics, get_dialogue, get_dialogue_exercises,
-    get_category_distractors
+    get_category_distractors,
+    get_available_levels, get_levels_with_content, set_level,
+    get_current_level_str, get_current_level
 )
 from bot.database import (
     get_user_stats, update_word_progress, save_grammar_result, 
     update_daily_stats, init_db, save_phrase_progress, save_dialogue_progress,
-    get_or_create_user
+    get_or_create_user, save_feedback, get_user_feedback, get_feedback_count,
+    FEEDBACK_STATUS_LABELS, MAX_FEEDBACK_LENGTH
 )
 from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
 
@@ -719,6 +722,11 @@ HTML_TEMPLATE = """
                 <div class="menu-tile-title">Прогресс</div>
                 <div class="menu-tile-desc">Ваша статистика</div>
             </div>
+            <div class="menu-tile" onclick="openSection('feedback')" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(251, 191, 36, 0.1) 100%);">
+                <div class="menu-tile-icon">💬</div>
+                <div class="menu-tile-title">Отзыв</div>
+                <div class="menu-tile-desc">Предложения</div>
+            </div>
         </div>
         
         <!-- Flashcards Section -->
@@ -852,6 +860,52 @@ HTML_TEMPLATE = """
                 </div>
             </div>
         </section>
+        
+        <!-- Feedback Section -->
+        <section id="feedback" class="section" style="display: none;">
+            <button class="back-btn" onclick="backToMainMenu()">← Назад в меню</button>
+            
+            <div class="card">
+                <h2 class="card-title">💬 Отзыв / Предложение</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem;">
+                    Напишите нам! Мы ценим вашу обратную связь и постараемся учесть ваши пожелания.
+                </p>
+                
+                <div id="feedback-form">
+                    <textarea 
+                        id="feedback-text" 
+                        placeholder="Напишите ваш отзыв или предложение..."
+                        maxlength="1000"
+                        style="
+                            width: 100%;
+                            min-height: 120px;
+                            padding: 16px;
+                            border: 1px solid var(--border-color);
+                            border-radius: var(--radius-md);
+                            background: var(--bg-secondary);
+                            color: var(--text-primary);
+                            font-family: inherit;
+                            font-size: 1rem;
+                            resize: vertical;
+                            margin-bottom: 8px;
+                        "
+                    ></textarea>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <span id="feedback-char-count" style="font-size: 0.85rem; color: var(--text-secondary);">0 / 1000</span>
+                        <button class="btn btn-primary" onclick="submitFeedback()" style="width: auto; padding: 12px 24px;">
+                            ✉️ Отправить
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" id="feedback-history-card">
+                <h2 class="card-title">📋 Ваши обращения</h2>
+                <div id="feedback-list">
+                    <div class="loading">Загрузка...</div>
+                </div>
+            </div>
+        </section>
     </div>
     
     <audio id="word-audio"></audio>
@@ -945,6 +999,8 @@ HTML_TEMPLATE = """
                 loadDialoguesTopics();
             } else if (sectionId === 'progress') {
                 loadProgress();
+            } else if (sectionId === 'feedback') {
+                loadFeedback();
             }
             
             // Scroll to top
@@ -1635,6 +1691,145 @@ HTML_TEMPLATE = """
             backToDialogue();
         }
         
+        // ============= FEEDBACK FUNCTIONS =============
+        
+        const FEEDBACK_STATUS_LABELS = {
+            0: "📝 Отправлено",
+            1: "👀 Просмотрено",
+            2: "✅ Принято",
+            3: "🔧 В работе",
+            4: "🎉 Готово!",
+            5: "❌ Отклонено"
+        };
+        
+        // Character counter for feedback textarea
+        document.addEventListener('DOMContentLoaded', () => {
+            const textarea = document.getElementById('feedback-text');
+            const counter = document.getElementById('feedback-char-count');
+            
+            if (textarea && counter) {
+                textarea.addEventListener('input', () => {
+                    const len = textarea.value.length;
+                    counter.textContent = `${len} / 1000`;
+                    counter.style.color = len > 900 ? 'var(--error)' : 'var(--text-secondary)';
+                });
+            }
+        });
+        
+        async function loadFeedback() {
+            if (!userId) {
+                document.getElementById('feedback-list').innerHTML = 
+                    '<div class="error-msg">Необходима авторизация через Telegram</div>';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/feedback?user_id=${userId}`);
+                const data = await response.json();
+                
+                const list = document.getElementById('feedback-list');
+                
+                if (!data.feedback || data.feedback.length === 0) {
+                    list.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 20px;">У вас пока нет обращений</p>';
+                    document.getElementById('feedback-history-card').style.display = 'none';
+                    return;
+                }
+                
+                document.getElementById('feedback-history-card').style.display = 'block';
+                list.innerHTML = '';
+                
+                data.feedback.forEach(fb => {
+                    const statusLabel = FEEDBACK_STATUS_LABELS[fb.status] || `Статус ${fb.status}`;
+                    const date = new Date(fb.created_at).toLocaleDateString('ru-RU', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    const item = document.createElement('div');
+                    item.style.cssText = `
+                        background: var(--bg-secondary);
+                        border: 1px solid var(--border-color);
+                        border-radius: var(--radius-md);
+                        padding: 16px;
+                        margin-bottom: 12px;
+                    `;
+                    
+                    // Truncate text if too long
+                    const displayText = fb.text.length > 150 ? fb.text.substring(0, 150) + '...' : fb.text;
+                    
+                    item.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <span style="font-size: 0.85rem; color: var(--text-secondary);">#${fb.id} • ${date}</span>
+                            <span style="font-size: 0.85rem; background: rgba(99, 102, 241, 0.2); padding: 4px 10px; border-radius: 12px;">${statusLabel}</span>
+                        </div>
+                        <p style="color: var(--text-primary); line-height: 1.5; word-wrap: break-word;">${displayText}</p>
+                    `;
+                    list.appendChild(item);
+                });
+                
+                if (data.total > data.feedback.length) {
+                    const moreText = document.createElement('p');
+                    moreText.style.cssText = 'text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 12px;';
+                    moreText.textContent = `Показаны последние ${data.feedback.length} из ${data.total}`;
+                    list.appendChild(moreText);
+                }
+                
+            } catch (error) {
+                document.getElementById('feedback-list').innerHTML = 
+                    '<div class="error-msg">Ошибка загрузки обращений</div>';
+            }
+        }
+        
+        async function submitFeedback() {
+            if (!userId) {
+                tg.showAlert('Необходима авторизация через Telegram');
+                return;
+            }
+            
+            const textarea = document.getElementById('feedback-text');
+            const text = textarea.value.trim();
+            
+            if (!text) {
+                tg.showAlert('Пожалуйста, введите текст отзыва');
+                return;
+            }
+            
+            if (text.length > 1000) {
+                tg.showAlert('Текст слишком длинный. Максимум 1000 символов.');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        user_id: userId,
+                        text: text
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    tg.showAlert(`✅ Спасибо за ваш отзыв!\\n\\nНомер обращения: #${result.feedback_id}`);
+                    tg.HapticFeedback.notificationOccurred('success');
+                    textarea.value = '';
+                    document.getElementById('feedback-char-count').textContent = '0 / 1000';
+                    loadFeedback(); // Reload list
+                } else {
+                    tg.showAlert('Ошибка отправки: ' + (result.error || 'Неизвестная ошибка'));
+                    tg.HapticFeedback.notificationOccurred('error');
+                }
+            } catch (error) {
+                tg.showAlert('Ошибка отправки отзыва');
+                tg.HapticFeedback.notificationOccurred('error');
+            }
+        }
+        
         // Initialize
         window.onload = () => {
             loadCategories();
@@ -1649,39 +1844,101 @@ HTML_TEMPLATE = """
 def index():
     return render_template_string(HTML_TEMPLATE)
 
+@app.route('/api/levels')
+def api_levels():
+    """Get all available levels with their content status."""
+    levels = get_available_levels()
+    return jsonify(levels)
+
+
+@app.route('/api/levels/with-content')
+def api_levels_with_content():
+    """Get only levels that have content."""
+    levels = get_levels_with_content()
+    return jsonify(levels)
+
+
+@app.route('/api/levels/current')
+def api_current_level():
+    """Get current level."""
+    major, sub = get_current_level()
+    return jsonify({
+        "major": major,
+        "sub": sub,
+        "name": f"{major}.{sub}"
+    })
+
+
+@app.route('/api/levels/set', methods=['POST'])
+def api_set_level():
+    """Set current level."""
+    data = request.json
+    major = data.get('major', 'A1')
+    sub = data.get('sub', '1')
+    
+    success = set_level(major, sub)
+    
+    if success:
+        return jsonify({
+            "success": True,
+            "level": f"{major}.{sub}"
+        })
+    else:
+        return jsonify({
+            "success": False,
+            "error": f"Invalid level: {major}.{sub}"
+        }), 400
+
+
 @app.route('/api/categories')
 def api_categories():
-    categories = get_categories()
+    """Get categories for current level or specified level."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+    
+    if major and sub:
+        categories = get_categories(major, sub)
+    else:
+        categories = get_categories()
+    
     return jsonify(categories)
 
 @app.route('/api/words')
 def api_words():
+    """Get words for current level or specified level."""
     category_id = request.args.get('category')
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+    
     if category_id and category_id != 'all':
-        words = get_words_by_category(category_id)
+        words = get_words_by_category(category_id, major, sub) if major and sub else get_words_by_category(category_id)
     else:
-        words = get_all_words()
+        words = get_all_words(major, sub) if major and sub else get_all_words()
+    
     return jsonify(words)
 
 @app.route('/api/words/random')
 def api_random_words():
+    """Get random words for current level or specified level."""
     count = int(request.args.get('count', 3))
     exclude = request.args.get('exclude', '')
     category = request.args.get('category', '')
+    major = request.args.get('major')
+    sub = request.args.get('sub')
     
     import random
     
     # If category specified, get words from that category only
     if category:
-        words = get_words_by_category(category)
+        words = get_words_by_category(category, major, sub) if major and sub else get_words_by_category(category)
     else:
-        words = get_all_words()
+        words = get_all_words(major, sub) if major and sub else get_all_words()
     
     filtered = [w for w in words if w.get('word_id') != exclude]
     
     # If not enough words in category, use distractors first
     if len(filtered) < count and category:
-        distractors = get_category_distractors(category)
+        distractors = get_category_distractors(category, major, sub) if major and sub else get_category_distractors(category)
         if distractors:
             # Create fake word objects from distractors
             needed = count - len(filtered)
@@ -1696,7 +1953,7 @@ def api_random_words():
     
     # If still not enough, supplement from all words
     if len(filtered) < count:
-        all_words = get_all_words()
+        all_words = get_all_words(major, sub) if major and sub else get_all_words()
         extra = [w for w in all_words if w.get('word_id') != exclude and w not in filtered]
         filtered.extend(extra)
     
@@ -1704,12 +1961,21 @@ def api_random_words():
 
 @app.route('/api/tests')
 def api_tests():
-    tests = get_all_tests()
+    """Get tests for current level or specified level."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+    
+    tests = get_all_tests(major, sub) if major and sub else get_all_tests()
     return jsonify(tests)
+
 
 @app.route('/api/tests/<test_id>/questions')
 def api_test_questions(test_id):
-    questions = get_test_questions(test_id)
+    """Get test questions for current level or specified level."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+    
+    questions = get_test_questions(test_id, major, sub) if major and sub else get_test_questions(test_id)
     return jsonify(questions)
 
 @app.route('/api/progress')
@@ -1809,16 +2075,26 @@ def api_audio(text):
 
 @app.route('/api/phrases/categories')
 def api_phrases_categories():
-    """Get all phrases categories."""
-    categories = get_phrases_categories()
+    """Get all phrases categories for current level or specified level."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+    
+    categories = get_phrases_categories(major, sub) if major and sub else get_phrases_categories()
     return jsonify(categories)
 
 
 @app.route('/api/phrases')
 def api_phrases():
-    """Get phrases by category."""
+    """Get phrases by category for current level or specified level."""
     category_id = request.args.get('category')
-    phrases = get_phrases_by_category(category_id) if category_id else []
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+    
+    if category_id:
+        phrases = get_phrases_by_category(category_id, major, sub) if major and sub else get_phrases_by_category(category_id)
+    else:
+        phrases = []
+    
     return jsonify(phrases)
 
 
@@ -1826,22 +2102,31 @@ def api_phrases():
 
 @app.route('/api/dialogues/topics')
 def api_dialogue_topics():
-    """Get all dialogue topics."""
-    topics = get_dialogue_topics()
+    """Get all dialogue topics for current level or specified level."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+    
+    topics = get_dialogue_topics(major, sub) if major and sub else get_dialogue_topics()
     return jsonify(topics)
 
 
 @app.route('/api/dialogues/<topic_id>')
 def api_dialogue(topic_id):
-    """Get dialogue by topic ID."""
-    dialogue = get_dialogue(topic_id)
+    """Get dialogue by topic ID for current level or specified level."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+    
+    dialogue = get_dialogue(topic_id, major, sub) if major and sub else get_dialogue(topic_id)
     return jsonify(dialogue) if dialogue else jsonify({'error': 'Not found'}), 404
 
 
 @app.route('/api/dialogues/<topic_id>/exercises')
 def api_dialogue_exercises(topic_id):
-    """Get exercises for dialogue."""
-    exercises = get_dialogue_exercises(topic_id)
+    """Get exercises for dialogue for current level or specified level."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+    
+    exercises = get_dialogue_exercises(topic_id, major, sub) if major and sub else get_dialogue_exercises(topic_id)
     return jsonify(exercises)
 
 
@@ -1912,6 +2197,72 @@ def api_update_dialogue_progress():
     ))
     
     return jsonify({'success': True})
+
+
+# ============= FEEDBACK API ENDPOINTS =============
+
+@app.route('/api/feedback', methods=['GET'])
+def api_get_feedback():
+    """Get user's feedback list."""
+    user_id = request.args.get('user_id', type=int)
+    
+    if not user_id:
+        return jsonify({'error': 'User not authenticated'}), 401
+    
+    try:
+        feedback_list = asyncio.run(get_user_feedback(user_id, limit=10))
+        total = asyncio.run(get_feedback_count(user_id))
+        
+        return jsonify({
+            'feedback': feedback_list,
+            'total': total
+        })
+    except Exception as e:
+        logger.error(f"Error getting feedback for user {user_id}: {e}")
+        return jsonify({'error': 'Failed to load feedback'}), 500
+
+
+@app.route('/api/feedback', methods=['POST'])
+def api_submit_feedback():
+    """Submit new feedback."""
+    data = request.json
+    user_id = data.get('user_id')
+    text = data.get('text', '').strip()
+    
+    if not user_id:
+        return jsonify({'error': 'User not authenticated', 'success': False}), 401
+    
+    if not text:
+        return jsonify({'error': 'Text is required', 'success': False}), 400
+    
+    if len(text) > MAX_FEEDBACK_LENGTH:
+        return jsonify({
+            'error': f'Text too long. Maximum {MAX_FEEDBACK_LENGTH} characters.',
+            'success': False
+        }), 400
+    
+    try:
+        # Ensure user exists
+        asyncio.run(get_or_create_user(user_id, None, None))
+        
+        # Save feedback
+        feedback_id = asyncio.run(save_feedback(user_id, text))
+        
+        logger.info(f"User {user_id} submitted feedback #{feedback_id}")
+        
+        return jsonify({
+            'success': True,
+            'feedback_id': feedback_id
+        })
+    except Exception as e:
+        logger.error(f"Error saving feedback for user {user_id}: {e}")
+        return jsonify({'error': 'Failed to save feedback', 'success': False}), 500
+
+
+@app.route('/api/feedback/status-labels')
+def api_feedback_status_labels():
+    """Get feedback status labels."""
+    return jsonify(FEEDBACK_STATUS_LABELS)
 
 
 # ============= TELEGRAM BOT WEBHOOK ENDPOINTS =============

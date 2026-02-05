@@ -114,12 +114,16 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "Нажмите кнопку ниже, чтобы открыть приложение для изучения немецкого языка."
         )
         
-        keyboard = [[
-            InlineKeyboardButton(
+        keyboard = [
+            [InlineKeyboardButton(
                 "🚀 Открыть приложение", 
                 web_app=WebAppInfo(url=WEB_APP_URL)
-            )
-        ]]
+            )],
+            [InlineKeyboardButton(
+                "💬 Отзыв / Предложение",
+                callback_data="feedback_show"
+            )]
+        ]
         
         await update.message.reply_text(
             message,
@@ -135,3 +139,24 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         message += "\nПопробуйте позже или обратитесь к администратору."
         
         await update.message.reply_text(message)
+
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle /help command."""
+    help_text = (
+        "🇩🇪 **German A1 Learning Bot** - Помощь\n\n"
+        "**Команды:**\n"
+        "/start - Главное меню\n"
+        "/help - Эта справка\n"
+        "/progress - Ваш прогресс\n"
+        "/reminder - Настройки напоминаний\n"
+        "/audio - Аудио материалы\n\n"
+        "**Как пользоваться:**\n"
+        "1. Нажмите /start\n"
+        "2. Откройте приложение кнопкой «🚀 Открыть приложение»\n"
+        "3. Изучайте слова, грамматику, фразы!\n\n"
+        "Есть вопросы или предложения? Используйте кнопку "
+        "«💬 Отзыв / Предложение» в главном меню."
+    )
+    
+    await update.message.reply_text(help_text, parse_mode="Markdown")

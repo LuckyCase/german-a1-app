@@ -1,8 +1,10 @@
 {
   "level": "A1",
-  "name": "A1 — Начальный уровень",
-  "name_de": "A1 — Anfänger",
-  "description": "Базовый уровень немецкого языка по стандартам Goethe-Institut",
+  "sublevel": "1",
+  "full_level": "A1.1",
+  "name": "A1.1 — Начальный уровень (часть 1)",
+  "name_de": "A1.1 — Anfänger (Teil 1)",
+  "description": "Первая часть базового уровня немецкого языка по стандартам Goethe-Institut",
   "version": "1.0.0",
   "last_updated": "2026-02-05",
   "content": {

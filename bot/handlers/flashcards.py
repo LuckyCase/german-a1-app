@@ -3,25 +3,99 @@ import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, CallbackQueryHandler
 
-from bot.content_manager import get_all_words, get_words_by_category, get_categories
+from bot.content_manager import (
+    get_all_words, get_words_by_category, get_categories,
+    get_current_level_str, get_levels_with_content, set_level
+)
 from bot.database import update_word_progress, update_daily_stats
 from bot.handlers.audio import send_word_audio
 
 # Conversation states
-CATEGORY_SELECT, LEARNING, ANSWER = range(3)
+LEVEL_SELECT, CATEGORY_SELECT, LEARNING, ANSWER = range(4)
 
 
 async def flashcards_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start flashcards learning session."""
     try:
-        categories = get_categories()
-
-        if not categories:
-            error_text = "Ошибка: категории не найдены. Проверьте файл vocabulary.py"
+        # Проверяем, есть ли несколько уровней с контентом
+        levels = get_levels_with_content()
+        
+        if len(levels) > 1:
+            # Показываем выбор уровня
+            keyboard = []
+            for level in levels:
+                keyboard.append([
+                    InlineKeyboardButton(
+                        f"{'✓ ' if level['is_current'] else ''}{level['display_name']}",
+                        callback_data=f"fc_level_{level['major']}_{level['sub']}"
+                    )
+                ])
+            keyboard.append([InlineKeyboardButton("Отмена", callback_data="fc_cancel")])
+            
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            
+            if update.message:
+                await update.message.reply_text(
+                    f"Текущий уровень: {get_current_level_str()}\n\n"
+                    "Выберите уровень для изучения:",
+                    reply_markup=reply_markup
+                )
+            elif update.callback_query:
+                await update.callback_query.answer()
+                await update.callback_query.edit_message_text(
+                    f"Текущий уровень: {get_current_level_str()}\n\n"
+                    "Выберите уровень для изучения:",
+                    reply_markup=reply_markup
+                )
+            return LEVEL_SELECT
+        else:
+            # Только один уровень - сразу показываем категории
+            return await show_categories(update, context)
+            
+    except Exception as e:
+        logger = logging.getLogger(__name__)
+        logger.error(f"Error in flashcards_start: {e}", exc_info=True)
+        error_text = f"Произошла ошибка: {str(e)}"
+        try:
             if update.message:
                 await update.message.reply_text(error_text)
             elif update.callback_query:
                 await update.callback_query.answer()
+                await update.callback_query.edit_message_text(error_text)
+        except:
+            pass
+        return ConversationHandler.END
+
+
+async def level_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle level selection."""
+    query = update.callback_query
+    await query.answer()
+
+    if query.data == "fc_cancel":
+        await query.edit_message_text("Изучение отменено. Используйте /flashcards чтобы начать снова.")
+        return ConversationHandler.END
+
+    # Парсим выбранный уровень
+    parts = query.data.replace("fc_level_", "").split("_")
+    if len(parts) == 2:
+        major, sub = parts
+        set_level(major, sub)
+        context.user_data["fc_level"] = (major, sub)
+    
+    return await show_categories(update, context)
+
+
+async def show_categories(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Show categories for current level."""
+    try:
+        categories = get_categories()
+
+        if not categories:
+            error_text = f"Категории для уровня {get_current_level_str()} не найдены."
+            if update.message:
+                await update.message.reply_text(error_text)
+            elif update.callback_query:
                 await update.callback_query.edit_message_text(error_text)
             return ConversationHandler.END
 
@@ -37,35 +111,23 @@ async def flashcards_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard.append([InlineKeyboardButton("Отмена", callback_data="fc_cancel")])
 
         reply_markup = InlineKeyboardMarkup(keyboard)
+        text = f"Уровень: {get_current_level_str()}\n\nВыберите категорию для изучения:"
 
-        # Support both message and callback_query
         if update.message:
-            await update.message.reply_text(
-                "Выберите категорию для изучения:",
-                reply_markup=reply_markup
-            )
+            await update.message.reply_text(text, reply_markup=reply_markup)
         elif update.callback_query:
-            await update.callback_query.answer()
-            await update.callback_query.edit_message_text(
-                "Выберите категорию для изучения:",
-                reply_markup=reply_markup
-            )
-        else:
-            # Fallback if neither message nor callback_query
-            logger = logging.getLogger(__name__)
-            logger.error("flashcards_start: No message or callback_query in update")
-            return ConversationHandler.END
+            await update.callback_query.edit_message_text(text, reply_markup=reply_markup)
         
         return CATEGORY_SELECT
+        
     except Exception as e:
         logger = logging.getLogger(__name__)
-        logger.error(f"Error in flashcards_start: {e}", exc_info=True)
+        logger.error(f"Error in show_categories: {e}", exc_info=True)
         error_text = f"Произошла ошибка: {str(e)}"
         try:
             if update.message:
                 await update.message.reply_text(error_text)
             elif update.callback_query:
-                await update.callback_query.answer()
                 await update.callback_query.edit_message_text(error_text)
         except:
             pass
@@ -101,6 +163,7 @@ async def category_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["fc_wrong"] = 0
 
     await query.edit_message_text(
+        f"Уровень: {get_current_level_str()}\n"
         f"Категория: {context.user_data['fc_category_name']}\n"
         f"Слов: {len(words)}\n\n"
         f"Готовы? Нажмите кнопку ниже!",
@@ -156,6 +219,7 @@ async def show_next_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await query.edit_message_text(
             f"Сессия завершена!\n\n"
+            f"Уровень: {get_current_level_str()}\n"
             f"Правильно: {correct}\n"
             f"Неправильно: {wrong}\n"
             f"Результат: {percentage:.0f}%\n\n"
@@ -306,6 +370,7 @@ async def finish_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await query.edit_message_text(
         f"Сессия завершена!\n\n"
+        f"Уровень: {get_current_level_str()}\n"
         f"Правильно: {correct}\n"
         f"Неправильно: {wrong}\n"
         f"Результат: {percentage:.0f}%\n\n"
@@ -325,6 +390,10 @@ def get_flashcards_handler():
     return ConversationHandler(
         entry_points=[CommandHandler("flashcards", flashcards_start)],
         states={
+            LEVEL_SELECT: [
+                CallbackQueryHandler(level_selected, pattern="^fc_level_"),
+                CallbackQueryHandler(level_selected, pattern="^fc_cancel$")
+            ],
             CATEGORY_SELECT: [
                 CallbackQueryHandler(category_selected, pattern="^fc_cat_")
             ],

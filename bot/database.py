@@ -164,6 +164,19 @@ async def init_db():
             )
         """)
 
+        # Feedback / suggestions table
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS feedback (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT,
+                text TEXT NOT NULL,
+                status INTEGER DEFAULT 0,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users (user_id)
+            )
+        """)
+
 
 async def get_or_create_user(user_id: int, username: str = None, first_name: str = None):
     """Get existing user or create new one."""
@@ -399,3 +412,69 @@ async def save_dialogue_progress(user_id: int, dialogue_id: str, exercises_compl
                    VALUES ($1, $2, $3, $4, $5)""",
                 user_id, dialogue_id, exercises_completed, exercises_correct, now
             )
+
+
+# Feedback status codes:
+# 0 - Новый (по умолчанию)
+# 1 - Просмотрен
+# 2 - Принято к рассмотрению
+# 3 - В работе
+# 4 - Выполнено
+# 5 - Отклонено
+
+FEEDBACK_STATUS_LABELS = {
+    0: "📝 Отправлено",
+    1: "👀 Просмотрено",
+    2: "✅ Принято",
+    3: "🔧 В работе",
+    4: "🎉 Готово!",
+    5: "❌ Отклонено"
+}
+
+MAX_FEEDBACK_LENGTH = 1000
+
+
+async def save_feedback(user_id: int, text: str) -> int:
+    """Save user feedback/suggestion. Returns the feedback id."""
+    # Ensure user exists in database
+    await get_or_create_user(user_id, None, None)
+    
+    pool = await get_pool()
+    now = datetime.now()
+
+    async with pool.acquire() as conn:
+        result = await conn.fetchrow(
+            """INSERT INTO feedback (user_id, text, status, created_at, updated_at)
+               VALUES ($1, $2, 0, $3, $3)
+               RETURNING id""",
+            user_id, text[:MAX_FEEDBACK_LENGTH], now
+        )
+        return result["id"]
+
+
+async def get_user_feedback(user_id: int, limit: int = 10) -> list:
+    """Get user's feedback/suggestions ordered by date (newest first)."""
+    pool = await get_pool()
+
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(
+            """SELECT id, text, status, created_at, updated_at
+               FROM feedback
+               WHERE user_id = $1
+               ORDER BY created_at DESC
+               LIMIT $2""",
+            user_id, limit
+        )
+        return [dict(row) for row in rows]
+
+
+async def get_feedback_count(user_id: int) -> int:
+    """Get total count of user's feedback."""
+    pool = await get_pool()
+
+    async with pool.acquire() as conn:
+        result = await conn.fetchrow(
+            "SELECT COUNT(*) as count FROM feedback WHERE user_id = $1",
+            user_id
+        )
+        return result["count"]
