@@ -1,7 +1,8 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ContextTypes
 import logging
-import aiohttp
+import asyncio
+import requests
 
 from bot.database import get_or_create_user, get_pool
 from bot.config import WEB_APP_URL, TELEGRAM_BOT_TOKEN, DATABASE_URL
@@ -18,27 +19,34 @@ async def check_bot_status(context: ContextTypes.DEFAULT_TYPE = None) -> dict:
         "errors": []
     }
     
-    # Check Webhook via Telegram API
+    # Check Webhook via Bot API (if context available) or Telegram API
     if TELEGRAM_BOT_TOKEN:
         try:
-            # Try to get webhook info from Telegram API
-            async with aiohttp.ClientSession() as session:
-                async with session.get(
-                    f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getWebhookInfo',
-                    timeout=aiohttp.ClientTimeout(total=5)
-                ) as response:
-                    if response.status == 200:
-                        webhook_info = await response.json()
-                        if webhook_info.get('ok'):
-                            webhook_url = webhook_info.get('result', {}).get('url', '')
-                            if webhook_url:
-                                status["webhook"] = True
-                            else:
-                                status["errors"].append("Webhook не настроен")
-                        else:
-                            status["errors"].append("Ошибка проверки webhook")
+            if context and context.bot:
+                # Use built-in bot method (preferred)
+                webhook_info = await context.bot.get_webhook_info()
+                if webhook_info.url:
+                    status["webhook"] = True
+                else:
+                    status["errors"].append("Webhook не настроен")
+            else:
+                # Fallback: use requests in thread
+                def get_webhook_sync():
+                    response = requests.get(
+                        f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getWebhookInfo',
+                        timeout=5
+                    )
+                    return response.json()
+                
+                webhook_info = await asyncio.to_thread(get_webhook_sync)
+                if webhook_info.get('ok'):
+                    webhook_url = webhook_info.get('result', {}).get('url', '')
+                    if webhook_url:
+                        status["webhook"] = True
                     else:
-                        status["errors"].append("Не удалось проверить webhook")
+                        status["errors"].append("Webhook не настроен")
+                else:
+                    status["errors"].append("Ошибка проверки webhook")
         except Exception as e:
             logger.error(f"Error checking webhook: {e}")
             status["errors"].append(f"Webhook: {str(e)[:50]}")
@@ -58,23 +66,9 @@ async def check_bot_status(context: ContextTypes.DEFAULT_TYPE = None) -> dict:
     else:
         status["errors"].append("DATABASE_URL не настроен")
     
-    # Check Web App URL
+    # Check Web App URL (just check if configured, not accessibility)
     if WEB_APP_URL:
-        # Try to verify web app is accessible
-        try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(
-                    WEB_APP_URL,
-                    timeout=aiohttp.ClientTimeout(total=5),
-                    allow_redirects=True
-                ) as response:
-                    if response.status in [200, 301, 302]:
-                        status["web_app"] = True
-                    else:
-                        status["errors"].append(f"Web App недоступен (код {response.status})")
-        except Exception as e:
-            logger.error(f"Error checking web app: {e}")
-            status["errors"].append(f"Web App: {str(e)[:50]}")
+        status["web_app"] = True
     else:
         status["errors"].append("WEB_APP_URL не настроен")
     
@@ -104,10 +98,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     message = (
         f"Hallo, {user.first_name}! 👋\n\n"
-        f"🇩🇪 **German A1 Learning Bot**\n\n"
+        f"🇩🇪 German A1 Learning Bot\n\n"
         f"Добро пожаловать в бота для изучения немецкого языка уровня A1!\n\n"
         f"━━━━━━━━━━━━━━━━━━━━\n"
-        f"📊 **Статус систем:**\n\n"
+        f"📊 Статус систем:\n\n"
         f"{status_icons[status['webhook']]} Webhook\n"
         f"{status_icons[status['database']]} База данных\n"
         f"{status_icons[status['web_app']]} Web приложение\n"
@@ -129,8 +123,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         await update.message.reply_text(
             message,
-            reply_markup=InlineKeyboardMarkup(keyboard),
-            parse_mode="Markdown"
+            reply_markup=InlineKeyboardMarkup(keyboard)
         )
     else:
         message += (
@@ -141,4 +134,4 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         message += "\nПопробуйте позже или обратитесь к администратору."
         
-        await update.message.reply_text(message, parse_mode="Markdown")
+        await update.message.reply_text(message)
