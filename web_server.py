@@ -859,7 +859,6 @@ HTML_TEMPLATE = """
         const tg = window.Telegram.WebApp;
         tg.ready();
         tg.expand();
-        tg.enableClosingConfirmation();
         
         // Apply Telegram theme
         document.documentElement.style.setProperty('--bg-primary', tg.themeParams.bg_color || '#0f0f23');
