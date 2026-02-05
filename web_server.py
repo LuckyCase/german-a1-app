@@ -20,7 +20,8 @@ from bot.content_manager import (
 )
 from bot.database import (
     get_user_stats, update_word_progress, save_grammar_result, 
-    update_daily_stats, init_db, save_phrase_progress, save_dialogue_progress
+    update_daily_stats, init_db, save_phrase_progress, save_dialogue_progress,
+    get_or_create_user
 )
 from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
 
@@ -1709,6 +1710,13 @@ def api_update_word_progress():
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
     
+    # Убеждаемся, что пользователь существует в базе
+    try:
+        asyncio.run(get_or_create_user(user_id, None, None))
+    except Exception as e:
+        logger.error(f"Error creating user {user_id}: {e}")
+        # Продолжаем выполнение, так как пользователь может уже существовать
+    
     is_correct = data.get('is_correct', False)
     
     # Обновляем progress таблицу
@@ -1728,6 +1736,13 @@ def api_save_grammar_result():
     
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
+    
+    # Убеждаемся, что пользователь существует в базе
+    try:
+        asyncio.run(get_or_create_user(user_id, None, None))
+    except Exception as e:
+        logger.error(f"Error creating user {user_id}: {e}")
+        # Продолжаем выполнение, так как пользователь может уже существовать
     
     asyncio.run(save_grammar_result(user_id, data['test_id'], data['score'], data['total']))
     asyncio.run(update_daily_stats(user_id, tests=1, correct=data['score'], total=data['total']))
@@ -1811,6 +1826,13 @@ def api_update_phrase_progress():
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
     
+    # Убеждаемся, что пользователь существует в базе
+    try:
+        asyncio.run(get_or_create_user(user_id, None, None))
+    except Exception as e:
+        logger.error(f"Error creating user {user_id}: {e}")
+        # Продолжаем выполнение, так как пользователь может уже существовать
+    
     is_correct = data.get('is_correct', False)
     
     # Обновляем phrase_progress таблицу
@@ -1834,6 +1856,13 @@ def api_update_dialogue_progress():
     
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
+    
+    # Убеждаемся, что пользователь существует в базе
+    try:
+        asyncio.run(get_or_create_user(user_id, None, None))
+    except Exception as e:
+        logger.error(f"Error creating user {user_id}: {e}")
+        # Продолжаем выполнение, так как пользователь может уже существовать
     
     exercises_completed = data.get('exercises_completed', 0)
     exercises_correct = data.get('exercises_correct', 0)

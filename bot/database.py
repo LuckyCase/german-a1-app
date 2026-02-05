@@ -279,31 +279,28 @@ async def save_grammar_result(user_id: int, test_id: str, score: int, total: int
 
 async def update_daily_stats(user_id: int, words: int = 0, tests: int = 0, correct: int = 0, total: int = 0):
     """Update daily statistics for user."""
+    import logging
+    logger = logging.getLogger(__name__)
+    
     today = datetime.now().strftime("%Y-%m-%d")
     pool = await get_pool()
 
-    async with pool.acquire() as conn:
-        existing = await conn.fetchrow(
-            "SELECT * FROM daily_stats WHERE user_id = $1 AND date = $2",
-            user_id, today
-        )
-
-        if existing:
-            await conn.execute(
-                """UPDATE daily_stats
-                   SET words_learned = words_learned + $1,
-                       tests_completed = tests_completed + $2,
-                       correct_answers = correct_answers + $3,
-                       total_answers = total_answers + $4
-                   WHERE user_id = $5 AND date = $6""",
-                words, tests, correct, total, user_id, today
-            )
-        else:
+    try:
+        async with pool.acquire() as conn:
+            # Use UPSERT (INSERT ... ON CONFLICT) for atomic operation
             await conn.execute(
                 """INSERT INTO daily_stats (user_id, date, words_learned, tests_completed, correct_answers, total_answers)
-                   VALUES ($1, $2, $3, $4, $5, $6)""",
+                   VALUES ($1, $2, $3, $4, $5, $6)
+                   ON CONFLICT (user_id, date) DO UPDATE
+                   SET words_learned = daily_stats.words_learned + $3,
+                       tests_completed = daily_stats.tests_completed + $4,
+                       correct_answers = daily_stats.correct_answers + $5,
+                       total_answers = daily_stats.total_answers + $6""",
                 user_id, today, words, tests, correct, total
             )
+    except Exception as e:
+        logger.error(f"Error updating daily stats for user {user_id}: {e}", exc_info=True)
+        raise
 
 
 async def get_users_for_reminder(hour: int, minute: int) -> list:
