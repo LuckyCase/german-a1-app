@@ -12,5 +12,5 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 DEFAULT_REMINDER_HOUR = 9
 DEFAULT_REMINDER_MINUTE = 0
 
-# Web App URL
-WEB_APP_URL = os.getenv("WEB_APP_URL", "https://german-a1-webapp.onrender.com")
+# Web App URL (same as bot URL since they run on same service)
+WEB_APP_URL = os.getenv("WEB_APP_URL", "https://german-a1-bot.onrender.com")
