@@ -1,5 +1,6 @@
 import asyncpg
 import os
+import ssl
 import threading
 import asyncio
 from datetime import datetime
@@ -8,6 +9,14 @@ from bot.config import DATABASE_URL
 # Thread-local storage for connection pools
 # Each thread (gunicorn worker) gets its own pool
 _local = threading.local()
+
+
+def get_ssl_context():
+    """Create SSL context for Supabase/cloud PostgreSQL connections."""
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE  # Supabase uses self-signed certs
+    return ctx
 
 
 async def get_pool():
@@ -41,11 +50,17 @@ async def get_pool():
     if not DATABASE_URL:
         raise ValueError("DATABASE_URL is not set! Please configure database connection.")
     
+    # Determine if we need SSL (for cloud databases like Supabase, Neon, etc.)
+    use_ssl = 'supabase' in DATABASE_URL or 'neon' in DATABASE_URL or 'render' in DATABASE_URL
+    
     pool = await asyncpg.create_pool(
         DATABASE_URL,
         min_size=1,
-        max_size=10,
-        command_timeout=60
+        max_size=5,  # Reduced for free tier limits
+        command_timeout=60,
+        ssl=get_ssl_context() if use_ssl else None,
+        # For PgBouncer/Supabase pooler - disable prepared statements
+        statement_cache_size=0 if 'pooler.supabase' in DATABASE_URL else 100
     )
     _local.pools[pool_key] = pool
     return pool
