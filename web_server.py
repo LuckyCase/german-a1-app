@@ -149,10 +149,18 @@ HTML_TEMPLATE = """
         }
         
         .app {
-            max-width: 480px;
+            width: 100%;
+            max-width: 100%;
             margin: 0 auto;
             padding: 16px;
             padding-bottom: 100px;
+        }
+        
+        @media (min-width: 768px) {
+            .app {
+                max-width: 1200px;
+                padding: 24px;
+            }
         }
         
         /* Header */
@@ -166,6 +174,27 @@ HTML_TEMPLATE = """
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .header.compact {
+            padding: 12px 16px;
+            margin-bottom: 12px;
+        }
+        
+        .header.compact h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+        
+        .header.compact p {
+            display: none;
+        }
+        
+        .header.compact::before {
+            font-size: 60px;
+            right: -10px;
+            top: -10px;
         }
         
         .header::before {
@@ -175,6 +204,7 @@ HTML_TEMPLATE = """
             opacity: 0.05;
             right: -20px;
             top: -20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .header h1 {
@@ -185,50 +215,71 @@ HTML_TEMPLATE = """
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 4px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .header p {
             color: var(--text-secondary);
             font-size: 0.9rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* Navigation tabs */
-        .nav {
-            display: flex;
-            gap: 8px;
-            padding: 6px;
-            background: var(--bg-secondary);
-            border-radius: var(--radius-lg);
+        /* Main menu with tiles */
+        .main-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
             margin-bottom: 20px;
-            border: 1px solid var(--border-color);
         }
         
-        .nav-tab {
-            flex: 1;
-            padding: 12px 8px;
-            background: transparent;
-            border: none;
-            border-radius: var(--radius-md);
-            font-family: inherit;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
+        @media (min-width: 768px) {
+            .main-menu {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+        }
+        
+        .menu-tile {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px;
+            text-align: center;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 12px;
+            min-height: 140px;
+            justify-content: center;
         }
         
-        .nav-tab span {
-            font-size: 1.2rem;
+        .menu-tile:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
         }
         
-        .nav-tab.active {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        .menu-tile:active {
+            transform: translateY(-2px);
+        }
+        
+        .menu-tile-icon {
+            font-size: 3rem;
+            line-height: 1;
+        }
+        
+        .menu-tile-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .menu-tile-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
         }
         
         /* Content sections */
@@ -345,11 +396,12 @@ HTML_TEMPLATE = """
         }
         
         .category-btn .count {
-            color: var(--tg-theme-hint-color, var(--text-secondary));
+            color: var(--text-primary);
             font-size: 0.85rem;
-            background: var(--tg-theme-button-color, rgba(99, 102, 241, 0.2));
+            background: var(--tg-theme-button-color, rgba(99, 102, 241, 0.3));
             padding: 4px 10px;
             border-radius: 20px;
+            font-weight: 600;
         }
         
         /* Flashcard */
@@ -390,8 +442,13 @@ HTML_TEMPLATE = """
         
         .flashcard-progress {
             font-size: 0.8rem;
-            color: var(--tg-theme-hint-color, var(--text-secondary));
+            color: var(--text-primary);
+            background: rgba(99, 102, 241, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
             margin-bottom: 16px;
+            font-weight: 600;
         }
         
         .audio-btn {
@@ -553,7 +610,11 @@ HTML_TEMPLATE = """
         
         .question-number {
             font-size: 0.8rem;
-            color: var(--primary-light);
+            color: var(--text-primary);
+            background: rgba(99, 102, 241, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
             font-weight: 700;
             margin-bottom: 12px;
         }
@@ -584,11 +645,27 @@ HTML_TEMPLATE = """
             .app { padding: 12px; }
             .header { padding: 20px 12px; }
             .flashcard { padding: 24px 16px; }
-            .nav-tab { padding: 10px 6px; font-size: 0.75rem; }
+            .main-menu {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .menu-tile {
+                padding: 20px 16px;
+                min-height: 120px;
+            }
+            .menu-tile-icon {
+                font-size: 2.5rem;
+            }
         }
         
         @media (min-width: 481px) {
-            .app { padding: 24px; }
+            .app { padding: 20px; }
+        }
+        
+        @media (min-width: 1024px) {
+            .main-menu {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
         /* Safe area for notched phones */
@@ -604,37 +681,44 @@ HTML_TEMPLATE = """
 </head>
 <body>
     <div class="app">
-        <header class="header">
+        <header class="header" id="main-header">
             <h1>German A1</h1>
             <p>Учи немецкий легко и эффективно</p>
         </header>
         
-        <nav class="nav">
-            <button class="nav-tab active" data-tab="flashcards">
-                <span>📚</span>
-                Слова
-            </button>
-            <button class="nav-tab" data-tab="grammar">
-                <span>📝</span>
-                Грамматика
-            </button>
-            <button class="nav-tab" data-tab="phrases">
-                <span>💬</span>
-                Фразы
-            </button>
-            <button class="nav-tab" data-tab="dialogues">
-                <span>🗣️</span>
-                Диалоги
-            </button>
-            <button class="nav-tab" data-tab="progress">
-                <span>📊</span>
-                Прогресс
-            </button>
-        </nav>
+        <!-- Main Menu -->
+        <div id="main-menu" class="main-menu">
+            <div class="menu-tile" onclick="openSection('flashcards')">
+                <div class="menu-tile-icon">📚</div>
+                <div class="menu-tile-title">Слова</div>
+                <div class="menu-tile-desc">Изучайте слова</div>
+            </div>
+            <div class="menu-tile" onclick="openSection('grammar')">
+                <div class="menu-tile-icon">📝</div>
+                <div class="menu-tile-title">Грамматика</div>
+                <div class="menu-tile-desc">Тесты по грамматике</div>
+            </div>
+            <div class="menu-tile" onclick="openSection('phrases')">
+                <div class="menu-tile-icon">💬</div>
+                <div class="menu-tile-title">Фразы</div>
+                <div class="menu-tile-desc">Полезные фразы</div>
+            </div>
+            <div class="menu-tile" onclick="openSection('dialogues')">
+                <div class="menu-tile-icon">🗣️</div>
+                <div class="menu-tile-title">Диалоги</div>
+                <div class="menu-tile-desc">Практика диалогов</div>
+            </div>
+            <div class="menu-tile" onclick="openSection('progress')">
+                <div class="menu-tile-icon">📊</div>
+                <div class="menu-tile-title">Прогресс</div>
+                <div class="menu-tile-desc">Ваша статистика</div>
+            </div>
+        </div>
         
         <!-- Flashcards Section -->
-        <section id="flashcards" class="section active">
+        <section id="flashcards" class="section" style="display: none;">
             <div id="categories-view">
+                <button class="back-btn" onclick="backToMainFromCategories()">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите категорию</h2>
                     <div id="categories-list" class="btn-group">
@@ -666,6 +750,7 @@ HTML_TEMPLATE = """
         <!-- Grammar Section -->
         <section id="grammar" class="section">
             <div id="tests-view">
+                <button class="back-btn" onclick="backToMainFromTests()">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите тест</h2>
                     <div id="tests-list" class="btn-group">
@@ -693,6 +778,7 @@ HTML_TEMPLATE = """
         <!-- Phrases Section -->
         <section id="phrases" class="section">
             <div id="phrases-categories-view">
+                <button class="back-btn" onclick="backToMainFromPhrasesCategories()">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите категорию</h2>
                     <div id="phrases-categories-list" class="btn-group">
@@ -720,6 +806,7 @@ HTML_TEMPLATE = """
         <!-- Dialogues Section -->
         <section id="dialogues" class="section">
             <div id="dialogues-topics-view">
+                <button class="back-btn" onclick="backToMainFromDialoguesTopics()">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите диалог</h2>
                     <div id="dialogues-topics-list" class="btn-group">
@@ -750,7 +837,8 @@ HTML_TEMPLATE = """
         </section>
         
         <!-- Progress Section -->
-        <section id="progress" class="section">
+        <section id="progress" class="section" style="display: none;">
+            <button class="back-btn" onclick="backToMainMenu()">← Назад в меню</button>
             <div class="card">
                 <h2 class="card-title">Ваша статистика</h2>
                 <div id="progress-stats">
@@ -793,24 +881,78 @@ HTML_TEMPLATE = """
         let currentExerciseIndex = 0;
         let exerciseScore = 0;
         
-        // Tab navigation
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabId = tab.dataset.tab;
-                
-                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-                
-                tab.classList.add('active');
-                document.getElementById(tabId).classList.add('active');
-                
-                if (tabId === 'phrases') loadPhrasesCategories();
-                if (tabId === 'dialogues') loadDialoguesTopics();
-                if (tabId === 'progress') loadProgress();
-                
-                tg.HapticFeedback.selectionChanged();
-            });
+        // Header scroll behavior
+        let headerShown = true;
+        let scrollTimeout = null;
+        
+        function handleScroll() {
+            const header = document.getElementById('main-header');
+            const scrollY = window.scrollY || document.documentElement.scrollTop;
+            
+            if (scrollY > 50 && headerShown) {
+                header.classList.add('compact');
+                headerShown = false;
+            } else if (scrollY <= 50 && !headerShown) {
+                header.classList.remove('compact');
+                headerShown = true;
+            }
+        }
+        
+        // Throttle scroll events
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(handleScroll, 10);
         });
+        
+        // Show full header on page load, then allow compact mode
+        let initialLoad = true;
+        setTimeout(() => {
+            initialLoad = false;
+            handleScroll();
+        }, 2000);
+        
+        // Section navigation
+        function openSection(sectionId) {
+            document.getElementById('main-menu').style.display = 'none';
+            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Load data for specific sections
+            if (sectionId === 'flashcards') {
+                loadCategories();
+            } else if (sectionId === 'grammar') {
+                loadTests();
+            } else if (sectionId === 'phrases') {
+                loadPhrasesCategories();
+            } else if (sectionId === 'dialogues') {
+                loadDialoguesTopics();
+            } else if (sectionId === 'progress') {
+                loadProgress();
+            }
+            
+            tg.HapticFeedback.selectionChanged();
+        }
+        
+        function backToMainMenu() {
+            document.getElementById('main-menu').style.display = 'grid';
+            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            
+            // Reset views
+            document.getElementById('categories-view').style.display = 'block';
+            document.getElementById('flashcard-view').style.display = 'none';
+            document.getElementById('tests-view').style.display = 'block';
+            document.getElementById('grammar-view').style.display = 'none';
+            document.getElementById('phrases-categories-view').style.display = 'block';
+            document.getElementById('phrases-view').style.display = 'none';
+            document.getElementById('dialogues-topics-view').style.display = 'block';
+            document.getElementById('dialogue-view').style.display = 'none';
+            document.getElementById('dialogue-exercise-view').style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         
         // Categories
         async function loadCategories() {
@@ -855,6 +997,10 @@ HTML_TEMPLATE = """
         function backToCategories() {
             document.getElementById('flashcard-view').style.display = 'none';
             document.getElementById('categories-view').style.display = 'block';
+        }
+        
+        function backToMainFromCategories() {
+            backToMainMenu();
         }
         
         async function showNextWord() {
@@ -1017,6 +1163,10 @@ HTML_TEMPLATE = """
             document.getElementById('tests-view').style.display = 'block';
         }
         
+        function backToMainFromTests() {
+            backToMainMenu();
+        }
+        
         function showNextQuestion() {
             if (currentQuestionIndex >= currentQuestions.length) {
                 finishTest();
@@ -1164,6 +1314,10 @@ HTML_TEMPLATE = """
         function backToPhrasesCategories() {
             document.getElementById('phrases-view').style.display = 'none';
             document.getElementById('phrases-categories-view').style.display = 'block';
+        }
+        
+        function backToMainFromPhrasesCategories() {
+            backToMainMenu();
         }
         
         function showNextPhrase() {
@@ -1337,6 +1491,10 @@ HTML_TEMPLATE = """
             document.getElementById('dialogue-view').style.display = 'none';
             document.getElementById('dialogue-exercise-view').style.display = 'none';
             document.getElementById('dialogues-topics-view').style.display = 'block';
+        }
+        
+        function backToMainFromDialoguesTopics() {
+            backToMainMenu();
         }
         
         function backToDialogue() {
