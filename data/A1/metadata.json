@@ -39,13 +39,22 @@
     },
     "phrases": {
       "path": "phrases/",
-      "categories": [],
-      "status": "planned"
+      "categories": [
+        {"id": "cafe", "file": "cafe.json", "name": "В кафе"},
+        {"id": "station", "file": "station.json", "name": "На вокзале"},
+        {"id": "doctor", "file": "doctor.json", "name": "У врача"}
+      ],
+      "total_phrases": 15,
+      "status": "active"
     },
     "dialogues": {
       "path": "dialogues/",
-      "topics": [],
-      "status": "planned"
+      "topics": [
+        {"id": "greetings", "file": "greetings.json", "name": "Приветствия"},
+        {"id": "restaurant", "file": "restaurant.json", "name": "В ресторане"}
+      ],
+      "total_dialogues": 2,
+      "status": "active"
     },
     "exercises": {
       "path": "exercises/",

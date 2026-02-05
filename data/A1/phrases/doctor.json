@@ -1,0 +1,45 @@
+{
+  "id": "doctor",
+  "name": "У врача",
+  "name_de": "Beim Arzt",
+  "description": "Фразы для визита к врачу",
+  "level": "A1",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Ich habe Kopfschmerzen.",
+      "ru": "У меня болит голова.",
+      "context": "Описание симптомов",
+      "example": "Patient: Guten Tag, ich habe Kopfschmerzen. / Arzt: Seit wann?",
+      "example_ru": "Пациент: Добрый день, у меня болит голова. / Врач: С какого времени?"
+    },
+    {
+      "de": "Ich fühle mich nicht gut.",
+      "ru": "Я плохо себя чувствую.",
+      "context": "Общее описание состояния",
+      "example": "Patient: Ich fühle mich nicht gut. / Arzt: Was fehlt Ihnen?",
+      "example_ru": "Пациент: Я плохо себя чувствую. / Врач: Что вас беспокоит?"
+    },
+    {
+      "de": "Ich habe einen Termin.",
+      "ru": "У меня назначена встреча.",
+      "context": "Подтверждение записи",
+      "example": "Patient: Guten Tag, ich habe einen Termin um 10 Uhr. / Rezeptionistin: Ja, bitte nehmen Sie Platz.",
+      "example_ru": "Пациент: Добрый день, у меня назначена встреча на 10 часов. / Рецепционистка: Да, пожалуйста, присядьте."
+    },
+    {
+      "de": "Wie oft soll ich die Tabletten nehmen?",
+      "ru": "Как часто мне нужно принимать таблетки?",
+      "context": "Вопрос о лекарствах",
+      "example": "Patient: Wie oft soll ich die Tabletten nehmen? / Arzt: Dreimal täglich nach dem Essen.",
+      "example_ru": "Пациент: Как часто мне нужно принимать таблетки? / Врач: Три раза в день после еды."
+    },
+    {
+      "de": "Ich habe Fieber.",
+      "ru": "У меня температура.",
+      "context": "Описание симптомов",
+      "example": "Patient: Ich habe Fieber. / Arzt: Wie hoch ist das Fieber?",
+      "example_ru": "Пациент: У меня температура. / Врач: Какая температура?"
+    }
+  ]
+}

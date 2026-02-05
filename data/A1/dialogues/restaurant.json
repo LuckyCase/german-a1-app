@@ -1,0 +1,95 @@
+{
+  "id": "restaurant",
+  "name": "В ресторане",
+  "name_de": "Im Restaurant",
+  "description": "Диалог заказа в ресторане",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Kellner",
+      "role_ru": "Официант",
+      "text": "Guten Tag! Haben Sie reserviert?",
+      "text_ru": "Добрый день! Вы зарезервировали столик?",
+      "audio_file": "restaurant_01.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Ja, für zwei Personen.",
+      "text_ru": "Да, на двоих.",
+      "audio_file": "restaurant_02.mp3"
+    },
+    {
+      "role": "Kellner",
+      "role_ru": "Официант",
+      "text": "Bitte folgen Sie mir. Hier ist Ihre Speisekarte.",
+      "text_ru": "Пожалуйста, следуйте за мной. Вот ваше меню.",
+      "audio_file": "restaurant_03.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Danke! Was empfehlen Sie?",
+      "text_ru": "Спасибо! Что вы рекомендуете?",
+      "audio_file": "restaurant_04.mp3"
+    },
+    {
+      "role": "Kellner",
+      "role_ru": "Официант",
+      "text": "Ich empfehle das Schnitzel. Es ist sehr gut.",
+      "text_ru": "Я рекомендую шницель. Он очень хороший.",
+      "audio_file": "restaurant_05.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Gut, ich nehme das Schnitzel und eine Cola.",
+      "text_ru": "Хорошо, я возьму шницель и колу.",
+      "audio_file": "restaurant_06.mp3"
+    },
+    {
+      "role": "Kellner",
+      "role_ru": "Официант",
+      "text": "Sehr gut! Möchten Sie noch etwas?",
+      "text_ru": "Отлично! Хотите еще что-нибудь?",
+      "audio_file": "restaurant_07.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Nein, danke. Das ist alles.",
+      "text_ru": "Нет, спасибо. Это всё.",
+      "audio_file": "restaurant_08.mp3"
+    },
+    {
+      "role": "Kellner",
+      "role_ru": "Официант",
+      "text": "Gut, ich bringe das sofort.",
+      "text_ru": "Хорошо, я принесу это сразу.",
+      "audio_file": "restaurant_09.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Guten Tag! Haben Sie ___?",
+      "options": ["reserviert", "bestellt", "bezahlt"],
+      "correct": 0,
+      "explanation": "reserviert - зарезервировали (столик)"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Ich ___ das Schnitzel.",
+      "options": ["nehme", "nimmt", "nehmen"],
+      "correct": 0,
+      "explanation": "nehme - правильная форма глагола nehmen для местоимения 'ich'"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Möchten Sie noch ___?",
+      "options": ["etwas", "nichts", "alles"],
+      "correct": 0,
+      "explanation": "etwas - что-нибудь (в вопросе)"
+    }
+  ]
+}

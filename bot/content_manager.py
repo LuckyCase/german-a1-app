@@ -21,6 +21,8 @@ DATA_DIR = Path(__file__).parent.parent / "data" / "A1"
 # Кэш для загруженных данных
 _vocabulary_cache: dict = {}
 _grammar_cache: dict = {}
+_phrases_cache: dict = {}
+_dialogues_cache: dict = {}
 _metadata_cache: Optional[dict] = None
 
 
@@ -91,6 +93,54 @@ def _load_all_grammar() -> dict:
     
     logger.info(f"Загружено {len(_grammar_cache)} грамматических тем")
     return _grammar_cache
+
+
+def _load_all_phrases() -> dict:
+    """Загрузить все категории фраз."""
+    global _phrases_cache
+    
+    if _phrases_cache:
+        return _phrases_cache
+    
+    phrases_dir = DATA_DIR / "phrases"
+    if not phrases_dir.exists():
+        logger.error(f"Папка phrases не найдена: {phrases_dir}")
+        return {}
+    
+    for json_file in phrases_dir.glob("*.json"):
+        try:
+            data = _load_json(json_file)
+            if data and "id" in data:
+                _phrases_cache[data["id"]] = data
+        except Exception as e:
+            logger.error(f"Ошибка загрузки {json_file}: {e}")
+    
+    logger.info(f"Загружено {len(_phrases_cache)} категорий phrases")
+    return _phrases_cache
+
+
+def _load_all_dialogues() -> dict:
+    """Загрузить все диалоги."""
+    global _dialogues_cache
+    
+    if _dialogues_cache:
+        return _dialogues_cache
+    
+    dialogues_dir = DATA_DIR / "dialogues"
+    if not dialogues_dir.exists():
+        logger.error(f"Папка dialogues не найдена: {dialogues_dir}")
+        return {}
+    
+    for json_file in dialogues_dir.glob("*.json"):
+        try:
+            data = _load_json(json_file)
+            if data and "id" in data:
+                _dialogues_cache[data["id"]] = data
+        except Exception as e:
+            logger.error(f"Ошибка загрузки {json_file}: {e}")
+    
+    logger.info(f"Загружено {len(_dialogues_cache)} диалогов")
+    return _dialogues_cache
 
 
 # ============================================================
@@ -229,11 +279,88 @@ def get_grammar_stats() -> dict:
     }
 
 
+# ============================================================
+# API для Phrases
+# ============================================================
+
+def get_phrases_categories() -> list:
+    """Получить список всех категорий phrases."""
+    phrases = _load_all_phrases()
+    return [
+        {
+            "id": cat_id,
+            "name": cat.get("name", ""),
+            "name_de": cat.get("name_de", ""),
+            "description": cat.get("description", ""),
+            "count": len(cat.get("phrases", []))
+        }
+        for cat_id, cat in phrases.items()
+    ]
+
+
+def get_phrases_by_category(category_id: str) -> list:
+    """Получить phrases из определённой категории."""
+    phrases = _load_all_phrases()
+    
+    if category_id not in phrases:
+        return []
+    
+    category = phrases[category_id]
+    return [
+        {
+            "de": phrase.get("de", ""),
+            "ru": phrase.get("ru", ""),
+            "context": phrase.get("context", ""),
+            "example": phrase.get("example", ""),
+            "example_ru": phrase.get("example_ru", ""),
+            "category_id": category_id,
+            "category_name": category.get("name", ""),
+            "phrase_id": f"{category_id}_{phrase.get('de', '')}"
+        }
+        for phrase in category.get("phrases", [])
+    ]
+
+
+# ============================================================
+# API для Dialogues
+# ============================================================
+
+def get_dialogue_topics() -> list:
+    """Получить список всех тем dialogues."""
+    dialogues = _load_all_dialogues()
+    return [
+        {
+            "id": topic_id,
+            "name": topic.get("name", ""),
+            "name_de": topic.get("name_de", ""),
+            "description": topic.get("description", ""),
+            "dialogue_length": len(topic.get("dialogue", []))
+        }
+        for topic_id, topic in dialogues.items()
+    ]
+
+
+def get_dialogue(topic_id: str) -> Optional[dict]:
+    """Получить диалог по теме."""
+    dialogues = _load_all_dialogues()
+    return dialogues.get(topic_id)
+
+
+def get_dialogue_exercises(topic_id: str) -> list:
+    """Получить упражнения для диалога."""
+    dialogue = get_dialogue(topic_id)
+    if not dialogue:
+        return []
+    return dialogue.get("exercises", [])
+
+
 def reload_content():
     """Перезагрузить все данные (очистить кэш)."""
-    global _vocabulary_cache, _grammar_cache, _metadata_cache
+    global _vocabulary_cache, _grammar_cache, _phrases_cache, _dialogues_cache, _metadata_cache
     _vocabulary_cache = {}
     _grammar_cache = {}
+    _phrases_cache = {}
+    _dialogues_cache = {}
     _metadata_cache = None
     logger.info("Кэш контента очищен")
 
@@ -243,9 +370,15 @@ def init_content():
     logger.info("Инициализация контента...")
     _load_all_vocabulary()
     _load_all_grammar()
+    _load_all_phrases()
+    _load_all_dialogues()
     
     vocab_stats = get_vocabulary_stats()
     grammar_stats = get_grammar_stats()
+    phrases = _load_all_phrases()
+    dialogues = _load_all_dialogues()
     
     logger.info(f"Загружено: {vocab_stats['total_words']} слов в {vocab_stats['total_categories']} категориях")
     logger.info(f"Загружено: {grammar_stats['total_questions']} вопросов в {grammar_stats['total_topics']} темах")
+    logger.info(f"Загружено: {len(phrases)} категорий phrases")
+    logger.info(f"Загружено: {len(dialogues)} диалогов")

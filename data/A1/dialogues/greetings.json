@@ -1,0 +1,88 @@
+{
+  "id": "greetings",
+  "name": "Приветствия",
+  "name_de": "Begrüßungen",
+  "description": "Базовые диалоги приветствия и знакомства",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Guten Tag!",
+      "text_ru": "Добрый день!",
+      "audio_file": "greetings_01.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Guten Tag! Wie geht es Ihnen?",
+      "text_ru": "Добрый день! Как дела?",
+      "audio_file": "greetings_02.mp3"
+    },
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Gut, danke! Und Ihnen?",
+      "text_ru": "Хорошо, спасибо! А у вас?",
+      "audio_file": "greetings_03.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Auch gut, danke! Wie heißen Sie?",
+      "text_ru": "Тоже хорошо, спасибо! Как вас зовут?",
+      "audio_file": "greetings_04.mp3"
+    },
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Ich heiße Anna. Und Sie?",
+      "text_ru": "Меня зовут Анна. А вас?",
+      "audio_file": "greetings_05.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Ich heiße Tom. Freut mich!",
+      "text_ru": "Меня зовут Том. Очень приятно!",
+      "audio_file": "greetings_06.mp3"
+    },
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Freut mich auch! Auf Wiedersehen!",
+      "text_ru": "Мне тоже приятно! До свидания!",
+      "audio_file": "greetings_07.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Auf Wiedersehen!",
+      "text_ru": "До свидания!",
+      "audio_file": "greetings_08.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Guten Tag! Wie ___ es Ihnen?",
+      "options": ["geht", "gehen", "gehst"],
+      "correct": 0,
+      "explanation": "geht - правильная форма глагола gehen для вопроса 'Wie geht es Ihnen?'"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Ich ___ Anna.",
+      "options": ["heiße", "heißt", "heißen"],
+      "correct": 0,
+      "explanation": "heiße - правильная форма глагола heißen для местоимения 'ich'"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Freut mich! ___ Wiedersehen!",
+      "options": ["Auf", "Zu", "Von"],
+      "correct": 0,
+      "explanation": "Auf Wiedersehen - стандартное прощание в немецком языке"
+    }
+  ]
+}

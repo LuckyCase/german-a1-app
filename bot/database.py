@@ -138,6 +138,32 @@ async def init_db():
             )
         """)
 
+        # Phrases progress
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS phrases_progress (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT,
+                phrase_id TEXT,
+                category_id TEXT,
+                correct_count INTEGER DEFAULT 0,
+                last_reviewed TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users (user_id)
+            )
+        """)
+
+        # Dialogues progress
+        await conn.execute("""
+            CREATE TABLE IF NOT EXISTS dialogues_progress (
+                id SERIAL PRIMARY KEY,
+                user_id BIGINT,
+                dialogue_id TEXT,
+                exercises_completed INTEGER DEFAULT 0,
+                exercises_correct INTEGER DEFAULT 0,
+                completed_at TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users (user_id)
+            )
+        """)
+
 
 async def get_or_create_user(user_id: int, username: str = None, first_name: str = None):
     """Get existing user or create new one."""
@@ -302,3 +328,59 @@ async def set_reminder(user_id: int, enabled: bool, hour: int = 9, minute: int =
             "UPDATE users SET reminder_enabled = $1, reminder_hour = $2, reminder_minute = $3 WHERE user_id = $4",
             1 if enabled else 0, hour, minute, user_id
         )
+
+
+async def save_phrase_progress(user_id: int, phrase_id: str, category_id: str, is_correct: bool):
+    """Save phrase progress for user."""
+    pool = await get_pool()
+    now = datetime.now()
+
+    async with pool.acquire() as conn:
+        existing = await conn.fetchrow(
+            "SELECT * FROM phrases_progress WHERE user_id = $1 AND phrase_id = $2",
+            user_id, phrase_id
+        )
+
+        if existing:
+            if is_correct:
+                await conn.execute(
+                    """UPDATE phrases_progress
+                       SET correct_count = correct_count + 1, last_reviewed = $1
+                       WHERE user_id = $2 AND phrase_id = $3""",
+                    now, user_id, phrase_id
+                )
+        else:
+            correct = 1 if is_correct else 0
+            await conn.execute(
+                """INSERT INTO phrases_progress (user_id, phrase_id, category_id, correct_count, last_reviewed)
+                   VALUES ($1, $2, $3, $4, $5)""",
+                user_id, phrase_id, category_id, correct, now
+            )
+
+
+async def save_dialogue_progress(user_id: int, dialogue_id: str, exercises_completed: int, exercises_correct: int):
+    """Save dialogue progress for user."""
+    pool = await get_pool()
+    now = datetime.now()
+
+    async with pool.acquire() as conn:
+        existing = await conn.fetchrow(
+            "SELECT * FROM dialogues_progress WHERE user_id = $1 AND dialogue_id = $2",
+            user_id, dialogue_id
+        )
+
+        if existing:
+            await conn.execute(
+                """UPDATE dialogues_progress
+                   SET exercises_completed = exercises_completed + $1,
+                       exercises_correct = exercises_correct + $2,
+                       completed_at = $3
+                   WHERE user_id = $4 AND dialogue_id = $5""",
+                exercises_completed, exercises_correct, now, user_id, dialogue_id
+            )
+        else:
+            await conn.execute(
+                """INSERT INTO dialogues_progress (user_id, dialogue_id, exercises_completed, exercises_correct, completed_at)
+                   VALUES ($1, $2, $3, $4, $5)""",
+                user_id, dialogue_id, exercises_completed, exercises_correct, now
+            )

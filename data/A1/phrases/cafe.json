@@ -1,0 +1,45 @@
+{
+  "id": "cafe",
+  "name": "В кафе",
+  "name_de": "Im Café",
+  "description": "Фразы для заказа в кафе",
+  "level": "A1",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Ich hätte gern einen Kaffee.",
+      "ru": "Я бы хотел кофе.",
+      "context": "Заказ напитка",
+      "example": "Kellner: Was möchten Sie? / Gast: Ich hätte gern einen Kaffee.",
+      "example_ru": "Официант: Что вы хотите? / Гость: Я бы хотел кофе."
+    },
+    {
+      "de": "Einen Kaffee, bitte.",
+      "ru": "Кофе, пожалуйста.",
+      "context": "Простой заказ",
+      "example": "Gast: Einen Kaffee, bitte. / Kellner: Sofort!",
+      "example_ru": "Гость: Кофе, пожалуйста. / Официант: Сейчас!"
+    },
+    {
+      "de": "Was kostet das?",
+      "ru": "Сколько это стоит?",
+      "context": "Уточнение цены",
+      "example": "Gast: Was kostet das? / Kellner: Zwei Euro fünfzig.",
+      "example_ru": "Гость: Сколько это стоит? / Официант: Два евро пятьдесят."
+    },
+    {
+      "de": "Ich möchte zahlen.",
+      "ru": "Я хочу заплатить.",
+      "context": "Просьба об оплате",
+      "example": "Gast: Entschuldigung, ich möchte zahlen. / Kellner: Gerne, das macht 5 Euro.",
+      "example_ru": "Гость: Извините, я хочу заплатить. / Официант: Конечно, это 5 евро."
+    },
+    {
+      "de": "Haben Sie Kuchen?",
+      "ru": "У вас есть торт?",
+      "context": "Вопрос о наличии",
+      "example": "Gast: Haben Sie Kuchen? / Kellner: Ja, wir haben Apfelkuchen.",
+      "example_ru": "Гость: У вас есть торт? / Официант: Да, у нас есть яблочный пирог."
+    }
+  ]
+}

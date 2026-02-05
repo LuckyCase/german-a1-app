@@ -1,0 +1,45 @@
+{
+  "id": "station",
+  "name": "На вокзале",
+  "name_de": "Am Bahnhof",
+  "description": "Фразы для общения на вокзале",
+  "level": "A1",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Wann fährt der Zug nach Berlin?",
+      "ru": "Когда отправляется поезд в Берлин?",
+      "context": "Уточнение времени отправления",
+      "example": "Reisender: Wann fährt der Zug nach Berlin? / Angestellter: Um 14:30 Uhr.",
+      "example_ru": "Пассажир: Когда отправляется поезд в Берлин? / Сотрудник: В 14:30."
+    },
+    {
+      "de": "Wo ist Gleis 5?",
+      "ru": "Где платформа 5?",
+      "context": "Поиск платформы",
+      "example": "Reisender: Entschuldigung, wo ist Gleis 5? / Angestellter: Da drüben, links.",
+      "example_ru": "Пассажир: Извините, где платформа 5? / Сотрудник: Вон там, слева."
+    },
+    {
+      "de": "Eine Fahrkarte nach München, bitte.",
+      "ru": "Один билет в Мюнхен, пожалуйста.",
+      "context": "Покупка билета",
+      "example": "Reisender: Eine Fahrkarte nach München, bitte. / Angestellter: Einfach oder hin und zurück?",
+      "example_ru": "Пассажир: Один билет в Мюнхен, пожалуйста. / Сотрудник: В одну сторону или туда и обратно?"
+    },
+    {
+      "de": "Ist der Zug pünktlich?",
+      "ru": "Поезд приходит вовремя?",
+      "context": "Уточнение расписания",
+      "example": "Reisender: Ist der Zug pünktlich? / Angestellter: Ja, der Zug kommt pünktlich an.",
+      "example_ru": "Пассажир: Поезд приходит вовремя? / Сотрудник: Да, поезд приходит вовремя."
+    },
+    {
+      "de": "Von welchem Gleis fährt der Zug ab?",
+      "ru": "С какой платформы отправляется поезд?",
+      "context": "Уточнение платформы",
+      "example": "Reisender: Von welchem Gleis fährt der Zug ab? / Angestellter: Von Gleis 3.",
+      "example_ru": "Пассажир: С какой платформы отправляется поезд? / Сотрудник: С платформы 3."
+    }
+  ]
+}

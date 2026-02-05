@@ -12,8 +12,16 @@ import nest_asyncio
 # Allow nested event loops (needed for Flask + asyncpg)
 nest_asyncio.apply()
 
-from bot.content_manager import get_all_words, get_categories, get_words_by_category, get_all_tests, get_test_questions, init_content
-from bot.database import get_user_stats, update_word_progress, save_grammar_result, update_daily_stats, init_db
+from bot.content_manager import (
+    get_all_words, get_categories, get_words_by_category, 
+    get_all_tests, get_test_questions, init_content,
+    get_phrases_categories, get_phrases_by_category,
+    get_dialogue_topics, get_dialogue, get_dialogue_exercises
+)
+from bot.database import (
+    get_user_stats, update_word_progress, save_grammar_result, 
+    update_daily_stats, init_db, save_phrase_progress, save_dialogue_progress
+)
 from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
 
 # Telegram bot imports
@@ -610,6 +618,14 @@ HTML_TEMPLATE = """
                 <span>📝</span>
                 Грамматика
             </button>
+            <button class="nav-tab" data-tab="phrases">
+                <span>💬</span>
+                Фразы
+            </button>
+            <button class="nav-tab" data-tab="dialogues">
+                <span>🗣️</span>
+                Диалоги
+            </button>
             <button class="nav-tab" data-tab="progress">
                 <span>📊</span>
                 Прогресс
@@ -674,6 +690,65 @@ HTML_TEMPLATE = """
             </div>
         </section>
         
+        <!-- Phrases Section -->
+        <section id="phrases" class="section">
+            <div id="phrases-categories-view">
+                <div class="card">
+                    <h2 class="card-title">Выберите категорию</h2>
+                    <div id="phrases-categories-list" class="btn-group">
+                        <div class="loading">Загрузка...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="phrases-view" style="display: none;">
+                <button class="back-btn" onclick="backToPhrasesCategories()">← Назад</button>
+                <div class="flashcard">
+                    <div class="flashcard-progress" id="phrase-progress">Фраза 1 из 10</div>
+                    <div class="flashcard-word" id="phrase-de">Phrase</div>
+                    <div class="flashcard-example" id="phrase-context">Context</div>
+                    <div class="flashcard-example" id="phrase-example" style="margin-top: 8px;"></div>
+                    <button class="audio-btn" onclick="playPhraseAudio()">🔊 Прослушать</button>
+                </div>
+                <div class="options" id="phrase-options"></div>
+                <button class="btn btn-primary" id="next-phrase-btn" style="display: none; margin-top: 16px;" onclick="nextPhrase()">
+                    Следующая фраза →
+                </button>
+            </div>
+        </section>
+        
+        <!-- Dialogues Section -->
+        <section id="dialogues" class="section">
+            <div id="dialogues-topics-view">
+                <div class="card">
+                    <h2 class="card-title">Выберите диалог</h2>
+                    <div id="dialogues-topics-list" class="btn-group">
+                        <div class="loading">Загрузка...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="dialogue-view" style="display: none;">
+                <button class="back-btn" onclick="backToDialoguesTopics()">← Назад</button>
+                <div id="dialogue-content" class="card"></div>
+                <button class="btn btn-primary" id="dialogue-exercise-btn" style="margin-top: 16px;" onclick="showDialogueExercise()">
+                    Упражнение →
+                </button>
+            </div>
+            
+            <div id="dialogue-exercise-view" style="display: none;">
+                <button class="back-btn" onclick="backToDialogue()">← Назад к диалогу</button>
+                <div class="question-card">
+                    <div class="question-number" id="exercise-number">Упражнение 1 из 3</div>
+                    <div class="question-text" id="exercise-question"></div>
+                </div>
+                <div class="options" id="exercise-options"></div>
+                <button class="btn btn-primary" id="next-exercise-btn" style="display: none; margin-top: 16px;" onclick="nextExercise()">
+                    Следующее упражнение →
+                </button>
+            </div>
+        </section>
+        
         <!-- Progress Section -->
         <section id="progress" class="section">
             <div class="card">
@@ -708,6 +783,15 @@ HTML_TEMPLATE = """
         let currentQuestions = [];
         let currentQuestionIndex = 0;
         let userScore = 0;
+        let currentPhrasesCategory = null;
+        let currentPhrases = [];
+        let currentPhraseIndex = 0;
+        let currentDialogueId = null;
+        let currentDialogue = null;
+        let currentDialogueReplicaIndex = 0;
+        let currentExercises = [];
+        let currentExerciseIndex = 0;
+        let exerciseScore = 0;
         
         // Tab navigation
         document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -720,6 +804,8 @@ HTML_TEMPLATE = """
                 tab.classList.add('active');
                 document.getElementById(tabId).classList.add('active');
                 
+                if (tabId === 'phrases') loadPhrasesCategories();
+                if (tabId === 'dialogues') loadDialoguesTopics();
                 if (tabId === 'progress') loadProgress();
                 
                 tg.HapticFeedback.selectionChanged();
@@ -1035,6 +1121,339 @@ HTML_TEMPLATE = """
             }
         }
         
+        // Phrases functions
+        async function loadPhrasesCategories() {
+            try {
+                const response = await fetch('/api/phrases/categories');
+                const categories = await response.json();
+                const list = document.getElementById('phrases-categories-list');
+                list.innerHTML = '';
+                
+                categories.forEach(cat => {
+                    const btn = document.createElement('button');
+                    btn.className = 'category-btn';
+                    btn.innerHTML = `
+                        <span class="name">${cat.name}</span>
+                        <span class="count">${cat.count} фраз</span>
+                    `;
+                    btn.onclick = () => startPhrases(cat.id);
+                    list.appendChild(btn);
+                });
+            } catch (error) {
+                document.getElementById('phrases-categories-list').innerHTML = 
+                    '<div class="error-msg">Ошибка загрузки категорий</div>';
+            }
+        }
+        
+        async function startPhrases(categoryId) {
+            try {
+                const response = await fetch(`/api/phrases?category=${categoryId}`);
+                currentPhrases = await response.json();
+                currentPhraseIndex = 0;
+                currentPhrasesCategory = categoryId;
+                
+                document.getElementById('phrases-categories-view').style.display = 'none';
+                document.getElementById('phrases-view').style.display = 'block';
+                
+                showNextPhrase();
+            } catch (error) {
+                tg.showAlert('Ошибка загрузки фраз');
+            }
+        }
+        
+        function backToPhrasesCategories() {
+            document.getElementById('phrases-view').style.display = 'none';
+            document.getElementById('phrases-categories-view').style.display = 'block';
+        }
+        
+        function showNextPhrase() {
+            if (currentPhraseIndex >= currentPhrases.length) {
+                tg.showAlert(`🎉 Отлично! Изучено ${currentPhrases.length} фраз!`);
+                backToPhrasesCategories();
+                return;
+            }
+            
+            const phrase = currentPhrases[currentPhraseIndex];
+            document.getElementById('phrase-progress').textContent = 
+                `Фраза ${currentPhraseIndex + 1} из ${currentPhrases.length}`;
+            document.getElementById('phrase-de').textContent = phrase.de;
+            document.getElementById('phrase-context').textContent = phrase.context || '';
+            document.getElementById('phrase-example').textContent = phrase.example || '';
+            
+            // Reset audio
+            const audio = document.getElementById('word-audio');
+            const audioBtn = document.querySelector('#phrases-view .audio-btn');
+            audio.pause();
+            audio.onerror = null;
+            audio.onloadeddata = null;
+            audio.src = '';
+            if (audioBtn) {
+                audioBtn.textContent = '🔊 Прослушать';
+                audioBtn.disabled = false;
+            }
+            
+            // Get options (random phrases from other categories)
+            fetch('/api/phrases/categories')
+                .then(r => r.json())
+                .then(categories => {
+                    const otherCategories = categories.filter(c => c.id !== currentPhrasesCategory);
+                    const randomCategory = otherCategories[Math.floor(Math.random() * otherCategories.length)];
+                    if (randomCategory) {
+                        fetch(`/api/phrases?category=${randomCategory.id}`)
+                            .then(r => r.json())
+                            .then(wrongPhrases => {
+                                const options = [phrase, ...wrongPhrases.slice(0, 2)].sort(() => Math.random() - 0.5);
+                                const optionsDiv = document.getElementById('phrase-options');
+                                optionsDiv.innerHTML = '';
+                                
+                                options.forEach((opt) => {
+                                    const btn = document.createElement('button');
+                                    btn.className = 'option';
+                                    btn.textContent = opt.ru;
+                                    btn.onclick = () => selectPhraseAnswer(btn, opt.phrase_id === phrase.phrase_id, phrase.ru);
+                                    optionsDiv.appendChild(btn);
+                                });
+                            });
+                    }
+                });
+            
+            document.getElementById('next-phrase-btn').style.display = 'none';
+        }
+        
+        async function playPhraseAudio() {
+            const phrase = currentPhrases[currentPhraseIndex];
+            if (!phrase) return;
+            
+            const audio = document.getElementById('word-audio');
+            const audioBtn = document.querySelector('#phrases-view .audio-btn');
+            
+            if (audio.src && audio.src.includes(encodeURIComponent(phrase.de))) {
+                audio.currentTime = 0;
+                audio.play().catch(() => tg.showAlert('Ошибка воспроизведения'));
+                return;
+            }
+            
+            audioBtn.textContent = '⏳ Загрузка...';
+            audioBtn.disabled = true;
+            
+            try {
+                audio.src = `/api/audio/${encodeURIComponent(phrase.de)}`;
+                
+                audio.onloadeddata = () => {
+                    audioBtn.textContent = '🔊 Прослушать';
+                    audioBtn.disabled = false;
+                    audio.play().catch(() => {
+                        tg.showAlert('Ошибка воспроизведения');
+                        audioBtn.textContent = '🔊 Прослушать';
+                    });
+                };
+                
+                audio.onerror = () => {
+                    audioBtn.textContent = '🔊 Прослушать';
+                    audioBtn.disabled = false;
+                    tg.showAlert('Ошибка загрузки аудио');
+                };
+                
+                audio.load();
+            } catch (error) {
+                audioBtn.textContent = '🔊 Прослушать';
+                audioBtn.disabled = false;
+            }
+        }
+        
+        async function selectPhraseAnswer(selectedBtn, isCorrect, correctAnswer) {
+            const buttons = document.querySelectorAll('#phrase-options .option');
+            buttons.forEach(btn => {
+                btn.onclick = null;
+                if (btn === selectedBtn) {
+                    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+                } else if (btn.textContent === correctAnswer && !isCorrect) {
+                    btn.classList.add('correct');
+                }
+            });
+            
+            const phrase = currentPhrases[currentPhraseIndex];
+            fetch('/api/progress/phrase', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    user_id: userId,
+                    phrase_id: phrase.phrase_id,
+                    category_id: phrase.category_id,
+                    is_correct: isCorrect
+                })
+            });
+            
+            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            document.getElementById('next-phrase-btn').style.display = 'block';
+        }
+        
+        function nextPhrase() {
+            currentPhraseIndex++;
+            showNextPhrase();
+        }
+        
+        // Dialogues functions
+        async function loadDialoguesTopics() {
+            try {
+                const response = await fetch('/api/dialogues/topics');
+                const topics = await response.json();
+                const list = document.getElementById('dialogues-topics-list');
+                list.innerHTML = '';
+                
+                topics.forEach(topic => {
+                    const btn = document.createElement('button');
+                    btn.className = 'category-btn';
+                    btn.innerHTML = `
+                        <span class="name">${topic.name}</span>
+                        <span class="count">${topic.dialogue_length} реплик</span>
+                    `;
+                    btn.onclick = () => startDialogue(topic.id);
+                    list.appendChild(btn);
+                });
+            } catch (error) {
+                document.getElementById('dialogues-topics-list').innerHTML = 
+                    '<div class="error-msg">Ошибка загрузки диалогов</div>';
+            }
+        }
+        
+        async function startDialogue(topicId) {
+            try {
+                const response = await fetch(`/api/dialogues/${topicId}`);
+                currentDialogue = await response.json();
+                currentDialogueId = topicId;
+                currentDialogueReplicaIndex = 0;
+                
+                document.getElementById('dialogues-topics-view').style.display = 'none';
+                document.getElementById('dialogue-view').style.display = 'block';
+                
+                showDialogue();
+            } catch (error) {
+                tg.showAlert('Ошибка загрузки диалога');
+            }
+        }
+        
+        function backToDialoguesTopics() {
+            document.getElementById('dialogue-view').style.display = 'none';
+            document.getElementById('dialogue-exercise-view').style.display = 'none';
+            document.getElementById('dialogues-topics-view').style.display = 'block';
+        }
+        
+        function backToDialogue() {
+            document.getElementById('dialogue-exercise-view').style.display = 'none';
+            document.getElementById('dialogue-view').style.display = 'block';
+        }
+        
+        function showDialogue() {
+            if (!currentDialogue || !currentDialogue.dialogue) return;
+            
+            const contentDiv = document.getElementById('dialogue-content');
+            contentDiv.innerHTML = `<h2 style="margin-bottom: 16px; color: var(--text-primary);">${currentDialogue.name}</h2>`;
+            
+            currentDialogue.dialogue.forEach((replica, index) => {
+                const replicaDiv = document.createElement('div');
+                replicaDiv.style.cssText = 'margin-bottom: 16px; padding: 12px; background: var(--bg-secondary); border-radius: var(--radius-md); border-left: 3px solid var(--primary);';
+                replicaDiv.innerHTML = `
+                    <div style="font-weight: 700; color: var(--primary-light); margin-bottom: 4px;">
+                        ${replica.role} ${replica.role_ru ? `(${replica.role_ru})` : ''}
+                    </div>
+                    <div style="font-size: 1.1rem; margin-bottom: 4px; color: var(--text-primary);">
+                        ${replica.text}
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
+                        ${replica.text_ru}
+                    </div>
+                `;
+                contentDiv.appendChild(replicaDiv);
+            });
+        }
+        
+        async function showDialogueExercise() {
+            try {
+                const response = await fetch(`/api/dialogues/${currentDialogueId}/exercises`);
+                currentExercises = await response.json();
+                currentExerciseIndex = 0;
+                exerciseScore = 0;
+                
+                if (currentExercises.length === 0) {
+                    tg.showAlert('Упражнения для этого диалога пока не готовы');
+                    return;
+                }
+                
+                document.getElementById('dialogue-view').style.display = 'none';
+                document.getElementById('dialogue-exercise-view').style.display = 'block';
+                
+                showNextExercise();
+            } catch (error) {
+                tg.showAlert('Ошибка загрузки упражнений');
+            }
+        }
+        
+        function showNextExercise() {
+            if (currentExerciseIndex >= currentExercises.length) {
+                finishDialogueExercise();
+                return;
+            }
+            
+            const exercise = currentExercises[currentExerciseIndex];
+            document.getElementById('exercise-number').textContent = 
+                `Упражнение ${currentExerciseIndex + 1} из ${currentExercises.length}`;
+            document.getElementById('exercise-question').textContent = exercise.question;
+            
+            const optionsDiv = document.getElementById('exercise-options');
+            optionsDiv.innerHTML = '';
+            
+            exercise.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option';
+                btn.textContent = option;
+                btn.onclick = () => selectExerciseAnswer(btn, index === exercise.correct, exercise.options[exercise.correct]);
+                optionsDiv.appendChild(btn);
+            });
+            
+            document.getElementById('next-exercise-btn').style.display = 'none';
+        }
+        
+        async function selectExerciseAnswer(selectedBtn, isCorrect, correctAnswer) {
+            const buttons = document.querySelectorAll('#exercise-options .option');
+            buttons.forEach(btn => {
+                btn.onclick = null;
+                if (btn === selectedBtn) {
+                    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+                } else if (btn.textContent === correctAnswer && !isCorrect) {
+                    btn.classList.add('correct');
+                }
+            });
+            
+            if (isCorrect) exerciseScore++;
+            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            document.getElementById('next-exercise-btn').style.display = 'block';
+        }
+        
+        function nextExercise() {
+            currentExerciseIndex++;
+            showNextExercise();
+        }
+        
+        async function finishDialogueExercise() {
+            const total = currentExercises.length;
+            const percentage = Math.round((exerciseScore / total) * 100);
+            
+            fetch('/api/progress/dialogue', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    user_id: userId,
+                    dialogue_id: currentDialogueId,
+                    exercises_completed: total,
+                    exercises_correct: exerciseScore
+                })
+            });
+            
+            tg.showAlert(`🎉 Упражнение завершено!\\nРезультат: ${exerciseScore} из ${total} (${percentage}%)`);
+            backToDialogue();
+        }
+        
         // Initialize
         window.onload = () => {
             loadCategories();
@@ -1150,6 +1569,79 @@ def api_audio(text):
         )
     except Exception as e:
         return jsonify({'error': f'Failed to generate audio: {str(e)}'}), 500
+
+
+# ============= PHRASES API ENDPOINTS =============
+
+@app.route('/api/phrases/categories')
+def api_phrases_categories():
+    """Get all phrases categories."""
+    categories = get_phrases_categories()
+    return jsonify(categories)
+
+
+@app.route('/api/phrases')
+def api_phrases():
+    """Get phrases by category."""
+    category_id = request.args.get('category')
+    phrases = get_phrases_by_category(category_id) if category_id else []
+    return jsonify(phrases)
+
+
+# ============= DIALOGUES API ENDPOINTS =============
+
+@app.route('/api/dialogues/topics')
+def api_dialogue_topics():
+    """Get all dialogue topics."""
+    topics = get_dialogue_topics()
+    return jsonify(topics)
+
+
+@app.route('/api/dialogues/<topic_id>')
+def api_dialogue(topic_id):
+    """Get dialogue by topic ID."""
+    dialogue = get_dialogue(topic_id)
+    return jsonify(dialogue) if dialogue else jsonify({'error': 'Not found'}), 404
+
+
+@app.route('/api/dialogues/<topic_id>/exercises')
+def api_dialogue_exercises(topic_id):
+    """Get exercises for dialogue."""
+    exercises = get_dialogue_exercises(topic_id)
+    return jsonify(exercises)
+
+
+# ============= PROGRESS API ENDPOINTS =============
+
+@app.route('/api/progress/phrase', methods=['POST'])
+def api_update_phrase_progress():
+    """Update phrase progress."""
+    data = request.json
+    user_id = data.get('user_id')
+    
+    if not user_id:
+        return jsonify({'error': 'User not authenticated'}), 401
+    
+    asyncio.run(save_phrase_progress(
+        user_id, data['phrase_id'], data['category_id'], data['is_correct']
+    ))
+    return jsonify({'success': True})
+
+
+@app.route('/api/progress/dialogue', methods=['POST'])
+def api_update_dialogue_progress():
+    """Update dialogue progress."""
+    data = request.json
+    user_id = data.get('user_id')
+    
+    if not user_id:
+        return jsonify({'error': 'User not authenticated'}), 401
+    
+    asyncio.run(save_dialogue_progress(
+        user_id, data['dialogue_id'], 
+        data['exercises_completed'], data['exercises_correct']
+    ))
+    return jsonify({'success': True})
 
 
 # ============= TELEGRAM BOT WEBHOOK ENDPOINTS =============
