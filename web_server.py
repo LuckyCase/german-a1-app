@@ -11,7 +11,7 @@ import logging
 from bot.data.vocabulary import get_all_words, get_categories, get_words_by_category
 from bot.data.grammar import get_all_tests, get_test_questions
 from bot.database import get_user_stats, update_word_progress, save_grammar_result, update_daily_stats, init_db
-from bot.config import TELEGRAM_BOT_TOKEN
+from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
 
 # Telegram bot imports
 from telegram import Update
@@ -864,27 +864,42 @@ def webhook():
     async def _process_webhook():
         """Process webhook in async context."""
         try:
+            # Check if DATABASE_URL is set
+            if not DATABASE_URL:
+                logger.error("DATABASE_URL is not set!")
+                return 'Database not configured', 500
+
             # Ensure bot is initialized
             if bot_application is None:
+                logger.info("Initializing bot application...")
                 await init_bot()
+                logger.info("Bot application initialized successfully")
 
             # Parse the update
-            update = Update.de_json(request.get_json(), bot_application.bot)
+            update_data = request.get_json()
+            if not update_data:
+                logger.warning("Empty update data received")
+                return 'OK', 200
 
-            # Process the update
+            update = Update.de_json(update_data, bot_application.bot)
+
+            # Process the update synchronously
             await bot_application.process_update(update)
+            
             return 'OK', 200
         except Exception as e:
             logger.error(f"Error processing webhook: {e}", exc_info=True)
-            return 'Error', 500
+            # Still return OK to Telegram to avoid retries
+            return 'OK', 200
     
     # Use asyncio.run() which creates a new event loop for each call
     # This is thread-safe and works with gunicorn workers
     try:
         return asyncio.run(_process_webhook())
     except Exception as e:
-        logger.error(f"Error in webhook: {e}", exc_info=True)
-        return 'Error', 500
+        logger.error(f"Error in webhook event loop: {e}", exc_info=True)
+        # Return OK to prevent Telegram from retrying
+        return 'OK', 200
 
 
 @app.route('/setup-webhook')

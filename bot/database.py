@@ -1,29 +1,33 @@
 import asyncpg
 import os
+import threading
 from datetime import datetime
 from bot.config import DATABASE_URL
 
-_pool = None
+# Thread-local storage for connection pools
+# Each thread (gunicorn worker) gets its own pool
+_local = threading.local()
 
 
 async def get_pool():
-    """Get or create connection pool."""
-    global _pool
-    if _pool is None:
-        _pool = await asyncpg.create_pool(
+    """Get or create connection pool for current thread."""
+    if not hasattr(_local, 'pool') or _local.pool is None:
+        if not DATABASE_URL:
+            raise ValueError("DATABASE_URL is not set! Please configure database connection.")
+        _local.pool = await asyncpg.create_pool(
             DATABASE_URL,
             min_size=1,
-            max_size=10
+            max_size=10,
+            command_timeout=60
         )
-    return _pool
+    return _local.pool
 
 
 async def close_pool():
-    """Close the connection pool."""
-    global _pool
-    if _pool is not None:
-        await _pool.close()
-        _pool = None
+    """Close the connection pool for current thread."""
+    if hasattr(_local, 'pool') and _local.pool is not None:
+        await _local.pool.close()
+        _local.pool = None
 
 
 async def init_db():
