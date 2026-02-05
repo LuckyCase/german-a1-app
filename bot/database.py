@@ -170,7 +170,7 @@ async def update_word_progress(user_id: int, word_id: str, is_correct: bool):
             user_id, word_id
         )
 
-        now = datetime.now().isoformat()
+        now = datetime.now()
 
         if existing:
             if is_correct:
