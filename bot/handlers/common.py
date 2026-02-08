@@ -118,10 +118,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton(
                 "🚀 Открыть приложение", 
                 web_app=WebAppInfo(url=WEB_APP_URL)
-            )],
-            [InlineKeyboardButton(
-                "💬 Отзыв / Предложение",
-                callback_data="feedback_show"
             )]
         ]
         
@@ -155,8 +151,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "1. Нажмите /start\n"
         "2. Откройте приложение кнопкой «🚀 Открыть приложение»\n"
         "3. Изучайте слова, грамматику, фразы!\n\n"
-        "Есть вопросы или предложения? Используйте кнопку "
-        "«💬 Отзыв / Предложение» в главном меню."
+        "Есть вопросы или предложения? Используйте раздел «Отзыв» в веб-приложении."
     )
     
     await update.message.reply_text(help_text, parse_mode="Markdown")

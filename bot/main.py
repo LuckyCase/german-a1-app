@@ -11,8 +11,6 @@ from bot.handlers.grammar import get_grammar_handler
 from bot.handlers.progress import show_progress, progress_callback
 from bot.handlers.reminders import reminder_settings, reminder_callback, setup_reminder_job
 from bot.handlers.audio import audio_command
-from bot.handlers.feedback import get_feedback_handler, feedback_callback
-
 # Enable logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -47,12 +45,10 @@ def main():
     # These must be registered first to catch callbacks when no conversation is active
     application.add_handler(CallbackQueryHandler(progress_callback, pattern="^(progress_|start_flashcards|start_grammar)"))
     application.add_handler(CallbackQueryHandler(reminder_callback, pattern="^rem_"))
-    application.add_handler(CallbackQueryHandler(feedback_callback, pattern="^feedback_"))
 
     # Add conversation handlers (these should come after regular callback handlers)
     application.add_handler(get_flashcards_handler())
     application.add_handler(get_grammar_handler())
-    application.add_handler(get_feedback_handler())
 
     # Setup reminder job
     setup_reminder_job(application)
