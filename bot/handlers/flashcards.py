@@ -30,9 +30,8 @@ async def _build_session_words(user_id: int, words: list) -> list:
     got wrong (ordered by error count). Remaining slots are filled with
     random words from the rest.
     """
-    if len(words) <= SESSION_SIZE:
-        random.shuffle(words)
-        return words
+    if not words:
+        return []
 
     word_ids = [w["word_id"] for w in words]
     error_ids = await get_priority_word_ids(user_id, word_ids)

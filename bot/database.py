@@ -262,7 +262,9 @@ async def update_word_progress(user_id: int, word_id: str, is_correct: bool):
             if is_correct:
                 await conn.execute(
                     """UPDATE progress
-                       SET correct_count = correct_count + 1, last_reviewed = $1
+                       SET correct_count = correct_count + 1,
+                           wrong_count = GREATEST(wrong_count - 1, 0),
+                           last_reviewed = $1
                        WHERE user_id = $2 AND word_id = $3""",
                     now, user_id, word_id
                 )
@@ -423,7 +425,9 @@ async def save_phrase_progress(user_id: int, phrase_id: str, category_id: str, i
             if is_correct:
                 await conn.execute(
                     """UPDATE phrases_progress
-                       SET correct_count = correct_count + 1, last_reviewed = $1
+                       SET correct_count = correct_count + 1,
+                           wrong_count = GREATEST(wrong_count - 1, 0),
+                           last_reviewed = $1
                        WHERE user_id = $2 AND phrase_id = $3""",
                     now, user_id, phrase_id
                 )

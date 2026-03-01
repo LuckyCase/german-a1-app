@@ -24,9 +24,8 @@ MAX_ERROR_PHRASES = 5
 
 async def _build_session_phrases(user_id: int, phrases: list) -> list:
     """Build a session of up to SESSION_SIZE phrases with error priority."""
-    if len(phrases) <= SESSION_SIZE:
-        random.shuffle(phrases)
-        return phrases
+    if not phrases:
+        return []
 
     phrase_ids = [p["phrase_id"] for p in phrases]
     error_ids = await get_priority_phrase_ids(user_id, phrase_ids)
