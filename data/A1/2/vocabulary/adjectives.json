@@ -1,0 +1,621 @@
+{
+  "id": "adjectives",
+  "name": "Прилагательные",
+  "name_de": "Adjektive",
+  "description": "Прилагательные уровня A2",
+  "level": "A2",
+  "words": [
+    {
+      "de": "nützlich",
+      "ru": "полезный",
+      "example": "Das ist sehr nützlich.",
+      "example_ru": "Это очень полезно."
+    },
+    {
+      "de": "möglich",
+      "ru": "возможный",
+      "example": "Ist es möglich, dass du kommst?",
+      "example_ru": "Возможно, что ты придёшь?"
+    },
+    {
+      "de": "unmöglich",
+      "ru": "невозможный",
+      "example": "Das ist unmöglich!",
+      "example_ru": "Это невозможно!"
+    },
+    {
+      "de": "richtig",
+      "ru": "правильный",
+      "example": "Deine Antwort ist richtig.",
+      "example_ru": "Твой ответ правильный."
+    },
+    {
+      "de": "falsch",
+      "ru": "неправильный",
+      "example": "Das ist falsch.",
+      "example_ru": "Это неправильно."
+    },
+    {
+      "de": "typisch",
+      "ru": "типичный",
+      "example": "Das ist typisch für ihn.",
+      "example_ru": "Это типично для него."
+    },
+    {
+      "de": "besonders",
+      "ru": "особенный",
+      "example": "Heute ist ein besonderer Tag.",
+      "example_ru": "Сегодня особенный день."
+    },
+    {
+      "de": "einfach",
+      "ru": "простой",
+      "example": "Die Aufgabe ist einfach.",
+      "example_ru": "Задание простое."
+    },
+    {
+      "de": "schwierig",
+      "ru": "трудный",
+      "example": "Die Prüfung war schwierig.",
+      "example_ru": "Экзамен был трудным."
+    },
+    {
+      "de": "wichtig",
+      "ru": "важный",
+      "example": "Das ist mir wichtig.",
+      "example_ru": "Для меня это важно."
+    },
+    {
+      "de": "groß",
+      "ru": "большой",
+      "example": "Das Haus ist groß.",
+      "example_ru": "Дом большой."
+    },
+    {
+      "de": "klein",
+      "ru": "маленький",
+      "example": "Die Wohnung ist klein.",
+      "example_ru": "Квартира маленькая."
+    },
+    {
+      "de": "gut",
+      "ru": "хороший",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "schlecht",
+      "ru": "плохой",
+      "example": "Das Wetter ist schlecht.",
+      "example_ru": "Погода плохая."
+    },
+    {
+      "de": "neu",
+      "ru": "новый",
+      "example": "Das Auto ist neu.",
+      "example_ru": "Машина новая."
+    },
+    {
+      "de": "alt",
+      "ru": "старый",
+      "example": "Das Haus ist alt.",
+      "example_ru": "Дом старый."
+    },
+    {
+      "de": "jung",
+      "ru": "молодой",
+      "example": "Er ist jung.",
+      "example_ru": "Он молодой."
+    },
+    {
+      "de": "schön",
+      "ru": "красивый",
+      "example": "Die Stadt ist schön.",
+      "example_ru": "Город красивый."
+    },
+    {
+      "de": "schnell",
+      "ru": "быстрый",
+      "example": "Der Zug ist schnell.",
+      "example_ru": "Поезд быстрый."
+    },
+    {
+      "de": "langsam",
+      "ru": "медленный",
+      "example": "Sprechen Sie langsam.",
+      "example_ru": "Говорите медленно."
+    },
+    {
+      "de": "schwer",
+      "ru": "тяжёлый/трудный",
+      "example": "Deutsch ist schwer.",
+      "example_ru": "Немецкий сложный."
+    },
+    {
+      "de": "leicht",
+      "ru": "лёгкий",
+      "example": "Das ist leicht.",
+      "example_ru": "Это легко."
+    },
+    {
+      "de": "warm",
+      "ru": "тёплый",
+      "example": "Es ist warm.",
+      "example_ru": "Тепло."
+    },
+    {
+      "de": "kalt",
+      "ru": "холодный",
+      "example": "Es ist kalt.",
+      "example_ru": "Холодно."
+    },
+    {
+      "de": "heiß",
+      "ru": "горячий",
+      "example": "Der Kaffee ist heiß.",
+      "example_ru": "Кофе горячий."
+    },
+    {
+      "de": "lecker",
+      "ru": "вкусный",
+      "example": "Das Essen ist lecker.",
+      "example_ru": "Еда вкусная."
+    },
+    {
+      "de": "müde",
+      "ru": "усталый",
+      "example": "Ich bin müde.",
+      "example_ru": "Я устал."
+    },
+    {
+      "de": "krank",
+      "ru": "больной",
+      "example": "Ich bin krank.",
+      "example_ru": "Я болен."
+    },
+    {
+      "de": "gesund",
+      "ru": "здоровый",
+      "example": "Obst ist gesund.",
+      "example_ru": "Фрукты полезны."
+    },
+    {
+      "de": "nett",
+      "ru": "милый",
+      "example": "Er ist sehr nett.",
+      "example_ru": "Он очень милый."
+    },
+    {
+      "de": "freundlich",
+      "ru": "дружелюбный",
+      "example": "Die Leute sind freundlich.",
+      "example_ru": "Люди дружелюбные."
+    },
+    {
+      "de": "unfreundlich",
+      "ru": "недружелюбный",
+      "example": "Der Mann ist unfreundlich.",
+      "example_ru": "Мужчина недружелюбный."
+    },
+    {
+      "de": "laut",
+      "ru": "громкий",
+      "example": "Die Musik ist laut.",
+      "example_ru": "Музыка громкая."
+    },
+    {
+      "de": "ruhig",
+      "ru": "спокойный",
+      "example": "Die Straße ist ruhig.",
+      "example_ru": "Улица спокойная."
+    },
+    {
+      "de": "teuer",
+      "ru": "дорогой",
+      "example": "Das Auto ist teuer.",
+      "example_ru": "Машина дорогая."
+    },
+    {
+      "de": "billig",
+      "ru": "дешёвый",
+      "example": "Das T-Shirt ist billig.",
+      "example_ru": "Футболка дешёвая."
+    },
+    {
+      "de": "lang",
+      "ru": "длинный",
+      "example": "Der Film ist lang.",
+      "example_ru": "Фильм длинный."
+    },
+    {
+      "de": "kurz",
+      "ru": "короткий",
+      "example": "Der Rock ist kurz.",
+      "example_ru": "Юбка короткая."
+    },
+    {
+      "de": "hoch",
+      "ru": "высокий",
+      "example": "Der Berg ist hoch.",
+      "example_ru": "Гора высокая."
+    },
+    {
+      "de": "niedrig",
+      "ru": "низкий",
+      "example": "Der Tisch ist niedrig.",
+      "example_ru": "Стол низкий."
+    },
+    {
+      "de": "dick",
+      "ru": "толстый",
+      "example": "Das Buch ist dick.",
+      "example_ru": "Книга толстая."
+    },
+    {
+      "de": "dünn",
+      "ru": "тонкий",
+      "example": "Das Papier ist dünn.",
+      "example_ru": "Бумага тонкая."
+    },
+    {
+      "de": "hell",
+      "ru": "светлый",
+      "example": "Das Zimmer ist hell.",
+      "example_ru": "Комната светлая."
+    },
+    {
+      "de": "dunkel",
+      "ru": "тёмный",
+      "example": "Es ist dunkel.",
+      "example_ru": "Темно."
+    },
+    {
+      "de": "sauber",
+      "ru": "чистый",
+      "example": "Die Küche ist sauber.",
+      "example_ru": "Кухня чистая."
+    },
+    {
+      "de": "schmutzig",
+      "ru": "грязный",
+      "example": "Die Schuhe sind schmutzig.",
+      "example_ru": "Обувь грязная."
+    },
+    {
+      "de": "voll",
+      "ru": "полный",
+      "example": "Der Bus ist voll.",
+      "example_ru": "Автобус полный."
+    },
+    {
+      "de": "leer",
+      "ru": "пустой",
+      "example": "Das Glas ist leer.",
+      "example_ru": "Стакан пустой."
+    },
+    {
+      "de": "interessant",
+      "ru": "интересный",
+      "example": "Das Buch ist interessant.",
+      "example_ru": "Книга интересная."
+    },
+    {
+      "de": "langweilig",
+      "ru": "скучный",
+      "example": "Der Film ist langweilig.",
+      "example_ru": "Фильм скучный."
+    },
+    {
+      "de": "glücklich",
+      "ru": "счастливый",
+      "example": "Ich bin glücklich.",
+      "example_ru": "Я счастлив."
+    },
+    {
+      "de": "traurig",
+      "ru": "грустный",
+      "example": "Sie ist traurig.",
+      "example_ru": "Она грустная."
+    },
+    {
+      "de": "hungrig",
+      "ru": "голодный",
+      "example": "Ich bin hungrig.",
+      "example_ru": "Я голоден."
+    },
+    {
+      "de": "durstig",
+      "ru": "жаждущий",
+      "example": "Er ist durstig.",
+      "example_ru": "Он хочет пить."
+    },
+    {
+      "de": "frei",
+      "ru": "свободный",
+      "example": "Der Platz ist frei.",
+      "example_ru": "Место свободно."
+    },
+    {
+      "de": "besetzt",
+      "ru": "занятый",
+      "example": "Der Platz ist besetzt.",
+      "example_ru": "Место занято."
+    },
+    {
+      "de": "verheiratet",
+      "ru": "женатый/замужем",
+      "example": "Er ist verheiratet.",
+      "example_ru": "Он женат."
+    },
+    {
+      "de": "ledig",
+      "ru": "неженатый",
+      "example": "Sie ist ledig.",
+      "example_ru": "Она не замужем."
+    },
+    {
+      "de": "stark",
+      "ru": "сильный",
+      "example": "Er ist stark.",
+      "example_ru": "Он сильный."
+    },
+    {
+      "de": "schwach",
+      "ru": "слабый",
+      "example": "Ich bin heute schwach.",
+      "example_ru": "Сегодня я слаб."
+    },
+    {
+      "de": "offen",
+      "ru": "открытый",
+      "example": "Die Tür ist offen.",
+      "example_ru": "Дверь открыта."
+    },
+    {
+      "de": "geschlossen",
+      "ru": "закрытый",
+      "example": "Das Geschäft ist geschlossen.",
+      "example_ru": "Магазин закрыт."
+    },
+    {
+      "de": "modern",
+      "ru": "современный",
+      "example": "Das Haus ist modern.",
+      "example_ru": "Дом современный."
+    },
+    {
+      "de": "traditionell",
+      "ru": "традиционный",
+      "example": "Das Essen ist traditionell.",
+      "example_ru": "Еда традиционная."
+    },
+    {
+      "de": "bequem",
+      "ru": "удобный",
+      "example": "Der Stuhl ist bequem.",
+      "example_ru": "Стул удобный."
+    },
+    {
+      "de": "unbequem",
+      "ru": "неудобный",
+      "example": "Das Bett ist unbequem.",
+      "example_ru": "Кровать неудобная."
+    },
+    {
+      "de": "früh",
+      "ru": "ранний",
+      "example": "Es ist früh.",
+      "example_ru": "Рано."
+    },
+    {
+      "de": "spät",
+      "ru": "поздний",
+      "example": "Es ist spät.",
+      "example_ru": "Поздно."
+    },
+    {
+      "de": "bereit",
+      "ru": "готовый",
+      "example": "Ich bin bereit.",
+      "example_ru": "Я готов."
+    },
+    {
+      "de": "fertig",
+      "ru": "готовый/законченный",
+      "example": "Ich bin fertig.",
+      "example_ru": "Я закончил."
+    },
+    {
+      "de": "kaputt",
+      "ru": "сломанный",
+      "example": "Der Computer ist kaputt.",
+      "example_ru": "Компьютер сломан."
+    },
+    {
+      "de": "offiziell",
+      "ru": "официальный",
+      "example": "Das ist offiziell.",
+      "example_ru": "Это официально."
+    },
+    {
+      "de": "privat",
+      "ru": "частный",
+      "example": "Das ist privat.",
+      "example_ru": "Это частное."
+    },
+    {
+      "de": "klar",
+      "ru": "ясный",
+      "example": "Die Antwort ist klar.",
+      "example_ru": "Ответ ясный."
+    },
+    {
+      "de": "neugierig",
+      "ru": "любопытный",
+      "example": "Das Kind ist neugierig.",
+      "example_ru": "Ребёнок любопытный."
+    },
+    {
+      "de": "beliebt",
+      "ru": "популярный",
+      "example": "Er ist sehr beliebt.",
+      "example_ru": "Он очень популярен."
+    },
+    {
+      "de": "bekannt",
+      "ru": "известный",
+      "example": "Die Stadt ist bekannt.",
+      "example_ru": "Город известный."
+    },
+    {
+      "de": "berühmt",
+      "ru": "знаменитый",
+      "example": "Er ist berühmt.",
+      "example_ru": "Он знаменит."
+    },
+    {
+      "de": "zufrieden",
+      "ru": "довольный",
+      "example": "Ich bin zufrieden.",
+      "example_ru": "Я доволен."
+    },
+    {
+      "de": "böse",
+      "ru": "злой",
+      "example": "Der Hund ist böse.",
+      "example_ru": "Собака злая."
+    },
+    {
+      "de": "lieb",
+      "ru": "добрый",
+      "example": "Das Kind ist lieb.",
+      "example_ru": "Ребёнок добрый."
+    },
+    {
+      "de": "kompliziert",
+      "ru": "сложный",
+      "example": "Das Problem ist kompliziert.",
+      "example_ru": "Проблема сложная."
+    },
+    {
+      "de": "praktisch",
+      "ru": "практичный",
+      "example": "Das ist praktisch.",
+      "example_ru": "Это практично."
+    },
+    {
+      "de": "sportlich",
+      "ru": "спортивный",
+      "example": "Er ist sportlich.",
+      "example_ru": "Он спортивный."
+    },
+    {
+      "de": "sicher",
+      "ru": "безопасный",
+      "example": "Das ist sicher.",
+      "example_ru": "Это безопасно."
+    },
+    {
+      "de": "gefährlich",
+      "ru": "опасный",
+      "example": "Das ist gefährlich.",
+      "example_ru": "Это опасно."
+    },
+    {
+      "de": "kostenlos",
+      "ru": "бесплатный",
+      "example": "Der Eintritt ist kostenlos.",
+      "example_ru": "Вход бесплатный."
+    },
+    {
+      "de": "regional",
+      "ru": "региональный",
+      "example": "Das Produkt ist regional.",
+      "example_ru": "Продукт региональный."
+    },
+    {
+      "de": "international",
+      "ru": "международный",
+      "example": "Die Firma ist international.",
+      "example_ru": "Фирма международная."
+    },
+    {
+      "de": "direkt",
+      "ru": "прямой",
+      "example": "Das ist ein direkter Weg.",
+      "example_ru": "Это прямой путь."
+    },
+    {
+      "de": "nass",
+      "ru": "мокрый",
+      "example": "Die Kleidung ist nass.",
+      "example_ru": "Одежда мокрая."
+    },
+    {
+      "de": "trocken",
+      "ru": "сухой",
+      "example": "Die Wäsche ist trocken.",
+      "example_ru": "Бельё сухое."
+    },
+    {
+      "de": "rund",
+      "ru": "круглый",
+      "example": "Der Tisch ist rund.",
+      "example_ru": "Стол круглый."
+    },
+    {
+      "de": "eckig",
+      "ru": "угловатый",
+      "example": "Der Tisch ist eckig.",
+      "example_ru": "Стол угловатый."
+    },
+    {
+      "de": "eng",
+      "ru": "узкий",
+      "example": "Die Straße ist eng.",
+      "example_ru": "Улица узкая."
+    },
+    {
+      "de": "breit",
+      "ru": "широкий",
+      "example": "Die Straße ist breit.",
+      "example_ru": "Улица широкая."
+    },
+    {
+      "de": "weich",
+      "ru": "мягкий",
+      "example": "Das Bett ist weich.",
+      "example_ru": "Кровать мягкая."
+    },
+    {
+      "de": "hart",
+      "ru": "твёрдый",
+      "example": "Das Brot ist hart.",
+      "example_ru": "Хлеб твёрдый."
+    },
+    {
+      "de": "reich",
+      "ru": "богатый",
+      "example": "Er ist reich.",
+      "example_ru": "Он богат."
+    },
+    {
+      "de": "arm",
+      "ru": "бедный",
+      "example": "Er ist arm.",
+      "example_ru": "Он бедный."
+    },
+    {
+      "de": "lustig",
+      "ru": "весёлый",
+      "example": "Der Film ist lustig.",
+      "example_ru": "Фильм весёлый."
+    },
+    {
+      "de": "normal",
+      "ru": "нормальный",
+      "example": "Das ist normal.",
+      "example_ru": "Это нормально."
+    }
+  ]
+}

@@ -60,13 +60,23 @@
     },
     "exercises": {
       "path": "exercises/",
-      "types": [],
-      "status": "planned"
+      "sets": [
+        {"id": "food_cafe", "file": "food_cafe.json", "name": "Еда и кафе"},
+        {"id": "articles_akkusativ", "file": "articles_akkusativ.json", "name": "Артикли и аккузатив"},
+        {"id": "phrases_basics", "file": "phrases_basics.json", "name": "Базовые фразы"}
+      ],
+      "status": "active"
     },
     "culture": {
       "path": "culture/",
-      "topics": [],
-      "status": "planned"
+      "topics": [
+        {"id": "du_sie", "file": "du_sie.json", "name": "Du и Sie"},
+        {"id": "food_drinks", "file": "food_drinks.json", "name": "Еда и напитки"},
+        {"id": "transport", "file": "transport.json", "name": "Транспорт"},
+        {"id": "shops", "file": "shops.json", "name": "Магазины"},
+        {"id": "punctuality", "file": "punctuality.json", "name": "Пунктуальность"}
+      ],
+      "status": "active"
     }
   },
   "exam_info": {

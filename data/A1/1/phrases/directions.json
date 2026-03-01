@@ -1,0 +1,710 @@
+{
+  "id": "directions",
+  "name": "Дорога и ориентиры",
+  "name_de": "Wegbeschreibung",
+  "description": "Как пройти, спросить дорогу",
+  "level": "A1",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Wo ist die nächste U-Bahn-Station?",
+      "ru": "Где ближайшая станция метро?",
+      "context": "Метро",
+      "example": "Wo ist die nächste U-Bahn-Station? / 100 Meter geradeaus.",
+      "example_ru": "Где ближайшая станция метро? / 100 метров прямо."
+    },
+    {
+      "de": "Wie komme ich zum Bahnhof?",
+      "ru": "Как добраться до вокзала?",
+      "context": "Маршрут",
+      "example": "Wie komme ich zum Bahnhof? / Mit der Linie 3, drei Stationen.",
+      "example_ru": "Как до вокзала? / Линия 3, три остановки."
+    },
+    {
+      "de": "Gehen Sie geradeaus.",
+      "ru": "Идите прямо.",
+      "context": "Указание",
+      "example": "Gehen Sie geradeaus, dann links. Das Rathaus ist rechts.",
+      "example_ru": "Идите прямо, потом налево. Ратуша справа."
+    },
+    {
+      "de": "Ist es weit von hier?",
+      "ru": "Далеко отсюда?",
+      "context": "Расстояние",
+      "example": "Ist es weit von hier? / Nein, fünf Minuten zu Fuß.",
+      "example_ru": "Далеко отсюда? / Нет, пять минут пешком."
+    },
+    {
+      "de": "Ich habe mich verlaufen.",
+      "ru": "Я заблудился.",
+      "context": "Помощь",
+      "example": "Ich habe mich verlaufen. Wo ist der Markt?",
+      "example_ru": "Я заблудился. Где рынок?"
+    },
+    {
+      "de": "Wo ist die nächste U-Bahn-Station?",
+      "ru": "Где ближайшая станция метро?",
+      "context": "Метро",
+      "example": "Wo ist die nächste U-Bahn-Station? / 100 Meter geradeaus.",
+      "example_ru": "Где ближайшая станция метро? / 100 метров прямо."
+    },
+    {
+      "de": "Wie komme ich zum Bahnhof?",
+      "ru": "Как добраться до вокзала?",
+      "context": "Маршрут",
+      "example": "Wie komme ich zum Bahnhof? / Mit der Linie 3, drei Stationen.",
+      "example_ru": "Как до вокзала? / Линия 3, три остановки."
+    },
+    {
+      "de": "Gehen Sie geradeaus.",
+      "ru": "Идите прямо.",
+      "context": "Указание",
+      "example": "Gehen Sie geradeaus, dann links. Das Rathaus ist rechts.",
+      "example_ru": "Идите прямо, потом налево. Ратуша справа."
+    },
+    {
+      "de": "Ist es weit von hier?",
+      "ru": "Далеко отсюда?",
+      "context": "Расстояние",
+      "example": "Ist es weit von hier? / Nein, fünf Minuten zu Fuß.",
+      "example_ru": "Далеко отсюда? / Нет, пять минут пешком."
+    },
+    {
+      "de": "Ich habe mich verlaufen.",
+      "ru": "Я заблудился.",
+      "context": "Помощь",
+      "example": "Ich habe mich verlaufen. Wo ist der Markt?",
+      "example_ru": "Я заблудился. Где рынок?"
+    },
+    {
+      "de": "Wo ist die nächste U-Bahn-Station?",
+      "ru": "Где ближайшая станция метро?",
+      "context": "Метро",
+      "example": "Wo ist die nächste U-Bahn-Station? / 100 Meter geradeaus.",
+      "example_ru": "Где ближайшая станция метро? / 100 метров прямо."
+    },
+    {
+      "de": "Wie komme ich zum Bahnhof?",
+      "ru": "Как добраться до вокзала?",
+      "context": "Маршрут",
+      "example": "Wie komme ich zum Bahnhof? / Mit der Linie 3, drei Stationen.",
+      "example_ru": "Как до вокзала? / Линия 3, три остановки."
+    },
+    {
+      "de": "Gehen Sie geradeaus.",
+      "ru": "Идите прямо.",
+      "context": "Указание",
+      "example": "Gehen Sie geradeaus, dann links. Das Rathaus ist rechts.",
+      "example_ru": "Идите прямо, потом налево. Ратуша справа."
+    },
+    {
+      "de": "Ist es weit von hier?",
+      "ru": "Далеко отсюда?",
+      "context": "Расстояние",
+      "example": "Ist es weit von hier? / Nein, fünf Minuten zu Fuß.",
+      "example_ru": "Далеко отсюда? / Нет, пять минут пешком."
+    },
+    {
+      "de": "Ich habe mich verlaufen.",
+      "ru": "Я заблудился.",
+      "context": "Помощь",
+      "example": "Ich habe mich verlaufen. Wo ist der Markt?",
+      "example_ru": "Я заблудился. Где рынок?"
+    },
+    {
+      "de": "Wo ist die nächste U-Bahn-Station?",
+      "ru": "Где ближайшая станция метро?",
+      "context": "Метро",
+      "example": "Wo ist die nächste U-Bahn-Station? / 100 Meter geradeaus.",
+      "example_ru": "Где ближайшая станция метро? / 100 метров прямо."
+    },
+    {
+      "de": "Wie komme ich zum Bahnhof?",
+      "ru": "Как добраться до вокзала?",
+      "context": "Маршрут",
+      "example": "Wie komme ich zum Bahnhof? / Mit der Linie 3, drei Stationen.",
+      "example_ru": "Как до вокзала? / Линия 3, три остановки."
+    },
+    {
+      "de": "Gehen Sie geradeaus.",
+      "ru": "Идите прямо.",
+      "context": "Указание",
+      "example": "Gehen Sie geradeaus, dann links. Das Rathaus ist rechts.",
+      "example_ru": "Идите прямо, потом налево. Ратуша справа."
+    },
+    {
+      "de": "Ist es weit von hier?",
+      "ru": "Далеко отсюда?",
+      "context": "Расстояние",
+      "example": "Ist es weit von hier? / Nein, fünf Minuten zu Fuß.",
+      "example_ru": "Далеко отсюда? / Нет, пять минут пешком."
+    },
+    {
+      "de": "Ich habe mich verlaufen.",
+      "ru": "Я заблудился.",
+      "context": "Помощь",
+      "example": "Ich habe mich verlaufen. Wo ist der Markt?",
+      "example_ru": "Я заблудился. Где рынок?"
+    },
+    {
+      "de": "Wo ist die nächste U-Bahn-Station?",
+      "ru": "Где ближайшая станция метро?",
+      "context": "Метро",
+      "example": "Wo ist die nächste U-Bahn-Station? / 100 Meter geradeaus.",
+      "example_ru": "Где ближайшая станция метро? / 100 метров прямо."
+    },
+    {
+      "de": "Wie komme ich zum Bahnhof?",
+      "ru": "Как добраться до вокзала?",
+      "context": "Маршрут",
+      "example": "Wie komme ich zum Bahnhof? / Mit der Linie 3, drei Stationen.",
+      "example_ru": "Как до вокзала? / Линия 3, три остановки."
+    },
+    {
+      "de": "Gehen Sie geradeaus.",
+      "ru": "Идите прямо.",
+      "context": "Указание",
+      "example": "Gehen Sie geradeaus, dann links. Das Rathaus ist rechts.",
+      "example_ru": "Идите прямо, потом налево. Ратуша справа."
+    },
+    {
+      "de": "Ist es weit von hier?",
+      "ru": "Далеко отсюда?",
+      "context": "Расстояние",
+      "example": "Ist es weit von hier? / Nein, fünf Minuten zu Fuß.",
+      "example_ru": "Далеко отсюда? / Нет, пять минут пешком."
+    },
+    {
+      "de": "Ich habe mich verlaufen.",
+      "ru": "Я заблудился.",
+      "context": "Помощь",
+      "example": "Ich habe mich verlaufen. Wo ist der Markt?",
+      "example_ru": "Я заблудился. Где рынок?"
+    },
+    {
+      "de": "Wo ist die nächste U-Bahn-Station?",
+      "ru": "Где ближайшая станция метро?",
+      "context": "Метро",
+      "example": "Wo ist die nächste U-Bahn-Station? / 100 Meter geradeaus.",
+      "example_ru": "Где ближайшая станция метро? / 100 метров прямо."
+    },
+    {
+      "de": "Wie komme ich zum Bahnhof?",
+      "ru": "Как добраться до вокзала?",
+      "context": "Маршрут",
+      "example": "Wie komme ich zum Bahnhof? / Mit der Linie 3, drei Stationen.",
+      "example_ru": "Как до вокзала? / Линия 3, три остановки."
+    },
+    {
+      "de": "Gehen Sie geradeaus.",
+      "ru": "Идите прямо.",
+      "context": "Указание",
+      "example": "Gehen Sie geradeaus, dann links. Das Rathaus ist rechts.",
+      "example_ru": "Идите прямо, потом налево. Ратуша справа."
+    },
+    {
+      "de": "Ist es weit von hier?",
+      "ru": "Далеко отсюда?",
+      "context": "Расстояние",
+      "example": "Ist es weit von hier? / Nein, fünf Minuten zu Fuß.",
+      "example_ru": "Далеко отсюда? / Нет, пять минут пешком."
+    },
+    {
+      "de": "Ich habe mich verlaufen.",
+      "ru": "Я заблудился.",
+      "context": "Помощь",
+      "example": "Ich habe mich verlaufen. Wo ist der Markt?",
+      "example_ru": "Я заблудился. Где рынок?"
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    }
+  ]
+}

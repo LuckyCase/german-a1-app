@@ -82,6 +82,36 @@
       "options": ["muss", "musst", "müssen"],
       "correct": 0,
       "explanation": "ich muss (я должен)"
+    },
+    {
+      "question": "Du ___ das nicht tun. (sollen)",
+      "options": ["soll", "sollst", "sollen"],
+      "correct": 1,
+      "explanation": "du sollst (тебе следует)"
+    },
+    {
+      "question": "Wir ___ Pizza bestellen. (möchten)",
+      "options": ["möchte", "möchtet", "möchten"],
+      "correct": 2,
+      "explanation": "wir möchten (мы хотели бы)"
+    },
+    {
+      "question": "Sie ___ nicht so laut sprechen. (dürfen)",
+      "options": ["darf", "dürft", "dürfen"],
+      "correct": 0,
+      "explanation": "sie darf nicht (ей нельзя)"
+    },
+    {
+      "question": "Ihr ___ mir helfen. (können)",
+      "options": ["kann", "könnt", "können"],
+      "correct": 1,
+      "explanation": "ihr könnt (вы можете)"
+    },
+    {
+      "question": "Er ___ nach Hause. (wollen)",
+      "options": ["will", "wollt", "wollen"],
+      "correct": 0,
+      "explanation": "er will (он хочет)"
     }
   ]
 }

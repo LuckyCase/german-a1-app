@@ -90,6 +90,24 @@
       "options": ["heiße", "heißt", "heißen"],
       "correct": 1,
       "explanation": "sie heißt (её зовут)"
+    },
+    {
+      "question": "Du ___ die Tür. (öffnen)",
+      "options": ["öffne", "öffnest", "öffnet"],
+      "correct": 1,
+      "explanation": "du öffnest (ты открываешь)"
+    },
+    {
+      "question": "Wir ___ Musik. (hören)",
+      "options": ["höre", "hört", "hören"],
+      "correct": 2,
+      "explanation": "wir hören (мы слушаем)"
+    },
+    {
+      "question": "Er ___ den Bus. (nehmen)",
+      "options": ["nehme", "nimmst", "nimmt"],
+      "correct": 2,
+      "explanation": "er nimmt (он берёт) — неправильный глагол"
     }
   ]
 }

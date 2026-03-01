@@ -1,0 +1,192 @@
+{
+  "id": "word_order",
+  "name": "Порядок слов и придаточные",
+  "name_de": "Wortstellung und Nebensätze",
+  "description": "Придаточные предложения weil, dass (уровень A2)",
+  "level": "A2",
+  "theory": {
+    "title": "Придаточные предложения (Nebensätze)",
+    "content": "В придаточном предложении сказуемое стоит в КОНЦЕ:\n\n• weil (потому что): Ich bleibe zu Hause, weil ich krank bin.\n• dass (что): Ich weiß, dass du recht hast.\n• wenn (если/когда): Wenn es regnet, nehme ich einen Schirm.",
+    "examples": [
+      "Er kommt nicht, weil er keine Zeit hat. (глагол в конце)",
+      "Ich glaube, dass sie recht hat.",
+      "Wenn du willst, können wir gehen."
+    ],
+    "tips": [
+      "После weil, dass, wenn — глагол в конце предложения",
+      "Запятая перед придаточным обязательна"
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich bleibe zu Hause, ___ ich krank bin.",
+      "options": [
+        "weil",
+        "dass",
+        "und"
+      ],
+      "correct": 0,
+      "explanation": "weil = потому что"
+    },
+    {
+      "question": "Er sagt, ___ er morgen kommt.",
+      "options": [
+        "weil",
+        "dass",
+        "wenn"
+      ],
+      "correct": 1,
+      "explanation": "dass = что"
+    },
+    {
+      "question": "Правильный порядок: ..., weil ich ___ .",
+      "options": [
+        "bin müde",
+        "müde bin",
+        "bin ich müde"
+      ],
+      "correct": 1,
+      "explanation": "В придаточном глагол в конце"
+    },
+    {
+      "question": "Ich weiß nicht, ___ er wohnt.",
+      "options": [
+        "wo",
+        "weil",
+        "dass"
+      ],
+      "correct": 0,
+      "explanation": "wo = где (вопрос)"
+    },
+    {
+      "question": "___ du Zeit hast, ruf mich an.",
+      "options": [
+        "Weil",
+        "Dass",
+        "Wenn"
+      ],
+      "correct": 2,
+      "explanation": "wenn = если"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Ich heute gehe ins Kino.",
+        "Ich gehe heute ins Kino.",
+        "Heute ich gehe ins Kino."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте: Ich gehe heute ins Kino."
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Morgen ich komme.",
+        "Ich morgen komme.",
+        "Morgen komme ich."
+      ],
+      "correct": 2,
+      "explanation": "Глагол на втором месте, после обстоятельства времени"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Er nach Berlin fährt.",
+        "Er fährt nach Berlin.",
+        "Nach Berlin er fährt."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Um 8 Uhr stehe ich auf.",
+        "Um 8 Uhr ich stehe auf.",
+        "Ich um 8 Uhr stehe auf."
+      ],
+      "correct": 0,
+      "explanation": "Отделяемая приставка в конце предложения"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Deutsch ich lerne gern.",
+        "Ich lerne Deutsch gern.",
+        "Ich Deutsch lerne gern."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте, наречие в конце"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Am Wochenende ich schlafe lange.",
+        "Ich schlafe am Wochenende lange.",
+        "Schlafe ich am Wochenende lange."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Jetzt ich muss gehen.",
+        "Ich muss jetzt gehen.",
+        "Muss ich jetzt gehen."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Sie liest jeden Tag die Zeitung.",
+        "Jeden Tag sie liest die Zeitung.",
+        "Liest sie jeden Tag die Zeitung."
+      ],
+      "correct": 0,
+      "explanation": "Глагол на втором месте в повествовании"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Ich räume mein Zimmer auf.",
+        "Ich auf räume mein Zimmer.",
+        "Auf räume ich mein Zimmer."
+      ],
+      "correct": 0,
+      "explanation": "Отделяемая приставка auf в конце"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Um 7 Uhr ich stehe auf.",
+        "Ich stehe um 7 Uhr auf.",
+        "Stehe ich um 7 Uhr auf."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на 2-м месте, приставка в конце"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Heute Abend wir gehen ins Kino.",
+        "Wir gehen heute Abend ins Kino.",
+        "Gehen wir heute Abend ins Kino."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Er macht seine Hausaufgaben.",
+        "Macht er seine Hausaufgaben.",
+        "Seine Hausaufgaben er macht."
+      ],
+      "correct": 0,
+      "explanation": "Подлежащее на 1-м месте, глагол на 2-м"
+    }
+  ]
+}

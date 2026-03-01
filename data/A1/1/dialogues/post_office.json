@@ -1,0 +1,75 @@
+{
+  "id": "post_office",
+  "name": "На почте",
+  "name_de": "Auf der Post",
+  "description": "Отправка письма",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Guten Tag. Ich möchte diesen Brief nach Russland schicken.",
+      "text_ru": "Добрый день. Хочу отправить это письмо в Россию.",
+      "audio_file": "post_office_01.mp3"
+    },
+    {
+      "role": "Angestellter",
+      "role_ru": "Сотрудник",
+      "text": "Luftpost oder normal? Luftpost ist schneller.",
+      "text_ru": "Авиа или обычной? Авиа быстрее.",
+      "audio_file": "post_office_02.mp3"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Luftpost, bitte. Was kostet das?",
+      "text_ru": "Авиа, пожалуйста. Сколько стоит?",
+      "audio_file": "post_office_03.mp3"
+    },
+    {
+      "role": "Angestellter",
+      "role_ru": "Сотрудник",
+      "text": "2 Euro 20. Hier sind die Briefmarken.",
+      "text_ru": "2 евро 20. Вот марки.",
+      "audio_file": "post_office_04.mp3"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Danke. Wo ist der Briefkasten?",
+      "text_ru": "Спасибо. Где почтовый ящик?",
+      "audio_file": "post_office_05.mp3"
+    },
+    {
+      "role": "Angestellter",
+      "role_ru": "Сотрудник",
+      "text": "Draußen links. Nächster!",
+      "text_ru": "Снаружи слева. Следующий!",
+      "audio_file": "post_office_06.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Ich möchte diesen Brief ___.",
+      "options": [
+        "schicken",
+        "schickt",
+        "schicke"
+      ],
+      "correct": 0,
+      "explanation": "schicken — инфинитив"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Was ___ das?",
+      "options": [
+        "kostet",
+        "kosten",
+        "kostest"
+      ],
+      "correct": 0,
+      "explanation": "kostet — сколько стоит"
+    }
+  ]
+}

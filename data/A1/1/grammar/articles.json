@@ -78,6 +78,30 @@
       "options": ["Der", "Die", "Das"],
       "correct": 2,
       "explanation": "Wasser — средний род (das Wasser)"
+    },
+    {
+      "question": "___ Tasche ist schwer.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Tasche — женский род (die Tasche)"
+    },
+    {
+      "question": "___ Stuhl ist bequem.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 0,
+      "explanation": "Stuhl — мужской род (der Stuhl)"
+    },
+    {
+      "question": "___ Zimmer ist groß.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 2,
+      "explanation": "Zimmer — средний род (das Zimmer)"
+    },
+    {
+      "question": "___ Straße ist lang.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Straße — женский род (die Straße)"
     }
   ]
 }

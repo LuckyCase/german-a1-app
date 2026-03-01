@@ -55,10 +55,12 @@ def _get_level_cache(major: str = None, sub: str = None) -> dict:
     key = _get_level_key(major, sub)
     if key not in _cache:
         _cache[key] = {
-            "vocabulary": {},
-            "grammar": {},
-            "phrases": {},
-            "dialogues": {},
+            "vocabulary": None,
+            "grammar": None,
+            "phrases": None,
+            "dialogues": None,
+            "culture": None,
+            "exercises": None,
             "metadata": None
         }
     return _cache[key]
@@ -168,9 +170,10 @@ def _load_all_vocabulary(major: str = None, sub: str = None) -> dict:
     """Загрузить все категории словаря для уровня."""
     cache = _get_level_cache(major, sub)
     
-    if cache["vocabulary"]:
+    if cache["vocabulary"] is not None:
         return cache["vocabulary"]
-    
+
+    cache["vocabulary"] = {}
     vocab_dir = _get_level_path(major, sub) / "vocabulary"
     if not vocab_dir.exists():
         logger.warning(f"Папка словаря не найдена: {vocab_dir}")
@@ -192,9 +195,10 @@ def _load_all_grammar(major: str = None, sub: str = None) -> dict:
     """Загрузить все грамматические тесты для уровня."""
     cache = _get_level_cache(major, sub)
     
-    if cache["grammar"]:
+    if cache["grammar"] is not None:
         return cache["grammar"]
-    
+
+    cache["grammar"] = {}
     grammar_dir = _get_level_path(major, sub) / "grammar"
     if not grammar_dir.exists():
         logger.warning(f"Папка грамматики не найдена: {grammar_dir}")
@@ -216,9 +220,10 @@ def _load_all_phrases(major: str = None, sub: str = None) -> dict:
     """Загрузить все категории фраз для уровня."""
     cache = _get_level_cache(major, sub)
     
-    if cache["phrases"]:
+    if cache["phrases"] is not None:
         return cache["phrases"]
-    
+
+    cache["phrases"] = {}
     phrases_dir = _get_level_path(major, sub) / "phrases"
     if not phrases_dir.exists():
         logger.warning(f"Папка phrases не найдена: {phrases_dir}")
@@ -240,9 +245,10 @@ def _load_all_dialogues(major: str = None, sub: str = None) -> dict:
     """Загрузить все диалоги для уровня."""
     cache = _get_level_cache(major, sub)
     
-    if cache["dialogues"]:
+    if cache["dialogues"] is not None:
         return cache["dialogues"]
-    
+
+    cache["dialogues"] = {}
     dialogues_dir = _get_level_path(major, sub) / "dialogues"
     if not dialogues_dir.exists():
         logger.warning(f"Папка dialogues не найдена: {dialogues_dir}")
@@ -258,6 +264,56 @@ def _load_all_dialogues(major: str = None, sub: str = None) -> dict:
     
     logger.info(f"Загружено {len(cache['dialogues'])} диалогов для уровня {_get_level_key(major, sub)}")
     return cache["dialogues"]
+
+
+def _load_all_culture(major: str = None, sub: str = None) -> dict:
+    """Загрузить все темы культуры для уровня."""
+    cache = _get_level_cache(major, sub)
+
+    if cache["culture"] is not None:
+        return cache["culture"]
+
+    cache["culture"] = {}
+    culture_dir = _get_level_path(major, sub) / "culture"
+    if not culture_dir.exists():
+        logger.warning(f"Папка culture не найдена: {culture_dir}")
+        return {}
+
+    for json_file in culture_dir.glob("*.json"):
+        try:
+            data = _load_json(json_file)
+            if data and "id" in data:
+                cache["culture"][data["id"]] = data
+        except Exception as e:
+            logger.error(f"Ошибка загрузки {json_file}: {e}")
+
+    logger.info(f"Загружено {len(cache['culture'])} тем культуры для уровня {_get_level_key(major, sub)}")
+    return cache["culture"]
+
+
+def _load_all_exercises(major: str = None, sub: str = None) -> dict:
+    """Загрузить все наборы упражнений для уровня."""
+    cache = _get_level_cache(major, sub)
+
+    if cache["exercises"] is not None:
+        return cache["exercises"]
+
+    cache["exercises"] = {}
+    exercises_dir = _get_level_path(major, sub) / "exercises"
+    if not exercises_dir.exists():
+        logger.warning(f"Папка exercises не найдена: {exercises_dir}")
+        return {}
+
+    for json_file in exercises_dir.glob("*.json"):
+        try:
+            data = _load_json(json_file)
+            if data and "id" in data:
+                cache["exercises"][data["id"]] = data
+        except Exception as e:
+            logger.error(f"Ошибка загрузки {json_file}: {e}")
+
+    logger.info(f"Загружено {len(cache['exercises'])} наборов упражнений для уровня {_get_level_key(major, sub)}")
+    return cache["exercises"]
 
 
 # ============================================================
@@ -508,6 +564,211 @@ def get_dialogue_exercises(topic_id: str, major: str = None, sub: str = None) ->
 
 
 # ============================================================
+# API для Culture
+# ============================================================
+
+def get_culture_topics(major: str = None, sub: str = None) -> list:
+    """Получить список всех тем культуры."""
+    culture = _load_all_culture(major, sub)
+    level_key = _get_level_key(major, sub)
+
+    return [
+        {
+            "id": topic_id,
+            "name": topic.get("name", ""),
+            "name_de": topic.get("name_de", ""),
+            "description": topic.get("description", ""),
+            "level": level_key
+        }
+        for topic_id, topic in culture.items()
+    ]
+
+
+def get_culture_topic(topic_id: str, major: str = None, sub: str = None) -> Optional[dict]:
+    """Получить одну тему культуры по ID (с content и при наличии questions)."""
+    culture = _load_all_culture(major, sub)
+    return culture.get(topic_id)
+
+
+# ============================================================
+# API для Exercises
+# ============================================================
+
+def get_exercise_sets(major: str = None, sub: str = None) -> list:
+    """Получить список всех наборов упражнений."""
+    exercises = _load_all_exercises(major, sub)
+    level_key = _get_level_key(major, sub)
+
+    return [
+        {
+            "id": set_id,
+            "name": data.get("name", ""),
+            "name_de": data.get("name_de", ""),
+            "description": data.get("description", ""),
+            "tasks_count": len(data.get("tasks", [])),
+            "level": level_key
+        }
+        for set_id, data in exercises.items()
+    ]
+
+
+def get_exercise_set(set_id: str, major: str = None, sub: str = None) -> Optional[dict]:
+    """Получить один набор упражнений (метаданные, без tasks)."""
+    exercises = _load_all_exercises(major, sub)
+    data = exercises.get(set_id)
+    if not data:
+        return None
+    return {
+        "id": data.get("id"),
+        "name": data.get("name", ""),
+        "name_de": data.get("name_de", ""),
+        "description": data.get("description", ""),
+        "level": data.get("level", ""),
+        "linked_to": data.get("linked_to", []),
+    }
+
+
+def get_exercise_tasks(set_id: str, major: str = None, sub: str = None) -> list:
+    """Получить задания набора упражнений."""
+    exercises = _load_all_exercises(major, sub)
+    data = exercises.get(set_id)
+    if not data:
+        return []
+    return data.get("tasks", [])
+
+
+# ============================================================
+# Поиск по ID (для режима "Работа над ошибками")
+# ============================================================
+
+def get_words_by_ids(word_ids: list) -> list:
+    """Найти слова по word_id во всех уровнях с контентом.
+
+    word_id format: "{major}_{sub}_{category_id}_{de_word}"
+    e.g.  "A1_1_food_das Brot"
+    """
+    if not word_ids:
+        return []
+
+    word_id_set = set(word_ids)
+
+    # Determine which levels are needed and ensure their vocabulary is loaded
+    needed_level_keys = set()
+    for wid in word_id_set:
+        parts = wid.split("_", 2)  # ["A1", "1", "food_das Brot"]
+        if len(parts) >= 2:
+            needed_level_keys.add(f"{parts[0]}_{parts[1]}")
+
+    for level_key in needed_level_keys:
+        parts = level_key.split("_", 1)
+        if len(parts) == 2:
+            major, sub = parts
+            _load_all_vocabulary(major, sub)  # no-op if already cached
+
+    result = []
+    for level_key, cache_data in _cache.items():
+        if level_key not in needed_level_keys:
+            continue
+        if cache_data.get("vocabulary") is None:
+            continue
+        for category_id, category in cache_data["vocabulary"].items():
+            for word in category.get("words", []):
+                wid = f"{level_key}_{category_id}_{word.get('de', '')}"
+                if wid in word_id_set:
+                    result.append({
+                        "de": word.get("de", ""),
+                        "ru": word.get("ru", ""),
+                        "example": word.get("example", ""),
+                        "example_ru": word.get("example_ru", ""),
+                        "category_id": category_id,
+                        "category_name": category.get("name", ""),
+                        "word_id": wid,
+                        "level": level_key
+                    })
+
+    # Preserve order from word_ids (most errors first)
+    order = {wid: i for i, wid in enumerate(word_ids)}
+    result.sort(key=lambda w: order.get(w["word_id"], 999))
+    return result
+
+
+def get_all_phrases_flat(major: str = None, sub: str = None) -> list:
+    """Получить все фразы как плоский список (без дубликатов по phrase_id)."""
+    phrases = _load_all_phrases(major, sub)
+    level_key = _get_level_key(major, sub)
+    seen = set()
+    result = []
+    for category_id, category in phrases.items():
+        for phrase in category.get("phrases", []):
+            pid = f"{level_key}_{category_id}_{phrase.get('de', '')}"
+            if pid in seen:
+                continue
+            seen.add(pid)
+            result.append({
+                "de": phrase.get("de", ""),
+                "ru": phrase.get("ru", ""),
+                "context": phrase.get("context", ""),
+                "example": phrase.get("example", ""),
+                "example_ru": phrase.get("example_ru", ""),
+                "category_id": category_id,
+                "category_name": category.get("name", ""),
+                "phrase_id": pid,
+                "level": level_key
+            })
+    return result
+
+
+def get_phrases_by_ids(phrase_ids: list) -> list:
+    """Найти фразы по phrase_id во всех уровнях с контентом.
+
+    phrase_id format: "{major}_{sub}_{category_id}_{de_phrase}"
+    """
+    if not phrase_ids:
+        return []
+
+    phrase_id_set = set(phrase_ids)
+
+    # Ensure needed levels have their phrases loaded
+    needed_level_keys = set()
+    for pid in phrase_id_set:
+        parts = pid.split("_", 2)
+        if len(parts) >= 2:
+            needed_level_keys.add(f"{parts[0]}_{parts[1]}")
+
+    for level_key in needed_level_keys:
+        parts = level_key.split("_", 1)
+        if len(parts) == 2:
+            major, sub = parts
+            _load_all_phrases(major, sub)  # no-op if already cached
+
+    result = []
+    for level_key, cache_data in _cache.items():
+        if level_key not in needed_level_keys:
+            continue
+        if cache_data.get("phrases") is None:
+            continue
+        for category_id, category in cache_data["phrases"].items():
+            for phrase in category.get("phrases", []):
+                pid = f"{level_key}_{category_id}_{phrase.get('de', '')}"
+                if pid in phrase_id_set:
+                    result.append({
+                        "de": phrase.get("de", ""),
+                        "ru": phrase.get("ru", ""),
+                        "context": phrase.get("context", ""),
+                        "example": phrase.get("example", ""),
+                        "example_ru": phrase.get("example_ru", ""),
+                        "category_id": category_id,
+                        "category_name": category.get("name", ""),
+                        "phrase_id": pid,
+                        "level": level_key
+                    })
+
+    order = {pid: i for i, pid in enumerate(phrase_ids)}
+    result.sort(key=lambda p: order.get(p["phrase_id"], 999))
+    return result
+
+
+# ============================================================
 # Управление кэшем и инициализация
 # ============================================================
 
@@ -543,18 +804,19 @@ def init_content(major: str = None, sub: str = None):
     
     _load_all_vocabulary()
     _load_all_grammar()
-    _load_all_phrases()
-    _load_all_dialogues()
-    
-    vocab_stats = get_vocabulary_stats()
-    grammar_stats = get_grammar_stats()
     phrases = _load_all_phrases()
     dialogues = _load_all_dialogues()
-    
+    culture = _load_all_culture()
+    exercises = _load_all_exercises()
+
+    vocab_stats = get_vocabulary_stats()
+    grammar_stats = get_grammar_stats()
+
     logger.info(f"[{level_str}] Загружено: {vocab_stats['total_words']} слов в {vocab_stats['total_categories']} категориях")
     logger.info(f"[{level_str}] Загружено: {grammar_stats['total_questions']} вопросов в {grammar_stats['total_topics']} темах")
     logger.info(f"[{level_str}] Загружено: {len(phrases)} категорий phrases")
     logger.info(f"[{level_str}] Загружено: {len(dialogues)} диалогов")
+    logger.info(f"[{level_str}] Загружено: {len(culture)} тем культуры, {len(exercises)} наборов упражнений")
 
 
 def init_all_levels():
@@ -569,5 +831,7 @@ def init_all_levels():
         _load_all_grammar(major, sub)
         _load_all_phrases(major, sub)
         _load_all_dialogues(major, sub)
+        _load_all_culture(major, sub)
+        _load_all_exercises(major, sub)
     
     logger.info(f"Загружено {len(levels_with_content)} уровней с контентом")

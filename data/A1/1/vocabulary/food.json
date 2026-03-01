@@ -200,6 +200,586 @@
       "category": "spice",
       "example": "Pfeffer macht das Gericht würzig.",
       "example_ru": "Перец делает блюдо острее."
+    },
+    {
+      "de": "das Hähnchen",
+      "ru": "курица",
+      "category": "protein",
+      "example": "Ich esse gern Hähnchen.",
+      "example_ru": "Я люблю есть курицу."
+    },
+    {
+      "de": "das Rindfleisch",
+      "ru": "говядина",
+      "category": "protein",
+      "example": "Rindfleisch ist teuer.",
+      "example_ru": "Говядина дорогая."
+    },
+    {
+      "de": "das Schweinefleisch",
+      "ru": "свинина",
+      "category": "protein",
+      "example": "Ich esse kein Schweinefleisch.",
+      "example_ru": "Я не ем свинину."
+    },
+    {
+      "de": "die Wurst",
+      "ru": "колбаса",
+      "category": "protein",
+      "example": "Die Wurst schmeckt gut.",
+      "example_ru": "Колбаса вкусная."
+    },
+    {
+      "de": "der Schinken",
+      "ru": "ветчина",
+      "category": "protein",
+      "example": "Schinken auf dem Brot.",
+      "example_ru": "Ветчина на хлебе."
+    },
+    {
+      "de": "der Salat",
+      "ru": "салат",
+      "category": "vegetable",
+      "example": "Ich esse einen Salat.",
+      "example_ru": "Я ем салат."
+    },
+    {
+      "de": "die Suppe",
+      "ru": "суп",
+      "category": "meal",
+      "example": "Die Suppe ist heiß.",
+      "example_ru": "Суп горячий."
+    },
+    {
+      "de": "die Pizza",
+      "ru": "пицца",
+      "category": "meal",
+      "example": "Die Pizza ist lecker.",
+      "example_ru": "Пицца вкусная."
+    },
+    {
+      "de": "der Kuchen",
+      "ru": "пирог",
+      "category": "dessert",
+      "example": "Der Kuchen ist süß.",
+      "example_ru": "Пирог сладкий."
+    },
+    {
+      "de": "der Keks",
+      "ru": "печенье",
+      "category": "dessert",
+      "example": "Ich esse einen Keks.",
+      "example_ru": "Я ем печенье."
+    },
+    {
+      "de": "die Schokolade",
+      "ru": "шоколад",
+      "category": "dessert",
+      "example": "Schokolade schmeckt gut.",
+      "example_ru": "Шоколад вкусный."
+    },
+    {
+      "de": "das Eis",
+      "ru": "мороженое",
+      "category": "dessert",
+      "example": "Im Sommer esse ich Eis.",
+      "example_ru": "Летом я ем мороженое."
+    },
+    {
+      "de": "die Erdbeere",
+      "ru": "клубника",
+      "category": "fruit",
+      "example": "Erdbeeren sind süß.",
+      "example_ru": "Клубника сладкая."
+    },
+    {
+      "de": "die Traube",
+      "ru": "виноград",
+      "category": "fruit",
+      "example": "Trauben sind lecker.",
+      "example_ru": "Виноград вкусный."
+    },
+    {
+      "de": "die Birne",
+      "ru": "груша",
+      "category": "fruit",
+      "example": "Ich esse eine Birne.",
+      "example_ru": "Я ем грушу."
+    },
+    {
+      "de": "die Zitrone",
+      "ru": "лимон",
+      "category": "fruit",
+      "example": "Die Zitrone ist sauer.",
+      "example_ru": "Лимон кислый."
+    },
+    {
+      "de": "die Paprika",
+      "ru": "перец (овощ)",
+      "category": "vegetable",
+      "example": "Paprika ist gesund.",
+      "example_ru": "Перец полезный."
+    },
+    {
+      "de": "die Karotte",
+      "ru": "морковь",
+      "category": "vegetable",
+      "example": "Karotten sind gesund.",
+      "example_ru": "Морковь полезная."
+    },
+    {
+      "de": "die Zwiebel",
+      "ru": "лук",
+      "category": "vegetable",
+      "example": "Die Zwiebel ist scharf.",
+      "example_ru": "Лук острый."
+    },
+    {
+      "de": "der Knoblauch",
+      "ru": "чеснок",
+      "category": "vegetable",
+      "example": "Knoblauch ist gesund.",
+      "example_ru": "Чеснок полезный."
+    },
+    {
+      "de": "der Honig",
+      "ru": "мёд",
+      "category": "sweet",
+      "example": "Honig im Tee.",
+      "example_ru": "Мёд в чае."
+    },
+    {
+      "de": "die Marmelade",
+      "ru": "варенье",
+      "category": "sweet",
+      "example": "Marmelade auf dem Brot.",
+      "example_ru": "Варенье на хлебе."
+    },
+    {
+      "de": "die Sahne",
+      "ru": "сливки",
+      "category": "dairy",
+      "example": "Kaffee mit Sahne.",
+      "example_ru": "Кофе со сливками."
+    },
+    {
+      "de": "der Quark",
+      "ru": "творог",
+      "category": "dairy",
+      "example": "Quark ist gesund.",
+      "example_ru": "Творог полезный."
+    },
+    {
+      "de": "das Müsli",
+      "ru": "мюсли",
+      "category": "grain",
+      "example": "Ich esse Müsli zum Frühstück.",
+      "example_ru": "Я ем мюсли на завтрак."
+    },
+    {
+      "de": "das Frühstück",
+      "ru": "завтрак",
+      "category": "meal",
+      "example": "Das Frühstück ist um 8 Uhr.",
+      "example_ru": "Завтрак в 8 часов."
+    },
+    {
+      "de": "das Mittagessen",
+      "ru": "обед",
+      "category": "meal",
+      "example": "Wir essen Mittagessen.",
+      "example_ru": "Мы обедаем."
+    },
+    {
+      "de": "das Abendessen",
+      "ru": "ужин",
+      "category": "meal",
+      "example": "Das Abendessen ist fertig.",
+      "example_ru": "Ужин готов."
+    },
+    {
+      "de": "der Snack",
+      "ru": "перекус",
+      "category": "meal",
+      "example": "Ich esse einen Snack.",
+      "example_ru": "Я ем перекус."
+    },
+    {
+      "de": "das Restaurant",
+      "ru": "ресторан",
+      "category": "place",
+      "example": "Wir gehen ins Restaurant.",
+      "example_ru": "Мы идём в ресторан."
+    },
+    {
+      "de": "das Café",
+      "ru": "кафе",
+      "category": "place",
+      "example": "Wir sitzen im Café.",
+      "example_ru": "Мы сидим в кафе."
+    },
+    {
+      "de": "die Speisekarte",
+      "ru": "меню",
+      "category": "restaurant",
+      "example": "Die Speisekarte ist lang.",
+      "example_ru": "Меню длинное."
+    },
+    {
+      "de": "bestellen",
+      "ru": "заказывать",
+      "category": "restaurant",
+      "example": "Ich bestelle eine Pizza.",
+      "example_ru": "Я заказываю пиццу."
+    },
+    {
+      "de": "bezahlen",
+      "ru": "платить",
+      "category": "restaurant",
+      "example": "Ich bezahle die Rechnung.",
+      "example_ru": "Я оплачиваю счёт."
+    },
+    {
+      "de": "die Rechnung",
+      "ru": "счёт",
+      "category": "restaurant",
+      "example": "Die Rechnung, bitte.",
+      "example_ru": "Счёт, пожалуйста."
+    },
+    {
+      "de": "kochen",
+      "ru": "готовить",
+      "category": "kitchen",
+      "example": "Ich koche gern.",
+      "example_ru": "Я люблю готовить."
+    },
+    {
+      "de": "backen",
+      "ru": "печь",
+      "category": "kitchen",
+      "example": "Meine Mutter backt Kuchen.",
+      "example_ru": "Моя мама печёт пирог."
+    },
+    {
+      "de": "braten",
+      "ru": "жарить",
+      "category": "kitchen",
+      "example": "Ich brate Fleisch.",
+      "example_ru": "Я жарю мясо."
+    },
+    {
+      "de": "schneiden",
+      "ru": "резать",
+      "category": "kitchen",
+      "example": "Ich schneide Gemüse.",
+      "example_ru": "Я режу овощи."
+    },
+    {
+      "de": "das Messer",
+      "ru": "нож",
+      "category": "kitchen",
+      "example": "Das Messer ist scharf.",
+      "example_ru": "Нож острый."
+    },
+    {
+      "de": "die Gabel",
+      "ru": "вилка",
+      "category": "kitchen",
+      "example": "Ich esse mit der Gabel.",
+      "example_ru": "Я ем вилкой."
+    },
+    {
+      "de": "der Löffel",
+      "ru": "ложка",
+      "category": "kitchen",
+      "example": "Ich esse Suppe mit dem Löffel.",
+      "example_ru": "Я ем суп ложкой."
+    },
+    {
+      "de": "der Teller",
+      "ru": "тарелка",
+      "category": "kitchen",
+      "example": "Der Teller ist voll.",
+      "example_ru": "Тарелка полная."
+    },
+    {
+      "de": "das Glas",
+      "ru": "стакан",
+      "category": "kitchen",
+      "example": "Ein Glas Wasser.",
+      "example_ru": "Стакан воды."
+    },
+    {
+      "de": "die Tasse",
+      "ru": "чашка",
+      "category": "kitchen",
+      "example": "Eine Tasse Kaffee.",
+      "example_ru": "Чашка кофе."
+    },
+    {
+      "de": "der Hunger",
+      "ru": "голод",
+      "category": "feeling",
+      "example": "Ich habe Hunger.",
+      "example_ru": "Я голоден."
+    },
+    {
+      "de": "der Durst",
+      "ru": "жажда",
+      "category": "feeling",
+      "example": "Ich habe Durst.",
+      "example_ru": "Я хочу пить."
+    },
+    {
+      "de": "schmecken",
+      "ru": "быть на вкус",
+      "category": "verb",
+      "example": "Die Suppe schmeckt gut.",
+      "example_ru": "Суп вкусный."
+    },
+    {
+      "de": "süß",
+      "ru": "сладкий",
+      "category": "taste",
+      "example": "Der Kuchen ist süß.",
+      "example_ru": "Пирог сладкий."
+    },
+    {
+      "de": "sauer",
+      "ru": "кислый",
+      "category": "taste",
+      "example": "Die Zitrone ist sauer.",
+      "example_ru": "Лимон кислый."
+    },
+    {
+      "de": "die Kiwi",
+      "ru": "киви",
+      "category": "fruit",
+      "example": "Kiwi ist gesund.",
+      "example_ru": "Киви полезный."
+    },
+    {
+      "de": "die Melone",
+      "ru": "дыня",
+      "category": "fruit",
+      "example": "Die Melone ist süß.",
+      "example_ru": "Дыня сладкая."
+    },
+    {
+      "de": "die Ananas",
+      "ru": "ананас",
+      "category": "fruit",
+      "example": "Ananas schmeckt gut.",
+      "example_ru": "Ананас вкусный."
+    },
+    {
+      "de": "die Pflaume",
+      "ru": "слива",
+      "category": "fruit",
+      "example": "Pflaumen sind lecker.",
+      "example_ru": "Сливы вкусные."
+    },
+    {
+      "de": "die Kirsche",
+      "ru": "вишня",
+      "category": "fruit",
+      "example": "Kirschen sind rot.",
+      "example_ru": "Вишни красные."
+    },
+    {
+      "de": "die Himbeere",
+      "ru": "малина",
+      "category": "fruit",
+      "example": "Himbeeren sind süß.",
+      "example_ru": "Малина сладкая."
+    },
+    {
+      "de": "die Blaubeere",
+      "ru": "черника",
+      "category": "fruit",
+      "example": "Blaubeeren sind gesund.",
+      "example_ru": "Черника полезна."
+    },
+    {
+      "de": "der Spinat",
+      "ru": "шпинат",
+      "category": "vegetable",
+      "example": "Spinat ist gesund.",
+      "example_ru": "Шпинат полезный."
+    },
+    {
+      "de": "der Kohl",
+      "ru": "капуста",
+      "category": "vegetable",
+      "example": "Kohl ist ein Gemüse.",
+      "example_ru": "Капуста — это овощ."
+    },
+    {
+      "de": "die Bohne",
+      "ru": "фасоль",
+      "category": "vegetable",
+      "example": "Bohnen sind nahrhaft.",
+      "example_ru": "Фасоль питательная."
+    },
+    {
+      "de": "die Erbse",
+      "ru": "горох",
+      "category": "vegetable",
+      "example": "Erbsen sind grün.",
+      "example_ru": "Горох зелёный."
+    },
+    {
+      "de": "der Pilz",
+      "ru": "гриб",
+      "category": "vegetable",
+      "example": "Pilze schmecken gut.",
+      "example_ru": "Грибы вкусные."
+    },
+    {
+      "de": "die Aubergine",
+      "ru": "баклажан",
+      "category": "vegetable",
+      "example": "Die Aubergine ist lila.",
+      "example_ru": "Баклажан фиолетовый."
+    },
+    {
+      "de": "der Senf",
+      "ru": "горчица",
+      "category": "spice",
+      "example": "Senf auf der Wurst.",
+      "example_ru": "Горчица на колбасе."
+    },
+    {
+      "de": "das Öl",
+      "ru": "масло (растительное)",
+      "category": "spice",
+      "example": "Ich koche mit Öl.",
+      "example_ru": "Я готовлю на масле."
+    },
+    {
+      "de": "die Soße",
+      "ru": "соус",
+      "category": "spice",
+      "example": "Die Soße ist lecker.",
+      "example_ru": "Соус вкусный."
+    },
+    {
+      "de": "die Mayonnaise",
+      "ru": "майонез",
+      "category": "spice",
+      "example": "Mayonnaise zum Salat.",
+      "example_ru": "Майонез к салату."
+    },
+    {
+      "de": "der Toast",
+      "ru": "тост",
+      "category": "bread",
+      "example": "Toast mit Marmelade.",
+      "example_ru": "Тост с вареньем."
+    },
+    {
+      "de": "das Croissant",
+      "ru": "круассан",
+      "category": "bread",
+      "example": "Ein Croissant zum Kaffee.",
+      "example_ru": "Круассан к кофе."
+    },
+    {
+      "de": "die Torte",
+      "ru": "торт",
+      "category": "dessert",
+      "example": "Die Torte ist für dich.",
+      "example_ru": "Торт для тебя."
+    },
+    {
+      "de": "bitter",
+      "ru": "горький",
+      "category": "taste",
+      "example": "Der Kaffee ist bitter.",
+      "example_ru": "Кофе горький."
+    },
+    {
+      "de": "salzig",
+      "ru": "солёный",
+      "category": "taste",
+      "example": "Die Suppe ist salzig.",
+      "example_ru": "Суп солёный."
+    },
+    {
+      "de": "lecker",
+      "ru": "вкусный",
+      "category": "taste",
+      "example": "Das Essen ist lecker.",
+      "example_ru": "Еда вкусная."
+    },
+    {
+      "de": "die Nuss",
+      "ru": "орех",
+      "category": "other",
+      "example": "Nüsse sind gesund.",
+      "example_ru": "Орехи полезны."
+    },
+    {
+      "de": "der Apfelsaft",
+      "ru": "яблочный сок",
+      "category": "drink",
+      "example": "Ich trinke Apfelsaft.",
+      "example_ru": "Я пью яблочный сок."
+    },
+    {
+      "de": "die Limonade",
+      "ru": "лимонад",
+      "category": "drink",
+      "example": "Limonade ist erfrischend.",
+      "example_ru": "Лимонад освежающий."
+    },
+    {
+      "de": "die Küche",
+      "ru": "кухня",
+      "category": "place",
+      "example": "Wir kochen in der Küche.",
+      "example_ru": "Мы готовим на кухне."
+    },
+    {
+      "de": "die Serviette",
+      "ru": "салфетка",
+      "category": "kitchen",
+      "example": "Die Serviette liegt auf dem Tisch.",
+      "example_ru": "Салфетка лежит на столе."
+    },
+    {
+      "de": "die Flasche",
+      "ru": "бутылка",
+      "category": "kitchen",
+      "example": "Eine Flasche Wasser.",
+      "example_ru": "Бутылка воды."
     }
+  ],
+  "distractors": [
+    "фрукт",
+    "овощ",
+    "мясо",
+    "рыба",
+    "молоко",
+    "хлеб",
+    "сыр",
+    "суп",
+    "салат",
+    "десерт",
+    "напиток",
+    "завтрак",
+    "обед",
+    "ужин",
+    "рецепт",
+    "кухня",
+    "ресторан",
+    "кафе",
+    "аппетит",
+    "голод",
+    "жажда",
+    "специя",
+    "соус",
+    "гарнир",
+    "закуска"
   ]
 }

@@ -1,0 +1,615 @@
+{
+  "id": "shopping",
+  "name": "Покупки",
+  "name_de": "Einkaufen",
+  "description": "Покупки (уровень A2)",
+  "level": "A2",
+  "words": [
+    {
+      "de": "der Rabatt",
+      "ru": "скидка",
+      "example": "Heute gibt es 20% Rabatt.",
+      "example_ru": "Сегодня скидка 20%."
+    },
+    {
+      "de": "der Kassenbon",
+      "ru": "кассовый чек",
+      "example": "Brauchen Sie den Kassenbon?",
+      "example_ru": "Вам нужен чек?"
+    },
+    {
+      "de": "umtauschen",
+      "ru": "обменивать",
+      "example": "Kann ich die Hose umtauschen?",
+      "example_ru": "Могу я обменять брюки?"
+    },
+    {
+      "de": "die Reklamation",
+      "ru": "рекламация, претензия",
+      "example": "Ich möchte eine Reklamation machen.",
+      "example_ru": "Я хочу предъявить претензию."
+    },
+    {
+      "de": "die Garantie",
+      "ru": "гарантия",
+      "example": "Das Gerät hat zwei Jahre Garantie.",
+      "example_ru": "На прибор два года гарантии."
+    },
+    {
+      "de": "der Einkaufswagen",
+      "ru": "тележка (в магазине)",
+      "example": "Wo sind die Einkaufswagen?",
+      "example_ru": "Где тележки?"
+    },
+    {
+      "de": "die Kasse",
+      "ru": "касса",
+      "example": "An der Kasse bitte.",
+      "example_ru": "К кассе, пожалуйста."
+    },
+    {
+      "de": "bar",
+      "ru": "наличными",
+      "example": "Zahlen Sie bar oder mit Karte?",
+      "example_ru": "Платите наличными или картой?"
+    },
+    {
+      "de": "die Lieferung",
+      "ru": "доставка",
+      "example": "Die Lieferung dauert 3 Tage.",
+      "example_ru": "Доставка займёт 3 дня."
+    },
+    {
+      "de": "bestellen",
+      "ru": "заказывать (покупку)",
+      "example": "Ich habe das Buch online bestellt.",
+      "example_ru": "Я заказал книгу онлайн."
+    },
+    {
+      "de": "das Geschäft",
+      "ru": "магазин",
+      "example": "Das Geschäft ist offen.",
+      "example_ru": "Магазин открыт."
+    },
+    {
+      "de": "der Supermarkt",
+      "ru": "супермаркет",
+      "example": "Ich gehe zum Supermarkt.",
+      "example_ru": "Я иду в супермаркет."
+    },
+    {
+      "de": "der Laden",
+      "ru": "магазин",
+      "example": "Der Laden ist geschlossen.",
+      "example_ru": "Магазин закрыт."
+    },
+    {
+      "de": "das Geld",
+      "ru": "деньги",
+      "example": "Ich habe kein Geld.",
+      "example_ru": "У меня нет денег."
+    },
+    {
+      "de": "der Euro",
+      "ru": "евро",
+      "example": "Das kostet 5 Euro.",
+      "example_ru": "Это стоит 5 евро."
+    },
+    {
+      "de": "der Cent",
+      "ru": "цент",
+      "example": "50 Cent, bitte.",
+      "example_ru": "50 центов, пожалуйста."
+    },
+    {
+      "de": "der Preis",
+      "ru": "цена",
+      "example": "Der Preis ist gut.",
+      "example_ru": "Цена хорошая."
+    },
+    {
+      "de": "teuer",
+      "ru": "дорогой",
+      "example": "Das ist zu teuer.",
+      "example_ru": "Это слишком дорого."
+    },
+    {
+      "de": "billig",
+      "ru": "дешёвый",
+      "example": "Das ist billig.",
+      "example_ru": "Это дёшево."
+    },
+    {
+      "de": "günstig",
+      "ru": "выгодный",
+      "example": "Das Angebot ist günstig.",
+      "example_ru": "Предложение выгодное."
+    },
+    {
+      "de": "bezahlen",
+      "ru": "платить",
+      "example": "Wo kann ich bezahlen?",
+      "example_ru": "Где я могу заплатить?"
+    },
+    {
+      "de": "offen",
+      "ru": "открыто",
+      "example": "Der Laden ist offen.",
+      "example_ru": "Магазин открыт."
+    },
+    {
+      "de": "geschlossen",
+      "ru": "закрыто",
+      "example": "Heute geschlossen.",
+      "example_ru": "Сегодня закрыто."
+    },
+    {
+      "de": "der Markt",
+      "ru": "рынок",
+      "example": "Ich gehe auf den Markt.",
+      "example_ru": "Я иду на рынок."
+    },
+    {
+      "de": "die Bäckerei",
+      "ru": "пекарня",
+      "example": "Die Bäckerei hat gutes Brot.",
+      "example_ru": "В пекарне хороший хлеб."
+    },
+    {
+      "de": "die Apotheke",
+      "ru": "аптека",
+      "example": "Die Apotheke ist um die Ecke.",
+      "example_ru": "Аптека за углом."
+    },
+    {
+      "de": "die Buchhandlung",
+      "ru": "книжный магазин",
+      "example": "Ich kaufe ein Buch in der Buchhandlung.",
+      "example_ru": "Я покупаю книгу в книжном магазине."
+    },
+    {
+      "de": "einkaufen",
+      "ru": "делать покупки",
+      "example": "Ich gehe einkaufen.",
+      "example_ru": "Я иду за покупками."
+    },
+    {
+      "de": "der Einkauf",
+      "ru": "покупка",
+      "example": "Der Einkauf war teuer.",
+      "example_ru": "Покупка была дорогой."
+    },
+    {
+      "de": "der Kunde",
+      "ru": "покупатель",
+      "example": "Der Kunde bezahlt an der Kasse.",
+      "example_ru": "Покупатель платит у кассы."
+    },
+    {
+      "de": "die Kundin",
+      "ru": "покупательница",
+      "example": "Die Kundin sucht eine Größe.",
+      "example_ru": "Покупательница ищет размер."
+    },
+    {
+      "de": "die Tüte",
+      "ru": "пакет",
+      "example": "Eine Tüte, bitte.",
+      "example_ru": "Пакет, пожалуйста."
+    },
+    {
+      "de": "die Tasche",
+      "ru": "сумка",
+      "example": "Ich habe meine Tasche vergessen.",
+      "example_ru": "Я забыл сумку."
+    },
+    {
+      "de": "die Packung",
+      "ru": "упаковка",
+      "example": "Eine Packung Milch.",
+      "example_ru": "Упаковка молока."
+    },
+    {
+      "de": "die Dose",
+      "ru": "банка",
+      "example": "Eine Dose Bohnen.",
+      "example_ru": "Банка фасоли."
+    },
+    {
+      "de": "die Schachtel",
+      "ru": "коробка",
+      "example": "Eine Schachtel Schokolade.",
+      "example_ru": "Коробка шоколада."
+    },
+    {
+      "de": "das Kilo",
+      "ru": "килограмм",
+      "example": "Ein Kilo Äpfel.",
+      "example_ru": "Килограмм яблок."
+    },
+    {
+      "de": "das Gramm",
+      "ru": "грамм",
+      "example": "100 Gramm Käse.",
+      "example_ru": "100 грамм сыра."
+    },
+    {
+      "de": "die Waage",
+      "ru": "весы",
+      "example": "Die Waage steht beim Obst.",
+      "example_ru": "Весы стоят у фруктов."
+    },
+    {
+      "de": "der Kassenzettel",
+      "ru": "чек",
+      "example": "Ich brauche den Kassenzettel.",
+      "example_ru": "Мне нужен чек."
+    },
+    {
+      "de": "die Rechnung",
+      "ru": "счёт",
+      "example": "Die Rechnung, bitte.",
+      "example_ru": "Счёт, пожалуйста."
+    },
+    {
+      "de": "die Quittung",
+      "ru": "квитанция",
+      "example": "Brauchen Sie eine Quittung?",
+      "example_ru": "Вам нужна квитанция?"
+    },
+    {
+      "de": "die EC-Karte",
+      "ru": "банковская карта",
+      "example": "Kann ich mit EC-Karte zahlen?",
+      "example_ru": "Можно платить картой?"
+    },
+    {
+      "de": "die Kreditkarte",
+      "ru": "кредитная карта",
+      "example": "Nehmen Sie Kreditkarte?",
+      "example_ru": "Вы принимаете кредитную карту?"
+    },
+    {
+      "de": "der Geldbeutel",
+      "ru": "кошелёк",
+      "example": "Mein Geldbeutel ist leer.",
+      "example_ru": "Мой кошелёк пустой."
+    },
+    {
+      "de": "die Brieftasche",
+      "ru": "бумажник",
+      "example": "Er hat seine Brieftasche verloren.",
+      "example_ru": "Он потерял бумажник."
+    },
+    {
+      "de": "der Automat",
+      "ru": "автомат",
+      "example": "Am Automat kann man bezahlen.",
+      "example_ru": "В автомате можно заплатить."
+    },
+    {
+      "de": "die Öffnungszeiten",
+      "ru": "часы работы",
+      "example": "Was sind die Öffnungszeiten?",
+      "example_ru": "Какие часы работы?"
+    },
+    {
+      "de": "der Verkäufer",
+      "ru": "продавец",
+      "example": "Der Verkäufer hilft mir.",
+      "example_ru": "Продавец мне помогает."
+    },
+    {
+      "de": "die Verkäuferin",
+      "ru": "продавщица",
+      "example": "Die Verkäuferin ist freundlich.",
+      "example_ru": "Продавщица дружелюбная."
+    },
+    {
+      "de": "die Ermäßigung",
+      "ru": "скидка",
+      "example": "Ermäßigung für Studenten.",
+      "example_ru": "Скидка для студентов."
+    },
+    {
+      "de": "das Sonderangebot",
+      "ru": "специальное предложение",
+      "example": "Das Sonderangebot gilt bis Freitag.",
+      "example_ru": "Спецпредложение действует до пятницы."
+    },
+    {
+      "de": "anprobieren",
+      "ru": "примерять",
+      "example": "Darf ich anprobieren?",
+      "example_ru": "Можно примерить?"
+    },
+    {
+      "de": "passen",
+      "ru": "подходить",
+      "example": "Passt das?",
+      "example_ru": "Подходит?"
+    },
+    {
+      "de": "die Größe",
+      "ru": "размер",
+      "example": "Welche Größe haben Sie?",
+      "example_ru": "Какой у вас размер?"
+    },
+    {
+      "de": "die Farbe",
+      "ru": "цвет",
+      "example": "In welcher Farbe?",
+      "example_ru": "В каком цвете?"
+    },
+    {
+      "de": "das Kleid",
+      "ru": "платье",
+      "example": "Das Kleid ist schön.",
+      "example_ru": "Платье красивое."
+    },
+    {
+      "de": "die Hose",
+      "ru": "брюки",
+      "example": "Die Hose passt gut.",
+      "example_ru": "Брюки хорошо сидят."
+    },
+    {
+      "de": "die Jacke",
+      "ru": "куртка",
+      "example": "Die Jacke ist aus Leder.",
+      "example_ru": "Куртка из кожи."
+    },
+    {
+      "de": "der Mantel",
+      "ru": "пальто",
+      "example": "Im Winter trage ich einen Mantel.",
+      "example_ru": "Зимой я ношу пальто."
+    },
+    {
+      "de": "die Bluse",
+      "ru": "блузка",
+      "example": "Die Bluse ist blau.",
+      "example_ru": "Блузка синяя."
+    },
+    {
+      "de": "das Hemd",
+      "ru": "рубашка",
+      "example": "Er trägt ein weißes Hemd.",
+      "example_ru": "Он носит белую рубашку."
+    },
+    {
+      "de": "die Schuhe",
+      "ru": "туфли",
+      "example": "Die Schuhe sind bequem.",
+      "example_ru": "Туфли удобные."
+    },
+    {
+      "de": "der Schuh",
+      "ru": "туфля",
+      "example": "Ein Paar Schuhe.",
+      "example_ru": "Пара туфель."
+    },
+    {
+      "de": "die Handschuhe",
+      "ru": "перчатки",
+      "example": "Im Winter brauche ich Handschuhe.",
+      "example_ru": "Зимой мне нужны перчатки."
+    },
+    {
+      "de": "der Schal",
+      "ru": "шарф",
+      "example": "Ein warmer Schal.",
+      "example_ru": "Тёплый шарф."
+    },
+    {
+      "de": "der Hut",
+      "ru": "шляпа",
+      "example": "Er trägt einen Hut.",
+      "example_ru": "Он носит шляпу."
+    },
+    {
+      "de": "die Mütze",
+      "ru": "шапка",
+      "example": "Die Mütze ist warm.",
+      "example_ru": "Шапка тёплая."
+    },
+    {
+      "de": "die Sonnenbrille",
+      "ru": "солнечные очки",
+      "example": "Ich brauche eine Sonnenbrille.",
+      "example_ru": "Мне нужны солнечные очки."
+    },
+    {
+      "de": "die Armbanduhr",
+      "ru": "наручные часы",
+      "example": "Meine Armbanduhr ist teuer.",
+      "example_ru": "Мои часы дорогие."
+    },
+    {
+      "de": "der Ring",
+      "ru": "кольцо",
+      "example": "Ein goldener Ring.",
+      "example_ru": "Золотое кольцо."
+    },
+    {
+      "de": "die Ohrringe",
+      "ru": "серьги",
+      "example": "Die Ohrringe sind schön.",
+      "example_ru": "Серьги красивые."
+    },
+    {
+      "de": "die Kette",
+      "ru": "цепочка",
+      "example": "Eine silberne Kette.",
+      "example_ru": "Серебряная цепочка."
+    },
+    {
+      "de": "das Parfüm",
+      "ru": "духи",
+      "example": "Sie trägt Parfüm.",
+      "example_ru": "Она пользуется духами."
+    },
+    {
+      "de": "die Creme",
+      "ru": "крем",
+      "example": "Ich kaufe eine Creme.",
+      "example_ru": "Я покупаю крем."
+    },
+    {
+      "de": "der Artikel",
+      "ru": "товар",
+      "example": "Dieser Artikel ist ausverkauft.",
+      "example_ru": "Этого товара нет в наличии."
+    },
+    {
+      "de": "die Ware",
+      "ru": "товар",
+      "example": "Die Ware ist gut.",
+      "example_ru": "Товар хороший."
+    },
+    {
+      "de": "die Auslage",
+      "ru": "витрина",
+      "example": "Die Auslage ist schön dekoriert.",
+      "example_ru": "Витрина красиво оформлена."
+    },
+    {
+      "de": "die Vitrine",
+      "ru": "витрина",
+      "example": "In der Vitrine liegen Uhren.",
+      "example_ru": "В витрине лежат часы."
+    },
+    {
+      "de": "die Umkleidekabine",
+      "ru": "примерочная",
+      "example": "Wo ist die Umkleidekabine?",
+      "example_ru": "Где примерочная?"
+    },
+    {
+      "de": "die Einkaufsliste",
+      "ru": "список покупок",
+      "example": "Ich habe eine Einkaufsliste.",
+      "example_ru": "У меня есть список покупок."
+    },
+    {
+      "de": "der Warenkorb",
+      "ru": "корзина",
+      "example": "Der Warenkorb ist voll.",
+      "example_ru": "Корзина полная."
+    },
+    {
+      "de": "zurückgeben",
+      "ru": "вернуть",
+      "example": "Ich möchte das zurückgeben.",
+      "example_ru": "Я хочу вернуть это."
+    },
+    {
+      "de": "der Bon",
+      "ru": "чек",
+      "example": "Bitte den Bon aufbewahren.",
+      "example_ru": "Сохраните чек."
+    },
+    {
+      "de": "die Papiertüte",
+      "ru": "бумажный пакет",
+      "example": "Eine Papiertüte, bitte.",
+      "example_ru": "Бумажный пакет, пожалуйста."
+    },
+    {
+      "de": "die Plastiktüte",
+      "ru": "пластиковый пакет",
+      "example": "Brauchen Sie eine Plastiktüte?",
+      "example_ru": "Вам нужен пакет?"
+    },
+    {
+      "de": "der Becher",
+      "ru": "стакан",
+      "example": "Ein Becher Kaffee.",
+      "example_ru": "Стакан кофе."
+    },
+    {
+      "de": "das Besteck",
+      "ru": "столовые приборы",
+      "example": "Besteck für vier Personen.",
+      "example_ru": "Приборы на четверых."
+    },
+    {
+      "de": "zu groß",
+      "ru": "слишком большой",
+      "example": "Das ist mir zu groß.",
+      "example_ru": "Мне это велико."
+    },
+    {
+      "de": "zu klein",
+      "ru": "слишком маленький",
+      "example": "Das ist zu klein.",
+      "example_ru": "Это слишком маленькое."
+    },
+    {
+      "de": "die Sache",
+      "ru": "вещь",
+      "example": "Eine schöne Sache.",
+      "example_ru": "Красивая вещь."
+    },
+    {
+      "de": "vorrätig",
+      "ru": "в наличии",
+      "example": "Ist das vorrätig?",
+      "example_ru": "Это есть в наличии?"
+    },
+    {
+      "de": "ausverkauft",
+      "ru": "распродано",
+      "example": "Leider ausverkauft.",
+      "example_ru": "К сожалению, распродано."
+    },
+    {
+      "de": "die Zahlung",
+      "ru": "оплата",
+      "example": "Die Zahlung ist bar.",
+      "example_ru": "Оплата наличными."
+    },
+    {
+      "de": "das Wechselgeld",
+      "ru": "сдача",
+      "example": "Stimmt so, kein Wechselgeld.",
+      "example_ru": "Сдачи не надо."
+    },
+    {
+      "de": "der Einkaufsbummel",
+      "ru": "шопинг",
+      "example": "Wir machen einen Einkaufsbummel.",
+      "example_ru": "Мы идём за покупками."
+    },
+    {
+      "de": "das Angebot",
+      "ru": "предложение",
+      "example": "Das Angebot gilt nur heute.",
+      "example_ru": "Предложение только на сегодня."
+    },
+    {
+      "de": "der Prospekt",
+      "ru": "проспект/реклама",
+      "example": "Im Prospekt stehen die Angebote.",
+      "example_ru": "В проспекте указаны предложения."
+    },
+    {
+      "de": "der Schlussverkauf",
+      "ru": "распродажа",
+      "example": "Im Schlussverkauf ist alles billiger.",
+      "example_ru": "На распродаже всё дешевле."
+    },
+    {
+      "de": "der Bäcker",
+      "ru": "пекарь",
+      "example": "Der Bäcker backt Brot.",
+      "example_ru": "Пекарь печёт хлеб."
+    },
+    {
+      "de": "die Kassiererin",
+      "ru": "кассир",
+      "example": "Die Kassiererin scannt die Waren.",
+      "example_ru": "Кассир сканирует товары."
+    }
+  ]
+}

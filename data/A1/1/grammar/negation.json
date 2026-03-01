@@ -87,6 +87,18 @@
       "options": ["nicht", "kein", "keine"],
       "correct": 1,
       "explanation": "kein + профессия (сущ. муж. рода)"
+    },
+    {
+      "question": "Ich habe ___ Problem.",
+      "options": ["nicht", "kein", "keine"],
+      "correct": 1,
+      "explanation": "kein + существительное среднего рода"
+    },
+    {
+      "question": "Das schmeckt ___ gut.",
+      "options": ["nicht", "kein", "keine"],
+      "correct": 0,
+      "explanation": "nicht отрицает наречие/прилагательное"
     }
   ]
 }

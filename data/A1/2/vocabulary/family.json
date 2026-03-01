@@ -1,0 +1,621 @@
+{
+  "id": "family",
+  "name": "Семья",
+  "name_de": "Familie",
+  "description": "Семья и родственники (уровень A2)",
+  "level": "A2",
+  "words": [
+    {
+      "de": "der Schwiegersohn",
+      "ru": "зять",
+      "example": "Mein Schwiegersohn arbeitet in Berlin.",
+      "example_ru": "Мой зять работает в Берлине."
+    },
+    {
+      "de": "die Schwiegertochter",
+      "ru": "невестка",
+      "example": "Meine Schwiegertochter kommt aus Polen.",
+      "example_ru": "Моя невестка из Польши."
+    },
+    {
+      "de": "der Enkel",
+      "ru": "внук",
+      "example": "Meine Enkel besuchen mich oft.",
+      "example_ru": "Мои внуки часто навещают меня."
+    },
+    {
+      "de": "die Enkelin",
+      "ru": "внучка",
+      "example": "Die Enkelin spielt im Garten.",
+      "example_ru": "Внучка играет в саду."
+    },
+    {
+      "de": "der Neffe",
+      "ru": "племянник",
+      "example": "Mein Neffe studiert Medizin.",
+      "example_ru": "Мой племянник изучает медицину."
+    },
+    {
+      "de": "die Nichte",
+      "ru": "племянница",
+      "example": "Meine Nichte wohnt in Hamburg.",
+      "example_ru": "Моя племянница живёт в Гамбурге."
+    },
+    {
+      "de": "der Cousin",
+      "ru": "двоюродный брат",
+      "example": "Mein Cousin ist Ingenieur.",
+      "example_ru": "Мой двоюродный брат — инженер."
+    },
+    {
+      "de": "die Cousine",
+      "ru": "двоюродная сестра",
+      "example": "Meine Cousine reist gern.",
+      "example_ru": "Моя двоюродная сестра любит путешествовать."
+    },
+    {
+      "de": "der Stiefvater",
+      "ru": "отчим",
+      "example": "Mein Stiefvater ist sehr nett.",
+      "example_ru": "Мой отчим очень добрый."
+    },
+    {
+      "de": "die Stiefmutter",
+      "ru": "мачеха",
+      "example": "Sie hat eine gute Stiefmutter.",
+      "example_ru": "У неё хорошая мачеха."
+    },
+    {
+      "de": "die Familie",
+      "ru": "семья",
+      "example": "Meine Familie ist groß.",
+      "example_ru": "Моя семья большая."
+    },
+    {
+      "de": "die Mutter",
+      "ru": "мать",
+      "example": "Meine Mutter heißt Maria.",
+      "example_ru": "Мою маму зовут Мария."
+    },
+    {
+      "de": "der Vater",
+      "ru": "отец",
+      "example": "Mein Vater arbeitet viel.",
+      "example_ru": "Мой отец много работает."
+    },
+    {
+      "de": "die Eltern",
+      "ru": "родители",
+      "example": "Meine Eltern wohnen in Moskau.",
+      "example_ru": "Мои родители живут в Москве."
+    },
+    {
+      "de": "die Schwester",
+      "ru": "сестра",
+      "example": "Ich habe eine Schwester.",
+      "example_ru": "У меня есть сестра."
+    },
+    {
+      "de": "der Bruder",
+      "ru": "брат",
+      "example": "Mein Bruder ist 20 Jahre alt.",
+      "example_ru": "Моему брату 20 лет."
+    },
+    {
+      "de": "die Großmutter",
+      "ru": "бабушка",
+      "example": "Meine Großmutter kocht gut.",
+      "example_ru": "Моя бабушка хорошо готовит."
+    },
+    {
+      "de": "der Großvater",
+      "ru": "дедушка",
+      "example": "Mein Großvater ist 80.",
+      "example_ru": "Моему дедушке 80 лет."
+    },
+    {
+      "de": "die Oma",
+      "ru": "бабушка (разг.)",
+      "example": "Oma backt Kuchen.",
+      "example_ru": "Бабушка печёт пирог."
+    },
+    {
+      "de": "der Opa",
+      "ru": "дедушка (разг.)",
+      "example": "Opa liest Zeitung.",
+      "example_ru": "Дедушка читает газету."
+    },
+    {
+      "de": "das Kind",
+      "ru": "ребёнок",
+      "example": "Das Kind spielt.",
+      "example_ru": "Ребёнок играет."
+    },
+    {
+      "de": "der Sohn",
+      "ru": "сын",
+      "example": "Mein Sohn geht zur Schule.",
+      "example_ru": "Мой сын ходит в школу."
+    },
+    {
+      "de": "die Tochter",
+      "ru": "дочь",
+      "example": "Meine Tochter ist 5.",
+      "example_ru": "Моей дочери 5 лет."
+    },
+    {
+      "de": "der Mann",
+      "ru": "муж/мужчина",
+      "example": "Mein Mann arbeitet.",
+      "example_ru": "Мой муж работает."
+    },
+    {
+      "de": "die Frau",
+      "ru": "жена/женщина",
+      "example": "Meine Frau ist Ärztin.",
+      "example_ru": "Моя жена — врач."
+    },
+    {
+      "de": "die Tante",
+      "ru": "тётя",
+      "example": "Meine Tante wohnt in Berlin.",
+      "example_ru": "Моя тётя живёт в Берлине."
+    },
+    {
+      "de": "der Onkel",
+      "ru": "дядя",
+      "example": "Mein Onkel ist nett.",
+      "example_ru": "Мой дядя милый."
+    },
+    {
+      "de": "die Schwiegermutter",
+      "ru": "тёща/свекровь",
+      "example": "Meine Schwiegermutter kommt morgen.",
+      "example_ru": "Моя тёща приедет завтра."
+    },
+    {
+      "de": "der Schwiegervater",
+      "ru": "тесть/свёкор",
+      "example": "Mein Schwiegervater ist Rentner.",
+      "example_ru": "Мой тесть — пенсионер."
+    },
+    {
+      "de": "die Schwiegereltern",
+      "ru": "родители мужа/жены",
+      "example": "Meine Schwiegereltern wohnen hier.",
+      "example_ru": "Родители мужа живут здесь."
+    },
+    {
+      "de": "die Hochzeit",
+      "ru": "свадьба",
+      "example": "Die Hochzeit ist im Sommer.",
+      "example_ru": "Свадьба летом."
+    },
+    {
+      "de": "heiraten",
+      "ru": "жениться/выходить замуж",
+      "example": "Sie heiraten im Mai.",
+      "example_ru": "Они женятся в мае."
+    },
+    {
+      "de": "geschieden",
+      "ru": "разведённый",
+      "example": "Er ist geschieden.",
+      "example_ru": "Он разведён."
+    },
+    {
+      "de": "verwitwet",
+      "ru": "овдовевший",
+      "example": "Sie ist verwitwet.",
+      "example_ru": "Она вдова."
+    },
+    {
+      "de": "der Partner",
+      "ru": "партнёр",
+      "example": "Mein Partner arbeitet viel.",
+      "example_ru": "Мой партнёр много работает."
+    },
+    {
+      "de": "die Partnerin",
+      "ru": "партнёрша",
+      "example": "Seine Partnerin ist nett.",
+      "example_ru": "Его партнёрша милая."
+    },
+    {
+      "de": "das Baby",
+      "ru": "младенец",
+      "example": "Das Baby schläft.",
+      "example_ru": "Младенец спит."
+    },
+    {
+      "de": "das Geschwister",
+      "ru": "брат или сестра",
+      "example": "Ich habe ein Geschwister.",
+      "example_ru": "У меня есть брат или сестра."
+    },
+    {
+      "de": "die Geschwister",
+      "ru": "братья и сёстры",
+      "example": "Ich habe zwei Geschwister.",
+      "example_ru": "У меня есть два брата или сестры."
+    },
+    {
+      "de": "das Ehepaar",
+      "ru": "супружеская пара",
+      "example": "Das Ehepaar ist alt.",
+      "example_ru": "Супружеская пара пожилая."
+    },
+    {
+      "de": "die Ehe",
+      "ru": "брак",
+      "example": "Die Ehe ist wichtig.",
+      "example_ru": "Брак важен."
+    },
+    {
+      "de": "die Beziehung",
+      "ru": "отношения",
+      "example": "Die Beziehung ist gut.",
+      "example_ru": "Отношения хорошие."
+    },
+    {
+      "de": "verlobt",
+      "ru": "помолвлен",
+      "example": "Sie sind verlobt.",
+      "example_ru": "Они помолвлены."
+    },
+    {
+      "de": "der Verwandte",
+      "ru": "родственник",
+      "example": "Ein Verwandter kommt zu Besuch.",
+      "example_ru": "Родственник приходит в гости."
+    },
+    {
+      "de": "die Verwandten",
+      "ru": "родственники",
+      "example": "Meine Verwandten wohnen in Deutschland.",
+      "example_ru": "Мои родственники живут в Германии."
+    },
+    {
+      "de": "der Schwager",
+      "ru": "зять/шурин",
+      "example": "Mein Schwager ist Arzt.",
+      "example_ru": "Мой зять врач."
+    },
+    {
+      "de": "die Schwägerin",
+      "ru": "невестка/золовка",
+      "example": "Meine Schwägerin ist Lehrerin.",
+      "example_ru": "Моя невестка учительница."
+    },
+    {
+      "de": "der Stiefbruder",
+      "ru": "сводный брат",
+      "example": "Mein Stiefbruder ist jung.",
+      "example_ru": "Мой сводный брат молодой."
+    },
+    {
+      "de": "die Stiefschwester",
+      "ru": "сводная сестра",
+      "example": "Meine Stiefschwester lernt Deutsch.",
+      "example_ru": "Моя сводная сестра учит немецкий."
+    },
+    {
+      "de": "die Geburt",
+      "ru": "рождение",
+      "example": "Die Geburt war im März.",
+      "example_ru": "Рождение было в марте."
+    },
+    {
+      "de": "geboren",
+      "ru": "рождённый",
+      "example": "Ich bin 1990 geboren.",
+      "example_ru": "Я родился в 1990 году."
+    },
+    {
+      "de": "der Name",
+      "ru": "имя",
+      "example": "Wie ist dein Name?",
+      "example_ru": "Как тебя зовут?"
+    },
+    {
+      "de": "der Vorname",
+      "ru": "имя (личное)",
+      "example": "Mein Vorname ist Ivan.",
+      "example_ru": "Моё имя Иван."
+    },
+    {
+      "de": "der Nachname",
+      "ru": "фамилия",
+      "example": "Mein Nachname ist Müller.",
+      "example_ru": "Моя фамилия Мюллер."
+    },
+    {
+      "de": "der Geburtstag",
+      "ru": "день рождения",
+      "example": "Heute ist mein Geburtstag.",
+      "example_ru": "Сегодня мой день рождения."
+    },
+    {
+      "de": "die Einladung",
+      "ru": "приглашение",
+      "example": "Danke für die Einladung.",
+      "example_ru": "Спасибо за приглашение."
+    },
+    {
+      "de": "einladen",
+      "ru": "приглашать",
+      "example": "Ich lade dich ein.",
+      "example_ru": "Я приглашаю тебя."
+    },
+    {
+      "de": "besuchen",
+      "ru": "навещать",
+      "example": "Ich besuche meine Eltern.",
+      "example_ru": "Я навещаю родителей."
+    },
+    {
+      "de": "zusammen",
+      "ru": "вместе",
+      "example": "Wir wohnen zusammen.",
+      "example_ru": "Мы живём вместе."
+    },
+    {
+      "de": "allein",
+      "ru": "один",
+      "example": "Er lebt allein.",
+      "example_ru": "Он живёт один."
+    },
+    {
+      "de": "die Generation",
+      "ru": "поколение",
+      "example": "Das ist eine neue Generation.",
+      "example_ru": "Это новое поколение."
+    },
+    {
+      "de": "die Kindheit",
+      "ru": "детство",
+      "example": "Meine Kindheit war schön.",
+      "example_ru": "Моё детство было счастливым."
+    },
+    {
+      "de": "aufwachsen",
+      "ru": "вырастать",
+      "example": "Ich wachse in Deutschland auf.",
+      "example_ru": "Я расту в Германии."
+    },
+    {
+      "de": "erziehen",
+      "ru": "воспитывать",
+      "example": "Die Eltern erziehen das Kind.",
+      "example_ru": "Родители воспитывают ребёнка."
+    },
+    {
+      "de": "die Erziehung",
+      "ru": "воспитание",
+      "example": "Die Erziehung ist wichtig.",
+      "example_ru": "Воспитание важно."
+    },
+    {
+      "de": "sich streiten",
+      "ru": "ссориться",
+      "example": "Die Geschwister streiten sich.",
+      "example_ru": "Братья и сёстры ссорятся."
+    },
+    {
+      "de": "helfen",
+      "ru": "помогать",
+      "example": "Ich helfe meiner Mutter.",
+      "example_ru": "Я помогаю маме."
+    },
+    {
+      "de": "lieben",
+      "ru": "любить",
+      "example": "Ich liebe meine Familie.",
+      "example_ru": "Я люблю свою семью."
+    },
+    {
+      "de": "sorgen für",
+      "ru": "заботиться о",
+      "example": "Die Eltern sorgen für das Kind.",
+      "example_ru": "Родители заботятся о ребёнке."
+    },
+    {
+      "de": "unterstützen",
+      "ru": "поддерживать",
+      "example": "Wir unterstützen unsere Kinder.",
+      "example_ru": "Мы поддерживаем наших детей."
+    },
+    {
+      "de": "sich verstehen",
+      "ru": "ладить",
+      "example": "Wir verstehen uns gut.",
+      "example_ru": "Мы хорошо ладим."
+    },
+    {
+      "de": "die Liebe",
+      "ru": "любовь",
+      "example": "Liebe ist wichtig.",
+      "example_ru": "Любовь важна."
+    },
+    {
+      "de": "die Feier",
+      "ru": "праздник",
+      "example": "Die Feier ist schön.",
+      "example_ru": "Праздник красивый."
+    },
+    {
+      "de": "feiern",
+      "ru": "праздновать",
+      "example": "Wir feiern Geburtstag.",
+      "example_ru": "Мы празднуем день рождения."
+    },
+    {
+      "de": "der Besuch",
+      "ru": "визит",
+      "example": "Der Besuch kommt heute.",
+      "example_ru": "Гости придут сегодня."
+    },
+    {
+      "de": "vermissen",
+      "ru": "скучать по",
+      "example": "Ich vermisse meine Familie.",
+      "example_ru": "Я скучаю по своей семье."
+    },
+    {
+      "de": "sich kümmern um",
+      "ru": "заботиться о",
+      "example": "Sie kümmert sich um das Baby.",
+      "example_ru": "Она заботится о ребёнке."
+    },
+    {
+      "de": "die Trennung",
+      "ru": "разлука",
+      "example": "Die Trennung ist schwer.",
+      "example_ru": "Разлука тяжёлая."
+    },
+    {
+      "de": "trennen",
+      "ru": "разделять/расставаться",
+      "example": "Sie trennen sich.",
+      "example_ru": "Они расстаются."
+    },
+    {
+      "de": "die Scheidung",
+      "ru": "развод",
+      "example": "Die Scheidung ist offiziell.",
+      "example_ru": "Развод официальный."
+    },
+    {
+      "de": "der Haushalt",
+      "ru": "домашнее хозяйство",
+      "example": "Sie macht den Haushalt.",
+      "example_ru": "Она ведёт домашнее хозяйство."
+    },
+    {
+      "de": "der Stammbaum",
+      "ru": "генеалогическое дерево",
+      "example": "Wir machen einen Stammbaum.",
+      "example_ru": "Мы делаем генеалогическое дерево."
+    },
+    {
+      "de": "die Nachbarin",
+      "ru": "соседка",
+      "example": "Meine Nachbarin ist freundlich.",
+      "example_ru": "Моя соседка дружелюбная."
+    },
+    {
+      "de": "der Nachbar",
+      "ru": "сосед",
+      "example": "Der Nachbar hilft uns.",
+      "example_ru": "Сосед нам помогает."
+    },
+    {
+      "de": "der Freund",
+      "ru": "друг/парень",
+      "example": "Mein Freund kommt heute.",
+      "example_ru": "Мой друг придёт сегодня."
+    },
+    {
+      "de": "die Freundin",
+      "ru": "подруга/девушка",
+      "example": "Meine Freundin wohnt hier.",
+      "example_ru": "Моя подруга живёт здесь."
+    },
+    {
+      "de": "kennen",
+      "ru": "знать (кого-то)",
+      "example": "Ich kenne deine Eltern.",
+      "example_ru": "Я знаю твоих родителей."
+    },
+    {
+      "de": "kennenlernen",
+      "ru": "познакомиться",
+      "example": "Wir lernen uns kennen.",
+      "example_ru": "Мы знакомимся."
+    },
+    {
+      "de": "der Kontakt",
+      "ru": "контакт",
+      "example": "Wir haben Kontakt.",
+      "example_ru": "Мы поддерживаем контакт."
+    },
+    {
+      "de": "die Unterstützung",
+      "ru": "поддержка",
+      "example": "Danke für die Unterstützung.",
+      "example_ru": "Спасибо за поддержку."
+    },
+    {
+      "de": "das Treffen",
+      "ru": "встреча",
+      "example": "Das Treffen ist morgen.",
+      "example_ru": "Встреча завтра."
+    },
+    {
+      "de": "treffen",
+      "ru": "встречать/встречаться",
+      "example": "Ich treffe meine Cousine.",
+      "example_ru": "Я встречаюсь с двоюродной сестрой."
+    },
+    {
+      "de": "die Nachricht",
+      "ru": "сообщение",
+      "example": "Ich bekomme eine Nachricht.",
+      "example_ru": "Я получаю сообщение."
+    },
+    {
+      "de": "anrufen",
+      "ru": "звонить",
+      "example": "Ich rufe meine Mutter an.",
+      "example_ru": "Я звоню маме."
+    },
+    {
+      "de": "der Anruf",
+      "ru": "звонок",
+      "example": "Der Anruf war kurz.",
+      "example_ru": "Звонок был коротким."
+    },
+    {
+      "de": "zusammenleben",
+      "ru": "жить вместе",
+      "example": "Sie leben zusammen.",
+      "example_ru": "Они живут вместе."
+    },
+    {
+      "de": "die Wohnung",
+      "ru": "квартира",
+      "example": "Wir wohnen in einer Wohnung.",
+      "example_ru": "Мы живём в квартире."
+    },
+    {
+      "de": "das Haus",
+      "ru": "дом",
+      "example": "Meine Familie hat ein Haus.",
+      "example_ru": "У моей семьи есть дом."
+    },
+    {
+      "de": "umziehen",
+      "ru": "переезжать",
+      "example": "Wir ziehen nach Berlin um.",
+      "example_ru": "Мы переезжаем в Берлин."
+    },
+    {
+      "de": "das Alter",
+      "ru": "возраст",
+      "example": "Wie ist dein Alter?",
+      "example_ru": "Какой у тебя возраст?"
+    },
+    {
+      "de": "gratulieren",
+      "ru": "поздравлять",
+      "example": "Ich gratuliere dir.",
+      "example_ru": "Я поздравляю тебя."
+    },
+    {
+      "de": "das Geschenk",
+      "ru": "подарок",
+      "example": "Das Geschenk ist schön.",
+      "example_ru": "Подарок красивый."
+    }
+  ]
+}

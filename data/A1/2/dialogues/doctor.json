@@ -1,0 +1,75 @@
+{
+  "id": "doctor",
+  "name": "У врача",
+  "name_de": "Beim Arzt",
+  "description": "Визит к врачу",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Patient",
+      "role_ru": "Пациент",
+      "text": "Guten Tag. Ich habe einen Termin um 10 Uhr.",
+      "text_ru": "Добрый день. У меня приём в 10.",
+      "audio_file": "doctor_01.mp3"
+    },
+    {
+      "role": "Rezeption",
+      "role_ru": "Рецепция",
+      "text": "Name bitte? Ah, hier. Bitte nehmen Sie Platz. Der Arzt kommt gleich.",
+      "text_ru": "Фамилия? Вот. Присядьте, пожалуйста. Врач скоро придёт.",
+      "audio_file": "doctor_02.mp3"
+    },
+    {
+      "role": "Arzt",
+      "role_ru": "Врач",
+      "text": "Guten Tag. Was fehlt Ihnen?",
+      "text_ru": "Добрый день. Что вас беспокоит?",
+      "audio_file": "doctor_03.mp3"
+    },
+    {
+      "role": "Patient",
+      "role_ru": "Пациент",
+      "text": "Ich habe Kopfschmerzen und Halsweh.",
+      "text_ru": "У меня болит голова и горло.",
+      "audio_file": "doctor_04.mp3"
+    },
+    {
+      "role": "Arzt",
+      "role_ru": "Врач",
+      "text": "Seit wann? Nehmen Sie bitte diese Tabletten, dreimal täglich.",
+      "text_ru": "С какого времени? Принимайте эти таблетки три раза в день.",
+      "audio_file": "doctor_05.mp3"
+    },
+    {
+      "role": "Patient",
+      "role_ru": "Пациент",
+      "text": "Danke, Herr Doktor. Auf Wiedersehen.",
+      "text_ru": "Спасибо, доктор. До свидания.",
+      "audio_file": "doctor_06.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Ich habe einen ___ um 10 Uhr.",
+      "options": [
+        "Termin",
+        "Termine",
+        "Termins"
+      ],
+      "correct": 0,
+      "explanation": "Termin — встреча"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Was ___ Ihnen?",
+      "options": [
+        "fehlt",
+        "fehlen",
+        "fehle"
+      ],
+      "correct": 0,
+      "explanation": "fehlt — что недостаёт"
+    }
+  ]
+}

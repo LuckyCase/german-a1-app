@@ -1,0 +1,68 @@
+{
+  "id": "family",
+  "name": "Семья",
+  "name_de": "Familie",
+  "description": "О семье",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Emma",
+      "role_ru": "Эмма",
+      "text": "Das ist ein Foto von meiner Familie.",
+      "text_ru": "Это фото моей семьи.",
+      "audio_file": "family_01.mp3"
+    },
+    {
+      "role": "Max",
+      "role_ru": "Макс",
+      "text": "Oh, wer ist das? Deine Mutter?",
+      "text_ru": "О, кто это? Твоя мама?",
+      "audio_file": "family_02.mp3"
+    },
+    {
+      "role": "Emma",
+      "role_ru": "Эмма",
+      "text": "Ja, und das ist mein Vater. Und meine Schwester.",
+      "text_ru": "Да, а это мой отец. И моя сестра.",
+      "audio_file": "family_03.mp3"
+    },
+    {
+      "role": "Max",
+      "role_ru": "Макс",
+      "text": "Sie wohnen in Berlin, oder?",
+      "text_ru": "Они живут в Берлине, да?",
+      "audio_file": "family_04.mp3"
+    },
+    {
+      "role": "Emma",
+      "role_ru": "Эмма",
+      "text": "Ja, aber ich wohne hier in München.",
+      "text_ru": "Да, но я живу здесь, в Мюнхене.",
+      "audio_file": "family_05.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Das ist ein Foto ___ meiner Familie.",
+      "options": [
+        "von",
+        "aus",
+        "bei"
+      ],
+      "correct": 0,
+      "explanation": "von — принадлежность"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Wer ___ das?",
+      "options": [
+        "ist",
+        "sind",
+        "bin"
+      ],
+      "correct": 0,
+      "explanation": "ist — кто это"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "id": "school",
+  "name": "В школе",
+  "name_de": "In der Schule",
+  "description": "На уроке",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Lehrer",
+      "role_ru": "Учитель",
+      "text": "Guten Morgen! Öffnet die Bücher, Seite 15.",
+      "text_ru": "Доброе утро! Откройте учебники, страница 15.",
+      "audio_file": "school_01.mp3"
+    },
+    {
+      "role": "Schüler",
+      "role_ru": "Ученик",
+      "text": "Herr Müller, ich habe eine Frage. Was bedeutet „Zeit“?",
+      "text_ru": "Господин Мюллер, у меня вопрос. Что значит «Zeit»?",
+      "audio_file": "school_02.mp3"
+    },
+    {
+      "role": "Lehrer",
+      "role_ru": "Учитель",
+      "text": "„Zeit“ bedeutet „time“ auf Englisch. Zeit = время.",
+      "text_ru": "«Zeit» по-английски «time». Время.",
+      "audio_file": "school_03.mp3"
+    },
+    {
+      "role": "Schüler",
+      "role_ru": "Ученик",
+      "text": "Danke. Und wie schreibt man das?",
+      "text_ru": "Спасибо. А как это пишется?",
+      "audio_file": "school_04.mp3"
+    },
+    {
+      "role": "Lehrer",
+      "role_ru": "Учитель",
+      "text": "Z-E-I-T. Schreibt das in eure Hefte.",
+      "text_ru": "Z-E-I-T. Запишите в тетради.",
+      "audio_file": "school_05.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Öffnet die ___.",
+      "options": [
+        "Bücher",
+        "Buch",
+        "Büchern"
+      ],
+      "correct": 0,
+      "explanation": "Bücher — мн. ч."
+    },
+    {
+      "type": "fill_blank",
+      "question": "Was ___ „Zeit“?",
+      "options": [
+        "bedeutet",
+        "bedeuten",
+        "bedeute"
+      ],
+      "correct": 0,
+      "explanation": "bedeutet — что значит"
+    }
+  ]
+}

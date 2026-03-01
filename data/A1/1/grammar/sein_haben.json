@@ -97,6 +97,18 @@
       "options": ["haben", "habt", "hat"],
       "correct": 0,
       "explanation": "sie haben (они имеют)"
+    },
+    {
+      "question": "Er ___ krank.",
+      "options": ["bin", "ist", "sind"],
+      "correct": 1,
+      "explanation": "er ist (он есть)"
+    },
+    {
+      "question": "Ihr ___ zwei Katzen.",
+      "options": ["habe", "habt", "hat"],
+      "correct": 1,
+      "explanation": "ihr habt (вы имеете)"
     }
   ]
 }

@@ -91,6 +91,18 @@
       "options": ["Was", "Wie", "Wer"],
       "correct": 1,
       "explanation": "Wie geht es Ihnen? (Как у вас дела?)"
+    },
+    {
+      "question": "___ machst du am Sonntag?",
+      "options": ["Wer", "Was", "Wo"],
+      "correct": 1,
+      "explanation": "Was machst du? (Что ты делаешь?)"
+    },
+    {
+      "question": "___ ist deine Adresse?",
+      "options": ["Wer", "Was", "Wo"],
+      "correct": 1,
+      "explanation": "Was ist deine Adresse? (Какой твой адрес?)"
     }
   ]
 }

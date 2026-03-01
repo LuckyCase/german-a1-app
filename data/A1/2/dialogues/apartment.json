@@ -1,0 +1,68 @@
+{
+  "id": "apartment",
+  "name": "Квартира",
+  "name_de": "Wohnung",
+  "description": "Просмотр квартиры",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Mieter",
+      "role_ru": "Арендатор",
+      "text": "Guten Tag. Ich habe die Anzeige gelesen. Ist die Wohnung noch frei?",
+      "text_ru": "Добрый день. Я прочитал объявление. Квартира ещё свободна?",
+      "audio_file": "apartment_01.mp3"
+    },
+    {
+      "role": "Vermieter",
+      "role_ru": "Арендодатель",
+      "text": "Ja. Zwei Zimmer, Küche, Bad. 750 Euro kalt.",
+      "text_ru": "Да. Две комнаты, кухня, ванная. 750 евро без комуслуг.",
+      "audio_file": "apartment_02.mp3"
+    },
+    {
+      "role": "Mieter",
+      "role_ru": "Арендатор",
+      "text": "Wann kann ich die Wohnung besichtigen?",
+      "text_ru": "Когда могу посмотреть?",
+      "audio_file": "apartment_03.mp3"
+    },
+    {
+      "role": "Vermieter",
+      "role_ru": "Арендодатель",
+      "text": "Morgen um 14 Uhr? Hier die Adresse.",
+      "text_ru": "Завтра в 14? Вот адрес.",
+      "audio_file": "apartment_04.mp3"
+    },
+    {
+      "role": "Mieter",
+      "role_ru": "Арендатор",
+      "text": "Perfekt. Bis morgen!",
+      "text_ru": "Отлично. До завтра!",
+      "audio_file": "apartment_05.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Ist die Wohnung noch ___?",
+      "options": [
+        "frei",
+        "freie",
+        "freier"
+      ],
+      "correct": 0,
+      "explanation": "frei — свободна"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Wann kann ich die Wohnung ___?",
+      "options": [
+        "besichtigen",
+        "besichtigt",
+        "besichtige"
+      ],
+      "correct": 0,
+      "explanation": "besichtigen — посмотреть"
+    }
+  ]
+}

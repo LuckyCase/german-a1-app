@@ -1,0 +1,202 @@
+{
+  "id": "present_tense",
+  "name": "Настоящее и прошедшее время",
+  "name_de": "Präsens und Perfekt",
+  "description": "Perfekt — прошедшее время (уровень A2)",
+  "level": "A2",
+  "theory": {
+    "title": "Perfekt — прошедшее время",
+    "content": "Perfekt = haben/sein + Partizip II (причастие прошедшего времени).\n\nОбразование Partizip II:\n• Слабые глаголы: ge + основа + t (gearbeitet)\n• Сильные глаголы: ge + изменённая основа + en (geschrieben)\n• Глаголы с отделяемой приставкой: приставка между ge и основой (aufgestanden)",
+    "examples": [
+      "Ich habe das Buch gelesen. — Я прочитал книгу.",
+      "Sie ist um 7 Uhr aufgestanden. — Она встала в 7 часов.",
+      "Wir haben viel gelernt. — Мы много выучили."
+    ],
+    "tips": [
+      "Partizip II слабых глаголов: ge + stem + t (machen → gemacht)",
+      "Глаголы с -ieren без ge: studieren → studiert"
+    ]
+  },
+  "questions": [
+    {
+      "question": "Er ___ gestern einen Brief geschrieben.",
+      "options": [
+        "hat",
+        "haben",
+        "ist"
+      ],
+      "correct": 0,
+      "explanation": "schreiben — с haben"
+    },
+    {
+      "question": "Ich habe den Film ___. (sehen)",
+      "options": [
+        "geseht",
+        "gesehen",
+        "gesehet"
+      ],
+      "correct": 1,
+      "explanation": "sehen → gesehen (сильный глагол)"
+    },
+    {
+      "question": "Sie ___ um 6 Uhr aufgestanden.",
+      "options": [
+        "hat",
+        "ist",
+        "haben"
+      ],
+      "correct": 1,
+      "explanation": "aufstehen — с sein"
+    },
+    {
+      "question": "Wir haben Deutsch ___. (lernen)",
+      "options": [
+        "gelernt",
+        "gelernen",
+        "gelernt"
+      ],
+      "correct": 0,
+      "explanation": "lernen → gelernt (слабый глагол)"
+    },
+    {
+      "question": "Du ___ die Aufgabe gemacht.",
+      "options": [
+        "bist",
+        "hast",
+        "hat"
+      ],
+      "correct": 1,
+      "explanation": "machen — с haben"
+    },
+    {
+      "question": "Ich ___ Deutsch. (lernen)",
+      "options": [
+        "lerne",
+        "lernst",
+        "lernt"
+      ],
+      "correct": 0,
+      "explanation": "ich lerne (я учу)"
+    },
+    {
+      "question": "Du ___ viel. (arbeiten)",
+      "options": [
+        "arbeite",
+        "arbeitest",
+        "arbeitet"
+      ],
+      "correct": 1,
+      "explanation": "du arbeitest (ты работаешь)"
+    },
+    {
+      "question": "Er ___ Kaffee. (trinken)",
+      "options": [
+        "trinke",
+        "trinkst",
+        "trinkt"
+      ],
+      "correct": 2,
+      "explanation": "er trinkt (он пьёт)"
+    },
+    {
+      "question": "Wir ___ in Berlin. (wohnen)",
+      "options": [
+        "wohne",
+        "wohnst",
+        "wohnen"
+      ],
+      "correct": 2,
+      "explanation": "wir wohnen (мы живём)"
+    },
+    {
+      "question": "Sie ___ ein Buch. (lesen)",
+      "options": [
+        "lese",
+        "liest",
+        "lesen"
+      ],
+      "correct": 1,
+      "explanation": "sie liest (она читает) — неправильный глагол"
+    },
+    {
+      "question": "Ich ___ gern Pizza. (essen)",
+      "options": [
+        "esse",
+        "isst",
+        "esst"
+      ],
+      "correct": 0,
+      "explanation": "ich esse (я ем)"
+    },
+    {
+      "question": "Du ___ gut Deutsch. (sprechen)",
+      "options": [
+        "spreche",
+        "sprichst",
+        "spricht"
+      ],
+      "correct": 1,
+      "explanation": "du sprichst (ты говоришь) — неправильный глагол"
+    },
+    {
+      "question": "Er ___ nach Hause. (gehen)",
+      "options": [
+        "gehe",
+        "gehst",
+        "geht"
+      ],
+      "correct": 2,
+      "explanation": "er geht (он идёт)"
+    },
+    {
+      "question": "Ihr ___ aus Deutschland. (kommen)",
+      "options": [
+        "komme",
+        "kommt",
+        "kommen"
+      ],
+      "correct": 1,
+      "explanation": "ihr kommt (вы приходите)"
+    },
+    {
+      "question": "Sie ___ Anna. (heißen)",
+      "options": [
+        "heiße",
+        "heißt",
+        "heißen"
+      ],
+      "correct": 1,
+      "explanation": "sie heißt (её зовут)"
+    },
+    {
+      "question": "Du ___ die Tür. (öffnen)",
+      "options": [
+        "öffne",
+        "öffnest",
+        "öffnet"
+      ],
+      "correct": 1,
+      "explanation": "du öffnest (ты открываешь)"
+    },
+    {
+      "question": "Wir ___ Musik. (hören)",
+      "options": [
+        "höre",
+        "hört",
+        "hören"
+      ],
+      "correct": 2,
+      "explanation": "wir hören (мы слушаем)"
+    },
+    {
+      "question": "Er ___ den Bus. (nehmen)",
+      "options": [
+        "nehme",
+        "nimmst",
+        "nimmt"
+      ],
+      "correct": 2,
+      "explanation": "er nimmt (он берёт) — неправильный глагол"
+    }
+  ]
+}

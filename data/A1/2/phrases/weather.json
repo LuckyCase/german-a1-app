@@ -1,0 +1,710 @@
+{
+  "id": "weather",
+  "name": "Погода",
+  "name_de": "Wetter",
+  "description": "Фразы о погоде",
+  "level": "A2",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Wie ist das Wetter heute?",
+      "ru": "Какая сегодня погода?",
+      "context": "Вопрос",
+      "example": "Wie ist das Wetter heute? / Es ist sonnig.",
+      "example_ru": "Какая сегодня погода? / Солнечно."
+    },
+    {
+      "de": "Es regnet.",
+      "ru": "Идёт дождь.",
+      "context": "Погода",
+      "example": "Es regnet. Nimm einen Regenschirm mit.",
+      "example_ru": "Идёт дождь. Возьми зонт."
+    },
+    {
+      "de": "Es ist kalt.",
+      "ru": "Холодно.",
+      "context": "Температура",
+      "example": "Es ist kalt. Zieh dich warm an.",
+      "example_ru": "Холодно. Одевайся теплее."
+    },
+    {
+      "de": "Morgen wird es schön.",
+      "ru": "Завтра будет хорошая погода.",
+      "context": "Прогноз",
+      "example": "Morgen wird es schön und warm.",
+      "example_ru": "Завтра будет тепло и солнечно."
+    },
+    {
+      "de": "Es schneit.",
+      "ru": "Идёт снег.",
+      "context": "Погода",
+      "example": "Es schneit. Die Straßen sind glatt.",
+      "example_ru": "Идёт снег. Дороги скользкие."
+    },
+    {
+      "de": "Wie ist das Wetter heute?",
+      "ru": "Какая сегодня погода?",
+      "context": "Вопрос",
+      "example": "Wie ist das Wetter heute? / Es ist sonnig.",
+      "example_ru": "Какая сегодня погода? / Солнечно."
+    },
+    {
+      "de": "Es regnet.",
+      "ru": "Идёт дождь.",
+      "context": "Погода",
+      "example": "Es regnet. Nimm einen Regenschirm mit.",
+      "example_ru": "Идёт дождь. Возьми зонт."
+    },
+    {
+      "de": "Es ist kalt.",
+      "ru": "Холодно.",
+      "context": "Температура",
+      "example": "Es ist kalt. Zieh dich warm an.",
+      "example_ru": "Холодно. Одевайся теплее."
+    },
+    {
+      "de": "Morgen wird es schön.",
+      "ru": "Завтра будет хорошая погода.",
+      "context": "Прогноз",
+      "example": "Morgen wird es schön und warm.",
+      "example_ru": "Завтра будет тепло и солнечно."
+    },
+    {
+      "de": "Es schneit.",
+      "ru": "Идёт снег.",
+      "context": "Погода",
+      "example": "Es schneit. Die Straßen sind glatt.",
+      "example_ru": "Идёт снег. Дороги скользкие."
+    },
+    {
+      "de": "Wie ist das Wetter heute?",
+      "ru": "Какая сегодня погода?",
+      "context": "Вопрос",
+      "example": "Wie ist das Wetter heute? / Es ist sonnig.",
+      "example_ru": "Какая сегодня погода? / Солнечно."
+    },
+    {
+      "de": "Es regnet.",
+      "ru": "Идёт дождь.",
+      "context": "Погода",
+      "example": "Es regnet. Nimm einen Regenschirm mit.",
+      "example_ru": "Идёт дождь. Возьми зонт."
+    },
+    {
+      "de": "Es ist kalt.",
+      "ru": "Холодно.",
+      "context": "Температура",
+      "example": "Es ist kalt. Zieh dich warm an.",
+      "example_ru": "Холодно. Одевайся теплее."
+    },
+    {
+      "de": "Morgen wird es schön.",
+      "ru": "Завтра будет хорошая погода.",
+      "context": "Прогноз",
+      "example": "Morgen wird es schön und warm.",
+      "example_ru": "Завтра будет тепло и солнечно."
+    },
+    {
+      "de": "Es schneit.",
+      "ru": "Идёт снег.",
+      "context": "Погода",
+      "example": "Es schneit. Die Straßen sind glatt.",
+      "example_ru": "Идёт снег. Дороги скользкие."
+    },
+    {
+      "de": "Wie ist das Wetter heute?",
+      "ru": "Какая сегодня погода?",
+      "context": "Вопрос",
+      "example": "Wie ist das Wetter heute? / Es ist sonnig.",
+      "example_ru": "Какая сегодня погода? / Солнечно."
+    },
+    {
+      "de": "Es regnet.",
+      "ru": "Идёт дождь.",
+      "context": "Погода",
+      "example": "Es regnet. Nimm einen Regenschirm mit.",
+      "example_ru": "Идёт дождь. Возьми зонт."
+    },
+    {
+      "de": "Es ist kalt.",
+      "ru": "Холодно.",
+      "context": "Температура",
+      "example": "Es ist kalt. Zieh dich warm an.",
+      "example_ru": "Холодно. Одевайся теплее."
+    },
+    {
+      "de": "Morgen wird es schön.",
+      "ru": "Завтра будет хорошая погода.",
+      "context": "Прогноз",
+      "example": "Morgen wird es schön und warm.",
+      "example_ru": "Завтра будет тепло и солнечно."
+    },
+    {
+      "de": "Es schneit.",
+      "ru": "Идёт снег.",
+      "context": "Погода",
+      "example": "Es schneit. Die Straßen sind glatt.",
+      "example_ru": "Идёт снег. Дороги скользкие."
+    },
+    {
+      "de": "Wie ist das Wetter heute?",
+      "ru": "Какая сегодня погода?",
+      "context": "Вопрос",
+      "example": "Wie ist das Wetter heute? / Es ist sonnig.",
+      "example_ru": "Какая сегодня погода? / Солнечно."
+    },
+    {
+      "de": "Es regnet.",
+      "ru": "Идёт дождь.",
+      "context": "Погода",
+      "example": "Es regnet. Nimm einen Regenschirm mit.",
+      "example_ru": "Идёт дождь. Возьми зонт."
+    },
+    {
+      "de": "Es ist kalt.",
+      "ru": "Холодно.",
+      "context": "Температура",
+      "example": "Es ist kalt. Zieh dich warm an.",
+      "example_ru": "Холодно. Одевайся теплее."
+    },
+    {
+      "de": "Morgen wird es schön.",
+      "ru": "Завтра будет хорошая погода.",
+      "context": "Прогноз",
+      "example": "Morgen wird es schön und warm.",
+      "example_ru": "Завтра будет тепло и солнечно."
+    },
+    {
+      "de": "Es schneit.",
+      "ru": "Идёт снег.",
+      "context": "Погода",
+      "example": "Es schneit. Die Straßen sind glatt.",
+      "example_ru": "Идёт снег. Дороги скользкие."
+    },
+    {
+      "de": "Wie ist das Wetter heute?",
+      "ru": "Какая сегодня погода?",
+      "context": "Вопрос",
+      "example": "Wie ist das Wetter heute? / Es ist sonnig.",
+      "example_ru": "Какая сегодня погода? / Солнечно."
+    },
+    {
+      "de": "Es regnet.",
+      "ru": "Идёт дождь.",
+      "context": "Погода",
+      "example": "Es regnet. Nimm einen Regenschirm mit.",
+      "example_ru": "Идёт дождь. Возьми зонт."
+    },
+    {
+      "de": "Es ist kalt.",
+      "ru": "Холодно.",
+      "context": "Температура",
+      "example": "Es ist kalt. Zieh dich warm an.",
+      "example_ru": "Холодно. Одевайся теплее."
+    },
+    {
+      "de": "Morgen wird es schön.",
+      "ru": "Завтра будет хорошая погода.",
+      "context": "Прогноз",
+      "example": "Morgen wird es schön und warm.",
+      "example_ru": "Завтра будет тепло и солнечно."
+    },
+    {
+      "de": "Es schneit.",
+      "ru": "Идёт снег.",
+      "context": "Погода",
+      "example": "Es schneit. Die Straßen sind glatt.",
+      "example_ru": "Идёт снег. Дороги скользкие."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    }
+  ]
+}

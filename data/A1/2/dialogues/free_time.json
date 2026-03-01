@@ -1,0 +1,75 @@
+{
+  "id": "free_time",
+  "name": "Свободное время",
+  "name_de": "Freizeit",
+  "description": "Планы на выходные",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Was machst du am Samstag?",
+      "text_ru": "Что делаешь в субботу?",
+      "audio_file": "free_time_01.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Noch nichts. Warum?",
+      "text_ru": "Пока ничего. А что?",
+      "audio_file": "free_time_02.mp3"
+    },
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Lass uns ins Kino gehen. Es gibt einen guten Film.",
+      "text_ru": "Давай сходим в кино. Идёт хороший фильм.",
+      "audio_file": "free_time_03.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Gute Idee! Um wie viel Uhr?",
+      "text_ru": "Хорошая идея! Во сколько?",
+      "audio_file": "free_time_04.mp3"
+    },
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Um 20 Uhr. Ich kaufe die Karten online.",
+      "text_ru": "В 20. Куплю билеты онлайн.",
+      "audio_file": "free_time_05.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Super! Bis Samstag.",
+      "text_ru": "Супер! До субботы.",
+      "audio_file": "free_time_06.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Was ___ du am Samstag?",
+      "options": [
+        "machst",
+        "macht",
+        "machen"
+      ],
+      "correct": 0,
+      "explanation": "machst — с du"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Lass ___ ins Kino gehen.",
+      "options": [
+        "uns",
+        "uns",
+        "wir"
+      ],
+      "correct": 0,
+      "explanation": "uns — давай мы"
+    }
+  ]
+}

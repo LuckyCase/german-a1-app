@@ -1,0 +1,251 @@
+{
+  "id": "sein_haben",
+  "name": "Глаголы sein и haben",
+  "name_de": "Verben sein und haben",
+  "description": "sein und haben в Perfekt (уровень A2)",
+  "level": "A2",
+  "theory": {
+    "title": "sein und haben как вспомогательные глаголы",
+    "content": "В Perfekt (прошедшее время) глаголы sein и haben используются как вспомогательные:\n\n• haben — с большинством глаголов: Ich habe gearbeitet.\n• sein — с глаголами движения и смены состояния: Ich bin gefahren. Er ist gekommen.",
+    "tables": [
+      {
+        "title": "Спряжение haben в Perfekt",
+        "rows": [
+          [
+            "ich",
+            "habe ... gehabt"
+          ],
+          [
+            "du",
+            "hast ... gehabt"
+          ],
+          [
+            "er/sie/es",
+            "hat ... gehabt"
+          ],
+          [
+            "wir",
+            "haben ... gehabt"
+          ],
+          [
+            "ihr",
+            "habt ... gehabt"
+          ],
+          [
+            "sie/Sie",
+            "haben ... gehabt"
+          ]
+        ]
+      },
+      {
+        "title": "Спряжение sein в Perfekt",
+        "rows": [
+          [
+            "ich",
+            "bin ... gewesen"
+          ],
+          [
+            "du",
+            "bist ... gewesen"
+          ],
+          [
+            "er/sie/es",
+            "ist ... gewesen"
+          ],
+          [
+            "wir",
+            "sind ... gewesen"
+          ],
+          [
+            "ihr",
+            "seid ... gewesen"
+          ],
+          [
+            "sie/Sie",
+            "sind ... gewesen"
+          ]
+        ]
+      }
+    ],
+    "examples": [
+      "Ich habe gestern gearbeitet. — Вчера я работал.",
+      "Wir sind nach München gefahren. — Мы поехали в Мюнхен.",
+      "Er ist krank gewesen. — Он был болен."
+    ],
+    "tips": [
+      "Глаголы с sein: gehen, kommen, fahren, fliegen, sein, werden, bleiben"
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich ___ gestern zu Hause gewesen.",
+      "options": [
+        "bin",
+        "habe",
+        "ist"
+      ],
+      "correct": 0,
+      "explanation": "sein → Perfekt с sein"
+    },
+    {
+      "question": "Sie ___ das Buch gelesen.",
+      "options": [
+        "ist",
+        "hat",
+        "haben"
+      ],
+      "correct": 1,
+      "explanation": "lesen — с haben"
+    },
+    {
+      "question": "Wir ___ mit dem Zug gefahren.",
+      "options": [
+        "haben",
+        "sind",
+        "hat"
+      ],
+      "correct": 1,
+      "explanation": "fahren — с sein"
+    },
+    {
+      "question": "Du ___ dich verspätet.",
+      "options": [
+        "bist",
+        "hast",
+        "hat"
+      ],
+      "correct": 1,
+      "explanation": "sich verspäten — с haben"
+    },
+    {
+      "question": "Er ___ nach Berlin gegangen.",
+      "options": [
+        "hat",
+        "ist",
+        "haben"
+      ],
+      "correct": 1,
+      "explanation": "gehen — с sein"
+    },
+    {
+      "question": "Ich ___ Student.",
+      "options": [
+        "bin",
+        "bist",
+        "ist"
+      ],
+      "correct": 0,
+      "explanation": "ich bin (я есть)"
+    },
+    {
+      "question": "Du ___ müde.",
+      "options": [
+        "bin",
+        "bist",
+        "ist"
+      ],
+      "correct": 1,
+      "explanation": "du bist (ты есть)"
+    },
+    {
+      "question": "Er ___ Lehrer.",
+      "options": [
+        "bin",
+        "bist",
+        "ist"
+      ],
+      "correct": 2,
+      "explanation": "er ist (он есть)"
+    },
+    {
+      "question": "Wir ___ aus Russland.",
+      "options": [
+        "sind",
+        "seid",
+        "ist"
+      ],
+      "correct": 0,
+      "explanation": "wir sind (мы есть)"
+    },
+    {
+      "question": "Ihr ___ nett.",
+      "options": [
+        "sind",
+        "seid",
+        "ist"
+      ],
+      "correct": 1,
+      "explanation": "ihr seid (вы есть)"
+    },
+    {
+      "question": "Ich ___ ein Auto.",
+      "options": [
+        "habe",
+        "hast",
+        "hat"
+      ],
+      "correct": 0,
+      "explanation": "ich habe (я имею)"
+    },
+    {
+      "question": "Du ___ Zeit.",
+      "options": [
+        "habe",
+        "hast",
+        "hat"
+      ],
+      "correct": 1,
+      "explanation": "du hast (ты имеешь)"
+    },
+    {
+      "question": "Sie ___ eine Schwester.",
+      "options": [
+        "habe",
+        "hast",
+        "hat"
+      ],
+      "correct": 2,
+      "explanation": "sie hat (она имеет)"
+    },
+    {
+      "question": "Wir ___ Hunger.",
+      "options": [
+        "haben",
+        "habt",
+        "hat"
+      ],
+      "correct": 0,
+      "explanation": "wir haben (мы имеем)"
+    },
+    {
+      "question": "Sie (они) ___ Kinder.",
+      "options": [
+        "haben",
+        "habt",
+        "hat"
+      ],
+      "correct": 0,
+      "explanation": "sie haben (они имеют)"
+    },
+    {
+      "question": "Er ___ krank.",
+      "options": [
+        "bin",
+        "ist",
+        "sind"
+      ],
+      "correct": 1,
+      "explanation": "er ist (он есть)"
+    },
+    {
+      "question": "Ihr ___ zwei Katzen.",
+      "options": [
+        "habe",
+        "habt",
+        "hat"
+      ],
+      "correct": 1,
+      "explanation": "ihr habt (вы имеете)"
+    }
+  ]
+}

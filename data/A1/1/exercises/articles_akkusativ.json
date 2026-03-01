@@ -1,0 +1,59 @@
+{
+  "id": "articles_akkusativ",
+  "name": "Артикли и аккузатив",
+  "name_de": "Artikel und Akkusativ",
+  "description": "Определённые артикли в винительном падеже",
+  "level": "A1",
+  "linked_to": ["articles", "akkusativ"],
+  "tasks": [
+    {
+      "type": "multiple_choice",
+      "question": "Винительный падеж (Akkusativ): Ich kaufe ___ Apfel.",
+      "options": ["der", "den", "die"],
+      "correct": 1,
+      "explanation": "Мужской род в Akkusativ: der → den. Apfel — мужской род."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Винительный падеж: Er trinkt ___ Wasser.",
+      "options": ["der", "die", "das"],
+      "correct": 2,
+      "explanation": "Средний род в Akkusativ не меняется: das Wasser."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Винительный падеж: Sie liest ___ Buch.",
+      "options": ["der", "die", "das"],
+      "correct": 2,
+      "explanation": "Das Buch — средний род, в Akkusativ остаётся das."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Винительный падеж: Wir sehen ___ Frau.",
+      "options": ["der", "die", "den"],
+      "correct": 1,
+      "explanation": "Женский род в Akkusativ не меняется: die Frau."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Винительный падеж: Du isst ___ Brötchen.",
+      "options": ["der", "die", "das"],
+      "correct": 2,
+      "explanation": "Brötchen — средний род (суффикс -chen): das Brötchen."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Винительный падеж: Ich habe ___ Mann getroffen.",
+      "options": ["der", "den", "die"],
+      "correct": 1,
+      "explanation": "Мужской род в Akkusativ: der Mann → den Mann (haben + Partizip II)."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Выберите правильный артикль (Akkusativ): Er trinkt ___ Kaffee.",
+      "options": ["der", "den", "das"],
+      "correct": 1,
+      "explanation": "Kaffee — мужской род, в винительном падеже: den Kaffee."
+    }
+  ]
+}

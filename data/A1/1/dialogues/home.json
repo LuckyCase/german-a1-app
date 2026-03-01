@@ -1,0 +1,75 @@
+{
+  "id": "home",
+  "name": "Дома",
+  "name_de": "Zu Hause",
+  "description": "Разговор дома",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Hallo! Ich bin zu Hause.",
+      "text_ru": "Привет! Я дома.",
+      "audio_file": "home_01.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Willkommen! Wie war der Tag?",
+      "text_ru": "Добро пожаловать! Как прошёл день?",
+      "audio_file": "home_02.mp3"
+    },
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Gut, aber ich bin müde.",
+      "text_ru": "Хорошо, но я устала.",
+      "audio_file": "home_03.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Möchtest du etwas trinken?",
+      "text_ru": "Хочешь что-нибудь выпить?",
+      "audio_file": "home_04.mp3"
+    },
+    {
+      "role": "Anna",
+      "role_ru": "Анна",
+      "text": "Ja, gern. Einen Tee, bitte.",
+      "text_ru": "Да, с удовольствием. Чай, пожалуйста.",
+      "audio_file": "home_05.mp3"
+    },
+    {
+      "role": "Tom",
+      "role_ru": "Том",
+      "text": "Komm, setz dich. Ich mache den Tee.",
+      "text_ru": "Иди, садись. Я сделаю чай.",
+      "audio_file": "home_06.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Gut, aber ich ___ müde.",
+      "options": [
+        "bin",
+        "bist",
+        "sind"
+      ],
+      "correct": 0,
+      "explanation": "bin — с ich"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Möchtest du etwas ___?",
+      "options": [
+        "trinken",
+        "trinkt",
+        "trinke"
+      ],
+      "correct": 0,
+      "explanation": "trinken — инфинитив после möchtest"
+    }
+  ]
+}

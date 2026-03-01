@@ -1,0 +1,75 @@
+{
+  "id": "shop",
+  "name": "В магазине",
+  "name_de": "Im Geschäft",
+  "description": "Покупки",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Verkäufer",
+      "role_ru": "Продавец",
+      "text": "Guten Tag! Kann ich helfen?",
+      "text_ru": "Добрый день! Могу помочь?",
+      "audio_file": "shop_01.mp3"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Покупатель",
+      "text": "Ich suche eine Jacke.",
+      "text_ru": "Я ищу куртку.",
+      "audio_file": "shop_02.mp3"
+    },
+    {
+      "role": "Verkäufer",
+      "role_ru": "Продавец",
+      "text": "Welche Größe haben Sie?",
+      "text_ru": "Какой у вас размер?",
+      "audio_file": "shop_03.mp3"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Покупатель",
+      "text": "Größe M. Und welche Farbe haben Sie?",
+      "text_ru": "Размер M. И какие цвета есть?",
+      "audio_file": "shop_04.mp3"
+    },
+    {
+      "role": "Verkäufer",
+      "role_ru": "Продавец",
+      "text": "Blau, schwarz und grau. Probieren Sie an!",
+      "text_ru": "Синий, чёрный и серый. Примерьте!",
+      "audio_file": "shop_05.mp3"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Покупатель",
+      "text": "Danke. Wo ist die Umkleide?",
+      "text_ru": "Спасибо. Где примерочная?",
+      "audio_file": "shop_06.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Ich ___ eine Jacke.",
+      "options": [
+        "suche",
+        "suchst",
+        "sucht"
+      ],
+      "correct": 0,
+      "explanation": "suche — с ich"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Welche ___ haben Sie?",
+      "options": [
+        "Größe",
+        "Größen",
+        "Größer"
+      ],
+      "correct": 0,
+      "explanation": "Größe — ед. ч."
+    }
+  ]
+}

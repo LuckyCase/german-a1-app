@@ -1,0 +1,22 @@
+{
+  "id": "travel",
+  "name": "Путешествие",
+  "name_de": "Reisen",
+  "description": "Диалог о путешествии (уровень A2)",
+  "level": "A2",
+  "dialogue": [
+    {"role": "Lisa", "role_ru": "Лиза", "text": "Hast du schon Pläne für den Urlaub?", "text_ru": "У тебя уже есть планы на отпуск?", "audio_file": "travel_01.mp3"},
+    {"role": "Tom", "role_ru": "Том", "text": "Ja, ich möchte nach Italien fahren. Und du?", "text_ru": "Да, хочу поехать в Италию. А ты?", "audio_file": "travel_02.mp3"},
+    {"role": "Lisa", "role_ru": "Лиза", "text": "Ich überlege noch. Fliegst du oder fährst du mit dem Auto?", "text_ru": "Я ещё думаю. Ты летишь или едешь на машине?", "audio_file": "travel_03.mp3"},
+    {"role": "Tom", "role_ru": "Том", "text": "Mit dem Zug. Es ist umweltfreundlicher und ich kann unterwegs lesen.", "text_ru": "Поездом. Так экологичнее, и в пути могу читать.", "audio_file": "travel_04.mp3"},
+    {"role": "Lisa", "role_ru": "Лиза", "text": "Gute Idee! Wie lange bleibst du?", "text_ru": "Хорошая идея! Как долго ты остаёшься?", "audio_file": "travel_05.mp3"},
+    {"role": "Tom", "role_ru": "Том", "text": "Zwei Wochen. Ich habe schon ein Hotel in Rom gebucht.", "text_ru": "Две недели. Я уже забронировал отель в Риме.", "audio_file": "travel_06.mp3"},
+    {"role": "Lisa", "role_ru": "Лиза", "text": "Toll! Ich war letztes Jahr in Rom. Die Stadt ist wunderschön. Viel Spaß!", "text_ru": "Здорово! Я была в Риме в прошлом году. Город прекрасный. Хорошего отдыха!", "audio_file": "travel_07.mp3"},
+    {"role": "Tom", "role_ru": "Том", "text": "Danke! Dir auch einen schönen Urlaub!", "text_ru": "Спасибо! И тебе хорошего отпуска!", "audio_file": "travel_08.mp3"}
+  ],
+  "exercises": [
+    {"type": "fill_blank", "question": "Ich ___ nach Italien fahren.", "options": ["möchte", "möchtest", "möchten"], "correct": 0, "explanation": "ich möchte — я хочу"},
+    {"type": "fill_blank", "question": "Mit dem Zug. Es ist ___.", "options": ["umweltfreundlicher", "umweltfreundlich", "umweltfreundlichste"], "correct": 0, "explanation": "сравнительная степень: umweltfreundlicher"},
+    {"type": "fill_blank", "question": "Ich habe schon ein Hotel ___.", "options": ["gebucht", "reservieren", "buchen"], "correct": 0, "explanation": "Perfekt: habe ... gebucht"}
+  ]
+}

@@ -1,0 +1,710 @@
+{
+  "id": "family",
+  "name": "Семья",
+  "name_de": "Familie",
+  "description": "Фразы о семье",
+  "level": "A2",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Das ist meine Mutter.",
+      "ru": "Это моя мама.",
+      "context": "Семья",
+      "example": "Das ist meine Mutter. Sie wohnt in Berlin.",
+      "example_ru": "Это моя мама. Она живёт в Берлине."
+    },
+    {
+      "de": "Wie viele Geschwister hast du?",
+      "ru": "Сколько у тебя братьев и сестёр?",
+      "context": "Вопрос",
+      "example": "Wie viele Geschwister hast du? / Zwei, einen Bruder und eine Schwester.",
+      "example_ru": "Сколько у тебя братьев и сестёр? / Двоих."
+    },
+    {
+      "de": "Mein Vater arbeitet als Lehrer.",
+      "ru": "Мой отец работает учителем.",
+      "context": "Профессия",
+      "example": "Mein Vater arbeitet als Lehrer. Er mag seinen Job.",
+      "example_ru": "Мой отец работает учителем. Ему нравится работа."
+    },
+    {
+      "de": "Wir feiern Geburtstag.",
+      "ru": "Мы празднуем день рождения.",
+      "context": "Праздник",
+      "example": "Wir feiern Geburtstag. Kommst du?",
+      "example_ru": "Мы празднуем день рождения. Ты придёшь?"
+    },
+    {
+      "de": "Meine Familie ist groß.",
+      "ru": "Моя семья большая.",
+      "context": "Семья",
+      "example": "Meine Familie ist groß. Wir sind sieben Personen.",
+      "example_ru": "Моя семья большая. Нас семеро."
+    },
+    {
+      "de": "Das ist meine Mutter.",
+      "ru": "Это моя мама.",
+      "context": "Семья",
+      "example": "Das ist meine Mutter. Sie wohnt in Berlin.",
+      "example_ru": "Это моя мама. Она живёт в Берлине."
+    },
+    {
+      "de": "Wie viele Geschwister hast du?",
+      "ru": "Сколько у тебя братьев и сестёр?",
+      "context": "Вопрос",
+      "example": "Wie viele Geschwister hast du? / Zwei, einen Bruder und eine Schwester.",
+      "example_ru": "Сколько у тебя братьев и сестёр? / Двоих."
+    },
+    {
+      "de": "Mein Vater arbeitet als Lehrer.",
+      "ru": "Мой отец работает учителем.",
+      "context": "Профессия",
+      "example": "Mein Vater arbeitet als Lehrer. Er mag seinen Job.",
+      "example_ru": "Мой отец работает учителем. Ему нравится работа."
+    },
+    {
+      "de": "Wir feiern Geburtstag.",
+      "ru": "Мы празднуем день рождения.",
+      "context": "Праздник",
+      "example": "Wir feiern Geburtstag. Kommst du?",
+      "example_ru": "Мы празднуем день рождения. Ты придёшь?"
+    },
+    {
+      "de": "Meine Familie ist groß.",
+      "ru": "Моя семья большая.",
+      "context": "Семья",
+      "example": "Meine Familie ist groß. Wir sind sieben Personen.",
+      "example_ru": "Моя семья большая. Нас семеро."
+    },
+    {
+      "de": "Das ist meine Mutter.",
+      "ru": "Это моя мама.",
+      "context": "Семья",
+      "example": "Das ist meine Mutter. Sie wohnt in Berlin.",
+      "example_ru": "Это моя мама. Она живёт в Берлине."
+    },
+    {
+      "de": "Wie viele Geschwister hast du?",
+      "ru": "Сколько у тебя братьев и сестёр?",
+      "context": "Вопрос",
+      "example": "Wie viele Geschwister hast du? / Zwei, einen Bruder und eine Schwester.",
+      "example_ru": "Сколько у тебя братьев и сестёр? / Двоих."
+    },
+    {
+      "de": "Mein Vater arbeitet als Lehrer.",
+      "ru": "Мой отец работает учителем.",
+      "context": "Профессия",
+      "example": "Mein Vater arbeitet als Lehrer. Er mag seinen Job.",
+      "example_ru": "Мой отец работает учителем. Ему нравится работа."
+    },
+    {
+      "de": "Wir feiern Geburtstag.",
+      "ru": "Мы празднуем день рождения.",
+      "context": "Праздник",
+      "example": "Wir feiern Geburtstag. Kommst du?",
+      "example_ru": "Мы празднуем день рождения. Ты придёшь?"
+    },
+    {
+      "de": "Meine Familie ist groß.",
+      "ru": "Моя семья большая.",
+      "context": "Семья",
+      "example": "Meine Familie ist groß. Wir sind sieben Personen.",
+      "example_ru": "Моя семья большая. Нас семеро."
+    },
+    {
+      "de": "Das ist meine Mutter.",
+      "ru": "Это моя мама.",
+      "context": "Семья",
+      "example": "Das ist meine Mutter. Sie wohnt in Berlin.",
+      "example_ru": "Это моя мама. Она живёт в Берлине."
+    },
+    {
+      "de": "Wie viele Geschwister hast du?",
+      "ru": "Сколько у тебя братьев и сестёр?",
+      "context": "Вопрос",
+      "example": "Wie viele Geschwister hast du? / Zwei, einen Bruder und eine Schwester.",
+      "example_ru": "Сколько у тебя братьев и сестёр? / Двоих."
+    },
+    {
+      "de": "Mein Vater arbeitet als Lehrer.",
+      "ru": "Мой отец работает учителем.",
+      "context": "Профессия",
+      "example": "Mein Vater arbeitet als Lehrer. Er mag seinen Job.",
+      "example_ru": "Мой отец работает учителем. Ему нравится работа."
+    },
+    {
+      "de": "Wir feiern Geburtstag.",
+      "ru": "Мы празднуем день рождения.",
+      "context": "Праздник",
+      "example": "Wir feiern Geburtstag. Kommst du?",
+      "example_ru": "Мы празднуем день рождения. Ты придёшь?"
+    },
+    {
+      "de": "Meine Familie ist groß.",
+      "ru": "Моя семья большая.",
+      "context": "Семья",
+      "example": "Meine Familie ist groß. Wir sind sieben Personen.",
+      "example_ru": "Моя семья большая. Нас семеро."
+    },
+    {
+      "de": "Das ist meine Mutter.",
+      "ru": "Это моя мама.",
+      "context": "Семья",
+      "example": "Das ist meine Mutter. Sie wohnt in Berlin.",
+      "example_ru": "Это моя мама. Она живёт в Берлине."
+    },
+    {
+      "de": "Wie viele Geschwister hast du?",
+      "ru": "Сколько у тебя братьев и сестёр?",
+      "context": "Вопрос",
+      "example": "Wie viele Geschwister hast du? / Zwei, einen Bruder und eine Schwester.",
+      "example_ru": "Сколько у тебя братьев и сестёр? / Двоих."
+    },
+    {
+      "de": "Mein Vater arbeitet als Lehrer.",
+      "ru": "Мой отец работает учителем.",
+      "context": "Профессия",
+      "example": "Mein Vater arbeitet als Lehrer. Er mag seinen Job.",
+      "example_ru": "Мой отец работает учителем. Ему нравится работа."
+    },
+    {
+      "de": "Wir feiern Geburtstag.",
+      "ru": "Мы празднуем день рождения.",
+      "context": "Праздник",
+      "example": "Wir feiern Geburtstag. Kommst du?",
+      "example_ru": "Мы празднуем день рождения. Ты придёшь?"
+    },
+    {
+      "de": "Meine Familie ist groß.",
+      "ru": "Моя семья большая.",
+      "context": "Семья",
+      "example": "Meine Familie ist groß. Wir sind sieben Personen.",
+      "example_ru": "Моя семья большая. Нас семеро."
+    },
+    {
+      "de": "Das ist meine Mutter.",
+      "ru": "Это моя мама.",
+      "context": "Семья",
+      "example": "Das ist meine Mutter. Sie wohnt in Berlin.",
+      "example_ru": "Это моя мама. Она живёт в Берлине."
+    },
+    {
+      "de": "Wie viele Geschwister hast du?",
+      "ru": "Сколько у тебя братьев и сестёр?",
+      "context": "Вопрос",
+      "example": "Wie viele Geschwister hast du? / Zwei, einen Bruder und eine Schwester.",
+      "example_ru": "Сколько у тебя братьев и сестёр? / Двоих."
+    },
+    {
+      "de": "Mein Vater arbeitet als Lehrer.",
+      "ru": "Мой отец работает учителем.",
+      "context": "Профессия",
+      "example": "Mein Vater arbeitet als Lehrer. Er mag seinen Job.",
+      "example_ru": "Мой отец работает учителем. Ему нравится работа."
+    },
+    {
+      "de": "Wir feiern Geburtstag.",
+      "ru": "Мы празднуем день рождения.",
+      "context": "Праздник",
+      "example": "Wir feiern Geburtstag. Kommst du?",
+      "example_ru": "Мы празднуем день рождения. Ты придёшь?"
+    },
+    {
+      "de": "Meine Familie ist groß.",
+      "ru": "Моя семья большая.",
+      "context": "Семья",
+      "example": "Meine Familie ist groß. Wir sind sieben Personen.",
+      "example_ru": "Моя семья большая. Нас семеро."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    }
+  ]
+}

@@ -13,17 +13,20 @@ import nest_asyncio
 nest_asyncio.apply()
 
 from bot.content_manager import (
-    get_all_words, get_categories, get_words_by_category, 
+    get_all_words, get_categories, get_words_by_category,
     get_all_tests, get_test_questions, init_content,
     get_phrases_categories, get_phrases_by_category,
     get_dialogue_topics, get_dialogue, get_dialogue_exercises,
     get_category_distractors,
     get_available_levels, get_levels_with_content, set_level,
-    get_current_level_str, get_current_level
+    get_current_level_str, get_current_level,
+    get_culture_topics, get_culture_topic,
+    get_exercise_sets, get_exercise_set, get_exercise_tasks
 )
 from bot.database import (
-    get_user_stats, update_word_progress, save_grammar_result, 
+    get_user_stats, update_word_progress, save_grammar_result,
     update_daily_stats, init_db, save_phrase_progress, save_dialogue_progress,
+    save_culture_progress, save_exercise_set_progress,
     get_or_create_user, save_feedback, get_user_feedback, get_feedback_count,
     FEEDBACK_STATUS_LABELS, MAX_FEEDBACK_LENGTH
 )
@@ -717,6 +720,16 @@ HTML_TEMPLATE = """
                 <div class="menu-tile-title">Диалоги</div>
                 <div class="menu-tile-desc">Практика диалогов</div>
             </div>
+            <div class="menu-tile" onclick="openSection('culture')">
+                <div class="menu-tile-icon">🇩🇪</div>
+                <div class="menu-tile-title">Культура</div>
+                <div class="menu-tile-desc">Традиции и реалии</div>
+            </div>
+            <div class="menu-tile" onclick="openSection('exercises')">
+                <div class="menu-tile-icon">✏️</div>
+                <div class="menu-tile-title">Упражнения</div>
+                <div class="menu-tile-desc">Проверь себя</div>
+            </div>
             <div class="menu-tile" onclick="openSection('progress')">
                 <div class="menu-tile-icon">📊</div>
                 <div class="menu-tile-title">Прогресс</div>
@@ -850,6 +863,59 @@ HTML_TEMPLATE = """
             </div>
         </section>
         
+        <!-- Culture Section -->
+        <section id="culture" class="section" style="display: none;">
+            <div id="culture-topics-view">
+                <button class="back-btn" onclick="backToMainFromCulture()">← Назад в меню</button>
+                <div class="card">
+                    <h2 class="card-title">Выберите тему</h2>
+                    <div id="culture-topics-list" class="btn-group">
+                        <div class="loading">Загрузка...</div>
+                    </div>
+                </div>
+            </div>
+            <div id="culture-topic-view" style="display: none;">
+                <button class="back-btn" onclick="backToCultureTopics()">← Назад</button>
+                <div id="culture-content" class="card"></div>
+                <div id="culture-quiz-block" style="display: none; margin-top: 16px;">
+                    <h3 class="card-title" style="margin-top: 16px;">Мини-викторина</h3>
+                    <div class="question-card">
+                        <div class="question-number" id="culture-quiz-number">Вопрос 1</div>
+                        <div class="question-text" id="culture-quiz-question"></div>
+                    </div>
+                    <div class="options" id="culture-quiz-options"></div>
+                    <button class="btn btn-primary" id="culture-quiz-next" style="display: none; margin-top: 16px;" onclick="nextCultureQuizQuestion()">
+                        Далее →
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Exercises Section -->
+        <section id="exercises" class="section" style="display: none;">
+            <div id="exercises-sets-view">
+                <button class="back-btn" onclick="backToMainFromExercises()">← Назад в меню</button>
+                <div class="card">
+                    <h2 class="card-title">Выберите набор</h2>
+                    <div id="exercises-sets-list" class="btn-group">
+                        <div class="loading">Загрузка...</div>
+                    </div>
+                </div>
+            </div>
+            <div id="exercises-task-view" style="display: none;">
+                <button class="back-btn" onclick="backToExercisesSets()">← Назад</button>
+                <div class="question-card">
+                    <div class="question-number" id="ex-task-number">Задание 1 из 5</div>
+                    <div class="question-text" id="ex-task-question"></div>
+                </div>
+                <div class="options" id="ex-task-options"></div>
+                <div id="ex-task-explanation" style="display: none; margin-top: 16px; padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-md); border-left: 4px solid var(--primary); color: var(--text-primary);"></div>
+                <button class="btn btn-primary" id="ex-task-next" style="display: none; margin-top: 16px;" onclick="nextExTask()">
+                    Далее →
+                </button>
+            </div>
+        </section>
+        
         <!-- Progress Section -->
         <section id="progress" class="section" style="display: none;">
             <button class="back-btn" onclick="backToMainMenu()">← Назад в меню</button>
@@ -939,6 +1005,17 @@ HTML_TEMPLATE = """
         let currentExercises = [];
         let currentExerciseIndex = 0;
         let exerciseScore = 0;
+        let currentCultureTopicData = null;
+        let currentCultureQuestions = [];
+        let currentCultureQuizIndex = 0;
+        let currentCultureQuizCorrectCount = 0;
+        let cultureQuizProgressSaved = false;
+        let currentLevelMajor = 'A1';
+        let currentLevelSub = '1';
+        let currentExerciseSetId = null;
+        let currentExTasks = [];
+        let currentExTaskIndex = 0;
+        let currentExScore = 0;
         
         // Header scroll behavior
         let headerShown = true;
@@ -997,6 +1074,10 @@ HTML_TEMPLATE = """
                 loadPhrasesCategories();
             } else if (sectionId === 'dialogues') {
                 loadDialoguesTopics();
+            } else if (sectionId === 'culture') {
+                loadCultureTopics();
+            } else if (sectionId === 'exercises') {
+                loadExercisesSets();
             } else if (sectionId === 'progress') {
                 loadProgress();
             } else if (sectionId === 'feedback') {
@@ -1028,6 +1109,10 @@ HTML_TEMPLATE = """
             document.getElementById('dialogues-topics-view').style.display = 'block';
             document.getElementById('dialogue-view').style.display = 'none';
             document.getElementById('dialogue-exercise-view').style.display = 'none';
+            document.getElementById('culture-topics-view').style.display = 'block';
+            document.getElementById('culture-topic-view').style.display = 'none';
+            document.getElementById('exercises-sets-view').style.display = 'block';
+            document.getElementById('exercises-task-view').style.display = 'none';
             
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1691,6 +1776,290 @@ HTML_TEMPLATE = """
             backToDialogue();
         }
         
+        // ============= CULTURE FUNCTIONS =============
+        
+        async function loadCultureTopics() {
+            try {
+                const levelRes = await fetch('/api/levels/current');
+                if (levelRes.ok) {
+                    const levelData = await levelRes.json();
+                    currentLevelMajor = levelData.major || 'A1';
+                    currentLevelSub = levelData.sub || '1';
+                }
+                const response = await fetch('/api/culture/topics');
+                const topics = await response.json();
+                const list = document.getElementById('culture-topics-list');
+                list.innerHTML = '';
+                if (topics.length === 0) {
+                    list.innerHTML = '<p style="color: var(--text-secondary);">Тем пока нет</p>';
+                    return;
+                }
+                topics.forEach(topic => {
+                    const btn = document.createElement('button');
+                    btn.className = 'category-btn';
+                    btn.innerHTML = `<span class="name">${topic.name}</span>`;
+                    btn.onclick = () => openCultureTopic(topic.id);
+                    list.appendChild(btn);
+                });
+            } catch (error) {
+                document.getElementById('culture-topics-list').innerHTML = 
+                    '<div class="error-msg">Ошибка загрузки тем</div>';
+            }
+        }
+        
+        async function openCultureTopic(topicId) {
+            try {
+                const response = await fetch(`/api/culture/${topicId}`);
+                currentCultureTopicData = await response.json();
+                currentCultureQuestions = currentCultureTopicData.questions || [];
+                currentCultureQuizIndex = 0;
+                currentCultureQuizCorrectCount = 0;
+                cultureQuizProgressSaved = false;
+                
+                document.getElementById('culture-topics-view').style.display = 'none';
+                document.getElementById('culture-topic-view').style.display = 'block';
+                
+                renderCultureContent();
+                const quizBlock = document.getElementById('culture-quiz-block');
+                if (currentCultureQuestions.length > 0) {
+                    quizBlock.style.display = 'block';
+                    showCultureQuizQuestion();
+                } else {
+                    quizBlock.style.display = 'none';
+                }
+                if (userId) {
+                    fetch('/api/progress/culture', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            user_id: userId,
+                            topic_id: topicId,
+                            major: currentLevelMajor,
+                            sub: currentLevelSub
+                        })
+                    }).catch(() => {});
+                }
+            } catch (error) {
+                tg.showAlert('Ошибка загрузки темы');
+            }
+        }
+        
+        function renderCultureContent() {
+            const content = currentCultureTopicData.content || {};
+            const div = document.getElementById('culture-content');
+            let html = `<h2 style="margin-bottom: 16px; color: var(--text-primary);">${currentCultureTopicData.name}</h2>`;
+            if (content.title) html += `<h3 style="font-size: 1.1rem; color: var(--primary-light); margin-bottom: 12px;">${content.title}</h3>`;
+            if (content.text) html += `<p style="color: var(--text-primary); line-height: 1.6; margin-bottom: 16px;">${content.text.replace(/\n/g, '<br>')}</p>`;
+            if (content.facts && content.facts.length) {
+                html += '<p class="card-title" style="margin-top: 16px;">Факты</p><ul style="margin-left: 20px; color: var(--text-primary); margin-bottom: 16px;">';
+                content.facts.forEach(f => { html += `<li>${f}</li>`; });
+                html += '</ul>';
+            }
+            if (content.tips && content.tips.length) {
+                html += '<p class="card-title">Советы</p><ul style="margin-left: 20px; color: var(--text-primary);">';
+                content.tips.forEach(t => { html += `<li>${t}</li>`; });
+                html += '</ul>';
+            }
+            div.innerHTML = html;
+        }
+        
+        function showCultureQuizQuestion() {
+            const optionsDiv = document.getElementById('culture-quiz-options');
+            const nextBtn = document.getElementById('culture-quiz-next');
+            const quizTotal = Math.min(2, currentCultureQuestions.length);
+            if (currentCultureQuizIndex >= quizTotal) {
+                if (userId && !cultureQuizProgressSaved && quizTotal > 0) {
+                    cultureQuizProgressSaved = true;
+                    fetch('/api/progress/culture', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            user_id: userId,
+                            topic_id: currentCultureTopicData.id,
+                            major: currentLevelMajor,
+                            sub: currentLevelSub,
+                            quiz_completed: 1,
+                            quiz_correct: currentCultureQuizCorrectCount,
+                            quiz_total: quizTotal
+                        })
+                    }).catch(() => {});
+                }
+                document.getElementById('culture-quiz-number').textContent = '';
+                document.getElementById('culture-quiz-question').textContent = 'Викторина завершена';
+                optionsDiv.innerHTML = '';
+                nextBtn.style.display = 'none';
+                return;
+            }
+            const q = currentCultureQuestions[currentCultureQuizIndex];
+            document.getElementById('culture-quiz-number').textContent = `Вопрос ${currentCultureQuizIndex + 1}`;
+            document.getElementById('culture-quiz-question').textContent = q.question;
+            optionsDiv.innerHTML = '';
+            nextBtn.style.display = 'none';
+            nextBtn.onclick = () => { currentCultureQuizIndex++; showCultureQuizQuestion(); };
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    optionsDiv.querySelectorAll('.option').forEach(b => { b.onclick = null; });
+                    if (idx === q.correct) currentCultureQuizCorrectCount++;
+                    btn.classList.add(idx === q.correct ? 'correct' : 'wrong');
+                    if (idx !== q.correct) {
+                        const correctBtn = optionsDiv.children[q.correct];
+                        if (correctBtn) correctBtn.classList.add('correct');
+                    }
+                    tg.HapticFeedback.notificationOccurred(idx === q.correct ? 'success' : 'error');
+                    nextBtn.style.display = 'block';
+                };
+                optionsDiv.appendChild(btn);
+            });
+        }
+        
+        function nextCultureQuizQuestion() {
+            currentCultureQuizIndex++;
+            showCultureQuizQuestion();
+        }
+        
+        function backToCultureTopics() {
+            document.getElementById('culture-topic-view').style.display = 'none';
+            document.getElementById('culture-topics-view').style.display = 'block';
+        }
+        
+        function backToMainFromCulture() {
+            backToMainMenu();
+        }
+        
+        // ============= EXERCISES (STANDALONE) FUNCTIONS =============
+        
+        async function loadExercisesSets() {
+            try {
+                const levelRes = await fetch('/api/levels/current');
+                if (levelRes.ok) {
+                    const levelData = await levelRes.json();
+                    currentLevelMajor = levelData.major || 'A1';
+                    currentLevelSub = levelData.sub || '1';
+                }
+                const response = await fetch('/api/exercises/sets');
+                const sets = await response.json();
+                const list = document.getElementById('exercises-sets-list');
+                list.innerHTML = '';
+                if (sets.length === 0) {
+                    list.innerHTML = '<p style="color: var(--text-secondary);">Наборов пока нет</p>';
+                    return;
+                }
+                sets.forEach(s => {
+                    const btn = document.createElement('button');
+                    btn.className = 'category-btn';
+                    btn.innerHTML = `
+                        <span class="name">${s.name}</span>
+                        <span class="count">${s.tasks_count} заданий</span>
+                    `;
+                    btn.onclick = () => startExerciseSet(s.id);
+                    list.appendChild(btn);
+                });
+            } catch (error) {
+                document.getElementById('exercises-sets-list').innerHTML = 
+                    '<div class="error-msg">Ошибка загрузки наборов</div>';
+            }
+        }
+        
+        async function startExerciseSet(setId) {
+            try {
+                const response = await fetch(`/api/exercises/${setId}/tasks`);
+                currentExTasks = await response.json();
+                currentExTaskIndex = 0;
+                currentExScore = 0;
+                currentExerciseSetId = setId;
+                
+                document.getElementById('exercises-sets-view').style.display = 'none';
+                document.getElementById('exercises-task-view').style.display = 'block';
+                
+                showExTask();
+            } catch (error) {
+                tg.showAlert('Ошибка загрузки заданий');
+            }
+        }
+        
+        function showExTask() {
+            if (currentExTaskIndex >= currentExTasks.length) {
+                finishExSet();
+                return;
+            }
+            const task = currentExTasks[currentExTaskIndex];
+            document.getElementById('ex-task-number').textContent = `Задание ${currentExTaskIndex + 1} из ${currentExTasks.length}`;
+            document.getElementById('ex-task-question').textContent = task.question;
+            document.getElementById('ex-task-explanation').style.display = 'none';
+            document.getElementById('ex-task-explanation').textContent = '';
+            document.getElementById('ex-task-next').style.display = 'none';
+            
+            const optionsDiv = document.getElementById('ex-task-options');
+            optionsDiv.innerHTML = '';
+            if (task.options) {
+                task.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option';
+                    btn.textContent = opt;
+                    btn.onclick = () => selectExTaskAnswer(btn, idx === task.correct, task.explanation);
+                    optionsDiv.appendChild(btn);
+                });
+            }
+        }
+        
+        function selectExTaskAnswer(selectedBtn, isCorrect, explanation) {
+            const optionsDiv = document.getElementById('ex-task-options');
+            optionsDiv.querySelectorAll('.option').forEach(btn => {
+                btn.onclick = null;
+                if (btn === selectedBtn) btn.classList.add(isCorrect ? 'correct' : 'wrong');
+            });
+            const correctIndex = currentExTasks[currentExTaskIndex].correct;
+            if (!isCorrect && optionsDiv.children[correctIndex]) {
+                optionsDiv.children[correctIndex].classList.add('correct');
+            }
+            if (isCorrect) currentExScore++;
+            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            const explEl = document.getElementById('ex-task-explanation');
+            if (explanation) {
+                explEl.textContent = explanation;
+                explEl.style.display = 'block';
+            }
+            document.getElementById('ex-task-next').style.display = 'block';
+        }
+        
+        function nextExTask() {
+            currentExTaskIndex++;
+            showExTask();
+        }
+        
+        function finishExSet() {
+            const total = currentExTasks.length;
+            const percentage = Math.round((currentExScore / total) * 100);
+            if (userId && currentExerciseSetId) {
+                fetch('/api/progress/exercise', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        user_id: userId,
+                        set_id: currentExerciseSetId,
+                        major: currentLevelMajor,
+                        sub: currentLevelSub,
+                        tasks_completed: total,
+                        tasks_correct: currentExScore
+                    })
+                }).catch(() => {});
+            }
+            tg.showAlert(`🎉 Набор завершён!\\nРезультат: ${currentExScore} из ${total} (${percentage}%)`);
+            backToExercisesSets();
+        }
+        
+        function backToExercisesSets() {
+            document.getElementById('exercises-task-view').style.display = 'none';
+            document.getElementById('exercises-sets-view').style.display = 'block';
+        }
+        
+        function backToMainFromExercises() {
+            backToMainMenu();
+        }
+        
         // ============= FEEDBACK FUNCTIONS =============
         
         const FEEDBACK_STATUS_LABELS = {
@@ -2125,9 +2494,67 @@ def api_dialogue_exercises(topic_id):
     """Get exercises for dialogue for current level or specified level."""
     major = request.args.get('major')
     sub = request.args.get('sub')
-    
+
     exercises = get_dialogue_exercises(topic_id, major, sub) if major and sub else get_dialogue_exercises(topic_id)
     return jsonify(exercises)
+
+
+# ============= CULTURE API ENDPOINTS =============
+
+@app.route('/api/culture/topics')
+def api_culture_topics():
+    """Get all culture topics for current level or specified level."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+
+    topics = get_culture_topics(major, sub) if major and sub else get_culture_topics()
+    return jsonify(topics)
+
+
+@app.route('/api/culture/<topic_id>')
+def api_culture_topic(topic_id):
+    """Get one culture topic with full content and questions if present."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+
+    topic = get_culture_topic(topic_id, major, sub) if major and sub else get_culture_topic(topic_id)
+    if not topic:
+        return jsonify({'error': 'Not found'}), 404
+    return jsonify(topic)
+
+
+# ============= EXERCISES API ENDPOINTS =============
+
+@app.route('/api/exercises/sets')
+def api_exercise_sets():
+    """Get all exercise sets for current level or specified level."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+
+    sets = get_exercise_sets(major, sub) if major and sub else get_exercise_sets()
+    return jsonify(sets)
+
+
+@app.route('/api/exercises/<set_id>')
+def api_exercise_set(set_id):
+    """Get one exercise set (metadata only)."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+
+    data = get_exercise_set(set_id, major, sub) if major and sub else get_exercise_set(set_id)
+    if not data:
+        return jsonify({'error': 'Not found'}), 404
+    return jsonify(data)
+
+
+@app.route('/api/exercises/<set_id>/tasks')
+def api_exercise_tasks(set_id):
+    """Get tasks for an exercise set."""
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+
+    tasks = get_exercise_tasks(set_id, major, sub) if major and sub else get_exercise_tasks(set_id)
+    return jsonify(tasks)
 
 
 # ============= PROGRESS API ENDPOINTS =============
@@ -2196,6 +2623,79 @@ def api_update_dialogue_progress():
         total=exercises_completed
     ))
     
+    return jsonify({'success': True})
+
+
+@app.route('/api/progress/culture', methods=['POST'])
+def api_update_culture_progress():
+    """Update culture topic progress (view and/or quiz result)."""
+    data = request.json or {}
+    user_id = data.get('user_id')
+
+    if not user_id:
+        return jsonify({'error': 'User not authenticated'}), 401
+
+    try:
+        asyncio.run(get_or_create_user(user_id, None, None))
+    except Exception as e:
+        logger.error(f"Error creating user {user_id}: {e}")
+
+    major = data.get('major')
+    sub = data.get('sub')
+    if not major or not sub:
+        major, sub = get_current_level()
+
+    topic_id = data.get('topic_id')
+    if not topic_id:
+        return jsonify({'error': 'topic_id required'}), 400
+
+    quiz_completed = data.get('quiz_completed', 0)
+    quiz_correct = data.get('quiz_correct', 0)
+    quiz_total = data.get('quiz_total', 0)
+
+    # viewed_at не принимается от клиента — сервер всегда использует datetime.now()
+    asyncio.run(save_culture_progress(
+        user_id, topic_id, major, sub,
+        viewed_at=None,
+        quiz_completed=quiz_completed,
+        quiz_correct=quiz_correct,
+        quiz_total=quiz_total
+    ))
+    return jsonify({'success': True})
+
+
+@app.route('/api/progress/exercise', methods=['POST'])
+def api_update_exercise_progress():
+    """Update exercise set progress."""
+    data = request.json or {}
+    user_id = data.get('user_id')
+
+    if not user_id:
+        return jsonify({'error': 'User not authenticated'}), 401
+
+    try:
+        asyncio.run(get_or_create_user(user_id, None, None))
+    except Exception as e:
+        logger.error(f"Error creating user {user_id}: {e}")
+
+    major = data.get('major')
+    sub = data.get('sub')
+    if not major or not sub:
+        major, sub = get_current_level()
+
+    set_id = data.get('set_id')
+    if not set_id:
+        return jsonify({'error': 'set_id required'}), 400
+
+    tasks_completed = data.get('tasks_completed', 0)
+    tasks_correct = data.get('tasks_correct', 0)
+
+    asyncio.run(save_exercise_set_progress(
+        user_id, set_id, major, sub, tasks_completed, tasks_correct
+    ))
+    asyncio.run(update_daily_stats(
+        user_id, tests=1, correct=tasks_correct, total=tasks_completed
+    ))
     return jsonify({'success': True})
 
 

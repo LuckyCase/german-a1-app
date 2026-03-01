@@ -1,0 +1,52 @@
+{
+  "id": "food_cafe",
+  "name": "Еда и кафе",
+  "name_de": "Essen und Café",
+  "description": "Лексика и фразы для заказа еды и напитков",
+  "level": "A1",
+  "linked_to": ["food", "cafe"],
+  "tasks": [
+    {
+      "type": "multiple_choice",
+      "question": "Как сказать «Я хочу кофе»?",
+      "options": ["Ich habe Kaffee.", "Ich möchte einen Kaffee.", "Ich bin Kaffee."],
+      "correct": 1,
+      "explanation": "«Ich möchte einen Kaffee» — вежливая форма «я бы хотел кофе». Möchten — модальный глагол вежливого желания."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Что значит «die Rechnung»?",
+      "options": ["Меню", "Счёт", "Чаевые"],
+      "correct": 1,
+      "explanation": "Die Rechnung — счёт (в ресторане или кафе)."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Выберите правильный артикль: ___ Wasser, bitte.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 2,
+      "explanation": "Wasser — средний род: das Wasser."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Как пожелать «приятного аппетита»?",
+      "options": ["Gute Nacht!", "Guten Appetit!", "Guten Tag!"],
+      "correct": 1,
+      "explanation": "Guten Appetit! — пожелание приятного аппетита перед едой."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Что значит «mit Kohlensäure»?",
+      "options": ["Без газа", "С газом", "Холодная"],
+      "correct": 1,
+      "explanation": "Mit Kohlensäure — газированная (вода с углекислым газом)."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Как по-немецки «хлеб»?",
+      "options": ["das Brot", "der Brot", "die Brot"],
+      "correct": 0,
+      "explanation": "Brot — средний род: das Brot."
+    }
+  ]
+}

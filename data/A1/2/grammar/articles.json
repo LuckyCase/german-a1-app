@@ -1,0 +1,212 @@
+{
+  "id": "articles",
+  "name": "Артикли (der, die, das)",
+  "name_de": "Artikel",
+  "description": "Артикли и нулевой артикль (уровень A2)",
+  "level": "A2",
+  "theory": {
+    "title": "Артикли и нулевой артикль",
+    "content": "На уровне A2 важно знать, когда артикль НЕ используется:\n\n• Профессии без определения: Er ist Lehrer.\n• Языки, предметы: Sie spricht Deutsch.\n• Абстрактные понятия: Liebe ist wichtig.\n• После предлогов (in, zu, nach) с названиями: Ich fahre nach Berlin.",
+    "examples": [
+      "Er ist Arzt. (без артикля — профессия)",
+      "Ich lerne Deutsch. (без артикля — язык)",
+      "Der Mann ist ein guter Lehrer. (неопределённый артикль — с определением)"
+    ],
+    "tips": [
+      "При обобщении во множественном числе: Kinder spielen gern.",
+      "При перечислении без определения: Sie trinkt Wasser und Kaffee."
+    ]
+  },
+  "questions": [
+    {
+      "question": "Er ist ___ Lehrer.",
+      "options": [
+        "der",
+        "ein",
+        "— (без артикля)"
+      ],
+      "correct": 2,
+      "explanation": "Профессия без определения — без артикля"
+    },
+    {
+      "question": "Sie spricht ___ Deutsch.",
+      "options": [
+        "das",
+        "—",
+        "die"
+      ],
+      "correct": 1,
+      "explanation": "Язык — нулевой артикль"
+    },
+    {
+      "question": "Ich fahre nach ___ Berlin.",
+      "options": [
+        "dem",
+        "den",
+        "—"
+      ],
+      "correct": 2,
+      "explanation": "Город после nach — без артикля"
+    },
+    {
+      "question": "___ Kind dort ist mein Sohn.",
+      "options": [
+        "Das",
+        "Ein",
+        "—"
+      ],
+      "correct": 0,
+      "explanation": "Определённый артикль — мы указываем на конкретного ребёнка"
+    },
+    {
+      "question": "Sie braucht ___ neue Brille.",
+      "options": [
+        "eine",
+        "die",
+        "—"
+      ],
+      "correct": 0,
+      "explanation": "Неопределённый артикль при первом упоминании"
+    },
+    {
+      "question": "___ Tisch ist groß.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 0,
+      "explanation": "Tisch — мужской род (der Tisch)"
+    },
+    {
+      "question": "___ Lampe ist neu.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 1,
+      "explanation": "Lampe — женский род (die Lampe)"
+    },
+    {
+      "question": "___ Kind spielt.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 2,
+      "explanation": "Kind — средний род (das Kind)"
+    },
+    {
+      "question": "___ Buch ist interessant.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 2,
+      "explanation": "Buch — средний род (das Buch)"
+    },
+    {
+      "question": "___ Frau arbeitet.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 1,
+      "explanation": "Frau — женский род (die Frau)"
+    },
+    {
+      "question": "___ Mann kommt.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 0,
+      "explanation": "Mann — мужской род (der Mann)"
+    },
+    {
+      "question": "___ Auto ist teuer.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 2,
+      "explanation": "Auto — средний род (das Auto)"
+    },
+    {
+      "question": "___ Kaffee ist heiß.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 0,
+      "explanation": "Kaffee — мужской род (der Kaffee)"
+    },
+    {
+      "question": "___ Milch ist kalt.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 1,
+      "explanation": "Milch — женский род (die Milch)"
+    },
+    {
+      "question": "___ Wasser ist frisch.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 2,
+      "explanation": "Wasser — средний род (das Wasser)"
+    },
+    {
+      "question": "___ Tasche ist schwer.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 1,
+      "explanation": "Tasche — женский род (die Tasche)"
+    },
+    {
+      "question": "___ Stuhl ist bequem.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 0,
+      "explanation": "Stuhl — мужской род (der Stuhl)"
+    },
+    {
+      "question": "___ Zimmer ist groß.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 2,
+      "explanation": "Zimmer — средний род (das Zimmer)"
+    },
+    {
+      "question": "___ Straße ist lang.",
+      "options": [
+        "Der",
+        "Die",
+        "Das"
+      ],
+      "correct": 1,
+      "explanation": "Straße — женский род (die Straße)"
+    }
+  ]
+}

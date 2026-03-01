@@ -1,0 +1,710 @@
+{
+  "id": "food",
+  "name": "Еда",
+  "name_de": "Essen",
+  "description": "Фразы о еде",
+  "level": "A1",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Ich habe Hunger.",
+      "ru": "Я хочу есть.",
+      "context": "Аппетит",
+      "example": "Ich habe Hunger. Wann essen wir?",
+      "example_ru": "Я хочу есть. Когда поедим?"
+    },
+    {
+      "de": "Was möchtest du trinken?",
+      "ru": "Что хочешь выпить?",
+      "context": "Напитки",
+      "example": "Was möchtest du trinken? / Einen Apfelsaft, bitte.",
+      "example_ru": "Что хочешь выпить? / Яблочный сок, пожалуйста."
+    },
+    {
+      "de": "Das schmeckt gut.",
+      "ru": "Вкусно.",
+      "context": "Оценка",
+      "example": "Das schmeckt gut. Hast du gekocht?",
+      "example_ru": "Вкусно. Ты готовил?"
+    },
+    {
+      "de": "Ich bin vegetarisch.",
+      "ru": "Я вегетарианец.",
+      "context": "Питание",
+      "example": "Ich bin vegetarisch. Haben Sie etwas ohne Fleisch?",
+      "example_ru": "Я вегетарианец. Есть что-то без мяса?"
+    },
+    {
+      "de": "Die Rechnung, bitte.",
+      "ru": "Счёт, пожалуйста.",
+      "context": "Ресторан",
+      "example": "Die Rechnung, bitte. / Sofort.",
+      "example_ru": "Счёт, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Ich habe Hunger.",
+      "ru": "Я хочу есть.",
+      "context": "Аппетит",
+      "example": "Ich habe Hunger. Wann essen wir?",
+      "example_ru": "Я хочу есть. Когда поедим?"
+    },
+    {
+      "de": "Was möchtest du trinken?",
+      "ru": "Что хочешь выпить?",
+      "context": "Напитки",
+      "example": "Was möchtest du trinken? / Einen Apfelsaft, bitte.",
+      "example_ru": "Что хочешь выпить? / Яблочный сок, пожалуйста."
+    },
+    {
+      "de": "Das schmeckt gut.",
+      "ru": "Вкусно.",
+      "context": "Оценка",
+      "example": "Das schmeckt gut. Hast du gekocht?",
+      "example_ru": "Вкусно. Ты готовил?"
+    },
+    {
+      "de": "Ich bin vegetarisch.",
+      "ru": "Я вегетарианец.",
+      "context": "Питание",
+      "example": "Ich bin vegetarisch. Haben Sie etwas ohne Fleisch?",
+      "example_ru": "Я вегетарианец. Есть что-то без мяса?"
+    },
+    {
+      "de": "Die Rechnung, bitte.",
+      "ru": "Счёт, пожалуйста.",
+      "context": "Ресторан",
+      "example": "Die Rechnung, bitte. / Sofort.",
+      "example_ru": "Счёт, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Ich habe Hunger.",
+      "ru": "Я хочу есть.",
+      "context": "Аппетит",
+      "example": "Ich habe Hunger. Wann essen wir?",
+      "example_ru": "Я хочу есть. Когда поедим?"
+    },
+    {
+      "de": "Was möchtest du trinken?",
+      "ru": "Что хочешь выпить?",
+      "context": "Напитки",
+      "example": "Was möchtest du trinken? / Einen Apfelsaft, bitte.",
+      "example_ru": "Что хочешь выпить? / Яблочный сок, пожалуйста."
+    },
+    {
+      "de": "Das schmeckt gut.",
+      "ru": "Вкусно.",
+      "context": "Оценка",
+      "example": "Das schmeckt gut. Hast du gekocht?",
+      "example_ru": "Вкусно. Ты готовил?"
+    },
+    {
+      "de": "Ich bin vegetarisch.",
+      "ru": "Я вегетарианец.",
+      "context": "Питание",
+      "example": "Ich bin vegetarisch. Haben Sie etwas ohne Fleisch?",
+      "example_ru": "Я вегетарианец. Есть что-то без мяса?"
+    },
+    {
+      "de": "Die Rechnung, bitte.",
+      "ru": "Счёт, пожалуйста.",
+      "context": "Ресторан",
+      "example": "Die Rechnung, bitte. / Sofort.",
+      "example_ru": "Счёт, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Ich habe Hunger.",
+      "ru": "Я хочу есть.",
+      "context": "Аппетит",
+      "example": "Ich habe Hunger. Wann essen wir?",
+      "example_ru": "Я хочу есть. Когда поедим?"
+    },
+    {
+      "de": "Was möchtest du trinken?",
+      "ru": "Что хочешь выпить?",
+      "context": "Напитки",
+      "example": "Was möchtest du trinken? / Einen Apfelsaft, bitte.",
+      "example_ru": "Что хочешь выпить? / Яблочный сок, пожалуйста."
+    },
+    {
+      "de": "Das schmeckt gut.",
+      "ru": "Вкусно.",
+      "context": "Оценка",
+      "example": "Das schmeckt gut. Hast du gekocht?",
+      "example_ru": "Вкусно. Ты готовил?"
+    },
+    {
+      "de": "Ich bin vegetarisch.",
+      "ru": "Я вегетарианец.",
+      "context": "Питание",
+      "example": "Ich bin vegetarisch. Haben Sie etwas ohne Fleisch?",
+      "example_ru": "Я вегетарианец. Есть что-то без мяса?"
+    },
+    {
+      "de": "Die Rechnung, bitte.",
+      "ru": "Счёт, пожалуйста.",
+      "context": "Ресторан",
+      "example": "Die Rechnung, bitte. / Sofort.",
+      "example_ru": "Счёт, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Ich habe Hunger.",
+      "ru": "Я хочу есть.",
+      "context": "Аппетит",
+      "example": "Ich habe Hunger. Wann essen wir?",
+      "example_ru": "Я хочу есть. Когда поедим?"
+    },
+    {
+      "de": "Was möchtest du trinken?",
+      "ru": "Что хочешь выпить?",
+      "context": "Напитки",
+      "example": "Was möchtest du trinken? / Einen Apfelsaft, bitte.",
+      "example_ru": "Что хочешь выпить? / Яблочный сок, пожалуйста."
+    },
+    {
+      "de": "Das schmeckt gut.",
+      "ru": "Вкусно.",
+      "context": "Оценка",
+      "example": "Das schmeckt gut. Hast du gekocht?",
+      "example_ru": "Вкусно. Ты готовил?"
+    },
+    {
+      "de": "Ich bin vegetarisch.",
+      "ru": "Я вегетарианец.",
+      "context": "Питание",
+      "example": "Ich bin vegetarisch. Haben Sie etwas ohne Fleisch?",
+      "example_ru": "Я вегетарианец. Есть что-то без мяса?"
+    },
+    {
+      "de": "Die Rechnung, bitte.",
+      "ru": "Счёт, пожалуйста.",
+      "context": "Ресторан",
+      "example": "Die Rechnung, bitte. / Sofort.",
+      "example_ru": "Счёт, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Ich habe Hunger.",
+      "ru": "Я хочу есть.",
+      "context": "Аппетит",
+      "example": "Ich habe Hunger. Wann essen wir?",
+      "example_ru": "Я хочу есть. Когда поедим?"
+    },
+    {
+      "de": "Was möchtest du trinken?",
+      "ru": "Что хочешь выпить?",
+      "context": "Напитки",
+      "example": "Was möchtest du trinken? / Einen Apfelsaft, bitte.",
+      "example_ru": "Что хочешь выпить? / Яблочный сок, пожалуйста."
+    },
+    {
+      "de": "Das schmeckt gut.",
+      "ru": "Вкусно.",
+      "context": "Оценка",
+      "example": "Das schmeckt gut. Hast du gekocht?",
+      "example_ru": "Вкусно. Ты готовил?"
+    },
+    {
+      "de": "Ich bin vegetarisch.",
+      "ru": "Я вегетарианец.",
+      "context": "Питание",
+      "example": "Ich bin vegetarisch. Haben Sie etwas ohne Fleisch?",
+      "example_ru": "Я вегетарианец. Есть что-то без мяса?"
+    },
+    {
+      "de": "Die Rechnung, bitte.",
+      "ru": "Счёт, пожалуйста.",
+      "context": "Ресторан",
+      "example": "Die Rechnung, bitte. / Sofort.",
+      "example_ru": "Счёт, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    }
+  ]
+}

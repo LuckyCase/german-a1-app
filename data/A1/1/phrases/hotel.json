@@ -1,0 +1,710 @@
+{
+  "id": "hotel",
+  "name": "В отеле",
+  "name_de": "Im Hotel",
+  "description": "Фразы в отеле",
+  "level": "A1",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба",
+      "example": "Einen Moment, bitte.",
+      "example_ru": "Один момент, пожалуйста."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "Нет проблем."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Ich habe eine Reservierung.",
+      "ru": "У меня бронь.",
+      "context": "Заезд",
+      "example": "Ich habe eine Reservierung auf den Namen Müller.",
+      "example_ru": "У меня бронь на имя Мюллер."
+    },
+    {
+      "de": "Wie lange bleiben Sie?",
+      "ru": "На сколько вы остаётесь?",
+      "context": "Вопрос",
+      "example": "Wie lange bleiben Sie? / Drei Nächte.",
+      "example_ru": "На сколько вы остаётесь? / На три ночи."
+    },
+    {
+      "de": "Wo ist das Frühstück?",
+      "ru": "Где завтрак?",
+      "context": "Услуги",
+      "example": "Wo ist das Frühstück? / Im Erdgeschoss, von 7 bis 10 Uhr.",
+      "example_ru": "Где завтрак? / На первом этаже, с 7 до 10."
+    },
+    {
+      "de": "Das Zimmer ist zu laut.",
+      "ru": "В номере слишком шумно.",
+      "context": "Жалоба",
+      "example": "Das Zimmer ist zu laut. Können Sie mir ein anderes geben?",
+      "example_ru": "В номере слишком шумно. Можно другой номер?"
+    },
+    {
+      "de": "Wann ist Check-out?",
+      "ru": "До какого времени выезд?",
+      "context": "Выезд",
+      "example": "Wann ist Check-out? / Bis 11 Uhr.",
+      "example_ru": "До какого времени выезд? / До 11."
+    },
+    {
+      "de": "Ich habe eine Reservierung.",
+      "ru": "У меня бронь.",
+      "context": "Заезд",
+      "example": "Ich habe eine Reservierung auf den Namen Müller.",
+      "example_ru": "У меня бронь на имя Мюллер."
+    },
+    {
+      "de": "Wie lange bleiben Sie?",
+      "ru": "На сколько вы остаётесь?",
+      "context": "Вопрос",
+      "example": "Wie lange bleiben Sie? / Drei Nächte.",
+      "example_ru": "На сколько вы остаётесь? / На три ночи."
+    },
+    {
+      "de": "Wo ist das Frühstück?",
+      "ru": "Где завтрак?",
+      "context": "Услуги",
+      "example": "Wo ist das Frühstück? / Im Erdgeschoss, von 7 bis 10 Uhr.",
+      "example_ru": "Где завтрак? / На первом этаже, с 7 до 10."
+    },
+    {
+      "de": "Das Zimmer ist zu laut.",
+      "ru": "В номере слишком шумно.",
+      "context": "Жалоба",
+      "example": "Das Zimmer ist zu laut. Können Sie mir ein anderes geben?",
+      "example_ru": "В номере слишком шумно. Можно другой номер?"
+    },
+    {
+      "de": "Wann ist Check-out?",
+      "ru": "До какого времени выезд?",
+      "context": "Выезд",
+      "example": "Wann ist Check-out? / Bis 11 Uhr.",
+      "example_ru": "До какого времени выезд? / До 11."
+    },
+    {
+      "de": "Ich habe eine Reservierung.",
+      "ru": "У меня бронь.",
+      "context": "Заезд",
+      "example": "Ich habe eine Reservierung auf den Namen Müller.",
+      "example_ru": "У меня бронь на имя Мюллер."
+    },
+    {
+      "de": "Wie lange bleiben Sie?",
+      "ru": "На сколько вы остаётесь?",
+      "context": "Вопрос",
+      "example": "Wie lange bleiben Sie? / Drei Nächte.",
+      "example_ru": "На сколько вы остаётесь? / На три ночи."
+    },
+    {
+      "de": "Wo ist das Frühstück?",
+      "ru": "Где завтрак?",
+      "context": "Услуги",
+      "example": "Wo ist das Frühstück? / Im Erdgeschoss, von 7 bis 10 Uhr.",
+      "example_ru": "Где завтрак? / На первом этаже, с 7 до 10."
+    },
+    {
+      "de": "Das Zimmer ist zu laut.",
+      "ru": "В номере слишком шумно.",
+      "context": "Жалоба",
+      "example": "Das Zimmer ist zu laut. Können Sie mir ein anderes geben?",
+      "example_ru": "В номере слишком шумно. Можно другой номер?"
+    },
+    {
+      "de": "Wann ist Check-out?",
+      "ru": "До какого времени выезд?",
+      "context": "Выезд",
+      "example": "Wann ist Check-out? / Bis 11 Uhr.",
+      "example_ru": "До какого времени выезд? / До 11."
+    },
+    {
+      "de": "Ich habe eine Reservierung.",
+      "ru": "У меня бронь.",
+      "context": "Заезд",
+      "example": "Ich habe eine Reservierung auf den Namen Müller.",
+      "example_ru": "У меня бронь на имя Мюллер."
+    },
+    {
+      "de": "Wie lange bleiben Sie?",
+      "ru": "На сколько вы остаётесь?",
+      "context": "Вопрос",
+      "example": "Wie lange bleiben Sie? / Drei Nächte.",
+      "example_ru": "На сколько вы остаётесь? / На три ночи."
+    },
+    {
+      "de": "Wo ist das Frühstück?",
+      "ru": "Где завтрак?",
+      "context": "Услуги",
+      "example": "Wo ist das Frühstück? / Im Erdgeschoss, von 7 bis 10 Uhr.",
+      "example_ru": "Где завтрак? / На первом этаже, с 7 до 10."
+    },
+    {
+      "de": "Das Zimmer ist zu laut.",
+      "ru": "В номере слишком шумно.",
+      "context": "Жалоба",
+      "example": "Das Zimmer ist zu laut. Können Sie mir ein anderes geben?",
+      "example_ru": "В номере слишком шумно. Можно другой номер?"
+    },
+    {
+      "de": "Wann ist Check-out?",
+      "ru": "До какого времени выезд?",
+      "context": "Выезд",
+      "example": "Wann ist Check-out? / Bis 11 Uhr.",
+      "example_ru": "До какого времени выезд? / До 11."
+    },
+    {
+      "de": "Ich habe eine Reservierung.",
+      "ru": "У меня бронь.",
+      "context": "Заезд",
+      "example": "Ich habe eine Reservierung auf den Namen Müller.",
+      "example_ru": "У меня бронь на имя Мюллер."
+    },
+    {
+      "de": "Wie lange bleiben Sie?",
+      "ru": "На сколько вы остаётесь?",
+      "context": "Вопрос",
+      "example": "Wie lange bleiben Sie? / Drei Nächte.",
+      "example_ru": "На сколько вы остаётесь? / На три ночи."
+    },
+    {
+      "de": "Wo ist das Frühstück?",
+      "ru": "Где завтрак?",
+      "context": "Услуги",
+      "example": "Wo ist das Frühstück? / Im Erdgeschoss, von 7 bis 10 Uhr.",
+      "example_ru": "Где завтрак? / На первом этаже, с 7 до 10."
+    },
+    {
+      "de": "Das Zimmer ist zu laut.",
+      "ru": "В номере слишком шумно.",
+      "context": "Жалоба",
+      "example": "Das Zimmer ist zu laut. Können Sie mir ein anderes geben?",
+      "example_ru": "В номере слишком шумно. Можно другой номер?"
+    },
+    {
+      "de": "Wann ist Check-out?",
+      "ru": "До какого времени выезд?",
+      "context": "Выезд",
+      "example": "Wann ist Check-out? / Bis 11 Uhr.",
+      "example_ru": "До какого времени выезд? / До 11."
+    },
+    {
+      "de": "Ich habe eine Reservierung.",
+      "ru": "У меня бронь.",
+      "context": "Заезд",
+      "example": "Ich habe eine Reservierung auf den Namen Müller.",
+      "example_ru": "У меня бронь на имя Мюллер."
+    },
+    {
+      "de": "Wie lange bleiben Sie?",
+      "ru": "На сколько вы остаётесь?",
+      "context": "Вопрос",
+      "example": "Wie lange bleiben Sie? / Drei Nächte.",
+      "example_ru": "На сколько вы остаётесь? / На три ночи."
+    },
+    {
+      "de": "Wo ist das Frühstück?",
+      "ru": "Где завтрак?",
+      "context": "Услуги",
+      "example": "Wo ist das Frühstück? / Im Erdgeschoss, von 7 bis 10 Uhr.",
+      "example_ru": "Где завтрак? / На первом этаже, с 7 до 10."
+    },
+    {
+      "de": "Das Zimmer ist zu laut.",
+      "ru": "В номере слишком шумно.",
+      "context": "Жалоба",
+      "example": "Das Zimmer ist zu laut. Können Sie mir ein anderes geben?",
+      "example_ru": "В номере слишком шумно. Можно другой номер?"
+    },
+    {
+      "de": "Wann ist Check-out?",
+      "ru": "До какого времени выезд?",
+      "context": "Выезд",
+      "example": "Wann ist Check-out? / Bis 11 Uhr.",
+      "example_ru": "До какого времени выезд? / До 11."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    },
+    {
+      "de": "Ja.",
+      "ru": "Да.",
+      "context": "Ответ",
+      "example": "Ja.",
+      "example_ru": "Да."
+    },
+    {
+      "de": "Nein.",
+      "ru": "Нет.",
+      "context": "Ответ",
+      "example": "Nein.",
+      "example_ru": "Нет."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "Das ist gut.",
+      "example_ru": "Это хорошо."
+    },
+    {
+      "de": "Danke!",
+      "ru": "Спасибо!",
+      "context": "Благодарность",
+      "example": "Danke!",
+      "example_ru": "Спасибо!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung!",
+      "example_ru": "Извините!"
+    },
+    {
+      "de": "Bitte.",
+      "ru": "Пожалуйста.",
+      "context": "Вежливость",
+      "example": "Bitte.",
+      "example_ru": "Пожалуйста."
+    }
+  ]
+}

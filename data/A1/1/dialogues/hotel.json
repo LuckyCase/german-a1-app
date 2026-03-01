@@ -1,0 +1,68 @@
+{
+  "id": "hotel",
+  "name": "В отеле",
+  "name_de": "Im Hotel",
+  "description": "Регистрация в отеле",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Guten Tag. Ich habe eine Reservierung.",
+      "text_ru": "Добрый день. У меня бронь.",
+      "audio_file": "hotel_01.mp3"
+    },
+    {
+      "role": "Rezeption",
+      "role_ru": "Рецепция",
+      "text": "Name bitte? Müller? Ja. Für zwei Nächte. Hier ist Ihr Schlüssel, Zimmer 305.",
+      "text_ru": "Фамилия? Мюллер? Да. На две ночи. Вот ключ, номер 305.",
+      "audio_file": "hotel_02.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Danke. Wo ist der Aufzug? Und wann ist das Frühstück?",
+      "text_ru": "Спасибо. Где лифт? И когда завтрак?",
+      "audio_file": "hotel_03.mp3"
+    },
+    {
+      "role": "Rezeption",
+      "role_ru": "Рецепция",
+      "text": "Aufzug links. Frühstück von 7 bis 10 im Erdgeschoss.",
+      "text_ru": "Лифт слева. Завтрак с 7 до 10 на первом этаже.",
+      "audio_file": "hotel_04.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Perfekt. Danke!",
+      "text_ru": "Отлично. Спасибо!",
+      "audio_file": "hotel_05.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Ich habe eine ___.",
+      "options": [
+        "Reservierung",
+        "Reservierungen",
+        "reservieren"
+      ],
+      "correct": 0,
+      "explanation": "Reservierung — бронь"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Wo ___ der Aufzug?",
+      "options": [
+        "ist",
+        "sind",
+        "bin"
+      ],
+      "correct": 0,
+      "explanation": "ist — где"
+    }
+  ]
+}

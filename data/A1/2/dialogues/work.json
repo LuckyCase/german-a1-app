@@ -1,0 +1,68 @@
+{
+  "id": "work",
+  "name": "На работе",
+  "name_de": "Bei der Arbeit",
+  "description": "В офисе",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Kollege",
+      "role_ru": "Коллега",
+      "text": "Guten Morgen! Hast du die E-Mail bekommen?",
+      "text_ru": "Доброе утро! Ты получил письмо?",
+      "audio_file": "work_01.mp3"
+    },
+    {
+      "role": "Maria",
+      "role_ru": "Мария",
+      "text": "Ja, danke. Ich antworte gleich.",
+      "text_ru": "Да, спасибо. Отвечу сейчас.",
+      "audio_file": "work_02.mp3"
+    },
+    {
+      "role": "Kollege",
+      "role_ru": "Коллега",
+      "text": "Wann ist das Meeting?",
+      "text_ru": "Когда совещание?",
+      "audio_file": "work_03.mp3"
+    },
+    {
+      "role": "Maria",
+      "role_ru": "Мария",
+      "text": "Um 14 Uhr im Konferenzraum.",
+      "text_ru": "В 14 в конференц-зале.",
+      "audio_file": "work_04.mp3"
+    },
+    {
+      "role": "Kollege",
+      "role_ru": "Коллега",
+      "text": "Alles klar. Bis gleich!",
+      "text_ru": "Понятно. До скорого!",
+      "audio_file": "work_05.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Hast du die E-Mail ___?",
+      "options": [
+        "bekommen",
+        "bekommt",
+        "bekomme"
+      ],
+      "correct": 0,
+      "explanation": "bekommen — Partizip II с haben"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Wann ___ das Meeting?",
+      "options": [
+        "ist",
+        "sind",
+        "bin"
+      ],
+      "correct": 0,
+      "explanation": "ist — Meeting в ед. ч."
+    }
+  ]
+}

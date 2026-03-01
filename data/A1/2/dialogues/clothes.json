@@ -1,0 +1,75 @@
+{
+  "id": "clothes",
+  "name": "Магазин одежды",
+  "name_de": "Im Bekleidungsgeschäft",
+  "description": "Примерка",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Verkäufer",
+      "role_ru": "Продавец",
+      "text": "Kann ich helfen? Sucht Sie etwas Bestimmtes?",
+      "text_ru": "Могу помочь? Что-то ищете?",
+      "audio_file": "clothes_01.mp3"
+    },
+    {
+      "role": "Kundin",
+      "role_ru": "Покупательница",
+      "text": "Ich suche eine Jacke. Etwas Warmes.",
+      "text_ru": "Ищу куртку. Что-то тёплое.",
+      "audio_file": "clothes_02.mp3"
+    },
+    {
+      "role": "Verkäufer",
+      "role_ru": "Продавец",
+      "text": "Welche Größe? Wir haben diese hier in M und L.",
+      "text_ru": "Какой размер? Вот эта есть в M и L.",
+      "audio_file": "clothes_03.mp3"
+    },
+    {
+      "role": "Kundin",
+      "role_ru": "Покупательница",
+      "text": "M, bitte. Kann ich anprobieren?",
+      "text_ru": "M, пожалуйста. Можно примерить?",
+      "audio_file": "clothes_04.mp3"
+    },
+    {
+      "role": "Verkäufer",
+      "role_ru": "Продавец",
+      "text": "Natürlich. Die Umkleide ist dort hinten.",
+      "text_ru": "Конечно. Примерочная там сзади.",
+      "audio_file": "clothes_05.mp3"
+    },
+    {
+      "role": "Kundin",
+      "role_ru": "Покупательница",
+      "text": "Die passt. Ich nehme sie.",
+      "text_ru": "Подходит. Беру.",
+      "audio_file": "clothes_06.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Ich ___ eine Jacke.",
+      "options": [
+        "suche",
+        "suchst",
+        "sucht"
+      ],
+      "correct": 0,
+      "explanation": "suche — с ich"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Kann ich ___?",
+      "options": [
+        "anprobieren",
+        "anprobiert",
+        "anprobiere"
+      ],
+      "correct": 0,
+      "explanation": "anprobieren — примерить"
+    }
+  ]
+}

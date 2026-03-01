@@ -1,0 +1,710 @@
+{
+  "id": "neighbors",
+  "name": "Соседи",
+  "name_de": "Nachbarn",
+  "description": "Фразы с соседями",
+  "level": "A2",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Guten Tag, ich bin Ihr neuer Nachbar.",
+      "ru": "Добрый день, я ваш новый сосед.",
+      "context": "Знакомство",
+      "example": "Guten Tag, ich bin Ihr neuer Nachbar. Ich wohne oben.",
+      "example_ru": "Добрый день, я ваш новый сосед. Живу наверху."
+    },
+    {
+      "de": "Können Sie leiser sein?",
+      "ru": "Можете потише?",
+      "context": "Просьба",
+      "example": "Können Sie leiser sein? Das ist sehr laut.",
+      "example_ru": "Можете потише? Очень громко."
+    },
+    {
+      "de": "Die Party war schön.",
+      "ru": "Вечеринка была отличная.",
+      "context": "Комплимент",
+      "example": "Die Party war schön. Danke für die Einladung!",
+      "example_ru": "Вечеринка была отличная. Спасибо за приглашение!"
+    },
+    {
+      "de": "Wann kommt die Müllabfuhr?",
+      "ru": "Когда вывозят мусор?",
+      "context": "Быт",
+      "example": "Wann kommt die Müllabfuhr? / Immer dienstags.",
+      "example_ru": "Когда вывозят мусор? / По вторникам."
+    },
+    {
+      "de": "Haben Sie meinen Brief bekommen?",
+      "ru": "Вы получили моё письмо?",
+      "context": "Почта",
+      "example": "Haben Sie meinen Brief bekommen? / Nein, noch nicht.",
+      "example_ru": "Вы получили моё письмо? / Нет, ещё нет."
+    },
+    {
+      "de": "Der Aufzug ist kaputt.",
+      "ru": "Лифт сломан.",
+      "context": "Дом",
+      "example": "Der Aufzug ist kaputt. Sie müssen die Treppe nehmen.",
+      "example_ru": "Лифт сломан. Придётся подниматься по лестнице."
+    },
+    {
+      "de": "Können Sie auf meine Katze aufpassen?",
+      "ru": "Можете присмотреть за моей кошкой?",
+      "context": "Просьба",
+      "example": "Können Sie auf meine Katze aufpassen? Ich fahre in Urlaub.",
+      "example_ru": "Можете присмотреть за кошкой? Я уезжаю в отпуск."
+    },
+    {
+      "de": "Wo ist der Parkplatz?",
+      "ru": "Где парковка?",
+      "context": "Дом",
+      "example": "Wo ist der Parkplatz? / Im Hof, hinter dem Haus.",
+      "example_ru": "Где парковка? / Во дворе, за домом."
+    },
+    {
+      "de": "Wir haben Lärm gehört.",
+      "ru": "Мы слышали шум.",
+      "context": "Жалоба",
+      "example": "Wir haben gestern Abend Lärm gehört. War das bei Ihnen?",
+      "example_ru": "Мы вчера вечером слышали шум. Это у вас было?"
+    },
+    {
+      "de": "Darf ich Sie um etwas bitten?",
+      "ru": "Можно вас о чём-то попросить?",
+      "context": "Вежливость",
+      "example": "Darf ich Sie um etwas bitten? / Natürlich.",
+      "example_ru": "Можно вас о чём-то попросить? / Конечно."
+    },
+    {
+      "de": "Guten Tag, ich bin Ihr neuer Nachbar.",
+      "ru": "Добрый день, я ваш новый сосед.",
+      "context": "Знакомство",
+      "example": "Guten Tag, ich bin Ihr neuer Nachbar. Ich wohne oben.",
+      "example_ru": "Добрый день, я ваш новый сосед. Живу наверху."
+    },
+    {
+      "de": "Können Sie leiser sein?",
+      "ru": "Можете потише?",
+      "context": "Просьба",
+      "example": "Können Sie leiser sein? Das ist sehr laut.",
+      "example_ru": "Можете потише? Очень громко."
+    },
+    {
+      "de": "Die Party war schön.",
+      "ru": "Вечеринка была отличная.",
+      "context": "Комплимент",
+      "example": "Die Party war schön. Danke für die Einladung!",
+      "example_ru": "Вечеринка была отличная. Спасибо за приглашение!"
+    },
+    {
+      "de": "Wann kommt die Müllabfuhr?",
+      "ru": "Когда вывозят мусор?",
+      "context": "Быт",
+      "example": "Wann kommt die Müllabfuhr? / Immer dienstags.",
+      "example_ru": "Когда вывозят мусор? / По вторникам."
+    },
+    {
+      "de": "Haben Sie meinen Brief bekommen?",
+      "ru": "Вы получили моё письмо?",
+      "context": "Почта",
+      "example": "Haben Sie meinen Brief bekommen? / Nein, noch nicht.",
+      "example_ru": "Вы получили моё письмо? / Нет, ещё нет."
+    },
+    {
+      "de": "Der Aufzug ist kaputt.",
+      "ru": "Лифт сломан.",
+      "context": "Дом",
+      "example": "Der Aufzug ist kaputt. Sie müssen die Treppe nehmen.",
+      "example_ru": "Лифт сломан. Придётся подниматься по лестнице."
+    },
+    {
+      "de": "Können Sie auf meine Katze aufpassen?",
+      "ru": "Можете присмотреть за моей кошкой?",
+      "context": "Просьба",
+      "example": "Können Sie auf meine Katze aufpassen? Ich fahre in Urlaub.",
+      "example_ru": "Можете присмотреть за кошкой? Я уезжаю в отпуск."
+    },
+    {
+      "de": "Wo ist der Parkplatz?",
+      "ru": "Где парковка?",
+      "context": "Дом",
+      "example": "Wo ist der Parkplatz? / Im Hof, hinter dem Haus.",
+      "example_ru": "Где парковка? / Во дворе, за домом."
+    },
+    {
+      "de": "Wir haben Lärm gehört.",
+      "ru": "Мы слышали шум.",
+      "context": "Жалоба",
+      "example": "Wir haben gestern Abend Lärm gehört. War das bei Ihnen?",
+      "example_ru": "Мы вчера вечером слышали шум. Это у вас было?"
+    },
+    {
+      "de": "Darf ich Sie um etwas bitten?",
+      "ru": "Можно вас о чём-то попросить?",
+      "context": "Вежливость",
+      "example": "Darf ich Sie um etwas bitten? / Natürlich.",
+      "example_ru": "Можно вас о чём-то попросить? / Конечно."
+    },
+    {
+      "de": "Guten Tag, ich bin Ihr neuer Nachbar.",
+      "ru": "Добрый день, я ваш новый сосед.",
+      "context": "Знакомство",
+      "example": "Guten Tag, ich bin Ihr neuer Nachbar. Ich wohne oben.",
+      "example_ru": "Добрый день, я ваш новый сосед. Живу наверху."
+    },
+    {
+      "de": "Können Sie leiser sein?",
+      "ru": "Можете потише?",
+      "context": "Просьба",
+      "example": "Können Sie leiser sein? Das ist sehr laut.",
+      "example_ru": "Можете потише? Очень громко."
+    },
+    {
+      "de": "Die Party war schön.",
+      "ru": "Вечеринка была отличная.",
+      "context": "Комплимент",
+      "example": "Die Party war schön. Danke für die Einladung!",
+      "example_ru": "Вечеринка была отличная. Спасибо за приглашение!"
+    },
+    {
+      "de": "Wann kommt die Müllabfuhr?",
+      "ru": "Когда вывозят мусор?",
+      "context": "Быт",
+      "example": "Wann kommt die Müllabfuhr? / Immer dienstags.",
+      "example_ru": "Когда вывозят мусор? / По вторникам."
+    },
+    {
+      "de": "Haben Sie meinen Brief bekommen?",
+      "ru": "Вы получили моё письмо?",
+      "context": "Почта",
+      "example": "Haben Sie meinen Brief bekommen? / Nein, noch nicht.",
+      "example_ru": "Вы получили моё письмо? / Нет, ещё нет."
+    },
+    {
+      "de": "Der Aufzug ist kaputt.",
+      "ru": "Лифт сломан.",
+      "context": "Дом",
+      "example": "Der Aufzug ist kaputt. Sie müssen die Treppe nehmen.",
+      "example_ru": "Лифт сломан. Придётся подниматься по лестнице."
+    },
+    {
+      "de": "Können Sie auf meine Katze aufpassen?",
+      "ru": "Можете присмотреть за моей кошкой?",
+      "context": "Просьба",
+      "example": "Können Sie auf meine Katze aufpassen? Ich fahre in Urlaub.",
+      "example_ru": "Можете присмотреть за кошкой? Я уезжаю в отпуск."
+    },
+    {
+      "de": "Wo ist der Parkplatz?",
+      "ru": "Где парковка?",
+      "context": "Дом",
+      "example": "Wo ist der Parkplatz? / Im Hof, hinter dem Haus.",
+      "example_ru": "Где парковка? / Во дворе, за домом."
+    },
+    {
+      "de": "Wir haben Lärm gehört.",
+      "ru": "Мы слышали шум.",
+      "context": "Жалоба",
+      "example": "Wir haben gestern Abend Lärm gehört. War das bei Ihnen?",
+      "example_ru": "Мы вчера вечером слышали шум. Это у вас было?"
+    },
+    {
+      "de": "Darf ich Sie um etwas bitten?",
+      "ru": "Можно вас о чём-то попросить?",
+      "context": "Вежливость",
+      "example": "Darf ich Sie um etwas bitten? / Natürlich.",
+      "example_ru": "Можно вас о чём-то попросить? / Конечно."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    }
+  ]
+}

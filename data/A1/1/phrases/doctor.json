@@ -9,37 +9,702 @@
     {
       "de": "Ich habe Kopfschmerzen.",
       "ru": "У меня болит голова.",
-      "context": "Описание симптомов",
-      "example": "Patient: Guten Tag, ich habe Kopfschmerzen. / Arzt: Seit wann?",
-      "example_ru": "Пациент: Добрый день, у меня болит голова. / Врач: С какого времени?"
+      "context": "Симптомы",
+      "example": "Patient: Ich habe Kopfschmerzen. / Arzt: Seit wann?",
+      "example_ru": "Пациент: У меня болит голова. / Врач: С какого времени?"
     },
     {
       "de": "Ich fühle mich nicht gut.",
       "ru": "Я плохо себя чувствую.",
-      "context": "Общее описание состояния",
+      "context": "Состояние",
       "example": "Patient: Ich fühle mich nicht gut. / Arzt: Was fehlt Ihnen?",
       "example_ru": "Пациент: Я плохо себя чувствую. / Врач: Что вас беспокоит?"
     },
     {
       "de": "Ich habe einen Termin.",
       "ru": "У меня назначена встреча.",
-      "context": "Подтверждение записи",
-      "example": "Patient: Guten Tag, ich habe einen Termin um 10 Uhr. / Rezeptionistin: Ja, bitte nehmen Sie Platz.",
-      "example_ru": "Пациент: Добрый день, у меня назначена встреча на 10 часов. / Рецепционистка: Да, пожалуйста, присядьте."
+      "context": "Запись",
+      "example": "Patient: Ich habe einen Termin um 10 Uhr. / Rezeption: Bitte nehmen Sie Platz.",
+      "example_ru": "Пациент: У меня приём в 10. / Рецепция: Присядьте, пожалуйста."
     },
     {
       "de": "Wie oft soll ich die Tabletten nehmen?",
-      "ru": "Как часто мне нужно принимать таблетки?",
-      "context": "Вопрос о лекарствах",
-      "example": "Patient: Wie oft soll ich die Tabletten nehmen? / Arzt: Dreimal täglich nach dem Essen.",
-      "example_ru": "Пациент: Как часто мне нужно принимать таблетки? / Врач: Три раза в день после еды."
+      "ru": "Как часто принимать таблетки?",
+      "context": "Лечение",
+      "example": "Patient: Wie oft soll ich die Tabletten nehmen? / Arzt: Dreimal täglich.",
+      "example_ru": "Пациент: Как часто принимать таблетки? / Врач: Три раза в день."
     },
     {
       "de": "Ich habe Fieber.",
       "ru": "У меня температура.",
-      "context": "Описание симптомов",
-      "example": "Patient: Ich habe Fieber. / Arzt: Wie hoch ist das Fieber?",
-      "example_ru": "Пациент: У меня температура. / Врач: Какая температура?"
+      "context": "Симптомы",
+      "example": "Patient: Ich habe Fieber. / Arzt: Wie hoch?",
+      "example_ru": "Пациент: У меня температура. / Врач: Какая?"
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
+    },
+    {
+      "de": "Ich habe Halsschmerzen.",
+      "ru": "У меня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe Halsschmerzen und Husten.",
+      "example_ru": "У меня болит горло и кашель."
+    },
+    {
+      "de": "Seit wann haben Sie die Schmerzen?",
+      "ru": "С какого времени у вас боли?",
+      "context": "Вопрос врача",
+      "example": "Arzt: Seit wann haben Sie die Schmerzen? / Patient: Seit gestern.",
+      "example_ru": "С какого времени у вас боли? / С вчерашнего дня."
+    },
+    {
+      "de": "Nehmen Sie bitte Platz.",
+      "ru": "Присядьте, пожалуйста.",
+      "context": "Приём",
+      "example": "Arzt: Nehmen Sie bitte Platz. Was fehlt Ihnen?",
+      "example_ru": "Присядьте, пожалуйста. Что вас беспокоит?"
+    },
+    {
+      "de": "Sie müssen sich ausruhen.",
+      "ru": "Вам нужно отдохнуть.",
+      "context": "Рекомендация",
+      "example": "Sie müssen sich ausruhen und viel trinken.",
+      "example_ru": "Вам нужно отдохнуть и много пить."
+    },
+    {
+      "de": "Wo tut es weh?",
+      "ru": "Где болит?",
+      "context": "Осмотр",
+      "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
+      "example_ru": "Где болит? / Здесь, в руке."
     }
   ]
 }

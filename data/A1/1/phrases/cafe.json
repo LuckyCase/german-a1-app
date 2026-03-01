@@ -9,37 +9,702 @@
     {
       "de": "Ich hätte gern einen Kaffee.",
       "ru": "Я бы хотел кофе.",
-      "context": "Заказ напитка",
-      "example": "Kellner: Was möchten Sie? / Gast: Ich hätte gern einen Kaffee.",
-      "example_ru": "Официант: Что вы хотите? / Гость: Я бы хотел кофе."
+      "context": "Заказ",
+      "example": "Gast: Ich hätte gern einen Kaffee. / Kellner: Sofort!",
+      "example_ru": "Гость: Я бы хотел кофе. / Официант: Сейчас!"
     },
     {
       "de": "Einen Kaffee, bitte.",
       "ru": "Кофе, пожалуйста.",
-      "context": "Простой заказ",
-      "example": "Gast: Einen Kaffee, bitte. / Kellner: Sofort!",
-      "example_ru": "Гость: Кофе, пожалуйста. / Официант: Сейчас!"
+      "context": "Заказ",
+      "example": "Gast: Einen Kaffee, bitte. / Kellner: Mit Milch?",
+      "example_ru": "Гость: Кофе, пожалуйста. / Официант: С молоком?"
     },
     {
       "de": "Was kostet das?",
       "ru": "Сколько это стоит?",
-      "context": "Уточнение цены",
+      "context": "Цена",
       "example": "Gast: Was kostet das? / Kellner: Zwei Euro fünfzig.",
       "example_ru": "Гость: Сколько это стоит? / Официант: Два евро пятьдесят."
     },
     {
       "de": "Ich möchte zahlen.",
       "ru": "Я хочу заплатить.",
-      "context": "Просьба об оплате",
-      "example": "Gast: Entschuldigung, ich möchte zahlen. / Kellner: Gerne, das macht 5 Euro.",
-      "example_ru": "Гость: Извините, я хочу заплатить. / Официант: Конечно, это 5 евро."
+      "context": "Оплата",
+      "example": "Gast: Ich möchte zahlen. / Kellner: Das macht 5 Euro.",
+      "example_ru": "Гость: Я хочу заплатить. / Официант: С вас 5 евро."
     },
     {
       "de": "Haben Sie Kuchen?",
       "ru": "У вас есть торт?",
-      "context": "Вопрос о наличии",
-      "example": "Gast: Haben Sie Kuchen? / Kellner: Ja, wir haben Apfelkuchen.",
-      "example_ru": "Гость: У вас есть торт? / Официант: Да, у нас есть яблочный пирог."
+      "context": "Меню",
+      "example": "Gast: Haben Sie Kuchen? / Kellner: Ja, Apfelkuchen.",
+      "example_ru": "Гость: У вас есть торт? / Официант: Да, яблочный пирог."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Das ist gut.",
+      "ru": "Это хорошо.",
+      "context": "Оценка",
+      "example": "A: Wie findest du das? B: Das ist gut.",
+      "example_ru": "А: Как тебе? Б: Это хорошо."
+    },
+    {
+      "de": "Danke schön!",
+      "ru": "Спасибо большое!",
+      "context": "Благодарность",
+      "example": "A: Bitte. B: Danke schön!",
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+    },
+    {
+      "de": "Entschuldigung!",
+      "ru": "Извините!",
+      "context": "Извинение",
+      "example": "Entschuldigung! Wo ist die Toilette?",
+      "example_ru": "Извините! Где туалет?"
+    },
+    {
+      "de": "Sprechen Sie Englisch?",
+      "ru": "Вы говорите по-английски?",
+      "context": "Язык",
+      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
+      "example_ru": "Вы говорите по-английски? / Да, немного."
+    },
+    {
+      "de": "Ich verstehe nicht.",
+      "ru": "Я не понимаю.",
+      "context": "Непонимание",
+      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
+      "example_ru": "Я не понимаю. Повторите, пожалуйста?"
+    },
+    {
+      "de": "Wie bitte?",
+      "ru": "Как, простите?",
+      "context": "Переспрос",
+      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
+      "example_ru": "Как, простите? / Я спросил, который час."
+    },
+    {
+      "de": "Einen Moment, bitte.",
+      "ru": "Один момент, пожалуйста.",
+      "context": "Просьба подождать",
+      "example": "Einen Moment, bitte. Ich komme gleich.",
+      "example_ru": "Один момент, пожалуйста. Сейчас подойду."
+    },
+    {
+      "de": "Kein Problem.",
+      "ru": "Нет проблем.",
+      "context": "Ответ",
+      "example": "A: Entschuldigung! B: Kein Problem.",
+      "example_ru": "А: Извините! Б: Нет проблем."
+    },
+    {
+      "de": "Das stimmt.",
+      "ru": "Верно.",
+      "context": "Согласие",
+      "example": "A: Heute ist Montag. B: Das stimmt.",
+      "example_ru": "А: Сегодня понедельник. Б: Верно."
+    },
+    {
+      "de": "Ich weiß nicht.",
+      "ru": "Я не знаю.",
+      "context": "Незнание",
+      "example": "Wo ist Herr Müller? — Ich weiß nicht.",
+      "example_ru": "Где господин Мюллер? — Я не знаю."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
+    },
+    {
+      "de": "Mit Milch oder ohne?",
+      "ru": "С молоком или без?",
+      "context": "Уточнение",
+      "example": "Kellner: Mit Milch oder ohne? / Gast: Mit Milch, bitte.",
+      "example_ru": "С молоком или без? / С молоком, пожалуйста."
+    },
+    {
+      "de": "Das war sehr lecker.",
+      "ru": "Было очень вкусно.",
+      "context": "Комплимент",
+      "example": "Das war sehr lecker. Danke!",
+      "example_ru": "Было очень вкусно. Спасибо!"
+    },
+    {
+      "de": "Kann ich die Rechnung haben?",
+      "ru": "Можно счёт?",
+      "context": "Оплата",
+      "example": "Kann ich die Rechnung haben? / Sofort.",
+      "example_ru": "Можно счёт? / Сейчас."
+    },
+    {
+      "de": "Haben Sie vegetarische Gerichte?",
+      "ru": "У вас есть вегетарианские блюда?",
+      "context": "Меню",
+      "example": "Haben Sie vegetarische Gerichte? / Ja, hier.",
+      "example_ru": "У вас есть вегетарианские блюда? / Да, вот."
+    },
+    {
+      "de": "Einen Tee mit Zitrone, bitte.",
+      "ru": "Чай с лимоном, пожалуйста.",
+      "context": "Заказ",
+      "example": "Einen Tee mit Zitrone, bitte. / Kommt sofort.",
+      "example_ru": "Чай с лимоном, пожалуйста. / Сейчас."
     }
   ]
 }

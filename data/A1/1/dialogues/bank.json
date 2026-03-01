@@ -1,0 +1,68 @@
+{
+  "id": "bank",
+  "name": "В банке",
+  "name_de": "In der Bank",
+  "description": "В банке",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Guten Tag. Ich möchte Geld abheben.",
+      "text_ru": "Добрый день. Хочу снять деньги.",
+      "audio_file": "bank_01.mp3"
+    },
+    {
+      "role": "Angestellter",
+      "role_ru": "Сотрудник",
+      "text": "Am Geldautomaten dort. Haben Sie eine Karte?",
+      "text_ru": "В банкомате вон там. У вас есть карта?",
+      "audio_file": "bank_02.mp3"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Ja. Kann ich hier auch wechseln? Ich brauche Euro.",
+      "text_ru": "Да. Здесь можно обменять? Мне нужны евро.",
+      "audio_file": "bank_03.mp3"
+    },
+    {
+      "role": "Angestellter",
+      "role_ru": "Сотрудник",
+      "text": "Ja, am Schalter 2. Dort ist kein Andrang.",
+      "text_ru": "Да, у окошка 2. Там нет очереди.",
+      "audio_file": "bank_04.mp3"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Danke!",
+      "text_ru": "Спасибо!",
+      "audio_file": "bank_05.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Ich möchte Geld ___.",
+      "options": [
+        "abheben",
+        "abhebt",
+        "abhebe"
+      ],
+      "correct": 0,
+      "explanation": "abheben — снять"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Haben Sie eine ___?",
+      "options": [
+        "Karte",
+        "Karten",
+        "Karten"
+      ],
+      "correct": 0,
+      "explanation": "Karte — карта"
+    }
+  ]
+}

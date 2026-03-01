@@ -69,6 +69,76 @@
       ],
       "correct": 1,
       "explanation": "Глагол на втором месте, наречие в конце"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Am Wochenende ich schlafe lange.",
+        "Ich schlafe am Wochenende lange.",
+        "Schlafe ich am Wochenende lange."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Jetzt ich muss gehen.",
+        "Ich muss jetzt gehen.",
+        "Muss ich jetzt gehen."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Sie liest jeden Tag die Zeitung.",
+        "Jeden Tag sie liest die Zeitung.",
+        "Liest sie jeden Tag die Zeitung."
+      ],
+      "correct": 0,
+      "explanation": "Глагол на втором месте в повествовании"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Ich räume mein Zimmer auf.",
+        "Ich auf räume mein Zimmer.",
+        "Auf räume ich mein Zimmer."
+      ],
+      "correct": 0,
+      "explanation": "Отделяемая приставка auf в конце"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Um 7 Uhr ich stehe auf.",
+        "Ich stehe um 7 Uhr auf.",
+        "Stehe ich um 7 Uhr auf."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на 2-м месте, приставка в конце"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Heute Abend wir gehen ins Kino.",
+        "Wir gehen heute Abend ins Kino.",
+        "Gehen wir heute Abend ins Kino."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на втором месте"
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "Er macht seine Hausaufgaben.",
+        "Macht er seine Hausaufgaben.",
+        "Seine Hausaufgaben er macht."
+      ],
+      "correct": 0,
+      "explanation": "Подлежащее на 1-м месте, глагол на 2-м"
     }
   ]
 }

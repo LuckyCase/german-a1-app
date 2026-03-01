@@ -1,0 +1,61 @@
+{
+  "id": "weather",
+  "name": "Погода",
+  "name_de": "Wetter",
+  "description": "Разговор о погоде",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Person A",
+      "role_ru": "Человек А",
+      "text": "Wie ist das Wetter morgen?",
+      "text_ru": "Какая завтра погода?",
+      "audio_file": "weather_01.mp3"
+    },
+    {
+      "role": "Person B",
+      "role_ru": "Человек Б",
+      "text": "Laut Wetterbericht wird es sonnig. 22 Grad.",
+      "text_ru": "По прогнозу будет солнечно. 22 градуса.",
+      "audio_file": "weather_02.mp3"
+    },
+    {
+      "role": "Person A",
+      "role_ru": "Человек А",
+      "text": "Super! Dann gehen wir in den Park.",
+      "text_ru": "Отлично! Тогда пойдём в парк.",
+      "audio_file": "weather_03.mp3"
+    },
+    {
+      "role": "Person B",
+      "role_ru": "Человек Б",
+      "text": "Gute Idee! Nimm eine Jacke mit, es wird abends kühl.",
+      "text_ru": "Хорошая идея! Возьми куртку, вечером будет прохладно.",
+      "audio_file": "weather_04.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Wie ___ das Wetter?",
+      "options": [
+        "ist",
+        "sind",
+        "bin"
+      ],
+      "correct": 0,
+      "explanation": "ist — погода"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Es ___ sonnig.",
+      "options": [
+        "wird",
+        "werden",
+        "werde"
+      ],
+      "correct": 0,
+      "explanation": "wird — безличное"
+    }
+  ]
+}

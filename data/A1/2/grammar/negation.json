@@ -1,0 +1,192 @@
+{
+  "id": "negation",
+  "name": "Отрицание (nicht / kein)",
+  "name_de": "Negation",
+  "description": "Отрицание на уровне A2",
+  "level": "A2",
+  "theory": {
+    "title": "Отрицание: nicht, kein, nie, niemand",
+    "content": "На A2 добавляются:\n\n• nie — никогда: Ich war nie in Japan.\n• niemand — никто: Niemand hat angerufen.\n• nichts — ничто: Ich habe nichts gehört.\n• nirgendwo — нигде: Er ist nirgendwo zu finden.",
+    "examples": [
+      "Ich habe nie Deutsch gesprochen. — Я никогда не говорил по-немецки.",
+      "Niemand war da. — Никого не было.",
+      "Es gibt nichts zu essen. — Нечего есть."
+    ],
+    "tips": [
+      "nicht + прилагательное: das ist nicht gut",
+      "kein в Dativ: mit keinem Problem"
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich war ___ in Paris.",
+      "options": [
+        "nicht",
+        "nie",
+        "kein"
+      ],
+      "correct": 1,
+      "explanation": "никогда — nie"
+    },
+    {
+      "question": "___ hat die Tür geöffnet.",
+      "options": [
+        "Nicht",
+        "Niemand",
+        "Kein"
+      ],
+      "correct": 1,
+      "explanation": "никто — niemand"
+    },
+    {
+      "question": "Er hat ___ gesagt.",
+      "options": [
+        "nichts",
+        "nicht",
+        "keine"
+      ],
+      "correct": 0,
+      "explanation": "ничего — nichts"
+    },
+    {
+      "question": "Das ist ___ Problem. (отрицание)",
+      "options": [
+        "nicht",
+        "kein",
+        "nie"
+      ],
+      "correct": 1,
+      "explanation": "kein + существительное"
+    },
+    {
+      "question": "Sie kommt ___ wieder. (никогда)",
+      "options": [
+        "nicht",
+        "nie",
+        "kein"
+      ],
+      "correct": 1,
+      "explanation": "nie = никогда"
+    },
+    {
+      "question": "Ich habe ___ Auto.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 1,
+      "explanation": "kein + существительное среднего рода"
+    },
+    {
+      "question": "Das ist ___ richtig.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 0,
+      "explanation": "nicht отрицает прилагательное"
+    },
+    {
+      "question": "Ich trinke ___ Kaffee.",
+      "options": [
+        "nicht",
+        "kein",
+        "keinen"
+      ],
+      "correct": 2,
+      "explanation": "keinen + существительное муж. рода в Akkusativ"
+    },
+    {
+      "question": "Er kommt heute ___.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 0,
+      "explanation": "nicht в конце при отрицании глагола"
+    },
+    {
+      "question": "Das ist ___ Buch, das ist eine Zeitschrift.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 1,
+      "explanation": "kein + существительное среднего рода"
+    },
+    {
+      "question": "Sie hat ___ Zeit.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 2,
+      "explanation": "keine + существительное женского рода"
+    },
+    {
+      "question": "Wir verstehen das ___.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 0,
+      "explanation": "nicht отрицает глагол"
+    },
+    {
+      "question": "Ich habe ___ Geschwister.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 2,
+      "explanation": "keine + мн. число"
+    },
+    {
+      "question": "Das Essen ist ___ gut.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 0,
+      "explanation": "nicht отрицает прилагательное"
+    },
+    {
+      "question": "Er ist ___ Arzt, er ist Lehrer.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 1,
+      "explanation": "kein + профессия (сущ. муж. рода)"
+    },
+    {
+      "question": "Ich habe ___ Problem.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 1,
+      "explanation": "kein + существительное среднего рода"
+    },
+    {
+      "question": "Das schmeckt ___ gut.",
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
+      "correct": 0,
+      "explanation": "nicht отрицает наречие/прилагательное"
+    }
+  ]
+}

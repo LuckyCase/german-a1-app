@@ -1,0 +1,61 @@
+{
+  "id": "travel",
+  "name": "В поездке",
+  "name_de": "Unterwegs",
+  "description": "В путешествии",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Tourist",
+      "role_ru": "Турист",
+      "text": "Entschuldigung, wo ist das Museum?",
+      "text_ru": "Извините, где музей?",
+      "audio_file": "travel_01.mp3"
+    },
+    {
+      "role": "Passant",
+      "role_ru": "Прохожий",
+      "text": "Geradeaus, dann rechts. Etwa 5 Minuten.",
+      "text_ru": "Прямо, потом направо. Минут 5.",
+      "audio_file": "travel_02.mp3"
+    },
+    {
+      "role": "Tourist",
+      "role_ru": "Турист",
+      "text": "Danke! Und hat es heute geöffnet?",
+      "text_ru": "Спасибо! А сегодня открыто?",
+      "audio_file": "travel_03.mp3"
+    },
+    {
+      "role": "Passant",
+      "role_ru": "Прохожий",
+      "text": "Ja, bis 18 Uhr. Viel Spaß!",
+      "text_ru": "Да, до 18. Приятно провести время!",
+      "audio_file": "travel_04.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Wo ___ das Museum?",
+      "options": [
+        "ist",
+        "sind",
+        "bin"
+      ],
+      "correct": 0,
+      "explanation": "ist — место"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Hat es heute ___?",
+      "options": [
+        "geöffnet",
+        "öffnen",
+        "öffnet"
+      ],
+      "correct": 0,
+      "explanation": "geöffnet — открыто"
+    }
+  ]
+}

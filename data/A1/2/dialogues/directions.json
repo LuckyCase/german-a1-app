@@ -1,0 +1,68 @@
+{
+  "id": "directions",
+  "name": "Дорога",
+  "name_de": "Wegbeschreibung",
+  "description": "Спросить дорогу",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Tourist",
+      "role_ru": "Турист",
+      "text": "Entschuldigung, wie komme ich zum Rathaus?",
+      "text_ru": "Извините, как пройти к ратуше?",
+      "audio_file": "directions_01.mp3"
+    },
+    {
+      "role": "Passant",
+      "role_ru": "Прохожий",
+      "text": "Gehen Sie geradeaus bis zur Ampel, dann links. Das Rathaus ist rechts.",
+      "text_ru": "Идите прямо до светофора, потом налево. Ратуша справа.",
+      "audio_file": "directions_02.mp3"
+    },
+    {
+      "role": "Tourist",
+      "role_ru": "Турист",
+      "text": "Ist es weit?",
+      "text_ru": "Далеко?",
+      "audio_file": "directions_03.mp3"
+    },
+    {
+      "role": "Passant",
+      "role_ru": "Прохожий",
+      "text": "Nein, etwa 5 Minuten zu Fuß.",
+      "text_ru": "Нет, минут 5 пешком.",
+      "audio_file": "directions_04.mp3"
+    },
+    {
+      "role": "Tourist",
+      "role_ru": "Турист",
+      "text": "Vielen Dank!",
+      "text_ru": "Большое спасибо!",
+      "audio_file": "directions_05.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Wie ___ ich zum Rathaus?",
+      "options": [
+        "komme",
+        "kommt",
+        "kommen"
+      ],
+      "correct": 0,
+      "explanation": "komme — с ich"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Gehen Sie ___.",
+      "options": [
+        "geradeaus",
+        "geradeaus",
+        "gerade"
+      ],
+      "correct": 0,
+      "explanation": "geradeaus — прямо"
+    }
+  ]
+}

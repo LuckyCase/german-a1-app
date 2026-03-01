@@ -1,0 +1,68 @@
+{
+  "id": "cafe",
+  "name": "В кафе",
+  "name_de": "Im Café",
+  "description": "Заказ в кафе",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Guten Tag. Ich hätte gern einen Kaffee und ein Stück Kuchen.",
+      "text_ru": "Добрый день. Мне кофе и кусок пирога, пожалуйста.",
+      "audio_file": "cafe_01.mp3"
+    },
+    {
+      "role": "Kellner",
+      "role_ru": "Официант",
+      "text": "Mit Milch? Wir haben Apfelkuchen und Schokoladenkuchen.",
+      "text_ru": "С молоком? Есть яблочный и шоколадный.",
+      "audio_file": "cafe_02.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Mit Milch, bitte. Und Apfelkuchen.",
+      "text_ru": "С молоком. И яблочный пирог.",
+      "audio_file": "cafe_03.mp3"
+    },
+    {
+      "role": "Kellner",
+      "role_ru": "Официант",
+      "text": "Sehr gut. Das macht 6 Euro 50.",
+      "text_ru": "Хорошо. С вас 6 евро 50.",
+      "audio_file": "cafe_04.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Hier bitte. Danke!",
+      "text_ru": "Вот, пожалуйста. Спасибо!",
+      "audio_file": "cafe_05.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Ich hätte gern ___ Kaffee.",
+      "options": [
+        "einen",
+        "eine",
+        "ein"
+      ],
+      "correct": 0,
+      "explanation": "einen — Kaffee м.р."
+    },
+    {
+      "type": "fill_blank",
+      "question": "Wir ___ Apfelkuchen.",
+      "options": [
+        "haben",
+        "hat",
+        "hast"
+      ],
+      "correct": 0,
+      "explanation": "haben — мы"
+    }
+  ]
+}

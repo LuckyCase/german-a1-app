@@ -1,0 +1,202 @@
+{
+  "id": "modal_verbs",
+  "name": "Модальные глаголы",
+  "name_de": "Modalverben",
+  "description": "Модальные глаголы в Perfekt (уровень A2)",
+  "level": "A2",
+  "theory": {
+    "title": "Модальные глаголы в Perfekt",
+    "content": "В Perfekt модальные глаголы могут употребляться двумя способами:\n\n1) Ersatzinfinitiv (двойной инфинитив): Ich habe nicht kommen können. (часто в устной речи)\n2) Partizip II: Ich habe nicht kommen gekonnt. (редко)\n\nПредпочтительно: haben + Infinitiv основного глагола + Infinitiv модального.",
+    "examples": [
+      "Ich habe gestern arbeiten müssen. — Мне пришлось вчера работать.",
+      "Sie hat nicht kommen können. — Она не смогла прийти.",
+      "Wir haben das machen sollen. — Мы должны были это сделать."
+    ],
+    "tips": [
+      "В Perfekt с модальными: haben + Partizip основного глагола (в конце) + Infinitiv модального",
+      "sollen, wollen, müssen, dürfen, können, mögen — с haben"
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich ___ gestern nicht kommen ___. (können)",
+      "options": [
+        "habe ... können",
+        "bin ... gekonnt",
+        "hat ... können"
+      ],
+      "correct": 0,
+      "explanation": "Ersatzinfinitiv: haben + Inf. + können"
+    },
+    {
+      "question": "Sie ___ die Arbeit fertig machen ___. (müssen)",
+      "options": [
+        "hat ... müssen",
+        "ist ... gemusst",
+        "habe ... müssen"
+      ],
+      "correct": 0,
+      "explanation": "haben + Infinitiv + müssen"
+    },
+    {
+      "question": "Du ___ das nicht sagen ___. (dürfen)",
+      "options": [
+        "hast ... dürfen",
+        "bist ... gedurft",
+        "hat ... dürfen"
+      ],
+      "correct": 0,
+      "explanation": "dürfen в Perfekt с Ersatzinfinitiv"
+    },
+    {
+      "question": "Wir ___ früher aufstehen ___. (sollen)",
+      "options": [
+        "haben ... sollen",
+        "sind ... gesollt",
+        "hat ... sollen"
+      ],
+      "correct": 0,
+      "explanation": "sollen + haben + Inf."
+    },
+    {
+      "question": "Er ___ das Buch lesen ___. (wollen)",
+      "options": [
+        "hat ... wollen",
+        "ist ... gewollt",
+        "habe ... wollen"
+      ],
+      "correct": 0,
+      "explanation": "wollen в Perfekt: haben + wollen"
+    },
+    {
+      "question": "Ich ___ Deutsch sprechen. (können)",
+      "options": [
+        "kann",
+        "kannst",
+        "können"
+      ],
+      "correct": 0,
+      "explanation": "ich kann (я могу)"
+    },
+    {
+      "question": "Du ___ heute arbeiten. (müssen)",
+      "options": [
+        "muss",
+        "musst",
+        "müssen"
+      ],
+      "correct": 1,
+      "explanation": "du musst (ты должен)"
+    },
+    {
+      "question": "Er ___ einen Kaffee. (möchten)",
+      "options": [
+        "möchte",
+        "möchtest",
+        "möchten"
+      ],
+      "correct": 0,
+      "explanation": "er möchte (он хотел бы)"
+    },
+    {
+      "question": "Wir ___ ins Kino gehen. (wollen)",
+      "options": [
+        "will",
+        "wollt",
+        "wollen"
+      ],
+      "correct": 2,
+      "explanation": "wir wollen (мы хотим)"
+    },
+    {
+      "question": "___ ich Sie etwas fragen? (dürfen)",
+      "options": [
+        "Darf",
+        "Darfst",
+        "Dürfen"
+      ],
+      "correct": 0,
+      "explanation": "Darf ich...? (Могу ли я...?)"
+    },
+    {
+      "question": "Ihr ___ hier nicht rauchen. (dürfen)",
+      "options": [
+        "darf",
+        "dürft",
+        "dürfen"
+      ],
+      "correct": 1,
+      "explanation": "ihr dürft (вам разрешено)"
+    },
+    {
+      "question": "Sie ___ gut schwimmen. (können)",
+      "options": [
+        "kann",
+        "kannst",
+        "können"
+      ],
+      "correct": 0,
+      "explanation": "sie kann (она умеет)"
+    },
+    {
+      "question": "Ich ___ morgen früh aufstehen. (müssen)",
+      "options": [
+        "muss",
+        "musst",
+        "müssen"
+      ],
+      "correct": 0,
+      "explanation": "ich muss (я должен)"
+    },
+    {
+      "question": "Du ___ das nicht tun. (sollen)",
+      "options": [
+        "soll",
+        "sollst",
+        "sollen"
+      ],
+      "correct": 1,
+      "explanation": "du sollst (тебе следует)"
+    },
+    {
+      "question": "Wir ___ Pizza bestellen. (möchten)",
+      "options": [
+        "möchte",
+        "möchtet",
+        "möchten"
+      ],
+      "correct": 2,
+      "explanation": "wir möchten (мы хотели бы)"
+    },
+    {
+      "question": "Sie ___ nicht so laut sprechen. (dürfen)",
+      "options": [
+        "darf",
+        "dürft",
+        "dürfen"
+      ],
+      "correct": 0,
+      "explanation": "sie darf nicht (ей нельзя)"
+    },
+    {
+      "question": "Ihr ___ mir helfen. (können)",
+      "options": [
+        "kann",
+        "könnt",
+        "können"
+      ],
+      "correct": 1,
+      "explanation": "ihr könnt (вы можете)"
+    },
+    {
+      "question": "Er ___ nach Hause. (wollen)",
+      "options": [
+        "will",
+        "wollt",
+        "wollen"
+      ],
+      "correct": 0,
+      "explanation": "er will (он хочет)"
+    }
+  ]
+}

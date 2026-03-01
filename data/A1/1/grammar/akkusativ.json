@@ -87,6 +87,42 @@
       "options": ["der", "den", "dem"],
       "correct": 1,
       "explanation": "der → den в Akkusativ"
+    },
+    {
+      "question": "Sie öffnet ___ Fenster. (das)",
+      "options": ["das", "den", "dem"],
+      "correct": 0,
+      "explanation": "das не меняется в Akkusativ"
+    },
+    {
+      "question": "Ich besuche ___ Freund. (ein)",
+      "options": ["ein", "einen", "einem"],
+      "correct": 1,
+      "explanation": "ein → einen в Akkusativ (муж. род)"
+    },
+    {
+      "question": "Wir haben ___ Hund. (ein)",
+      "options": ["ein", "einen", "einem"],
+      "correct": 1,
+      "explanation": "ein → einen (муж. род, Akkusativ)"
+    },
+    {
+      "question": "Er nimmt ___ Tasche. (die)",
+      "options": ["die", "der", "den"],
+      "correct": 0,
+      "explanation": "die не меняется в Akkusativ"
+    },
+    {
+      "question": "Ich kenne ___ Lehrer. (der)",
+      "options": ["der", "den", "dem"],
+      "correct": 1,
+      "explanation": "der → den в Akkusativ"
+    },
+    {
+      "question": "Sie schreibt ___ Brief. (einen)",
+      "options": ["ein", "einen", "einem"],
+      "correct": 1,
+      "explanation": "einen — муж. род в Akkusativ"
     }
   ]
 }

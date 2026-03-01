@@ -1,0 +1,75 @@
+{
+  "id": "station",
+  "name": "На вокзале",
+  "name_de": "Am Bahnhof",
+  "description": "Покупка билета",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Reisender",
+      "role_ru": "Пассажир",
+      "text": "Guten Tag. Eine Fahrkarte nach Hamburg, bitte.",
+      "text_ru": "Добрый день. Один билет в Гамбург, пожалуйста.",
+      "audio_file": "station_01.mp3"
+    },
+    {
+      "role": "Angestellter",
+      "role_ru": "Сотрудник",
+      "text": "Einfach oder hin und zurück?",
+      "text_ru": "В одну сторону или туда и обратно?",
+      "audio_file": "station_02.mp3"
+    },
+    {
+      "role": "Reisender",
+      "role_ru": "Пассажир",
+      "text": "Hin und zurück, bitte.",
+      "text_ru": "Туда и обратно, пожалуйста.",
+      "audio_file": "station_03.mp3"
+    },
+    {
+      "role": "Angestellter",
+      "role_ru": "Сотрудник",
+      "text": "Das macht 89 Euro. Von Gleis 7, in 20 Minuten.",
+      "text_ru": "С вас 89 евро. Платформа 7, через 20 минут.",
+      "audio_file": "station_04.mp3"
+    },
+    {
+      "role": "Reisender",
+      "role_ru": "Пассажир",
+      "text": "Danke! Wo ist Gleis 7?",
+      "text_ru": "Спасибо! Где платформа 7?",
+      "audio_file": "station_05.mp3"
+    },
+    {
+      "role": "Angestellter",
+      "role_ru": "Сотрудник",
+      "text": "Da drüben, links. Gute Fahrt!",
+      "text_ru": "Вон там, слева. Счастливого пути!",
+      "audio_file": "station_06.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Eine Fahrkarte ___ Hamburg.",
+      "options": [
+        "nach",
+        "in",
+        "zu"
+      ],
+      "correct": 0,
+      "explanation": "nach — город без артикля"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Das ___ 89 Euro.",
+      "options": [
+        "macht",
+        "machen",
+        "machst"
+      ],
+      "correct": 0,
+      "explanation": "macht — безличное"
+    }
+  ]
+}

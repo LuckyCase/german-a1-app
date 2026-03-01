@@ -1,0 +1,68 @@
+{
+  "id": "neighbors",
+  "name": "Соседи",
+  "name_de": "Nachbarn",
+  "description": "Знакомство с соседом",
+  "level": "A1",
+  "dialogue": [
+    {
+      "role": "Herr Schmidt",
+      "role_ru": "Господин Шмидт",
+      "text": "Guten Tag! Ich bin Ihr neuer Nachbar.",
+      "text_ru": "Добрый день! Я ваш новый сосед.",
+      "audio_file": "neighbors_01.mp3"
+    },
+    {
+      "role": "Lisa",
+      "role_ru": "Лиза",
+      "text": "Oh, willkommen! Wo wohnen Sie?",
+      "text_ru": "О, добро пожаловать! Где вы живёте?",
+      "audio_file": "neighbors_02.mp3"
+    },
+    {
+      "role": "Herr Schmidt",
+      "role_ru": "Господин Шмидт",
+      "text": "Im dritten Stock, neben der Treppe.",
+      "text_ru": "На третьем этаже, рядом с лестницей.",
+      "audio_file": "neighbors_03.mp3"
+    },
+    {
+      "role": "Lisa",
+      "role_ru": "Лиза",
+      "text": "Sehr schön! Bei Fragen kommen Sie gern.",
+      "text_ru": "Очень хорошо! Если будут вопросы — обращайтесь.",
+      "audio_file": "neighbors_04.mp3"
+    },
+    {
+      "role": "Herr Schmidt",
+      "role_ru": "Господин Шмидт",
+      "text": "Danke! Das ist nett.",
+      "text_ru": "Спасибо! Очень мило.",
+      "audio_file": "neighbors_05.mp3"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "fill_blank",
+      "question": "Ich bin Ihr ___ Nachbar.",
+      "options": [
+        "neuer",
+        "neue",
+        "neues"
+      ],
+      "correct": 0,
+      "explanation": "neuer — муж. род"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Wo ___ Sie?",
+      "options": [
+        "wohnen",
+        "wohnt",
+        "wohne"
+      ],
+      "correct": 0,
+      "explanation": "wohnen — с Sie"
+    }
+  ]
+}
