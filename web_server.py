@@ -1881,7 +1881,7 @@ HTML_TEMPLATE = """
             const div = document.getElementById('culture-content');
             let html = `<h2 style="margin-bottom: 16px; color: var(--text-primary);">${currentCultureTopicData.name}</h2>`;
             if (content.title) html += `<h3 style="font-size: 1.1rem; color: var(--primary-light); margin-bottom: 12px;">${content.title}</h3>`;
-            if (content.text) html += `<p style="color: var(--text-primary); line-height: 1.6; margin-bottom: 16px;">${content.text.replace(/\n/g, '<br>')}</p>`;
+            if (content.text) html += `<p style="color: var(--text-primary); line-height: 1.6; margin-bottom: 16px;">${content.text.replace(/\\n/g, '<br>')}</p>`;
             if (content.facts && content.facts.length) {
                 html += '<p class="card-title" style="margin-top: 16px;">Факты</p><ul style="margin-left: 20px; color: var(--text-primary); margin-bottom: 16px;">';
                 content.facts.forEach(f => { html += `<li>${f}</li>`; });
