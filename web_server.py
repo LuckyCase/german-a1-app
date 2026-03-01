@@ -274,6 +274,12 @@ HTML_TEMPLATE = """
             gap: 12px;
             min-height: 140px;
             justify-content: center;
+            /* button reset */
+            -webkit-appearance: none;
+            appearance: none;
+            font-family: inherit;
+            color: var(--text-primary);
+            width: 100%;
         }
         
         .menu-tile:hover {
@@ -706,48 +712,48 @@ HTML_TEMPLATE = """
             <p>Учи немецкий легко и эффективно</p>
         </header>
         
-        <!-- Main Menu (клики через делегирование — inline onclick в WebView Telegram блокируется) -->
+        <!-- Main Menu -->
         <div id="main-menu" class="main-menu">
-            <div class="menu-tile" data-section="flashcards" role="button" tabindex="0">
+            <button type="button" class="menu-tile" data-section="flashcards">
                 <div class="menu-tile-icon">📚</div>
                 <div class="menu-tile-title">Слова</div>
                 <div class="menu-tile-desc">Изучайте слова</div>
-            </div>
-            <div class="menu-tile" data-section="grammar" role="button" tabindex="0">
+            </button>
+            <button type="button" class="menu-tile" data-section="grammar">
                 <div class="menu-tile-icon">📝</div>
                 <div class="menu-tile-title">Грамматика</div>
                 <div class="menu-tile-desc">Тесты по грамматике</div>
-            </div>
-            <div class="menu-tile" data-section="phrases" role="button" tabindex="0">
+            </button>
+            <button type="button" class="menu-tile" data-section="phrases">
                 <div class="menu-tile-icon">💬</div>
                 <div class="menu-tile-title">Фразы</div>
                 <div class="menu-tile-desc">Полезные фразы</div>
-            </div>
-            <div class="menu-tile" data-section="dialogues" role="button" tabindex="0">
+            </button>
+            <button type="button" class="menu-tile" data-section="dialogues">
                 <div class="menu-tile-icon">🗣️</div>
                 <div class="menu-tile-title">Диалоги</div>
                 <div class="menu-tile-desc">Практика диалогов</div>
-            </div>
-            <div class="menu-tile" data-section="culture" role="button" tabindex="0">
+            </button>
+            <button type="button" class="menu-tile" data-section="culture">
                 <div class="menu-tile-icon">🇩🇪</div>
                 <div class="menu-tile-title">Культура</div>
                 <div class="menu-tile-desc">Традиции и реалии</div>
-            </div>
-            <div class="menu-tile" data-section="exercises" role="button" tabindex="0">
+            </button>
+            <button type="button" class="menu-tile" data-section="exercises">
                 <div class="menu-tile-icon">✏️</div>
                 <div class="menu-tile-title">Упражнения</div>
                 <div class="menu-tile-desc">Проверь себя</div>
-            </div>
-            <div class="menu-tile" data-section="progress" role="button" tabindex="0">
+            </button>
+            <button type="button" class="menu-tile" data-section="progress">
                 <div class="menu-tile-icon">📊</div>
                 <div class="menu-tile-title">Прогресс</div>
                 <div class="menu-tile-desc">Ваша статистика</div>
-            </div>
-            <div class="menu-tile" data-section="feedback" role="button" tabindex="0" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(251, 191, 36, 0.1) 100%);">
+            </button>
+            <button type="button" class="menu-tile" data-section="feedback" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(251, 191, 36, 0.1) 100%);">
                 <div class="menu-tile-icon">💬</div>
                 <div class="menu-tile-title">Отзыв</div>
                 <div class="menu-tile-desc">Предложения</div>
-            </div>
+            </button>
         </div>
         
         <!-- Flashcards Section -->
@@ -989,19 +995,10 @@ HTML_TEMPLATE = """
         if (tg.ready) tg.ready();
         if (tg.expand) tg.expand();
         
-        // Делегирование кликов (inline onclick в WebView Telegram часто блокируется)
+        // Клики по тайлам главного меню
         document.getElementById('main-menu').addEventListener('click', function(e) {
             const tile = e.target.closest('.menu-tile');
             if (tile && tile.dataset.section) {
-                e.preventDefault();
-                openSection(tile.dataset.section);
-            }
-        });
-        document.getElementById('main-menu').addEventListener('keydown', function(e) {
-            if (e.key !== 'Enter' && e.key !== ' ') return;
-            const tile = e.target.closest('.menu-tile');
-            if (tile && tile.dataset.section) {
-                e.preventDefault();
                 openSection(tile.dataset.section);
             }
         });
