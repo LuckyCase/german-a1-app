@@ -18,7 +18,9 @@
       "Bash(git branch:*)",
       "Bash(timeout 5 gunicorn:*)",
       "Bash(git count-objects:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(node --check:*)",
+      "Bash(grep:*)"
     ]
   }
 }
