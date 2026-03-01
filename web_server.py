@@ -7,10 +7,6 @@ from flask_cors import CORS
 import os
 import asyncio
 import logging
-import nest_asyncio
-
-# Allow nested event loops (needed for Flask + asyncpg)
-nest_asyncio.apply()
 
 from bot.content_manager import (
     get_all_words, get_categories, get_words_by_category,
