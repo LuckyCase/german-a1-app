@@ -16,6 +16,8 @@
 - ✅ Сохранение прогресса по культуре и упражнениям в БД: таблицы `culture_progress`, `exercises_progress`; API `POST /api/progress/culture`, `POST /api/progress/exercise`; вызовы из Web App при просмотре темы, завершении викторины и набора упражнений.
 
 ### Изменено
+- 🔄 **Web App (web_server.py):** кнопки меню и все действия переведены с inline `onclick` на делегирование событий (`data-section`, `data-action`), чтобы клики работали в WebView Telegram, где inline-обработчики часто блокируются.
+- 🔄 **Web App режим (web_server.py):** в чате обрабатывается только `/start`; на любую другую команду (/help, /progress и т.д.) бот отвечает подсказкой открыть веб-приложение — все функции идут через Web App.
 - 🔄 `bot/handlers/flashcards.py` — использует `content_manager`
 - 🔄 `bot/handlers/grammar.py` — использует `content_manager`
 - 🔄 `bot/main.py` — инициализация контента при запуске

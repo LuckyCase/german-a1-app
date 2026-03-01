@@ -30,7 +30,7 @@ from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
 
 # Telegram bot imports
 from telegram import Update
-from telegram.ext import Application, CommandHandler
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
 from bot.handlers.common import start
 
@@ -48,12 +48,24 @@ CORS(app)
 bot_application = None
 
 
+async def _redirect_to_webapp(update: Update, context):
+    """Направить пользователя в Web App при любой команде кроме /start."""
+    await update.message.reply_text(
+        "Все функции (прогресс, карточки, грамматика, напоминания, аудио) доступны в веб-приложении.\n\n"
+        "Нажмите /start и выберите «🚀 Открыть приложение»."
+    )
+
+
 def create_bot_application():
-    """Create and configure the bot application."""
+    """Create and configure the bot application.
+    В режиме Web App обрабатывается только /start; остальные команды ведут в приложение.
+    """
     application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
-    # Only /start command - everything else is in Web App
+    # Только /start — всё остальное в Web App
     application.add_handler(CommandHandler("start", start))
+    # Любая другая команда из чата — подсказка открыть Web App
+    application.add_handler(MessageHandler(filters.COMMAND, _redirect_to_webapp))
 
     return application
 
@@ -694,44 +706,44 @@ HTML_TEMPLATE = """
             <p>Учи немецкий легко и эффективно</p>
         </header>
         
-        <!-- Main Menu -->
+        <!-- Main Menu (клики через делегирование — inline onclick в WebView Telegram блокируется) -->
         <div id="main-menu" class="main-menu">
-            <div class="menu-tile" onclick="openSection('flashcards')">
+            <div class="menu-tile" data-section="flashcards" role="button" tabindex="0">
                 <div class="menu-tile-icon">📚</div>
                 <div class="menu-tile-title">Слова</div>
                 <div class="menu-tile-desc">Изучайте слова</div>
             </div>
-            <div class="menu-tile" onclick="openSection('grammar')">
+            <div class="menu-tile" data-section="grammar" role="button" tabindex="0">
                 <div class="menu-tile-icon">📝</div>
                 <div class="menu-tile-title">Грамматика</div>
                 <div class="menu-tile-desc">Тесты по грамматике</div>
             </div>
-            <div class="menu-tile" onclick="openSection('phrases')">
+            <div class="menu-tile" data-section="phrases" role="button" tabindex="0">
                 <div class="menu-tile-icon">💬</div>
                 <div class="menu-tile-title">Фразы</div>
                 <div class="menu-tile-desc">Полезные фразы</div>
             </div>
-            <div class="menu-tile" onclick="openSection('dialogues')">
+            <div class="menu-tile" data-section="dialogues" role="button" tabindex="0">
                 <div class="menu-tile-icon">🗣️</div>
                 <div class="menu-tile-title">Диалоги</div>
                 <div class="menu-tile-desc">Практика диалогов</div>
             </div>
-            <div class="menu-tile" onclick="openSection('culture')">
+            <div class="menu-tile" data-section="culture" role="button" tabindex="0">
                 <div class="menu-tile-icon">🇩🇪</div>
                 <div class="menu-tile-title">Культура</div>
                 <div class="menu-tile-desc">Традиции и реалии</div>
             </div>
-            <div class="menu-tile" onclick="openSection('exercises')">
+            <div class="menu-tile" data-section="exercises" role="button" tabindex="0">
                 <div class="menu-tile-icon">✏️</div>
                 <div class="menu-tile-title">Упражнения</div>
                 <div class="menu-tile-desc">Проверь себя</div>
             </div>
-            <div class="menu-tile" onclick="openSection('progress')">
+            <div class="menu-tile" data-section="progress" role="button" tabindex="0">
                 <div class="menu-tile-icon">📊</div>
                 <div class="menu-tile-title">Прогресс</div>
                 <div class="menu-tile-desc">Ваша статистика</div>
             </div>
-            <div class="menu-tile" onclick="openSection('feedback')" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(251, 191, 36, 0.1) 100%);">
+            <div class="menu-tile" data-section="feedback" role="button" tabindex="0" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(251, 191, 36, 0.1) 100%);">
                 <div class="menu-tile-icon">💬</div>
                 <div class="menu-tile-title">Отзыв</div>
                 <div class="menu-tile-desc">Предложения</div>
@@ -741,7 +753,7 @@ HTML_TEMPLATE = """
         <!-- Flashcards Section -->
         <section id="flashcards" class="section" style="display: none;">
             <div id="categories-view">
-                <button class="back-btn" onclick="backToMainFromCategories()">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromCategories">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите категорию</h2>
                     <div id="categories-list" class="btn-group">
@@ -751,20 +763,20 @@ HTML_TEMPLATE = """
             </div>
             
             <div id="flashcard-view" style="display: none;">
-                <button class="back-btn" onclick="backToCategories()">← Назад к категориям</button>
+                <button type="button" class="back-btn" data-action="backToCategories">← Назад к категориям</button>
                 
                 <div class="flashcard">
                     <div class="flashcard-progress" id="word-progress">Слово 1 из 10</div>
                     <div class="flashcard-word" id="word-de">Wort</div>
                     <div class="flashcard-example" id="word-example">Beispiel</div>
-                    <button class="audio-btn" id="audio-btn" onclick="playAudio()">
+                    <button type="button" class="audio-btn" id="audio-btn" data-action="playAudio">
                         🔊 Прослушать
                     </button>
                 </div>
                 
                 <div class="options" id="word-options"></div>
                 
-                <button class="btn btn-primary" id="next-btn" style="display: none; margin-top: 16px;" onclick="nextWord()">
+                <button type="button" class="btn btn-primary" id="next-btn" style="display: none; margin-top: 16px;" data-action="nextWord">
                     Следующее слово →
                 </button>
             </div>
@@ -773,7 +785,7 @@ HTML_TEMPLATE = """
         <!-- Grammar Section -->
         <section id="grammar" class="section">
             <div id="tests-view">
-                <button class="back-btn" onclick="backToMainFromTests()">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromTests">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите тест</h2>
                     <div id="tests-list" class="btn-group">
@@ -783,7 +795,7 @@ HTML_TEMPLATE = """
             </div>
             
             <div id="grammar-view" style="display: none;">
-                <button class="back-btn" onclick="backToTests()">← Назад к тестам</button>
+                <button type="button" class="back-btn" data-action="backToTests">← Назад к тестам</button>
                 
                 <div class="question-card">
                     <div class="question-number" id="question-number">Вопрос 1 из 10</div>
@@ -792,7 +804,7 @@ HTML_TEMPLATE = """
                 
                 <div class="options" id="question-options"></div>
                 
-                <button class="btn btn-primary" id="next-question-btn" style="display: none; margin-top: 16px;" onclick="nextQuestion()">
+                <button type="button" class="btn btn-primary" id="next-question-btn" style="display: none; margin-top: 16px;" data-action="nextQuestion">
                     Следующий вопрос →
                 </button>
             </div>
@@ -801,7 +813,7 @@ HTML_TEMPLATE = """
         <!-- Phrases Section -->
         <section id="phrases" class="section">
             <div id="phrases-categories-view">
-                <button class="back-btn" onclick="backToMainFromPhrasesCategories()">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromPhrasesCategories">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите категорию</h2>
                     <div id="phrases-categories-list" class="btn-group">
@@ -811,16 +823,16 @@ HTML_TEMPLATE = """
             </div>
             
             <div id="phrases-view" style="display: none;">
-                <button class="back-btn" onclick="backToPhrasesCategories()">← Назад</button>
+                <button type="button" class="back-btn" data-action="backToPhrasesCategories">← Назад</button>
                 <div class="flashcard">
                     <div class="flashcard-progress" id="phrase-progress">Фраза 1 из 10</div>
                     <div class="flashcard-word" id="phrase-de">Phrase</div>
                     <div class="flashcard-example" id="phrase-context">Context</div>
                     <div class="flashcard-example" id="phrase-example" style="margin-top: 8px;"></div>
-                    <button class="audio-btn" onclick="playPhraseAudio()">🔊 Прослушать</button>
+                    <button type="button" class="audio-btn" data-action="playPhraseAudio">🔊 Прослушать</button>
                 </div>
                 <div class="options" id="phrase-options"></div>
-                <button class="btn btn-primary" id="next-phrase-btn" style="display: none; margin-top: 16px;" onclick="nextPhrase()">
+                <button type="button" class="btn btn-primary" id="next-phrase-btn" style="display: none; margin-top: 16px;" data-action="nextPhrase">
                     Следующая фраза →
                 </button>
             </div>
@@ -829,7 +841,7 @@ HTML_TEMPLATE = """
         <!-- Dialogues Section -->
         <section id="dialogues" class="section">
             <div id="dialogues-topics-view">
-                <button class="back-btn" onclick="backToMainFromDialoguesTopics()">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromDialoguesTopics">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите диалог</h2>
                     <div id="dialogues-topics-list" class="btn-group">
@@ -839,21 +851,21 @@ HTML_TEMPLATE = """
             </div>
             
             <div id="dialogue-view" style="display: none;">
-                <button class="back-btn" onclick="backToDialoguesTopics()">← Назад</button>
+                <button type="button" class="back-btn" data-action="backToDialoguesTopics">← Назад</button>
                 <div id="dialogue-content" class="card"></div>
-                <button class="btn btn-primary" id="dialogue-exercise-btn" style="margin-top: 16px;" onclick="showDialogueExercise()">
+                <button type="button" class="btn btn-primary" id="dialogue-exercise-btn" style="margin-top: 16px;" data-action="showDialogueExercise">
                     Упражнение →
                 </button>
             </div>
             
             <div id="dialogue-exercise-view" style="display: none;">
-                <button class="back-btn" onclick="backToDialogue()">← Назад к диалогу</button>
+                <button type="button" class="back-btn" data-action="backToDialogue">← Назад к диалогу</button>
                 <div class="question-card">
                     <div class="question-number" id="exercise-number">Упражнение 1 из 3</div>
                     <div class="question-text" id="exercise-question"></div>
                 </div>
                 <div class="options" id="exercise-options"></div>
-                <button class="btn btn-primary" id="next-exercise-btn" style="display: none; margin-top: 16px;" onclick="nextExercise()">
+                <button type="button" class="btn btn-primary" id="next-exercise-btn" style="display: none; margin-top: 16px;" data-action="nextExercise">
                     Следующее упражнение →
                 </button>
             </div>
@@ -862,7 +874,7 @@ HTML_TEMPLATE = """
         <!-- Culture Section -->
         <section id="culture" class="section" style="display: none;">
             <div id="culture-topics-view">
-                <button class="back-btn" onclick="backToMainFromCulture()">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromCulture">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите тему</h2>
                     <div id="culture-topics-list" class="btn-group">
@@ -871,7 +883,7 @@ HTML_TEMPLATE = """
                 </div>
             </div>
             <div id="culture-topic-view" style="display: none;">
-                <button class="back-btn" onclick="backToCultureTopics()">← Назад</button>
+                <button type="button" class="back-btn" data-action="backToCultureTopics">← Назад</button>
                 <div id="culture-content" class="card"></div>
                 <div id="culture-quiz-block" style="display: none; margin-top: 16px;">
                     <h3 class="card-title" style="margin-top: 16px;">Мини-викторина</h3>
@@ -880,7 +892,7 @@ HTML_TEMPLATE = """
                         <div class="question-text" id="culture-quiz-question"></div>
                     </div>
                     <div class="options" id="culture-quiz-options"></div>
-                    <button class="btn btn-primary" id="culture-quiz-next" style="display: none; margin-top: 16px;" onclick="nextCultureQuizQuestion()">
+                    <button type="button" class="btn btn-primary" id="culture-quiz-next" style="display: none; margin-top: 16px;" data-action="nextCultureQuizQuestion">
                         Далее →
                     </button>
                 </div>
@@ -890,7 +902,7 @@ HTML_TEMPLATE = """
         <!-- Exercises Section -->
         <section id="exercises" class="section" style="display: none;">
             <div id="exercises-sets-view">
-                <button class="back-btn" onclick="backToMainFromExercises()">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromExercises">← Назад в меню</button>
                 <div class="card">
                     <h2 class="card-title">Выберите набор</h2>
                     <div id="exercises-sets-list" class="btn-group">
@@ -899,14 +911,14 @@ HTML_TEMPLATE = """
                 </div>
             </div>
             <div id="exercises-task-view" style="display: none;">
-                <button class="back-btn" onclick="backToExercisesSets()">← Назад</button>
+                <button type="button" class="back-btn" data-action="backToExercisesSets">← Назад</button>
                 <div class="question-card">
                     <div class="question-number" id="ex-task-number">Задание 1 из 5</div>
                     <div class="question-text" id="ex-task-question"></div>
                 </div>
                 <div class="options" id="ex-task-options"></div>
                 <div id="ex-task-explanation" style="display: none; margin-top: 16px; padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-md); border-left: 4px solid var(--primary); color: var(--text-primary);"></div>
-                <button class="btn btn-primary" id="ex-task-next" style="display: none; margin-top: 16px;" onclick="nextExTask()">
+                <button type="button" class="btn btn-primary" id="ex-task-next" style="display: none; margin-top: 16px;" data-action="nextExTask">
                     Далее →
                 </button>
             </div>
@@ -914,7 +926,7 @@ HTML_TEMPLATE = """
         
         <!-- Progress Section -->
         <section id="progress" class="section" style="display: none;">
-            <button class="back-btn" onclick="backToMainMenu()">← Назад в меню</button>
+            <button type="button" class="back-btn" data-action="backToMainMenu">← Назад в меню</button>
             <div class="card">
                 <h2 class="card-title">Ваша статистика</h2>
                 <div id="progress-stats">
@@ -925,7 +937,7 @@ HTML_TEMPLATE = """
         
         <!-- Feedback Section -->
         <section id="feedback" class="section" style="display: none;">
-            <button class="back-btn" onclick="backToMainMenu()">← Назад в меню</button>
+            <button type="button" class="back-btn" data-action="backToMainMenu">← Назад в меню</button>
             
             <div class="card">
                 <h2 class="card-title">💬 Отзыв / Предложение</h2>
@@ -954,7 +966,7 @@ HTML_TEMPLATE = """
                     ></textarea>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                         <span id="feedback-char-count" style="font-size: 0.85rem; color: var(--text-secondary);">0 / 1000</span>
-                        <button class="btn btn-primary" onclick="submitFeedback()" style="width: auto; padding: 12px 24px;">
+                        <button type="button" class="btn btn-primary" data-action="submitFeedback" style="width: auto; padding: 12px 24px;">
                             ✉️ Отправить
                         </button>
                     </div>
@@ -973,15 +985,42 @@ HTML_TEMPLATE = """
     <audio id="word-audio"></audio>
     
     <script>
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        tg.expand();
+        const tg = window.Telegram?.WebApp || {};
+        if (tg.ready) tg.ready();
+        if (tg.expand) tg.expand();
+        
+        // Делегирование кликов (inline onclick в WebView Telegram часто блокируется)
+        document.getElementById('main-menu').addEventListener('click', function(e) {
+            const tile = e.target.closest('.menu-tile');
+            if (tile && tile.dataset.section) {
+                e.preventDefault();
+                openSection(tile.dataset.section);
+            }
+        });
+        document.getElementById('main-menu').addEventListener('keydown', function(e) {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            const tile = e.target.closest('.menu-tile');
+            if (tile && tile.dataset.section) {
+                e.preventDefault();
+                openSection(tile.dataset.section);
+            }
+        });
+        document.querySelector('.app').addEventListener('click', function(e) {
+            const btn = e.target.closest('[data-action]');
+            if (!btn || btn.tagName !== 'BUTTON') return;
+            const action = btn.getAttribute('data-action');
+            if (action && typeof window[action] === 'function') {
+                e.preventDefault();
+                window[action]();
+            }
+        });
         
         // Apply Telegram theme
-        document.documentElement.style.setProperty('--bg-primary', tg.themeParams.bg_color || '#0f0f23');
-        document.documentElement.style.setProperty('--bg-secondary', tg.themeParams.secondary_bg_color || '#1a1a2e');
-        document.documentElement.style.setProperty('--text-primary', tg.themeParams.text_color || '#ffffff');
-        document.documentElement.style.setProperty('--text-secondary', tg.themeParams.hint_color || '#a0a0b0');
+        const theme = tg.themeParams || {};
+        document.documentElement.style.setProperty('--bg-primary', theme.bg_color || '#0f0f23');
+        document.documentElement.style.setProperty('--bg-secondary', theme.secondary_bg_color || '#1a1a2e');
+        document.documentElement.style.setProperty('--text-primary', theme.text_color || '#ffffff');
+        document.documentElement.style.setProperty('--text-secondary', theme.hint_color || '#a0a0b0');
         
         const userId = tg.initDataUnsafe?.user?.id;
         
