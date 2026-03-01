@@ -1122,7 +1122,7 @@ HTML_TEMPLATE = """
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            tg.HapticFeedback.selectionChanged();
+            tg.HapticFeedback?.selectionChanged();
         }
         
         function backToMainMenu() {
@@ -1189,7 +1189,7 @@ HTML_TEMPLATE = """
                 
                 showNextWord();
             } catch (error) {
-                tg.showAlert('Ошибка загрузки слов');
+                tg.showAlert?.('Ошибка загрузки слов');
             }
         }
         
@@ -1204,7 +1204,7 @@ HTML_TEMPLATE = """
         
         async function showNextWord() {
             if (currentWordIndex >= currentWords.length) {
-                tg.showAlert(`🎉 Отлично! Изучено ${currentWords.length} слов!`);
+                tg.showAlert?.(`🎉 Отлично! Изучено ${currentWords.length} слов!`);
                 backToCategories();
                 return;
             }
@@ -1253,7 +1253,7 @@ HTML_TEMPLATE = """
             
             if (audio.src && audio.src.includes(encodeURIComponent(word.de))) {
                 audio.currentTime = 0;
-                audio.play().catch(() => tg.showAlert('Ошибка воспроизведения'));
+                audio.play().catch(() => tg.showAlert?.('Ошибка воспроизведения'));
                 return;
             }
             
@@ -1267,7 +1267,7 @@ HTML_TEMPLATE = """
                     audioBtn.textContent = '🔊 Прослушать';
                     audioBtn.disabled = false;
                     audio.play().catch(() => {
-                        tg.showAlert('Ошибка воспроизведения');
+                        tg.showAlert?.('Ошибка воспроизведения');
                         audioBtn.textContent = '🔊 Прослушать';
                     });
                 };
@@ -1275,7 +1275,7 @@ HTML_TEMPLATE = """
                 audio.onerror = () => {
                     audioBtn.textContent = '🔊 Прослушать';
                     audioBtn.disabled = false;
-                    tg.showAlert('Ошибка загрузки аудио');
+                    tg.showAlert?.('Ошибка загрузки аудио');
                 };
                 
                 audio.load();
@@ -1307,7 +1307,7 @@ HTML_TEMPLATE = """
                 })
             });
             
-            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            tg.HapticFeedback?.notificationOccurred(isCorrect ? 'success' : 'error');
             document.getElementById('next-btn').style.display = 'block';
         }
         
@@ -1353,7 +1353,7 @@ HTML_TEMPLATE = """
                 
                 showNextQuestion();
             } catch (error) {
-                tg.showAlert('Ошибка загрузки теста');
+                tg.showAlert?.('Ошибка загрузки теста');
             }
         }
         
@@ -1403,7 +1403,7 @@ HTML_TEMPLATE = """
             });
             
             if (isCorrect) userScore++;
-            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            tg.HapticFeedback?.notificationOccurred(isCorrect ? 'success' : 'error');
             document.getElementById('next-question-btn').style.display = 'block';
         }
         
@@ -1427,7 +1427,7 @@ HTML_TEMPLATE = """
                 })
             });
             
-            tg.showAlert(`🎉 Тест завершён!\\nРезультат: ${userScore} из ${total} (${percentage}%)`);
+            tg.showAlert?.(`🎉 Тест завершён!\\nРезультат: ${userScore} из ${total} (${percentage}%)`);
             backToTests();
         }
         
@@ -1506,7 +1506,7 @@ HTML_TEMPLATE = """
                 
                 showNextPhrase();
             } catch (error) {
-                tg.showAlert('Ошибка загрузки фраз');
+                tg.showAlert?.('Ошибка загрузки фраз');
             }
         }
         
@@ -1521,7 +1521,7 @@ HTML_TEMPLATE = """
         
         function showNextPhrase() {
             if (currentPhraseIndex >= currentPhrases.length) {
-                tg.showAlert(`🎉 Отлично! Изучено ${currentPhrases.length} фраз!`);
+                tg.showAlert?.(`🎉 Отлично! Изучено ${currentPhrases.length} фраз!`);
                 backToPhrasesCategories();
                 return;
             }
@@ -1582,7 +1582,7 @@ HTML_TEMPLATE = """
             
             if (audio.src && audio.src.includes(encodeURIComponent(phrase.de))) {
                 audio.currentTime = 0;
-                audio.play().catch(() => tg.showAlert('Ошибка воспроизведения'));
+                audio.play().catch(() => tg.showAlert?.('Ошибка воспроизведения'));
                 return;
             }
             
@@ -1596,7 +1596,7 @@ HTML_TEMPLATE = """
                     audioBtn.textContent = '🔊 Прослушать';
                     audioBtn.disabled = false;
                     audio.play().catch(() => {
-                        tg.showAlert('Ошибка воспроизведения');
+                        tg.showAlert?.('Ошибка воспроизведения');
                         audioBtn.textContent = '🔊 Прослушать';
                     });
                 };
@@ -1604,7 +1604,7 @@ HTML_TEMPLATE = """
                 audio.onerror = () => {
                     audioBtn.textContent = '🔊 Прослушать';
                     audioBtn.disabled = false;
-                    tg.showAlert('Ошибка загрузки аудио');
+                    tg.showAlert?.('Ошибка загрузки аудио');
                 };
                 
                 audio.load();
@@ -1637,7 +1637,7 @@ HTML_TEMPLATE = """
                 })
             });
             
-            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            tg.HapticFeedback?.notificationOccurred(isCorrect ? 'success' : 'error');
             document.getElementById('next-phrase-btn').style.display = 'block';
         }
         
@@ -1682,7 +1682,7 @@ HTML_TEMPLATE = """
                 
                 showDialogue();
             } catch (error) {
-                tg.showAlert('Ошибка загрузки диалога');
+                tg.showAlert?.('Ошибка загрузки диалога');
             }
         }
         
@@ -1733,7 +1733,7 @@ HTML_TEMPLATE = """
                 exerciseScore = 0;
                 
                 if (currentExercises.length === 0) {
-                    tg.showAlert('Упражнения для этого диалога пока не готовы');
+                    tg.showAlert?.('Упражнения для этого диалога пока не готовы');
                     return;
                 }
                 
@@ -1742,7 +1742,7 @@ HTML_TEMPLATE = """
                 
                 showNextExercise();
             } catch (error) {
-                tg.showAlert('Ошибка загрузки упражнений');
+                tg.showAlert?.('Ошибка загрузки упражнений');
             }
         }
         
@@ -1783,7 +1783,7 @@ HTML_TEMPLATE = """
             });
             
             if (isCorrect) exerciseScore++;
-            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            tg.HapticFeedback?.notificationOccurred(isCorrect ? 'success' : 'error');
             document.getElementById('next-exercise-btn').style.display = 'block';
         }
         
@@ -1807,7 +1807,7 @@ HTML_TEMPLATE = """
                 })
             });
             
-            tg.showAlert(`🎉 Упражнение завершено!\\nРезультат: ${exerciseScore} из ${total} (${percentage}%)`);
+            tg.showAlert?.(`🎉 Упражнение завершено!\\nРезультат: ${exerciseScore} из ${total} (${percentage}%)`);
             backToDialogue();
         }
         
@@ -1875,7 +1875,7 @@ HTML_TEMPLATE = """
                     }).catch(() => {});
                 }
             } catch (error) {
-                tg.showAlert('Ошибка загрузки темы');
+                tg.showAlert?.('Ошибка загрузки темы');
             }
         }
         
@@ -1943,7 +1943,7 @@ HTML_TEMPLATE = """
                         const correctBtn = optionsDiv.children[q.correct];
                         if (correctBtn) correctBtn.classList.add('correct');
                     }
-                    tg.HapticFeedback.notificationOccurred(idx === q.correct ? 'success' : 'error');
+                    tg.HapticFeedback?.notificationOccurred(idx === q.correct ? 'success' : 'error');
                     nextBtn.style.display = 'block';
                 };
                 optionsDiv.appendChild(btn);
@@ -2011,7 +2011,7 @@ HTML_TEMPLATE = """
                 
                 showExTask();
             } catch (error) {
-                tg.showAlert('Ошибка загрузки заданий');
+                tg.showAlert?.('Ошибка загрузки заданий');
             }
         }
         
@@ -2051,7 +2051,7 @@ HTML_TEMPLATE = """
                 optionsDiv.children[correctIndex].classList.add('correct');
             }
             if (isCorrect) currentExScore++;
-            tg.HapticFeedback.notificationOccurred(isCorrect ? 'success' : 'error');
+            tg.HapticFeedback?.notificationOccurred(isCorrect ? 'success' : 'error');
             const explEl = document.getElementById('ex-task-explanation');
             if (explanation) {
                 explEl.textContent = explanation;
@@ -2082,7 +2082,7 @@ HTML_TEMPLATE = """
                     })
                 }).catch(() => {});
             }
-            tg.showAlert(`🎉 Набор завершён!\\nРезультат: ${currentExScore} из ${total} (${percentage}%)`);
+            tg.showAlert?.(`🎉 Набор завершён!\\nРезультат: ${currentExScore} из ${total} (${percentage}%)`);
             backToExercisesSets();
         }
         
@@ -2189,7 +2189,7 @@ HTML_TEMPLATE = """
         
         async function submitFeedback() {
             if (!userId) {
-                tg.showAlert('Необходима авторизация через Telegram');
+                tg.showAlert?.('Необходима авторизация через Telegram');
                 return;
             }
             
@@ -2197,12 +2197,12 @@ HTML_TEMPLATE = """
             const text = textarea.value.trim();
             
             if (!text) {
-                tg.showAlert('Пожалуйста, введите текст отзыва');
+                tg.showAlert?.('Пожалуйста, введите текст отзыва');
                 return;
             }
             
             if (text.length > 1000) {
-                tg.showAlert('Текст слишком длинный. Максимум 1000 символов.');
+                tg.showAlert?.('Текст слишком длинный. Максимум 1000 символов.');
                 return;
             }
             
@@ -2219,18 +2219,18 @@ HTML_TEMPLATE = """
                 const result = await response.json();
                 
                 if (result.success) {
-                    tg.showAlert(`✅ Спасибо за ваш отзыв!\\n\\nНомер обращения: #${result.feedback_id}`);
-                    tg.HapticFeedback.notificationOccurred('success');
+                    tg.showAlert?.(`✅ Спасибо за ваш отзыв!\\n\\nНомер обращения: #${result.feedback_id}`);
+                    tg.HapticFeedback?.notificationOccurred('success');
                     textarea.value = '';
                     document.getElementById('feedback-char-count').textContent = '0 / 1000';
                     loadFeedback(); // Reload list
                 } else {
-                    tg.showAlert('Ошибка отправки: ' + (result.error || 'Неизвестная ошибка'));
-                    tg.HapticFeedback.notificationOccurred('error');
+                    tg.showAlert?.('Ошибка отправки: ' + (result.error || 'Неизвестная ошибка'));
+                    tg.HapticFeedback?.notificationOccurred('error');
                 }
             } catch (error) {
-                tg.showAlert('Ошибка отправки отзыва');
-                tg.HapticFeedback.notificationOccurred('error');
+                tg.showAlert?.('Ошибка отправки отзыва');
+                tg.HapticFeedback?.notificationOccurred('error');
             }
         }
         
