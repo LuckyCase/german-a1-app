@@ -3020,4 +3020,5 @@ init_app()
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    is_production = os.getenv('RENDER') is not None
+    app.run(host='0.0.0.0', port=port, debug=not is_production)
