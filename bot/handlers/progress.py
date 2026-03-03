@@ -2,7 +2,15 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
 from bot.database import get_user_stats
-from bot.content_manager import get_all_words
+from bot.content_manager import get_all_words, get_levels_with_content
+
+
+def _get_total_vocab() -> int:
+    """Count total vocabulary across all levels with content."""
+    total = 0
+    for level in get_levels_with_content():
+        total += len(get_all_words(level["major"], level["sub"]))
+    return total
 
 
 def _progress_bar(percentage: float, length: int = 10) -> str:
@@ -27,6 +35,10 @@ def _build_stats_text(stats: dict, total_vocab: int, suffix: str = "") -> str:
         f"   ⚠️ Требуют повторения: {stats['words_with_errors']} слов\n"
         if stats.get("words_with_errors", 0) > 0 else ""
     )
+    phrase_errors_line = (
+        f"   ⚠️ Фразы с ошибками: {stats['phrases_with_errors']}\n"
+        if stats.get("phrases_with_errors", 0) > 0 else ""
+    )
 
     if words_pct < 25:
         motivation = "🌱 Отличное начало! Продолжайте учить новые слова!"
@@ -49,6 +61,7 @@ def _build_stats_text(stats: dict, total_vocab: int, suffix: str = "") -> str:
         f"   {stats['mastered_words']} слов\n"
         f"   {_progress_bar(mastered_pct)} {mastered_pct:.0f}%\n\n"
         f"{errors_line}"
+        f"{phrase_errors_line}"
         f"📝 Карточки:\n"
         f"   Правильно: {stats['total_correct']}\n"
         f"   Неправильно: {stats['total_wrong']}\n"
@@ -62,17 +75,20 @@ def _build_stats_text(stats: dict, total_vocab: int, suffix: str = "") -> str:
     )
 
 
-def _build_keyboard(has_errors: bool) -> InlineKeyboardMarkup:
+def _build_keyboard(has_word_errors: bool, has_phrase_errors: bool) -> InlineKeyboardMarkup:
     keyboard = [
         [InlineKeyboardButton("🔄 Обновить", callback_data="progress_refresh")],
         [InlineKeyboardButton("📚 Учить слова", callback_data="start_flashcards")],
         [InlineKeyboardButton("💬 Учить фразы", callback_data="start_phrases")],
         [InlineKeyboardButton("📝 Грамматика", callback_data="start_grammar")]
     ]
-    if has_errors:
-        keyboard.insert(1, [
-            InlineKeyboardButton("🔁 Работа над ошибками", callback_data="fc_errors_start")
-        ])
+    error_buttons = []
+    if has_word_errors:
+        error_buttons.append(InlineKeyboardButton("🔁 Ошибки (слова)", callback_data="fc_errors_start"))
+    if has_phrase_errors:
+        error_buttons.append(InlineKeyboardButton("🔁 Ошибки (фразы)", callback_data="pf_errors_start"))
+    if error_buttons:
+        keyboard.insert(1, error_buttons)
     return InlineKeyboardMarkup(keyboard)
 
 
@@ -80,37 +96,27 @@ async def show_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show user's learning progress."""
     user_id = update.effective_user.id
     stats = await get_user_stats(user_id)
-    total_vocab = len(get_all_words())
+    total_vocab = _get_total_vocab()
 
-    has_errors = stats.get("words_with_errors", 0) > 0
+    has_word_errors = stats.get("words_with_errors", 0) > 0
+    has_phrase_errors = stats.get("phrases_with_errors", 0) > 0
     text = _build_stats_text(stats, total_vocab)
 
-    await update.message.reply_text(text, reply_markup=_build_keyboard(has_errors))
+    await update.message.reply_text(text, reply_markup=_build_keyboard(has_word_errors, has_phrase_errors))
 
 
 async def progress_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle progress-related callbacks."""
+    """Handle progress refresh callback."""
     query = update.callback_query
     await query.answer()
 
     if query.data == "progress_refresh":
         user_id = update.effective_user.id
         stats = await get_user_stats(user_id)
-        total_vocab = len(get_all_words())
+        total_vocab = _get_total_vocab()
 
-        has_errors = stats.get("words_with_errors", 0) > 0
+        has_word_errors = stats.get("words_with_errors", 0) > 0
+        has_phrase_errors = stats.get("phrases_with_errors", 0) > 0
         text = _build_stats_text(stats, total_vocab, suffix="\n(Обновлено)")
 
-        await query.edit_message_text(text, reply_markup=_build_keyboard(has_errors))
-
-    elif query.data == "start_flashcards":
-        from bot.handlers.flashcards import flashcards_start
-        await flashcards_start(update, context)
-
-    elif query.data == "start_phrases":
-        from bot.handlers.phrases_flashcards import phrases_flashcards_start
-        await phrases_flashcards_start(update, context)
-
-    elif query.data == "start_grammar":
-        from bot.handlers.grammar import grammar_start
-        await grammar_start(update, context)
+        await query.edit_message_text(text, reply_markup=_build_keyboard(has_word_errors, has_phrase_errors))

@@ -4,7 +4,7 @@ from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, Call
 
 from bot.content_manager import (
     get_all_tests, get_test, get_test_questions,
-    get_current_level_str, get_levels_with_content, set_level
+    get_current_level, get_current_level_str, get_levels_with_content, set_level
 )
 from bot.database import save_grammar_result, update_daily_stats
 
@@ -12,8 +12,15 @@ from bot.database import save_grammar_result, update_daily_stats
 LEVEL_SELECT, TEST_SELECT, QUESTION, RESULT = range(4)
 
 
+def _get_gr_level(context) -> tuple:
+    """Get level from user session, falling back to global current level."""
+    return context.user_data.get("gr_level", get_current_level())
+
+
 async def grammar_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start grammar test selection."""
+    context.user_data["gr_level"] = get_current_level()
+
     # Проверяем, есть ли несколько уровней с контентом
     levels = get_levels_with_content()
     
@@ -71,10 +78,12 @@ async def level_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def show_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show available grammar tests."""
-    tests = get_all_tests()
+    major, sub = _get_gr_level(context)
+    level_str = f"{major}.{sub}"
+    tests = get_all_tests(major, sub)
 
     if not tests:
-        error_text = f"Тесты для уровня {get_current_level_str()} не найдены."
+        error_text = f"Тесты для уровня {level_str} не найдены."
         if update.message:
             await update.message.reply_text(error_text)
         elif update.callback_query:
@@ -94,7 +103,7 @@ async def show_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
     text = (
-        f"Уровень: {get_current_level_str()}\n\n"
+        f"Уровень: {level_str}\n\n"
         "Выберите грамматический тест:\n\n"
         f"Каждый тест проверяет определённую тему грамматики."
     )
@@ -119,19 +128,22 @@ async def test_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     test_id = query.data.replace("gr_test_", "")
 
+    major, sub = _get_gr_level(context)
+    level_str = f"{major}.{sub}"
+
     if test_id == "random":
-        tests = get_all_tests()
+        tests = get_all_tests(major, sub)
         if not tests:
             await query.edit_message_text("Тесты не найдены. Попробуйте снова.")
             return ConversationHandler.END
         test_id = random.choice(tests)["id"]
 
-    test = get_test(test_id)
+    test = get_test(test_id, major, sub)
     if not test:
         await query.edit_message_text("Тест не найден. Попробуйте снова.")
         return ConversationHandler.END
 
-    questions = get_test_questions(test_id)
+    questions = get_test_questions(test_id, major, sub)
     random.shuffle(questions)
 
     context.user_data["gr_test_id"] = test_id
@@ -142,7 +154,7 @@ async def test_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["gr_answers"] = []
 
     await query.edit_message_text(
-        f"Уровень: {get_current_level_str()}\n"
+        f"Уровень: {level_str}\n"
         f"Тест: {test['name']}\n"
         f"{test['description']}\n\n"
         f"Вопросов: {len(questions)}\n\n"
@@ -252,7 +264,7 @@ async def show_results(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await query.edit_message_text(
         f"Тест завершён: {test_name}\n"
-        f"Уровень: {get_current_level_str()}\n\n"
+        f"Уровень: {'.'.join(_get_gr_level(context))}\n\n"
         f"Результат: {score} из {total}\n"
         f"Процент: {percentage:.0f}%\n"
         f"Оценка: {grade}\n\n"
@@ -319,7 +331,10 @@ async def cancel_grammar(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def get_grammar_handler():
     """Get the ConversationHandler for grammar tests."""
     return ConversationHandler(
-        entry_points=[CommandHandler("grammar", grammar_start)],
+        entry_points=[
+            CommandHandler("grammar", grammar_start),
+            CallbackQueryHandler(grammar_start, pattern="^start_grammar$")
+        ],
         states={
             LEVEL_SELECT: [
                 CallbackQueryHandler(level_selected, pattern="^gr_level_"),

@@ -44,7 +44,7 @@ def main():
 
     # Add callback handlers BEFORE conversation handlers (order matters!)
     # These must be registered first to catch callbacks when no conversation is active
-    application.add_handler(CallbackQueryHandler(progress_callback, pattern="^(progress_refresh|start_flashcards|start_phrases|start_grammar)$"))
+    application.add_handler(CallbackQueryHandler(progress_callback, pattern="^progress_refresh$"))
     application.add_handler(CallbackQueryHandler(reminder_callback, pattern="^rem_"))
 
     # Add conversation handlers (these should come after regular callback handlers)

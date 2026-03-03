@@ -105,7 +105,6 @@ async def init_db():
                 correct_count INTEGER DEFAULT 0,
                 wrong_count INTEGER DEFAULT 0,
                 last_reviewed TIMESTAMP,
-                next_review TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users (user_id)
             )
         """)
@@ -146,7 +145,9 @@ async def init_db():
                 phrase_id TEXT,
                 category_id TEXT,
                 correct_count INTEGER DEFAULT 0,
+                wrong_count INTEGER DEFAULT 0,
                 last_reviewed TIMESTAMP,
+                last_wrong_at TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users (user_id)
             )
         """)
@@ -221,6 +222,84 @@ async def init_db():
             ALTER TABLE phrases_progress ADD COLUMN IF NOT EXISTS last_wrong_at TIMESTAMP
         """)
 
+        # Remove unused column
+        await conn.execute("""
+            ALTER TABLE progress DROP COLUMN IF EXISTS next_review
+        """)
+
+        # Deduplicate and add UNIQUE indexes (only if indexes don't exist yet)
+        idx_exists = await conn.fetchval("""
+            SELECT 1 FROM pg_indexes WHERE indexname = 'uniq_progress_user_word'
+        """)
+        if not idx_exists:
+            # Deduplicate progress rows (merge counts into the row with MAX id, then delete extras)
+            await conn.execute("""
+                UPDATE progress p
+                SET correct_count = k.cc,
+                    wrong_count   = k.wc,
+                    last_reviewed = k.lr,
+                    last_wrong_at = k.lw
+                FROM (
+                    SELECT MAX(id) AS id, user_id, word_id,
+                           SUM(correct_count) AS cc,
+                           SUM(wrong_count)   AS wc,
+                           MAX(last_reviewed) AS lr,
+                           MAX(last_wrong_at) AS lw
+                    FROM progress
+                    GROUP BY user_id, word_id
+                    HAVING COUNT(*) > 1
+                ) k
+                WHERE p.id = k.id
+            """)
+            await conn.execute("""
+                DELETE FROM progress p1
+                WHERE EXISTS (
+                    SELECT 1 FROM progress p2
+                    WHERE p2.user_id = p1.user_id
+                      AND p2.word_id = p1.word_id
+                      AND p2.id > p1.id
+                )
+            """)
+
+            # Deduplicate phrases_progress rows
+            await conn.execute("""
+                UPDATE phrases_progress p
+                SET correct_count = k.cc,
+                    wrong_count   = k.wc,
+                    last_reviewed = k.lr,
+                    last_wrong_at = k.lw
+                FROM (
+                    SELECT MAX(id) AS id, user_id, phrase_id,
+                           SUM(correct_count) AS cc,
+                           SUM(wrong_count)   AS wc,
+                           MAX(last_reviewed) AS lr,
+                           MAX(last_wrong_at) AS lw
+                    FROM phrases_progress
+                    GROUP BY user_id, phrase_id
+                    HAVING COUNT(*) > 1
+                ) k
+                WHERE p.id = k.id
+            """)
+            await conn.execute("""
+                DELETE FROM phrases_progress p1
+                WHERE EXISTS (
+                    SELECT 1 FROM phrases_progress p2
+                    WHERE p2.user_id = p1.user_id
+                      AND p2.phrase_id = p1.phrase_id
+                      AND p2.id > p1.id
+                )
+            """)
+
+            # Add UNIQUE indexes
+            await conn.execute("""
+                CREATE UNIQUE INDEX IF NOT EXISTS uniq_progress_user_word
+                    ON progress(user_id, word_id)
+            """)
+            await conn.execute("""
+                CREATE UNIQUE INDEX IF NOT EXISTS uniq_phrases_progress_user_phrase
+                    ON phrases_progress(user_id, phrase_id)
+            """)
+
 
 async def get_or_create_user(user_id: int, username: str = None, first_name: str = None):
     """Get existing user or create new one."""
@@ -244,45 +323,33 @@ async def get_or_create_user(user_id: int, username: str = None, first_name: str
 
 
 async def update_word_progress(user_id: int, word_id: str, is_correct: bool):
-    """Update user's progress for a specific word."""
-    # Ensure user exists in database
+    """Update user's progress for a specific word (atomic upsert)."""
     await get_or_create_user(user_id, None, None)
-    
     pool = await get_pool()
+    now = datetime.now()
 
     async with pool.acquire() as conn:
-        existing = await conn.fetchrow(
-            "SELECT * FROM progress WHERE user_id = $1 AND word_id = $2",
-            user_id, word_id
-        )
-
-        now = datetime.now()
-
-        if existing:
-            if is_correct:
-                await conn.execute(
-                    """UPDATE progress
-                       SET correct_count = correct_count + 1,
-                           wrong_count = GREATEST(wrong_count - 1, 0),
-                           last_reviewed = $1
-                       WHERE user_id = $2 AND word_id = $3""",
-                    now, user_id, word_id
-                )
-            else:
-                await conn.execute(
-                    """UPDATE progress
-                       SET wrong_count = wrong_count + 1, last_reviewed = $1, last_wrong_at = $1
-                       WHERE user_id = $2 AND word_id = $3""",
-                    now, user_id, word_id
-                )
-        else:
-            correct = 1 if is_correct else 0
-            wrong = 0 if is_correct else 1
-            last_wrong = now if not is_correct else None
+        if is_correct:
             await conn.execute(
-                """INSERT INTO progress (user_id, word_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
-                   VALUES ($1, $2, $3, $4, $5, $6)""",
-                user_id, word_id, correct, wrong, now, last_wrong
+                """INSERT INTO progress
+                       (user_id, word_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
+                   VALUES ($1, $2, 1, 0, $3, NULL)
+                   ON CONFLICT (user_id, word_id) DO UPDATE
+                   SET correct_count = progress.correct_count + 1,
+                       wrong_count   = GREATEST(progress.wrong_count - 1, 0),
+                       last_reviewed = EXCLUDED.last_reviewed""",
+                user_id, word_id, now
+            )
+        else:
+            await conn.execute(
+                """INSERT INTO progress
+                       (user_id, word_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
+                   VALUES ($1, $2, 0, 1, $3, $3)
+                   ON CONFLICT (user_id, word_id) DO UPDATE
+                   SET wrong_count   = progress.wrong_count + 1,
+                       last_reviewed = EXCLUDED.last_reviewed,
+                       last_wrong_at = EXCLUDED.last_wrong_at""",
+                user_id, word_id, now
             )
 
 
@@ -325,6 +392,13 @@ async def get_user_stats(user_id: int) -> dict:
             user_id
         )
 
+        # Phrases with errors (need review)
+        phrases_with_errors = await conn.fetchrow(
+            """SELECT COUNT(*) as count FROM phrases_progress
+               WHERE user_id = $1 AND wrong_count > 0""",
+            user_id
+        )
+
         return {
             "total_words": word_stats["total_words"] or 0,
             "total_correct": word_stats["total_correct"] or 0,
@@ -333,7 +407,8 @@ async def get_user_stats(user_id: int) -> dict:
             "grammar_score": grammar_stats["total_score"] or 0,
             "grammar_total": grammar_stats["total_questions"] or 0,
             "mastered_words": mastered["count"] or 0,
-            "words_with_errors": words_with_errors["count"] or 0
+            "words_with_errors": words_with_errors["count"] or 0,
+            "phrases_with_errors": phrases_with_errors["count"] or 0
         }
 
 
@@ -408,44 +483,33 @@ async def set_reminder(user_id: int, enabled: bool, hour: int = 9, minute: int =
 
 
 async def save_phrase_progress(user_id: int, phrase_id: str, category_id: str, is_correct: bool):
-    """Save phrase progress for user."""
-    # Ensure user exists in database
+    """Save phrase progress for user (atomic upsert)."""
     await get_or_create_user(user_id, None, None)
-    
     pool = await get_pool()
     now = datetime.now()
 
     async with pool.acquire() as conn:
-        existing = await conn.fetchrow(
-            "SELECT * FROM phrases_progress WHERE user_id = $1 AND phrase_id = $2",
-            user_id, phrase_id
-        )
-
-        if existing:
-            if is_correct:
-                await conn.execute(
-                    """UPDATE phrases_progress
-                       SET correct_count = correct_count + 1,
-                           wrong_count = GREATEST(wrong_count - 1, 0),
-                           last_reviewed = $1
-                       WHERE user_id = $2 AND phrase_id = $3""",
-                    now, user_id, phrase_id
-                )
-            else:
-                await conn.execute(
-                    """UPDATE phrases_progress
-                       SET wrong_count = wrong_count + 1, last_reviewed = $1, last_wrong_at = $1
-                       WHERE user_id = $2 AND phrase_id = $3""",
-                    now, user_id, phrase_id
-                )
-        else:
-            correct = 1 if is_correct else 0
-            wrong = 0 if is_correct else 1
-            last_wrong = now if not is_correct else None
+        if is_correct:
             await conn.execute(
-                """INSERT INTO phrases_progress (user_id, phrase_id, category_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
-                   VALUES ($1, $2, $3, $4, $5, $6, $7)""",
-                user_id, phrase_id, category_id, correct, wrong, now, last_wrong
+                """INSERT INTO phrases_progress
+                       (user_id, phrase_id, category_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
+                   VALUES ($1, $2, $3, 1, 0, $4, NULL)
+                   ON CONFLICT (user_id, phrase_id) DO UPDATE
+                   SET correct_count = phrases_progress.correct_count + 1,
+                       wrong_count   = GREATEST(phrases_progress.wrong_count - 1, 0),
+                       last_reviewed = EXCLUDED.last_reviewed""",
+                user_id, phrase_id, category_id, now
+            )
+        else:
+            await conn.execute(
+                """INSERT INTO phrases_progress
+                       (user_id, phrase_id, category_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
+                   VALUES ($1, $2, $3, 0, 1, $4, $4)
+                   ON CONFLICT (user_id, phrase_id) DO UPDATE
+                   SET wrong_count   = phrases_progress.wrong_count + 1,
+                       last_reviewed = EXCLUDED.last_reviewed,
+                       last_wrong_at = EXCLUDED.last_wrong_at""",
+                user_id, phrase_id, category_id, now
             )
 
 
@@ -503,11 +567,13 @@ async def save_culture_progress(
             user_id, topic_id, major, sub
         )
         if existing:
-            # Update: set viewed_at if not yet set or keep; update quiz fields if provided
+            # Update: set viewed_at if not yet set; update quiz only if new result is better
             await conn.execute(
                 """UPDATE culture_progress
                    SET viewed_at = COALESCE(culture_progress.viewed_at, $1),
-                       quiz_completed = $2, quiz_correct = $3, quiz_total = $4
+                       quiz_completed = GREATEST(culture_progress.quiz_completed, $2),
+                       quiz_correct = CASE WHEN $2 > culture_progress.quiz_completed THEN $3 ELSE culture_progress.quiz_correct END,
+                       quiz_total = CASE WHEN $2 > culture_progress.quiz_completed THEN $4 ELSE culture_progress.quiz_total END
                    WHERE user_id = $5 AND topic_id = $6 AND major_level = $7 AND sub_level = $8""",
                 viewed, quiz_completed, quiz_correct, quiz_total,
                 user_id, topic_id, major, sub
@@ -629,7 +695,8 @@ async def get_priority_word_ids(user_id: int, word_ids: list) -> list:
     pool = await get_pool()
     async with pool.acquire() as conn:
         rows = await conn.fetch(
-            """SELECT word_id FROM progress
+            """SELECT word_id, wrong_count, last_wrong_at
+               FROM progress
                WHERE user_id = $1 AND word_id = ANY($2) AND wrong_count > 0
                ORDER BY wrong_count DESC, last_wrong_at DESC NULLS LAST""",
             user_id, word_ids
@@ -642,7 +709,8 @@ async def get_all_error_word_ids(user_id: int) -> list:
     pool = await get_pool()
     async with pool.acquire() as conn:
         rows = await conn.fetch(
-            """SELECT word_id FROM progress
+            """SELECT word_id
+               FROM progress
                WHERE user_id = $1 AND wrong_count > 0
                ORDER BY wrong_count DESC, last_wrong_at DESC NULLS LAST""",
             user_id
@@ -657,7 +725,8 @@ async def get_priority_phrase_ids(user_id: int, phrase_ids: list) -> list:
     pool = await get_pool()
     async with pool.acquire() as conn:
         rows = await conn.fetch(
-            """SELECT phrase_id FROM phrases_progress
+            """SELECT phrase_id, wrong_count, last_wrong_at
+               FROM phrases_progress
                WHERE user_id = $1 AND phrase_id = ANY($2) AND wrong_count > 0
                ORDER BY wrong_count DESC, last_wrong_at DESC NULLS LAST""",
             user_id, phrase_ids
@@ -670,7 +739,8 @@ async def get_all_error_phrase_ids(user_id: int) -> list:
     pool = await get_pool()
     async with pool.acquire() as conn:
         rows = await conn.fetch(
-            """SELECT phrase_id FROM phrases_progress
+            """SELECT phrase_id
+               FROM phrases_progress
                WHERE user_id = $1 AND wrong_count > 0
                ORDER BY wrong_count DESC, last_wrong_at DESC NULLS LAST""",
             user_id

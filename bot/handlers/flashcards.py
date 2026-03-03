@@ -5,7 +5,7 @@ from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, Call
 
 from bot.content_manager import (
     get_all_words, get_words_by_category, get_categories,
-    get_current_level_str, get_levels_with_content, set_level,
+    get_current_level, get_current_level_str, get_levels_with_content, set_level,
     get_words_by_ids
 )
 from bot.database import (
@@ -21,6 +21,11 @@ LEVEL_SELECT, CATEGORY_SELECT, LEARNING, ANSWER = range(4)
 
 SESSION_SIZE = 10
 MAX_ERROR_WORDS = 5
+
+
+def _get_fc_level(context) -> tuple:
+    """Get level from user session, falling back to global current level."""
+    return context.user_data.get("fc_level", get_current_level())
 
 
 async def _build_session_words(user_id: int, words: list) -> list:
@@ -57,6 +62,9 @@ async def _build_session_words(user_id: int, words: list) -> list:
 async def flashcards_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start flashcards learning session."""
     try:
+        # Store current level as default (overridden if user picks another)
+        context.user_data["fc_level"] = get_current_level()
+
         levels = get_levels_with_content()
 
         if len(levels) > 1:
@@ -124,10 +132,12 @@ async def level_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def show_categories(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show categories for current level."""
     try:
-        categories = get_categories()
+        major, sub = _get_fc_level(context)
+        level_str = f"{major}.{sub}"
+        categories = get_categories(major, sub)
 
         if not categories:
-            error_text = f"Категории для уровня {get_current_level_str()} не найдены."
+            error_text = f"Категории для уровня {level_str} не найдены."
             if update.message:
                 await update.message.reply_text(error_text)
             elif update.callback_query:
@@ -146,7 +156,7 @@ async def show_categories(update: Update, context: ContextTypes.DEFAULT_TYPE):
         keyboard.append([InlineKeyboardButton("Отмена", callback_data="fc_cancel")])
 
         reply_markup = InlineKeyboardMarkup(keyboard)
-        text = f"Уровень: {get_current_level_str()}\n\nВыберите категорию для изучения:"
+        text = f"Уровень: {level_str}\n\nВыберите категорию для изучения:"
 
         if update.message:
             await update.message.reply_text(text, reply_markup=reply_markup)
@@ -179,12 +189,13 @@ async def category_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     category_id = query.data.replace("fc_cat_", "")
     user_id = update.effective_user.id
+    major, sub = _get_fc_level(context)
 
     if category_id == "all":
-        words = get_all_words()
+        words = get_all_words(major, sub)
         context.user_data["fc_category_name"] = "Все слова"
     else:
-        words = get_words_by_category(category_id)
+        words = get_words_by_category(category_id, major, sub)
         if words:
             context.user_data["fc_category_name"] = words[0].get("category_name", category_id)
         else:
@@ -198,8 +209,9 @@ async def category_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["fc_wrong"] = 0
     context.user_data["fc_errors_mode"] = False
 
+    level_str = f"{major}.{sub}"
     await query.edit_message_text(
-        f"Уровень: {get_current_level_str()}\n"
+        f"Уровень: {level_str}\n"
         f"Категория: {context.user_data['fc_category_name']}\n"
         f"Карточек в сессии: {len(session)}\n\n"
         f"Готовы? Нажмите кнопку ниже!",
@@ -311,9 +323,10 @@ async def show_next_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 if errors_mode else
                 "Сессия завершена!\n\n"
             )
+            fc_major, fc_sub = _get_fc_level(context)
             await query.edit_message_text(
                 f"{finish_text}"
-                f"Уровень: {get_current_level_str()}\n"
+                f"Уровень: {fc_major}.{fc_sub}\n"
                 f"Правильно: {correct}\n"
                 f"Неправильно: {wrong}\n"
                 f"Результат: {percentage:.0f}%\n\n"
@@ -323,9 +336,10 @@ async def show_next_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     word = words[index]
 
-    # Generate wrong options
-    all_words = get_all_words()
-    other_words = [w for w in all_words if w["de"] != word["de"]]
+    # Generate wrong options from the same level
+    major, sub = _get_fc_level(context)
+    all_words = get_all_words(major, sub)
+    other_words = [w for w in all_words if w["de"] != word["de"] and w["ru"] != word["ru"]]
     wrong_options = random.sample(other_words, min(3, len(other_words)))
 
     options = [{"text": word["ru"], "correct": True}]
@@ -345,7 +359,7 @@ async def show_next_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard.append([InlineKeyboardButton("Прослушать", callback_data="fc_audio")])
 
     errors_mode = context.user_data.get("fc_errors_mode", False)
-    mode_label = "Ошибки" if errors_mode else get_current_level_str()
+    mode_label = "Ошибки" if errors_mode else f"{major}.{sub}"
 
     await query.edit_message_text(
         f"Карточка {index + 1} из {len(words)} | {mode_label}\n\n"
@@ -373,6 +387,13 @@ async def errors_continue(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     batch_ids = remaining_ids[:SESSION_SIZE]
     words = get_words_by_ids(batch_ids)
+
+    if not words:
+        await query.edit_message_text(
+            "Не удалось загрузить слова для повторения.\n"
+            "Используйте /flashcards для изучения."
+        )
+        return ConversationHandler.END
 
     context.user_data["fc_words"] = words
     context.user_data["fc_index"] = 0
@@ -493,9 +514,10 @@ async def finish_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     percentage = (correct / total * 100) if total > 0 else 0
 
+    major, sub = _get_fc_level(context)
     await query.edit_message_text(
         f"Сессия завершена!\n\n"
-        f"Уровень: {get_current_level_str()}\n"
+        f"Уровень: {major}.{sub}\n"
         f"Правильно: {correct}\n"
         f"Неправильно: {wrong}\n"
         f"Результат: {percentage:.0f}%\n\n"
@@ -526,6 +548,7 @@ def get_flashcards_handler():
     return ConversationHandler(
         entry_points=[
             CommandHandler("flashcards", flashcards_start),
+            CallbackQueryHandler(flashcards_start, pattern="^start_flashcards$"),
             CallbackQueryHandler(errors_start, pattern="^fc_errors_start$")
         ],
         states={
@@ -534,7 +557,8 @@ def get_flashcards_handler():
                 CallbackQueryHandler(level_selected, pattern="^fc_cancel$")
             ],
             CATEGORY_SELECT: [
-                CallbackQueryHandler(category_selected, pattern="^fc_cat_")
+                CallbackQueryHandler(category_selected, pattern="^fc_cat_"),
+                CallbackQueryHandler(category_selected, pattern="^fc_cancel$")
             ],
             LEARNING: [
                 CallbackQueryHandler(show_next_word, pattern="^fc_next$"),

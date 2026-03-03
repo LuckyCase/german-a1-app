@@ -5,7 +5,7 @@ from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, Call
 
 from bot.content_manager import (
     get_phrases_categories, get_phrases_by_category, get_all_phrases_flat,
-    get_current_level_str, get_levels_with_content, set_level,
+    get_current_level, get_current_level_str, get_levels_with_content, set_level,
     get_phrases_by_ids
 )
 from bot.database import (
@@ -20,6 +20,11 @@ PF_LEVEL_SELECT, PF_CATEGORY_SELECT, PF_LEARNING, PF_ANSWER = range(10, 14)
 
 SESSION_SIZE = 10
 MAX_ERROR_PHRASES = 5
+
+
+def _get_pf_level(context) -> tuple:
+    """Get level from user session, falling back to global current level."""
+    return context.user_data.get("pf_level", get_current_level())
 
 
 async def _build_session_phrases(user_id: int, phrases: list) -> list:
@@ -48,6 +53,8 @@ async def _build_session_phrases(user_id: int, phrases: list) -> list:
 async def phrases_flashcards_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start phrases flashcards session."""
     try:
+        context.user_data["pf_level"] = get_current_level()
+
         levels = get_levels_with_content()
 
         if len(levels) > 1:
@@ -111,10 +118,12 @@ async def pf_level_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def pf_show_categories(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Show phrase categories."""
     try:
-        categories = get_phrases_categories()
+        major, sub = _get_pf_level(context)
+        level_str = f"{major}.{sub}"
+        categories = get_phrases_categories(major, sub)
 
         if not categories:
-            err = f"Категории фраз для уровня {get_current_level_str()} не найдены."
+            err = f"Категории фраз для уровня {level_str} не найдены."
             if update.message:
                 await update.message.reply_text(err)
             elif update.callback_query:
@@ -132,7 +141,7 @@ async def pf_show_categories(update: Update, context: ContextTypes.DEFAULT_TYPE)
         keyboard.append([InlineKeyboardButton("Все фразы (случайно)", callback_data="pf_cat_all")])
         keyboard.append([InlineKeyboardButton("Отмена", callback_data="pf_cancel")])
 
-        text = f"Уровень: {get_current_level_str()}\n\nВыберите категорию фраз:"
+        text = f"Уровень: {level_str}\n\nВыберите категорию фраз:"
 
         if update.message:
             await update.message.reply_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
@@ -165,12 +174,13 @@ async def pf_category_selected(update: Update, context: ContextTypes.DEFAULT_TYP
 
     category_id = query.data.replace("pf_cat_", "")
     user_id = update.effective_user.id
+    major, sub = _get_pf_level(context)
 
     if category_id == "all":
-        phrases = get_all_phrases_flat()
+        phrases = get_all_phrases_flat(major, sub)
         context.user_data["pf_category_name"] = "Все фразы"
     else:
-        phrases = get_phrases_by_category(category_id)
+        phrases = get_phrases_by_category(category_id, major, sub)
         if phrases:
             context.user_data["pf_category_name"] = phrases[0].get("category_name", category_id)
         else:
@@ -192,8 +202,9 @@ async def pf_category_selected(update: Update, context: ContextTypes.DEFAULT_TYP
     context.user_data["pf_wrong"] = 0
     context.user_data["pf_errors_mode"] = False
 
+    level_str = f"{major}.{sub}"
     await query.edit_message_text(
-        f"Уровень: {get_current_level_str()}\n"
+        f"Уровень: {level_str}\n"
         f"Категория: {context.user_data['pf_category_name']}\n"
         f"Карточек в сессии: {len(session)}\n\n"
         f"Готовы?",
@@ -297,9 +308,10 @@ async def pf_show_next(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     phrase = phrases[index]
 
-    # Generate wrong options from all phrases
-    all_phrases = get_all_phrases_flat()
-    other_phrases = [p for p in all_phrases if p["de"] != phrase["de"]]
+    # Generate wrong options from the same level
+    major, sub = _get_pf_level(context)
+    all_phrases = get_all_phrases_flat(major, sub)
+    other_phrases = [p for p in all_phrases if p["de"] != phrase["de"] and p["ru"] != phrase["ru"]]
     wrong_options = random.sample(other_phrases, min(3, len(other_phrases)))
 
     options = [{"text": phrase["ru"], "correct": True}]
@@ -318,7 +330,7 @@ async def pf_show_next(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ])
 
     errors_mode = context.user_data.get("pf_errors_mode", False)
-    mode_label = "Ошибки (фразы)" if errors_mode else get_current_level_str()
+    mode_label = "Ошибки (фразы)" if errors_mode else f"{major}.{sub}"
     context_label = f" [{phrase['context']}]" if phrase.get("context") else ""
 
     await query.edit_message_text(
@@ -390,6 +402,13 @@ async def pf_errors_continue(update: Update, context: ContextTypes.DEFAULT_TYPE)
     batch_ids = remaining_ids[:SESSION_SIZE]
     phrases = get_phrases_by_ids(batch_ids)
 
+    if not phrases:
+        await query.edit_message_text(
+            "Не удалось загрузить фразы для повторения.\n"
+            "Используйте /phrases для изучения."
+        )
+        return ConversationHandler.END
+
     context.user_data["pf_phrases"] = phrases
     context.user_data["pf_index"] = 0
     context.user_data["pf_correct"] = 0
@@ -455,6 +474,7 @@ def get_phrases_flashcards_handler():
     return ConversationHandler(
         entry_points=[
             CommandHandler("phrases", phrases_flashcards_start),
+            CallbackQueryHandler(phrases_flashcards_start, pattern="^start_phrases$"),
             CallbackQueryHandler(pf_errors_start, pattern="^pf_errors_start$")
         ],
         states={
@@ -463,7 +483,8 @@ def get_phrases_flashcards_handler():
                 CallbackQueryHandler(pf_level_selected, pattern="^pf_cancel$")
             ],
             PF_CATEGORY_SELECT: [
-                CallbackQueryHandler(pf_category_selected, pattern="^pf_cat_")
+                CallbackQueryHandler(pf_category_selected, pattern="^pf_cat_"),
+                CallbackQueryHandler(pf_category_selected, pattern="^pf_cancel$")
             ],
             PF_LEARNING: [
                 CallbackQueryHandler(pf_show_next, pattern="^pf_next$"),
