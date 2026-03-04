@@ -80,7 +80,8 @@ def _build_keyboard(has_word_errors: bool, has_phrase_errors: bool) -> InlineKey
         [InlineKeyboardButton("🔄 Обновить", callback_data="progress_refresh")],
         [InlineKeyboardButton("📚 Учить слова", callback_data="start_flashcards")],
         [InlineKeyboardButton("💬 Учить фразы", callback_data="start_phrases")],
-        [InlineKeyboardButton("📝 Грамматика", callback_data="start_grammar")]
+        [InlineKeyboardButton("📝 Грамматика", callback_data="start_grammar")],
+        [InlineKeyboardButton("⚙️ Настройки", callback_data="set_menu")],
     ]
     error_buttons = []
     if has_word_errors:

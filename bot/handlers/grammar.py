@@ -19,7 +19,7 @@ def _get_gr_level(context) -> tuple:
 
 async def grammar_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start grammar test selection."""
-    context.user_data["gr_level"] = get_current_level()
+    context.user_data["gr_level"] = context.user_data.get("user_level", get_current_level())
 
     # Проверяем, есть ли несколько уровней с контентом
     levels = get_levels_with_content()

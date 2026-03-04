@@ -5,7 +5,7 @@ import asyncio
 import time as _time
 import requests
 
-from bot.database import get_or_create_user, get_pool
+from bot.database import get_or_create_user, get_pool, get_user_settings
 from bot.config import WEB_APP_URL, TELEGRAM_BOT_TOKEN, DATABASE_URL
 
 logger = logging.getLogger(__name__)
@@ -98,6 +98,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if status["database"]:
         try:
             await get_or_create_user(user.id, user.username, user.first_name)
+            # Load persisted level into session
+            settings = await get_user_settings(user.id)
+            context.user_data["user_level"] = (
+                settings.get("major_level", "A1"),
+                settings.get("sub_level", "1"),
+            )
         except Exception as e:
             logger.error(f"Failed to register user: {e}")
     
@@ -156,13 +162,15 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/start - Главное меню\n"
         "/help - Эта справка\n"
         "/progress - Ваш прогресс\n"
+        "/settings - Настройки\n"
         "/reminder - Настройки напоминаний\n"
         "/audio - Аудио материалы\n\n"
         "**Как пользоваться:**\n"
         "1. Нажмите /start\n"
         "2. Откройте приложение кнопкой «🚀 Открыть приложение»\n"
         "3. Изучайте слова, грамматику, фразы!\n\n"
-        "Есть вопросы или предложения? Используйте раздел «Отзыв» в веб-приложении."
+        "Настройки уровня, напоминаний и сброс прогресса — /settings\n"
+        "Есть вопросы или предложения? Используйте раздел «Отзыв» в настройках."
     )
     
     await update.message.reply_text(help_text, parse_mode="Markdown")

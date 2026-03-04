@@ -62,8 +62,8 @@ async def _build_session_words(user_id: int, words: list) -> list:
 async def flashcards_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start flashcards learning session."""
     try:
-        # Store current level as default (overridden if user picks another)
-        context.user_data["fc_level"] = get_current_level()
+        # Use user's persisted level (from DB), fall back to global default
+        context.user_data["fc_level"] = context.user_data.get("user_level", get_current_level())
 
         levels = get_levels_with_content()
 

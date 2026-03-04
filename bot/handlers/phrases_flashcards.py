@@ -53,7 +53,7 @@ async def _build_session_phrases(user_id: int, phrases: list) -> list:
 async def phrases_flashcards_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start phrases flashcards session."""
     try:
-        context.user_data["pf_level"] = get_current_level()
+        context.user_data["pf_level"] = context.user_data.get("user_level", get_current_level())
 
         levels = get_levels_with_content()
 

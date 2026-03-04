@@ -228,6 +228,14 @@ async def init_db():
             ALTER TABLE phrases_progress ADD COLUMN IF NOT EXISTS last_wrong_at TIMESTAMP
         """)
 
+        # Per-user level (persistent)
+        await conn.execute("""
+            ALTER TABLE users ADD COLUMN IF NOT EXISTS major_level TEXT DEFAULT 'A1'
+        """)
+        await conn.execute("""
+            ALTER TABLE users ADD COLUMN IF NOT EXISTS sub_level TEXT DEFAULT '1'
+        """)
+
         # Remove unused column
         await conn.execute("""
             ALTER TABLE progress DROP COLUMN IF EXISTS next_review
@@ -740,3 +748,52 @@ async def get_all_error_phrase_ids(user_id: int) -> list:
             user_id
         )
         return [row["phrase_id"] for row in rows]
+
+
+# ============================================================
+# Settings: user preferences
+# ============================================================
+
+async def get_user_settings(user_id: int) -> dict:
+    """Get user settings (level, reminders)."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            """SELECT reminder_enabled, reminder_hour, reminder_minute,
+                      major_level, sub_level
+               FROM users WHERE user_id = $1""",
+            user_id
+        )
+        if not row:
+            return {
+                "reminder_enabled": 1,
+                "reminder_hour": 9,
+                "reminder_minute": 0,
+                "major_level": "A1",
+                "sub_level": "1",
+            }
+        return dict(row)
+
+
+async def set_user_level(user_id: int, major: str, sub: str):
+    """Persist user's chosen level."""
+    await get_or_create_user(user_id, None, None)
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            "UPDATE users SET major_level = $1, sub_level = $2 WHERE user_id = $3",
+            major, sub, user_id
+        )
+
+
+async def reset_user_progress(user_id: int):
+    """Delete ALL learning progress for user (irreversible)."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute("DELETE FROM progress WHERE user_id = $1", user_id)
+        await conn.execute("DELETE FROM phrases_progress WHERE user_id = $1", user_id)
+        await conn.execute("DELETE FROM grammar_results WHERE user_id = $1", user_id)
+        await conn.execute("DELETE FROM daily_stats WHERE user_id = $1", user_id)
+        await conn.execute("DELETE FROM dialogues_progress WHERE user_id = $1", user_id)
+        await conn.execute("DELETE FROM culture_progress WHERE user_id = $1", user_id)
+        await conn.execute("DELETE FROM exercises_progress WHERE user_id = $1", user_id)

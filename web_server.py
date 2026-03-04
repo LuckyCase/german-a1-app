@@ -11,7 +11,7 @@ import logging
 from bot.content_manager import (
     get_all_words, get_categories, get_words_by_category,
     get_all_tests, get_test_questions, init_content,
-    get_phrases_categories, get_phrases_by_category,
+    get_phrases_categories, get_phrases_by_category, get_all_phrases_flat,
     get_dialogue_topics, get_dialogue, get_dialogue_exercises,
     get_category_distractors,
     get_available_levels, get_levels_with_content, set_level,
@@ -24,6 +24,7 @@ from bot.database import (
     update_daily_stats, init_db, save_phrase_progress, save_dialogue_progress,
     save_culture_progress, save_exercise_set_progress,
     get_or_create_user, save_feedback, get_user_feedback, get_feedback_count,
+    get_priority_word_ids, get_priority_phrase_ids,
     FEEDBACK_STATUS_LABELS, MAX_FEEDBACK_LENGTH
 )
 from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
@@ -1176,7 +1177,7 @@ HTML_TEMPLATE = """
         
         async function startFlashcards(categoryId) {
             try {
-                const response = await fetch(`/api/words?category=${categoryId}`);
+                const response = await fetch(`/api/session/words?category=${categoryId}&user_id=${userId}`);
                 currentWords = await response.json();
                 currentWordIndex = 0;
                 currentCategory = categoryId;
@@ -1493,7 +1494,7 @@ HTML_TEMPLATE = """
         
         async function startPhrases(categoryId) {
             try {
-                const response = await fetch(`/api/phrases?category=${categoryId}`);
+                const response = await fetch(`/api/session/phrases?category=${categoryId}&user_id=${userId}`);
                 currentPhrases = await response.json();
                 currentPhraseIndex = 0;
                 currentPhrasesCategory = categoryId;
@@ -2317,6 +2318,99 @@ def api_words():
         words = get_all_words(major, sub) if major and sub else get_all_words()
     
     return jsonify(words)
+
+SESSION_SIZE = 10
+MAX_ERROR_WORDS = 5
+MAX_ERROR_PHRASES = 5
+
+
+@app.route('/api/session/words')
+def api_session_words():
+    """Build a session of up to SESSION_SIZE words with error priority."""
+    import random
+
+    category_id = request.args.get('category')
+    user_id = request.args.get('user_id', type=int)
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+
+    if category_id and category_id != 'all':
+        words = get_words_by_category(category_id, major, sub) if major and sub else get_words_by_category(category_id)
+    else:
+        words = get_all_words(major, sub) if major and sub else get_all_words()
+
+    if not words:
+        return jsonify([])
+
+    # Build session with error priority (same logic as bot handler)
+    word_ids = [w["word_id"] for w in words]
+    error_ids = []
+    if user_id:
+        try:
+            error_ids = asyncio.run(get_priority_word_ids(user_id, word_ids))
+        except Exception:
+            pass
+
+    word_map = {w["word_id"]: w for w in words}
+    error_words = [word_map[wid] for wid in error_ids[:MAX_ERROR_WORDS] if wid in word_map]
+    error_id_set = set(wid for wid in error_ids[:MAX_ERROR_WORDS])
+    remaining = [w for w in words if w["word_id"] not in error_id_set]
+    random.shuffle(remaining)
+    fill_count = SESSION_SIZE - len(error_words)
+    new_words = remaining[:fill_count]
+
+    session = error_words + new_words
+    random.shuffle(session)
+    return jsonify(session)
+
+
+@app.route('/api/session/phrases')
+def api_session_phrases():
+    """Build a session of up to SESSION_SIZE phrases with error priority."""
+    import random
+
+    category_id = request.args.get('category')
+    user_id = request.args.get('user_id', type=int)
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+
+    if category_id:
+        phrases = get_phrases_by_category(category_id, major, sub) if major and sub else get_phrases_by_category(category_id)
+    else:
+        phrases = get_all_phrases_flat(major, sub) if major and sub else get_all_phrases_flat()
+
+    if not phrases:
+        return jsonify([])
+
+    # Deduplicate
+    seen = set()
+    unique = []
+    for p in phrases:
+        if p["phrase_id"] not in seen:
+            seen.add(p["phrase_id"])
+            unique.append(p)
+
+    # Build session with error priority
+    phrase_ids = [p["phrase_id"] for p in unique]
+    error_ids = []
+    if user_id:
+        try:
+            error_ids = asyncio.run(get_priority_phrase_ids(user_id, phrase_ids))
+        except Exception:
+            pass
+
+    phrase_map = {p["phrase_id"]: p for p in unique}
+    error_phrases = [phrase_map[pid] for pid in error_ids[:MAX_ERROR_PHRASES] if pid in phrase_map]
+    error_id_set = set(pid for pid in error_ids[:MAX_ERROR_PHRASES])
+    remaining = [p for p in unique if p["phrase_id"] not in error_id_set]
+    random.shuffle(remaining)
+    fill_count = SESSION_SIZE - len(error_phrases)
+    new_phrases = remaining[:fill_count]
+
+    session = error_phrases + new_phrases
+    random.shuffle(session)
+    return jsonify(session)
+
 
 @app.route('/api/words/random')
 def api_random_words():
