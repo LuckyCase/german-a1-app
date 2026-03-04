@@ -2,6 +2,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppI
 from telegram.ext import ContextTypes
 import logging
 import asyncio
+import time as _time
 import requests
 
 from bot.database import get_or_create_user, get_pool
@@ -9,35 +10,43 @@ from bot.config import WEB_APP_URL, TELEGRAM_BOT_TOKEN, DATABASE_URL
 
 logger = logging.getLogger(__name__)
 
+# Cache for bot status (avoid hitting Telegram API on every /start)
+_status_cache: dict = {}
+_STATUS_TTL = 300  # 5 minutes
+
 
 async def check_bot_status(context: ContextTypes.DEFAULT_TYPE = None) -> dict:
-    """Check bot systems status."""
+    """Check bot systems status (cached for 5 min)."""
+    global _status_cache
+
+    now = _time.monotonic()
+    if _status_cache and now - _status_cache.get("_ts", 0) < _STATUS_TTL:
+        return _status_cache
+
     status = {
         "webhook": False,
         "database": False,
         "web_app": False,
         "errors": []
     }
-    
+
     # Check Webhook via Bot API (if context available) or Telegram API
     if TELEGRAM_BOT_TOKEN:
         try:
             if context and context.bot:
-                # Use built-in bot method (preferred)
                 webhook_info = await context.bot.get_webhook_info()
                 if webhook_info.url:
                     status["webhook"] = True
                 else:
                     status["errors"].append("Webhook не настроен")
             else:
-                # Fallback: use requests in thread
                 def get_webhook_sync():
                     response = requests.get(
                         f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getWebhookInfo',
                         timeout=5
                     )
                     return response.json()
-                
+
                 webhook_info = await asyncio.to_thread(get_webhook_sync)
                 if webhook_info.get('ok'):
                     webhook_url = webhook_info.get('result', {}).get('url', '')
@@ -52,7 +61,7 @@ async def check_bot_status(context: ContextTypes.DEFAULT_TYPE = None) -> dict:
             status["errors"].append(f"Webhook: {str(e)[:50]}")
     else:
         status["errors"].append("Telegram токен не настроен")
-    
+
     # Check Database
     if DATABASE_URL:
         try:
@@ -65,13 +74,15 @@ async def check_bot_status(context: ContextTypes.DEFAULT_TYPE = None) -> dict:
             status["errors"].append(f"БД: {str(e)[:50]}")
     else:
         status["errors"].append("DATABASE_URL не настроен")
-    
+
     # Check Web App URL (just check if configured, not accessibility)
     if WEB_APP_URL:
         status["web_app"] = True
     else:
         status["errors"].append("WEB_APP_URL не настроен")
-    
+
+    status["_ts"] = now
+    _status_cache = status
     return status
 
 

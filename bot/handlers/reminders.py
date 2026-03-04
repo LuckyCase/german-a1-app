@@ -1,10 +1,10 @@
 import random
-from datetime import time, datetime
+from datetime import time, datetime, timezone
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
 from bot.database import set_reminder, get_users_for_reminder, get_or_create_user
-from bot.data.vocabulary import get_all_words
+from bot.content_manager import get_all_words
 
 # Motivational messages
 REMINDER_MESSAGES = [
@@ -63,7 +63,7 @@ async def reminder_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def send_reminder(context: ContextTypes.DEFAULT_TYPE):
     """Job function to send reminders."""
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     hour = now.hour
     minute = now.minute
 

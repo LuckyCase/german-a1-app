@@ -165,6 +165,12 @@ async def init_db():
             )
         """)
 
+        # Add UNIQUE index for dialogues_progress (safe migration)
+        await conn.execute("""
+            CREATE UNIQUE INDEX IF NOT EXISTS uniq_dialogues_progress_user_dialogue
+                ON dialogues_progress(user_id, dialogue_id)
+        """)
+
         # Culture progress
         await conn.execute("""
             CREATE TABLE IF NOT EXISTS culture_progress (
@@ -514,34 +520,22 @@ async def save_phrase_progress(user_id: int, phrase_id: str, category_id: str, i
 
 
 async def save_dialogue_progress(user_id: int, dialogue_id: str, exercises_completed: int, exercises_correct: int):
-    """Save dialogue progress for user."""
-    # Ensure user exists in database
+    """Save dialogue progress for user (atomic upsert)."""
     await get_or_create_user(user_id, None, None)
-    
     pool = await get_pool()
     now = datetime.now()
 
     async with pool.acquire() as conn:
-        existing = await conn.fetchrow(
-            "SELECT * FROM dialogues_progress WHERE user_id = $1 AND dialogue_id = $2",
-            user_id, dialogue_id
+        await conn.execute(
+            """INSERT INTO dialogues_progress
+                   (user_id, dialogue_id, exercises_completed, exercises_correct, completed_at)
+               VALUES ($1, $2, $3, $4, $5)
+               ON CONFLICT (user_id, dialogue_id) DO UPDATE
+               SET exercises_completed = dialogues_progress.exercises_completed + EXCLUDED.exercises_completed,
+                   exercises_correct = dialogues_progress.exercises_correct + EXCLUDED.exercises_correct,
+                   completed_at = EXCLUDED.completed_at""",
+            user_id, dialogue_id, exercises_completed, exercises_correct, now
         )
-
-        if existing:
-            await conn.execute(
-                """UPDATE dialogues_progress
-                   SET exercises_completed = exercises_completed + $1,
-                       exercises_correct = exercises_correct + $2,
-                       completed_at = $3
-                   WHERE user_id = $4 AND dialogue_id = $5""",
-                exercises_completed, exercises_correct, now, user_id, dialogue_id
-            )
-        else:
-            await conn.execute(
-                """INSERT INTO dialogues_progress (user_id, dialogue_id, exercises_completed, exercises_correct, completed_at)
-                   VALUES ($1, $2, $3, $4, $5)""",
-                user_id, dialogue_id, exercises_completed, exercises_correct, now
-            )
 
 
 async def save_culture_progress(

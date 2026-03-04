@@ -5,7 +5,7 @@ from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, Call
 
 from bot.content_manager import (
     get_all_words, get_words_by_category, get_categories,
-    get_current_level, get_current_level_str, get_levels_with_content, set_level,
+    get_current_level, get_current_level_str, get_levels_with_content,
     get_words_by_ids
 )
 from bot.database import (
@@ -16,8 +16,8 @@ from bot.handlers.audio import send_word_audio
 
 logger = logging.getLogger(__name__)
 
-# Conversation states
-LEVEL_SELECT, CATEGORY_SELECT, LEARNING, ANSWER = range(4)
+# Conversation states (unique range to avoid overlap with grammar 20-23 and phrases 10-13)
+FC_LEVEL_SELECT, FC_CATEGORY_SELECT, FC_LEARNING, FC_ANSWER = range(4)
 
 SESSION_SIZE = 10
 MAX_ERROR_WORDS = 5
@@ -93,7 +93,7 @@ async def flashcards_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "Выберите уровень для изучения:",
                     reply_markup=reply_markup
                 )
-            return LEVEL_SELECT
+            return FC_LEVEL_SELECT
         else:
             return await show_categories(update, context)
 
@@ -123,7 +123,6 @@ async def level_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
     parts = query.data.replace("fc_level_", "").split("_")
     if len(parts) == 2:
         major, sub = parts
-        set_level(major, sub)
         context.user_data["fc_level"] = (major, sub)
 
     return await show_categories(update, context)
@@ -163,7 +162,7 @@ async def show_categories(update: Update, context: ContextTypes.DEFAULT_TYPE):
         elif update.callback_query:
             await update.callback_query.edit_message_text(text, reply_markup=reply_markup)
 
-        return CATEGORY_SELECT
+        return FC_CATEGORY_SELECT
 
     except Exception as e:
         logger.error(f"Error in show_categories: {e}", exc_info=True)
@@ -219,7 +218,7 @@ async def category_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("Начать!", callback_data="fc_next")]
         ])
     )
-    return LEARNING
+    return FC_LEARNING
 
 
 # ──────────────────────────────────────────────
@@ -269,7 +268,7 @@ async def errors_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("Начать!", callback_data="fc_next")]
         ])
     )
-    return LEARNING
+    return FC_LEARNING
 
 
 async def show_next_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -316,7 +315,7 @@ async def show_next_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     [InlineKeyboardButton("Завершить", callback_data="fc_done")]
                 ])
             )
-            return LEARNING
+            return FC_LEARNING
         else:
             finish_text = (
                 "Все ошибочные слова проработаны! Отличная работа!\n\n"
@@ -367,7 +366,7 @@ async def show_next_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Выберите перевод:",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
-    return ANSWER
+    return FC_ANSWER
 
 
 async def errors_continue(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -410,7 +409,7 @@ async def errors_continue(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("Начать!", callback_data="fc_next")]
         ])
     )
-    return LEARNING
+    return FC_LEARNING
 
 
 async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -433,7 +432,7 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         audio_message = await send_word_audio(update, context, word.get("de", ""))
         if audio_message:
             context.user_data["fc_audio_message_id"] = audio_message.message_id
-        return ANSWER
+        return FC_ANSWER
 
     answer_index = int(query.data.replace("fc_ans_", ""))
     options = context.user_data.get("fc_options", [])
@@ -463,7 +462,7 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("Завершить", callback_data="fc_finish")]
         ])
     )
-    return LEARNING
+    return FC_LEARNING
 
 
 async def handle_audio_result(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -485,7 +484,7 @@ async def handle_audio_result(update: Update, context: ContextTypes.DEFAULT_TYPE
     audio_message = await send_word_audio(update, context, word.get("de", ""))
     if audio_message:
         context.user_data["fc_audio_message_id"] = audio_message.message_id
-    return LEARNING
+    return FC_LEARNING
 
 
 async def finish_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -552,22 +551,22 @@ def get_flashcards_handler():
             CallbackQueryHandler(errors_start, pattern="^fc_errors_start$")
         ],
         states={
-            LEVEL_SELECT: [
+            FC_LEVEL_SELECT: [
                 CallbackQueryHandler(level_selected, pattern="^fc_level_"),
                 CallbackQueryHandler(level_selected, pattern="^fc_cancel$")
             ],
-            CATEGORY_SELECT: [
+            FC_CATEGORY_SELECT: [
                 CallbackQueryHandler(category_selected, pattern="^fc_cat_"),
                 CallbackQueryHandler(category_selected, pattern="^fc_cancel$")
             ],
-            LEARNING: [
+            FC_LEARNING: [
                 CallbackQueryHandler(show_next_word, pattern="^fc_next$"),
                 CallbackQueryHandler(errors_continue, pattern="^fc_errors_continue$"),
                 CallbackQueryHandler(handle_audio_result, pattern="^fc_audio_result$"),
                 CallbackQueryHandler(finish_session, pattern="^fc_finish$"),
                 CallbackQueryHandler(done_session, pattern="^fc_done$")
             ],
-            ANSWER: [
+            FC_ANSWER: [
                 CallbackQueryHandler(handle_answer, pattern="^fc_ans_"),
                 CallbackQueryHandler(handle_answer, pattern="^fc_audio$")
             ]

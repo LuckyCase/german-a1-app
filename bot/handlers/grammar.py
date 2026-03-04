@@ -4,12 +4,12 @@ from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, Call
 
 from bot.content_manager import (
     get_all_tests, get_test, get_test_questions,
-    get_current_level, get_current_level_str, get_levels_with_content, set_level
+    get_current_level, get_current_level_str, get_levels_with_content
 )
 from bot.database import save_grammar_result, update_daily_stats
 
-# Conversation states
-LEVEL_SELECT, TEST_SELECT, QUESTION, RESULT = range(4)
+# Conversation states (unique range to avoid overlap with flashcards 0-3 and phrases 10-13)
+GR_LEVEL_SELECT, GR_TEST_SELECT, GR_QUESTION, GR_RESULT = range(20, 24)
 
 
 def _get_gr_level(context) -> tuple:
@@ -51,7 +51,7 @@ async def grammar_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "Выберите уровень для тестирования:",
                 reply_markup=reply_markup
             )
-        return LEVEL_SELECT
+        return GR_LEVEL_SELECT
     else:
         # Только один уровень - сразу показываем тесты
         return await show_tests(update, context)
@@ -70,7 +70,6 @@ async def level_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
     parts = query.data.replace("gr_level_", "").split("_")
     if len(parts) == 2:
         major, sub = parts
-        set_level(major, sub)
         context.user_data["gr_level"] = (major, sub)
     
     return await show_tests(update, context)
@@ -114,7 +113,7 @@ async def show_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif update.callback_query:
         await update.callback_query.edit_message_text(text, reply_markup=reply_markup)
     
-    return TEST_SELECT
+    return GR_TEST_SELECT
 
 
 async def test_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -163,7 +162,7 @@ async def test_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("Начать тест", callback_data="gr_next")]
         ])
     )
-    return QUESTION
+    return GR_QUESTION
 
 
 async def show_next_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -192,7 +191,7 @@ async def show_next_question(update: Update, context: ContextTypes.DEFAULT_TYPE)
         f"{question['question']}",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
-    return QUESTION
+    return GR_QUESTION
 
 
 async def handle_grammar_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -232,7 +231,7 @@ async def handle_grammar_answer(update: Update, context: ContextTypes.DEFAULT_TY
             [InlineKeyboardButton("Следующий вопрос", callback_data="gr_next")]
         ])
     )
-    return QUESTION
+    return GR_QUESTION
 
 
 async def show_results(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -274,7 +273,7 @@ async def show_results(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("Новый тест", callback_data="gr_new")]
         ])
     )
-    return RESULT
+    return GR_RESULT
 
 
 async def review_errors(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -336,19 +335,19 @@ def get_grammar_handler():
             CallbackQueryHandler(grammar_start, pattern="^start_grammar$")
         ],
         states={
-            LEVEL_SELECT: [
+            GR_LEVEL_SELECT: [
                 CallbackQueryHandler(level_selected, pattern="^gr_level_"),
                 CallbackQueryHandler(level_selected, pattern="^gr_cancel$")
             ],
-            TEST_SELECT: [
+            GR_TEST_SELECT: [
                 CallbackQueryHandler(test_selected, pattern="^gr_test_"),
                 CallbackQueryHandler(test_selected, pattern="^gr_cancel$")
             ],
-            QUESTION: [
+            GR_QUESTION: [
                 CallbackQueryHandler(show_next_question, pattern="^gr_next$"),
                 CallbackQueryHandler(handle_grammar_answer, pattern="^gr_ans_")
             ],
-            RESULT: [
+            GR_RESULT: [
                 CallbackQueryHandler(review_errors, pattern="^gr_review$"),
                 CallbackQueryHandler(start_new_test, pattern="^gr_new$")
             ]

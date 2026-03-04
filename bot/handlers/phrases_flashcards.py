@@ -5,7 +5,7 @@ from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, Call
 
 from bot.content_manager import (
     get_phrases_categories, get_phrases_by_category, get_all_phrases_flat,
-    get_current_level, get_current_level_str, get_levels_with_content, set_level,
+    get_current_level, get_current_level_str, get_levels_with_content,
     get_phrases_by_ids
 )
 from bot.database import (
@@ -109,7 +109,6 @@ async def pf_level_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
     parts = query.data.replace("pf_level_", "").split("_")
     if len(parts) == 2:
         major, sub = parts
-        set_level(major, sub)
         context.user_data["pf_level"] = (major, sub)
 
     return await pf_show_categories(update, context)
