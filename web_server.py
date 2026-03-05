@@ -1181,6 +1181,8 @@ HTML_TEMPLATE = """
                 currentWords = await response.json();
                 currentWordIndex = 0;
                 currentCategory = categoryId;
+                wordSessionCorrect = 0;
+                wordSessionWrong = 0;
                 
                 document.getElementById('categories-view').style.display = 'none';
                 document.getElementById('flashcard-view').style.display = 'block';
@@ -1202,8 +1204,28 @@ HTML_TEMPLATE = """
         
         async function showNextWord() {
             if (currentWordIndex >= currentWords.length) {
-                tg.showAlert?.(`🎉 Отлично! Изучено ${currentWords.length} слов!`);
-                backToCategories();
+                // Show results screen
+                const total = wordSessionCorrect + wordSessionWrong;
+                const pct = total > 0 ? Math.round(wordSessionCorrect / total * 100) : 0;
+                document.getElementById('word-progress').textContent = 'Упражнение завершено!';
+                document.getElementById('word-de').textContent = `${pct}%`;
+                document.getElementById('word-example').textContent =
+                    `Правильно: ${wordSessionCorrect} из ${total}`;
+                document.getElementById('word-options').innerHTML = '';
+                document.getElementById('next-btn').style.display = 'none';
+                document.getElementById('audio-btn').style.display = 'none';
+
+                const finishBtn = document.createElement('button');
+                finishBtn.className = 'btn btn-primary';
+                finishBtn.style.marginTop = '16px';
+                finishBtn.textContent = '← Назад к категориям';
+                finishBtn.onclick = () => {
+                    document.getElementById('audio-btn').style.display = '';
+                    backToCategories();
+                };
+                document.getElementById('word-options').appendChild(finishBtn);
+
+                tg.HapticFeedback?.notificationOccurred('success');
                 return;
             }
             
@@ -1224,7 +1246,7 @@ HTML_TEMPLATE = """
             audioBtn.disabled = false;
             
             // Get options from the same category
-            const response = await fetch(`/api/words/random?count=3&exclude=${word.word_id}&category=${currentCategory}`);
+            const response = await fetch(`/api/words/random?count=3&exclude=${word.word_id}&exclude_ru=${encodeURIComponent(word.ru)}&category=${currentCategory}`);
             const wrongWords = await response.json();
             const options = [word, ...wrongWords].sort(() => Math.random() - 0.5);
             
@@ -1283,6 +1305,9 @@ HTML_TEMPLATE = """
             }
         }
         
+        let wordSessionCorrect = 0;
+        let wordSessionWrong = 0;
+
         async function selectAnswer(selectedBtn, isCorrect, correctAnswer) {
             const buttons = document.querySelectorAll('#word-options .option');
             buttons.forEach(btn => {
@@ -1293,7 +1318,9 @@ HTML_TEMPLATE = """
                     btn.classList.add('correct');
                 }
             });
-            
+
+            if (isCorrect) wordSessionCorrect++; else wordSessionWrong++;
+
             const word = currentWords[currentWordIndex];
             fetch('/api/progress/word', {
                 method: 'POST',
@@ -1304,11 +1331,18 @@ HTML_TEMPLATE = """
                     is_correct: isCorrect
                 })
             });
-            
+
             tg.HapticFeedback?.notificationOccurred(isCorrect ? 'success' : 'error');
-            document.getElementById('next-btn').style.display = 'block';
+
+            const nextBtn = document.getElementById('next-btn');
+            if (currentWordIndex + 1 >= currentWords.length) {
+                nextBtn.textContent = 'Завершить ✓';
+            } else {
+                nextBtn.textContent = 'Следующее слово →';
+            }
+            nextBtn.style.display = 'block';
         }
-        
+
         function nextWord() {
             currentWordIndex++;
             showNextWord();
@@ -1492,12 +1526,17 @@ HTML_TEMPLATE = """
             }
         }
         
+        let phraseSessionCorrect = 0;
+        let phraseSessionWrong = 0;
+
         async function startPhrases(categoryId) {
             try {
                 const response = await fetch(`/api/session/phrases?category=${categoryId}&user_id=${userId}`);
                 currentPhrases = await response.json();
                 currentPhraseIndex = 0;
                 currentPhrasesCategory = categoryId;
+                phraseSessionCorrect = 0;
+                phraseSessionWrong = 0;
                 
                 document.getElementById('phrases-categories-view').style.display = 'none';
                 document.getElementById('phrases-view').style.display = 'block';
@@ -1519,8 +1558,30 @@ HTML_TEMPLATE = """
         
         async function showNextPhrase() {
             if (currentPhraseIndex >= currentPhrases.length) {
-                tg.showAlert?.(`🎉 Отлично! Изучено ${currentPhrases.length} фраз!`);
-                backToPhrasesCategories();
+                // Show results screen
+                const total = phraseSessionCorrect + phraseSessionWrong;
+                const pct = total > 0 ? Math.round(phraseSessionCorrect / total * 100) : 0;
+                document.getElementById('phrase-progress').textContent = 'Упражнение завершено!';
+                document.getElementById('phrase-de').textContent = `${pct}%`;
+                document.getElementById('phrase-context').textContent =
+                    `Правильно: ${phraseSessionCorrect} из ${total}`;
+                document.getElementById('phrase-example').textContent = '';
+                document.getElementById('phrase-options').innerHTML = '';
+                document.getElementById('next-phrase-btn').style.display = 'none';
+                const phraseAudioBtn = document.querySelector('#phrases-view .audio-btn');
+                if (phraseAudioBtn) phraseAudioBtn.style.display = 'none';
+
+                const finishBtn = document.createElement('button');
+                finishBtn.className = 'btn btn-primary';
+                finishBtn.style.marginTop = '16px';
+                finishBtn.textContent = '← Назад к категориям';
+                finishBtn.onclick = () => {
+                    if (phraseAudioBtn) phraseAudioBtn.style.display = '';
+                    backToPhrasesCategories();
+                };
+                document.getElementById('phrase-options').appendChild(finishBtn);
+
+                tg.HapticFeedback?.notificationOccurred('success');
                 return;
             }
             
@@ -1544,7 +1605,7 @@ HTML_TEMPLATE = """
             }
             
             // Get wrong options
-            const optResponse = await fetch(`/api/phrases/random?count=3&exclude=${phrase.phrase_id}`);
+            const optResponse = await fetch(`/api/phrases/random?count=3&exclude=${phrase.phrase_id}&exclude_ru=${encodeURIComponent(phrase.ru)}`);
             const wrongPhrases = await optResponse.json();
             const options = [phrase, ...wrongPhrases].sort(() => Math.random() - 0.5);
 
@@ -1613,7 +1674,9 @@ HTML_TEMPLATE = """
                     btn.classList.add('correct');
                 }
             });
-            
+
+            if (isCorrect) phraseSessionCorrect++; else phraseSessionWrong++;
+
             const phrase = currentPhrases[currentPhraseIndex];
             fetch('/api/progress/phrase', {
                 method: 'POST',
@@ -1625,9 +1688,16 @@ HTML_TEMPLATE = """
                     is_correct: isCorrect
                 })
             });
-            
+
             tg.HapticFeedback?.notificationOccurred(isCorrect ? 'success' : 'error');
-            document.getElementById('next-phrase-btn').style.display = 'block';
+
+            const nextPhrBtn = document.getElementById('next-phrase-btn');
+            if (currentPhraseIndex + 1 >= currentPhrases.length) {
+                nextPhrBtn.textContent = 'Завершить ✓';
+            } else {
+                nextPhrBtn.textContent = 'Следующая фраза →';
+            }
+            nextPhrBtn.style.display = 'block';
         }
         
         function nextPhrase() {
@@ -2408,19 +2478,21 @@ def api_random_words():
     """Get random words for current level or specified level."""
     count = int(request.args.get('count', 3))
     exclude = request.args.get('exclude', '')
+    exclude_ru = request.args.get('exclude_ru', '')
     category = request.args.get('category', '')
     major = request.args.get('major')
     sub = request.args.get('sub')
-    
+
     import random
-    
+
     # If category specified, get words from that category only
     if category:
         words = get_words_by_category(category, major, sub) if major and sub else get_words_by_category(category)
     else:
         words = get_all_words(major, sub) if major and sub else get_all_words()
-    
-    filtered = [w for w in words if w.get('word_id') != exclude]
+
+    filtered = [w for w in words
+                if w.get('word_id') != exclude and w.get('ru') != exclude_ru]
     
     # If not enough words in category, use distractors first
     if len(filtered) < count and category:
@@ -2592,11 +2664,13 @@ def api_random_phrases():
 
     count = int(request.args.get('count', 3))
     exclude = request.args.get('exclude', '')
+    exclude_ru = request.args.get('exclude_ru', '')
     major = request.args.get('major')
     sub = request.args.get('sub')
 
     all_phrases = get_all_phrases_flat(major, sub) if major and sub else get_all_phrases_flat()
-    filtered = [p for p in all_phrases if p.get('phrase_id') != exclude]
+    filtered = [p for p in all_phrases
+                if p.get('phrase_id') != exclude and p.get('ru') != exclude_ru]
 
     return jsonify(random.sample(filtered, min(count, len(filtered))))
 
