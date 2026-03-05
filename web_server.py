@@ -1458,9 +1458,9 @@ HTML_TEMPLATE = """
                         </div>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${Math.min(100, (stats.total_words || 0) / 2)}%"></div>
+                        <div class="progress-fill" style="width: ${Math.min(100, stats.words_percentage || 0)}%"></div>
                     </div>
-                    <div class="progress-text">Прогресс изучения: ${stats.total_words || 0} / 200 слов</div>
+                    <div class="progress-text">Прогресс изучения: ${stats.total_words || 0} / ${stats.total_vocab || 0} слов</div>
                 `;
             } catch (error) {
                 document.getElementById('progress-stats').innerHTML = 
@@ -1517,7 +1517,7 @@ HTML_TEMPLATE = """
             backToMainMenu();
         }
         
-        function showNextPhrase() {
+        async function showNextPhrase() {
             if (currentPhraseIndex >= currentPhrases.length) {
                 tg.showAlert?.(`🎉 Отлично! Изучено ${currentPhrases.length} фраз!`);
                 backToPhrasesCategories();
@@ -1543,30 +1543,21 @@ HTML_TEMPLATE = """
                 audioBtn.disabled = false;
             }
             
-            // Get options (random phrases from other categories)
-            fetch('/api/phrases/categories')
-                .then(r => r.json())
-                .then(categories => {
-                    const otherCategories = categories.filter(c => c.id !== currentPhrasesCategory);
-                    const randomCategory = otherCategories[Math.floor(Math.random() * otherCategories.length)];
-                    if (randomCategory) {
-                        fetch(`/api/phrases?category=${randomCategory.id}`)
-                            .then(r => r.json())
-                            .then(wrongPhrases => {
-                                const options = [phrase, ...wrongPhrases.slice(0, 2)].sort(() => Math.random() - 0.5);
-                                const optionsDiv = document.getElementById('phrase-options');
-                                optionsDiv.innerHTML = '';
-                                
-                                options.forEach((opt) => {
-                                    const btn = document.createElement('button');
-                                    btn.className = 'option';
-                                    btn.textContent = opt.ru;
-                                    btn.onclick = () => selectPhraseAnswer(btn, opt.phrase_id === phrase.phrase_id, phrase.ru);
-                                    optionsDiv.appendChild(btn);
-                                });
-                            });
-                    }
-                });
+            // Get wrong options
+            const optResponse = await fetch(`/api/phrases/random?count=3&exclude=${phrase.phrase_id}`);
+            const wrongPhrases = await optResponse.json();
+            const options = [phrase, ...wrongPhrases].sort(() => Math.random() - 0.5);
+
+            const optionsDiv = document.getElementById('phrase-options');
+            optionsDiv.innerHTML = '';
+
+            options.forEach((opt) => {
+                const btn = document.createElement('button');
+                btn.className = 'option';
+                btn.textContent = opt.ru;
+                btn.onclick = () => selectPhraseAnswer(btn, opt.phrase_id === phrase.phrase_id, phrase.ru);
+                optionsDiv.appendChild(btn);
+            });
             
             document.getElementById('next-phrase-btn').style.display = 'none';
         }
@@ -2489,6 +2480,7 @@ def api_progress():
     
     return jsonify({
         **stats,
+        'total_vocab': total_vocab,
         'words_percentage': words_percentage,
         'accuracy': accuracy
     })
@@ -2584,13 +2576,29 @@ def api_phrases():
     category_id = request.args.get('category')
     major = request.args.get('major')
     sub = request.args.get('sub')
-    
+
     if category_id:
         phrases = get_phrases_by_category(category_id, major, sub) if major and sub else get_phrases_by_category(category_id)
     else:
         phrases = []
-    
+
     return jsonify(phrases)
+
+
+@app.route('/api/phrases/random')
+def api_random_phrases():
+    """Get random phrases for wrong answer options."""
+    import random
+
+    count = int(request.args.get('count', 3))
+    exclude = request.args.get('exclude', '')
+    major = request.args.get('major')
+    sub = request.args.get('sub')
+
+    all_phrases = get_all_phrases_flat(major, sub) if major and sub else get_all_phrases_flat()
+    filtered = [p for p in all_phrases if p.get('phrase_id') != exclude]
+
+    return jsonify(random.sample(filtered, min(count, len(filtered))))
 
 
 # ============= DIALOGUES API ENDPOINTS =============
