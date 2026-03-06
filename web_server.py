@@ -35,6 +35,7 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
 from bot.handlers.common import start
+from bot.handlers.admin import broadcast_command, send_command
 
 # Setup logging
 logging.basicConfig(
@@ -66,6 +67,9 @@ def create_bot_application():
 
     # Только /start — всё остальное в Web App
     application.add_handler(CommandHandler("start", start))
+    # Admin commands (before catch-all)
+    application.add_handler(CommandHandler("broadcast", broadcast_command))
+    application.add_handler(CommandHandler("send", send_command))
     # Любая другая команда из чата — подсказка открыть Web App
     application.add_handler(MessageHandler(filters.COMMAND, _redirect_to_webapp))
 

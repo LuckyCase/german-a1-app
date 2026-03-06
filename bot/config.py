@@ -14,3 +14,10 @@ DEFAULT_REMINDER_MINUTE = 0
 
 # Web App URL (same as bot URL since they run on same service)
 WEB_APP_URL = os.getenv("WEB_APP_URL", "https://german-a1-bot.onrender.com")
+
+# Admin user IDs (comma-separated in env, e.g. "123456,789012")
+ADMIN_IDS = [
+    int(x.strip())
+    for x in os.getenv("ADMIN_IDS", "").split(",")
+    if x.strip().isdigit()
+]
