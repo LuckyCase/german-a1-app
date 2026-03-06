@@ -426,6 +426,44 @@ async def get_user_stats(user_id: int) -> dict:
         }
 
 
+async def get_detailed_user_progress(user_id: int) -> dict:
+    """Get all progress data for a user across all content types."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        word_rows = await conn.fetch(
+            "SELECT word_id, correct_count, wrong_count FROM progress WHERE user_id = $1",
+            user_id
+        )
+        phrase_rows = await conn.fetch(
+            "SELECT phrase_id, category_id, correct_count, wrong_count FROM phrases_progress WHERE user_id = $1",
+            user_id
+        )
+        grammar_rows = await conn.fetch(
+            "SELECT test_id, score, total, completed_at FROM grammar_results WHERE user_id = $1 ORDER BY completed_at DESC",
+            user_id
+        )
+        dialogue_rows = await conn.fetch(
+            "SELECT dialogue_id, exercises_completed, exercises_correct FROM dialogues_progress WHERE user_id = $1",
+            user_id
+        )
+        culture_rows = await conn.fetch(
+            "SELECT topic_id, quiz_completed, quiz_correct, quiz_total FROM culture_progress WHERE user_id = $1",
+            user_id
+        )
+        exercise_rows = await conn.fetch(
+            "SELECT set_id, tasks_completed, tasks_correct FROM exercises_progress WHERE user_id = $1",
+            user_id
+        )
+    return {
+        'words': [dict(r) for r in word_rows],
+        'phrases': [dict(r) for r in phrase_rows],
+        'grammar': [dict(r) for r in grammar_rows],
+        'dialogues': [dict(r) for r in dialogue_rows],
+        'culture': [dict(r) for r in culture_rows],
+        'exercises': [dict(r) for r in exercise_rows],
+    }
+
+
 async def save_grammar_result(user_id: int, test_id: str, score: int, total: int):
     """Save grammar test result."""
     # Ensure user exists in database

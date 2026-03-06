@@ -25,6 +25,7 @@ from bot.database import (
     save_culture_progress, save_exercise_set_progress,
     get_or_create_user, save_feedback, get_user_feedback, get_feedback_count,
     get_priority_word_ids, get_priority_phrase_ids,
+    get_detailed_user_progress,
     FEEDBACK_STATUS_LABELS, MAX_FEEDBACK_LENGTH
 )
 from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
@@ -544,59 +545,117 @@ HTML_TEMPLATE = """
             color: var(--error-light);
         }
         
-        /* Progress stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        
-        .stat-card {
-            background: var(--tg-theme-secondary-bg-color, var(--bg-secondary));
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 20px 16px;
-            text-align: center;
-            color: var(--tg-theme-text-color, var(--text-primary));
-        }
-        
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-light) 0%, #c084fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--tg-theme-hint-color, var(--text-secondary));
-            margin-top: 4px;
-        }
-        
-        /* Progress bar */
+        /* Progress page */
         .progress-bar {
-            height: 12px;
-            background: var(--bg-secondary);
-            border-radius: 10px;
+            height: 8px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 6px;
             overflow: hidden;
-            margin-top: 20px;
         }
-        
+        .progress-bar.large { height: 12px; margin-top: 12px; }
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--primary), var(--primary-light));
-            border-radius: 10px;
+            border-radius: 6px;
             transition: width 0.5s ease;
-            position: relative;
         }
-        
-        .progress-text {
-            text-align: center;
-            margin-top: 8px;
-            font-size: 0.85rem;
+        .progress-fill.orange { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .progress-fill.green { background: linear-gradient(90deg, #22c55e, #4ade80); }
+
+        .prog-section {
+            background: var(--tg-theme-secondary-bg-color, var(--bg-secondary));
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .prog-section-header {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            cursor: pointer;
+            gap: 12px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .prog-section-header:active { opacity: 0.7; }
+        .prog-section-icon { font-size: 1.4rem; flex-shrink: 0; }
+        .prog-section-info { flex: 1; min-width: 0; }
+        .prog-section-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--tg-theme-text-color, var(--text-primary));
+        }
+        .prog-section-subtitle {
+            font-size: 0.78rem;
             color: var(--tg-theme-hint-color, var(--text-secondary));
+            margin-top: 2px;
+        }
+        .prog-section-arrow {
+            font-size: 0.8rem;
+            color: var(--tg-theme-hint-color, var(--text-secondary));
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+        .prog-section.open .prog-section-arrow { transform: rotate(90deg); }
+        .prog-section-bar { padding: 0 16px 12px; }
+        .prog-section-details {
+            display: none;
+            padding: 0 16px 16px;
+            border-top: 1px solid var(--border-color);
+        }
+        .prog-section.open .prog-section-details { display: block; }
+
+        .prog-cat {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .prog-cat:last-child { border-bottom: none; }
+        .prog-cat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .prog-cat-name {
+            font-size: 0.85rem;
+            color: var(--tg-theme-text-color, var(--text-primary));
+            font-weight: 500;
+        }
+        .prog-cat-count {
+            font-size: 0.78rem;
+            color: var(--tg-theme-hint-color, var(--text-secondary));
+            font-weight: 600;
+        }
+        .prog-cat-meta {
+            display: flex;
+            gap: 12px;
+            margin-top: 5px;
+            font-size: 0.72rem;
+        }
+        .prog-cat-meta span {
+            color: var(--tg-theme-hint-color, var(--text-secondary));
+        }
+        .prog-cat-meta .errors { color: #f87171; }
+        .prog-cat-meta .mastered { color: #4ade80; }
+
+        .prog-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .prog-item:last-child { border-bottom: none; }
+        .prog-item-status { font-size: 0.9rem; flex-shrink: 0; }
+        .prog-item-name {
+            flex: 1;
+            font-size: 0.85rem;
+            color: var(--tg-theme-text-color, var(--text-primary));
+        }
+        .prog-item-score {
+            font-size: 0.78rem;
+            color: var(--tg-theme-hint-color, var(--text-secondary));
+            font-weight: 600;
         }
         
         /* Loading & Error */
@@ -940,11 +999,8 @@ HTML_TEMPLATE = """
         <!-- Progress Section -->
         <section id="progress" class="section" style="display: none;">
             <button type="button" class="back-btn" data-action="backToMainMenu">← Назад в меню</button>
-            <div class="card">
-                <h2 class="card-title">Ваша статистика</h2>
-                <div id="progress-stats">
-                    <div class="loading">Загрузка...</div>
-                </div>
+            <div id="progress-content">
+                <div class="loading">Загрузка...</div>
             </div>
         </section>
         
@@ -1470,50 +1526,121 @@ HTML_TEMPLATE = """
         }
         
         // Progress
+        function toggleProgSection(el) {
+            el.closest('.prog-section').classList.toggle('open');
+            tg.HapticFeedback?.selectionChanged();
+        }
+
+        function pct(a, b) { return b > 0 ? Math.round(a / b * 100) : 0; }
+
+        function renderCategoryDetails(categories) {
+            return categories.map(c => {
+                const notStarted = c.total - c.learned;
+                return `<div class="prog-cat">
+                    <div class="prog-cat-header">
+                        <span class="prog-cat-name">${c.name}</span>
+                        <span class="prog-cat-count">${c.learned} / ${c.total}</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:${pct(c.learned, c.total)}%"></div></div>
+                    <div class="prog-cat-meta">
+                        <span class="mastered">${c.mastered} освоено</span>
+                        ${c.errors > 0 ? `<span class="errors">${c.errors} ошиб.</span>` : ''}
+                        ${notStarted > 0 ? `<span>${notStarted} не изуч.</span>` : ''}
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderItemDetails(items, type) {
+            return items.map(item => {
+                let status, score;
+                if (type === 'grammar') {
+                    status = item.completed ? '&#10004;' : '&#9711;';
+                    score = item.completed ? `${item.score}/${item.total} (${pct(item.score, item.total)}%)` : 'не пройден';
+                } else if (type === 'culture') {
+                    status = item.viewed ? '&#10004;' : '&#9711;';
+                    score = item.viewed ? (item.quiz_total > 0 ? `Квиз: ${item.quiz_correct}/${item.quiz_total}` : 'просмотрено') : 'не просмотрено';
+                } else {
+                    status = item.completed ? '&#10004;' : '&#9711;';
+                    score = item.completed ? `${item.correct}/${item.total}` : 'не пройден';
+                }
+                return `<div class="prog-item">
+                    <span class="prog-item-status" style="color:${item.completed || item.viewed ? '#4ade80' : '#6b7280'}">${status}</span>
+                    <span class="prog-item-name">${item.name}</span>
+                    <span class="prog-item-score">${score}</span>
+                </div>`;
+            }).join('');
+        }
+
         async function loadProgress() {
+            const container = document.getElementById('progress-content');
             try {
                 if (!userId) {
-                    document.getElementById('progress-stats').innerHTML =
-                        '<div class="error-msg">Не удалось определить пользователя. Откройте приложение через Telegram.</div>';
+                    container.innerHTML = '<div class="error-msg">Не удалось определить пользователя. Откройте приложение через Telegram.</div>';
                     return;
                 }
                 const response = await fetch(`/api/progress?user_id=${userId}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                const stats = await response.json();
-                const accuracy = stats.total_correct + stats.total_wrong > 0
-                    ? Math.round((stats.total_correct / (stats.total_correct + stats.total_wrong)) * 100)
-                    : 0;
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const d = await response.json();
 
-                document.getElementById('progress-stats').innerHTML = `
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value">${stats.total_words || 0}</div>
-                            <div class="stat-label">Изучено слов</div>
+                const sections = [
+                    {
+                        icon: '&#128218;', title: 'Слова',
+                        sub: `${d.words.learned} изучено / ${d.words.total} всего`,
+                        pct: pct(d.words.learned, d.words.total),
+                        details: renderCategoryDetails(d.words.categories)
+                    },
+                    {
+                        icon: '&#128172;', title: 'Фразы',
+                        sub: `${d.phrases.learned} изучено / ${d.phrases.total} всего`,
+                        pct: pct(d.phrases.learned, d.phrases.total),
+                        details: renderCategoryDetails(d.phrases.categories)
+                    },
+                    {
+                        icon: '&#128221;', title: 'Грамматика',
+                        sub: `${d.grammar.completed} из ${d.grammar.total} тестов пройдено`,
+                        pct: pct(d.grammar.completed, d.grammar.total),
+                        details: renderItemDetails(d.grammar.tests, 'grammar')
+                    },
+                    {
+                        icon: '&#128483;', title: 'Диалоги',
+                        sub: `${d.dialogues.completed} из ${d.dialogues.total} пройдено`,
+                        pct: pct(d.dialogues.completed, d.dialogues.total),
+                        details: renderItemDetails(d.dialogues.items, 'dialogues')
+                    },
+                    {
+                        icon: '&#127963;', title: 'Культура',
+                        sub: `${d.culture.viewed} из ${d.culture.total} просмотрено`,
+                        pct: pct(d.culture.viewed, d.culture.total),
+                        details: renderItemDetails(d.culture.items, 'culture')
+                    },
+                    {
+                        icon: '&#9999;', title: 'Упражнения',
+                        sub: `${d.exercises.completed} из ${d.exercises.total} выполнено`,
+                        pct: pct(d.exercises.completed, d.exercises.total),
+                        details: renderItemDetails(d.exercises.items, 'exercises')
+                    }
+                ];
+
+                container.innerHTML = sections.map(s => `
+                    <div class="prog-section">
+                        <div class="prog-section-header" onclick="toggleProgSection(this)">
+                            <span class="prog-section-icon">${s.icon}</span>
+                            <div class="prog-section-info">
+                                <div class="prog-section-title">${s.title}</div>
+                                <div class="prog-section-subtitle">${s.sub}</div>
+                            </div>
+                            <span class="prog-section-arrow">&#9656;</span>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-value">${stats.mastered_words || 0}</div>
-                            <div class="stat-label">Освоено</div>
+                        <div class="prog-section-bar">
+                            <div class="progress-bar"><div class="progress-fill" style="width:${s.pct}%"></div></div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-value">${stats.tests_completed || 0}</div>
-                            <div class="stat-label">Тестов</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">${accuracy}%</div>
-                            <div class="stat-label">Точность</div>
-                        </div>
+                        <div class="prog-section-details">${s.details || '<div style="padding:8px 0;color:var(--text-secondary);font-size:0.85rem;">Нет данных</div>'}</div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${Math.min(100, stats.words_percentage || 0)}%"></div>
-                    </div>
-                    <div class="progress-text">Прогресс изучения: ${stats.total_words || 0} / ${stats.total_vocab || 0} слов</div>
-                `;
+                `).join('');
             } catch (error) {
                 console.error('loadProgress error:', error);
-                document.getElementById('progress-stats').innerHTML =
-                    '<div class="error-msg">Ошибка загрузки статистики. Попробуйте позже.</div>';
+                container.innerHTML = '<div class="error-msg">Ошибка загрузки статистики. Попробуйте позже.</div>';
             }
         }
         
@@ -2553,32 +2680,146 @@ def api_test_questions(test_id):
 
 @app.route('/api/progress')
 def api_progress():
-    # Get user_id from query parameter (sent from frontend)
+    """Detailed progress with per-category breakdown for all content types."""
     user_id = request.args.get('user_id', type=int)
 
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
 
     try:
-        stats = asyncio.run(get_user_stats(user_id))
+        raw = asyncio.run(get_detailed_user_progress(user_id))
     except Exception as e:
-        logger.error(f"Error getting user stats for {user_id}: {e}")
-        stats = {
-            "total_words": 0, "total_correct": 0, "total_wrong": 0,
-            "tests_completed": 0, "grammar_score": 0, "grammar_total": 0,
-            "mastered_words": 0, "words_with_errors": 0, "phrases_with_errors": 0
-        }
+        logger.error(f"Error getting detailed progress for {user_id}: {e}")
+        raw = {'words': [], 'phrases': [], 'grammar': [], 'dialogues': [], 'culture': [], 'exercises': []}
 
-    total_vocab = len(get_all_words())
+    # --- Words ---
+    all_words = get_all_words()
+    word_progress_map = {wp['word_id']: wp for wp in raw['words']}
 
-    words_percentage = (stats["total_words"] / total_vocab * 100) if total_vocab > 0 else 0
-    accuracy = (stats["total_correct"] / (stats["total_correct"] + stats["total_wrong"]) * 100) if (stats["total_correct"] + stats["total_wrong"]) > 0 else 0
+    word_cats = {}
+    for w in all_words:
+        cid = w['category_id']
+        if cid not in word_cats:
+            word_cats[cid] = {'id': cid, 'name': w['category_name'], 'total': 0, 'learned': 0, 'errors': 0, 'mastered': 0}
+        word_cats[cid]['total'] += 1
+        if w['word_id'] in word_progress_map:
+            wp = word_progress_map[w['word_id']]
+            word_cats[cid]['learned'] += 1
+            if wp['wrong_count'] > 0:
+                word_cats[cid]['errors'] += 1
+            if wp['correct_count'] >= 3 and wp['wrong_count'] == 0:
+                word_cats[cid]['mastered'] += 1
+
+    # --- Phrases ---
+    all_phrases = get_all_phrases_flat()
+    phrase_progress_map = {pp['phrase_id']: pp for pp in raw['phrases']}
+
+    phrase_cats = {}
+    for p in all_phrases:
+        cid = p.get('category_id', 'unknown')
+        if cid not in phrase_cats:
+            phrase_cats[cid] = {'id': cid, 'name': p.get('category_name', cid), 'total': 0, 'learned': 0, 'errors': 0, 'mastered': 0}
+        phrase_cats[cid]['total'] += 1
+        pid = p.get('phrase_id')
+        if pid and pid in phrase_progress_map:
+            pp = phrase_progress_map[pid]
+            phrase_cats[cid]['learned'] += 1
+            if pp['wrong_count'] > 0:
+                phrase_cats[cid]['errors'] += 1
+            if pp['correct_count'] >= 3 and pp['wrong_count'] == 0:
+                phrase_cats[cid]['mastered'] += 1
+
+    # --- Grammar ---
+    all_tests = get_all_tests()
+    grammar_best = {}
+    for gr in raw['grammar']:
+        tid = gr['test_id']
+        if tid not in grammar_best or gr['score'] > grammar_best[tid]['score']:
+            grammar_best[tid] = gr
+
+    grammar_items = []
+    for test in all_tests:
+        tid = test['id']
+        if tid in grammar_best:
+            g = grammar_best[tid]
+            grammar_items.append({'id': tid, 'name': test.get('name', tid), 'completed': True, 'score': g['score'], 'total': g['total']})
+        else:
+            grammar_items.append({'id': tid, 'name': test.get('name', tid), 'completed': False, 'score': 0, 'total': test.get('questions_count', 0)})
+
+    # --- Dialogues ---
+    dialogue_topics = get_dialogue_topics()
+    dialogue_map = {d['dialogue_id']: d for d in raw['dialogues']}
+
+    dialogue_items = []
+    for topic in dialogue_topics:
+        did = topic.get('id', '')
+        if did in dialogue_map:
+            d = dialogue_map[did]
+            dialogue_items.append({'id': did, 'name': topic.get('name', did), 'completed': True, 'correct': d['exercises_correct'], 'total': d['exercises_completed']})
+        else:
+            dialogue_items.append({'id': did, 'name': topic.get('name', did), 'completed': False, 'correct': 0, 'total': 0})
+
+    # --- Culture ---
+    culture_topics_list = get_culture_topics()
+    culture_map = {c['topic_id']: c for c in raw['culture']}
+
+    culture_items = []
+    for topic in culture_topics_list:
+        tid = topic.get('id', '')
+        if tid in culture_map:
+            c = culture_map[tid]
+            culture_items.append({'id': tid, 'name': topic.get('name', tid), 'viewed': True, 'quiz_correct': c.get('quiz_correct', 0), 'quiz_total': c.get('quiz_total', 0)})
+        else:
+            culture_items.append({'id': tid, 'name': topic.get('name', tid), 'viewed': False, 'quiz_correct': 0, 'quiz_total': 0})
+
+    # --- Exercises ---
+    exercise_sets_list = get_exercise_sets()
+    exercise_map = {e['set_id']: e for e in raw['exercises']}
+
+    exercise_items = []
+    for s in exercise_sets_list:
+        sid = s.get('id', '')
+        if sid in exercise_map:
+            e = exercise_map[sid]
+            exercise_items.append({'id': sid, 'name': s.get('name', sid), 'completed': True, 'correct': e['tasks_correct'], 'total': e['tasks_completed']})
+        else:
+            exercise_items.append({'id': sid, 'name': s.get('name', sid), 'completed': False, 'correct': 0, 'total': s.get('tasks_count', 0)})
 
     return jsonify({
-        **stats,
-        'total_vocab': total_vocab,
-        'words_percentage': words_percentage,
-        'accuracy': accuracy
+        'words': {
+            'total': sum(c['total'] for c in word_cats.values()),
+            'learned': sum(c['learned'] for c in word_cats.values()),
+            'mastered': sum(c['mastered'] for c in word_cats.values()),
+            'errors': sum(c['errors'] for c in word_cats.values()),
+            'categories': sorted(word_cats.values(), key=lambda x: x['name'])
+        },
+        'phrases': {
+            'total': sum(c['total'] for c in phrase_cats.values()),
+            'learned': sum(c['learned'] for c in phrase_cats.values()),
+            'mastered': sum(c['mastered'] for c in phrase_cats.values()),
+            'errors': sum(c['errors'] for c in phrase_cats.values()),
+            'categories': sorted(phrase_cats.values(), key=lambda x: x['name'])
+        },
+        'grammar': {
+            'total': len(all_tests),
+            'completed': sum(1 for g in grammar_items if g['completed']),
+            'tests': grammar_items
+        },
+        'dialogues': {
+            'total': len(dialogue_topics),
+            'completed': sum(1 for d in dialogue_items if d['completed']),
+            'items': dialogue_items
+        },
+        'culture': {
+            'total': len(culture_topics_list),
+            'viewed': sum(1 for c in culture_items if c['viewed']),
+            'items': culture_items
+        },
+        'exercises': {
+            'total': len(exercise_sets_list),
+            'completed': sum(1 for e in exercise_items if e['completed']),
+            'items': exercise_items
+        }
     })
 
 @app.route('/api/progress/word', methods=['POST'])
