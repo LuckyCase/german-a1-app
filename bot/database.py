@@ -336,6 +336,14 @@ async def get_or_create_user(user_id: int, username: str = None, first_name: str
         return user
 
 
+async def get_all_user_ids() -> list:
+    """Return all user IDs stored in the database."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        rows = await conn.fetch("SELECT user_id FROM users ORDER BY created_at")
+        return [row['user_id'] for row in rows]
+
+
 async def update_word_progress(user_id: int, word_id: str, is_correct: bool):
     """Update user's progress for a specific word (atomic upsert)."""
     await get_or_create_user(user_id, None, None)
