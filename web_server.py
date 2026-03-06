@@ -89,6 +89,12 @@ def init_app():
     """Initialize application on startup."""
     # Initialize content from JSON files
     init_content()
+    # Initialize database (create tables if needed) — required for web API endpoints
+    try:
+        asyncio.run(init_db())
+        logger.info("Database initialized successfully")
+    except Exception as e:
+        logger.error(f"Failed to initialize database: {e}")
     # Don't initialize bot here - do it lazily on first webhook request
     # This avoids event loop conflicts with gunicorn workers
     logger.info("Application ready - bot will be initialized on first request")
@@ -1466,12 +1472,20 @@ HTML_TEMPLATE = """
         // Progress
         async function loadProgress() {
             try {
+                if (!userId) {
+                    document.getElementById('progress-stats').innerHTML =
+                        '<div class="error-msg">Не удалось определить пользователя. Откройте приложение через Telegram.</div>';
+                    return;
+                }
                 const response = await fetch(`/api/progress?user_id=${userId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
                 const stats = await response.json();
-                const accuracy = stats.total_correct + stats.total_wrong > 0 
-                    ? Math.round((stats.total_correct / (stats.total_correct + stats.total_wrong)) * 100) 
+                const accuracy = stats.total_correct + stats.total_wrong > 0
+                    ? Math.round((stats.total_correct / (stats.total_correct + stats.total_wrong)) * 100)
                     : 0;
-                
+
                 document.getElementById('progress-stats').innerHTML = `
                     <div class="stats-grid">
                         <div class="stat-card">
@@ -1497,8 +1511,9 @@ HTML_TEMPLATE = """
                     <div class="progress-text">Прогресс изучения: ${stats.total_words || 0} / ${stats.total_vocab || 0} слов</div>
                 `;
             } catch (error) {
-                document.getElementById('progress-stats').innerHTML = 
-                    '<div class="error-msg">Ошибка загрузки статистики</div>';
+                console.error('loadProgress error:', error);
+                document.getElementById('progress-stats').innerHTML =
+                    '<div class="error-msg">Ошибка загрузки статистики. Попробуйте позже.</div>';
             }
         }
         
@@ -2540,16 +2555,25 @@ def api_test_questions(test_id):
 def api_progress():
     # Get user_id from query parameter (sent from frontend)
     user_id = request.args.get('user_id', type=int)
-    
+
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
-    
-    stats = asyncio.run(get_user_stats(user_id))
+
+    try:
+        stats = asyncio.run(get_user_stats(user_id))
+    except Exception as e:
+        logger.error(f"Error getting user stats for {user_id}: {e}")
+        stats = {
+            "total_words": 0, "total_correct": 0, "total_wrong": 0,
+            "tests_completed": 0, "grammar_score": 0, "grammar_total": 0,
+            "mastered_words": 0, "words_with_errors": 0, "phrases_with_errors": 0
+        }
+
     total_vocab = len(get_all_words())
-    
+
     words_percentage = (stats["total_words"] / total_vocab * 100) if total_vocab > 0 else 0
     accuracy = (stats["total_correct"] / (stats["total_correct"] + stats["total_wrong"]) * 100) if (stats["total_correct"] + stats["total_wrong"]) > 0 else 0
-    
+
     return jsonify({
         **stats,
         'total_vocab': total_vocab,
@@ -2561,47 +2585,41 @@ def api_progress():
 def api_update_word_progress():
     data = request.json
     user_id = data.get('user_id')
-    
+
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
-    
-    # Убеждаемся, что пользователь существует в базе
+
     try:
         asyncio.run(get_or_create_user(user_id, None, None))
+
+        is_correct = data.get('is_correct', False)
+        asyncio.run(update_word_progress(user_id, data['word_id'], is_correct))
+
+        words = 1 if is_correct else 0
+        correct = 1 if is_correct else 0
+        asyncio.run(update_daily_stats(user_id, words=words, correct=correct, total=1))
+
+        return jsonify({'success': True})
     except Exception as e:
-        logger.error(f"Error creating user {user_id}: {e}")
-        # Продолжаем выполнение, так как пользователь может уже существовать
-    
-    is_correct = data.get('is_correct', False)
-    
-    # Обновляем progress таблицу
-    asyncio.run(update_word_progress(user_id, data['word_id'], is_correct))
-    
-    # Обновляем daily_stats: words=1 только если правильно, correct=1/0, total=1
-    words = 1 if is_correct else 0
-    correct = 1 if is_correct else 0
-    asyncio.run(update_daily_stats(user_id, words=words, correct=correct, total=1))
-    
-    return jsonify({'success': True})
+        logger.error(f"Error saving word progress for user {user_id}: {e}")
+        return jsonify({'error': 'Failed to save progress'}), 500
 
 @app.route('/api/progress/grammar', methods=['POST'])
 def api_save_grammar_result():
     data = request.json
     user_id = data.get('user_id')
-    
+
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
-    
-    # Убеждаемся, что пользователь существует в базе
+
     try:
         asyncio.run(get_or_create_user(user_id, None, None))
+        asyncio.run(save_grammar_result(user_id, data['test_id'], data['score'], data['total']))
+        asyncio.run(update_daily_stats(user_id, tests=1, correct=data['score'], total=data['total']))
+        return jsonify({'success': True})
     except Exception as e:
-        logger.error(f"Error creating user {user_id}: {e}")
-        # Продолжаем выполнение, так как пользователь может уже существовать
-    
-    asyncio.run(save_grammar_result(user_id, data['test_id'], data['score'], data['total']))
-    asyncio.run(update_daily_stats(user_id, tests=1, correct=data['score'], total=data['total']))
-    return jsonify({'success': True})
+        logger.error(f"Error saving grammar result for user {user_id}: {e}")
+        return jsonify({'error': 'Failed to save result'}), 500
 
 @app.route('/api/audio/<text>')
 def api_audio(text):
@@ -2772,30 +2790,26 @@ def api_update_phrase_progress():
     """Update phrase progress."""
     data = request.json
     user_id = data.get('user_id')
-    
+
     if not user_id:
         return jsonify({'error': 'User not authenticated'}), 401
-    
-    # Убеждаемся, что пользователь существует в базе
+
     try:
         asyncio.run(get_or_create_user(user_id, None, None))
+
+        is_correct = data.get('is_correct', False)
+        asyncio.run(save_phrase_progress(
+            user_id, data['phrase_id'], data['category_id'], is_correct
+        ))
+
+        words = 1 if is_correct else 0
+        correct = 1 if is_correct else 0
+        asyncio.run(update_daily_stats(user_id, words=words, correct=correct, total=1))
+
+        return jsonify({'success': True})
     except Exception as e:
-        logger.error(f"Error creating user {user_id}: {e}")
-        # Продолжаем выполнение, так как пользователь может уже существовать
-    
-    is_correct = data.get('is_correct', False)
-    
-    # Обновляем phrase_progress таблицу
-    asyncio.run(save_phrase_progress(
-        user_id, data['phrase_id'], data['category_id'], is_correct
-    ))
-    
-    # Обновляем daily_stats (фразы считаем как слова)
-    words = 1 if is_correct else 0
-    correct = 1 if is_correct else 0
-    asyncio.run(update_daily_stats(user_id, words=words, correct=correct, total=1))
-    
-    return jsonify({'success': True})
+        logger.error(f"Error saving phrase progress for user {user_id}: {e}")
+        return jsonify({'error': 'Failed to save progress'}), 500
 
 
 @app.route('/api/progress/dialogue', methods=['POST'])
