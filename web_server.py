@@ -7,6 +7,7 @@ from flask_cors import CORS
 import os
 import asyncio
 import logging
+import threading
 
 from bot.content_manager import (
     get_all_words, get_categories, get_words_by_category,
@@ -49,6 +50,42 @@ CORS(app)
 
 # Global bot application instance
 bot_application = None
+
+# Persistent event loop for bot operations.
+# asyncio.run() closes the loop after each call, which invalidates the httpx
+# client inside bot_application (PTB >= 21.x).  Running all bot coroutines on
+# one long-lived loop in a daemon thread avoids this problem.
+_bot_loop: asyncio.AbstractEventLoop = None
+_bot_loop_thread = None
+_bot_loop_lock = threading.Lock()
+
+
+def _get_bot_loop() -> asyncio.AbstractEventLoop:
+    """Return the persistent event loop for bot operations, creating it if needed."""
+    global _bot_loop, _bot_loop_thread, bot_application
+    with _bot_loop_lock:
+        if _bot_loop is None or _bot_loop.is_closed() or (
+            _bot_loop_thread and not _bot_loop_thread.is_alive()
+        ):
+            # If we're restarting the loop, the old bot_application's httpx
+            # client is bound to the dead loop — reset it so init_bot() runs again.
+            bot_application = None
+            _bot_loop = asyncio.new_event_loop()
+            _bot_loop_thread = threading.Thread(
+                target=_bot_loop.run_forever,
+                daemon=True,
+                name="bot-event-loop",
+            )
+            _bot_loop_thread.start()
+            logger.info("Persistent bot event loop started")
+    return _bot_loop
+
+
+def run_bot_async(coro, timeout: int = 30):
+    """Submit *coro* to the persistent bot event loop and block until done."""
+    loop = _get_bot_loop()
+    future = asyncio.run_coroutine_threadsafe(coro, loop)
+    return future.result(timeout=timeout)
 
 
 async def _redirect_to_webapp(update: Update, context):
@@ -96,7 +133,7 @@ def init_app():
     init_content()
     # Initialize database (create tables if needed) — required for web API endpoints
     try:
-        asyncio.run(init_db())
+        run_bot_async(init_db())
         logger.info("Database initialized successfully")
     except Exception as e:
         logger.error(f"Failed to initialize database: {e}")
@@ -2554,7 +2591,7 @@ def api_session_words():
     error_ids = []
     if user_id:
         try:
-            error_ids = asyncio.run(get_priority_word_ids(user_id, word_ids))
+            error_ids = run_bot_async(get_priority_word_ids(user_id, word_ids))
         except Exception:
             pass
 
@@ -2602,7 +2639,7 @@ def api_session_phrases():
     error_ids = []
     if user_id:
         try:
-            error_ids = asyncio.run(get_priority_phrase_ids(user_id, phrase_ids))
+            error_ids = run_bot_async(get_priority_phrase_ids(user_id, phrase_ids))
         except Exception:
             pass
 
@@ -2691,7 +2728,7 @@ def api_progress():
         return jsonify({'error': 'User not authenticated'}), 401
 
     try:
-        raw = asyncio.run(get_detailed_user_progress(user_id))
+        raw = run_bot_async(get_detailed_user_progress(user_id))
     except Exception as e:
         logger.error(f"Error getting detailed progress for {user_id}: {e}")
         raw = {'words': [], 'phrases': [], 'grammar': [], 'dialogues': [], 'culture': [], 'exercises': []}
@@ -2835,14 +2872,14 @@ def api_update_word_progress():
         return jsonify({'error': 'User not authenticated'}), 401
 
     try:
-        asyncio.run(get_or_create_user(user_id, None, None))
+        run_bot_async(get_or_create_user(user_id, None, None))
 
         is_correct = data.get('is_correct', False)
-        asyncio.run(update_word_progress(user_id, data['word_id'], is_correct))
+        run_bot_async(update_word_progress(user_id, data['word_id'], is_correct))
 
         words = 1 if is_correct else 0
         correct = 1 if is_correct else 0
-        asyncio.run(update_daily_stats(user_id, words=words, correct=correct, total=1))
+        run_bot_async(update_daily_stats(user_id, words=words, correct=correct, total=1))
 
         return jsonify({'success': True})
     except Exception as e:
@@ -2858,9 +2895,9 @@ def api_save_grammar_result():
         return jsonify({'error': 'User not authenticated'}), 401
 
     try:
-        asyncio.run(get_or_create_user(user_id, None, None))
-        asyncio.run(save_grammar_result(user_id, data['test_id'], data['score'], data['total']))
-        asyncio.run(update_daily_stats(user_id, tests=1, correct=data['score'], total=data['total']))
+        run_bot_async(get_or_create_user(user_id, None, None))
+        run_bot_async(save_grammar_result(user_id, data['test_id'], data['score'], data['total']))
+        run_bot_async(update_daily_stats(user_id, tests=1, correct=data['score'], total=data['total']))
         return jsonify({'success': True})
     except Exception as e:
         logger.error(f"Error saving grammar result for user {user_id}: {e}")
@@ -3040,16 +3077,16 @@ def api_update_phrase_progress():
         return jsonify({'error': 'User not authenticated'}), 401
 
     try:
-        asyncio.run(get_or_create_user(user_id, None, None))
+        run_bot_async(get_or_create_user(user_id, None, None))
 
         is_correct = data.get('is_correct', False)
-        asyncio.run(save_phrase_progress(
+        run_bot_async(save_phrase_progress(
             user_id, data['phrase_id'], data['category_id'], is_correct
         ))
 
         words = 1 if is_correct else 0
         correct = 1 if is_correct else 0
-        asyncio.run(update_daily_stats(user_id, words=words, correct=correct, total=1))
+        run_bot_async(update_daily_stats(user_id, words=words, correct=correct, total=1))
 
         return jsonify({'success': True})
     except Exception as e:
@@ -3068,7 +3105,7 @@ def api_update_dialogue_progress():
     
     # Убеждаемся, что пользователь существует в базе
     try:
-        asyncio.run(get_or_create_user(user_id, None, None))
+        run_bot_async(get_or_create_user(user_id, None, None))
     except Exception as e:
         logger.error(f"Error creating user {user_id}: {e}")
         # Продолжаем выполнение, так как пользователь может уже существовать
@@ -3077,13 +3114,13 @@ def api_update_dialogue_progress():
     exercises_correct = data.get('exercises_correct', 0)
     
     # Обновляем dialogue_progress таблицу
-    asyncio.run(save_dialogue_progress(
+    run_bot_async(save_dialogue_progress(
         user_id, data['dialogue_id'], 
         exercises_completed, exercises_correct
     ))
     
     # Обновляем daily_stats (диалоги считаем как тесты)
-    asyncio.run(update_daily_stats(
+    run_bot_async(update_daily_stats(
         user_id, 
         tests=1,  # один диалог = один тест
         correct=exercises_correct, 
@@ -3103,7 +3140,7 @@ def api_update_culture_progress():
         return jsonify({'error': 'User not authenticated'}), 401
 
     try:
-        asyncio.run(get_or_create_user(user_id, None, None))
+        run_bot_async(get_or_create_user(user_id, None, None))
     except Exception as e:
         logger.error(f"Error creating user {user_id}: {e}")
 
@@ -3121,7 +3158,7 @@ def api_update_culture_progress():
     quiz_total = data.get('quiz_total', 0)
 
     # viewed_at не принимается от клиента — сервер всегда использует datetime.now()
-    asyncio.run(save_culture_progress(
+    run_bot_async(save_culture_progress(
         user_id, topic_id, major, sub,
         viewed_at=None,
         quiz_completed=quiz_completed,
@@ -3141,7 +3178,7 @@ def api_update_exercise_progress():
         return jsonify({'error': 'User not authenticated'}), 401
 
     try:
-        asyncio.run(get_or_create_user(user_id, None, None))
+        run_bot_async(get_or_create_user(user_id, None, None))
     except Exception as e:
         logger.error(f"Error creating user {user_id}: {e}")
 
@@ -3157,10 +3194,10 @@ def api_update_exercise_progress():
     tasks_completed = data.get('tasks_completed', 0)
     tasks_correct = data.get('tasks_correct', 0)
 
-    asyncio.run(save_exercise_set_progress(
+    run_bot_async(save_exercise_set_progress(
         user_id, set_id, major, sub, tasks_completed, tasks_correct
     ))
-    asyncio.run(update_daily_stats(
+    run_bot_async(update_daily_stats(
         user_id, tests=1, correct=tasks_correct, total=tasks_completed
     ))
     return jsonify({'success': True})
@@ -3177,8 +3214,8 @@ def api_get_feedback():
         return jsonify({'error': 'User not authenticated'}), 401
     
     try:
-        feedback_list = asyncio.run(get_user_feedback(user_id, limit=10))
-        total = asyncio.run(get_feedback_count(user_id))
+        feedback_list = run_bot_async(get_user_feedback(user_id, limit=10))
+        total = run_bot_async(get_feedback_count(user_id))
         
         return jsonify({
             'feedback': feedback_list,
@@ -3210,10 +3247,10 @@ def api_submit_feedback():
     
     try:
         # Ensure user exists
-        asyncio.run(get_or_create_user(user_id, None, None))
+        run_bot_async(get_or_create_user(user_id, None, None))
         
         # Save feedback
-        feedback_id = asyncio.run(save_feedback(user_id, text))
+        feedback_id = run_bot_async(save_feedback(user_id, text))
         
         logger.info(f"User {user_id} submitted feedback #{feedback_id}")
         
@@ -3283,11 +3320,10 @@ def webhook():
             # Still return OK to Telegram to avoid retries
             return 'OK', 200
     
-    # Use asyncio.run() which creates a new event loop for each call
-    # nest_asyncio allows this to work even if there's already a loop
-    # Each request gets its own event loop and connection pool
+    # Run in the persistent bot event loop so the httpx client inside
+    # bot_application is always used in the same loop (PTB >= 21.x requirement).
     try:
-        return asyncio.run(_process_webhook())
+        return run_bot_async(_process_webhook())
     except Exception as e:
         logger.error(f"Error in webhook event loop: {e}", exc_info=True)
         # Return OK to prevent Telegram from retrying
@@ -3385,7 +3421,7 @@ def debug_info():
             return {'db_connection': 'FAILED', 'db_error': str(e), 'db_error_type': type(e).__name__}
     
     try:
-        db_result = asyncio.run(test_db())
+        db_result = run_bot_async(test_db())
         debug_data.update(db_result)
     except Exception as e:
         debug_data['db_connection'] = 'FAILED'
@@ -3435,7 +3471,7 @@ def debug_init_bot():
             }
     
     try:
-        result = asyncio.run(_init())
+        result = run_bot_async(_init())
         return jsonify(result)
     except Exception as e:
         return jsonify({

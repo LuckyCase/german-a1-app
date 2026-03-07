@@ -20,7 +20,8 @@
       "Bash(git count-objects:*)",
       "Bash(python3:*)",
       "Bash(node --check:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(py -3 -c \"import ast; ast.parse\\(open\\(''D:/PythonProjects/TelegramBot/web_server.py''\\).read\\(\\)\\); print\\(''Syntax OK''\\)\")"
     ]
   }
 }
