@@ -773,6 +773,17 @@ async def set_user_level(user_id: int, major: str, sub: str):
         )
 
 
+async def set_diagnostic_completed(user_id: int, completed: bool = True):
+    """Persist onboarding diagnostic completion status."""
+    await get_or_create_user(user_id, None, None)
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            "UPDATE users SET diagnostic_completed = $1 WHERE user_id = $2",
+            1 if completed else 0, user_id
+        )
+
+
 async def reset_user_progress(user_id: int):
     """Delete ALL learning progress for user (irreversible)."""
     pool = await get_pool()

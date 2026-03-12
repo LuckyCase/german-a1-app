@@ -16,7 +16,6 @@ from bot.handlers.feedback import get_feedback_handler, feedback_callback
 from bot.handlers.settings import show_settings, settings_callback
 from bot.handlers.admin import broadcast_command, send_command
 from bot.handlers.exercises import get_exercises_handler
-from bot.handlers.diagnostic import get_diagnostic_handler
 from bot.monitoring import init_sentry, telegram_error_handler_factory
 
 # Enable logging
@@ -63,7 +62,6 @@ def main():
 
     # Add conversation handlers (these should come after regular callback handlers)
     # fc_errors_start and pf_errors_start are entry_points inside these handlers
-    application.add_handler(get_diagnostic_handler())
     application.add_handler(get_flashcards_handler())
     application.add_handler(get_phrases_flashcards_handler())
     application.add_handler(get_grammar_handler())

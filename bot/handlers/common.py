@@ -110,19 +110,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception as e:
             logger.error(f"Failed to register user: {e}")
 
-    # Show diagnostic test for new users
-    if not diagnostic_completed and all_ok:
-        await update.message.reply_text(
-            f"Hallo, {user.first_name}! 👋\n\n"
-            f"Добро пожаловать в German A1 Learning Bot!\n\n"
-            f"Хотите пройти короткий тест (15 вопросов), чтобы мы определили ваш уровень?",
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Пройти тест", callback_data="diag_start")],
-                [InlineKeyboardButton("Выбрать уровень вручную", callback_data="diag_skip")]
-            ])
-        )
-        return
-
     # Get streak for greeting
     streak = 0
     if status["database"]:
@@ -153,9 +140,16 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     
     if all_ok:
+        diagnostic_hint = ""
+        if not diagnostic_completed:
+            diagnostic_hint = (
+                "\n\nℹ️ Тест на определение уровня и ручной выбор уровня "
+                "доступны внутри Web App."
+            )
         message += (
             "🎉 Все системы работают и подключены!\n\n"
             "Нажмите кнопку ниже, чтобы открыть приложение для изучения немецкого языка."
+            f"{diagnostic_hint}"
         )
         
         keyboard = [

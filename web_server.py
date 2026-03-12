@@ -8,6 +8,7 @@ import os
 import asyncio
 import logging
 import threading
+import random
 
 from bot.content_manager import (
     get_all_words, get_categories, get_words_by_category,
@@ -18,7 +19,8 @@ from bot.content_manager import (
     get_available_levels, get_levels_with_content, set_level,
     get_current_level_str, get_current_level,
     get_culture_topics, get_culture_topic,
-    get_exercise_sets, get_exercise_set, get_exercise_tasks
+    get_exercise_sets, get_exercise_set, get_exercise_tasks,
+    get_diagnostic_questions
 )
 from bot.database import (
     get_user_stats, update_word_progress, save_grammar_result,
@@ -26,7 +28,7 @@ from bot.database import (
     save_culture_progress, save_exercise_set_progress,
     get_or_create_user, save_feedback, get_user_feedback, get_feedback_count,
     get_priority_word_ids, get_priority_phrase_ids,
-    get_detailed_user_progress,
+    get_detailed_user_progress, get_user_settings, set_user_level, set_diagnostic_completed,
     FEEDBACK_STATUS_LABELS, MAX_FEEDBACK_LENGTH
 )
 from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
@@ -810,6 +812,41 @@ HTML_TEMPLATE = """
                 padding-bottom: calc(100px + env(safe-area-inset-bottom));
             }
         }
+
+        .onboarding-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(8, 10, 20, 0.86);
+            backdrop-filter: blur(4px);
+        }
+
+        .onboarding-overlay.active {
+            display: flex;
+        }
+
+        .onboarding-card {
+            width: 100%;
+            max-width: 640px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 20px;
+        }
+
+        .onboarding-card h2 {
+            margin-bottom: 10px;
+        }
+
+        .onboarding-card p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
         
         /* Hidden audio element */
         audio { display: none; }
@@ -821,6 +858,12 @@ HTML_TEMPLATE = """
             <h1>German A1</h1>
             <p>Учи немецкий легко и эффективно</p>
         </header>
+
+        <div id="onboarding-overlay" class="onboarding-overlay">
+            <div id="onboarding-content" class="onboarding-card">
+                <div class="loading">Загрузка...</div>
+            </div>
+        </div>
         
         <!-- Main Menu -->
         <div id="main-menu" class="main-menu">
@@ -1127,6 +1170,7 @@ HTML_TEMPLATE = """
         document.documentElement.style.setProperty('--text-secondary', theme.hint_color || '#a0a0b0');
         
         const userId = tg.initDataUnsafe?.user?.id;
+        const userFirstName = tg.initDataUnsafe?.user?.first_name || 'друг';
         
         let currentCategory = null;
         let currentWords = [];
@@ -1155,6 +1199,11 @@ HTML_TEMPLATE = """
         let currentExTasks = [];
         let currentExTaskIndex = 0;
         let currentExScore = 0;
+        let onboardingRequired = false;
+        let onboardingQuestions = [];
+        let onboardingQuestionIndex = 0;
+        let onboardingCorrect = 0;
+        let onboardingRecommended = { major: 'A1', sub: '1', name: 'A1.1' };
         
         // Header scroll behavior
         let headerShown = true;
@@ -1255,6 +1304,202 @@ HTML_TEMPLATE = """
             
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setOnboardingHTML(html) {
+            document.getElementById('onboarding-content').innerHTML = html;
+        }
+
+        function showOnboardingOverlay() {
+            document.getElementById('onboarding-overlay').classList.add('active');
+        }
+
+        function hideOnboardingOverlay() {
+            document.getElementById('onboarding-overlay').classList.remove('active');
+        }
+
+        async function checkOnboardingStatus() {
+            if (!userId) return;
+            try {
+                const response = await fetch(`/api/onboarding/status?user_id=${userId}`);
+                if (!response.ok) return;
+                const data = await response.json();
+                onboardingRequired = Boolean(data.onboarding_required);
+                if (!onboardingRequired) {
+                    currentLevelMajor = data.major || currentLevelMajor;
+                    currentLevelSub = data.sub || currentLevelSub;
+                    return;
+                }
+                showOnboardingStart();
+            } catch (error) {
+                console.error('checkOnboardingStatus error:', error);
+            }
+        }
+
+        function showOnboardingStart() {
+            showOnboardingOverlay();
+            setOnboardingHTML(`
+                <h2>Hallo, ${userFirstName}! 👋</h2>
+                <p>Перед началом выберите, как определить ваш уровень немецкого.</p>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" data-action="startDiagnosticOnboarding">Пройти тест</button>
+                    <button type="button" class="btn btn-secondary" data-action="showManualLevelSelection">Выбрать уровень вручную</button>
+                </div>
+            `);
+        }
+
+        async function startDiagnosticOnboarding() {
+            setOnboardingHTML('<div class="loading">Загрузка вопросов...</div>');
+            try {
+                const response = await fetch('/api/diagnostic/questions');
+                if (!response.ok) {
+                    throw new Error('questions fetch failed');
+                }
+                onboardingQuestions = await response.json();
+                onboardingQuestionIndex = 0;
+                onboardingCorrect = 0;
+
+                if (!Array.isArray(onboardingQuestions) || onboardingQuestions.length === 0) {
+                    tg.showAlert?.('Тест временно недоступен. Выберите уровень вручную.');
+                    showManualLevelSelection();
+                    return;
+                }
+
+                renderDiagnosticQuestion();
+            } catch (error) {
+                tg.showAlert?.('Не удалось загрузить тест. Выберите уровень вручную.');
+                showManualLevelSelection();
+            }
+        }
+
+        function renderDiagnosticQuestion() {
+            if (onboardingQuestionIndex >= onboardingQuestions.length) {
+                showDiagnosticResult();
+                return;
+            }
+
+            const q = onboardingQuestions[onboardingQuestionIndex];
+            const optionsHtml = (q.options || [])
+                .map((option, idx) => `<button type="button" class="option" data-diag-index="${idx}">${option}</button>`)
+                .join('');
+
+            setOnboardingHTML(`
+                <h2>Диагностический тест</h2>
+                <p>Вопрос ${onboardingQuestionIndex + 1} из ${onboardingQuestions.length}</p>
+                <div class="question-card" style="margin-bottom: 12px;">
+                    <div class="question-text">${q.question || ''}</div>
+                </div>
+                <div id="diag-options" class="options">${optionsHtml}</div>
+            `);
+
+            const optionsRoot = document.getElementById('diag-options');
+            optionsRoot.querySelectorAll('button[data-diag-index]').forEach(btn => {
+                btn.onclick = () => {
+                    const selected = Number(btn.getAttribute('data-diag-index'));
+                    if (selected === q.correct) onboardingCorrect++;
+                    onboardingQuestionIndex++;
+                    renderDiagnosticQuestion();
+                };
+            });
+        }
+
+        async function showDiagnosticResult() {
+            try {
+                const response = await fetch('/api/diagnostic/recommend', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        correct: onboardingCorrect,
+                        total: onboardingQuestions.length
+                    })
+                });
+                if (response.ok) {
+                    onboardingRecommended = await response.json();
+                }
+            } catch (error) {
+                console.error('showDiagnosticResult error:', error);
+            }
+
+            setOnboardingHTML(`
+                <h2>Результат теста</h2>
+                <p>Правильных ответов: ${onboardingCorrect} из ${onboardingQuestions.length}</p>
+                <p>Рекомендуемый уровень: <strong>${onboardingRecommended.name}</strong></p>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" data-action="acceptDiagnosticRecommendation">
+                        Принять (${onboardingRecommended.name})
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-action="showManualLevelSelection">
+                        Выбрать вручную
+                    </button>
+                </div>
+            `);
+        }
+
+        async function completeOnboarding(major, sub) {
+            try {
+                const response = await fetch('/api/onboarding/complete', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ user_id: userId, major, sub })
+                });
+
+                if (!response.ok) {
+                    throw new Error('complete onboarding failed');
+                }
+
+                const data = await response.json();
+                currentLevelMajor = data.major || major;
+                currentLevelSub = data.sub || sub;
+                hideOnboardingOverlay();
+                tg.HapticFeedback?.notificationOccurred('success');
+
+                // Refetch section data with the chosen level.
+                loadCategories();
+                loadTests();
+            } catch (error) {
+                tg.showAlert?.('Не удалось сохранить уровень. Попробуйте ещё раз.');
+            }
+        }
+
+        async function acceptDiagnosticRecommendation() {
+            await completeOnboarding(onboardingRecommended.major, onboardingRecommended.sub);
+        }
+
+        async function showManualLevelSelection() {
+            setOnboardingHTML('<div class="loading">Загрузка уровней...</div>');
+            try {
+                const response = await fetch('/api/levels/with-content');
+                if (!response.ok) {
+                    throw new Error('levels fetch failed');
+                }
+                const levels = await response.json();
+                const buttonsHtml = levels
+                    .map(level => (
+                        `<button type="button" class="btn btn-secondary" data-major="${level.major}" data-sub="${level.sub}">
+                            ${level.display_name}
+                        </button>`
+                    ))
+                    .join('');
+
+                setOnboardingHTML(`
+                    <h2>Выберите уровень</h2>
+                    <p>Можно изменить позже в настройках.</p>
+                    <div id="manual-level-list" class="btn-group">${buttonsHtml}</div>
+                    <button type="button" class="back-btn" data-action="showOnboardingStart">← Назад</button>
+                `);
+
+                const root = document.getElementById('manual-level-list');
+                root.querySelectorAll('button[data-major]').forEach(btn => {
+                    btn.onclick = async () => {
+                        const major = btn.getAttribute('data-major');
+                        const sub = btn.getAttribute('data-sub');
+                        await completeOnboarding(major, sub);
+                    };
+                });
+            } catch (error) {
+                tg.showAlert?.('Не удалось загрузить уровни');
+                showOnboardingStart();
+            }
         }
         
         // Categories
@@ -2480,7 +2725,8 @@ HTML_TEMPLATE = """
         }
         
         // Initialize
-        window.onload = () => {
+        window.onload = async () => {
+            await checkOnboardingStatus();
             loadCategories();
             loadTests();
         };
@@ -2537,6 +2783,100 @@ def api_set_level():
             "success": False,
             "error": f"Invalid level: {major}.{sub}"
         }), 400
+
+
+@app.route('/api/onboarding/status')
+def api_onboarding_status():
+    """Get onboarding state for a Telegram user."""
+    user_id = request.args.get('user_id', type=int)
+    if not user_id:
+        return jsonify({
+            "onboarding_required": False,
+            "major": get_current_level()[0],
+            "sub": get_current_level()[1],
+        })
+
+    try:
+        run_bot_async(get_or_create_user(user_id, None, None))
+        settings = run_bot_async(get_user_settings(user_id))
+        major = settings.get("major_level", "A1")
+        sub = settings.get("sub_level", "1")
+
+        # Sync runtime content level with persisted user level.
+        set_level(major, sub)
+
+        return jsonify({
+            "onboarding_required": not bool(settings.get("diagnostic_completed", 0)),
+            "major": major,
+            "sub": sub,
+            "name": f"{major}.{sub}",
+        })
+    except Exception as e:
+        logger.error(f"Failed to get onboarding status for user {user_id}: {e}")
+        return jsonify({"error": "Failed to load onboarding status"}), 500
+
+
+@app.route('/api/diagnostic/questions')
+def api_diagnostic_questions():
+    """Return shuffled diagnostic questions for onboarding."""
+    questions = get_diagnostic_questions() or []
+    random.shuffle(questions)
+    return jsonify(questions[:15])
+
+
+@app.route('/api/diagnostic/recommend', methods=['POST'])
+def api_diagnostic_recommend():
+    """Return recommended level by diagnostic score."""
+    data = request.json or {}
+    correct = int(data.get('correct', 0))
+
+    if correct <= 5:
+        major, sub = "A1", "1"
+        level_name = "A1.1 (Начинающий)"
+    elif correct <= 10:
+        major, sub = "A1", "2"
+        level_name = "A1.2 (Продолжающий A1)"
+    else:
+        major, sub = "A1", "2"
+        level_name = "A1.2 (Контент A2 в разработке)"
+
+    return jsonify({
+        "major": major,
+        "sub": sub,
+        "name": level_name,
+    })
+
+
+@app.route('/api/onboarding/complete', methods=['POST'])
+def api_onboarding_complete():
+    """Persist selected level and finish onboarding."""
+    data = request.json or {}
+    user_id = data.get('user_id')
+    major = data.get('major', 'A1')
+    sub = data.get('sub', '1')
+
+    if not user_id:
+        return jsonify({'error': 'User not authenticated'}), 401
+
+    if not set_level(major, sub):
+        return jsonify({
+            "success": False,
+            "error": f"Invalid level: {major}.{sub}"
+        }), 400
+
+    try:
+        run_bot_async(get_or_create_user(user_id, None, None))
+        run_bot_async(set_user_level(user_id, major, sub))
+        run_bot_async(set_diagnostic_completed(user_id, True))
+        return jsonify({
+            "success": True,
+            "major": major,
+            "sub": sub,
+            "name": f"{major}.{sub}"
+        })
+    except Exception as e:
+        logger.error(f"Failed to complete onboarding for user {user_id}: {e}")
+        return jsonify({'error': 'Failed to save onboarding'}), 500
 
 
 @app.route('/api/categories')
