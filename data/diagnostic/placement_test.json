@@ -1,0 +1,98 @@
+{
+  "id": "placement_test",
+  "name": "Диагностический тест",
+  "name_de": "Einstufungstest",
+  "description": "15 вопросов для определения вашего уровня немецкого",
+  "questions": [
+    {
+      "level": "A1.1",
+      "question": "Как сказать «Меня зовут Анна»?",
+      "options": ["Ich heiße Anna.", "Ich bin komme Anna.", "Ich habe Anna."],
+      "correct": 0
+    },
+    {
+      "level": "A1.1",
+      "question": "Выберите правильный артикль: ___ Buch (книга)",
+      "options": ["der", "die", "das"],
+      "correct": 2
+    },
+    {
+      "level": "A1.1",
+      "question": "Что значит «Guten Morgen»?",
+      "options": ["Добрый вечер", "Доброе утро", "Спокойной ночи"],
+      "correct": 1
+    },
+    {
+      "level": "A1.1",
+      "question": "Как спросить «Откуда вы?»",
+      "options": ["Wo wohnen Sie?", "Woher kommen Sie?", "Wie heißen Sie?"],
+      "correct": 1
+    },
+    {
+      "level": "A1.1",
+      "question": "Ich ___ aus Russland.",
+      "options": ["bin", "komme", "habe"],
+      "correct": 1
+    },
+    {
+      "level": "A1.2",
+      "question": "Ich kaufe ___ Mantel. (мужской род, Akkusativ)",
+      "options": ["der", "den", "dem"],
+      "correct": 1
+    },
+    {
+      "level": "A1.2",
+      "question": "Er ___ jeden Tag Deutsch lernen. (должен)",
+      "options": ["will", "muss", "darf"],
+      "correct": 1
+    },
+    {
+      "level": "A1.2",
+      "question": "Какой порядок слов правильный?",
+      "options": ["Morgen ich gehe ins Kino.", "Morgen gehe ich ins Kino.", "Ich morgen gehe ins Kino."],
+      "correct": 1
+    },
+    {
+      "level": "A1.2",
+      "question": "Die Kinder ___ nicht laut sein. (не разрешается)",
+      "options": ["müssen", "dürfen", "können"],
+      "correct": 1
+    },
+    {
+      "level": "A1.2",
+      "question": "Wie spät ist es? — Es ist halb drei. Который час?",
+      "options": ["2:30", "3:30", "3:00"],
+      "correct": 0
+    },
+    {
+      "level": "A2",
+      "question": "Ich ___ gestern ins Kino gegangen.",
+      "options": ["habe", "bin", "werde"],
+      "correct": 1
+    },
+    {
+      "level": "A2",
+      "question": "Er hilft ___ Mutter. (Dativ)",
+      "options": ["die", "der", "den"],
+      "correct": 1
+    },
+    {
+      "level": "A2",
+      "question": "Ich bleibe zu Hause, ___ ich krank bin.",
+      "options": ["dass", "weil", "wenn"],
+      "correct": 1
+    },
+    {
+      "level": "A2",
+      "question": "Berlin ist ___ als München. (большой)",
+      "options": ["groß", "größer", "am größten"],
+      "correct": 1
+    },
+    {
+      "level": "A2",
+      "question": "Ich ___ mir die Hände gewaschen. (возвратный глагол, Perfekt)",
+      "options": ["bin", "habe", "werde"],
+      "correct": 1
+    }
+  ]
+}

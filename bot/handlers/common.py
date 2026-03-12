@@ -5,7 +5,7 @@ import asyncio
 import time as _time
 import requests
 
-from bot.database import get_or_create_user, get_pool, get_user_settings
+from bot.database import get_or_create_user, get_pool, get_user_settings, get_user_streak
 from bot.config import WEB_APP_URL, TELEGRAM_BOT_TOKEN, DATABASE_URL
 
 logger = logging.getLogger(__name__)
@@ -95,6 +95,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     all_ok = status["webhook"] and status["database"] and status["web_app"]
     
     # Try to register user if database is working
+    diagnostic_completed = True
     if status["database"]:
         try:
             await get_or_create_user(user.id, user.username, user.first_name)
@@ -104,19 +105,45 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 settings.get("major_level", "A1"),
                 settings.get("sub_level", "1"),
             )
+            # Check if diagnostic test is needed
+            diagnostic_completed = bool(settings.get("diagnostic_completed", 1))
         except Exception as e:
             logger.error(f"Failed to register user: {e}")
-    
+
+    # Show diagnostic test for new users
+    if not diagnostic_completed and all_ok:
+        await update.message.reply_text(
+            f"Hallo, {user.first_name}! 👋\n\n"
+            f"Добро пожаловать в German A1 Learning Bot!\n\n"
+            f"Хотите пройти короткий тест (15 вопросов), чтобы мы определили ваш уровень?",
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("Пройти тест", callback_data="diag_start")],
+                [InlineKeyboardButton("Выбрать уровень вручную", callback_data="diag_skip")]
+            ])
+        )
+        return
+
+    # Get streak for greeting
+    streak = 0
+    if status["database"]:
+        try:
+            streak = await get_user_streak(user.id)
+        except Exception:
+            pass
+
     # Build status message
     status_icons = {
         True: "✅",
         False: "❌"
     }
-    
+
+    streak_text = f"\n🔥 Серия: {streak} {'день' if streak == 1 else 'дней'} подряд!\n" if streak > 0 else ""
+
     message = (
         f"Hallo, {user.first_name}! 👋\n\n"
         f"🇩🇪 German A1 Learning Bot\n\n"
-        f"Добро пожаловать в бота для изучения немецкого языка уровня A1!\n\n"
+        f"Добро пожаловать в бота для изучения немецкого языка уровня A1!\n"
+        f"{streak_text}\n"
         f"━━━━━━━━━━━━━━━━━━━━\n"
         f"📊 Статус систем:\n\n"
         f"{status_icons[status['webhook']]} Webhook\n"
@@ -163,6 +190,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/help - Эта справка\n"
         "/progress - Ваш прогресс\n"
         "/settings - Настройки\n"
+        "/exercises - Упражнения\n"
         "/reminder - Настройки напоминаний\n"
         "/audio - Аудио материалы\n\n"
         "**Как пользоваться:**\n"

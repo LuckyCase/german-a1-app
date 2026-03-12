@@ -3,7 +3,7 @@ import os
 import ssl
 import threading
 import asyncio
-from datetime import datetime
+from datetime import datetime, timedelta
 from bot.config import DATABASE_URL
 
 # Thread-local storage for connection pools
@@ -241,6 +241,83 @@ async def init_db():
             ALTER TABLE progress DROP COLUMN IF EXISTS next_review
         """)
 
+        # SRS (Spaced Repetition) columns
+        await conn.execute("""
+            ALTER TABLE progress ADD COLUMN IF NOT EXISTS next_review_at TIMESTAMP
+        """)
+        await conn.execute("""
+            ALTER TABLE progress ADD COLUMN IF NOT EXISTS srs_streak INTEGER DEFAULT 0
+        """)
+        await conn.execute("""
+            ALTER TABLE phrases_progress ADD COLUMN IF NOT EXISTS next_review_at TIMESTAMP
+        """)
+        await conn.execute("""
+            ALTER TABLE phrases_progress ADD COLUMN IF NOT EXISTS srs_streak INTEGER DEFAULT 0
+        """)
+
+        # Streak and achievements columns
+        await conn.execute("""
+            ALTER TABLE users ADD COLUMN IF NOT EXISTS last_active_date TEXT
+        """)
+        await conn.execute("""
+            ALTER TABLE users ADD COLUMN IF NOT EXISTS current_streak INTEGER DEFAULT 0
+        """)
+        await conn.execute("""
+            ALTER TABLE users ADD COLUMN IF NOT EXISTS achievements TEXT DEFAULT '[]'
+        """)
+
+        # Diagnostic test flag
+        await conn.execute("""
+            ALTER TABLE users ADD COLUMN IF NOT EXISTS diagnostic_completed INTEGER DEFAULT 0
+        """)
+
+        # Backfill SRS: set next_review_at for existing progress rows (one-time)
+        srs_backfilled = await conn.fetchval("""
+            SELECT 1 FROM progress WHERE next_review_at IS NOT NULL LIMIT 1
+        """)
+        if not srs_backfilled:
+            # Words with errors → review now
+            await conn.execute("""
+                UPDATE progress SET next_review_at = NOW(), srs_streak = 0
+                WHERE wrong_count > 0 AND next_review_at IS NULL
+            """)
+            # Mastered words → review in 7 days
+            await conn.execute("""
+                UPDATE progress SET next_review_at = NOW() + INTERVAL '7 days',
+                       srs_streak = LEAST(correct_count, 5)
+                WHERE correct_count >= 3 AND wrong_count = 0 AND next_review_at IS NULL
+            """)
+            # Other reviewed words → review now
+            await conn.execute("""
+                UPDATE progress SET next_review_at = NOW(), srs_streak = 0
+                WHERE next_review_at IS NULL AND last_reviewed IS NOT NULL
+            """)
+
+        # Backfill SRS for phrases
+        srs_phrases_backfilled = await conn.fetchval("""
+            SELECT 1 FROM phrases_progress WHERE next_review_at IS NOT NULL LIMIT 1
+        """)
+        if not srs_phrases_backfilled:
+            await conn.execute("""
+                UPDATE phrases_progress SET next_review_at = NOW(), srs_streak = 0
+                WHERE wrong_count > 0 AND next_review_at IS NULL
+            """)
+            await conn.execute("""
+                UPDATE phrases_progress SET next_review_at = NOW() + INTERVAL '7 days',
+                       srs_streak = LEAST(correct_count, 5)
+                WHERE correct_count >= 3 AND wrong_count = 0 AND next_review_at IS NULL
+            """)
+            await conn.execute("""
+                UPDATE phrases_progress SET next_review_at = NOW(), srs_streak = 0
+                WHERE next_review_at IS NULL AND last_reviewed IS NOT NULL
+            """)
+
+        # Backfill diagnostic_completed for existing users (don't show test to old users)
+        await conn.execute("""
+            UPDATE users SET diagnostic_completed = 1
+            WHERE diagnostic_completed IS NULL OR (diagnostic_completed = 0 AND last_active_date IS NOT NULL)
+        """)
+
         # Deduplicate and add UNIQUE indexes (only if indexes don't exist yet)
         idx_exists = await conn.fetchval("""
             SELECT 1 FROM pg_indexes WHERE indexname = 'uniq_progress_user_word'
@@ -344,34 +421,55 @@ async def get_all_user_ids() -> list:
         return [row['user_id'] for row in rows]
 
 
+def _srs_interval(streak: int) -> timedelta:
+    """Return the review interval for a given SRS streak level."""
+    intervals = {0: timedelta(0), 1: timedelta(days=1), 2: timedelta(days=3),
+                 3: timedelta(days=7), 4: timedelta(days=14)}
+    return intervals.get(streak, timedelta(days=30))
+
+
 async def update_word_progress(user_id: int, word_id: str, is_correct: bool):
-    """Update user's progress for a specific word (atomic upsert)."""
+    """Update user's progress for a specific word (atomic upsert with SRS)."""
     await get_or_create_user(user_id, None, None)
     pool = await get_pool()
     now = datetime.now()
 
     async with pool.acquire() as conn:
+        # Fetch current SRS streak for interval calculation
+        row = await conn.fetchrow(
+            "SELECT srs_streak FROM progress WHERE user_id = $1 AND word_id = $2",
+            user_id, word_id
+        )
+        current_streak = row["srs_streak"] if row else 0
+
         if is_correct:
+            new_streak = current_streak + 1
+            next_review = now + _srs_interval(new_streak)
             await conn.execute(
                 """INSERT INTO progress
-                       (user_id, word_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
-                   VALUES ($1, $2, 1, 0, $3, NULL)
+                       (user_id, word_id, correct_count, wrong_count, last_reviewed, last_wrong_at, srs_streak, next_review_at)
+                   VALUES ($1, $2, 1, 0, $3, NULL, 1, $4)
                    ON CONFLICT (user_id, word_id) DO UPDATE
-                   SET correct_count = progress.correct_count + 1,
-                       wrong_count   = GREATEST(progress.wrong_count - 1, 0),
-                       last_reviewed = EXCLUDED.last_reviewed""",
-                user_id, word_id, now
+                   SET correct_count  = progress.correct_count + 1,
+                       wrong_count    = GREATEST(progress.wrong_count - 1, 0),
+                       last_reviewed  = $3,
+                       srs_streak     = progress.srs_streak + 1,
+                       next_review_at = $4""",
+                user_id, word_id, now, next_review
             )
         else:
+            next_review = now + timedelta(days=1)
             await conn.execute(
                 """INSERT INTO progress
-                       (user_id, word_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
-                   VALUES ($1, $2, 0, 1, $3, $3)
+                       (user_id, word_id, correct_count, wrong_count, last_reviewed, last_wrong_at, srs_streak, next_review_at)
+                   VALUES ($1, $2, 0, 1, $3, $3, 0, $4)
                    ON CONFLICT (user_id, word_id) DO UPDATE
-                   SET wrong_count   = progress.wrong_count + 1,
-                       last_reviewed = EXCLUDED.last_reviewed,
-                       last_wrong_at = EXCLUDED.last_wrong_at""",
-                user_id, word_id, now
+                   SET wrong_count    = progress.wrong_count + 1,
+                       last_reviewed  = $3,
+                       last_wrong_at  = $3,
+                       srs_streak     = 0,
+                       next_review_at = $4""",
+                user_id, word_id, now, next_review
             )
 
 
@@ -543,33 +641,47 @@ async def set_reminder(user_id: int, enabled: bool, hour: int = 9, minute: int =
 
 
 async def save_phrase_progress(user_id: int, phrase_id: str, category_id: str, is_correct: bool):
-    """Save phrase progress for user (atomic upsert)."""
+    """Save phrase progress for user (atomic upsert with SRS)."""
     await get_or_create_user(user_id, None, None)
     pool = await get_pool()
     now = datetime.now()
 
     async with pool.acquire() as conn:
+        # Fetch current SRS streak for interval calculation
+        row = await conn.fetchrow(
+            "SELECT srs_streak FROM phrases_progress WHERE user_id = $1 AND phrase_id = $2",
+            user_id, phrase_id
+        )
+        current_streak = row["srs_streak"] if row else 0
+
         if is_correct:
+            new_streak = current_streak + 1
+            next_review = now + _srs_interval(new_streak)
             await conn.execute(
                 """INSERT INTO phrases_progress
-                       (user_id, phrase_id, category_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
-                   VALUES ($1, $2, $3, 1, 0, $4, NULL)
+                       (user_id, phrase_id, category_id, correct_count, wrong_count, last_reviewed, last_wrong_at, srs_streak, next_review_at)
+                   VALUES ($1, $2, $3, 1, 0, $4, NULL, 1, $5)
                    ON CONFLICT (user_id, phrase_id) DO UPDATE
-                   SET correct_count = phrases_progress.correct_count + 1,
-                       wrong_count   = GREATEST(phrases_progress.wrong_count - 1, 0),
-                       last_reviewed = EXCLUDED.last_reviewed""",
-                user_id, phrase_id, category_id, now
+                   SET correct_count  = phrases_progress.correct_count + 1,
+                       wrong_count    = GREATEST(phrases_progress.wrong_count - 1, 0),
+                       last_reviewed  = $4,
+                       srs_streak     = phrases_progress.srs_streak + 1,
+                       next_review_at = $5""",
+                user_id, phrase_id, category_id, now, next_review
             )
         else:
+            next_review = now + timedelta(days=1)
             await conn.execute(
                 """INSERT INTO phrases_progress
-                       (user_id, phrase_id, category_id, correct_count, wrong_count, last_reviewed, last_wrong_at)
-                   VALUES ($1, $2, $3, 0, 1, $4, $4)
+                       (user_id, phrase_id, category_id, correct_count, wrong_count, last_reviewed, last_wrong_at, srs_streak, next_review_at)
+                   VALUES ($1, $2, $3, 0, 1, $4, $4, 0, $5)
                    ON CONFLICT (user_id, phrase_id) DO UPDATE
-                   SET wrong_count   = phrases_progress.wrong_count + 1,
-                       last_reviewed = EXCLUDED.last_reviewed,
-                       last_wrong_at = EXCLUDED.last_wrong_at""",
-                user_id, phrase_id, category_id, now
+                   SET wrong_count    = phrases_progress.wrong_count + 1,
+                       last_reviewed  = $4,
+                       last_wrong_at  = $4,
+                       srs_streak     = 0,
+                       next_review_at = $5""",
+                user_id, phrase_id, category_id, now, next_review
             )
 
 
@@ -796,6 +908,142 @@ async def get_all_error_phrase_ids(user_id: int) -> list:
         return [row["phrase_id"] for row in rows]
 
 
+async def get_due_word_ids(user_id: int, word_ids: list, limit: int = 10) -> list:
+    """Get word_ids due for SRS review (next_review_at <= NOW), most overdue first."""
+    if not word_ids:
+        return []
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(
+            """SELECT word_id FROM progress
+               WHERE user_id = $1 AND word_id = ANY($2)
+                 AND next_review_at IS NOT NULL AND next_review_at <= NOW()
+               ORDER BY next_review_at ASC
+               LIMIT $3""",
+            user_id, word_ids, limit
+        )
+        return [row["word_id"] for row in rows]
+
+
+async def get_due_phrase_ids(user_id: int, phrase_ids: list, limit: int = 10) -> list:
+    """Get phrase_ids due for SRS review (next_review_at <= NOW), most overdue first."""
+    if not phrase_ids:
+        return []
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(
+            """SELECT phrase_id FROM phrases_progress
+               WHERE user_id = $1 AND phrase_id = ANY($2)
+                 AND next_review_at IS NOT NULL AND next_review_at <= NOW()
+               ORDER BY next_review_at ASC
+               LIMIT $3""",
+            user_id, phrase_ids, limit
+        )
+        return [row["phrase_id"] for row in rows]
+
+
+async def get_reviewed_word_ids(user_id: int, word_ids: list) -> set:
+    """Get the set of word_ids the user has already reviewed at least once."""
+    if not word_ids:
+        return set()
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(
+            "SELECT word_id FROM progress WHERE user_id = $1 AND word_id = ANY($2)",
+            user_id, word_ids
+        )
+        return {row["word_id"] for row in rows}
+
+
+async def get_reviewed_phrase_ids(user_id: int, phrase_ids: list) -> set:
+    """Get the set of phrase_ids the user has already reviewed at least once."""
+    if not phrase_ids:
+        return set()
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(
+            "SELECT phrase_id FROM phrases_progress WHERE user_id = $1 AND phrase_id = ANY($2)",
+            user_id, phrase_ids
+        )
+        return {row["phrase_id"] for row in rows}
+
+
+# ============================================================
+# Streak and Achievements
+# ============================================================
+
+async def update_user_activity(user_id: int) -> tuple:
+    """Update last_active_date and streak. Returns (new_streak, newly_unlocked_achievements)."""
+    import json
+    pool = await get_pool()
+    today = datetime.now().strftime("%Y-%m-%d")
+    yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            "SELECT last_active_date, current_streak, achievements FROM users WHERE user_id = $1",
+            user_id
+        )
+        if not row:
+            return (1, [])
+
+        last_date = row["last_active_date"]
+        old_streak = row["current_streak"] or 0
+
+        if last_date == today:
+            # Already active today, no change
+            return (old_streak, [])
+        elif last_date == yesterday:
+            new_streak = old_streak + 1
+        else:
+            new_streak = 1
+
+        await conn.execute(
+            "UPDATE users SET last_active_date = $1, current_streak = $2 WHERE user_id = $3",
+            today, new_streak, user_id
+        )
+
+    # Check for new achievements
+    from bot.achievements import check_achievements
+    new_achievements = await check_achievements(user_id, new_streak)
+    return (new_streak, new_achievements)
+
+
+async def get_user_streak(user_id: int) -> int:
+    """Get current streak for user."""
+    pool = await get_pool()
+    today = datetime.now().strftime("%Y-%m-%d")
+    yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            "SELECT last_active_date, current_streak FROM users WHERE user_id = $1",
+            user_id
+        )
+        if not row or not row["last_active_date"]:
+            return 0
+        # Streak is valid only if last active today or yesterday
+        if row["last_active_date"] in (today, yesterday):
+            return row["current_streak"] or 0
+        return 0
+
+
+async def get_user_achievements(user_id: int) -> list:
+    """Get list of achievement IDs for user."""
+    import json
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            "SELECT achievements FROM users WHERE user_id = $1", user_id
+        )
+        if not row or not row["achievements"]:
+            return []
+        try:
+            return json.loads(row["achievements"])
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+
 # ============================================================
 # Settings: user preferences
 # ============================================================
@@ -806,7 +1054,7 @@ async def get_user_settings(user_id: int) -> dict:
     async with pool.acquire() as conn:
         row = await conn.fetchrow(
             """SELECT reminder_enabled, reminder_hour, reminder_minute,
-                      major_level, sub_level
+                      major_level, sub_level, diagnostic_completed
                FROM users WHERE user_id = $1""",
             user_id
         )
@@ -843,3 +1091,8 @@ async def reset_user_progress(user_id: int):
         await conn.execute("DELETE FROM dialogues_progress WHERE user_id = $1", user_id)
         await conn.execute("DELETE FROM culture_progress WHERE user_id = $1", user_id)
         await conn.execute("DELETE FROM exercises_progress WHERE user_id = $1", user_id)
+        # Reset streak and achievements
+        await conn.execute(
+            "UPDATE users SET current_streak = 0, last_active_date = NULL, achievements = '[]' WHERE user_id = $1",
+            user_id
+        )

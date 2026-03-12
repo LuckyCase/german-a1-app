@@ -6,7 +6,7 @@ from bot.content_manager import (
     get_all_tests, get_test, get_test_questions,
     get_current_level, get_current_level_str, get_levels_with_content
 )
-from bot.database import save_grammar_result, update_daily_stats
+from bot.database import save_grammar_result, update_daily_stats, update_user_activity
 
 # Conversation states (unique range to avoid overlap with flashcards 0-3 and phrases 10-13)
 GR_LEVEL_SELECT, GR_TEST_SELECT, GR_QUESTION, GR_RESULT = range(20, 24)
@@ -126,6 +126,10 @@ async def test_selected(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return ConversationHandler.END
 
     test_id = query.data.replace("gr_test_", "")
+
+    # Track user activity for streak
+    user_id = update.effective_user.id
+    await update_user_activity(user_id)
 
     major, sub = _get_gr_level(context)
     level_str = f"{major}.{sub}"

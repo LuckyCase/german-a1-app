@@ -1,8 +1,9 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
-from bot.database import get_user_stats
+from bot.database import get_user_stats, get_user_streak, get_user_achievements
 from bot.content_manager import get_all_words, get_levels_with_content
+from bot.achievements import get_achievement_display
 
 
 def _get_total_vocab() -> int:
@@ -19,7 +20,8 @@ def _progress_bar(percentage: float, length: int = 10) -> str:
     return "█" * filled + "░" * empty
 
 
-def _build_stats_text(stats: dict, total_vocab: int, suffix: str = "") -> str:
+def _build_stats_text(stats: dict, total_vocab: int, suffix: str = "",
+                      streak: int = 0, achievements: list = None) -> str:
     words_pct = (stats["total_words"] / total_vocab * 100) if total_vocab > 0 else 0
     mastered_pct = (stats["mastered_words"] / total_vocab * 100) if total_vocab > 0 else 0
 
@@ -51,9 +53,14 @@ def _build_stats_text(stats: dict, total_vocab: int, suffix: str = "") -> str:
     else:
         motivation = "🎉 Поздравляем! Весь словарь изучен!"
 
+    streak_line = f"🔥 Серия: {streak} {'день' if streak == 1 else 'дней'} подряд\n\n" if streak > 0 else ""
+    ach_display = get_achievement_display(achievements or [])
+    ach_block = f"\n🏅 Достижения:\n{ach_display}\n" if ach_display else ""
+
     return (
         f"📊 Ваш прогресс в изучении немецкого\n"
         f"{'═' * 35}\n\n"
+        f"{streak_line}"
         f"📚 Словарный запас:\n"
         f"   Изучено слов: {stats['total_words']} из {total_vocab}\n"
         f"   {_progress_bar(words_pct)} {words_pct:.0f}%\n\n"
@@ -71,6 +78,7 @@ def _build_stats_text(stats: dict, total_vocab: int, suffix: str = "") -> str:
         f"   Баллы: {stats['grammar_score']} из {stats['grammar_total']}\n"
         f"   Точность: {grammar_accuracy:.0f}%\n\n"
         f"{motivation}"
+        f"{ach_block}"
         f"{suffix}"
     )
 
@@ -98,10 +106,12 @@ async def show_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     stats = await get_user_stats(user_id)
     total_vocab = _get_total_vocab()
+    streak = await get_user_streak(user_id)
+    achievements = await get_user_achievements(user_id)
 
     has_word_errors = stats.get("words_with_errors", 0) > 0
     has_phrase_errors = stats.get("phrases_with_errors", 0) > 0
-    text = _build_stats_text(stats, total_vocab)
+    text = _build_stats_text(stats, total_vocab, streak=streak, achievements=achievements)
 
     await update.message.reply_text(text, reply_markup=_build_keyboard(has_word_errors, has_phrase_errors))
 
@@ -115,9 +125,12 @@ async def progress_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         stats = await get_user_stats(user_id)
         total_vocab = _get_total_vocab()
+        streak = await get_user_streak(user_id)
+        achievements = await get_user_achievements(user_id)
 
         has_word_errors = stats.get("words_with_errors", 0) > 0
         has_phrase_errors = stats.get("phrases_with_errors", 0) > 0
-        text = _build_stats_text(stats, total_vocab, suffix="\n(Обновлено)")
+        text = _build_stats_text(stats, total_vocab, suffix="\n(Обновлено)",
+                                 streak=streak, achievements=achievements)
 
         await query.edit_message_text(text, reply_markup=_build_keyboard(has_word_errors, has_phrase_errors))

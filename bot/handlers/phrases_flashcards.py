@@ -10,7 +10,8 @@ from bot.content_manager import (
 )
 from bot.database import (
     save_phrase_progress, update_daily_stats,
-    get_priority_phrase_ids, get_all_error_phrase_ids
+    get_priority_phrase_ids, get_all_error_phrase_ids,
+    get_due_phrase_ids, get_reviewed_phrase_ids, update_user_activity
 )
 
 logger = logging.getLogger(__name__)
@@ -28,24 +29,43 @@ def _get_pf_level(context) -> tuple:
 
 
 async def _build_session_phrases(user_id: int, phrases: list) -> list:
-    """Build a session of up to SESSION_SIZE phrases with error priority."""
+    """Build a session of up to SESSION_SIZE phrases using SRS priority.
+
+    1. Phrases due for SRS review (next_review_at <= NOW)
+    2. New phrases the user has never seen
+    3. Random phrases if still not enough
+    """
     if not phrases:
         return []
 
-    phrase_ids = [p["phrase_id"] for p in phrases]
-    error_ids = await get_priority_phrase_ids(user_id, phrase_ids)
+    # Track user activity for streak
+    await update_user_activity(user_id)
 
+    phrase_ids = [p["phrase_id"] for p in phrases]
     phrase_map = {p["phrase_id"]: p for p in phrases}
 
-    error_phrases = [phrase_map[pid] for pid in error_ids[:MAX_ERROR_PHRASES] if pid in phrase_map]
+    # 1. SRS due phrases
+    due_ids = await get_due_phrase_ids(user_id, phrase_ids, limit=SESSION_SIZE)
+    session_ids = list(due_ids)
 
-    error_id_set = set(error_ids[:MAX_ERROR_PHRASES])
-    remaining = [p for p in phrases if p["phrase_id"] not in error_id_set]
-    random.shuffle(remaining)
-    fill_count = SESSION_SIZE - len(error_phrases)
-    new_phrases = remaining[:fill_count]
+    # 2. New phrases (never reviewed)
+    if len(session_ids) < SESSION_SIZE:
+        reviewed = await get_reviewed_phrase_ids(user_id, phrase_ids)
+        new_ids = [pid for pid in phrase_ids if pid not in reviewed]
+        random.shuffle(new_ids)
+        for pid in new_ids:
+            if len(session_ids) >= SESSION_SIZE:
+                break
+            if pid not in session_ids:
+                session_ids.append(pid)
 
-    session = error_phrases + new_phrases
+    # 3. Fill with random
+    if len(session_ids) < SESSION_SIZE:
+        remaining = [pid for pid in phrase_ids if pid not in set(session_ids)]
+        random.shuffle(remaining)
+        session_ids.extend(remaining[:SESSION_SIZE - len(session_ids)])
+
+    session = [phrase_map[pid] for pid in session_ids if pid in phrase_map]
     random.shuffle(session)
     return session
 

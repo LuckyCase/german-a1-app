@@ -10,7 +10,8 @@ from bot.content_manager import (
 )
 from bot.database import (
     update_word_progress, update_daily_stats,
-    get_priority_word_ids, get_all_error_word_ids
+    get_priority_word_ids, get_all_error_word_ids,
+    get_due_word_ids, get_reviewed_word_ids, update_user_activity
 )
 from bot.handlers.audio import send_word_audio
 
@@ -29,32 +30,43 @@ def _get_fc_level(context) -> tuple:
 
 
 async def _build_session_words(user_id: int, words: list) -> list:
-    """Build a session of up to SESSION_SIZE words.
+    """Build a session of up to SESSION_SIZE words using SRS priority.
 
-    Up to MAX_ERROR_WORDS slots are filled with words the user previously
-    got wrong (ordered by error count). Remaining slots are filled with
-    random words from the rest.
+    1. Words due for SRS review (next_review_at <= NOW) — highest priority
+    2. New words the user has never seen — fill remaining slots
+    3. Random words — if still not enough
     """
     if not words:
         return []
 
-    word_ids = [w["word_id"] for w in words]
-    error_ids = await get_priority_word_ids(user_id, word_ids)
+    # Track user activity for streak
+    await update_user_activity(user_id)
 
-    # Build lookup map
+    word_ids = [w["word_id"] for w in words]
     word_map = {w["word_id"]: w for w in words}
 
-    # Take up to MAX_ERROR_WORDS error words (already sorted by priority)
-    error_words = [word_map[wid] for wid in error_ids[:MAX_ERROR_WORDS] if wid in word_map]
+    # 1. SRS due words (most overdue first)
+    due_ids = await get_due_word_ids(user_id, word_ids, limit=SESSION_SIZE)
+    session_ids = list(due_ids)
 
-    # Fill remaining slots with random non-error words
-    error_id_set = set(wid for wid in error_ids[:MAX_ERROR_WORDS])
-    remaining = [w for w in words if w["word_id"] not in error_id_set]
-    random.shuffle(remaining)
-    fill_count = SESSION_SIZE - len(error_words)
-    new_words = remaining[:fill_count]
+    # 2. New words (never reviewed)
+    if len(session_ids) < SESSION_SIZE:
+        reviewed = await get_reviewed_word_ids(user_id, word_ids)
+        new_ids = [wid for wid in word_ids if wid not in reviewed]
+        random.shuffle(new_ids)
+        for wid in new_ids:
+            if len(session_ids) >= SESSION_SIZE:
+                break
+            if wid not in session_ids:
+                session_ids.append(wid)
 
-    session = error_words + new_words
+    # 3. Fill with random words if still not enough
+    if len(session_ids) < SESSION_SIZE:
+        remaining = [wid for wid in word_ids if wid not in set(session_ids)]
+        random.shuffle(remaining)
+        session_ids.extend(remaining[:SESSION_SIZE - len(session_ids)])
+
+    session = [word_map[wid] for wid in session_ids if wid in word_map]
     random.shuffle(session)
     return session
 

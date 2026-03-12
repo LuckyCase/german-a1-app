@@ -638,6 +638,17 @@ def get_exercise_tasks(set_id: str, major: str = None, sub: str = None) -> list:
 
 
 # ============================================================
+# Diagnostic test
+# ============================================================
+
+def get_diagnostic_questions() -> list:
+    """Load diagnostic placement test questions."""
+    filepath = BASE_DATA_DIR / "diagnostic" / "placement_test.json"
+    data = _load_json(filepath)
+    return data.get("questions", [])
+
+
+# ============================================================
 # Поиск по ID (для режима "Работа над ошибками")
 # ============================================================
 
