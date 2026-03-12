@@ -24,7 +24,8 @@
       "Bash(py -3 -c \"import ast; ast.parse\\(open\\(''D:/PythonProjects/TelegramBot/web_server.py''\\).read\\(\\)\\); print\\(''Syntax OK''\\)\")",
       "Bash(find /c/Projects/german-a1-app -type d -name *grammar*)",
       "Bash(find /c/Projects/german-a1-app/data/A1/2 -type f ! -name \".gitkeep\" -exec wc -c {} +)",
-      "Bash(find /c/Projects/german-a1-app/data/A1/1 -type f ! -name \".gitkeep\" -exec wc -c {} +)"
+      "Bash(find /c/Projects/german-a1-app/data/A1/1 -type f ! -name \".gitkeep\" -exec wc -c {} +)",
+      "Bash(find /c/Projects/german-a1-app -type f -name *db* -o -name *database*)"
     ]
   }
 }
