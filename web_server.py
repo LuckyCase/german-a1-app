@@ -1175,6 +1175,7 @@ HTML_TEMPLATE = """
         let currentCategory = null;
         let currentWords = [];
         let currentWordIndex = 0;
+        let isWordTransitionInProgress = false;
         let currentTest = null;
         let currentQuestions = [];
         let currentQuestionIndex = 0;
@@ -1182,6 +1183,7 @@ HTML_TEMPLATE = """
         let currentPhrasesCategory = null;
         let currentPhrases = [];
         let currentPhraseIndex = 0;
+        let isPhraseTransitionInProgress = false;
         let currentDialogueId = null;
         let currentDialogue = null;
         let currentDialogueReplicaIndex = 0;
@@ -1204,6 +1206,23 @@ HTML_TEMPLATE = """
         let onboardingQuestionIndex = 0;
         let onboardingCorrect = 0;
         let onboardingRecommended = { major: 'A1', sub: '1', name: 'A1.1' };
+
+        function setButtonLoading(button, isLoading, loadingText = 'Загрузка...') {
+            if (!button) return;
+            if (isLoading) {
+                if (!button.dataset.originalText) {
+                    button.dataset.originalText = button.textContent;
+                }
+                button.textContent = loadingText;
+                button.disabled = true;
+                return;
+            }
+            button.disabled = false;
+            if (button.dataset.originalText) {
+                button.textContent = button.dataset.originalText;
+                delete button.dataset.originalText;
+            }
+        }
         
         // Header scroll behavior
         let headerShown = true;
@@ -1554,6 +1573,7 @@ HTML_TEMPLATE = """
         }
         
         async function showNextWord() {
+            isWordTransitionInProgress = true;
             if (currentWordIndex >= currentWords.length) {
                 // Show results screen
                 const total = wordSessionCorrect + wordSessionWrong;
@@ -1577,14 +1597,15 @@ HTML_TEMPLATE = """
                 document.getElementById('word-options').appendChild(finishBtn);
 
                 tg.HapticFeedback?.notificationOccurred('success');
+                isWordTransitionInProgress = false;
                 return;
             }
             
             const word = currentWords[currentWordIndex];
-            document.getElementById('word-progress').textContent = 
-                `Слово ${currentWordIndex + 1} из ${currentWords.length}`;
-            document.getElementById('word-de').textContent = word.de;
-            document.getElementById('word-example').textContent = word.example || '';
+            const optionsDiv = document.getElementById('word-options');
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.style.display = 'none';
+            optionsDiv.innerHTML = '<div class="loading">Загрузка вариантов...</div>';
             
             // Reset audio
             const audio = document.getElementById('word-audio');
@@ -1595,24 +1616,39 @@ HTML_TEMPLATE = """
             audio.src = '';
             audioBtn.textContent = '🔊 Прослушать';
             audioBtn.disabled = false;
-            
-            // Get options from the same category
-            const response = await fetch(`/api/words/random?count=3&exclude=${word.word_id}&exclude_ru=${encodeURIComponent(word.ru)}&category=${currentCategory}`);
-            const wrongWords = await response.json();
-            const options = [word, ...wrongWords].sort(() => Math.random() - 0.5);
-            
-            const optionsDiv = document.getElementById('word-options');
+
+            let options = [];
+            try {
+                // Get options from the same category
+                const response = await fetch(`/api/words/random?count=3&exclude=${word.word_id}&exclude_ru=${encodeURIComponent(word.ru)}&category=${currentCategory}`);
+                if (!response.ok) {
+                    throw new Error('Failed to load random word options');
+                }
+                const wrongWords = await response.json();
+                options = [word, ...wrongWords].sort(() => Math.random() - 0.5);
+            } catch (error) {
+                // Fallback keeps card/options in sync even on API errors
+                const localWrongWords = currentWords
+                    .filter(w => w.word_id !== word.word_id && w.ru !== word.ru)
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 3);
+                options = [word, ...localWrongWords].sort(() => Math.random() - 0.5);
+            }
+
+            document.getElementById('word-progress').textContent =
+                `Слово ${currentWordIndex + 1} из ${currentWords.length}`;
+            document.getElementById('word-de').textContent = word.de;
+            document.getElementById('word-example').textContent = word.example || '';
             optionsDiv.innerHTML = '';
-            
-            options.forEach((opt, index) => {
+
+            options.forEach((opt) => {
                 const btn = document.createElement('button');
                 btn.className = 'option';
                 btn.textContent = opt.ru;
                 btn.onclick = () => selectAnswer(btn, opt.word_id === word.word_id, word.ru);
                 optionsDiv.appendChild(btn);
             });
-            
-            document.getElementById('next-btn').style.display = 'none';
+            isWordTransitionInProgress = false;
         }
         
         async function playAudio() {
@@ -1691,12 +1727,22 @@ HTML_TEMPLATE = """
             } else {
                 nextBtn.textContent = 'Следующее слово →';
             }
+            nextBtn.disabled = false;
             nextBtn.style.display = 'block';
         }
 
-        function nextWord() {
+        async function nextWord() {
+            if (isWordTransitionInProgress) return;
+            const nextBtn = document.getElementById('next-btn');
+            setButtonLoading(nextBtn, true);
             currentWordIndex++;
-            showNextWord();
+            try {
+                await showNextWord();
+            } finally {
+                isWordTransitionInProgress = false;
+                setButtonLoading(nextBtn, false);
+                if (nextBtn) nextBtn.style.display = 'none';
+            }
         }
         
         // Grammar tests
@@ -1988,6 +2034,7 @@ HTML_TEMPLATE = """
         }
         
         async function showNextPhrase() {
+            isPhraseTransitionInProgress = true;
             if (currentPhraseIndex >= currentPhrases.length) {
                 // Show results screen
                 const total = phraseSessionCorrect + phraseSessionWrong;
@@ -2013,15 +2060,15 @@ HTML_TEMPLATE = """
                 document.getElementById('phrase-options').appendChild(finishBtn);
 
                 tg.HapticFeedback?.notificationOccurred('success');
+                isPhraseTransitionInProgress = false;
                 return;
             }
             
             const phrase = currentPhrases[currentPhraseIndex];
-            document.getElementById('phrase-progress').textContent = 
-                `Фраза ${currentPhraseIndex + 1} из ${currentPhrases.length}`;
-            document.getElementById('phrase-de').textContent = phrase.de;
-            document.getElementById('phrase-context').textContent = phrase.context || '';
-            document.getElementById('phrase-example').textContent = phrase.example || '';
+            const optionsDiv = document.getElementById('phrase-options');
+            const nextPhrBtn = document.getElementById('next-phrase-btn');
+            nextPhrBtn.style.display = 'none';
+            optionsDiv.innerHTML = '<div class="loading">Загрузка вариантов...</div>';
             
             // Reset audio
             const audio = document.getElementById('word-audio');
@@ -2035,12 +2082,29 @@ HTML_TEMPLATE = """
                 audioBtn.disabled = false;
             }
             
-            // Get wrong options
-            const optResponse = await fetch(`/api/phrases/random?count=3&exclude=${phrase.phrase_id}&exclude_ru=${encodeURIComponent(phrase.ru)}`);
-            const wrongPhrases = await optResponse.json();
-            const options = [phrase, ...wrongPhrases].sort(() => Math.random() - 0.5);
+            let options = [];
+            try {
+                // Get wrong options
+                const optResponse = await fetch(`/api/phrases/random?count=3&exclude=${phrase.phrase_id}&exclude_ru=${encodeURIComponent(phrase.ru)}`);
+                if (!optResponse.ok) {
+                    throw new Error('Failed to load random phrase options');
+                }
+                const wrongPhrases = await optResponse.json();
+                options = [phrase, ...wrongPhrases].sort(() => Math.random() - 0.5);
+            } catch (error) {
+                // Fallback keeps phrase/options synchronized
+                const localWrongPhrases = currentPhrases
+                    .filter(p => p.phrase_id !== phrase.phrase_id && p.ru !== phrase.ru)
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 3);
+                options = [phrase, ...localWrongPhrases].sort(() => Math.random() - 0.5);
+            }
 
-            const optionsDiv = document.getElementById('phrase-options');
+            document.getElementById('phrase-progress').textContent =
+                `Фраза ${currentPhraseIndex + 1} из ${currentPhrases.length}`;
+            document.getElementById('phrase-de').textContent = phrase.de;
+            document.getElementById('phrase-context').textContent = phrase.context || '';
+            document.getElementById('phrase-example').textContent = phrase.example || '';
             optionsDiv.innerHTML = '';
 
             options.forEach((opt) => {
@@ -2050,8 +2114,7 @@ HTML_TEMPLATE = """
                 btn.onclick = () => selectPhraseAnswer(btn, opt.phrase_id === phrase.phrase_id, phrase.ru);
                 optionsDiv.appendChild(btn);
             });
-            
-            document.getElementById('next-phrase-btn').style.display = 'none';
+            isPhraseTransitionInProgress = false;
         }
         
         async function playPhraseAudio() {
@@ -2128,12 +2191,22 @@ HTML_TEMPLATE = """
             } else {
                 nextPhrBtn.textContent = 'Следующая фраза →';
             }
+            nextPhrBtn.disabled = false;
             nextPhrBtn.style.display = 'block';
         }
         
-        function nextPhrase() {
+        async function nextPhrase() {
+            if (isPhraseTransitionInProgress) return;
+            const nextPhrBtn = document.getElementById('next-phrase-btn');
+            setButtonLoading(nextPhrBtn, true);
             currentPhraseIndex++;
-            showNextPhrase();
+            try {
+                await showNextPhrase();
+            } finally {
+                isPhraseTransitionInProgress = false;
+                setButtonLoading(nextPhrBtn, false);
+                if (nextPhrBtn) nextPhrBtn.style.display = 'none';
+            }
         }
         
         // Dialogues functions
