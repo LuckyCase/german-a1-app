@@ -17,6 +17,8 @@ from bot.handlers.settings import show_settings, settings_callback
 from bot.handlers.admin import broadcast_command, send_command
 from bot.handlers.exercises import get_exercises_handler
 from bot.handlers.diagnostic import get_diagnostic_handler
+from bot.monitoring import init_sentry, telegram_error_handler_factory
+
 # Enable logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -30,6 +32,8 @@ def main():
     if not TELEGRAM_BOT_TOKEN:
         logger.error("TELEGRAM_BOT_TOKEN not set!")
         return
+
+    init_sentry()
 
     # Initialize database
     asyncio.run(init_db())
@@ -65,6 +69,9 @@ def main():
     application.add_handler(get_grammar_handler())
     application.add_handler(get_exercises_handler())
     application.add_handler(get_feedback_handler())
+
+    # Error handler (Sentry + Telegram admin notifications)
+    application.add_error_handler(telegram_error_handler_factory())
 
     # Setup reminder job
     setup_reminder_job(application)

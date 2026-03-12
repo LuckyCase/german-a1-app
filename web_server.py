@@ -30,6 +30,7 @@ from bot.database import (
     FEEDBACK_STATUS_LABELS, MAX_FEEDBACK_LENGTH
 )
 from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
+from bot.monitoring import init_sentry
 
 # Telegram bot imports
 from telegram import Update
@@ -44,6 +45,8 @@ logging.basicConfig(
     level=logging.INFO
 )
 logger = logging.getLogger(__name__)
+
+init_sentry()
 
 app = Flask(__name__)
 CORS(app)
@@ -3380,6 +3383,153 @@ def webhook_info():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
+# ============= ADMIN PANEL =============
+
+from bot.config import ADMIN_SECRET
+from functools import wraps
+
+
+def _require_admin(f):
+    """Decorator: require valid ADMIN_SECRET in Authorization header."""
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if not ADMIN_SECRET:
+            return jsonify({"error": "ADMIN_SECRET not configured"}), 503
+        auth = request.headers.get("Authorization", "")
+        if auth != f"Bearer {ADMIN_SECRET}":
+            return jsonify({"error": "unauthorized"}), 401
+        return f(*args, **kwargs)
+    return wrapper
+
+
+@app.route("/admin/stats")
+@_require_admin
+def admin_stats():
+    """Dashboard statistics: user counts, DAU/MAU, popular sections."""
+    async def _stats():
+        from bot.database import get_pool
+        pool = await get_pool()
+        async with pool.acquire() as conn:
+            total_users = await conn.fetchval("SELECT COUNT(*) FROM users")
+
+            today = __import__("datetime").datetime.now().strftime("%Y-%m-%d")
+            dau = await conn.fetchval(
+                "SELECT COUNT(*) FROM users WHERE last_active_date = $1", today
+            )
+            month_start = today[:8] + "01"
+            mau = await conn.fetchval(
+                "SELECT COUNT(*) FROM users WHERE last_active_date >= $1", month_start
+            )
+
+            words_total = await conn.fetchval("SELECT COUNT(*) FROM progress")
+            phrases_total = await conn.fetchval("SELECT COUNT(*) FROM phrases_progress")
+            grammar_total = await conn.fetchval("SELECT COUNT(*) FROM grammar_results")
+            dialogues_total = await conn.fetchval("SELECT COUNT(*) FROM dialogues_progress")
+            exercises_total = await conn.fetchval("SELECT COUNT(*) FROM exercises_progress")
+            culture_total = await conn.fetchval("SELECT COUNT(*) FROM culture_progress")
+
+            avg_streak = await conn.fetchval(
+                "SELECT ROUND(AVG(current_streak), 1) FROM users WHERE current_streak > 0"
+            )
+
+            feedback_new = await conn.fetchval(
+                "SELECT COUNT(*) FROM feedback WHERE status = 0"
+            )
+
+        return {
+            "total_users": total_users,
+            "dau": dau,
+            "mau": mau,
+            "avg_streak": float(avg_streak) if avg_streak else 0,
+            "records": {
+                "words": words_total,
+                "phrases": phrases_total,
+                "grammar_tests": grammar_total,
+                "dialogues": dialogues_total,
+                "exercises": exercises_total,
+                "culture": culture_total,
+            },
+            "feedback_new": feedback_new,
+        }
+
+    try:
+        data = run_bot_async(_stats())
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/admin/feedback")
+@_require_admin
+def admin_feedback_list():
+    """List all feedback, optionally filtered by status."""
+    status_filter = request.args.get("status", type=int)
+    limit = min(request.args.get("limit", 50, type=int), 200)
+    offset = request.args.get("offset", 0, type=int)
+
+    async def _fetch():
+        from bot.database import get_pool
+        pool = await get_pool()
+        async with pool.acquire() as conn:
+            if status_filter is not None:
+                rows = await conn.fetch(
+                    """SELECT f.id, f.user_id, u.username, f.text, f.status,
+                              f.created_at, f.updated_at
+                       FROM feedback f LEFT JOIN users u ON f.user_id = u.user_id
+                       WHERE f.status = $1
+                       ORDER BY f.created_at DESC LIMIT $2 OFFSET $3""",
+                    status_filter, limit, offset,
+                )
+            else:
+                rows = await conn.fetch(
+                    """SELECT f.id, f.user_id, u.username, f.text, f.status,
+                              f.created_at, f.updated_at
+                       FROM feedback f LEFT JOIN users u ON f.user_id = u.user_id
+                       ORDER BY f.created_at DESC LIMIT $1 OFFSET $2""",
+                    limit, offset,
+                )
+            return [
+                {**dict(r), "created_at": str(r["created_at"]), "updated_at": str(r["updated_at"])}
+                for r in rows
+            ]
+
+    try:
+        data = run_bot_async(_fetch())
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/admin/feedback/<int:feedback_id>/status", methods=["POST"])
+@_require_admin
+def admin_feedback_update(feedback_id: int):
+    """Update feedback status: POST { "status": 1..5 }."""
+    body = request.get_json(silent=True) or {}
+    new_status = body.get("status")
+    if new_status is None or not isinstance(new_status, int) or new_status not in range(6):
+        return jsonify({"error": "status must be 0-5"}), 400
+
+    async def _update():
+        from bot.database import get_pool
+        pool = await get_pool()
+        async with pool.acquire() as conn:
+            result = await conn.execute(
+                "UPDATE feedback SET status = $1, updated_at = NOW() WHERE id = $2",
+                new_status, feedback_id,
+            )
+            return "UPDATE 1" in result
+
+    try:
+        ok = run_bot_async(_update())
+        if ok:
+            return jsonify({"ok": True})
+        return jsonify({"error": "feedback not found"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# ============= HEALTH / DEBUG =============
 
 @app.route('/health')
 def health():

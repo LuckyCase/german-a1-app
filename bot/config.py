@@ -21,3 +21,9 @@ ADMIN_IDS = [
     for x in os.getenv("ADMIN_IDS", "").split(",")
     if x.strip().isdigit()
 ]
+
+# Sentry DSN (optional — leave empty to disable)
+SENTRY_DSN = os.getenv("SENTRY_DSN", "")
+
+# Admin secret for web admin panel (Bearer token)
+ADMIN_SECRET = os.getenv("ADMIN_SECRET", "")
