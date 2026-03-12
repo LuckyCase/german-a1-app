@@ -2,96 +2,239 @@
   "id": "placement_test",
   "name": "Диагностический тест",
   "name_de": "Einstufungstest",
-  "description": "15 вопросов для определения вашего уровня немецкого",
+  "description": "Многоэтапный тест: A1-A2, затем B1-B2 и C1-C2 при высоком результате",
+  "sources": [
+    {
+      "name": "Goethe-Institut Einstufungstest",
+      "url": "https://www.goethe.de/ins/iq/de/m/spr/kur/tst.html",
+      "note": "Официальный формат: чтение, грамматика, словарь; уровни от начальных до продвинутых."
+    },
+    {
+      "name": "telc Online Placement Test",
+      "url": "https://www.telc.net/en/language-examinations/placement-tests/",
+      "note": "Официальный CEFR-подход и уровневое тестирование."
+    },
+    {
+      "name": "onSET language placement test",
+      "url": "https://www.onset.de/",
+      "note": "Широко используемый академический Einstufungstest по CEFR."
+    }
+  ],
+  "stages": [
+    {
+      "id": "A1_A2",
+      "name": "Базовая диагностика A1-A2",
+      "questions_count": 8,
+      "offer_next_if_score_at_least": 0.75
+    },
+    {
+      "id": "B1_B2",
+      "name": "Продвинутая диагностика B1-B2",
+      "questions_count": 8,
+      "offer_next_if_score_at_least": 0.75
+    },
+    {
+      "id": "C1_C2",
+      "name": "Экспертная диагностика C1-C2",
+      "questions_count": 8,
+      "offer_next_if_score_at_least": 1.1
+    }
+  ],
   "questions": [
     {
+      "stage_id": "A1_A2",
       "level": "A1.1",
       "question": "Как сказать «Меня зовут Анна»?",
       "options": ["Ich heiße Anna.", "Ich bin komme Anna.", "Ich habe Anna."],
       "correct": 0
     },
     {
+      "stage_id": "A1_A2",
       "level": "A1.1",
-      "question": "Выберите правильный артикль: ___ Buch (книга)",
+      "question": "Выберите правильный артикль: ___ Buch",
       "options": ["der", "die", "das"],
       "correct": 2
     },
     {
+      "stage_id": "A1_A2",
       "level": "A1.1",
       "question": "Что значит «Guten Morgen»?",
       "options": ["Добрый вечер", "Доброе утро", "Спокойной ночи"],
       "correct": 1
     },
     {
-      "level": "A1.1",
-      "question": "Как спросить «Откуда вы?»",
-      "options": ["Wo wohnen Sie?", "Woher kommen Sie?", "Wie heißen Sie?"],
-      "correct": 1
-    },
-    {
-      "level": "A1.1",
-      "question": "Ich ___ aus Russland.",
-      "options": ["bin", "komme", "habe"],
-      "correct": 1
-    },
-    {
+      "stage_id": "A1_A2",
       "level": "A1.2",
-      "question": "Ich kaufe ___ Mantel. (мужской род, Akkusativ)",
+      "question": "Ich kaufe ___ Mantel. (Akkusativ, maskulin)",
       "options": ["der", "den", "dem"],
       "correct": 1
     },
     {
+      "stage_id": "A1_A2",
       "level": "A1.2",
-      "question": "Er ___ jeden Tag Deutsch lernen. (должен)",
-      "options": ["will", "muss", "darf"],
-      "correct": 1
-    },
-    {
-      "level": "A1.2",
-      "question": "Какой порядок слов правильный?",
+      "question": "Выберите правильный порядок слов:",
       "options": ["Morgen ich gehe ins Kino.", "Morgen gehe ich ins Kino.", "Ich morgen gehe ins Kino."],
       "correct": 1
     },
     {
-      "level": "A1.2",
-      "question": "Die Kinder ___ nicht laut sein. (не разрешается)",
-      "options": ["müssen", "dürfen", "können"],
-      "correct": 1
-    },
-    {
-      "level": "A1.2",
-      "question": "Wie spät ist es? — Es ist halb drei. Который час?",
-      "options": ["2:30", "3:30", "3:00"],
-      "correct": 0
-    },
-    {
-      "level": "A2",
+      "stage_id": "A1_A2",
+      "level": "A2.1",
       "question": "Ich ___ gestern ins Kino gegangen.",
       "options": ["habe", "bin", "werde"],
       "correct": 1
     },
     {
-      "level": "A2",
+      "stage_id": "A1_A2",
+      "level": "A2.1",
+      "question": "Ich bleibe zu Hause, ___ ich krank bin.",
+      "options": ["dass", "weil", "ob"],
+      "correct": 1
+    },
+    {
+      "stage_id": "A1_A2",
+      "level": "A2.2",
       "question": "Er hilft ___ Mutter. (Dativ)",
       "options": ["die", "der", "den"],
       "correct": 1
     },
     {
-      "level": "A2",
-      "question": "Ich bleibe zu Hause, ___ ich krank bin.",
-      "options": ["dass", "weil", "wenn"],
-      "correct": 1
-    },
-    {
-      "level": "A2",
-      "question": "Berlin ist ___ als München. (большой)",
+      "stage_id": "A1_A2",
+      "level": "A2.2",
+      "question": "Berlin ist ___ als München.",
       "options": ["groß", "größer", "am größten"],
       "correct": 1
     },
     {
-      "level": "A2",
-      "question": "Ich ___ mir die Hände gewaschen. (возвратный глагол, Perfekt)",
-      "options": ["bin", "habe", "werde"],
+      "stage_id": "A1_A2",
+      "level": "A2.2",
+      "question": "Die Kinder ___ nicht laut sein. (запрет)",
+      "options": ["müssen", "dürfen", "können"],
+      "correct": 1
+    },
+    {
+      "stage_id": "B1_B2",
+      "level": "B1.1",
+      "question": "Wenn ich mehr Zeit hätte, ___ ich öfter Deutsch üben.",
+      "options": ["würde", "werde", "habe"],
+      "correct": 0
+    },
+    {
+      "stage_id": "B1_B2",
+      "level": "B1.1",
+      "question": "Er sagt, ___ er morgen später kommt.",
+      "options": ["ob", "dass", "weil"],
+      "correct": 1
+    },
+    {
+      "stage_id": "B1_B2",
+      "level": "B1.2",
+      "question": "Das ist der Mann, ___ ich gestern getroffen habe.",
+      "options": ["der", "den", "dem"],
+      "correct": 1
+    },
+    {
+      "stage_id": "B1_B2",
+      "level": "B1.2",
+      "question": "Welche Formulierung klingt вежливо и формально?",
+      "options": ["Gib mir bitte Infos.", "Ich hätte gern weitere Informationen.", "Sag schnell Bescheid."],
+      "correct": 1
+    },
+    {
+      "stage_id": "B1_B2",
+      "level": "B2.1",
+      "question": "Trotz des schlechten Wetters ___ wir gewandert.",
+      "options": ["haben", "sind", "werden"],
+      "correct": 1
+    },
+    {
+      "stage_id": "B1_B2",
+      "level": "B2.1",
+      "question": "Die Maßnahme führte ___, dass die Kosten sanken.",
+      "options": ["zu", "an", "über"],
+      "correct": 0
+    },
+    {
+      "stage_id": "B1_B2",
+      "level": "B2.2",
+      "question": "Je mehr ich lese, ___ ich schreibe.",
+      "options": ["desto besser", "umso gut", "mehr gut"],
+      "correct": 0
+    },
+    {
+      "stage_id": "B1_B2",
+      "level": "B2.2",
+      "question": "Выберите правильный вариант для пассива в прошедшем: Der Vertrag ___ gestern unterschrieben.",
+      "options": ["ist", "wurde", "hat"],
+      "correct": 1
+    },
+    {
+      "stage_id": "B1_B2",
+      "level": "B2.2",
+      "question": "Ihr Vorschlag ist sinnvoll, ___ er etwas teuer ist.",
+      "options": ["obwohl", "damit", "während"],
+      "correct": 0
+    },
+    {
+      "stage_id": "C1_C2",
+      "level": "C1.1",
+      "question": "Die Studie kommt zu dem Ergebnis, dass die Datenlage ___ ist.",
+      "options": ["aussagekräftig", "aussagenkräftig", "aussagekraftig"],
+      "correct": 0
+    },
+    {
+      "stage_id": "C1_C2",
+      "level": "C1.1",
+      "question": "Wählen Sie die logisch präziseste Fortsetzung: \"Die Maßnahme ist wirksam, ___\"",
+      "options": ["weil sie nett klingt.", "sofern sie konsequent umgesetzt wird.", "damit alle zufrieden sind."],
+      "correct": 1
+    },
+    {
+      "stage_id": "C1_C2",
+      "level": "C1.2",
+      "question": "Er handelte, ___ ihm die Konsequenzen bewusst gewesen wären.",
+      "options": ["als ob", "als", "obwohl"],
+      "correct": 0
+    },
+    {
+      "stage_id": "C1_C2",
+      "level": "C1.2",
+      "question": "Die Autorin setzt sich kritisch mit Positionen auseinander, die sie zuvor nur ___ dargestellt hatte.",
+      "options": ["verkürzt", "verkürzend", "Verkürzung"],
+      "correct": 0
+    },
+    {
+      "stage_id": "C1_C2",
+      "level": "C2.1",
+      "question": "Welche Nuance passt am besten: \"Der Vorschlag ist nicht nur ambitioniert, sondern ___ realisierbar.\"",
+      "options": ["auch", "gleich", "lediglich"],
+      "correct": 0
+    },
+    {
+      "stage_id": "C1_C2",
+      "level": "C2.1",
+      "question": "Die Argumentation ist in sich schlüssig, ___ einzelne Prämissen umstritten bleiben.",
+      "options": ["wenngleich", "ob", "sodass"],
+      "correct": 0
+    },
+    {
+      "stage_id": "C1_C2",
+      "level": "C2.2",
+      "question": "Выберите наиболее идиоматичный вариант: \"Er hat die Kritik ...\"",
+      "options": ["in den Wind geschlagen", "vom Wind geschlagen", "unter den Wind geschlagen"],
+      "correct": 0
+    },
+    {
+      "stage_id": "C1_C2",
+      "level": "C2.2",
+      "question": "Der Beitrag ist stilistisch anspruchsvoll und setzt ein hohes Maß ___ Textkompetenz voraus.",
+      "options": ["an", "an der", "an die"],
+      "correct": 0
+    },
+    {
+      "stage_id": "C1_C2",
+      "level": "C2.2",
+      "question": "Welche Variante wirkt im wissenschaftlichen Register am präzisesten?",
+      "options": ["Das ist irgendwie wichtig.", "Die Relevanz des Befunds ist nicht zu unterschätzen.", "Das spielt halt schon eine Rolle."],
       "correct": 1
     }
   ]

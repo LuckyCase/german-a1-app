@@ -20,7 +20,7 @@ from bot.content_manager import (
     get_current_level_str, get_current_level,
     get_culture_topics, get_culture_topic,
     get_exercise_sets, get_exercise_set, get_exercise_tasks,
-    get_diagnostic_questions
+    get_diagnostic_stages, get_diagnostic_questions, recommend_diagnostic_level
 )
 from bot.database import (
     get_user_stats, update_word_progress, save_grammar_result,
@@ -1202,9 +1202,12 @@ HTML_TEMPLATE = """
         let currentExTaskIndex = 0;
         let currentExScore = 0;
         let onboardingRequired = false;
+        let onboardingStages = [];
+        let onboardingStageIndex = 0;
         let onboardingQuestions = [];
         let onboardingQuestionIndex = 0;
         let onboardingCorrect = 0;
+        let onboardingStageResults = {};
         let onboardingRecommended = { major: 'A1', sub: '1', name: 'A1.1' };
 
         function setButtonLoading(button, isLoading, loadingText = 'Загрузка...') {
@@ -1374,36 +1377,47 @@ HTML_TEMPLATE = """
                 if (!response.ok) {
                     throw new Error('questions fetch failed');
                 }
-                onboardingQuestions = await response.json();
-                onboardingQuestionIndex = 0;
-                onboardingCorrect = 0;
+                const payload = await response.json();
+                onboardingStages = Array.isArray(payload.stages) ? payload.stages : [];
+                onboardingStageResults = {};
+                onboardingStageIndex = 0;
 
-                if (!Array.isArray(onboardingQuestions) || onboardingQuestions.length === 0) {
+                if (!onboardingStages.length) {
                     tg.showAlert?.('Тест временно недоступен. Выберите уровень вручную.');
                     showManualLevelSelection();
                     return;
                 }
 
-                renderDiagnosticQuestion();
+                startOnboardingStage(0);
             } catch (error) {
                 tg.showAlert?.('Не удалось загрузить тест. Выберите уровень вручную.');
                 showManualLevelSelection();
             }
         }
 
+        function startOnboardingStage(index) {
+            onboardingStageIndex = index;
+            onboardingQuestions = onboardingStages[index]?.questions || [];
+            onboardingQuestionIndex = 0;
+            onboardingCorrect = 0;
+            renderDiagnosticQuestion();
+        }
+
         function renderDiagnosticQuestion() {
             if (onboardingQuestionIndex >= onboardingQuestions.length) {
-                showDiagnosticResult();
+                handleOnboardingStageCompleted();
                 return;
             }
 
             const q = onboardingQuestions[onboardingQuestionIndex];
+            const stage = onboardingStages[onboardingStageIndex] || {};
             const optionsHtml = (q.options || [])
                 .map((option, idx) => `<button type="button" class="option" data-diag-index="${idx}">${option}</button>`)
                 .join('');
 
             setOnboardingHTML(`
                 <h2>Диагностический тест</h2>
+                <p><strong>${stage.name || ''}</strong></p>
                 <p>Вопрос ${onboardingQuestionIndex + 1} из ${onboardingQuestions.length}</p>
                 <div class="question-card" style="margin-bottom: 12px;">
                     <div class="question-text">${q.question || ''}</div>
@@ -1422,14 +1436,59 @@ HTML_TEMPLATE = """
             });
         }
 
+        function handleOnboardingStageCompleted() {
+            const stage = onboardingStages[onboardingStageIndex] || {};
+            const stageId = stage.id;
+            const total = onboardingQuestions.length;
+            const ratio = total > 0 ? onboardingCorrect / total : 0;
+            onboardingStageResults[stageId] = {
+                correct: onboardingCorrect,
+                total: total
+            };
+
+            const hasNext = onboardingStageIndex + 1 < onboardingStages.length;
+            const threshold = Number(stage.offer_next_if_score_at_least ?? 1.1);
+            if (hasNext && ratio >= threshold) {
+                const nextName = onboardingStages[onboardingStageIndex + 1]?.name || 'следующий этап';
+                setOnboardingHTML(`
+                    <h2>Этап завершен</h2>
+                    <p><strong>${stage.name || 'Диагностика'}</strong></p>
+                    <p>Результат: ${onboardingCorrect} из ${total}</p>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" data-action="continueDiagnosticStage">
+                            Продолжить: ${nextName}
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-action="finishDiagnosticNow">
+                            Завершить и получить результат
+                        </button>
+                    </div>
+                `);
+                return;
+            }
+
+            showDiagnosticResult();
+        }
+
+        function continueDiagnosticStage() {
+            const nextIndex = onboardingStageIndex + 1;
+            if (nextIndex >= onboardingStages.length) {
+                showDiagnosticResult();
+                return;
+            }
+            startOnboardingStage(nextIndex);
+        }
+
+        function finishDiagnosticNow() {
+            showDiagnosticResult();
+        }
+
         async function showDiagnosticResult() {
             try {
                 const response = await fetch('/api/diagnostic/recommend', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
-                        correct: onboardingCorrect,
-                        total: onboardingQuestions.length
+                        stage_results: onboardingStageResults
                     })
                 });
                 if (response.ok) {
@@ -1439,9 +1498,16 @@ HTML_TEMPLATE = """
                 console.error('showDiagnosticResult error:', error);
             }
 
+            const stageSummary = Object.entries(onboardingStageResults)
+                .map(([stageId, stat]) => {
+                    const title = stageId.replace('_', '-');
+                    return `<li>${title}: ${stat.correct}/${stat.total}</li>`;
+                })
+                .join('');
+
             setOnboardingHTML(`
                 <h2>Результат теста</h2>
-                <p>Правильных ответов: ${onboardingCorrect} из ${onboardingQuestions.length}</p>
+                <ul style="margin: 0 0 12px 18px;">${stageSummary}</ul>
                 <p>Рекомендуемый уровень: <strong>${onboardingRecommended.name}</strong></p>
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary" data-action="acceptDiagnosticRecommendation">
@@ -2891,33 +2957,32 @@ def api_onboarding_status():
 
 @app.route('/api/diagnostic/questions')
 def api_diagnostic_questions():
-    """Return shuffled diagnostic questions for onboarding."""
-    questions = get_diagnostic_questions() or []
-    random.shuffle(questions)
-    return jsonify(questions[:15])
+    """Return staged diagnostic payload for onboarding."""
+    stages = []
+    for stage in get_diagnostic_stages():
+        stage_id = stage.get("id")
+        if not stage_id:
+            continue
+        stage_questions = get_diagnostic_questions(
+            stage_id=stage_id,
+            limit=stage.get("questions_count"),
+            shuffle=True
+        ) or []
+        if not stage_questions:
+            continue
+        stage_payload = dict(stage)
+        stage_payload["questions"] = stage_questions
+        stages.append(stage_payload)
+    return jsonify({"stages": stages})
 
 
 @app.route('/api/diagnostic/recommend', methods=['POST'])
 def api_diagnostic_recommend():
-    """Return recommended level by diagnostic score."""
+    """Return recommended level by staged diagnostic scores."""
     data = request.json or {}
-    correct = int(data.get('correct', 0))
-
-    if correct <= 5:
-        major, sub = "A1", "1"
-        level_name = "A1.1 (Начинающий)"
-    elif correct <= 10:
-        major, sub = "A1", "2"
-        level_name = "A1.2 (Продолжающий A1)"
-    else:
-        major, sub = "A1", "2"
-        level_name = "A1.2 (Контент A2 в разработке)"
-
-    return jsonify({
-        "major": major,
-        "sub": sub,
-        "name": level_name,
-    })
+    stage_results = data.get("stage_results", {}) or {}
+    recommendation = recommend_diagnostic_level(stage_results)
+    return jsonify(recommendation)
 
 
 @app.route('/api/onboarding/complete', methods=['POST'])

@@ -10,8 +10,9 @@ Content Manager - загрузка и управление учебными да
 
 import json
 import os
+import random
 from pathlib import Path
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Any
 import logging
 
 logger = logging.getLogger(__name__)
@@ -641,11 +642,90 @@ def get_exercise_tasks(set_id: str, major: str = None, sub: str = None) -> list:
 # Diagnostic test
 # ============================================================
 
-def get_diagnostic_questions() -> list:
-    """Load diagnostic placement test questions."""
+def get_diagnostic_test() -> dict:
+    """Load full diagnostic placement test payload."""
     filepath = BASE_DATA_DIR / "diagnostic" / "placement_test.json"
-    data = _load_json(filepath)
-    return data.get("questions", [])
+    return _load_json(filepath) or {}
+
+
+def get_diagnostic_stages() -> list:
+    """Return diagnostic stages metadata (ordered)."""
+    return get_diagnostic_test().get("stages", [])
+
+
+def get_diagnostic_questions(stage_id: str = None, limit: int = None, shuffle: bool = False) -> list:
+    """Load diagnostic questions; optionally filter by stage."""
+    questions = get_diagnostic_test().get("questions", [])
+    if stage_id:
+        questions = [q for q in questions if q.get("stage_id") == stage_id]
+
+    result = list(questions)
+    if shuffle:
+        random.shuffle(result)
+    if isinstance(limit, int) and limit > 0:
+        return result[:limit]
+    return result
+
+
+def recommend_diagnostic_level(stage_results: Dict[str, Dict[str, Any]]) -> dict:
+    """Recommend CEFR level from staged diagnostic results."""
+    a_stage = stage_results.get("A1_A2", {})
+    b_stage = stage_results.get("B1_B2", {})
+    c_stage = stage_results.get("C1_C2", {})
+
+    def _ratio(stage: dict) -> float:
+        total = int(stage.get("total", 0) or 0)
+        if total <= 0:
+            return 0.0
+        return float(stage.get("correct", 0) or 0) / float(total)
+
+    a_ratio = _ratio(a_stage)
+    b_ratio = _ratio(b_stage)
+    c_ratio = _ratio(c_stage)
+
+    major, sub, name = "A1", "1", "A1.1 (Начинающий)"
+
+    if a_ratio < 0.45:
+        major, sub, name = "A1", "1", "A1.1 (Начинающий)"
+    elif a_ratio < 0.70:
+        major, sub, name = "A1", "2", "A1.2 (Продолжающий A1)"
+    elif a_ratio < 0.85:
+        major, sub, name = "A2", "1", "A2.1 (Базовый пользователь)"
+    else:
+        major, sub, name = "A2", "2", "A2.2 (Уверенный базовый)"
+
+    if b_stage:
+        if b_ratio < 0.45:
+            major, sub, name = "A2", "2", "A2.2 (Уверенный базовый)"
+        elif b_ratio < 0.70:
+            major, sub, name = "B1", "1", "B1.1 (Средний)"
+        elif b_ratio < 0.85:
+            major, sub, name = "B1", "2", "B1.2 (Уверенный средний)"
+        else:
+            major, sub, name = "B2", "2", "B2.2 (Продвинутый)"
+
+    if c_stage:
+        if c_ratio < 0.45:
+            major, sub, name = "B2", "2", "B2.2 (Продвинутый)"
+        elif c_ratio < 0.70:
+            major, sub, name = "C1", "1", "C1.1 (Профессиональный)"
+        elif c_ratio < 0.85:
+            major, sub, name = "C1", "2", "C1.2 (Уверенный профессиональный)"
+        elif c_ratio < 0.95:
+            major, sub, name = "C2", "1", "C2.1 (Почти носитель)"
+        else:
+            major, sub, name = "C2", "2", "C2.2 (Свободное владение)"
+
+    return {
+        "major": major,
+        "sub": sub,
+        "name": name,
+        "scores": {
+            "A1_A2": a_stage,
+            "B1_B2": b_stage,
+            "C1_C2": c_stage,
+        }
+    }
 
 
 # ============================================================
