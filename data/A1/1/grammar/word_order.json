@@ -139,6 +139,126 @@
       ],
       "correct": 0,
       "explanation": "Подлежащее на 1-м месте, глагол на 2-м"
+    },
+    {
+      "question": "Как превратить в вопрос: «Er kommt morgen.»?",
+      "options": [
+        "Kommt er morgen?",
+        "Er kommt morgen?",
+        "Morgen kommt er?"
+      ],
+      "correct": 0,
+      "explanation": "В вопросе да/нет глагол стоит на ПЕРВОМ месте: Kommt er morgen?"
+    },
+    {
+      "question": "Как превратить в вопрос: «Du sprichst Deutsch.»?",
+      "options": [
+        "Du sprichst Deutsch?",
+        "Sprichst du Deutsch?",
+        "Deutsch sprichst du?"
+      ],
+      "correct": 1,
+      "explanation": "Ja/Nein-Frage: глагол на первом месте → Sprichst du Deutsch?"
+    },
+    {
+      "question": "Как превратить в вопрос: «Sie wohnt in Berlin.»?",
+      "options": [
+        "Wohnt sie in Berlin?",
+        "Sie wohnt in Berlin?",
+        "In Berlin wohnt sie?"
+      ],
+      "correct": 0,
+      "explanation": "Вопрос да/нет: глагол на первом месте → Wohnt sie in Berlin?"
+    },
+    {
+      "question": "Какой порядок слов правильный для Ja/Nein-Frage?",
+      "options": [
+        "Du kannst schwimmen?",
+        "Kannst du schwimmen?",
+        "Schwimmen du kannst?"
+      ],
+      "correct": 1,
+      "explanation": "В вопросе без вопросительного слова глагол на первом месте"
+    },
+    {
+      "question": "Какой порядок слов правильный для Ja/Nein-Frage?",
+      "options": [
+        "Hast du Zeit?",
+        "Du hast Zeit?",
+        "Zeit hast du?"
+      ],
+      "correct": 0,
+      "explanation": "Ja/Nein-Frage: глагол (hast) на первом месте"
+    },
+    {
+      "question": "Найдите правильный вариант:",
+      "options": [
+        "Gestern ich habe Fußball gespielt.",
+        "Gestern habe ich Fußball gespielt.",
+        "Ich gestern habe Fußball gespielt."
+      ],
+      "correct": 1,
+      "explanation": "После обстоятельства времени — инверсия: Gestern habe ich..."
+    },
+    {
+      "question": "Найдите правильный вариант:",
+      "options": [
+        "Am Montag ich gehe zum Arzt.",
+        "Ich am Montag gehe zum Arzt.",
+        "Am Montag gehe ich zum Arzt."
+      ],
+      "correct": 2,
+      "explanation": "После обстоятельства времени — инверсия: Am Montag gehe ich..."
+    },
+    {
+      "question": "Найдите правильный вариант:",
+      "options": [
+        "Danach wir essen zu Mittag.",
+        "Danach essen wir zu Mittag.",
+        "Wir danach essen zu Mittag."
+      ],
+      "correct": 1,
+      "explanation": "После наречия — инверсия: Danach essen wir..."
+    },
+    {
+      "question": "Найдите ошибку:",
+      "options": [
+        "«Heute ich gehe in die Schule» — ошибки нет",
+        "«Heute ich gehe in die Schule» — глагол должен быть на 2-м месте",
+        "«Heute ich gehe in die Schule» — подлежащее должно быть первым"
+      ],
+      "correct": 1,
+      "explanation": "Правильно: Heute gehe ich in die Schule. Глагол всегда на 2-м месте!"
+    },
+    {
+      "question": "Найдите правильный вариант с отделяемой приставкой:",
+      "options": [
+        "Ich rufe dich morgen an.",
+        "Ich anrufe dich morgen.",
+        "Ich rufe an dich morgen."
+      ],
+      "correct": 0,
+      "explanation": "Отделяемая приставка an- идёт в конец: Ich rufe dich morgen an."
+    },
+    {
+      "question": "Найдите правильный вариант с отделяемой приставкой:",
+      "options": [
+        "Er kauft im Supermarkt ein.",
+        "Er einkauft im Supermarkt.",
+        "Er kauft ein im Supermarkt."
+      ],
+      "correct": 0,
+      "explanation": "Отделяемая приставка ein- идёт в конец: Er kauft im Supermarkt ein."
+    },
+    {
+      "question": "Какой порядок слов правильный?",
+      "options": [
+        "In der Schule er lernt Deutsch.",
+        "Er lernt in der Schule Deutsch.",
+        "Er in der Schule lernt Deutsch."
+      ],
+      "correct": 1,
+      "explanation": "Глагол на 2-м месте: Er lernt in der Schule Deutsch."
     }
   ]
 }

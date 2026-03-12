@@ -11,13 +11,62 @@
       {
         "title": "Спряжение модальных глаголов",
         "rows": [
-          ["", "können (мочь)", "müssen (должен)", "möchten (хотеть)", "wollen (хотеть)", "dürfen (иметь разрешение)"],
-          ["ich", "kann", "muss", "möchte", "will", "darf"],
-          ["du", "kannst", "musst", "möchtest", "willst", "darfst"],
-          ["er/sie/es", "kann", "muss", "möchte", "will", "darf"],
-          ["wir", "können", "müssen", "möchten", "wollen", "dürfen"],
-          ["ihr", "könnt", "müsst", "möchtet", "wollt", "dürft"],
-          ["sie/Sie", "können", "müssen", "möchten", "wollen", "dürfen"]
+          [
+            "",
+            "können (мочь)",
+            "müssen (должен)",
+            "möchten (хотеть)",
+            "wollen (хотеть)",
+            "dürfen (иметь разрешение)"
+          ],
+          [
+            "ich",
+            "kann",
+            "muss",
+            "möchte",
+            "will",
+            "darf"
+          ],
+          [
+            "du",
+            "kannst",
+            "musst",
+            "möchtest",
+            "willst",
+            "darfst"
+          ],
+          [
+            "er/sie/es",
+            "kann",
+            "muss",
+            "möchte",
+            "will",
+            "darf"
+          ],
+          [
+            "wir",
+            "können",
+            "müssen",
+            "möchten",
+            "wollen",
+            "dürfen"
+          ],
+          [
+            "ihr",
+            "könnt",
+            "müsst",
+            "möchtet",
+            "wollt",
+            "dürft"
+          ],
+          [
+            "sie/Sie",
+            "können",
+            "müssen",
+            "möchten",
+            "wollen",
+            "dürfen"
+          ]
         ]
       }
     ],
@@ -37,81 +86,203 @@
   "questions": [
     {
       "question": "Ich ___ Deutsch sprechen. (können)",
-      "options": ["kann", "kannst", "können"],
+      "options": [
+        "kann",
+        "kannst",
+        "können"
+      ],
       "correct": 0,
       "explanation": "ich kann (я могу)"
     },
     {
       "question": "Du ___ heute arbeiten. (müssen)",
-      "options": ["muss", "musst", "müssen"],
+      "options": [
+        "muss",
+        "musst",
+        "müssen"
+      ],
       "correct": 1,
       "explanation": "du musst (ты должен)"
     },
     {
       "question": "Er ___ einen Kaffee. (möchten)",
-      "options": ["möchte", "möchtest", "möchten"],
+      "options": [
+        "möchte",
+        "möchtest",
+        "möchten"
+      ],
       "correct": 0,
       "explanation": "er möchte (он хотел бы)"
     },
     {
       "question": "Wir ___ ins Kino gehen. (wollen)",
-      "options": ["will", "wollt", "wollen"],
+      "options": [
+        "will",
+        "wollt",
+        "wollen"
+      ],
       "correct": 2,
       "explanation": "wir wollen (мы хотим)"
     },
     {
       "question": "___ ich Sie etwas fragen? (dürfen)",
-      "options": ["Darf", "Darfst", "Dürfen"],
+      "options": [
+        "Darf",
+        "Darfst",
+        "Dürfen"
+      ],
       "correct": 0,
       "explanation": "Darf ich...? (Могу ли я...?)"
     },
     {
       "question": "Ihr ___ hier nicht rauchen. (dürfen)",
-      "options": ["darf", "dürft", "dürfen"],
+      "options": [
+        "darf",
+        "dürft",
+        "dürfen"
+      ],
       "correct": 1,
       "explanation": "ihr dürft (вам разрешено)"
     },
     {
       "question": "Sie ___ gut schwimmen. (können)",
-      "options": ["kann", "kannst", "können"],
+      "options": [
+        "kann",
+        "kannst",
+        "können"
+      ],
       "correct": 0,
       "explanation": "sie kann (она умеет)"
     },
     {
       "question": "Ich ___ morgen früh aufstehen. (müssen)",
-      "options": ["muss", "musst", "müssen"],
+      "options": [
+        "muss",
+        "musst",
+        "müssen"
+      ],
       "correct": 0,
       "explanation": "ich muss (я должен)"
     },
     {
       "question": "Du ___ das nicht tun. (sollen)",
-      "options": ["soll", "sollst", "sollen"],
+      "options": [
+        "soll",
+        "sollst",
+        "sollen"
+      ],
       "correct": 1,
       "explanation": "du sollst (тебе следует)"
     },
     {
       "question": "Wir ___ Pizza bestellen. (möchten)",
-      "options": ["möchte", "möchtet", "möchten"],
+      "options": [
+        "möchte",
+        "möchtet",
+        "möchten"
+      ],
       "correct": 2,
       "explanation": "wir möchten (мы хотели бы)"
     },
     {
       "question": "Sie ___ nicht so laut sprechen. (dürfen)",
-      "options": ["darf", "dürft", "dürfen"],
+      "options": [
+        "darf",
+        "dürft",
+        "dürfen"
+      ],
       "correct": 0,
       "explanation": "sie darf nicht (ей нельзя)"
     },
     {
       "question": "Ihr ___ mir helfen. (können)",
-      "options": ["kann", "könnt", "können"],
+      "options": [
+        "kann",
+        "könnt",
+        "können"
+      ],
       "correct": 1,
       "explanation": "ihr könnt (вы можете)"
     },
     {
       "question": "Er ___ nach Hause. (wollen)",
-      "options": ["will", "wollt", "wollen"],
+      "options": [
+        "will",
+        "wollt",
+        "wollen"
+      ],
       "correct": 0,
       "explanation": "er will (он хочет)"
+    },
+    {
+      "question": "Ich ___ gut Deutsch ___.",
+      "options": [
+        "kann ... sprechen",
+        "kann ... spricht",
+        "sprechen ... kann"
+      ],
+      "correct": 0,
+      "explanation": "Инфинитив стоит в конце предложения: Ich kann gut Deutsch sprechen."
+    },
+    {
+      "question": "Wir ___ morgen nach Berlin ___.",
+      "options": [
+        "fahren ... wollen",
+        "wollt ... fahren",
+        "wollen ... fahren"
+      ],
+      "correct": 2,
+      "explanation": "Инфинитив (fahren) стоит в конце: Wir wollen morgen nach Berlin fahren."
+    },
+    {
+      "question": "Er ___ heute nicht ___.",
+      "options": [
+        "muss ... arbeitet",
+        "musst ... arbeiten",
+        "muss ... arbeiten"
+      ],
+      "correct": 2,
+      "explanation": "Инфинитив в конце предложения: Er muss heute nicht arbeiten."
+    },
+    {
+      "question": "Du ___ hier nicht parken.",
+      "options": [
+        "kannst",
+        "darfst",
+        "musst"
+      ],
+      "correct": 1,
+      "explanation": "Запрет = отсутствие разрешения → dürfen. Du darfst hier nicht parken."
+    },
+    {
+      "question": "Im Museum ___ man nicht fotografieren.",
+      "options": [
+        "kann",
+        "muss",
+        "darf"
+      ],
+      "correct": 2,
+      "explanation": "Запрет (нельзя) = dürfen. Im Museum darf man nicht fotografieren."
+    },
+    {
+      "question": "Ich ___ bitte ein Glas Wasser.",
+      "options": [
+        "will",
+        "möchte",
+        "muss"
+      ],
+      "correct": 1,
+      "explanation": "Вежливая просьба → möchten. «Я хотел бы стакан воды, пожалуйста.»"
+    },
+    {
+      "question": "___ du ein Eis oder ___ du ein Eis?",
+      "options": [
+        "Willst ... möchtest",
+        "Möchtest ... willst",
+        "Musst ... darfst"
+      ],
+      "correct": 1,
+      "explanation": "möchten — вежливая форма, wollen — более прямая. Оба значат «хотеть», но möchten мягче."
     }
   ]
 }

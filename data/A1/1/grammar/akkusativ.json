@@ -123,6 +123,66 @@
       "options": ["ein", "einen", "einem"],
       "correct": 1,
       "explanation": "einen — муж. род в Akkusativ"
+    },
+    {
+      "question": "Ich habe ___ Bruder.",
+      "options": ["kein", "keinen", "keine"],
+      "correct": 1,
+      "explanation": "keinen — kein в Akkusativ мужского рода (der Bruder → keinen Bruder)"
+    },
+    {
+      "question": "Sie trinkt ___ Milch.",
+      "options": ["kein", "keinen", "keine"],
+      "correct": 2,
+      "explanation": "keine — женский род не меняется в Akkusativ (die Milch → keine Milch)"
+    },
+    {
+      "question": "Wir haben ___ Geld.",
+      "options": ["kein", "keinen", "keine"],
+      "correct": 0,
+      "explanation": "kein — средний род не меняется в Akkusativ (das Geld → kein Geld)"
+    },
+    {
+      "question": "Какое предложение правильное?",
+      "options": ["Ich sehe der Mann.", "Ich sehe den Mann.", "Ich sehe dem Mann."],
+      "correct": 1,
+      "explanation": "der → den в Akkusativ. «Я вижу мужчину.»"
+    },
+    {
+      "question": "Какое предложение правильное?",
+      "options": ["Er kauft ein Kuchen.", "Er kauft einen Kuchen.", "Er kauft einem Kuchen."],
+      "correct": 1,
+      "explanation": "ein → einen в Akkusativ мужского рода (der Kuchen)"
+    },
+    {
+      "question": "Das Geschenk ist ___ meinen Bruder.",
+      "options": ["für", "mit", "von"],
+      "correct": 0,
+      "explanation": "für + Akkusativ. Подарок для моего брата."
+    },
+    {
+      "question": "Wir gehen ___ den Park.",
+      "options": ["durch", "mit", "bei"],
+      "correct": 0,
+      "explanation": "durch + Akkusativ. Мы идём через парк."
+    },
+    {
+      "question": "Er geht ___ seinen Hund spazieren.",
+      "options": ["für", "ohne", "gegen"],
+      "correct": 1,
+      "explanation": "ohne + Akkusativ. Он идёт гулять без своей собаки."
+    },
+    {
+      "question": "Ich suche ___ Schlüssel.",
+      "options": ["den", "die", "das"],
+      "correct": 0,
+      "explanation": "Schlüssel — мужской род (der Schlüssel → den в Akkusativ)"
+    },
+    {
+      "question": "Ich brauche ___ Handy.",
+      "options": ["den", "die", "das"],
+      "correct": 2,
+      "explanation": "Handy — средний род (das Handy), не меняется в Akkusativ"
     }
   ]
 }

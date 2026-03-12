@@ -102,6 +102,72 @@
       "options": ["Der", "Die", "Das"],
       "correct": 1,
       "explanation": "Straße — женский род (die Straße)"
+    },
+    {
+      "question": "___ Zeitung liegt hier.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Zeitung — женский род. Слова на -ung всегда женского рода (die)"
+    },
+    {
+      "question": "___ Mädchen spielt im Garten.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 2,
+      "explanation": "Mädchen — средний род! Слова на -chen всегда среднего рода (das)"
+    },
+    {
+      "question": "___ Möglichkeit ist gut.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Möglichkeit — женский род. Слова на -keit всегда женского рода (die)"
+    },
+    {
+      "question": "___ Lehrer ist nett.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 0,
+      "explanation": "Lehrer — мужской род (der Lehrer)"
+    },
+    {
+      "question": "Какое предложение правильное?",
+      "options": ["Das Mädchen spielt.", "Die Mädchen spielt.", "Der Mädchen spielt."],
+      "correct": 0,
+      "explanation": "Mädchen — средний род (das), несмотря на значение «девочка»"
+    },
+    {
+      "question": "Какое предложение правильное?",
+      "options": ["Die Hund ist klein.", "Das Hund ist klein.", "Der Hund ist klein."],
+      "correct": 2,
+      "explanation": "Hund — мужской род (der Hund)"
+    },
+    {
+      "question": "___ Kinder spielen im Park.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Множественное число всегда с артиклем die"
+    },
+    {
+      "question": "___ Bücher sind interessant.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Множественное число — всегда die (die Bücher)"
+    },
+    {
+      "question": "___ Butter ist frisch.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Butter — женский род в немецком (die Butter), хотя «масло» в русском — среднего"
+    },
+    {
+      "question": "___ Sofa ist bequem.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 2,
+      "explanation": "Sofa — средний род (das Sofa), хотя «диван» в русском — мужского"
+    },
+    {
+      "question": "___ Freiheit ist wichtig.",
+      "options": ["Der", "Die", "Das"],
+      "correct": 1,
+      "explanation": "Freiheit — женский род. Слова на -heit всегда женского рода (die)"
     }
   ]
 }

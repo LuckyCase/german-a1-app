@@ -108,6 +108,48 @@
       "options": ["nehme", "nimmst", "nimmt"],
       "correct": 2,
       "explanation": "er nimmt (он берёт) — неправильный глагол"
+    },
+    {
+      "question": "Er ___ jeden Tag zur Arbeit. (fahren)",
+      "options": ["fahrt", "fährt", "fahren"],
+      "correct": 1,
+      "explanation": "fahren → er fährt (a → ä). Неправильный глагол с изменением корневой гласной"
+    },
+    {
+      "question": "Das Kind ___ lange. (schlafen)",
+      "options": ["schlaft", "schläft", "schlafen"],
+      "correct": 1,
+      "explanation": "schlafen → es schläft (a → ä). Неправильный глагол"
+    },
+    {
+      "question": "Sie ___ sehr schnell. (laufen)",
+      "options": ["lauft", "läuft", "laufen"],
+      "correct": 1,
+      "explanation": "laufen → sie läuft (au → äu). Неправильный глагол"
+    },
+    {
+      "question": "Du ___ die Antwort. (finden)",
+      "options": ["findst", "findest", "findet"],
+      "correct": 1,
+      "explanation": "Основа на -d → добавляется -e-: du findest"
+    },
+    {
+      "question": "Er ___ auf den Bus. (warten)",
+      "options": ["wartt", "wartet", "wart"],
+      "correct": 1,
+      "explanation": "Основа на -t → добавляется -e-: er wartet"
+    },
+    {
+      "question": "Какая форма правильная? «Er ___ gut Deutsch.» (sprechen)",
+      "options": ["sprecht", "spricht", "sprechen"],
+      "correct": 1,
+      "explanation": "sprechen → er spricht (e → i). «Er sprecht» — частая ошибка!"
+    },
+    {
+      "question": "Какая форма правильная? «Sie ___ gern Bücher.» (lesen)",
+      "options": ["lest", "liest", "lesen"],
+      "correct": 1,
+      "explanation": "lesen → sie liest (e → ie). Неправильный глагол"
     }
   ]
 }

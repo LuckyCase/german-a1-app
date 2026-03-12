@@ -99,6 +99,78 @@
       "options": ["nicht", "kein", "keine"],
       "correct": 0,
       "explanation": "nicht отрицает наречие/прилагательное"
+    },
+    {
+      "question": "Где стоит nicht? «Ich gehe ___ ins Kino.»",
+      "options": [
+        "Ich gehe nicht ins Kino.",
+        "Ich nicht gehe ins Kino.",
+        "Ich gehe ins Kino nicht."
+      ],
+      "correct": 0,
+      "explanation": "nicht стоит перед предложным дополнением: Ich gehe nicht ins Kino."
+    },
+    {
+      "question": "Где стоит nicht? «Er arbeitet ___ heute.»",
+      "options": [
+        "Er arbeitet heute nicht.",
+        "Er nicht arbeitet heute.",
+        "Nicht er arbeitet heute."
+      ],
+      "correct": 0,
+      "explanation": "nicht стоит в конце, когда отрицает глагол: Er arbeitet heute nicht."
+    },
+    {
+      "question": "Где стоит nicht? «Das Wetter ist ___ schön.»",
+      "options": [
+        "Das Wetter nicht ist schön.",
+        "Das Wetter ist nicht schön.",
+        "Das Wetter ist schön nicht."
+      ],
+      "correct": 1,
+      "explanation": "nicht стоит перед прилагательным: Das Wetter ist nicht schön."
+    },
+    {
+      "question": "Er ist ___ Lehrer.",
+      "options": ["nicht", "kein", "keine"],
+      "correct": 1,
+      "explanation": "kein + профессия без артикля (Er ist kein Lehrer.)"
+    },
+    {
+      "question": "Sie ist ___ krank.",
+      "options": ["nicht", "kein", "keine"],
+      "correct": 0,
+      "explanation": "nicht отрицает прилагательное (Sie ist nicht krank.)"
+    },
+    {
+      "question": "Какое предложение правильное?",
+      "options": [
+        "Ich habe nicht Auto.",
+        "Ich habe kein Auto.",
+        "Ich habe Auto nicht."
+      ],
+      "correct": 1,
+      "explanation": "Перед существительным без артикля → kein: Ich habe kein Auto."
+    },
+    {
+      "question": "Какое предложение правильное?",
+      "options": [
+        "Wir haben nicht Kinder.",
+        "Wir haben Kinder nicht.",
+        "Wir haben keine Kinder."
+      ],
+      "correct": 2,
+      "explanation": "Перед существительным → kein (мн.ч. → keine): Wir haben keine Kinder."
+    },
+    {
+      "question": "Какое предложение правильное?",
+      "options": [
+        "Das ist nicht mein Buch.",
+        "Das ist kein mein Buch.",
+        "Das ist mein nicht Buch."
+      ],
+      "correct": 0,
+      "explanation": "nicht отрицает притяжательное местоимение: Das ist nicht mein Buch."
     }
   ]
 }
