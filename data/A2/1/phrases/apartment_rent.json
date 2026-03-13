@@ -1,0 +1,66 @@
+{
+  "id": "apartment_rent",
+  "name": "Аренда жилья",
+  "name_de": "Wohnung mieten",
+  "description": "Фразы для поиска и аренды квартиры",
+  "level": "A2",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Ist die Wohnung noch frei?",
+      "ru": "Квартира еще свободна?",
+      "context": "Поиск жилья",
+      "example": "Guten Tag, ist die Wohnung noch frei?",
+      "example_ru": "Здравствуйте, квартира еще свободна?"
+    },
+    {
+      "de": "Wie hoch ist die Warmmiete?",
+      "ru": "Какая стоимость аренды с коммунальными?",
+      "context": "Стоимость",
+      "example": "Wie hoch ist die Warmmiete inklusive Nebenkosten?",
+      "example_ru": "Сколько стоит аренда с учетом коммунальных?"
+    },
+    {
+      "de": "Muss ich eine Kaution zahlen?",
+      "ru": "Нужно ли платить залог?",
+      "context": "Договор",
+      "example": "Muss ich eine Kaution zahlen, und wie viel?",
+      "example_ru": "Нужно ли платить залог и сколько?"
+    },
+    {
+      "de": "Könnten wir einen Besichtigungstermin vereinbaren?",
+      "ru": "Можем ли мы договориться о просмотре?",
+      "context": "Просмотр квартиры",
+      "example": "Könnten wir für Donnerstag einen Besichtigungstermin vereinbaren?",
+      "example_ru": "Можем договориться о просмотре на четверг?"
+    },
+    {
+      "de": "Sind Haustiere erlaubt?",
+      "ru": "Разрешены ли домашние животные?",
+      "context": "Условия проживания",
+      "example": "Sind Haustiere erlaubt, zum Beispiel eine Katze?",
+      "example_ru": "Разрешены ли домашние животные, например кошка?"
+    },
+    {
+      "de": "Die Heizung funktioniert nicht richtig.",
+      "ru": "Отопление работает неправильно.",
+      "context": "Проблемы в квартире",
+      "example": "Die Heizung funktioniert nicht richtig, könnten Sie jemanden schicken?",
+      "example_ru": "Отопление работает неправильно, можете прислать мастера?"
+    },
+    {
+      "de": "Ich habe den Mietvertrag gelesen.",
+      "ru": "Я прочитал договор аренды.",
+      "context": "Документы",
+      "example": "Ich habe den Mietvertrag gelesen und habe noch eine Frage.",
+      "example_ru": "Я прочитал договор аренды и у меня еще один вопрос."
+    },
+    {
+      "de": "Ab wann kann ich einziehen?",
+      "ru": "С какого момента я могу въехать?",
+      "context": "Заселение",
+      "example": "Ab wann kann ich einziehen, ab dem ersten Mai?",
+      "example_ru": "С какого момента я могу въехать, с первого мая?"
+    }
+  ]
+}

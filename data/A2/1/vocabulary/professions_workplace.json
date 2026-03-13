@@ -1,0 +1,81 @@
+{
+  "id": "professions_workplace",
+  "name": "Профессии и рабочее место",
+  "name_de": "Berufe und Arbeitsplatz",
+  "description": "Лексика A2.1 для работы и профессий",
+  "level": "A2",
+  "words": [
+    {
+      "de": "der Lebenslauf",
+      "ru": "резюме",
+      "example": "Ich habe meinen Lebenslauf aktualisiert.",
+      "example_ru": "Я обновил свое резюме."
+    },
+    {
+      "de": "die Bewerbung",
+      "ru": "заявка на работу",
+      "example": "Sie schreibt eine Bewerbung für die Stelle.",
+      "example_ru": "Она пишет заявку на вакансию."
+    },
+    {
+      "de": "das Vorstellungsgespräch",
+      "ru": "собеседование",
+      "example": "Morgen habe ich ein Vorstellungsgespräch.",
+      "example_ru": "Завтра у меня собеседование."
+    },
+    {
+      "de": "der Arbeitgeber",
+      "ru": "работодатель",
+      "example": "Mein Arbeitgeber unterstützt Fortbildungen.",
+      "example_ru": "Мой работодатель поддерживает повышение квалификации."
+    },
+    {
+      "de": "der Arbeitnehmer",
+      "ru": "работник",
+      "example": "Der Arbeitnehmer beginnt um acht Uhr.",
+      "example_ru": "Работник начинает в восемь часов."
+    },
+    {
+      "de": "die Schicht",
+      "ru": "смена",
+      "example": "Heute habe ich die Spätschicht.",
+      "example_ru": "Сегодня у меня вечерняя смена."
+    },
+    {
+      "de": "die Überstunden",
+      "ru": "сверхурочные",
+      "example": "Diese Woche habe ich viele Überstunden gemacht.",
+      "example_ru": "На этой неделе я работал много сверхурочно."
+    },
+    {
+      "de": "die Besprechung",
+      "ru": "совещание",
+      "example": "Die Besprechung beginnt um 10 Uhr.",
+      "example_ru": "Совещание начинается в 10 часов."
+    },
+    {
+      "de": "der Vertrag",
+      "ru": "договор",
+      "example": "Ich habe den Vertrag unterschrieben.",
+      "example_ru": "Я подписал договор."
+    },
+    {
+      "de": "kündigen",
+      "ru": "увольняться, расторгать договор",
+      "example": "Er möchte zum Monatsende kündigen.",
+      "example_ru": "Он хочет уволиться в конце месяца."
+    },
+    {
+      "de": "die Gehaltserhöhung",
+      "ru": "повышение зарплаты",
+      "example": "Sie hat eine Gehaltserhöhung bekommen.",
+      "example_ru": "Она получила повышение зарплаты."
+    },
+    {
+      "de": "die Weiterbildung",
+      "ru": "повышение квалификации",
+      "example": "Ich mache eine Weiterbildung im IT-Bereich.",
+      "example_ru": "Я прохожу повышение квалификации в IT-сфере."
+    }
+  ]
+}

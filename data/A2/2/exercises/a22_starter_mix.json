@@ -1,0 +1,39 @@
+{
+  "id": "a22_starter_mix",
+  "name": "A2.2 Starter Mix",
+  "name_de": "A2.2 Starter Mix",
+  "description": "Смешанные задания по Präteritum, dass/wenn и вежливым фразам",
+  "level": "A2",
+  "linked_to": ["praeteritum_modal", "dass_wenn_konjunktiv2", "official_requests"],
+  "tasks": [
+    {
+      "type": "multiple_choice",
+      "question": "Gestern ___ ich leider länger arbeiten.",
+      "options": ["muss", "musste", "gemusst"],
+      "correct": 1,
+      "explanation": "Präteritum от müssen: musste."
+    },
+    {
+      "type": "fill_blank",
+      "sentence": "Ich hoffe, dass du morgen pünktlich ___ .",
+      "answer": "kommst",
+      "hint": "dass + глагол в конце",
+      "explanation": "В придаточном с dass глагол в конце."
+    },
+    {
+      "type": "scramble",
+      "words": ["Könnten", "Sie", "mir", "bitte", "helfen"],
+      "answer": "Könnten Sie mir bitte helfen",
+      "translation": "Не могли бы Вы мне помочь",
+      "explanation": "Вежливая просьба с Konjunktiv II."
+    },
+    {
+      "type": "matching",
+      "pairs": [
+        {"left": "Ich würde gern", "right": "einen Termin vereinbaren."},
+        {"left": "Könnten Sie", "right": "das bitte wiederholen?"},
+        {"left": "Ich habe", "right": "eine Frage zu meinem Antrag."}
+      ]
+    }
+  ]
+}

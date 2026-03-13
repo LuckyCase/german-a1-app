@@ -1,0 +1,58 @@
+{
+  "id": "praeteritum_modal",
+  "name": "Präteritum модальных глаголов",
+  "name_de": "Präteritum der Modalverben",
+  "description": "Формы musste, wollte, konnte, durfte, sollte",
+  "level": "A2",
+  "theory": {
+    "title": "Präteritum Modalverben",
+    "content": "В разговорной речи прошлое часто выражают Perfekt, но модальные глаголы очень часто употребляют в Präteritum: ich musste, ich wollte, ich konnte. Это звучит естественно и коротко.",
+    "examples": [
+      "Ich musste gestern lange arbeiten.",
+      "Wir wollten am Wochenende nach Hamburg fahren.",
+      "Er konnte nicht kommen."
+    ],
+    "tips": [
+      "Личные окончания похожи на Präsens: ich konnte, du konntest, wir konnten.",
+      "В предложении модальный глагол стоит на 2 месте."
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich ___ gestern Überstunden machen.",
+      "options": ["muss", "musste", "gemusst"],
+      "correct": 1,
+      "explanation": "Для прошедшего в Präteritum: musste."
+    },
+    {
+      "question": "Wir ___ ein neues Auto kaufen, aber es war zu teuer.",
+      "options": ["wollten", "wollen", "gewollt"],
+      "correct": 0,
+      "explanation": "Präteritum von wollen: wollten."
+    },
+    {
+      "question": "Er ___ wegen Krankheit nicht kommen.",
+      "options": ["konnte", "kann", "gekonnt"],
+      "correct": 0,
+      "explanation": "Präteritum von können: konnte."
+    },
+    {
+      "question": "Ihr ___ hier nicht parken.",
+      "options": ["dürft", "durftet", "gedurft"],
+      "correct": 1,
+      "explanation": "Präteritum von dürfen: durftet."
+    },
+    {
+      "question": "Sie ___ früher ins Bett gehen.",
+      "options": ["sollte", "soll", "gesollt"],
+      "correct": 0,
+      "explanation": "Präteritum von sollen: sollte."
+    },
+    {
+      "question": "Welche Form ist richtig? (ich, können)",
+      "options": ["ich konnte", "ich kannte", "ich gekonnt"],
+      "correct": 0,
+      "explanation": "Präteritum от können: ich konnte."
+    }
+  ]
+}

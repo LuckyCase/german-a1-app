@@ -1,0 +1,55 @@
+{
+  "id": "job_interview",
+  "name": "Собеседование",
+  "name_de": "Vorstellungsgespräch",
+  "description": "Короткий диалог на собеседовании",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Interviewer",
+      "role_ru": "Интервьюер",
+      "text": "Guten Tag, erzählen Sie bitte kurz über sich.",
+      "text_ru": "Здравствуйте, расскажите коротко о себе."
+    },
+    {
+      "role": "Bewerber",
+      "role_ru": "Кандидат",
+      "text": "Ich heiße Pavel und arbeite seit drei Jahren im Kundenservice.",
+      "text_ru": "Меня зовут Павел, и я работаю в клиентском сервисе уже три года."
+    },
+    {
+      "role": "Interviewer",
+      "role_ru": "Интервьюер",
+      "text": "Warum möchten Sie bei uns arbeiten?",
+      "text_ru": "Почему вы хотите работать у нас?"
+    },
+    {
+      "role": "Bewerber",
+      "role_ru": "Кандидат",
+      "text": "Ihre Firma bietet gute Entwicklungsmöglichkeiten, das ist mir wichtig.",
+      "text_ru": "Ваша компания предлагает хорошие возможности развития, это важно для меня."
+    },
+    {
+      "role": "Interviewer",
+      "role_ru": "Интервьюер",
+      "text": "Vielen Dank, wir melden uns nächste Woche bei Ihnen.",
+      "text_ru": "Спасибо, мы свяжемся с вами на следующей неделе."
+    }
+  ],
+  "exercises": [
+    {
+      "type": "multiple_choice",
+      "question": "Wie lange arbeitet Pavel im Kundenservice?",
+      "options": ["Seit drei Jahren", "Seit einem Jahr", "Seit fünf Jahren"],
+      "correct": 0,
+      "explanation": "В диалоге: seit drei Jahren."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Was ist Pavel wichtig?",
+      "options": ["Kurze Arbeitszeit", "Entwicklungsmöglichkeiten", "Kostenloses Essen"],
+      "correct": 1,
+      "explanation": "Он говорит, что ему важны возможности развития."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "work_office",
+  "name": "Работа и офис",
+  "name_de": "Arbeit und Büro",
+  "description": "Фразы для общения на работе",
+  "level": "A2",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Könnten wir den Termin verschieben?",
+      "ru": "Можем ли мы перенести встречу?",
+      "context": "Планирование",
+      "example": "Könnten wir den Termin auf Freitag verschieben?",
+      "example_ru": "Можем перенести встречу на пятницу?"
+    },
+    {
+      "de": "Ich übernehme diesen Teil des Projekts.",
+      "ru": "Я беру на себя эту часть проекта.",
+      "context": "Командная работа",
+      "example": "Ich übernehme diesen Teil des Projekts bis Montag.",
+      "example_ru": "Я беру эту часть проекта до понедельника."
+    },
+    {
+      "de": "Ich bin heute im Homeoffice.",
+      "ru": "Я сегодня работаю из дома.",
+      "context": "Рабочий режим",
+      "example": "Ich bin heute im Homeoffice und online erreichbar.",
+      "example_ru": "Я сегодня на удаленке и доступен онлайн."
+    },
+    {
+      "de": "Könnten Sie das bitte wiederholen?",
+      "ru": "Не могли бы вы это повторить?",
+      "context": "Уточнение",
+      "example": "Entschuldigung, könnten Sie das bitte wiederholen?",
+      "example_ru": "Извините, не могли бы вы это повторить?"
+    },
+    {
+      "de": "Ich schicke Ihnen die Unterlagen per E-Mail.",
+      "ru": "Я отправлю вам документы по e-mail.",
+      "context": "Документы",
+      "example": "Ich schicke Ihnen die Unterlagen noch heute per E-Mail.",
+      "example_ru": "Я отправлю вам документы по e-mail еще сегодня."
+    },
+    {
+      "de": "Wann ist die Abgabefrist?",
+      "ru": "Какой крайний срок сдачи?",
+      "context": "Дедлайны",
+      "example": "Wann ist die Abgabefrist für den Bericht?",
+      "example_ru": "Какой дедлайн по отчету?"
+    },
+    {
+      "de": "Ich brauche noch mehr Informationen dazu.",
+      "ru": "Мне нужно больше информации об этом.",
+      "context": "Запрос информации",
+      "example": "Bevor ich beginne, brauche ich noch mehr Informationen dazu.",
+      "example_ru": "Прежде чем начать, мне нужно больше информации об этом."
+    },
+    {
+      "de": "Das klingt nach einem guten Plan.",
+      "ru": "Это звучит как хороший план.",
+      "context": "Обсуждение",
+      "example": "Ja, das klingt nach einem guten Plan.",
+      "example_ru": "Да, это звучит как хороший план."
+    }
+  ]
+}

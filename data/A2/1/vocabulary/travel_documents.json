@@ -1,0 +1,81 @@
+{
+  "id": "travel_documents",
+  "name": "Путешествия и документы",
+  "name_de": "Reisen und Dokumente",
+  "description": "Лексика A2.1 для поездок, регистрации и аэропорта",
+  "level": "A2",
+  "words": [
+    {
+      "de": "der Reisepass",
+      "ru": "загранпаспорт",
+      "example": "Bitte zeigen Sie Ihren Reisepass.",
+      "example_ru": "Пожалуйста, покажите ваш загранпаспорт."
+    },
+    {
+      "de": "das Visum",
+      "ru": "виза",
+      "example": "Für dieses Land brauche ich ein Visum.",
+      "example_ru": "Для этой страны мне нужна виза."
+    },
+    {
+      "de": "die Grenzkontrolle",
+      "ru": "пограничный контроль",
+      "example": "An der Grenzkontrolle war eine lange Schlange.",
+      "example_ru": "На пограничном контроле была длинная очередь."
+    },
+    {
+      "de": "das Gepäck",
+      "ru": "багаж",
+      "example": "Mein Gepäck ist zu schwer.",
+      "example_ru": "Мой багаж слишком тяжелый."
+    },
+    {
+      "de": "der Anschlussflug",
+      "ru": "стыковочный рейс",
+      "example": "Wir haben den Anschlussflug verpasst.",
+      "example_ru": "Мы пропустили стыковочный рейс."
+    },
+    {
+      "de": "verspätet",
+      "ru": "задержанный (о рейсе)",
+      "example": "Der Flug hat 40 Minuten Verspätung.",
+      "example_ru": "Рейс задерживается на 40 минут."
+    },
+    {
+      "de": "einchecken",
+      "ru": "регистрироваться на рейс",
+      "example": "Wir müssen online einchecken.",
+      "example_ru": "Нам нужно зарегистрироваться онлайн."
+    },
+    {
+      "de": "die Unterkunft",
+      "ru": "жилье, размещение",
+      "example": "Die Unterkunft liegt im Stadtzentrum.",
+      "example_ru": "Жилье находится в центре города."
+    },
+    {
+      "de": "die Buchungsbestätigung",
+      "ru": "подтверждение брони",
+      "example": "Bitte drucken Sie die Buchungsbestätigung aus.",
+      "example_ru": "Пожалуйста, распечатайте подтверждение брони."
+    },
+    {
+      "de": "umsteigen",
+      "ru": "делать пересадку",
+      "example": "In München müssen wir umsteigen.",
+      "example_ru": "В Мюнхене нам нужно сделать пересадку."
+    },
+    {
+      "de": "die Abfahrt",
+      "ru": "отправление",
+      "example": "Die Abfahrt ist um 18:20 Uhr.",
+      "example_ru": "Отправление в 18:20."
+    },
+    {
+      "de": "die Ankunft",
+      "ru": "прибытие",
+      "example": "Die Ankunft in Berlin ist um 22 Uhr.",
+      "example_ru": "Прибытие в Берлин в 22 часа."
+    }
+  ]
+}

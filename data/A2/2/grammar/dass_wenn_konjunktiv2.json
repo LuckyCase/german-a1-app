@@ -1,0 +1,58 @@
+{
+  "id": "dass_wenn_konjunktiv2",
+  "name": "dass / wenn и вежливые просьбы",
+  "name_de": "dass / wenn und höfliche Bitten",
+  "description": "Придаточные с dass/wenn и Konjunktiv II: hätte, wäre, würde",
+  "level": "A2",
+  "theory": {
+    "title": "A2.2 Satzbau und Höflichkeit",
+    "content": "После dass и wenn спрягаемый глагол стоит в конце придаточного. Для вежливых просьб часто используют Konjunktiv II: ich hätte gern..., könnten Sie..., ich würde gern....",
+    "examples": [
+      "Ich denke, dass er heute später kommt.",
+      "Wenn ich Zeit habe, komme ich vorbei.",
+      "Könnten Sie mir bitte helfen?"
+    ],
+    "tips": [
+      "dass = что, wenn = если/когда.",
+      "Konjunktiv II делает фразу мягче и вежливее."
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich hoffe, dass du morgen ___ .",
+      "options": ["kommst", "kommst du", "du kommst"],
+      "correct": 0,
+      "explanation": "После dass глагол в конце: dass du morgen kommst."
+    },
+    {
+      "question": "___ ich mehr Zeit habe, lerne ich jeden Tag Deutsch.",
+      "options": ["Dass", "Wenn", "Ob"],
+      "correct": 1,
+      "explanation": "Условие вводится wenn."
+    },
+    {
+      "question": "Какой вариант наиболее вежливый?",
+      "options": ["Gib mir bitte Wasser.", "Könnten Sie mir bitte Wasser geben?", "Du gibst mir Wasser."],
+      "correct": 1,
+      "explanation": "Konjunktiv II: könnten Sie..."
+    },
+    {
+      "question": "Ich ___ gern einen Termin vereinbaren.",
+      "options": ["würde", "werde", "wurde"],
+      "correct": 0,
+      "explanation": "Для вежливого намерения: würde gern."
+    },
+    {
+      "question": "Wenn es regnet, ___ wir zu Hause.",
+      "options": ["bleiben", "bleiben wir", "wir bleiben"],
+      "correct": 0,
+      "explanation": "Главное предложение после придаточного: глагол на 1 позиции в основной части."
+    },
+    {
+      "question": "Sie sagt, dass sie heute keine Zeit ___.",
+      "options": ["hat", "haben", "ist"],
+      "correct": 0,
+      "explanation": "dass-Satz: ...dass sie keine Zeit hat."
+    }
+  ]
+}

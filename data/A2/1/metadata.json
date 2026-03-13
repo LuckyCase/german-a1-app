@@ -2,7 +2,65 @@
   "id": "A2.1",
   "name": "Уровень A2.1",
   "name_de": "Niveau A2.1",
-  "description": "Уровень в разработке",
+  "description": "Базовый пользователь: расширение словаря и уверенная бытовая коммуникация",
   "level": "A2",
-  "sub_level": "1"
+  "sub_level": "1",
+  "version": "1.0.0",
+  "last_updated": "2026-03-13",
+  "content": {
+    "vocabulary": {
+      "path": "vocabulary/",
+      "categories": [
+        {"id": "professions_workplace", "file": "professions_workplace.json", "name": "Профессии и рабочее место"},
+        {"id": "health_pharmacy", "file": "health_pharmacy.json", "name": "Здоровье и аптека"},
+        {"id": "travel_documents", "file": "travel_documents.json", "name": "Путешествия и документы"}
+      ],
+      "total_words": 36
+    },
+    "grammar": {
+      "path": "grammar/",
+      "topics": [
+        {"id": "perfekt_haben_sein", "file": "perfekt_haben_sein.json", "name": "Perfekt: haben или sein"},
+        {"id": "dativ_prepositions", "file": "dativ_prepositions.json", "name": "Dativ и предлоги"},
+        {"id": "komparativ_superlativ", "file": "komparativ_superlativ.json", "name": "Сравнительная и превосходная степень"}
+      ],
+      "total_questions": 24
+    },
+    "phrases": {
+      "path": "phrases/",
+      "categories": [
+        {"id": "work_office", "file": "work_office.json", "name": "Работа и офис"},
+        {"id": "doctor_pharmacy", "file": "doctor_pharmacy.json", "name": "У врача и в аптеке"},
+        {"id": "apartment_rent", "file": "apartment_rent.json", "name": "Аренда жилья"}
+      ],
+      "total_phrases": 24
+    },
+    "dialogues": {
+      "path": "dialogues/",
+      "topics": [
+        {"id": "job_interview", "file": "job_interview.json", "name": "Собеседование"},
+        {"id": "pharmacy_visit", "file": "pharmacy_visit.json", "name": "Визит в аптеку"},
+        {"id": "landlord_call", "file": "landlord_call.json", "name": "Звонок арендодателю"}
+      ],
+      "total_dialogues": 3
+    },
+    "culture": {
+      "path": "culture/",
+      "topics": [
+        {"id": "insurance_healthcare", "file": "insurance_healthcare.json", "name": "Медицинская страховка"},
+        {"id": "rental_rules", "file": "rental_rules.json", "name": "Правила аренды жилья"},
+        {"id": "work_life_balance", "file": "work_life_balance.json", "name": "Баланс работы и жизни"}
+      ],
+      "total_topics": 3
+    },
+    "exercises": {
+      "path": "exercises/",
+      "sets": [
+        {"id": "perfekt_a21", "file": "perfekt_a21.json", "name": "Perfekt в контексте"},
+        {"id": "dativ_prep_a21", "file": "dativ_prep_a21.json", "name": "Dativ с предлогами"},
+        {"id": "communication_a21", "file": "communication_a21.json", "name": "Коммуникация A2.1"}
+      ],
+      "total_sets": 3
+    }
+  }
 }

@@ -1,7 +1,7 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
-from bot.database import get_user_stats, get_user_streak, get_user_achievements
+from bot.database import get_user_stats, get_user_streak, get_user_achievements, get_user_settings
 from bot.content_manager import get_all_words, get_levels_with_content
 from bot.achievements import get_achievement_display
 
@@ -11,6 +11,15 @@ def _get_total_vocab() -> int:
     total = 0
     for level in get_levels_with_content():
         total += len(get_all_words(level["major"], level["sub"]))
+    return total
+
+
+def _get_total_vocab_for_major(major: str) -> int:
+    """Count total vocabulary for a major CEFR block (e.g. A1)."""
+    total = 0
+    for level in get_levels_with_content():
+        if level["major"] == major:
+            total += len(get_all_words(level["major"], level["sub"]))
     return total
 
 
@@ -83,7 +92,7 @@ def _build_stats_text(stats: dict, total_vocab: int, suffix: str = "",
     )
 
 
-def _build_keyboard(has_word_errors: bool, has_phrase_errors: bool) -> InlineKeyboardMarkup:
+def _build_keyboard(has_word_errors: bool, has_phrase_errors: bool, show_a2_upgrade: bool = False) -> InlineKeyboardMarkup:
     keyboard = [
         [InlineKeyboardButton("🔄 Обновить", callback_data="progress_refresh")],
         [InlineKeyboardButton("📚 Учить слова", callback_data="start_flashcards")],
@@ -91,6 +100,8 @@ def _build_keyboard(has_word_errors: bool, has_phrase_errors: bool) -> InlineKey
         [InlineKeyboardButton("📝 Грамматика", callback_data="start_grammar")],
         [InlineKeyboardButton("⚙️ Настройки", callback_data="set_menu")],
     ]
+    if show_a2_upgrade:
+        keyboard.insert(1, [InlineKeyboardButton("🚀 Перейти на A2.1", callback_data="set_lvl_A2_1")])
     error_buttons = []
     if has_word_errors:
         error_buttons.append(InlineKeyboardButton("🔁 Ошибки (слова)", callback_data="fc_errors_start"))
@@ -111,9 +122,27 @@ async def show_progress(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     has_word_errors = stats.get("words_with_errors", 0) > 0
     has_phrase_errors = stats.get("phrases_with_errors", 0) > 0
-    text = _build_stats_text(stats, total_vocab, streak=streak, achievements=achievements)
+    settings = await get_user_settings(user_id)
 
-    await update.message.reply_text(text, reply_markup=_build_keyboard(has_word_errors, has_phrase_errors))
+    total_a1_vocab = _get_total_vocab_for_major("A1")
+    a1_pct = (stats["mastered_words"] / total_a1_vocab * 100) if total_a1_vocab > 0 else 0
+    has_a2_content = any(lvl["major"] == "A2" and lvl["sub"] == "1" for lvl in get_levels_with_content())
+    show_a2_upgrade = settings.get("major_level") == "A1" and a1_pct >= 80 and has_a2_content
+
+    suffix = ""
+    if show_a2_upgrade:
+        suffix = (
+            "\n\n🎓 Вы завершили основную часть A1!\n"
+            f"Прогресс A1: {a1_pct:.0f}%.\n"
+            "Можно перейти на уровень A2.1."
+        )
+
+    text = _build_stats_text(stats, total_vocab, suffix=suffix, streak=streak, achievements=achievements)
+
+    await update.message.reply_text(
+        text,
+        reply_markup=_build_keyboard(has_word_errors, has_phrase_errors, show_a2_upgrade=show_a2_upgrade)
+    )
 
 
 async def progress_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -130,7 +159,23 @@ async def progress_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         has_word_errors = stats.get("words_with_errors", 0) > 0
         has_phrase_errors = stats.get("phrases_with_errors", 0) > 0
-        text = _build_stats_text(stats, total_vocab, suffix="\n(Обновлено)",
-                                 streak=streak, achievements=achievements)
+        settings = await get_user_settings(user_id)
+        total_a1_vocab = _get_total_vocab_for_major("A1")
+        a1_pct = (stats["mastered_words"] / total_a1_vocab * 100) if total_a1_vocab > 0 else 0
+        has_a2_content = any(lvl["major"] == "A2" and lvl["sub"] == "1" for lvl in get_levels_with_content())
+        show_a2_upgrade = settings.get("major_level") == "A1" and a1_pct >= 80 and has_a2_content
 
-        await query.edit_message_text(text, reply_markup=_build_keyboard(has_word_errors, has_phrase_errors))
+        suffix = "\n(Обновлено)"
+        if show_a2_upgrade:
+            suffix += (
+                "\n\n🎓 Вы завершили основную часть A1!\n"
+                f"Прогресс A1: {a1_pct:.0f}%.\n"
+                "Можно перейти на уровень A2.1."
+            )
+
+        text = _build_stats_text(stats, total_vocab, suffix=suffix, streak=streak, achievements=achievements)
+
+        await query.edit_message_text(
+            text,
+            reply_markup=_build_keyboard(has_word_errors, has_phrase_errors, show_a2_upgrade=show_a2_upgrade)
+        )

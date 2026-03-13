@@ -1,0 +1,55 @@
+{
+  "id": "landlord_call",
+  "name": "Звонок арендодателю",
+  "name_de": "Anruf beim Vermieter",
+  "description": "Диалог о проблеме в квартире",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Mieter",
+      "role_ru": "Арендатор",
+      "text": "Guten Tag, hier spricht Timur aus der Gartenstraße 12.",
+      "text_ru": "Здравствуйте, это Тимур с Гартенштрассе 12."
+    },
+    {
+      "role": "Vermieter",
+      "role_ru": "Арендодатель",
+      "text": "Guten Tag, was ist passiert?",
+      "text_ru": "Здравствуйте, что случилось?"
+    },
+    {
+      "role": "Mieter",
+      "role_ru": "Арендатор",
+      "text": "Die Heizung funktioniert seit gestern nicht.",
+      "text_ru": "Отопление не работает со вчерашнего дня."
+    },
+    {
+      "role": "Vermieter",
+      "role_ru": "Арендодатель",
+      "text": "Ich schicke morgen früh einen Techniker.",
+      "text_ru": "Я пришлю завтра утром техника."
+    },
+    {
+      "role": "Mieter",
+      "role_ru": "Арендатор",
+      "text": "Vielen Dank für Ihre schnelle Hilfe.",
+      "text_ru": "Большое спасибо за вашу быструю помощь."
+    }
+  ],
+  "exercises": [
+    {
+      "type": "multiple_choice",
+      "question": "Was funktioniert nicht?",
+      "options": ["Die Waschmaschine", "Die Heizung", "Das Internet"],
+      "correct": 1,
+      "explanation": "Арендатор сообщает о проблеме с отоплением."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Wann kommt der Techniker?",
+      "options": ["Heute Abend", "Morgen früh", "Nächste Woche"],
+      "correct": 1,
+      "explanation": "Арендодатель обещает прислать техника завтра утром."
+    }
+  ]
+}

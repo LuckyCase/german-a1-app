@@ -1,0 +1,81 @@
+{
+  "id": "health_pharmacy",
+  "name": "Здоровье и аптека",
+  "name_de": "Gesundheit und Apotheke",
+  "description": "Лексика A2.1 для здоровья, симптомов и аптеки",
+  "level": "A2",
+  "words": [
+    {
+      "de": "die Erkältung",
+      "ru": "простуда",
+      "example": "Ich habe eine starke Erkältung.",
+      "example_ru": "У меня сильная простуда."
+    },
+    {
+      "de": "die Kopfschmerzen",
+      "ru": "головная боль",
+      "example": "Seit gestern habe ich Kopfschmerzen.",
+      "example_ru": "Со вчерашнего дня у меня болит голова."
+    },
+    {
+      "de": "die Tablette",
+      "ru": "таблетка",
+      "example": "Nehmen Sie dreimal täglich eine Tablette.",
+      "example_ru": "Принимайте по одной таблетке три раза в день."
+    },
+    {
+      "de": "das Rezept",
+      "ru": "рецепт (медицинский)",
+      "example": "Für dieses Medikament brauchen Sie ein Rezept.",
+      "example_ru": "Для этого лекарства нужен рецепт."
+    },
+    {
+      "de": "die Apotheke",
+      "ru": "аптека",
+      "example": "Die nächste Apotheke ist um die Ecke.",
+      "example_ru": "Ближайшая аптека за углом."
+    },
+    {
+      "de": "der Husten",
+      "ru": "кашель",
+      "example": "Der Husten wird langsam besser.",
+      "example_ru": "Кашель постепенно проходит."
+    },
+    {
+      "de": "das Fieber",
+      "ru": "температура, жар",
+      "example": "Das Kind hat hohes Fieber.",
+      "example_ru": "У ребенка высокая температура."
+    },
+    {
+      "de": "die Krankmeldung",
+      "ru": "больничный лист",
+      "example": "Ich schicke die Krankmeldung an meinen Arbeitgeber.",
+      "example_ru": "Я отправляю больничный своему работодателю."
+    },
+    {
+      "de": "sich ausruhen",
+      "ru": "отдыхать",
+      "example": "Sie sollten sich zwei Tage ausruhen.",
+      "example_ru": "Вам стоит отдохнуть два дня."
+    },
+    {
+      "de": "die Untersuchung",
+      "ru": "обследование",
+      "example": "Die Untersuchung dauert nur zehn Minuten.",
+      "example_ru": "Обследование занимает всего десять минут."
+    },
+    {
+      "de": "verschreiben",
+      "ru": "выписывать (лекарство)",
+      "example": "Der Arzt verschreibt ein neues Medikament.",
+      "example_ru": "Врач выписывает новое лекарство."
+    },
+    {
+      "de": "die Krankenversicherung",
+      "ru": "медицинская страховка",
+      "example": "In Deutschland ist die Krankenversicherung Pflicht.",
+      "example_ru": "В Германии медицинская страховка обязательна."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "id": "official_requests",
+  "name": "Официальные запросы",
+  "name_de": "Offizielle Anfragen",
+  "description": "Вежливые фразы для ведомств и сервисов",
+  "level": "A2",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Ich würde gern einen Termin vereinbaren.",
+      "ru": "Я хотел(а) бы записаться на прием.",
+      "context": "Запись",
+      "example": "Ich würde gern einen Termin für nächste Woche vereinbaren.",
+      "example_ru": "Я хотел(а) бы записаться на прием на следующую неделю."
+    },
+    {
+      "de": "Könnten Sie mir bitte sagen, welche Unterlagen ich brauche?",
+      "ru": "Не могли бы вы сказать, какие документы мне нужны?",
+      "context": "Уточнение документов",
+      "example": "Könnten Sie mir bitte sagen, welche Unterlagen ich für die Anmeldung brauche?",
+      "example_ru": "Не могли бы вы сказать, какие документы нужны для регистрации?"
+    },
+    {
+      "de": "Ich habe eine Frage zu meinem Antrag.",
+      "ru": "У меня вопрос по моему заявлению.",
+      "context": "Статус заявки",
+      "example": "Ich habe eine Frage zu meinem Antrag vom letzten Monat.",
+      "example_ru": "У меня вопрос по моему заявлению прошлого месяца."
+    },
+    {
+      "de": "Könnten Sie das bitte schriftlich bestätigen?",
+      "ru": "Не могли бы вы подтвердить это письменно?",
+      "context": "Подтверждение",
+      "example": "Könnten Sie das bitte per E-Mail schriftlich bestätigen?",
+      "example_ru": "Не могли бы вы подтвердить это письменно по e-mail?"
+    },
+    {
+      "de": "Ich habe die Frist leider verpasst.",
+      "ru": "К сожалению, я пропустил(а) срок.",
+      "context": "Сроки",
+      "example": "Ich habe die Frist leider verpasst. Gibt es eine Lösung?",
+      "example_ru": "К сожалению, я пропустил(а) срок. Есть ли решение?"
+    },
+    {
+      "de": "Vielen Dank für Ihre Unterstützung.",
+      "ru": "Большое спасибо за вашу помощь.",
+      "context": "Вежливое завершение",
+      "example": "Vielen Dank für Ihre Unterstützung und einen schönen Tag noch.",
+      "example_ru": "Большое спасибо за вашу помощь и хорошего дня."
+    }
+  ]
+}

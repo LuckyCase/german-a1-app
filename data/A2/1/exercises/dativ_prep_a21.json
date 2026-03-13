@@ -1,0 +1,39 @@
+{
+  "id": "dativ_prep_a21",
+  "name": "Dativ с предлогами",
+  "name_de": "Dativ mit Präpositionen",
+  "description": "Упражнения на предлоги mit/bei/nach/von/zu/aus/seit",
+  "level": "A2",
+  "linked_to": ["dativ_prepositions"],
+  "tasks": [
+    {
+      "type": "multiple_choice",
+      "question": "Ich fahre jeden Tag ___ dem Zug zur Arbeit.",
+      "options": ["mit", "für", "ohne"],
+      "correct": 0,
+      "explanation": "Mit требует Dativ."
+    },
+    {
+      "type": "fill_blank",
+      "sentence": "Seit ___ Jahr wohne ich in Köln.",
+      "answer": "einem",
+      "hint": "Dativ, средний род",
+      "explanation": "Seit + Dativ: seit einem Jahr."
+    },
+    {
+      "type": "matching",
+      "pairs": [
+        {"left": "mit", "right": "dem Bus"},
+        {"left": "bei", "right": "meiner Freundin"},
+        {"left": "von", "right": "dem Arzt"}
+      ]
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Wir kommen gerade ___ der Schule.",
+      "options": ["von", "zu", "nach"],
+      "correct": 0,
+      "explanation": "Von + Dativ используется для источника/места."
+    }
+  ]
+}

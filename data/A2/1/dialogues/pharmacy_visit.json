@@ -1,0 +1,55 @@
+{
+  "id": "pharmacy_visit",
+  "name": "Визит в аптеку",
+  "name_de": "Besuch in der Apotheke",
+  "description": "Диалог при покупке лекарства",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Guten Abend, ich brauche etwas gegen Halsschmerzen.",
+      "text_ru": "Добрый вечер, мне нужно что-нибудь от боли в горле."
+    },
+    {
+      "role": "Apothekerin",
+      "role_ru": "Фармацевт",
+      "text": "Haben Sie auch Fieber oder Husten?",
+      "text_ru": "У вас также есть температура или кашель?"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Ja, ich habe leichten Husten, aber kein Fieber.",
+      "text_ru": "Да, у меня легкий кашель, но без температуры."
+    },
+    {
+      "role": "Apothekerin",
+      "role_ru": "Фармацевт",
+      "text": "Dann empfehle ich diese Tabletten. Nehmen Sie sie dreimal täglich.",
+      "text_ru": "Тогда я рекомендую эти таблетки. Принимайте их три раза в день."
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Danke, ich nehme sie.",
+      "text_ru": "Спасибо, я их возьму."
+    }
+  ],
+  "exercises": [
+    {
+      "type": "multiple_choice",
+      "question": "Welche Symptome hat der Kunde?",
+      "options": ["Halsschmerzen und Husten", "Nur Fieber", "Bauchschmerzen"],
+      "correct": 0,
+      "explanation": "Он говорит о боли в горле и легком кашле."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Wie oft soll er die Tabletten nehmen?",
+      "options": ["Einmal täglich", "Zweimal täglich", "Dreimal täglich"],
+      "correct": 2,
+      "explanation": "Фармацевт говорит: dreimal täglich."
+    }
+  ]
+}

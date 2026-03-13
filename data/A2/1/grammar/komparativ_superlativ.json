@@ -1,0 +1,70 @@
+{
+  "id": "komparativ_superlativ",
+  "name": "Сравнительная и превосходная степень",
+  "name_de": "Komparativ und Superlativ",
+  "description": "Образование größer / am größten и нерегулярные формы",
+  "level": "A2",
+  "theory": {
+    "title": "Komparativ & Superlativ",
+    "content": "Сравнительная степень обычно образуется с -er: schnell -> schneller. Превосходная в сказуемом: am + ...-sten: am schnellsten. Нерегулярные: gut -> besser -> am besten.",
+    "examples": [
+      "Mein Zimmer ist größer als dein Zimmer.",
+      "Heute ist es kälter als gestern.",
+      "Das ist der beste Kaffee."
+    ],
+    "tips": [
+      "После Komparativ обычно используется als.",
+      "Некоторые прилагательные получают умлаут: alt -> älter."
+    ]
+  },
+  "questions": [
+    {
+      "question": "Mein Auto ist ___ als dein Auto.",
+      "options": ["schnell", "schneller", "am schnellsten"],
+      "correct": 1,
+      "explanation": "Для сравнения двух объектов нужен Komparativ."
+    },
+    {
+      "question": "Heute ist der ___ Tag der Woche.",
+      "options": ["kälter", "kälteste", "am kalt"],
+      "correct": 1,
+      "explanation": "Перед существительным: der kälteste Tag."
+    },
+    {
+      "question": "Von allen läuft Anna ___.",
+      "options": ["schneller", "am schnellsten", "schnellste"],
+      "correct": 1,
+      "explanation": "В сказуемом Superlativ: am schnellsten."
+    },
+    {
+      "question": "Das ist eine ___ Idee.",
+      "options": ["besser", "beste", "guteste"],
+      "correct": 1,
+      "explanation": "Нерегулярная форма: gut -> besser -> beste."
+    },
+    {
+      "question": "Mein Bruder ist ___ als ich.",
+      "options": ["älter", "am ältesten", "alteste"],
+      "correct": 0,
+      "explanation": "Сравнение двух людей: älter als."
+    },
+    {
+      "question": "Welches Hotel ist am ___?",
+      "options": ["teuer", "teurer", "teuersten"],
+      "correct": 2,
+      "explanation": "После am нужен Superlativ: am teuersten."
+    },
+    {
+      "question": "Dieser Weg ist ___ als der andere.",
+      "options": ["kürzer", "am kürzesten", "kurzeste"],
+      "correct": 0,
+      "explanation": "Komparativ: kürzer als."
+    },
+    {
+      "question": "Das war mein ___ Urlaub.",
+      "options": ["schöner", "schönste", "am schönsten"],
+      "correct": 1,
+      "explanation": "Перед существительным в Superlativ: mein schönster Urlaub."
+    }
+  ]
+}

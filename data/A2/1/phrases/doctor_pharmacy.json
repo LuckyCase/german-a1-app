@@ -1,0 +1,66 @@
+{
+  "id": "doctor_pharmacy",
+  "name": "У врача и в аптеке",
+  "name_de": "Beim Arzt und in der Apotheke",
+  "description": "Фразы для посещения врача и покупки лекарств",
+  "level": "A2",
+  "type": "situational",
+  "phrases": [
+    {
+      "de": "Ich habe seit drei Tagen Halsschmerzen.",
+      "ru": "У меня три дня болит горло.",
+      "context": "Симптомы",
+      "example": "Ich habe seit drei Tagen Halsschmerzen und Fieber.",
+      "example_ru": "У меня уже три дня болит горло и температура."
+    },
+    {
+      "de": "Brauche ich dafür ein Rezept?",
+      "ru": "Нужен ли для этого рецепт?",
+      "context": "Аптека",
+      "example": "Brauche ich dafür ein Rezept oder kann ich es direkt kaufen?",
+      "example_ru": "Для этого нужен рецепт или можно купить сразу?"
+    },
+    {
+      "de": "Nehmen Sie diese Tabletten nach dem Essen.",
+      "ru": "Принимайте эти таблетки после еды.",
+      "context": "Инструкция",
+      "example": "Nehmen Sie diese Tabletten zweimal täglich nach dem Essen.",
+      "example_ru": "Принимайте эти таблетки два раза в день после еды."
+    },
+    {
+      "de": "Ich brauche eine Krankmeldung für meinen Arbeitgeber.",
+      "ru": "Мне нужен больничный лист для работодателя.",
+      "context": "Документы",
+      "example": "Könnte ich bitte eine Krankmeldung für drei Tage bekommen?",
+      "example_ru": "Можно, пожалуйста, больничный на три дня?"
+    },
+    {
+      "de": "Haben Sie etwas gegen Husten?",
+      "ru": "У вас есть что-нибудь от кашля?",
+      "context": "Аптека",
+      "example": "Haben Sie etwas gegen trockenen Husten?",
+      "example_ru": "У вас есть что-нибудь от сухого кашля?"
+    },
+    {
+      "de": "Ich bin gegen dieses Medikament allergisch.",
+      "ru": "У меня аллергия на это лекарство.",
+      "context": "Аллергия",
+      "example": "Bitte beachten Sie: Ich bin gegen dieses Medikament allergisch.",
+      "example_ru": "Пожалуйста, учтите: у меня аллергия на это лекарство."
+    },
+    {
+      "de": "Wann soll ich zur Kontrolle wiederkommen?",
+      "ru": "Когда мне прийти на повторный осмотр?",
+      "context": "Повторный прием",
+      "example": "Wann soll ich zur Kontrolle wiederkommen, nächste Woche?",
+      "example_ru": "Когда мне прийти на повторный осмотр, на следующей неделе?"
+    },
+    {
+      "de": "Die Schmerzen sind schon etwas besser.",
+      "ru": "Боль уже немного лучше.",
+      "context": "Состояние",
+      "example": "Seit gestern sind die Schmerzen schon etwas besser.",
+      "example_ru": "Со вчерашнего дня боль уже немного лучше."
+    }
+  ]
+}

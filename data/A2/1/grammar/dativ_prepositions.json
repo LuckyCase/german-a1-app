@@ -1,0 +1,70 @@
+{
+  "id": "dativ_prepositions",
+  "name": "Dativ и предлоги",
+  "name_de": "Dativ und Präpositionen",
+  "description": "Предлоги mit, bei, nach, von, zu, aus, seit + Dativ",
+  "level": "A2",
+  "theory": {
+    "title": "Предлоги с Dativ",
+    "content": "После предлогов mit, bei, nach, von, zu, aus, seit всегда используется Dativ. Артикли меняются: der -> dem, die -> der, das -> dem, die (мн.ч.) -> den.",
+    "examples": [
+      "Ich fahre mit dem Bus.",
+      "Sie wohnt bei ihren Eltern.",
+      "Seit einem Jahr lerne ich Deutsch."
+    ],
+    "tips": [
+      "С множественным числом в Dativ часто добавляется -n: den Kollegen.",
+      "В устной речи часто сокращают: zu dem -> zum, bei dem -> beim."
+    ]
+  },
+  "questions": [
+    {
+      "question": "Ich komme ___ Türkei.",
+      "options": ["aus der", "aus die", "von die"],
+      "correct": 0,
+      "explanation": "Aus + Dativ: aus der Türkei."
+    },
+    {
+      "question": "Wir sprechen ___ unserem Chef.",
+      "options": ["mit", "für", "ohne"],
+      "correct": 0,
+      "explanation": "Mit всегда требует Dativ."
+    },
+    {
+      "question": "Er fährt jeden Tag ___ Büro.",
+      "options": ["zu dem", "in den", "an den"],
+      "correct": 0,
+      "explanation": "Zu + Dativ: zu dem Büro (разг. zum Büro)."
+    },
+    {
+      "question": "___ zwei Wochen arbeite ich hier.",
+      "options": ["Seit", "Für", "Um"],
+      "correct": 0,
+      "explanation": "Seit + Dativ для периода до настоящего."
+    },
+    {
+      "question": "Sie wohnt ___ ihren Großeltern.",
+      "options": ["bei", "nach", "ohne"],
+      "correct": 0,
+      "explanation": "Bei + Dativ: bei ihren Großeltern."
+    },
+    {
+      "question": "Das Geschenk ist ___ meinem Bruder.",
+      "options": ["von", "für", "gegen"],
+      "correct": 0,
+      "explanation": "Von + Dativ: von meinem Bruder."
+    },
+    {
+      "question": "Nach dem Kurs gehe ich ___ Hause.",
+      "options": ["zu", "nach", "von"],
+      "correct": 1,
+      "explanation": "Nach Hause — устойчивое выражение."
+    },
+    {
+      "question": "Wir fahren heute ___ dem Zug nach Köln.",
+      "options": ["bei", "mit", "von"],
+      "correct": 1,
+      "explanation": "Mit + Dativ: mit dem Zug."
+    }
+  ]
+}

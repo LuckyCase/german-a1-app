@@ -2,7 +2,54 @@
   "id": "A2.2",
   "name": "Уровень A2.2",
   "name_de": "Niveau A2.2",
-  "description": "Уровень в разработке",
+  "description": "Уверенный базовый: формальная коммуникация и более сложные структуры",
   "level": "A2",
-  "sub_level": "2"
+  "sub_level": "2",
+  "version": "0.1.0",
+  "last_updated": "2026-03-13",
+  "content": {
+    "vocabulary": {
+      "path": "vocabulary/",
+      "categories": [
+        {"id": "everyday_bureaucracy", "file": "everyday_bureaucracy.json", "name": "Быт и бюрократия"}
+      ],
+      "total_words": 12
+    },
+    "grammar": {
+      "path": "grammar/",
+      "topics": [
+        {"id": "praeteritum_modal", "file": "praeteritum_modal.json", "name": "Präteritum модальных глаголов"},
+        {"id": "dass_wenn_konjunktiv2", "file": "dass_wenn_konjunktiv2.json", "name": "dass/wenn и Konjunktiv II"}
+      ],
+      "total_questions": 12
+    },
+    "phrases": {
+      "path": "phrases/",
+      "categories": [
+        {"id": "official_requests", "file": "official_requests.json", "name": "Официальные запросы"}
+      ],
+      "total_phrases": 6
+    },
+    "dialogues": {
+      "path": "dialogues/",
+      "topics": [
+        {"id": "appointment_change", "file": "appointment_change.json", "name": "Перенос встречи"}
+      ],
+      "total_dialogues": 1
+    },
+    "culture": {
+      "path": "culture/",
+      "topics": [
+        {"id": "appointments_and_services", "file": "appointments_and_services.json", "name": "Записи и сервисы"}
+      ],
+      "total_topics": 1
+    },
+    "exercises": {
+      "path": "exercises/",
+      "sets": [
+        {"id": "a22_starter_mix", "file": "a22_starter_mix.json", "name": "A2.2 Starter Mix"}
+      ],
+      "total_sets": 1
+    }
+  }
 }

@@ -1,0 +1,81 @@
+{
+  "id": "everyday_bureaucracy",
+  "name": "Быт и бюрократия",
+  "name_de": "Alltag und Behörde",
+  "description": "Словарь A2.2 для документов и официальных ситуаций",
+  "level": "A2",
+  "words": [
+    {
+      "de": "der Termin",
+      "ru": "встреча, запись",
+      "example": "Ich habe morgen einen Termin beim Amt.",
+      "example_ru": "Завтра у меня запись в ведомстве."
+    },
+    {
+      "de": "die Anmeldung",
+      "ru": "регистрация",
+      "example": "Die Anmeldung dauert nur zehn Minuten.",
+      "example_ru": "Регистрация занимает всего десять минут."
+    },
+    {
+      "de": "die Bescheinigung",
+      "ru": "справка",
+      "example": "Ich brauche eine Bescheinigung für die Arbeit.",
+      "example_ru": "Мне нужна справка для работы."
+    },
+    {
+      "de": "das Formular",
+      "ru": "формуляр, бланк",
+      "example": "Bitte füllen Sie dieses Formular aus.",
+      "example_ru": "Пожалуйста, заполните этот бланк."
+    },
+    {
+      "de": "beantragen",
+      "ru": "подавать заявление",
+      "example": "Ich möchte einen neuen Ausweis beantragen.",
+      "example_ru": "Я хочу подать заявление на новый документ."
+    },
+    {
+      "de": "die Frist",
+      "ru": "срок",
+      "example": "Die Frist endet am 30. April.",
+      "example_ru": "Срок истекает 30 апреля."
+    },
+    {
+      "de": "verlängern",
+      "ru": "продлевать",
+      "example": "Kann ich den Vertrag verlängern?",
+      "example_ru": "Могу ли я продлить договор?"
+    },
+    {
+      "de": "die Gebühr",
+      "ru": "сбор, пошлина",
+      "example": "Die Gebühr beträgt 25 Euro.",
+      "example_ru": "Сбор составляет 25 евро."
+    },
+    {
+      "de": "gültig",
+      "ru": "действительный",
+      "example": "Ist dieser Pass noch gültig?",
+      "example_ru": "Этот паспорт еще действителен?"
+    },
+    {
+      "de": "die Unterschrift",
+      "ru": "подпись",
+      "example": "Hier fehlt noch Ihre Unterschrift.",
+      "example_ru": "Здесь еще не хватает вашей подписи."
+    },
+    {
+      "de": "der Nachweis",
+      "ru": "подтверждение, доказательство",
+      "example": "Sie brauchen einen Nachweis über Ihre Adresse.",
+      "example_ru": "Вам нужно подтверждение вашего адреса."
+    },
+    {
+      "de": "vereinbaren",
+      "ru": "договариваться, назначать",
+      "example": "Können wir einen Termin vereinbaren?",
+      "example_ru": "Можем назначить встречу?"
+    }
+  ]
+}

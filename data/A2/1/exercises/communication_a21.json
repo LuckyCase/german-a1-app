@@ -1,0 +1,46 @@
+{
+  "id": "communication_a21",
+  "name": "Коммуникация на работе и в быту",
+  "name_de": "Kommunikation im Alltag",
+  "description": "Практика фраз A2.1 для офиса, аренды и аптеки",
+  "level": "A2",
+  "linked_to": ["work_office", "doctor_pharmacy", "apartment_rent"],
+  "tasks": [
+    {
+      "type": "multiple_choice",
+      "question": "Выберите вежливую фразу для уточнения:",
+      "options": [
+        "Könnten Sie das bitte wiederholen?",
+        "Sag das nochmal!",
+        "Ich höre nicht."
+      ],
+      "correct": 0,
+      "explanation": "Вежливая форма с könnten."
+    },
+    {
+      "type": "fill_blank",
+      "sentence": "Wie hoch ist die ___?",
+      "answer": "Warmmiete",
+      "hint": "аренда с коммунальными",
+      "explanation": "При аренде жилья часто спрашивают про Warmmiete."
+    },
+    {
+      "type": "scramble",
+      "words": ["Ich", "brauche", "ein", "Rezept", "für", "dieses", "Medikament"],
+      "answer": "Ich brauche ein Rezept für dieses Medikament",
+      "translation": "Мне нужен рецепт на это лекарство",
+      "explanation": "Порядок слов: подлежащее + сказуемое + дополнения."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Какая фраза подходит, если хотите перенести встречу?",
+      "options": [
+        "Könnten wir den Termin verschieben?",
+        "Ich komme nicht. Punkt.",
+        "Das ist nicht mein Problem."
+      ],
+      "correct": 0,
+      "explanation": "Вежливый и нейтральный вариант для деловой коммуникации."
+    }
+  ]
+}

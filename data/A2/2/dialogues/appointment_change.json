@@ -1,0 +1,55 @@
+{
+  "id": "appointment_change",
+  "name": "Перенос встречи",
+  "name_de": "Termin verschieben",
+  "description": "Диалог о переносе записи",
+  "level": "A2",
+  "dialogue": [
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Guten Tag, ich habe einen Termin am Donnerstag.",
+      "text_ru": "Здравствуйте, у меня запись на четверг."
+    },
+    {
+      "role": "Mitarbeiterin",
+      "role_ru": "Сотрудница",
+      "text": "Ja, um 10 Uhr. Möchten Sie etwas ändern?",
+      "text_ru": "Да, в 10 часов. Вы хотите что-то изменить?"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Ja, ich würde den Termin gern auf Freitag verschieben.",
+      "text_ru": "Да, я хотел(а) бы перенести запись на пятницу."
+    },
+    {
+      "role": "Mitarbeiterin",
+      "role_ru": "Сотрудница",
+      "text": "Freitag um 13 Uhr ist frei. Passt das?",
+      "text_ru": "В пятницу в 13:00 свободно. Подходит?"
+    },
+    {
+      "role": "Kunde",
+      "role_ru": "Клиент",
+      "text": "Ja, perfekt. Vielen Dank!",
+      "text_ru": "Да, отлично. Большое спасибо!"
+    }
+  ],
+  "exercises": [
+    {
+      "type": "multiple_choice",
+      "question": "Auf welchen Tag wird der Termin verschoben?",
+      "options": ["Mittwoch", "Freitag", "Montag"],
+      "correct": 1,
+      "explanation": "Клиент просит перенести встречу на пятницу."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Um wie viel Uhr ist der neue Termin?",
+      "options": ["10 Uhr", "12 Uhr", "13 Uhr"],
+      "correct": 2,
+      "explanation": "Новая запись назначена на 13:00."
+    }
+  ]
+}
