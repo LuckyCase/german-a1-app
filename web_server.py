@@ -1598,29 +1598,76 @@ HTML_TEMPLATE = """
                     throw new Error('levels fetch failed');
                 }
                 const levels = await response.json();
-                const buttonsHtml = levels
-                    .map(level => (
-                        `<button type="button" class="btn btn-secondary" data-major="${level.major}" data-sub="${level.sub}">
-                            ${level.display_name}${level.has_content ? '' : ' (в разработке)'}
-                        </button>`
-                    ))
-                    .join('');
 
-                setOnboardingHTML(`
-                    <h2>Выберите уровень</h2>
-                    <p>Можно изменить позже в настройках.</p>
-                    <div id="manual-level-list" class="btn-group">${buttonsHtml}</div>
-                    <button type="button" class="back-btn" data-action="showOnboardingStart">← Назад</button>
-                `);
-
-                const root = document.getElementById('manual-level-list');
-                root.querySelectorAll('button[data-major]').forEach(btn => {
-                    btn.onclick = async () => {
-                        const major = btn.getAttribute('data-major');
-                        const sub = btn.getAttribute('data-sub');
-                        await completeOnboarding(major, sub);
-                    };
+                const majorOrder = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+                const byMajor = {};
+                levels.forEach(level => {
+                    if (!byMajor[level.major]) byMajor[level.major] = [];
+                    byMajor[level.major].push(level);
                 });
+
+                function renderMajorSelection() {
+                    const majorButtonsHtml = majorOrder
+                        .filter(major => Array.isArray(byMajor[major]) && byMajor[major].length > 0)
+                        .map(major => (
+                            `<button type="button" class="btn btn-secondary" data-major-only="${major}">
+                                ${major}
+                            </button>`
+                        ))
+                        .join('');
+
+                    setOnboardingHTML(`
+                        <h2>Выберите базовый уровень</h2>
+                        <p>Сначала выберите A1, A2, B1, B2, C1 или C2.</p>
+                        <div id="manual-major-list" class="btn-group">${majorButtonsHtml}</div>
+                        <button type="button" class="back-btn" data-action="showOnboardingStart">← Назад</button>
+                    `);
+
+                    const root = document.getElementById('manual-major-list');
+                    root.querySelectorAll('button[data-major-only]').forEach(btn => {
+                        btn.onclick = () => {
+                            const major = btn.getAttribute('data-major-only');
+                            renderSubSelection(major);
+                        };
+                    });
+                }
+
+                function renderSubSelection(major) {
+                    const subLevels = (byMajor[major] || [])
+                        .slice()
+                        .sort((a, b) => Number(a.sub) - Number(b.sub));
+
+                    const subButtonsHtml = subLevels
+                        .map(level => (
+                            `<button type="button" class="btn btn-secondary" data-major="${level.major}" data-sub="${level.sub}">
+                                ${level.display_name}${level.has_content ? '' : ' (в разработке)'}
+                            </button>`
+                        ))
+                        .join('');
+
+                    setOnboardingHTML(`
+                        <h2>Выберите подуровень</h2>
+                        <p>Выбран базовый уровень: <strong>${major}</strong>.</p>
+                        <div id="manual-level-list" class="btn-group">${subButtonsHtml}</div>
+                        <button type="button" class="back-btn" id="manual-back-to-major">← Назад к базовым уровням</button>
+                    `);
+
+                    const root = document.getElementById('manual-level-list');
+                    root.querySelectorAll('button[data-major]').forEach(btn => {
+                        btn.onclick = async () => {
+                            const selectedMajor = btn.getAttribute('data-major');
+                            const selectedSub = btn.getAttribute('data-sub');
+                            await completeOnboarding(selectedMajor, selectedSub);
+                        };
+                    });
+
+                    const backBtn = document.getElementById('manual-back-to-major');
+                    if (backBtn) {
+                        backBtn.onclick = () => renderMajorSelection();
+                    }
+                }
+
+                renderMajorSelection();
             } catch (error) {
                 tg.showAlert?.('Не удалось загрузить уровни');
                 showOnboardingStart();
