@@ -1423,11 +1423,23 @@ HTML_TEMPLATE = """
 
         // ── Web Speech API (browser-side STT for basic users) ──
 
+        let activeSpeechRecognition = null;
+
         function hasWebSpeechAPI() {
             return !!(window.SpeechRecognition || window.webkitSpeechRecognition);
         }
 
+        function cancelWebSpeech() {
+            if (activeSpeechRecognition) {
+                try { activeSpeechRecognition.abort(); } catch (e) {}
+                activeSpeechRecognition = null;
+            }
+        }
+
         function transcribeWebSpeech(maxDurationMs = 8000) {
+            // Cancel any previous recognition before starting new one
+            cancelWebSpeech();
+
             return new Promise((resolve, reject) => {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 if (!SpeechRecognition) {
@@ -1439,28 +1451,34 @@ HTML_TEMPLATE = """
                 recognition.continuous = false;
                 recognition.interimResults = false;
                 recognition.maxAlternatives = 1;
+                activeSpeechRecognition = recognition;
 
                 let settled = false;
+                function settle() {
+                    settled = true;
+                    clearTimeout(timeout);
+                    activeSpeechRecognition = null;
+                }
+
                 const timeout = setTimeout(() => {
                     if (!settled) {
-                        settled = true;
-                        recognition.stop();
+                        settle();
+                        try { recognition.stop(); } catch (e) {}
                         reject(new Error('Время записи истекло'));
                     }
                 }, maxDurationMs);
 
                 recognition.onresult = (event) => {
                     if (settled) return;
-                    settled = true;
-                    clearTimeout(timeout);
+                    settle();
                     const transcript = event.results[0][0].transcript;
                     const confidence = event.results[0][0].confidence;
                     resolve({ text: transcript, confidence });
                 };
                 recognition.onerror = (event) => {
                     if (settled) return;
-                    settled = true;
-                    clearTimeout(timeout);
+                    settle();
+                    if (event.error === 'aborted') return; // user-initiated cancel, ignore
                     if (event.error === 'no-speech') {
                         reject(new Error('Речь не обнаружена. Попробуйте ещё раз.'));
                     } else if (event.error === 'not-allowed') {
@@ -1471,8 +1489,7 @@ HTML_TEMPLATE = """
                 };
                 recognition.onend = () => {
                     if (!settled) {
-                        settled = true;
-                        clearTimeout(timeout);
+                        settle();
                         reject(new Error('Речь не обнаружена'));
                     }
                 };
@@ -2100,48 +2117,60 @@ HTML_TEMPLATE = """
             if (!word) return;
             const btn = document.getElementById('pronounce-word-btn');
 
-            // If already recording, stop
+            // If already recording (AudioWorklet/ScriptProcessor), stop it
             if (activeRecorder) {
                 await stopRecording();
                 return;
             }
+            // If Web Speech API is active, cancel it
+            if (activeSpeechRecognition) {
+                cancelWebSpeech();
+                btn.classList.remove('recording');
+                setButtonLoading(btn, false);
+                return;
+            }
+
+            const capturedIndex = currentWordIndex; // guard against stale results
 
             try {
                 if (userIsPremium) {
-                    // Premium: record WAV -> server Whisper STT
                     btn.textContent = '⏹️ Остановить';
                     btn.classList.add('recording');
                     tg.HapticFeedback?.impactOccurred('medium');
                     const wav = await startRecording();
                     btn.classList.remove('recording');
+                    if (currentWordIndex !== capturedIndex) return;
                     setButtonLoading(btn, true, '⏳ Проверяем...');
                     const result = await submitPronunciationPremium(wav, word.de, 'word', word.word_id);
+                    if (currentWordIndex !== capturedIndex) return;
                     setPronunciationResult('pronunciation-word-result', result);
                     tg.HapticFeedback?.notificationOccurred(
                         result.verdict === 'Отлично' ? 'success' : 'warning'
                     );
                 } else if (hasWebSpeechAPI()) {
-                    // Basic + Web Speech API available: browser STT
-                    btn.textContent = '🎙️ Говорите...';
+                    btn.textContent = '⏹️ Остановить';
                     btn.classList.add('recording');
                     tg.HapticFeedback?.impactOccurred('medium');
                     const { text, confidence } = await transcribeWebSpeech(8000);
                     btn.classList.remove('recording');
+                    if (currentWordIndex !== capturedIndex) return;
                     setButtonLoading(btn, true, '⏳ Проверяем...');
                     const result = await submitPronunciationBasic(text, word.de, 'word', word.word_id, confidence);
+                    if (currentWordIndex !== capturedIndex) return;
                     setPronunciationResult('pronunciation-word-result', result);
                     tg.HapticFeedback?.notificationOccurred(
                         result.verdict === 'Отлично' ? 'success' : 'warning'
                     );
                 } else {
-                    // Fallback: record WAV -> server (cloud if configured)
                     btn.textContent = '⏹️ Остановить';
                     btn.classList.add('recording');
                     tg.HapticFeedback?.impactOccurred('medium');
                     const wav = await startRecording();
                     btn.classList.remove('recording');
+                    if (currentWordIndex !== capturedIndex) return;
                     setButtonLoading(btn, true, '⏳ Проверяем...');
                     const result = await submitPronunciationPremium(wav, word.de, 'word', word.word_id);
+                    if (currentWordIndex !== capturedIndex) return;
                     setPronunciationResult('pronunciation-word-result', result);
                     tg.HapticFeedback?.notificationOccurred(
                         result.verdict === 'Отлично' ? 'success' : 'warning'
@@ -2149,6 +2178,7 @@ HTML_TEMPLATE = """
                 }
             } catch (error) {
                 btn.classList.remove('recording');
+                if (currentWordIndex !== capturedIndex) return;
                 setPronunciationResult(
                     'pronunciation-word-result',
                     error?.message || 'Не удалось проверить произношение',
@@ -2156,7 +2186,9 @@ HTML_TEMPLATE = """
                 );
                 tg.HapticFeedback?.notificationOccurred('error');
             } finally {
-                setButtonLoading(btn, false);
+                if (currentWordIndex === capturedIndex) {
+                    setButtonLoading(btn, false);
+                }
             }
         }
         
@@ -2674,11 +2706,18 @@ HTML_TEMPLATE = """
             if (!phrase) return;
             const btn = document.getElementById('pronounce-phrase-btn');
 
-            // If already recording, stop
             if (activeRecorder) {
                 await stopRecording();
                 return;
             }
+            if (activeSpeechRecognition) {
+                cancelWebSpeech();
+                btn.classList.remove('recording');
+                setButtonLoading(btn, false);
+                return;
+            }
+
+            const capturedIndex = currentPhraseIndex;
 
             try {
                 if (userIsPremium) {
@@ -2687,20 +2726,24 @@ HTML_TEMPLATE = """
                     tg.HapticFeedback?.impactOccurred('medium');
                     const wav = await startRecording();
                     btn.classList.remove('recording');
+                    if (currentPhraseIndex !== capturedIndex) return;
                     setButtonLoading(btn, true, '⏳ Проверяем...');
                     const result = await submitPronunciationPremium(wav, phrase.de, 'phrase', phrase.phrase_id);
+                    if (currentPhraseIndex !== capturedIndex) return;
                     setPronunciationResult('pronunciation-phrase-result', result);
                     tg.HapticFeedback?.notificationOccurred(
                         result.verdict === 'Отлично' ? 'success' : 'warning'
                     );
                 } else if (hasWebSpeechAPI()) {
-                    btn.textContent = '🎙️ Говорите...';
+                    btn.textContent = '⏹️ Остановить';
                     btn.classList.add('recording');
                     tg.HapticFeedback?.impactOccurred('medium');
                     const { text, confidence } = await transcribeWebSpeech(8000);
                     btn.classList.remove('recording');
+                    if (currentPhraseIndex !== capturedIndex) return;
                     setButtonLoading(btn, true, '⏳ Проверяем...');
                     const result = await submitPronunciationBasic(text, phrase.de, 'phrase', phrase.phrase_id, confidence);
+                    if (currentPhraseIndex !== capturedIndex) return;
                     setPronunciationResult('pronunciation-phrase-result', result);
                     tg.HapticFeedback?.notificationOccurred(
                         result.verdict === 'Отлично' ? 'success' : 'warning'
@@ -2711,8 +2754,10 @@ HTML_TEMPLATE = """
                     tg.HapticFeedback?.impactOccurred('medium');
                     const wav = await startRecording();
                     btn.classList.remove('recording');
+                    if (currentPhraseIndex !== capturedIndex) return;
                     setButtonLoading(btn, true, '⏳ Проверяем...');
                     const result = await submitPronunciationPremium(wav, phrase.de, 'phrase', phrase.phrase_id);
+                    if (currentPhraseIndex !== capturedIndex) return;
                     setPronunciationResult('pronunciation-phrase-result', result);
                     tg.HapticFeedback?.notificationOccurred(
                         result.verdict === 'Отлично' ? 'success' : 'warning'
@@ -2720,6 +2765,7 @@ HTML_TEMPLATE = """
                 }
             } catch (error) {
                 btn.classList.remove('recording');
+                if (currentPhraseIndex !== capturedIndex) return;
                 setPronunciationResult(
                     'pronunciation-phrase-result',
                     error?.message || 'Не удалось проверить произношение',
@@ -2727,7 +2773,9 @@ HTML_TEMPLATE = """
                 );
                 tg.HapticFeedback?.notificationOccurred('error');
             } finally {
-                setButtonLoading(btn, false);
+                if (currentPhraseIndex === capturedIndex) {
+                    setButtonLoading(btn, false);
+                }
             }
         }
         
