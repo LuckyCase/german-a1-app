@@ -30,13 +30,14 @@ from bot.database import (
     get_priority_word_ids, get_priority_phrase_ids,
     get_detailed_user_progress, get_user_settings, set_user_level, set_diagnostic_completed,
     save_pronunciation_progress, get_pronunciation_stats, consume_rate_limit,
+    get_user_premium,
     FEEDBACK_STATUS_LABELS, MAX_FEEDBACK_LENGTH
 )
 from bot.config import (
     TELEGRAM_BOT_TOKEN, DATABASE_URL, PRONUN_TIMEOUT_SEC, PRONUN_RATE_LIMIT_PER_HOUR
 )
 from bot.monitoring import init_sentry
-from bot.services.pronunciation import evaluate_pronunciation
+from bot.services.pronunciation import evaluate_pronunciation, _score_pronunciation
 
 # Telegram bot imports
 from telegram import Update
@@ -561,7 +562,19 @@ HTML_TEMPLATE = """
             background: var(--primary);
             border-color: var(--primary);
         }
-        
+
+        .audio-btn.recording {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #ef4444;
+            animation: recording-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes recording-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
         /* Options */
         .options {
             display: flex;
@@ -1231,6 +1244,9 @@ HTML_TEMPLATE = """
         let onboardingRecommended = { major: 'A1', sub: '1', name: 'A1.1' };
         let activeRecorder = null;
         let activeStream = null;
+        let recordingResolve = null;
+        let recordingTimeout = null;
+        let userIsPremium = false;
 
         function setButtonLoading(button, isLoading, loadingText = 'Загрузка...') {
             if (!button) return;
@@ -1257,6 +1273,7 @@ HTML_TEMPLATE = """
                 el.innerHTML = `<span style="color:#f87171">${payload}</span>`;
                 return;
             }
+            const engine = payload.engine === 'web_speech' ? ' (браузер)' : payload.engine === 'cloud_openai' ? ' (Whisper)' : '';
             const mistakes = (payload.mistakes || []).length
                 ? `<br><span style="color: var(--text-secondary)">Ошибки: ${(payload.mistakes || []).join('; ')}</span>`
                 : '';
@@ -1264,7 +1281,7 @@ HTML_TEMPLATE = """
                 ? `<br><span style="color: var(--text-secondary)">Подсказка: ${(payload.tips || []).join(' ')}</span>`
                 : '';
             el.style.display = 'block';
-            el.innerHTML = `Оценка: <strong>${payload.score}/100</strong> — ${payload.verdict}<br>`
+            el.innerHTML = `Оценка: <strong>${payload.score}/100</strong> — ${payload.verdict}${engine}<br>`
                 + `Распознано: "${payload.recognized_text}"${mistakes}${tips}`;
         }
 
@@ -1303,7 +1320,9 @@ HTML_TEMPLATE = """
             return new Blob([buffer], { type: 'audio/wav' });
         }
 
-        async function recordWavOnce(maxDurationMs = 5000) {
+        // ── Audio recording with AudioWorklet (fallback: ScriptProcessor) ──
+
+        async function startRecording() {
             if (!navigator.mediaDevices?.getUserMedia) {
                 throw new Error('Запись аудио не поддерживается в этом браузере');
             }
@@ -1322,20 +1341,67 @@ HTML_TEMPLATE = """
             const AudioCtx = window.AudioContext || window.webkitAudioContext;
             const audioContext = new AudioCtx({ sampleRate: 16000 });
             const source = audioContext.createMediaStreamSource(activeStream);
-            const processor = audioContext.createScriptProcessor(4096, 1, 1);
             const chunks = [];
 
-            processor.onaudioprocess = (event) => {
-                const input = event.inputBuffer.getChannelData(0);
-                chunks.push(new Float32Array(input));
-            };
-            source.connect(processor);
-            processor.connect(audioContext.destination);
-            activeRecorder = { audioContext, processor, source };
+            let useWorklet = false;
+            try {
+                if (audioContext.audioWorklet) {
+                    const workletCode = `
+                        class RecorderProcessor extends AudioWorkletProcessor {
+                            process(inputs) {
+                                const input = inputs[0];
+                                if (input.length > 0) {
+                                    this.port.postMessage(new Float32Array(input[0]));
+                                }
+                                return true;
+                            }
+                        }
+                        registerProcessor('recorder-processor', RecorderProcessor);
+                    `;
+                    const blob = new Blob([workletCode], { type: 'application/javascript' });
+                    const url = URL.createObjectURL(blob);
+                    await audioContext.audioWorklet.addModule(url);
+                    URL.revokeObjectURL(url);
 
-            await new Promise(resolve => setTimeout(resolve, maxDurationMs));
+                    const workletNode = new AudioWorkletNode(audioContext, 'recorder-processor');
+                    workletNode.port.onmessage = (e) => {
+                        chunks.push(new Float32Array(e.data));
+                    };
+                    source.connect(workletNode);
+                    workletNode.connect(audioContext.destination);
+                    activeRecorder = { audioContext, node: workletNode, source, chunks };
+                    useWorklet = true;
+                }
+            } catch (e) {
+                // AudioWorklet not supported, fall through to ScriptProcessor
+            }
 
-            processor.disconnect();
+            if (!useWorklet) {
+                const processor = audioContext.createScriptProcessor(4096, 1, 1);
+                processor.onaudioprocess = (event) => {
+                    chunks.push(new Float32Array(event.inputBuffer.getChannelData(0)));
+                };
+                source.connect(processor);
+                processor.connect(audioContext.destination);
+                activeRecorder = { audioContext, node: processor, source, chunks };
+            }
+
+            return new Promise((resolve) => {
+                recordingResolve = resolve;
+                // Auto-stop safety after 8 seconds
+                recordingTimeout = setTimeout(() => stopRecording(), 8000);
+            });
+        }
+
+        async function stopRecording() {
+            if (!activeRecorder) return null;
+            if (recordingTimeout) {
+                clearTimeout(recordingTimeout);
+                recordingTimeout = null;
+            }
+
+            const { audioContext, node, source, chunks } = activeRecorder;
+            node.disconnect();
             source.disconnect();
             await audioContext.close();
             activeStream.getTracks().forEach(t => t.stop());
@@ -1345,14 +1411,78 @@ HTML_TEMPLATE = """
             const totalLength = chunks.reduce((sum, c) => sum + c.length, 0);
             const combined = new Float32Array(totalLength);
             let ptr = 0;
-            chunks.forEach(c => {
-                combined.set(c, ptr);
-                ptr += c.length;
-            });
-            return encodeWavFromFloat32(combined, 16000);
+            chunks.forEach(c => { combined.set(c, ptr); ptr += c.length; });
+            const wavBlob = encodeWavFromFloat32(combined, 16000);
+
+            if (recordingResolve) {
+                recordingResolve(wavBlob);
+                recordingResolve = null;
+            }
+            return wavBlob;
         }
 
-        async function submitPronunciation(audioBlob, targetText, itemType, itemId) {
+        // ── Web Speech API (browser-side STT for basic users) ──
+
+        function hasWebSpeechAPI() {
+            return !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+        }
+
+        function transcribeWebSpeech(maxDurationMs = 8000) {
+            return new Promise((resolve, reject) => {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                    reject(new Error('Web Speech API не поддерживается'));
+                    return;
+                }
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'de-DE';
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 1;
+
+                let settled = false;
+                const timeout = setTimeout(() => {
+                    if (!settled) {
+                        settled = true;
+                        recognition.stop();
+                        reject(new Error('Время записи истекло'));
+                    }
+                }, maxDurationMs);
+
+                recognition.onresult = (event) => {
+                    if (settled) return;
+                    settled = true;
+                    clearTimeout(timeout);
+                    const transcript = event.results[0][0].transcript;
+                    const confidence = event.results[0][0].confidence;
+                    resolve({ text: transcript, confidence });
+                };
+                recognition.onerror = (event) => {
+                    if (settled) return;
+                    settled = true;
+                    clearTimeout(timeout);
+                    if (event.error === 'no-speech') {
+                        reject(new Error('Речь не обнаружена. Попробуйте ещё раз.'));
+                    } else if (event.error === 'not-allowed') {
+                        reject(new Error('Доступ к микрофону запрещён'));
+                    } else {
+                        reject(new Error('Ошибка распознавания: ' + event.error));
+                    }
+                };
+                recognition.onend = () => {
+                    if (!settled) {
+                        settled = true;
+                        clearTimeout(timeout);
+                        reject(new Error('Речь не обнаружена'));
+                    }
+                };
+                recognition.start();
+            });
+        }
+
+        // ── Submit pronunciation (premium: server STT, basic: browser STT) ──
+
+        async function submitPronunciationPremium(audioBlob, targetText, itemType, itemId) {
             const formData = new FormData();
             formData.append('audio', audioBlob, 'pronunciation.wav');
             formData.append('target_text', targetText);
@@ -1363,6 +1493,26 @@ HTML_TEMPLATE = """
             const response = await fetch('/api/pronunciation/check', {
                 method: 'POST',
                 body: formData
+            });
+            const data = await response.json();
+            if (!response.ok || !data.success) {
+                throw new Error(data.error || `HTTP ${response.status}`);
+            }
+            return data;
+        }
+
+        async function submitPronunciationBasic(recognizedText, targetText, itemType, itemId, confidence) {
+            const response = await fetch('/api/pronunciation/score', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: userId,
+                    target_text: targetText,
+                    recognized_text: recognizedText,
+                    item_type: itemType,
+                    item_id: itemId || '',
+                    confidence: confidence || 0
+                })
             });
             const data = await response.json();
             if (!response.ok || !data.success) {
@@ -1949,16 +2099,56 @@ HTML_TEMPLATE = """
             const word = currentWords[currentWordIndex];
             if (!word) return;
             const btn = document.getElementById('pronounce-word-btn');
+
+            // If already recording, stop
+            if (activeRecorder) {
+                await stopRecording();
+                return;
+            }
+
             try {
-                setButtonLoading(btn, true, '🎙️ Запись 5с...');
-                const wav = await recordWavOnce(5000);
-                setButtonLoading(btn, true, '⏳ Проверяем...');
-                const result = await submitPronunciation(wav, word.de, 'word', word.word_id);
-                setPronunciationResult('pronunciation-word-result', result);
-                tg.HapticFeedback?.notificationOccurred(
-                    result.verdict === 'Отлично' ? 'success' : 'warning'
-                );
+                if (userIsPremium) {
+                    // Premium: record WAV -> server Whisper STT
+                    btn.textContent = '⏹️ Остановить';
+                    btn.classList.add('recording');
+                    tg.HapticFeedback?.impactOccurred('medium');
+                    const wav = await startRecording();
+                    btn.classList.remove('recording');
+                    setButtonLoading(btn, true, '⏳ Проверяем...');
+                    const result = await submitPronunciationPremium(wav, word.de, 'word', word.word_id);
+                    setPronunciationResult('pronunciation-word-result', result);
+                    tg.HapticFeedback?.notificationOccurred(
+                        result.verdict === 'Отлично' ? 'success' : 'warning'
+                    );
+                } else if (hasWebSpeechAPI()) {
+                    // Basic + Web Speech API available: browser STT
+                    btn.textContent = '🎙️ Говорите...';
+                    btn.classList.add('recording');
+                    tg.HapticFeedback?.impactOccurred('medium');
+                    const { text, confidence } = await transcribeWebSpeech(8000);
+                    btn.classList.remove('recording');
+                    setButtonLoading(btn, true, '⏳ Проверяем...');
+                    const result = await submitPronunciationBasic(text, word.de, 'word', word.word_id, confidence);
+                    setPronunciationResult('pronunciation-word-result', result);
+                    tg.HapticFeedback?.notificationOccurred(
+                        result.verdict === 'Отлично' ? 'success' : 'warning'
+                    );
+                } else {
+                    // Fallback: record WAV -> server (cloud if configured)
+                    btn.textContent = '⏹️ Остановить';
+                    btn.classList.add('recording');
+                    tg.HapticFeedback?.impactOccurred('medium');
+                    const wav = await startRecording();
+                    btn.classList.remove('recording');
+                    setButtonLoading(btn, true, '⏳ Проверяем...');
+                    const result = await submitPronunciationPremium(wav, word.de, 'word', word.word_id);
+                    setPronunciationResult('pronunciation-word-result', result);
+                    tg.HapticFeedback?.notificationOccurred(
+                        result.verdict === 'Отлично' ? 'success' : 'warning'
+                    );
+                }
             } catch (error) {
+                btn.classList.remove('recording');
                 setPronunciationResult(
                     'pronunciation-word-result',
                     error?.message || 'Не удалось проверить произношение',
@@ -2255,6 +2445,11 @@ HTML_TEMPLATE = """
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const d = await response.json();
 
+                // Update premium status from server
+                if (d.is_premium !== undefined) {
+                    userIsPremium = !!d.is_premium;
+                }
+
                 const sections = [
                     {
                         icon: '&#128218;', title: 'Слова',
@@ -2478,16 +2673,53 @@ HTML_TEMPLATE = """
             const phrase = currentPhrases[currentPhraseIndex];
             if (!phrase) return;
             const btn = document.getElementById('pronounce-phrase-btn');
+
+            // If already recording, stop
+            if (activeRecorder) {
+                await stopRecording();
+                return;
+            }
+
             try {
-                setButtonLoading(btn, true, '🎙️ Запись 5с...');
-                const wav = await recordWavOnce(5000);
-                setButtonLoading(btn, true, '⏳ Проверяем...');
-                const result = await submitPronunciation(wav, phrase.de, 'phrase', phrase.phrase_id);
-                setPronunciationResult('pronunciation-phrase-result', result);
-                tg.HapticFeedback?.notificationOccurred(
-                    result.verdict === 'Отлично' ? 'success' : 'warning'
-                );
+                if (userIsPremium) {
+                    btn.textContent = '⏹️ Остановить';
+                    btn.classList.add('recording');
+                    tg.HapticFeedback?.impactOccurred('medium');
+                    const wav = await startRecording();
+                    btn.classList.remove('recording');
+                    setButtonLoading(btn, true, '⏳ Проверяем...');
+                    const result = await submitPronunciationPremium(wav, phrase.de, 'phrase', phrase.phrase_id);
+                    setPronunciationResult('pronunciation-phrase-result', result);
+                    tg.HapticFeedback?.notificationOccurred(
+                        result.verdict === 'Отлично' ? 'success' : 'warning'
+                    );
+                } else if (hasWebSpeechAPI()) {
+                    btn.textContent = '🎙️ Говорите...';
+                    btn.classList.add('recording');
+                    tg.HapticFeedback?.impactOccurred('medium');
+                    const { text, confidence } = await transcribeWebSpeech(8000);
+                    btn.classList.remove('recording');
+                    setButtonLoading(btn, true, '⏳ Проверяем...');
+                    const result = await submitPronunciationBasic(text, phrase.de, 'phrase', phrase.phrase_id, confidence);
+                    setPronunciationResult('pronunciation-phrase-result', result);
+                    tg.HapticFeedback?.notificationOccurred(
+                        result.verdict === 'Отлично' ? 'success' : 'warning'
+                    );
+                } else {
+                    btn.textContent = '⏹️ Остановить';
+                    btn.classList.add('recording');
+                    tg.HapticFeedback?.impactOccurred('medium');
+                    const wav = await startRecording();
+                    btn.classList.remove('recording');
+                    setButtonLoading(btn, true, '⏳ Проверяем...');
+                    const result = await submitPronunciationPremium(wav, phrase.de, 'phrase', phrase.phrase_id);
+                    setPronunciationResult('pronunciation-phrase-result', result);
+                    tg.HapticFeedback?.notificationOccurred(
+                        result.verdict === 'Отлично' ? 'success' : 'warning'
+                    );
+                }
             } catch (error) {
+                btn.classList.remove('recording');
                 setPronunciationResult(
                     'pronunciation-phrase-result',
                     error?.message || 'Не удалось проверить произношение',
@@ -3675,6 +3907,7 @@ def api_progress():
             'items': exercise_items
         },
         'pronunciation': pronunciation_stats,
+        'is_premium': bool(run_bot_async(get_user_premium(user_id))),
     })
 
 @app.route('/api/progress/word', methods=['POST'])
@@ -3787,6 +4020,76 @@ def api_pronunciation_check():
     except Exception as e:
         logger.error("Pronunciation check failed for user %s: %s", user_id, e)
         return jsonify({'success': False, 'error': 'Failed to check pronunciation'}), 500
+
+
+@app.route('/api/pronunciation/score', methods=['POST'])
+def api_pronunciation_score():
+    """Score pronunciation from browser-side STT (basic users)."""
+    data = request.json or {}
+    user_id = data.get('user_id')
+    target_text = (data.get('target_text') or '').strip()
+    recognized_text = (data.get('recognized_text') or '').strip()
+    item_type = (data.get('item_type') or 'word').strip()
+    item_id = data.get('item_id') or None
+    confidence = float(data.get('confidence', 0))
+
+    if not user_id:
+        return jsonify({'success': False, 'error': 'User not authenticated'}), 401
+    if item_type not in {'word', 'phrase'}:
+        return jsonify({'success': False, 'error': 'item_type must be word or phrase'}), 400
+    if not target_text:
+        return jsonify({'success': False, 'error': 'target_text is required'}), 400
+    if not recognized_text:
+        return jsonify({'success': False, 'error': 'recognized_text is required'}), 400
+
+    try:
+        limit_state = run_bot_async(
+            consume_rate_limit(
+                user_id=user_id,
+                action="pronunciation_check",
+                limit=PRONUN_RATE_LIMIT_PER_HOUR,
+                window_seconds=3600,
+            ),
+            timeout=PRONUN_TIMEOUT_SEC,
+        )
+        if not limit_state.get("allowed", True):
+            return jsonify({
+                'success': False,
+                'error': f"Слишком много запросов. Повторите через {limit_state.get('retry_after', 60)} сек."
+            }), 429
+
+        analysis = _score_pronunciation(target_text, recognized_text)
+
+        run_bot_async(get_or_create_user(user_id, None, None), timeout=PRONUN_TIMEOUT_SEC)
+        run_bot_async(
+            save_pronunciation_progress(
+                user_id=user_id,
+                item_type=item_type,
+                item_id=item_id,
+                target_text=target_text,
+                recognized_text=recognized_text,
+                score=analysis["score"],
+                verdict=analysis["verdict"],
+                engine="web_speech",
+                confidence=confidence,
+            ),
+            timeout=PRONUN_TIMEOUT_SEC,
+        )
+        run_bot_async(update_daily_stats(user_id, correct=analysis["score"], total=100))
+
+        return jsonify({
+            "success": True,
+            "recognized_text": recognized_text,
+            "score": analysis["score"],
+            "verdict": analysis["verdict"],
+            "mistakes": analysis["mistakes"],
+            "tips": analysis["tips"],
+            "engine": "web_speech",
+            "confidence": round(confidence, 3),
+        })
+    except Exception as e:
+        logger.error("Pronunciation score failed for user %s: %s", user_id, e)
+        return jsonify({'success': False, 'error': 'Failed to score pronunciation'}), 500
 
 
 @app.route('/api/audio/<text>')

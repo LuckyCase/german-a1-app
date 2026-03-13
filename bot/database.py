@@ -106,6 +106,16 @@ async def get_or_create_user(user_id: int, username: str = None, first_name: str
         return user
 
 
+async def get_user_premium(user_id: int) -> bool:
+    """Return True if the user has premium status."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        val = await conn.fetchval(
+            "SELECT is_premium FROM users WHERE user_id = $1", user_id
+        )
+        return bool(val)
+
+
 async def get_all_user_ids() -> list:
     """Return all user IDs stored in the database."""
     pool = await get_pool()

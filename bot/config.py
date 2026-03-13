@@ -30,7 +30,7 @@ ADMIN_SECRET = os.getenv("ADMIN_SECRET", "")
 
 # Pronunciation check (hybrid STT)
 PRONUN_LOCAL_ENABLED = os.getenv("PRONUN_LOCAL_ENABLED", "1") == "1"
-PRONUN_CLOUD_ENABLED = os.getenv("PRONUN_CLOUD_ENABLED", "0") == "1"
+PRONUN_CLOUD_ENABLED = os.getenv("PRONUN_CLOUD_ENABLED", "1") == "1"
 PRONUN_CLOUD_PROVIDER = os.getenv("PRONUN_CLOUD_PROVIDER", "openai")
 PRONUN_CLOUD_API_KEY = os.getenv("PRONUN_CLOUD_API_KEY", "")
 PRONUN_MIN_CONFIDENCE = float(os.getenv("PRONUN_MIN_CONFIDENCE", "0.65"))
