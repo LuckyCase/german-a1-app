@@ -575,6 +575,30 @@ HTML_TEMPLATE = """
             50% { opacity: 0.6; }
         }
 
+        .settings-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .settings-badge.ok {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+        .settings-badge.warn {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+        }
+        .settings-badge.premium {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+            color: #c084fc;
+        }
+        .settings-badge.basic {
+            background: rgba(148, 163, 184, 0.15);
+            color: #94a3b8;
+        }
+
         /* Options */
         .options {
             display: flex;
@@ -882,9 +906,7 @@ HTML_TEMPLATE = """
             <p id="main-level-subtitle">Учи немецкий легко и эффективно</p>
         </header>
 
-        <div class="level-actions" id="level-actions">
-            <button type="button" class="btn btn-secondary" data-action="openDiagnosticFromMenu">🎯 Определить уровень</button>
-        </div>
+        <div class="level-actions" id="level-actions" style="display:none;"></div>
 
         <div id="onboarding-overlay" class="onboarding-overlay">
             <div id="onboarding-content" class="onboarding-card">
@@ -933,6 +955,11 @@ HTML_TEMPLATE = """
                 <div class="menu-tile-icon">💬</div>
                 <div class="menu-tile-title">Отзыв</div>
                 <div class="menu-tile-desc">Предложения</div>
+            </button>
+            <button type="button" class="menu-tile" data-section="settings">
+                <div class="menu-tile-icon">⚙️</div>
+                <div class="menu-tile-title">Настройки</div>
+                <div class="menu-tile-desc">Уровень и параметры</div>
             </button>
         </div>
         
@@ -1169,10 +1196,49 @@ HTML_TEMPLATE = """
                 </div>
             </div>
         </section>
+
+        <section id="settings" class="section" style="display: none;">
+            <button type="button" class="back-btn" data-action="backToMainMenu">← Назад в меню</button>
+
+            <div class="card" style="margin-bottom: 16px;">
+                <h2 class="card-title">📚 Уровень</h2>
+                <div id="settings-level-info" style="margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="color: var(--text-secondary);">Текущий уровень</span>
+                        <strong id="settings-current-level">—</strong>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary" style="width: 100%;" data-action="openDiagnosticFromMenu">🎯 Определить уровень</button>
+            </div>
+
+            <div class="card" style="margin-bottom: 16px;">
+                <h2 class="card-title">👤 Аккаунт</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="color: var(--text-secondary);">Статус</span>
+                    <span id="settings-premium-badge" class="settings-badge">—</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">🎙️ Произношение</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="color: var(--text-secondary);">Web Speech API</span>
+                    <span id="settings-webspeech-status" class="settings-badge">—</span>
+                </div>
+                <div id="settings-stt-mode" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="color: var(--text-secondary);">Режим STT</span>
+                    <span id="settings-stt-mode-value" style="font-size: 0.85rem;">—</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0;">
+                    Базовый: распознавание в браузере (Web Speech API).<br>
+                    Премиум: серверное распознавание (OpenAI Whisper, высокая точность).
+                </p>
+            </div>
+        </section>
     </div>
-    
+
     <audio id="word-audio"></audio>
-    
+
     <script>
         const tg = window.Telegram?.WebApp || {};
         if (tg.ready) tg.ready();
@@ -1604,6 +1670,8 @@ HTML_TEMPLATE = """
                 loadProgress();
             } else if (sectionId === 'feedback') {
                 loadFeedback();
+            } else if (sectionId === 'settings') {
+                loadSettings();
             }
             
             // Scroll to top
@@ -2446,6 +2514,42 @@ HTML_TEMPLATE = """
                     <span class="prog-item-score">${score}</span>
                 </div>`;
             }).join('');
+        }
+
+        function loadSettings() {
+            // Current level
+            const levelEl = document.getElementById('settings-current-level');
+            levelEl.textContent = `${currentLevelMajor}.${currentLevelSub}`;
+
+            // Premium status
+            const premBadge = document.getElementById('settings-premium-badge');
+            if (userIsPremium) {
+                premBadge.textContent = 'Премиум';
+                premBadge.className = 'settings-badge premium';
+            } else {
+                premBadge.textContent = 'Базовый';
+                premBadge.className = 'settings-badge basic';
+            }
+
+            // Web Speech API status
+            const wsBadge = document.getElementById('settings-webspeech-status');
+            if (hasWebSpeechAPI()) {
+                wsBadge.textContent = 'Доступен';
+                wsBadge.className = 'settings-badge ok';
+            } else {
+                wsBadge.textContent = 'Недоступен';
+                wsBadge.className = 'settings-badge warn';
+            }
+
+            // STT mode
+            const sttMode = document.getElementById('settings-stt-mode-value');
+            if (userIsPremium) {
+                sttMode.textContent = 'Серверный (Whisper)';
+            } else if (hasWebSpeechAPI()) {
+                sttMode.textContent = 'Браузерный (Web Speech)';
+            } else {
+                sttMode.textContent = 'Серверный (fallback)';
+            }
         }
 
         function renderPronunciationRecent(items) {
