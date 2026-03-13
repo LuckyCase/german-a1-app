@@ -253,6 +253,14 @@ async def get_detailed_user_progress(user_id: int) -> dict:
             "SELECT set_id, tasks_completed, tasks_correct FROM exercises_progress WHERE user_id = $1",
             user_id
         )
+        pronunciation_rows = await conn.fetch(
+            """SELECT item_type, item_id, score, verdict, created_at
+               FROM pronunciation_progress
+               WHERE user_id = $1
+               ORDER BY created_at DESC
+               LIMIT 200""",
+            user_id
+        )
     return {
         'words': [dict(r) for r in word_rows],
         'phrases': [dict(r) for r in phrase_rows],
@@ -260,6 +268,7 @@ async def get_detailed_user_progress(user_id: int) -> dict:
         'dialogues': [dict(r) for r in dialogue_rows],
         'culture': [dict(r) for r in culture_rows],
         'exercises': [dict(r) for r in exercise_rows],
+        'pronunciation': [dict(r) for r in pronunciation_rows],
     }
 
 
@@ -473,6 +482,129 @@ async def save_exercise_set_progress(
                    VALUES ($1, $2, $3, $4, $5, $6, $7)""",
                 user_id, set_id, major, sub, tasks_completed, tasks_correct, now
             )
+
+
+async def save_pronunciation_progress(
+    user_id: int,
+    item_type: str,
+    item_id: str | None,
+    target_text: str,
+    recognized_text: str,
+    score: int,
+    verdict: str,
+    engine: str,
+    confidence: float = 0.0,
+):
+    """Save pronunciation check result for user."""
+    await get_or_create_user(user_id, None, None)
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            """INSERT INTO pronunciation_progress
+                   (user_id, item_type, item_id, target_text, recognized_text, score, verdict, engine, confidence)
+               VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)""",
+            user_id,
+            item_type,
+            item_id,
+            target_text,
+            recognized_text,
+            score,
+            verdict,
+            engine,
+            confidence,
+        )
+
+
+async def get_pronunciation_stats(user_id: int) -> dict:
+    """Get aggregate pronunciation statistics for user."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        overall = await conn.fetchrow(
+            """SELECT
+                   COUNT(*) AS attempts,
+                   COALESCE(AVG(score), 0) AS avg_score,
+                   COALESCE(MAX(score), 0) AS best_score
+               FROM pronunciation_progress
+               WHERE user_id = $1""",
+            user_id,
+        )
+        verdict_rows = await conn.fetch(
+            """SELECT verdict, COUNT(*) AS count
+               FROM pronunciation_progress
+               WHERE user_id = $1
+               GROUP BY verdict""",
+            user_id,
+        )
+        recent_rows = await conn.fetch(
+            """SELECT item_type, item_id, score, verdict, created_at
+               FROM pronunciation_progress
+               WHERE user_id = $1
+               ORDER BY created_at DESC
+               LIMIT 10""",
+            user_id,
+        )
+
+    verdicts = {row["verdict"]: row["count"] for row in verdict_rows}
+    return {
+        "attempts": overall["attempts"] or 0,
+        "avg_score": float(overall["avg_score"] or 0),
+        "best_score": overall["best_score"] or 0,
+        "excellent": verdicts.get("Отлично", 0),
+        "good": verdicts.get("Хорошо", 0),
+        "retry": verdicts.get("Повторить", 0),
+        "recent": [dict(r) for r in recent_rows],
+    }
+
+
+async def consume_rate_limit(
+    user_id: int,
+    action: str,
+    limit: int,
+    window_seconds: int = 3600,
+) -> dict:
+    """Atomically consume one quota unit in DB-backed fixed window."""
+    if limit <= 0:
+        return {"allowed": True, "count": 1, "remaining": 0, "retry_after": 0}
+
+    now = datetime.now()
+    epoch = int(now.timestamp())
+    window_start_epoch = epoch - (epoch % window_seconds)
+    window_end_epoch = window_start_epoch + window_seconds
+    window_start = datetime.fromtimestamp(window_start_epoch)
+
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(
+            """
+            INSERT INTO rate_limits (user_id, action, window_start, request_count)
+            VALUES ($1, $2, $3, 1)
+            ON CONFLICT (user_id, action, window_start) DO UPDATE
+            SET request_count = rate_limits.request_count + 1
+            RETURNING request_count
+            """,
+            user_id,
+            action,
+            window_start,
+        )
+
+        # Lightweight cleanup to keep table compact.
+        cleanup_before = datetime.fromtimestamp(window_start_epoch - window_seconds * 24)
+        await conn.execute(
+            "DELETE FROM rate_limits WHERE action = $1 AND window_start < $2",
+            action,
+            cleanup_before,
+        )
+
+    count = int(row["request_count"]) if row else 1
+    allowed = count <= limit
+    retry_after = max(1, window_end_epoch - epoch) if not allowed else 0
+    remaining = max(0, limit - count)
+    return {
+        "allowed": allowed,
+        "count": count,
+        "remaining": remaining,
+        "retry_after": retry_after,
+    }
 
 
 # Feedback status codes:

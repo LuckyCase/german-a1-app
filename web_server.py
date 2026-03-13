@@ -29,10 +29,14 @@ from bot.database import (
     get_or_create_user, save_feedback, get_user_feedback, get_feedback_count,
     get_priority_word_ids, get_priority_phrase_ids,
     get_detailed_user_progress, get_user_settings, set_user_level, set_diagnostic_completed,
+    save_pronunciation_progress, get_pronunciation_stats, consume_rate_limit,
     FEEDBACK_STATUS_LABELS, MAX_FEEDBACK_LENGTH
 )
-from bot.config import TELEGRAM_BOT_TOKEN, DATABASE_URL
+from bot.config import (
+    TELEGRAM_BOT_TOKEN, DATABASE_URL, PRONUN_TIMEOUT_SEC, PRONUN_RATE_LIMIT_PER_HOUR
+)
 from bot.monitoring import init_sentry
+from bot.services.pronunciation import evaluate_pronunciation
 
 # Telegram bot imports
 from telegram import Update
@@ -941,6 +945,10 @@ HTML_TEMPLATE = """
                     <button type="button" class="audio-btn" id="audio-btn" data-action="playAudio">
                         🔊 Прослушать
                     </button>
+                    <button type="button" class="audio-btn" id="pronounce-word-btn" data-action="checkWordPronunciation">
+                        🎤 Проверить произношение
+                    </button>
+                    <div id="pronunciation-word-result" class="flashcard-example" style="margin-top: 8px; display: none;"></div>
                 </div>
                 
                 <div class="options" id="word-options"></div>
@@ -999,6 +1007,8 @@ HTML_TEMPLATE = """
                     <div class="flashcard-example" id="phrase-context">Context</div>
                     <div class="flashcard-example" id="phrase-example" style="margin-top: 8px;"></div>
                     <button type="button" class="audio-btn" data-action="playPhraseAudio">🔊 Прослушать</button>
+                    <button type="button" class="audio-btn" id="pronounce-phrase-btn" data-action="checkPhrasePronunciation">🎤 Проверить произношение</button>
+                    <div id="pronunciation-phrase-result" class="flashcard-example" style="margin-top: 8px; display: none;"></div>
                 </div>
                 <div class="options" id="phrase-options"></div>
                 <button type="button" class="btn btn-primary" id="next-phrase-btn" style="display: none; margin-top: 16px;" data-action="nextPhrase">
@@ -1219,6 +1229,8 @@ HTML_TEMPLATE = """
         let onboardingCorrect = 0;
         let onboardingStageResults = {};
         let onboardingRecommended = { major: 'A1', sub: '1', name: 'A1.1' };
+        let activeRecorder = null;
+        let activeStream = null;
 
         function setButtonLoading(button, isLoading, loadingText = 'Загрузка...') {
             if (!button) return;
@@ -1235,6 +1247,128 @@ HTML_TEMPLATE = """
                 button.textContent = button.dataset.originalText;
                 delete button.dataset.originalText;
             }
+        }
+
+        function setPronunciationResult(target, payload, isError = false) {
+            const el = document.getElementById(target);
+            if (!el) return;
+            if (isError) {
+                el.style.display = 'block';
+                el.innerHTML = `<span style="color:#f87171">${payload}</span>`;
+                return;
+            }
+            const mistakes = (payload.mistakes || []).length
+                ? `<br><span style="color: var(--text-secondary)">Ошибки: ${(payload.mistakes || []).join('; ')}</span>`
+                : '';
+            const tips = (payload.tips || []).length
+                ? `<br><span style="color: var(--text-secondary)">Подсказка: ${(payload.tips || []).join(' ')}</span>`
+                : '';
+            el.style.display = 'block';
+            el.innerHTML = `Оценка: <strong>${payload.score}/100</strong> — ${payload.verdict}<br>`
+                + `Распознано: "${payload.recognized_text}"${mistakes}${tips}`;
+        }
+
+        function encodeWavFromFloat32(float32, sampleRate = 16000) {
+            const bytesPerSample = 2;
+            const blockAlign = bytesPerSample;
+            const dataSize = float32.length * bytesPerSample;
+            const buffer = new ArrayBuffer(44 + dataSize);
+            const view = new DataView(buffer);
+            let offset = 0;
+
+            function writeString(s) {
+                for (let i = 0; i < s.length; i++) {
+                    view.setUint8(offset++, s.charCodeAt(i));
+                }
+            }
+
+            writeString('RIFF');
+            view.setUint32(offset, 36 + dataSize, true); offset += 4;
+            writeString('WAVE');
+            writeString('fmt ');
+            view.setUint32(offset, 16, true); offset += 4;
+            view.setUint16(offset, 1, true); offset += 2; // PCM
+            view.setUint16(offset, 1, true); offset += 2; // mono
+            view.setUint32(offset, sampleRate, true); offset += 4;
+            view.setUint32(offset, sampleRate * blockAlign, true); offset += 4;
+            view.setUint16(offset, blockAlign, true); offset += 2;
+            view.setUint16(offset, 16, true); offset += 2;
+            writeString('data');
+            view.setUint32(offset, dataSize, true); offset += 4;
+
+            for (let i = 0; i < float32.length; i++, offset += 2) {
+                const s = Math.max(-1, Math.min(1, float32[i]));
+                view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+            }
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        async function recordWavOnce(maxDurationMs = 5000) {
+            if (!navigator.mediaDevices?.getUserMedia) {
+                throw new Error('Запись аудио не поддерживается в этом браузере');
+            }
+            if (activeRecorder) {
+                throw new Error('Запись уже выполняется');
+            }
+
+            activeStream = await navigator.mediaDevices.getUserMedia({
+                audio: {
+                    channelCount: 1,
+                    sampleRate: 16000,
+                    echoCancellation: true,
+                    noiseSuppression: true
+                }
+            });
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            const audioContext = new AudioCtx({ sampleRate: 16000 });
+            const source = audioContext.createMediaStreamSource(activeStream);
+            const processor = audioContext.createScriptProcessor(4096, 1, 1);
+            const chunks = [];
+
+            processor.onaudioprocess = (event) => {
+                const input = event.inputBuffer.getChannelData(0);
+                chunks.push(new Float32Array(input));
+            };
+            source.connect(processor);
+            processor.connect(audioContext.destination);
+            activeRecorder = { audioContext, processor, source };
+
+            await new Promise(resolve => setTimeout(resolve, maxDurationMs));
+
+            processor.disconnect();
+            source.disconnect();
+            await audioContext.close();
+            activeStream.getTracks().forEach(t => t.stop());
+            activeRecorder = null;
+            activeStream = null;
+
+            const totalLength = chunks.reduce((sum, c) => sum + c.length, 0);
+            const combined = new Float32Array(totalLength);
+            let ptr = 0;
+            chunks.forEach(c => {
+                combined.set(c, ptr);
+                ptr += c.length;
+            });
+            return encodeWavFromFloat32(combined, 16000);
+        }
+
+        async function submitPronunciation(audioBlob, targetText, itemType, itemId) {
+            const formData = new FormData();
+            formData.append('audio', audioBlob, 'pronunciation.wav');
+            formData.append('target_text', targetText);
+            formData.append('user_id', String(userId || ''));
+            formData.append('item_type', itemType);
+            formData.append('item_id', itemId || '');
+
+            const response = await fetch('/api/pronunciation/check', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            if (!response.ok || !data.success) {
+                throw new Error(data.error || `HTTP ${response.status}`);
+            }
+            return data;
         }
         
         // Header scroll behavior
@@ -1738,6 +1872,10 @@ HTML_TEMPLATE = """
                 document.getElementById('word-options').innerHTML = '';
                 document.getElementById('next-btn').style.display = 'none';
                 document.getElementById('audio-btn').style.display = 'none';
+                const pronounceBtn = document.getElementById('pronounce-word-btn');
+                const pronounceResult = document.getElementById('pronunciation-word-result');
+                if (pronounceBtn) pronounceBtn.style.display = 'none';
+                if (pronounceResult) pronounceResult.style.display = 'none';
 
                 const finishBtn = document.createElement('button');
                 finishBtn.className = 'btn btn-primary';
@@ -1745,6 +1883,7 @@ HTML_TEMPLATE = """
                 finishBtn.textContent = '← Назад к категориям';
                 finishBtn.onclick = () => {
                     document.getElementById('audio-btn').style.display = '';
+                    if (pronounceBtn) pronounceBtn.style.display = '';
                     backToCategories();
                 };
                 document.getElementById('word-options').appendChild(finishBtn);
@@ -1763,12 +1902,14 @@ HTML_TEMPLATE = """
             // Reset audio
             const audio = document.getElementById('word-audio');
             const audioBtn = document.getElementById('audio-btn');
+            const pronounceResult = document.getElementById('pronunciation-word-result');
             audio.pause();
             audio.onerror = null;
             audio.onloadeddata = null;
             audio.src = '';
             audioBtn.textContent = '🔊 Прослушать';
             audioBtn.disabled = false;
+            if (pronounceResult) pronounceResult.style.display = 'none';
 
             let options = [];
             try {
@@ -1802,6 +1943,31 @@ HTML_TEMPLATE = """
                 optionsDiv.appendChild(btn);
             });
             isWordTransitionInProgress = false;
+        }
+
+        async function checkWordPronunciation() {
+            const word = currentWords[currentWordIndex];
+            if (!word) return;
+            const btn = document.getElementById('pronounce-word-btn');
+            try {
+                setButtonLoading(btn, true, '🎙️ Запись 5с...');
+                const wav = await recordWavOnce(5000);
+                setButtonLoading(btn, true, '⏳ Проверяем...');
+                const result = await submitPronunciation(wav, word.de, 'word', word.word_id);
+                setPronunciationResult('pronunciation-word-result', result);
+                tg.HapticFeedback?.notificationOccurred(
+                    result.verdict === 'Отлично' ? 'success' : 'warning'
+                );
+            } catch (error) {
+                setPronunciationResult(
+                    'pronunciation-word-result',
+                    error?.message || 'Не удалось проверить произношение',
+                    true
+                );
+                tg.HapticFeedback?.notificationOccurred('error');
+            } finally {
+                setButtonLoading(btn, false);
+            }
         }
         
         async function playAudio() {
@@ -2060,6 +2226,24 @@ HTML_TEMPLATE = """
             }).join('');
         }
 
+        function renderPronunciationRecent(items) {
+            if (!items || !items.length) {
+                return '<div style="padding:8px 0;color:var(--text-secondary);font-size:0.85rem;">Пока нет попыток</div>';
+            }
+            return items.map(item => {
+                const label = item.item_type === 'phrase' ? 'Фраза' : 'Слово';
+                const date = new Date(item.created_at).toLocaleDateString('ru-RU');
+                const verdictColor = item.verdict === 'Отлично'
+                    ? '#4ade80'
+                    : item.verdict === 'Хорошо' ? '#f59e0b' : '#f87171';
+                return `<div class="prog-item">
+                    <span class="prog-item-status" style="color:${verdictColor}">&#9679;</span>
+                    <span class="prog-item-name">${label}${item.item_id ? ` (${item.item_id})` : ''} • ${date}</span>
+                    <span class="prog-item-score">${Math.round(item.score)} / 100</span>
+                </div>`;
+            }).join('');
+        }
+
         async function loadProgress() {
             const container = document.getElementById('progress-content');
             try {
@@ -2107,6 +2291,19 @@ HTML_TEMPLATE = """
                         sub: `${d.exercises.completed} из ${d.exercises.total} выполнено`,
                         pct: pct(d.exercises.completed, d.exercises.total),
                         details: renderItemDetails(d.exercises.items, 'exercises')
+                    },
+                    {
+                        icon: '&#127908;', title: 'Произношение',
+                        sub: `${d.pronunciation.attempts} попыток • средний балл ${Math.round(d.pronunciation.avg_score || 0)}`,
+                        pct: d.pronunciation.avg_score || 0,
+                        details: `
+                            <div class="prog-cat-meta" style="margin-bottom:8px;">
+                                <span class="mastered">Отлично: ${d.pronunciation.excellent}</span>
+                                <span>Хорошо: ${d.pronunciation.good}</span>
+                                <span class="errors">Повторить: ${d.pronunciation.retry}</span>
+                            </div>
+                            ${renderPronunciationRecent(d.pronunciation.recent)}
+                        `
                     }
                 ];
 
@@ -2201,6 +2398,10 @@ HTML_TEMPLATE = """
                 document.getElementById('next-phrase-btn').style.display = 'none';
                 const phraseAudioBtn = document.querySelector('#phrases-view .audio-btn');
                 if (phraseAudioBtn) phraseAudioBtn.style.display = 'none';
+                const phrasePronBtn = document.getElementById('pronounce-phrase-btn');
+                const phrasePronRes = document.getElementById('pronunciation-phrase-result');
+                if (phrasePronBtn) phrasePronBtn.style.display = 'none';
+                if (phrasePronRes) phrasePronRes.style.display = 'none';
 
                 const finishBtn = document.createElement('button');
                 finishBtn.className = 'btn btn-primary';
@@ -2208,6 +2409,7 @@ HTML_TEMPLATE = """
                 finishBtn.textContent = '← Назад к категориям';
                 finishBtn.onclick = () => {
                     if (phraseAudioBtn) phraseAudioBtn.style.display = '';
+                    if (phrasePronBtn) phrasePronBtn.style.display = '';
                     backToPhrasesCategories();
                 };
                 document.getElementById('phrase-options').appendChild(finishBtn);
@@ -2226,6 +2428,7 @@ HTML_TEMPLATE = """
             // Reset audio
             const audio = document.getElementById('word-audio');
             const audioBtn = document.querySelector('#phrases-view .audio-btn');
+            const phrasePronRes = document.getElementById('pronunciation-phrase-result');
             audio.pause();
             audio.onerror = null;
             audio.onloadeddata = null;
@@ -2234,6 +2437,7 @@ HTML_TEMPLATE = """
                 audioBtn.textContent = '🔊 Прослушать';
                 audioBtn.disabled = false;
             }
+            if (phrasePronRes) phrasePronRes.style.display = 'none';
             
             let options = [];
             try {
@@ -2268,6 +2472,31 @@ HTML_TEMPLATE = """
                 optionsDiv.appendChild(btn);
             });
             isPhraseTransitionInProgress = false;
+        }
+
+        async function checkPhrasePronunciation() {
+            const phrase = currentPhrases[currentPhraseIndex];
+            if (!phrase) return;
+            const btn = document.getElementById('pronounce-phrase-btn');
+            try {
+                setButtonLoading(btn, true, '🎙️ Запись 5с...');
+                const wav = await recordWavOnce(5000);
+                setButtonLoading(btn, true, '⏳ Проверяем...');
+                const result = await submitPronunciation(wav, phrase.de, 'phrase', phrase.phrase_id);
+                setPronunciationResult('pronunciation-phrase-result', result);
+                tg.HapticFeedback?.notificationOccurred(
+                    result.verdict === 'Отлично' ? 'success' : 'warning'
+                );
+            } catch (error) {
+                setPronunciationResult(
+                    'pronunciation-phrase-result',
+                    error?.message || 'Не удалось проверить произношение',
+                    true
+                );
+                tg.HapticFeedback?.notificationOccurred('error');
+            } finally {
+                setButtonLoading(btn, false);
+            }
         }
         
         async function playPhraseAudio() {
@@ -3302,7 +3531,20 @@ def api_progress():
         raw = run_bot_async(get_detailed_user_progress(user_id))
     except Exception as e:
         logger.error(f"Error getting detailed progress for {user_id}: {e}")
-        raw = {'words': [], 'phrases': [], 'grammar': [], 'dialogues': [], 'culture': [], 'exercises': []}
+        raw = {'words': [], 'phrases': [], 'grammar': [], 'dialogues': [], 'culture': [], 'exercises': [], 'pronunciation': []}
+    try:
+        pronunciation_stats = run_bot_async(get_pronunciation_stats(user_id))
+    except Exception as e:
+        logger.error(f"Error getting pronunciation stats for {user_id}: {e}")
+        pronunciation_stats = {
+            "attempts": 0,
+            "avg_score": 0.0,
+            "best_score": 0,
+            "excellent": 0,
+            "good": 0,
+            "retry": 0,
+            "recent": []
+        }
 
     # --- Words ---
     all_words = get_all_words()
@@ -3431,7 +3673,8 @@ def api_progress():
             'total': len(exercise_sets_list),
             'completed': sum(1 for e in exercise_items if e['completed']),
             'items': exercise_items
-        }
+        },
+        'pronunciation': pronunciation_stats,
     })
 
 @app.route('/api/progress/word', methods=['POST'])
@@ -3473,6 +3716,78 @@ def api_save_grammar_result():
     except Exception as e:
         logger.error(f"Error saving grammar result for user {user_id}: {e}")
         return jsonify({'error': 'Failed to save result'}), 500
+
+
+@app.route('/api/pronunciation/check', methods=['POST'])
+def api_pronunciation_check():
+    """Check user pronunciation for a word/phrase."""
+    user_id = request.form.get('user_id', type=int)
+    target_text = (request.form.get('target_text') or '').strip()
+    item_type = (request.form.get('item_type') or 'word').strip()
+    item_id = (request.form.get('item_id') or '').strip() or None
+    audio_file = request.files.get('audio')
+
+    if not user_id:
+        return jsonify({'success': False, 'error': 'User not authenticated'}), 401
+    if item_type not in {'word', 'phrase'}:
+        return jsonify({'success': False, 'error': 'item_type must be word or phrase'}), 400
+    if not target_text:
+        return jsonify({'success': False, 'error': 'target_text is required'}), 400
+    if not audio_file:
+        return jsonify({'success': False, 'error': 'audio file is required'}), 400
+
+    try:
+        limit_state = run_bot_async(
+            consume_rate_limit(
+                user_id=user_id,
+                action="pronunciation_check",
+                limit=PRONUN_RATE_LIMIT_PER_HOUR,
+                window_seconds=3600,
+            ),
+            timeout=PRONUN_TIMEOUT_SEC,
+        )
+        if not limit_state.get("allowed", True):
+            return jsonify({
+                'success': False,
+                'error': f"Слишком много запросов. Повторите через {limit_state.get('retry_after', 60)} сек."
+            }), 429
+
+        audio_bytes = audio_file.read()
+        result = evaluate_pronunciation(
+            audio_bytes=audio_bytes,
+            filename=audio_file.filename or "pronunciation.wav",
+            mime_type=audio_file.mimetype or "audio/wav",
+            target_text=target_text,
+        )
+
+        run_bot_async(get_or_create_user(user_id, None, None), timeout=PRONUN_TIMEOUT_SEC)
+        run_bot_async(
+            save_pronunciation_progress(
+                user_id=user_id,
+                item_type=item_type,
+                item_id=item_id,
+                target_text=target_text,
+                recognized_text=result["recognized_text"],
+                score=result["score"],
+                verdict=result["verdict"],
+                engine=result["engine"],
+                confidence=result.get("confidence", 0.0),
+            ),
+            timeout=PRONUN_TIMEOUT_SEC,
+        )
+        run_bot_async(update_daily_stats(user_id, correct=result["score"], total=100))
+
+        return jsonify({"success": True, **result})
+    except ValueError as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+    except RuntimeError as e:
+        message = str(e)
+        status = 429 if "Слишком много запросов" in message else 400
+        return jsonify({'success': False, 'error': message}), status
+    except Exception as e:
+        logger.error("Pronunciation check failed for user %s: %s", user_id, e)
+        return jsonify({'success': False, 'error': 'Failed to check pronunciation'}), 500
+
 
 @app.route('/api/audio/<text>')
 def api_audio(text):
