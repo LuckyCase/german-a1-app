@@ -153,7 +153,7 @@ HTML_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>German A1 - Lernen</title>
+    <title>German A1.1 - Lernen</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -296,6 +296,12 @@ HTML_TEMPLATE = """
             color: var(--text-secondary);
             font-size: 0.9rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .level-actions {
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: center;
         }
         
         /* Main menu with tiles */
@@ -855,9 +861,13 @@ HTML_TEMPLATE = """
 <body>
     <div class="app">
         <header class="header" id="main-header">
-            <h1>German A1</h1>
-            <p>Учи немецкий легко и эффективно</p>
+            <h1 id="main-level-title">German A1.1</h1>
+            <p id="main-level-subtitle">Учи немецкий легко и эффективно</p>
         </header>
+
+        <div class="level-actions" id="level-actions">
+            <button type="button" class="btn btn-secondary" data-action="openDiagnosticFromMenu">🎯 Определить уровень</button>
+        </div>
 
         <div id="onboarding-overlay" class="onboarding-overlay">
             <div id="onboarding-content" class="onboarding-card">
@@ -1267,6 +1277,7 @@ HTML_TEMPLATE = """
         // Section navigation
         function openSection(sectionId) {
             document.getElementById('main-menu').style.display = 'none';
+            document.getElementById('level-actions').style.display = 'none';
             document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
             document.getElementById(sectionId).style.display = 'block';
             
@@ -1302,6 +1313,7 @@ HTML_TEMPLATE = """
         
         function backToMainMenu() {
             document.getElementById('main-menu').style.display = 'grid';
+            document.getElementById('level-actions').style.display = 'flex';
             document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
             
             // Show header when returning to main menu
@@ -1340,16 +1352,39 @@ HTML_TEMPLATE = """
             document.getElementById('onboarding-overlay').classList.remove('active');
         }
 
+        function updateLevelHeader() {
+            const levelName = `${currentLevelMajor}.${currentLevelSub}`;
+            const titleEl = document.getElementById('main-level-title');
+            const subtitleEl = document.getElementById('main-level-subtitle');
+            if (titleEl) titleEl.textContent = `German ${levelName}`;
+            if (subtitleEl) subtitleEl.textContent = `Текущий уровень: ${levelName}`;
+            document.title = `German ${levelName} - Lernen`;
+        }
+
+        function openDiagnosticFromMenu() {
+            showOnboardingOverlay();
+            setOnboardingHTML(`
+                <h2>Определение уровня</h2>
+                <p>Можно пройти тест или выбрать уровень вручную.</p>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" data-action="startDiagnosticOnboarding">Пройти тест</button>
+                    <button type="button" class="btn btn-secondary" data-action="showManualLevelSelection">Выбрать уровень вручную</button>
+                </div>
+                <button type="button" class="back-btn" data-action="hideOnboardingOverlay">← Закрыть</button>
+            `);
+        }
+
         async function checkOnboardingStatus() {
             if (!userId) return;
             try {
                 const response = await fetch(`/api/onboarding/status?user_id=${userId}`);
                 if (!response.ok) return;
                 const data = await response.json();
+                currentLevelMajor = data.major || currentLevelMajor;
+                currentLevelSub = data.sub || currentLevelSub;
+                updateLevelHeader();
                 onboardingRequired = Boolean(data.onboarding_required);
                 if (!onboardingRequired) {
-                    currentLevelMajor = data.major || currentLevelMajor;
-                    currentLevelSub = data.sub || currentLevelSub;
                     return;
                 }
                 showOnboardingStart();
@@ -1535,6 +1570,7 @@ HTML_TEMPLATE = """
                 const data = await response.json();
                 currentLevelMajor = data.major || major;
                 currentLevelSub = data.sub || sub;
+                updateLevelHeader();
                 hideOnboardingOverlay();
                 tg.HapticFeedback?.notificationOccurred('success');
 
@@ -2449,6 +2485,7 @@ HTML_TEMPLATE = """
                     const levelData = await levelRes.json();
                     currentLevelMajor = levelData.major || 'A1';
                     currentLevelSub = levelData.sub || '1';
+                    updateLevelHeader();
                 }
                 const response = await fetch('/api/culture/topics');
                 const topics = await response.json();
@@ -2602,6 +2639,7 @@ HTML_TEMPLATE = """
                     const levelData = await levelRes.json();
                     currentLevelMajor = levelData.major || 'A1';
                     currentLevelSub = levelData.sub || '1';
+                    updateLevelHeader();
                 }
                 const response = await fetch('/api/exercises/sets');
                 const sets = await response.json();
@@ -2865,6 +2903,7 @@ HTML_TEMPLATE = """
         
         // Initialize
         window.onload = async () => {
+            updateLevelHeader();
             await checkOnboardingStatus();
             loadCategories();
             loadTests();
