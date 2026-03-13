@@ -1544,7 +1544,10 @@ HTML_TEMPLATE = """
                 recognition.onerror = (event) => {
                     if (settled) return;
                     settle();
-                    if (event.error === 'aborted') return; // user-initiated cancel, ignore
+                    if (event.error === 'aborted') {
+                        reject(new Error('__cancelled__'));
+                        return;
+                    }
                     if (event.error === 'no-speech') {
                         reject(new Error('Речь не обнаружена. Попробуйте ещё раз.'));
                     } else if (event.error === 'not-allowed') {
@@ -2190,21 +2193,22 @@ HTML_TEMPLATE = """
                 await stopRecording();
                 return;
             }
-            // If Web Speech API is active, cancel it
+            // If Web Speech API is active, stop it and let promise settle with result
             if (activeSpeechRecognition) {
-                cancelWebSpeech();
-                btn.classList.remove('recording');
-                setButtonLoading(btn, false);
+                try { activeSpeechRecognition.stop(); } catch (e) {}
                 return;
             }
 
             const capturedIndex = currentWordIndex; // guard against stale results
 
             try {
+                // Save original text before changing to stop label
+                btn.dataset.originalText = btn.textContent;
+                btn.textContent = '⏹️ Остановить';
+                btn.classList.add('recording');
+                tg.HapticFeedback?.impactOccurred('medium');
+
                 if (userIsPremium) {
-                    btn.textContent = '⏹️ Остановить';
-                    btn.classList.add('recording');
-                    tg.HapticFeedback?.impactOccurred('medium');
                     const wav = await startRecording();
                     btn.classList.remove('recording');
                     if (currentWordIndex !== capturedIndex) return;
@@ -2216,9 +2220,6 @@ HTML_TEMPLATE = """
                         result.verdict === 'Отлично' ? 'success' : 'warning'
                     );
                 } else if (hasWebSpeechAPI()) {
-                    btn.textContent = '⏹️ Остановить';
-                    btn.classList.add('recording');
-                    tg.HapticFeedback?.impactOccurred('medium');
                     const { text, confidence } = await transcribeWebSpeech(8000);
                     btn.classList.remove('recording');
                     if (currentWordIndex !== capturedIndex) return;
@@ -2230,9 +2231,6 @@ HTML_TEMPLATE = """
                         result.verdict === 'Отлично' ? 'success' : 'warning'
                     );
                 } else {
-                    btn.textContent = '⏹️ Остановить';
-                    btn.classList.add('recording');
-                    tg.HapticFeedback?.impactOccurred('medium');
                     const wav = await startRecording();
                     btn.classList.remove('recording');
                     if (currentWordIndex !== capturedIndex) return;
@@ -2246,6 +2244,7 @@ HTML_TEMPLATE = """
                 }
             } catch (error) {
                 btn.classList.remove('recording');
+                if (error?.message === '__cancelled__') return; // user cancelled, no error
                 if (currentWordIndex !== capturedIndex) return;
                 setPronunciationResult(
                     'pronunciation-word-result',
@@ -2814,20 +2813,22 @@ HTML_TEMPLATE = """
                 await stopRecording();
                 return;
             }
+            // If Web Speech API is active, stop it and let promise settle with result
             if (activeSpeechRecognition) {
-                cancelWebSpeech();
-                btn.classList.remove('recording');
-                setButtonLoading(btn, false);
+                try { activeSpeechRecognition.stop(); } catch (e) {}
                 return;
             }
 
             const capturedIndex = currentPhraseIndex;
 
             try {
+                // Save original text before changing to stop label
+                btn.dataset.originalText = btn.textContent;
+                btn.textContent = '⏹️ Остановить';
+                btn.classList.add('recording');
+                tg.HapticFeedback?.impactOccurred('medium');
+
                 if (userIsPremium) {
-                    btn.textContent = '⏹️ Остановить';
-                    btn.classList.add('recording');
-                    tg.HapticFeedback?.impactOccurred('medium');
                     const wav = await startRecording();
                     btn.classList.remove('recording');
                     if (currentPhraseIndex !== capturedIndex) return;
@@ -2839,9 +2840,6 @@ HTML_TEMPLATE = """
                         result.verdict === 'Отлично' ? 'success' : 'warning'
                     );
                 } else if (hasWebSpeechAPI()) {
-                    btn.textContent = '⏹️ Остановить';
-                    btn.classList.add('recording');
-                    tg.HapticFeedback?.impactOccurred('medium');
                     const { text, confidence } = await transcribeWebSpeech(8000);
                     btn.classList.remove('recording');
                     if (currentPhraseIndex !== capturedIndex) return;
@@ -2853,9 +2851,6 @@ HTML_TEMPLATE = """
                         result.verdict === 'Отлично' ? 'success' : 'warning'
                     );
                 } else {
-                    btn.textContent = '⏹️ Остановить';
-                    btn.classList.add('recording');
-                    tg.HapticFeedback?.impactOccurred('medium');
                     const wav = await startRecording();
                     btn.classList.remove('recording');
                     if (currentPhraseIndex !== capturedIndex) return;
@@ -2869,6 +2864,7 @@ HTML_TEMPLATE = """
                 }
             } catch (error) {
                 btn.classList.remove('recording');
+                if (error?.message === '__cancelled__') return; // user cancelled, no error
                 if (currentPhraseIndex !== capturedIndex) return;
                 setPronunciationResult(
                     'pronunciation-phrase-result',
