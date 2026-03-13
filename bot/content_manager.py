@@ -120,9 +120,17 @@ def get_available_levels() -> List[dict]:
         Список словарей с информацией об уровнях
     """
     levels = []
+    content_subdirs = ("vocabulary", "grammar", "phrases", "dialogues", "culture", "exercises")
+
     for major, sub in AVAILABLE_LEVELS:
         level_path = _get_level_path(major, sub)
-        has_content = level_path.exists() and any(level_path.iterdir()) if level_path.exists() else False
+        has_content = False
+        if level_path.exists():
+            for subdir in content_subdirs:
+                content_dir = level_path / subdir
+                if content_dir.exists() and any(content_dir.glob("*.json")):
+                    has_content = True
+                    break
         
         levels.append({
             "major": major,

@@ -1361,6 +1361,10 @@ HTML_TEMPLATE = """
             document.title = `German ${levelName} - Lernen`;
         }
 
+        function levelQuery() {
+            return `major=${encodeURIComponent(currentLevelMajor)}&sub=${encodeURIComponent(currentLevelSub)}`;
+        }
+
         function openDiagnosticFromMenu() {
             showOnboardingOverlay();
             setOnboardingHTML(`
@@ -1589,7 +1593,7 @@ HTML_TEMPLATE = """
         async function showManualLevelSelection() {
             setOnboardingHTML('<div class="loading">Загрузка уровней...</div>');
             try {
-                const response = await fetch('/api/levels/with-content');
+                const response = await fetch('/api/levels');
                 if (!response.ok) {
                     throw new Error('levels fetch failed');
                 }
@@ -1597,7 +1601,7 @@ HTML_TEMPLATE = """
                 const buttonsHtml = levels
                     .map(level => (
                         `<button type="button" class="btn btn-secondary" data-major="${level.major}" data-sub="${level.sub}">
-                            ${level.display_name}
+                            ${level.display_name}${level.has_content ? '' : ' (в разработке)'}
                         </button>`
                     ))
                     .join('');
@@ -1626,7 +1630,7 @@ HTML_TEMPLATE = """
         // Categories
         async function loadCategories() {
             try {
-                const response = await fetch('/api/categories');
+                const response = await fetch(`/api/categories?${levelQuery()}`);
                 const categories = await response.json();
                 const list = document.getElementById('categories-list');
                 list.innerHTML = '';
@@ -1649,7 +1653,7 @@ HTML_TEMPLATE = """
         
         async function startFlashcards(categoryId) {
             try {
-                const response = await fetch(`/api/session/words?category=${categoryId}&user_id=${userId}`);
+                const response = await fetch(`/api/session/words?category=${categoryId}&user_id=${userId}&${levelQuery()}`);
                 currentWords = await response.json();
                 currentWordIndex = 0;
                 currentCategory = categoryId;
@@ -1722,7 +1726,7 @@ HTML_TEMPLATE = """
             let options = [];
             try {
                 // Get options from the same category
-                const response = await fetch(`/api/words/random?count=3&exclude=${word.word_id}&exclude_ru=${encodeURIComponent(word.ru)}&category=${currentCategory}`);
+                const response = await fetch(`/api/words/random?count=3&exclude=${word.word_id}&exclude_ru=${encodeURIComponent(word.ru)}&category=${currentCategory}&${levelQuery()}`);
                 if (!response.ok) {
                     throw new Error('Failed to load random word options');
                 }
@@ -1850,7 +1854,7 @@ HTML_TEMPLATE = """
         // Grammar tests
         async function loadTests() {
             try {
-                const response = await fetch('/api/tests');
+                const response = await fetch(`/api/tests?${levelQuery()}`);
                 const tests = await response.json();
                 const list = document.getElementById('tests-list');
                 list.innerHTML = '';
@@ -1873,7 +1877,7 @@ HTML_TEMPLATE = """
         
         async function startTest(testId) {
             try {
-                const response = await fetch(`/api/tests/${testId}/questions`);
+                const response = await fetch(`/api/tests/${testId}/questions?${levelQuery()}`);
                 currentQuestions = await response.json();
                 currentQuestionIndex = 0;
                 currentTest = testId;
@@ -2084,7 +2088,7 @@ HTML_TEMPLATE = """
         // Phrases functions
         async function loadPhrasesCategories() {
             try {
-                const response = await fetch('/api/phrases/categories');
+                const response = await fetch(`/api/phrases/categories?${levelQuery()}`);
                 const categories = await response.json();
                 const list = document.getElementById('phrases-categories-list');
                 list.innerHTML = '';
@@ -2110,7 +2114,7 @@ HTML_TEMPLATE = """
 
         async function startPhrases(categoryId) {
             try {
-                const response = await fetch(`/api/session/phrases?category=${categoryId}&user_id=${userId}`);
+                const response = await fetch(`/api/session/phrases?category=${categoryId}&user_id=${userId}&${levelQuery()}`);
                 currentPhrases = await response.json();
                 currentPhraseIndex = 0;
                 currentPhrasesCategory = categoryId;
@@ -2187,7 +2191,7 @@ HTML_TEMPLATE = """
             let options = [];
             try {
                 // Get wrong options
-                const optResponse = await fetch(`/api/phrases/random?count=3&exclude=${phrase.phrase_id}&exclude_ru=${encodeURIComponent(phrase.ru)}`);
+                const optResponse = await fetch(`/api/phrases/random?count=3&exclude=${phrase.phrase_id}&exclude_ru=${encodeURIComponent(phrase.ru)}&${levelQuery()}`);
                 if (!optResponse.ok) {
                     throw new Error('Failed to load random phrase options');
                 }
@@ -2314,7 +2318,7 @@ HTML_TEMPLATE = """
         // Dialogues functions
         async function loadDialoguesTopics() {
             try {
-                const response = await fetch('/api/dialogues/topics');
+                const response = await fetch(`/api/dialogues/topics?${levelQuery()}`);
                 const topics = await response.json();
                 const list = document.getElementById('dialogues-topics-list');
                 list.innerHTML = '';
@@ -2337,7 +2341,7 @@ HTML_TEMPLATE = """
         
         async function startDialogue(topicId) {
             try {
-                const response = await fetch(`/api/dialogues/${topicId}`);
+                const response = await fetch(`/api/dialogues/${topicId}?${levelQuery()}`);
                 currentDialogue = await response.json();
                 currentDialogueId = topicId;
                 currentDialogueReplicaIndex = 0;
@@ -2392,7 +2396,7 @@ HTML_TEMPLATE = """
         
         async function showDialogueExercise() {
             try {
-                const response = await fetch(`/api/dialogues/${currentDialogueId}/exercises`);
+                const response = await fetch(`/api/dialogues/${currentDialogueId}/exercises?${levelQuery()}`);
                 currentExercises = await response.json();
                 currentExerciseIndex = 0;
                 exerciseScore = 0;
@@ -2487,7 +2491,7 @@ HTML_TEMPLATE = """
                     currentLevelSub = levelData.sub || '1';
                     updateLevelHeader();
                 }
-                const response = await fetch('/api/culture/topics');
+                const response = await fetch(`/api/culture/topics?${levelQuery()}`);
                 const topics = await response.json();
                 const list = document.getElementById('culture-topics-list');
                 list.innerHTML = '';
@@ -2510,7 +2514,7 @@ HTML_TEMPLATE = """
         
         async function openCultureTopic(topicId) {
             try {
-                const response = await fetch(`/api/culture/${topicId}`);
+                const response = await fetch(`/api/culture/${topicId}?${levelQuery()}`);
                 currentCultureTopicData = await response.json();
                 currentCultureQuestions = currentCultureTopicData.questions || [];
                 currentCultureQuizIndex = 0;
@@ -2641,7 +2645,7 @@ HTML_TEMPLATE = """
                     currentLevelSub = levelData.sub || '1';
                     updateLevelHeader();
                 }
-                const response = await fetch('/api/exercises/sets');
+                const response = await fetch(`/api/exercises/sets?${levelQuery()}`);
                 const sets = await response.json();
                 const list = document.getElementById('exercises-sets-list');
                 list.innerHTML = '';
@@ -2667,7 +2671,7 @@ HTML_TEMPLATE = """
         
         async function startExerciseSet(setId) {
             try {
-                const response = await fetch(`/api/exercises/${setId}/tasks`);
+                const response = await fetch(`/api/exercises/${setId}/tasks?${levelQuery()}`);
                 currentExTasks = await response.json();
                 currentExTaskIndex = 0;
                 currentExScore = 0;

@@ -264,13 +264,16 @@ async def diagnostic_manual(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     await _mark_diagnostic_completed(user_id)
 
-    from bot.content_manager import get_levels_with_content
-    levels = get_levels_with_content()
+    from bot.content_manager import get_available_levels
+    levels = get_available_levels()
 
     keyboard = []
     for level in levels:
+        label = level["display_name"]
+        if not level.get("has_content", False):
+            label = f"{label} (в разработке)"
         keyboard.append([InlineKeyboardButton(
-            level["display_name"],
+            label,
             callback_data=f"diag_set_{level['major']}_{level['sub']}"
         )])
 
@@ -311,13 +314,16 @@ async def diagnostic_skip(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     await _mark_diagnostic_completed(user_id)
 
-    from bot.content_manager import get_levels_with_content
-    levels = get_levels_with_content()
+    from bot.content_manager import get_available_levels
+    levels = get_available_levels()
 
     keyboard = []
     for level in levels:
+        label = level["display_name"]
+        if not level.get("has_content", False):
+            label = f"{label} (в разработке)"
         keyboard.append([InlineKeyboardButton(
-            level["display_name"],
+            label,
             callback_data=f"diag_set_{level['major']}_{level['sub']}"
         )])
 
