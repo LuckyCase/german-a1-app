@@ -2188,14 +2188,9 @@ HTML_TEMPLATE = """
             if (!word) return;
             const btn = document.getElementById('pronounce-word-btn');
 
-            // If already recording (AudioWorklet/ScriptProcessor), stop it
+            // If already recording, stop it
             if (activeRecorder) {
                 await stopRecording();
-                return;
-            }
-            // If Web Speech API is active, stop it and let promise settle with result
-            if (activeSpeechRecognition) {
-                try { activeSpeechRecognition.stop(); } catch (e) {}
                 return;
             }
 
@@ -2208,43 +2203,19 @@ HTML_TEMPLATE = """
                 btn.classList.add('recording');
                 tg.HapticFeedback?.impactOccurred('medium');
 
-                if (userIsPremium) {
-                    const wav = await startRecording();
-                    btn.classList.remove('recording');
-                    if (currentWordIndex !== capturedIndex) return;
-                    setButtonLoading(btn, true, '⏳ Проверяем...');
-                    const result = await submitPronunciationPremium(wav, word.de, 'word', word.word_id);
-                    if (currentWordIndex !== capturedIndex) return;
-                    setPronunciationResult('pronunciation-word-result', result);
-                    tg.HapticFeedback?.notificationOccurred(
-                        result.verdict === 'Отлично' ? 'success' : 'warning'
-                    );
-                } else if (hasWebSpeechAPI()) {
-                    const { text, confidence } = await transcribeWebSpeech(8000);
-                    btn.classList.remove('recording');
-                    if (currentWordIndex !== capturedIndex) return;
-                    setButtonLoading(btn, true, '⏳ Проверяем...');
-                    const result = await submitPronunciationBasic(text, word.de, 'word', word.word_id, confidence);
-                    if (currentWordIndex !== capturedIndex) return;
-                    setPronunciationResult('pronunciation-word-result', result);
-                    tg.HapticFeedback?.notificationOccurred(
-                        result.verdict === 'Отлично' ? 'success' : 'warning'
-                    );
-                } else {
-                    const wav = await startRecording();
-                    btn.classList.remove('recording');
-                    if (currentWordIndex !== capturedIndex) return;
-                    setButtonLoading(btn, true, '⏳ Проверяем...');
-                    const result = await submitPronunciationPremium(wav, word.de, 'word', word.word_id);
-                    if (currentWordIndex !== capturedIndex) return;
-                    setPronunciationResult('pronunciation-word-result', result);
-                    tg.HapticFeedback?.notificationOccurred(
-                        result.verdict === 'Отлично' ? 'success' : 'warning'
-                    );
-                }
+                const wav = await startRecording();
+                btn.classList.remove('recording');
+                if (currentWordIndex !== capturedIndex) return;
+                setButtonLoading(btn, true, '⏳ Проверяем...');
+                const result = await submitPronunciationPremium(wav, word.de, 'word', word.word_id);
+                if (currentWordIndex !== capturedIndex) return;
+                setPronunciationResult('pronunciation-word-result', result);
+                tg.HapticFeedback?.notificationOccurred(
+                    result.verdict === 'Отлично' ? 'success' : 'warning'
+                );
             } catch (error) {
                 btn.classList.remove('recording');
-                if (error?.message === '__cancelled__') return; // user cancelled, no error
+
                 if (currentWordIndex !== capturedIndex) return;
                 setPronunciationResult(
                     'pronunciation-word-result',
@@ -2813,12 +2784,6 @@ HTML_TEMPLATE = """
                 await stopRecording();
                 return;
             }
-            // If Web Speech API is active, stop it and let promise settle with result
-            if (activeSpeechRecognition) {
-                try { activeSpeechRecognition.stop(); } catch (e) {}
-                return;
-            }
-
             const capturedIndex = currentPhraseIndex;
 
             try {
@@ -2828,43 +2793,19 @@ HTML_TEMPLATE = """
                 btn.classList.add('recording');
                 tg.HapticFeedback?.impactOccurred('medium');
 
-                if (userIsPremium) {
-                    const wav = await startRecording();
-                    btn.classList.remove('recording');
-                    if (currentPhraseIndex !== capturedIndex) return;
-                    setButtonLoading(btn, true, '⏳ Проверяем...');
-                    const result = await submitPronunciationPremium(wav, phrase.de, 'phrase', phrase.phrase_id);
-                    if (currentPhraseIndex !== capturedIndex) return;
-                    setPronunciationResult('pronunciation-phrase-result', result);
-                    tg.HapticFeedback?.notificationOccurred(
-                        result.verdict === 'Отлично' ? 'success' : 'warning'
-                    );
-                } else if (hasWebSpeechAPI()) {
-                    const { text, confidence } = await transcribeWebSpeech(8000);
-                    btn.classList.remove('recording');
-                    if (currentPhraseIndex !== capturedIndex) return;
-                    setButtonLoading(btn, true, '⏳ Проверяем...');
-                    const result = await submitPronunciationBasic(text, phrase.de, 'phrase', phrase.phrase_id, confidence);
-                    if (currentPhraseIndex !== capturedIndex) return;
-                    setPronunciationResult('pronunciation-phrase-result', result);
-                    tg.HapticFeedback?.notificationOccurred(
-                        result.verdict === 'Отлично' ? 'success' : 'warning'
-                    );
-                } else {
-                    const wav = await startRecording();
-                    btn.classList.remove('recording');
-                    if (currentPhraseIndex !== capturedIndex) return;
-                    setButtonLoading(btn, true, '⏳ Проверяем...');
-                    const result = await submitPronunciationPremium(wav, phrase.de, 'phrase', phrase.phrase_id);
-                    if (currentPhraseIndex !== capturedIndex) return;
-                    setPronunciationResult('pronunciation-phrase-result', result);
-                    tg.HapticFeedback?.notificationOccurred(
-                        result.verdict === 'Отлично' ? 'success' : 'warning'
-                    );
-                }
+                const wav = await startRecording();
+                btn.classList.remove('recording');
+                if (currentPhraseIndex !== capturedIndex) return;
+                setButtonLoading(btn, true, '⏳ Проверяем...');
+                const result = await submitPronunciationPremium(wav, phrase.de, 'phrase', phrase.phrase_id);
+                if (currentPhraseIndex !== capturedIndex) return;
+                setPronunciationResult('pronunciation-phrase-result', result);
+                tg.HapticFeedback?.notificationOccurred(
+                    result.verdict === 'Отлично' ? 'success' : 'warning'
+                );
             } catch (error) {
                 btn.classList.remove('recording');
-                if (error?.message === '__cancelled__') return; // user cancelled, no error
+
                 if (currentPhraseIndex !== capturedIndex) return;
                 setPronunciationResult(
                     'pronunciation-phrase-result',
