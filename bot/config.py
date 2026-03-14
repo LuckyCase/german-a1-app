@@ -39,3 +39,7 @@ PRONUN_MAX_AUDIO_BYTES = int(os.getenv("PRONUN_MAX_AUDIO_BYTES", str(2 * 1024 * 
 PRONUN_MIN_AUDIO_BYTES = int(os.getenv("PRONUN_MIN_AUDIO_BYTES", "4000"))
 PRONUN_RATE_LIMIT_PER_HOUR = int(os.getenv("PRONUN_RATE_LIMIT_PER_HOUR", "60"))
 PRONUN_VOSK_MODEL_PATH = os.getenv("PRONUN_VOSK_MODEL_PATH", "")
+
+# Azure Speech (pronunciation assessment)
+AZURE_SPEECH_KEY = os.getenv("AZURE_SPEECH_KEY", "")
+AZURE_SPEECH_REGION = os.getenv("AZURE_SPEECH_REGION", "")

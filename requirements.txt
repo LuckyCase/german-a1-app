@@ -8,3 +8,4 @@ gunicorn>=21.2.0
 requests>=2.31.0
 sentry-sdk[flask]>=2.0.0
 vosk>=0.3.45
+azure-cognitiveservices-speech>=1.35.0

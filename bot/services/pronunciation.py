@@ -9,6 +9,8 @@ from typing import Any
 import requests
 
 from bot.config import (
+    AZURE_SPEECH_KEY,
+    AZURE_SPEECH_REGION,
     PRONUN_CLOUD_API_KEY,
     PRONUN_CLOUD_ENABLED,
     PRONUN_CLOUD_PROVIDER,
@@ -215,6 +217,148 @@ def _transcribe_cloud(audio_bytes: bytes, filename: str, mime_type: str) -> tupl
         return None, 0.0
 
 
+def _transcribe_and_assess_azure(
+    audio_bytes: bytes, target_text: str,
+) -> dict[str, Any] | None:
+    """Use Azure Pronunciation Assessment for phoneme-level scoring."""
+    if not AZURE_SPEECH_KEY or not AZURE_SPEECH_REGION:
+        logger.warning("Azure Speech key/region not configured")
+        return None
+
+    try:
+        import azure.cognitiveservices.speech as speechsdk  # type: ignore
+    except Exception:
+        logger.info("Azure Speech SDK not available; skipping Azure assessment")
+        return None
+
+    try:
+        speech_config = speechsdk.SpeechConfig(
+            subscription=AZURE_SPEECH_KEY, region=AZURE_SPEECH_REGION,
+        )
+        speech_config.speech_recognition_language = "de-DE"
+
+        audio_format = speechsdk.audio.AudioStreamFormat(
+            samples_per_second=16000, bits_per_sample=16, channels=1,
+        )
+        push_stream = speechsdk.audio.PushAudioInputStream(stream_format=audio_format)
+
+        # Strip 44-byte WAV header to get raw PCM
+        pcm_data = audio_bytes[44:] if len(audio_bytes) > 44 else audio_bytes
+        push_stream.write(pcm_data)
+        push_stream.close()
+
+        audio_config = speechsdk.audio.AudioConfig(stream=push_stream)
+
+        pronunciation_config = speechsdk.PronunciationAssessmentConfig(
+            reference_text=target_text,
+            grading_system=speechsdk.PronunciationAssessmentGradingSystem.HundredMark,
+            granularity=speechsdk.PronunciationAssessmentGranularity.Phoneme,
+            enable_miscue=True,
+        )
+        pronunciation_config.enable_prosody_assessment()
+
+        recognizer = speechsdk.SpeechRecognizer(
+            speech_config=speech_config, audio_config=audio_config,
+        )
+        pronunciation_config.apply_to(recognizer)
+
+        result = recognizer.recognize_once()
+
+        if result.reason == speechsdk.ResultReason.RecognizedSpeech:
+            pron = speechsdk.PronunciationAssessmentResult(result)
+            words_data = []
+            for w in pron.words:
+                phonemes = []
+                for p in w.phonemes:
+                    phonemes.append({
+                        "phoneme": p.phoneme,
+                        "accuracy_score": round(p.accuracy_score, 1),
+                    })
+                words_data.append({
+                    "word": w.word,
+                    "accuracy_score": round(w.accuracy_score, 1),
+                    "error_type": w.error_type,
+                    "phonemes": phonemes,
+                })
+
+            return {
+                "recognized_text": result.text.strip(),
+                "confidence": round(pron.pronunciation_score / 100.0, 3),
+                "azure_assessment": {
+                    "accuracy_score": round(pron.accuracy_score, 1),
+                    "fluency_score": round(pron.fluency_score, 1),
+                    "completeness_score": round(pron.completeness_score, 1),
+                    "pronunciation_score": round(pron.pronunciation_score, 1),
+                    "words": words_data,
+                },
+            }
+
+        if result.reason == speechsdk.ResultReason.NoMatch:
+            logger.info("Azure: no speech recognized")
+        elif result.reason == speechsdk.ResultReason.Canceled:
+            cancellation = result.cancellation_details
+            logger.warning("Azure cancelled: %s — %s", cancellation.reason, cancellation.error_details)
+        return None
+
+    except Exception as e:
+        logger.warning("Azure pronunciation assessment failed: %s", e)
+        return None
+
+
+def _azure_to_legacy_analysis(azure_data: dict, target_text: str) -> dict[str, Any]:
+    """Convert Azure assessment to legacy score/verdict/mistakes/tips format."""
+    assessment = azure_data["azure_assessment"]
+    score = int(round(assessment["pronunciation_score"]))
+
+    mistakes = []
+    weak_phonemes = []
+    for w in assessment["words"]:
+        if w["error_type"] == "Omission":
+            mistakes.append(f"Пропущено: {w['word']}")
+        elif w["error_type"] == "Insertion":
+            mistakes.append(f"Лишнее: {w['word']}")
+        elif w["error_type"] == "Mispronunciation":
+            bad = [p for p in w["phonemes"] if p["accuracy_score"] < 60]
+            if bad:
+                phoneme_str = ", ".join(p["phoneme"] for p in bad[:3])
+                mistakes.append(f"'{w['word']}': звуки [{phoneme_str}]")
+                weak_phonemes.extend(bad)
+            else:
+                mistakes.append(f"Неточно: '{w['word']}'")
+
+    tips = []
+    if assessment["fluency_score"] < 70:
+        tips.append("Говорите плавнее, без долгих пауз между словами.")
+    if assessment["completeness_score"] < 80:
+        tips.append("Произнесите все слова из фразы.")
+    if score < 65:
+        tips.append("Скажите фразу медленнее и чуть громче.")
+    if any(ch in target_text.lower() for ch in ("ä", "ö", "ü")):
+        for w in assessment["words"]:
+            if w["accuracy_score"] < 70 and any(ch in w["word"].lower() for ch in ("ä", "ö", "ü")):
+                tips.append("Отдельно потренируйте умлауты ä/ö/ü.")
+                break
+    if "ch" in target_text.lower():
+        for w in assessment["words"]:
+            if w["accuracy_score"] < 70 and "ch" in w["word"].lower():
+                tips.append("Проверьте звук 'ch' (мягкий выдох).")
+                break
+
+    if score >= 85:
+        verdict = "Отлично"
+    elif score >= 65:
+        verdict = "Хорошо"
+    else:
+        verdict = "Повторить"
+
+    return {
+        "score": score,
+        "verdict": verdict,
+        "mistakes": mistakes[:3],
+        "tips": tips[:3],
+    }
+
+
 def evaluate_pronunciation(
     *,
     audio_bytes: bytes,
@@ -234,6 +378,24 @@ def evaluate_pronunciation(
     engine = "none"
     fallback_used = False
 
+    # Azure path: STT + pronunciation assessment in one call
+    if PRONUN_CLOUD_ENABLED and PRONUN_CLOUD_PROVIDER == "azure":
+        azure_result = _transcribe_and_assess_azure(audio_bytes, target_text)
+        if azure_result:
+            analysis = _azure_to_legacy_analysis(azure_result, target_text)
+            return {
+                "recognized_text": azure_result["recognized_text"],
+                "score": analysis["score"],
+                "verdict": analysis["verdict"],
+                "mistakes": analysis["mistakes"],
+                "tips": analysis["tips"],
+                "engine": "cloud_azure",
+                "confidence": azure_result["confidence"],
+                "fallback_used": False,
+                "azure_assessment": azure_result["azure_assessment"],
+            }
+        logger.warning("Azure assessment returned no result; falling back")
+
     local_text, local_conf = _transcribe_local_vosk(audio_bytes)
     if local_text:
         recognized_text = local_text
@@ -241,7 +403,7 @@ def evaluate_pronunciation(
         engine = "local_vosk"
 
     need_cloud = (not recognized_text) or (confidence < PRONUN_MIN_CONFIDENCE)
-    if need_cloud:
+    if need_cloud and PRONUN_CLOUD_PROVIDER == "openai":
         cloud_text, cloud_conf = _transcribe_cloud(audio_bytes, filename, mime_type)
         if cloud_text:
             recognized_text = cloud_text

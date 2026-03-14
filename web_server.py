@@ -1339,16 +1339,40 @@ HTML_TEMPLATE = """
                 el.innerHTML = `<span style="color:#f87171">${payload}</span>`;
                 return;
             }
-            const engine = payload.engine === 'web_speech' ? ' (браузер)' : payload.engine === 'cloud_openai' ? ' (Whisper)' : '';
+            const engineLabels = {
+                'web_speech': ' (браузер)',
+                'cloud_openai': ' (Whisper)',
+                'cloud_azure': ' (Azure)',
+            };
+            const engine = engineLabels[payload.engine] || '';
             const mistakes = (payload.mistakes || []).length
                 ? `<br><span style="color: var(--text-secondary)">Ошибки: ${(payload.mistakes || []).join('; ')}</span>`
                 : '';
             const tips = (payload.tips || []).length
                 ? `<br><span style="color: var(--text-secondary)">Подсказка: ${(payload.tips || []).join(' ')}</span>`
                 : '';
+
+            let azureDetail = '';
+            if (payload.azure_assessment) {
+                const az = payload.azure_assessment;
+                const wordSpans = (az.words || []).map(w => {
+                    const sc = w.accuracy_score;
+                    const color = sc >= 80 ? '#4ade80' : sc >= 60 ? '#facc15' : '#f87171';
+                    const phonemeInfo = (w.phonemes || [])
+                        .filter(p => p.accuracy_score < 70)
+                        .map(p => `${p.phoneme}: ${Math.round(p.accuracy_score)}%`)
+                        .join(', ');
+                    const title = phonemeInfo ? `title="${phonemeInfo}"` : '';
+                    return `<span style="color:${color};font-weight:600;cursor:default" ${title}>${w.word}</span>`;
+                }).join(' ');
+                azureDetail = `<br><span style="font-size:0.92em;color:var(--text-secondary)">`
+                    + `Точность: ${Math.round(az.accuracy_score)} · Плавность: ${Math.round(az.fluency_score)} · Полнота: ${Math.round(az.completeness_score)}`
+                    + `</span><br>${wordSpans}`;
+            }
+
             el.style.display = 'block';
             el.innerHTML = `Оценка: <strong>${payload.score}/100</strong> — ${payload.verdict}${engine}<br>`
-                + `Распознано: "${payload.recognized_text}"${mistakes}${tips}`;
+                + `Распознано: "${payload.recognized_text}"${mistakes}${tips}${azureDetail}`;
         }
 
         function encodeWavFromFloat32(float32, sampleRate = 16000) {
