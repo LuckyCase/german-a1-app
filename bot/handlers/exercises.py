@@ -475,7 +475,6 @@ async def _show_results(query, context):
     percentage = (correct / total * 100) if total > 0 else 0
 
     await save_exercise_set_progress(user_id, set_id, major, sub, total, correct)
-    await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
 
     await query.edit_message_text(
         f"Упражнение завершено!\n\n"
@@ -483,6 +482,12 @@ async def _show_results(query, context):
         f"Результат: {percentage:.0f}%\n\n"
         f"Используйте /exercises для новых упражнений."
     )
+
+    try:
+        await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
+    except Exception as e:
+        logger.error(f"Achievement check failed: {e}", exc_info=True)
+
     return ConversationHandler.END
 
 

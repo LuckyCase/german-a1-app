@@ -48,6 +48,8 @@ async def check_achievements(user_id: int, current_streak: int) -> list:
     existing_ids = set(existing)
     newly_unlocked = []
 
+    logger.info(f"Checking achievements for user {user_id}, streak={current_streak}, existing={existing_ids}")
+
     pool = await get_pool()
     async with pool.acquire() as conn:
         # Check each achievement
@@ -62,29 +64,33 @@ async def check_achievements(user_id: int, current_streak: int) -> list:
                     "SELECT COUNT(*) as c FROM progress WHERE user_id = $1",
                     user_id
                 )
-                unlocked = (row["c"] or 0) >= 10
+                count = row["c"] or 0
+                unlocked = count >= 10
+                logger.info(f"  first_steps: words={count}/10, unlocked={unlocked}")
 
             elif ach["id"] == "week_streak":
                 unlocked = current_streak >= 7
+                logger.info(f"  week_streak: streak={current_streak}/7, unlocked={unlocked}")
 
             elif ach["id"] == "grammarian":
-                # Count unique test_ids completed
                 row = await conn.fetchrow(
                     "SELECT COUNT(DISTINCT test_id) as c FROM grammar_results WHERE user_id = $1",
                     user_id
                 )
-                # A1 has 8 topics × 2 sub-levels = 16 tests
-                unlocked = (row["c"] or 0) >= 16
+                count = row["c"] or 0
+                unlocked = count >= 16
+                logger.info(f"  grammarian: tests={count}/16, unlocked={unlocked}")
 
             elif ach["id"] == "chatterbox":
                 row = await conn.fetchrow(
                     "SELECT COUNT(*) as c FROM phrases_progress WHERE user_id = $1",
                     user_id
                 )
-                unlocked = (row["c"] or 0) >= 50
+                count = row["c"] or 0
+                unlocked = count >= 50
+                logger.info(f"  chatterbox: phrases={count}/50, unlocked={unlocked}")
 
             elif ach["id"] == "master_a1":
-                # Check overall A1 progress: words mastered / total words
                 from bot.content_manager import get_all_words
                 total_a1 = len(get_all_words("A1", "1")) + len(get_all_words("A1", "2"))
                 if total_a1 > 0:
@@ -93,7 +99,9 @@ async def check_achievements(user_id: int, current_streak: int) -> list:
                            WHERE user_id = $1 AND correct_count >= 3 AND wrong_count = 0""",
                         user_id
                     )
-                    unlocked = ((mastered["c"] or 0) / total_a1) >= 0.8
+                    mastered_count = mastered["c"] or 0
+                    unlocked = (mastered_count / total_a1) >= 0.8
+                    logger.info(f"  master_a1: mastered={mastered_count}/{total_a1}, unlocked={unlocked}")
 
             if unlocked:
                 newly_unlocked.append(ach)
@@ -105,6 +113,9 @@ async def check_achievements(user_id: int, current_streak: int) -> list:
                 "UPDATE users SET achievements = $1 WHERE user_id = $2",
                 json.dumps(new_ids), user_id
             )
+            logger.info(f"  UNLOCKED: {[a['id'] for a in newly_unlocked]}, saved: {new_ids}")
+        else:
+            logger.info(f"  No new achievements unlocked")
 
     return newly_unlocked
 

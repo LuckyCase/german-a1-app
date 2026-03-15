@@ -257,7 +257,6 @@ async def show_results(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Save result to database
     await save_grammar_result(user_id, test_id, score, total)
     await update_daily_stats(user_id, tests=1, correct=score, total=total)
-    await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
 
     # Determine grade
     if percentage >= 90:
@@ -281,6 +280,12 @@ async def show_results(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [InlineKeyboardButton("Новый тест", callback_data="gr_new")]
         ])
     )
+
+    try:
+        await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
+    except Exception as e:
+        logger.error(f"Achievement check failed: {e}", exc_info=True)
+
     return GR_RESULT
 
 

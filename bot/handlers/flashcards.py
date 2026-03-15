@@ -462,7 +462,6 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         result_text = f"Неправильно! Правильный ответ: {word['ru']}"
 
     await update_word_progress(user_id, word.get("word_id", ""), is_correct)
-    await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
 
     context.user_data["fc_index"] = context.user_data.get("fc_index", 0) + 1
 
@@ -536,6 +535,13 @@ async def finish_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Результат: {percentage:.0f}%\n\n"
         f"Используйте /flashcards чтобы продолжить изучение."
     )
+
+    # Check achievements after session ends (progress already saved)
+    try:
+        await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
+    except Exception as e:
+        logger.error(f"Achievement check failed: {e}", exc_info=True)
+
     return ConversationHandler.END
 
 
@@ -547,6 +553,13 @@ async def done_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Сессия завершена. Продолжайте в том же духе!\n\n"
         "Используйте /flashcards для изучения новых слов."
     )
+
+    try:
+        user_id = update.effective_user.id
+        await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
+    except Exception as e:
+        logger.error(f"Achievement check failed: {e}", exc_info=True)
+
     return ConversationHandler.END
 
 

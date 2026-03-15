@@ -387,7 +387,6 @@ async def pf_handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         phrase.get("category_id", ""),
         is_correct
     )
-    await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
 
     context.user_data["pf_index"] = context.user_data.get("pf_index", 0) + 1
 
@@ -470,6 +469,12 @@ async def pf_finish_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Результат: {percentage:.0f}%\n\n"
         f"Используйте /phrases чтобы продолжить."
     )
+
+    try:
+        await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
+    except Exception as e:
+        logger.error(f"Achievement check failed: {e}", exc_info=True)
+
     return ConversationHandler.END
 
 
@@ -481,6 +486,13 @@ async def pf_done_session(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Сессия завершена. Продолжайте в том же духе!\n\n"
         "Используйте /phrases для изучения фраз."
     )
+
+    try:
+        user_id = update.effective_user.id
+        await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
+    except Exception as e:
+        logger.error(f"Achievement check failed: {e}", exc_info=True)
+
     return ConversationHandler.END
 
 
