@@ -13,7 +13,6 @@ from bot.config import (
     AZURE_SPEECH_REGION,
     PRONUN_CLOUD_API_KEY,
     PRONUN_CLOUD_ENABLED,
-    PRONUN_CLOUD_PROVIDER,
     PRONUN_LOCAL_ENABLED,
     PRONUN_MAX_AUDIO_BYTES,
     PRONUN_MIN_AUDIO_BYTES,
@@ -189,10 +188,8 @@ def _transcribe_local_vosk(audio_bytes: bytes) -> tuple[str, float] | tuple[None
 
 
 def _transcribe_cloud(audio_bytes: bytes, filename: str, mime_type: str) -> tuple[str, float] | tuple[None, float]:
+    """Transcribe audio using OpenAI Whisper (used for basic users)."""
     if not PRONUN_CLOUD_ENABLED:
-        return None, 0.0
-    if PRONUN_CLOUD_PROVIDER != "openai":
-        logger.warning("Unsupported cloud provider: %s", PRONUN_CLOUD_PROVIDER)
         return None, 0.0
     if not PRONUN_CLOUD_API_KEY:
         logger.warning("Cloud STT enabled but API key is missing")
@@ -365,6 +362,7 @@ def evaluate_pronunciation(
     filename: str,
     mime_type: str,
     target_text: str,
+    is_premium: bool = False,
 ) -> dict[str, Any]:
     if not target_text.strip():
         raise ValueError("target_text is required")
@@ -373,13 +371,8 @@ def evaluate_pronunciation(
     if len(audio_bytes) > PRONUN_MAX_AUDIO_BYTES:
         raise ValueError("Аудио слишком большое")
 
-    recognized_text = None
-    confidence = 0.0
-    engine = "none"
-    fallback_used = False
-
-    # Azure path: STT + pronunciation assessment in one call
-    if PRONUN_CLOUD_ENABLED and PRONUN_CLOUD_PROVIDER == "azure":
+    # Premium path: Azure Pronunciation Assessment (phoneme-level analysis)
+    if is_premium and AZURE_SPEECH_KEY and AZURE_SPEECH_REGION:
         azure_result = _transcribe_and_assess_azure(audio_bytes, target_text)
         if azure_result:
             analysis = _azure_to_legacy_analysis(azure_result, target_text)
@@ -394,7 +387,13 @@ def evaluate_pronunciation(
                 "fallback_used": False,
                 "azure_assessment": azure_result["azure_assessment"],
             }
-        logger.warning("Azure assessment returned no result; falling back")
+        logger.warning("Azure assessment returned no result; falling back to OpenAI Whisper")
+
+    # Basic path (and premium fallback): OpenAI Whisper + text-based scoring
+    recognized_text = None
+    confidence = 0.0
+    engine = "none"
+    fallback_used = False
 
     local_text, local_conf = _transcribe_local_vosk(audio_bytes)
     if local_text:
@@ -403,7 +402,7 @@ def evaluate_pronunciation(
         engine = "local_vosk"
 
     need_cloud = (not recognized_text) or (confidence < PRONUN_MIN_CONFIDENCE)
-    if need_cloud and PRONUN_CLOUD_PROVIDER == "openai":
+    if need_cloud and PRONUN_CLOUD_ENABLED:
         cloud_text, cloud_conf = _transcribe_cloud(audio_bytes, filename, mime_type)
         if cloud_text:
             recognized_text = cloud_text

@@ -37,7 +37,7 @@ from bot.config import (
     TELEGRAM_BOT_TOKEN, DATABASE_URL, PRONUN_TIMEOUT_SEC, PRONUN_RATE_LIMIT_PER_HOUR
 )
 from bot.monitoring import init_sentry
-from bot.services.pronunciation import evaluate_pronunciation, _score_pronunciation
+from bot.services.pronunciation import evaluate_pronunciation
 
 # Telegram bot imports
 from telegram import Update
@@ -1222,16 +1222,16 @@ HTML_TEMPLATE = """
             <div class="card">
                 <h2 class="card-title">🎙️ Произношение</h2>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="color: var(--text-secondary);">Web Speech API</span>
-                    <span id="settings-webspeech-status" class="settings-badge">—</span>
+                    <span style="color: var(--text-secondary);">Сервис анализа</span>
+                    <span id="settings-pronun-engine" class="settings-badge">—</span>
                 </div>
                 <div id="settings-stt-mode" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="color: var(--text-secondary);">Режим STT</span>
+                    <span style="color: var(--text-secondary);">Режим оценки</span>
                     <span id="settings-stt-mode-value" style="font-size: 0.85rem;">—</span>
                 </div>
                 <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0;">
-                    Базовый: распознавание в браузере (Web Speech API).<br>
-                    Премиум: серверное распознавание (OpenAI Whisper, высокая точность).
+                    Базовый: распознавание речи (OpenAI Whisper) + текстовый анализ.<br>
+                    Премиум: фонемный анализ произношения (Azure Pronunciation Assessment).
                 </p>
             </div>
         </section>
@@ -1340,9 +1340,9 @@ HTML_TEMPLATE = """
                 return;
             }
             const engineLabels = {
-                'web_speech': ' (браузер)',
                 'cloud_openai': ' (Whisper)',
                 'cloud_azure': ' (Azure)',
+                'local_vosk': ' (Vosk)',
             };
             const engine = engineLabels[payload.engine] || '';
             const mistakes = (payload.mistakes || []).length
@@ -1511,88 +1511,9 @@ HTML_TEMPLATE = """
             return wavBlob;
         }
 
-        // ── Web Speech API (browser-side STT for basic users) ──
+        // ── Submit pronunciation (server determines engine: basic → Whisper, premium → Azure) ──
 
-        let activeSpeechRecognition = null;
-
-        function hasWebSpeechAPI() {
-            return !!(window.SpeechRecognition || window.webkitSpeechRecognition);
-        }
-
-        function cancelWebSpeech() {
-            if (activeSpeechRecognition) {
-                try { activeSpeechRecognition.abort(); } catch (e) {}
-                activeSpeechRecognition = null;
-            }
-        }
-
-        function transcribeWebSpeech(maxDurationMs = 8000) {
-            // Cancel any previous recognition before starting new one
-            cancelWebSpeech();
-
-            return new Promise((resolve, reject) => {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                if (!SpeechRecognition) {
-                    reject(new Error('Web Speech API не поддерживается'));
-                    return;
-                }
-                const recognition = new SpeechRecognition();
-                recognition.lang = 'de-DE';
-                recognition.continuous = false;
-                recognition.interimResults = false;
-                recognition.maxAlternatives = 1;
-                activeSpeechRecognition = recognition;
-
-                let settled = false;
-                function settle() {
-                    settled = true;
-                    clearTimeout(timeout);
-                    activeSpeechRecognition = null;
-                }
-
-                const timeout = setTimeout(() => {
-                    if (!settled) {
-                        settle();
-                        try { recognition.stop(); } catch (e) {}
-                        reject(new Error('Время записи истекло'));
-                    }
-                }, maxDurationMs);
-
-                recognition.onresult = (event) => {
-                    if (settled) return;
-                    settle();
-                    const transcript = event.results[0][0].transcript;
-                    const confidence = event.results[0][0].confidence;
-                    resolve({ text: transcript, confidence });
-                };
-                recognition.onerror = (event) => {
-                    if (settled) return;
-                    settle();
-                    if (event.error === 'aborted') {
-                        reject(new Error('__cancelled__'));
-                        return;
-                    }
-                    if (event.error === 'no-speech') {
-                        reject(new Error('Речь не обнаружена. Попробуйте ещё раз.'));
-                    } else if (event.error === 'not-allowed') {
-                        reject(new Error('Доступ к микрофону запрещён'));
-                    } else {
-                        reject(new Error('Ошибка распознавания: ' + event.error));
-                    }
-                };
-                recognition.onend = () => {
-                    if (!settled) {
-                        settle();
-                        reject(new Error('Речь не обнаружена'));
-                    }
-                };
-                recognition.start();
-            });
-        }
-
-        // ── Submit pronunciation (premium: server STT, basic: browser STT) ──
-
-        async function submitPronunciationPremium(audioBlob, targetText, itemType, itemId) {
+        async function submitPronunciation(audioBlob, targetText, itemType, itemId) {
             const formData = new FormData();
             formData.append('audio', audioBlob, 'pronunciation.wav');
             formData.append('target_text', targetText);
@@ -1611,26 +1532,6 @@ HTML_TEMPLATE = """
             return data;
         }
 
-        async function submitPronunciationBasic(recognizedText, targetText, itemType, itemId, confidence) {
-            const response = await fetch('/api/pronunciation/score', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    user_id: userId,
-                    target_text: targetText,
-                    recognized_text: recognizedText,
-                    item_type: itemType,
-                    item_id: itemId || '',
-                    confidence: confidence || 0
-                })
-            });
-            const data = await response.json();
-            if (!response.ok || !data.success) {
-                throw new Error(data.error || `HTTP ${response.status}`);
-            }
-            return data;
-        }
-        
         // Header scroll behavior
         let headerShown = true;
         let scrollTimeout = null;
@@ -2231,7 +2132,7 @@ HTML_TEMPLATE = """
                 btn.classList.remove('recording');
                 if (currentWordIndex !== capturedIndex) return;
                 setButtonLoading(btn, true, '⏳ Проверяем...');
-                const result = await submitPronunciationPremium(wav, word.de, 'word', word.word_id);
+                const result = await submitPronunciation(wav, word.de, 'word', word.word_id);
                 if (currentWordIndex !== capturedIndex) return;
                 setPronunciationResult('pronunciation-word-result', result);
                 tg.HapticFeedback?.notificationOccurred(
@@ -2525,24 +2426,22 @@ HTML_TEMPLATE = """
                 premBadge.className = 'settings-badge basic';
             }
 
-            // Web Speech API status
-            const wsBadge = document.getElementById('settings-webspeech-status');
-            if (hasWebSpeechAPI()) {
-                wsBadge.textContent = 'Доступен';
-                wsBadge.className = 'settings-badge ok';
+            // Pronunciation engine status
+            const engineBadge = document.getElementById('settings-pronun-engine');
+            if (userIsPremium) {
+                engineBadge.textContent = 'Azure';
+                engineBadge.className = 'settings-badge premium';
             } else {
-                wsBadge.textContent = 'Недоступен';
-                wsBadge.className = 'settings-badge warn';
+                engineBadge.textContent = 'OpenAI Whisper';
+                engineBadge.className = 'settings-badge ok';
             }
 
-            // STT mode
+            // Assessment mode
             const sttMode = document.getElementById('settings-stt-mode-value');
             if (userIsPremium) {
-                sttMode.textContent = 'Серверный (Whisper)';
-            } else if (hasWebSpeechAPI()) {
-                sttMode.textContent = 'Браузерный (Web Speech)';
+                sttMode.textContent = 'Фонемный анализ (Azure)';
             } else {
-                sttMode.textContent = 'Серверный (fallback)';
+                sttMode.textContent = 'Текстовый анализ (Whisper)';
             }
         }
 
@@ -2821,7 +2720,7 @@ HTML_TEMPLATE = """
                 btn.classList.remove('recording');
                 if (currentPhraseIndex !== capturedIndex) return;
                 setButtonLoading(btn, true, '⏳ Проверяем...');
-                const result = await submitPronunciationPremium(wav, phrase.de, 'phrase', phrase.phrase_id);
+                const result = await submitPronunciation(wav, phrase.de, 'phrase', phrase.phrase_id);
                 if (currentPhraseIndex !== capturedIndex) return;
                 setPronunciationResult('pronunciation-phrase-result', result);
                 tg.HapticFeedback?.notificationOccurred(
@@ -4099,11 +3998,13 @@ def api_pronunciation_check():
             }), 429
 
         audio_bytes = audio_file.read()
+        is_premium = bool(run_bot_async(get_user_premium(user_id), timeout=PRONUN_TIMEOUT_SEC))
         result = evaluate_pronunciation(
             audio_bytes=audio_bytes,
             filename=audio_file.filename or "pronunciation.wav",
             mime_type=audio_file.mimetype or "audio/wav",
             target_text=target_text,
+            is_premium=is_premium,
         )
 
         run_bot_async(get_or_create_user(user_id, None, None), timeout=PRONUN_TIMEOUT_SEC)
@@ -4133,76 +4034,6 @@ def api_pronunciation_check():
     except Exception as e:
         logger.error("Pronunciation check failed for user %s: %s", user_id, e)
         return jsonify({'success': False, 'error': 'Failed to check pronunciation'}), 500
-
-
-@app.route('/api/pronunciation/score', methods=['POST'])
-def api_pronunciation_score():
-    """Score pronunciation from browser-side STT (basic users)."""
-    data = request.json or {}
-    user_id = data.get('user_id')
-    target_text = (data.get('target_text') or '').strip()
-    recognized_text = (data.get('recognized_text') or '').strip()
-    item_type = (data.get('item_type') or 'word').strip()
-    item_id = data.get('item_id') or None
-    confidence = float(data.get('confidence', 0))
-
-    if not user_id:
-        return jsonify({'success': False, 'error': 'User not authenticated'}), 401
-    if item_type not in {'word', 'phrase'}:
-        return jsonify({'success': False, 'error': 'item_type must be word or phrase'}), 400
-    if not target_text:
-        return jsonify({'success': False, 'error': 'target_text is required'}), 400
-    if not recognized_text:
-        return jsonify({'success': False, 'error': 'recognized_text is required'}), 400
-
-    try:
-        limit_state = run_bot_async(
-            consume_rate_limit(
-                user_id=user_id,
-                action="pronunciation_check",
-                limit=PRONUN_RATE_LIMIT_PER_HOUR,
-                window_seconds=3600,
-            ),
-            timeout=PRONUN_TIMEOUT_SEC,
-        )
-        if not limit_state.get("allowed", True):
-            return jsonify({
-                'success': False,
-                'error': f"Слишком много запросов. Повторите через {limit_state.get('retry_after', 60)} сек."
-            }), 429
-
-        analysis = _score_pronunciation(target_text, recognized_text)
-
-        run_bot_async(get_or_create_user(user_id, None, None), timeout=PRONUN_TIMEOUT_SEC)
-        run_bot_async(
-            save_pronunciation_progress(
-                user_id=user_id,
-                item_type=item_type,
-                item_id=item_id,
-                target_text=target_text,
-                recognized_text=recognized_text,
-                score=analysis["score"],
-                verdict=analysis["verdict"],
-                engine="web_speech",
-                confidence=confidence,
-            ),
-            timeout=PRONUN_TIMEOUT_SEC,
-        )
-        run_bot_async(update_daily_stats(user_id, correct=analysis["score"], total=100))
-
-        return jsonify({
-            "success": True,
-            "recognized_text": recognized_text,
-            "score": analysis["score"],
-            "verdict": analysis["verdict"],
-            "mistakes": analysis["mistakes"],
-            "tips": analysis["tips"],
-            "engine": "web_speech",
-            "confidence": round(confidence, 3),
-        })
-    except Exception as e:
-        logger.error("Pronunciation score failed for user %s: %s", user_id, e)
-        return jsonify({'success': False, 'error': 'Failed to score pronunciation'}), 500
 
 
 @app.route('/api/audio/<text>')
