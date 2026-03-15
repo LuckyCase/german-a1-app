@@ -30,7 +30,7 @@ from bot.database import (
     get_priority_word_ids, get_priority_phrase_ids,
     get_detailed_user_progress, get_user_settings, set_user_level, set_diagnostic_completed,
     save_pronunciation_progress, get_pronunciation_stats, consume_rate_limit,
-    get_user_premium,
+    get_user_premium, get_user_language, set_user_language,
     FEEDBACK_STATUS_LABELS, MAX_FEEDBACK_LENGTH
 )
 from bot.config import (
@@ -154,7 +154,7 @@ def init_app():
 # Modern responsive HTML template
 HTML_TEMPLATE = """
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -903,14 +903,14 @@ HTML_TEMPLATE = """
     <div class="app">
         <header class="header" id="main-header">
             <h1 id="main-level-title">German A1.1</h1>
-            <p id="main-level-subtitle">Учи немецкий легко и эффективно</p>
+            <p id="main-level-subtitle" data-i18n="subtitle">Учи немецкий легко и эффективно</p>
         </header>
 
         <div class="level-actions" id="level-actions" style="display:none;"></div>
 
         <div id="onboarding-overlay" class="onboarding-overlay">
             <div id="onboarding-content" class="onboarding-card">
-                <div class="loading">Загрузка...</div>
+                <div class="loading" data-i18n="loading">Загрузка...</div>
             </div>
         </div>
         
@@ -918,82 +918,82 @@ HTML_TEMPLATE = """
         <div id="main-menu" class="main-menu">
             <button type="button" class="menu-tile" data-section="flashcards">
                 <div class="menu-tile-icon">📚</div>
-                <div class="menu-tile-title">Слова</div>
-                <div class="menu-tile-desc">Изучайте слова</div>
+                <div class="menu-tile-title" data-i18n="menuWords">Слова</div>
+                <div class="menu-tile-desc" data-i18n="menuWordsDesc">Изучайте слова</div>
             </button>
             <button type="button" class="menu-tile" data-section="grammar">
                 <div class="menu-tile-icon">📝</div>
-                <div class="menu-tile-title">Грамматика</div>
-                <div class="menu-tile-desc">Тесты по грамматике</div>
+                <div class="menu-tile-title" data-i18n="menuGrammar">Грамматика</div>
+                <div class="menu-tile-desc" data-i18n="menuGrammarDesc">Тесты по грамматике</div>
             </button>
             <button type="button" class="menu-tile" data-section="phrases">
                 <div class="menu-tile-icon">💬</div>
-                <div class="menu-tile-title">Фразы</div>
-                <div class="menu-tile-desc">Полезные фразы</div>
+                <div class="menu-tile-title" data-i18n="menuPhrases">Фразы</div>
+                <div class="menu-tile-desc" data-i18n="menuPhrasesDesc">Полезные фразы</div>
             </button>
             <button type="button" class="menu-tile" data-section="dialogues">
                 <div class="menu-tile-icon">🗣️</div>
-                <div class="menu-tile-title">Диалоги</div>
-                <div class="menu-tile-desc">Практика диалогов</div>
+                <div class="menu-tile-title" data-i18n="menuDialogues">Диалоги</div>
+                <div class="menu-tile-desc" data-i18n="menuDialoguesDesc">Практика диалогов</div>
             </button>
             <button type="button" class="menu-tile" data-section="culture">
                 <div class="menu-tile-icon">🇩🇪</div>
-                <div class="menu-tile-title">Культура</div>
-                <div class="menu-tile-desc">Традиции и реалии</div>
+                <div class="menu-tile-title" data-i18n="menuCulture">Культура</div>
+                <div class="menu-tile-desc" data-i18n="menuCultureDesc">Традиции и реалии</div>
             </button>
             <button type="button" class="menu-tile" data-section="exercises">
                 <div class="menu-tile-icon">✏️</div>
-                <div class="menu-tile-title">Упражнения</div>
-                <div class="menu-tile-desc">Проверь себя</div>
+                <div class="menu-tile-title" data-i18n="menuExercises">Упражнения</div>
+                <div class="menu-tile-desc" data-i18n="menuExercisesDesc">Проверь себя</div>
             </button>
             <button type="button" class="menu-tile" data-section="progress">
                 <div class="menu-tile-icon">📊</div>
-                <div class="menu-tile-title">Прогресс</div>
-                <div class="menu-tile-desc">Ваша статистика</div>
+                <div class="menu-tile-title" data-i18n="menuProgress">Прогресс</div>
+                <div class="menu-tile-desc" data-i18n="menuProgressDesc">Ваша статистика</div>
             </button>
             <button type="button" class="menu-tile" data-section="feedback" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(251, 191, 36, 0.1) 100%);">
                 <div class="menu-tile-icon">💬</div>
-                <div class="menu-tile-title">Отзыв</div>
-                <div class="menu-tile-desc">Предложения</div>
+                <div class="menu-tile-title" data-i18n="menuFeedback">Отзыв</div>
+                <div class="menu-tile-desc" data-i18n="menuFeedbackDesc">Предложения</div>
             </button>
             <button type="button" class="menu-tile" data-section="settings">
                 <div class="menu-tile-icon">⚙️</div>
-                <div class="menu-tile-title">Настройки</div>
-                <div class="menu-tile-desc">Уровень и параметры</div>
+                <div class="menu-tile-title" data-i18n="menuSettings">Настройки</div>
+                <div class="menu-tile-desc" data-i18n="menuSettingsDesc">Уровень и параметры</div>
             </button>
         </div>
         
         <!-- Flashcards Section -->
         <section id="flashcards" class="section" style="display: none;">
             <div id="categories-view">
-                <button type="button" class="back-btn" data-action="backToMainFromCategories">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromCategories" data-i18n="backToMenu">← Назад в меню</button>
                 <div class="card">
-                    <h2 class="card-title">Выберите категорию</h2>
+                    <h2 class="card-title" data-i18n="selectCategory">Выберите категорию</h2>
                     <div id="categories-list" class="btn-group">
-                        <div class="loading">Загрузка...</div>
+                        <div class="loading" data-i18n="loading">Загрузка...</div>
                     </div>
                 </div>
             </div>
-            
+
             <div id="flashcard-view" style="display: none;">
-                <button type="button" class="back-btn" data-action="backToCategories">← Назад к категориям</button>
-                
+                <button type="button" class="back-btn" data-action="backToCategories" data-i18n="backToCategories">← Назад к категориям</button>
+
                 <div class="flashcard">
-                    <div class="flashcard-progress" id="word-progress">Слово 1 из 10</div>
+                    <div class="flashcard-progress" id="word-progress"></div>
                     <div class="flashcard-word" id="word-de">Wort</div>
                     <div class="flashcard-example" id="word-example">Beispiel</div>
-                    <button type="button" class="audio-btn" id="audio-btn" data-action="playAudio">
+                    <button type="button" class="audio-btn" id="audio-btn" data-action="playAudio" data-i18n="listen">
                         🔊 Прослушать
                     </button>
-                    <button type="button" class="audio-btn" id="pronounce-word-btn" data-action="checkWordPronunciation">
+                    <button type="button" class="audio-btn" id="pronounce-word-btn" data-action="checkWordPronunciation" data-i18n="checkPronunciation">
                         🎤 Проверить произношение
                     </button>
                     <div id="pronunciation-word-result" class="flashcard-example" style="margin-top: 8px; display: none;"></div>
                 </div>
-                
+
                 <div class="options" id="word-options"></div>
-                
-                <button type="button" class="btn btn-primary" id="next-btn" style="display: none; margin-top: 16px;" data-action="nextWord">
+
+                <button type="button" class="btn btn-primary" id="next-btn" style="display: none; margin-top: 16px;" data-action="nextWord" data-i18n="nextWord">
                     Следующее слово →
                 </button>
             </div>
@@ -1002,26 +1002,26 @@ HTML_TEMPLATE = """
         <!-- Grammar Section -->
         <section id="grammar" class="section">
             <div id="tests-view">
-                <button type="button" class="back-btn" data-action="backToMainFromTests">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromTests" data-i18n="backToMenu">← Назад в меню</button>
                 <div class="card">
-                    <h2 class="card-title">Выберите тест</h2>
+                    <h2 class="card-title" data-i18n="selectTest">Выберите тест</h2>
                     <div id="tests-list" class="btn-group">
-                        <div class="loading">Загрузка...</div>
+                        <div class="loading" data-i18n="loading">Загрузка...</div>
                     </div>
                 </div>
             </div>
-            
+
             <div id="grammar-view" style="display: none;">
-                <button type="button" class="back-btn" data-action="backToTests">← Назад к тестам</button>
-                
+                <button type="button" class="back-btn" data-action="backToTests" data-i18n="backToTests">← Назад к тестам</button>
+
                 <div class="question-card">
-                    <div class="question-number" id="question-number">Вопрос 1 из 10</div>
-                    <div class="question-text" id="question-text">Вопрос...</div>
+                    <div class="question-number" id="question-number"></div>
+                    <div class="question-text" id="question-text"></div>
                 </div>
-                
+
                 <div class="options" id="question-options"></div>
-                
-                <button type="button" class="btn btn-primary" id="next-question-btn" style="display: none; margin-top: 16px;" data-action="nextQuestion">
+
+                <button type="button" class="btn btn-primary" id="next-question-btn" style="display: none; margin-top: 16px;" data-action="nextQuestion" data-i18n="nextQuestion">
                     Следующий вопрос →
                 </button>
             </div>
@@ -1030,28 +1030,28 @@ HTML_TEMPLATE = """
         <!-- Phrases Section -->
         <section id="phrases" class="section">
             <div id="phrases-categories-view">
-                <button type="button" class="back-btn" data-action="backToMainFromPhrasesCategories">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromPhrasesCategories" data-i18n="backToMenu">← Назад в меню</button>
                 <div class="card">
-                    <h2 class="card-title">Выберите категорию</h2>
+                    <h2 class="card-title" data-i18n="selectCategory">Выберите категорию</h2>
                     <div id="phrases-categories-list" class="btn-group">
-                        <div class="loading">Загрузка...</div>
+                        <div class="loading" data-i18n="loading">Загрузка...</div>
                     </div>
                 </div>
             </div>
-            
+
             <div id="phrases-view" style="display: none;">
-                <button type="button" class="back-btn" data-action="backToPhrasesCategories">← Назад</button>
+                <button type="button" class="back-btn" data-action="backToPhrasesCategories" data-i18n="back">← Назад</button>
                 <div class="flashcard">
-                    <div class="flashcard-progress" id="phrase-progress">Фраза 1 из 10</div>
+                    <div class="flashcard-progress" id="phrase-progress"></div>
                     <div class="flashcard-word" id="phrase-de">Phrase</div>
                     <div class="flashcard-example" id="phrase-context">Context</div>
                     <div class="flashcard-example" id="phrase-example" style="margin-top: 8px;"></div>
-                    <button type="button" class="audio-btn" data-action="playPhraseAudio">🔊 Прослушать</button>
-                    <button type="button" class="audio-btn" id="pronounce-phrase-btn" data-action="checkPhrasePronunciation">🎤 Проверить произношение</button>
+                    <button type="button" class="audio-btn" data-action="playPhraseAudio" data-i18n="listen">🔊 Прослушать</button>
+                    <button type="button" class="audio-btn" id="pronounce-phrase-btn" data-action="checkPhrasePronunciation" data-i18n="checkPronunciation">🎤 Проверить произношение</button>
                     <div id="pronunciation-phrase-result" class="flashcard-example" style="margin-top: 8px; display: none;"></div>
                 </div>
                 <div class="options" id="phrase-options"></div>
-                <button type="button" class="btn btn-primary" id="next-phrase-btn" style="display: none; margin-top: 16px;" data-action="nextPhrase">
+                <button type="button" class="btn btn-primary" id="next-phrase-btn" style="display: none; margin-top: 16px;" data-action="nextPhrase" data-i18n="nextPhrase">
                     Следующая фраза →
                 </button>
             </div>
@@ -1060,31 +1060,31 @@ HTML_TEMPLATE = """
         <!-- Dialogues Section -->
         <section id="dialogues" class="section">
             <div id="dialogues-topics-view">
-                <button type="button" class="back-btn" data-action="backToMainFromDialoguesTopics">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromDialoguesTopics" data-i18n="backToMenu">← Назад в меню</button>
                 <div class="card">
-                    <h2 class="card-title">Выберите диалог</h2>
+                    <h2 class="card-title" data-i18n="selectDialogue">Выберите диалог</h2>
                     <div id="dialogues-topics-list" class="btn-group">
-                        <div class="loading">Загрузка...</div>
+                        <div class="loading" data-i18n="loading">Загрузка...</div>
                     </div>
                 </div>
             </div>
-            
+
             <div id="dialogue-view" style="display: none;">
-                <button type="button" class="back-btn" data-action="backToDialoguesTopics">← Назад</button>
+                <button type="button" class="back-btn" data-action="backToDialoguesTopics" data-i18n="back">← Назад</button>
                 <div id="dialogue-content" class="card"></div>
-                <button type="button" class="btn btn-primary" id="dialogue-exercise-btn" style="margin-top: 16px;" data-action="showDialogueExercise">
+                <button type="button" class="btn btn-primary" id="dialogue-exercise-btn" style="margin-top: 16px;" data-action="showDialogueExercise" data-i18n="exercise">
                     Упражнение →
                 </button>
             </div>
-            
+
             <div id="dialogue-exercise-view" style="display: none;">
-                <button type="button" class="back-btn" data-action="backToDialogue">← Назад к диалогу</button>
+                <button type="button" class="back-btn" data-action="backToDialogue" data-i18n="backToDialogue">← Назад к диалогу</button>
                 <div class="question-card">
-                    <div class="question-number" id="exercise-number">Упражнение 1 из 3</div>
+                    <div class="question-number" id="exercise-number"></div>
                     <div class="question-text" id="exercise-question"></div>
                 </div>
                 <div class="options" id="exercise-options"></div>
-                <button type="button" class="btn btn-primary" id="next-exercise-btn" style="display: none; margin-top: 16px;" data-action="nextExercise">
+                <button type="button" class="btn btn-primary" id="next-exercise-btn" style="display: none; margin-top: 16px;" data-action="nextExercise" data-i18n="nextExercise">
                     Следующее упражнение →
                 </button>
             </div>
@@ -1093,25 +1093,25 @@ HTML_TEMPLATE = """
         <!-- Culture Section -->
         <section id="culture" class="section" style="display: none;">
             <div id="culture-topics-view">
-                <button type="button" class="back-btn" data-action="backToMainFromCulture">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromCulture" data-i18n="backToMenu">← Назад в меню</button>
                 <div class="card">
-                    <h2 class="card-title">Выберите тему</h2>
+                    <h2 class="card-title" data-i18n="selectTopic">Выберите тему</h2>
                     <div id="culture-topics-list" class="btn-group">
-                        <div class="loading">Загрузка...</div>
+                        <div class="loading" data-i18n="loading">Загрузка...</div>
                     </div>
                 </div>
             </div>
             <div id="culture-topic-view" style="display: none;">
-                <button type="button" class="back-btn" data-action="backToCultureTopics">← Назад</button>
+                <button type="button" class="back-btn" data-action="backToCultureTopics" data-i18n="back">← Назад</button>
                 <div id="culture-content" class="card"></div>
                 <div id="culture-quiz-block" style="display: none; margin-top: 16px;">
-                    <h3 class="card-title" style="margin-top: 16px;">Мини-викторина</h3>
+                    <h3 class="card-title" style="margin-top: 16px;" data-i18n="miniQuiz">Мини-викторина</h3>
                     <div class="question-card">
-                        <div class="question-number" id="culture-quiz-number">Вопрос 1</div>
+                        <div class="question-number" id="culture-quiz-number"></div>
                         <div class="question-text" id="culture-quiz-question"></div>
                     </div>
                     <div class="options" id="culture-quiz-options"></div>
-                    <button type="button" class="btn btn-primary" id="culture-quiz-next" style="display: none; margin-top: 16px;" data-action="nextCultureQuizQuestion">
+                    <button type="button" class="btn btn-primary" id="culture-quiz-next" style="display: none; margin-top: 16px;" data-action="nextCultureQuizQuestion" data-i18n="next">
                         Далее →
                     </button>
                 </div>
@@ -1121,23 +1121,23 @@ HTML_TEMPLATE = """
         <!-- Exercises Section -->
         <section id="exercises" class="section" style="display: none;">
             <div id="exercises-sets-view">
-                <button type="button" class="back-btn" data-action="backToMainFromExercises">← Назад в меню</button>
+                <button type="button" class="back-btn" data-action="backToMainFromExercises" data-i18n="backToMenu">← Назад в меню</button>
                 <div class="card">
-                    <h2 class="card-title">Выберите набор</h2>
+                    <h2 class="card-title" data-i18n="selectSet">Выберите набор</h2>
                     <div id="exercises-sets-list" class="btn-group">
-                        <div class="loading">Загрузка...</div>
+                        <div class="loading" data-i18n="loading">Загрузка...</div>
                     </div>
                 </div>
             </div>
             <div id="exercises-task-view" style="display: none;">
-                <button type="button" class="back-btn" data-action="backToExercisesSets">← Назад</button>
+                <button type="button" class="back-btn" data-action="backToExercisesSets" data-i18n="back">← Назад</button>
                 <div class="question-card">
-                    <div class="question-number" id="ex-task-number">Задание 1 из 5</div>
+                    <div class="question-number" id="ex-task-number"></div>
                     <div class="question-text" id="ex-task-question"></div>
                 </div>
                 <div class="options" id="ex-task-options"></div>
                 <div id="ex-task-explanation" style="display: none; margin-top: 16px; padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-md); border-left: 4px solid var(--primary); color: var(--text-primary);"></div>
-                <button type="button" class="btn btn-primary" id="ex-task-next" style="display: none; margin-top: 16px;" data-action="nextExTask">
+                <button type="button" class="btn btn-primary" id="ex-task-next" style="display: none; margin-top: 16px;" data-action="nextExTask" data-i18n="next">
                     Далее →
                 </button>
             </div>
@@ -1145,25 +1145,26 @@ HTML_TEMPLATE = """
         
         <!-- Progress Section -->
         <section id="progress" class="section" style="display: none;">
-            <button type="button" class="back-btn" data-action="backToMainMenu">← Назад в меню</button>
+            <button type="button" class="back-btn" data-action="backToMainMenu" data-i18n="backToMenu">← Назад в меню</button>
             <div id="progress-content">
-                <div class="loading">Загрузка...</div>
+                <div class="loading" data-i18n="loading">Загрузка...</div>
             </div>
         </section>
         
         <!-- Feedback Section -->
         <section id="feedback" class="section" style="display: none;">
-            <button type="button" class="back-btn" data-action="backToMainMenu">← Назад в меню</button>
-            
+            <button type="button" class="back-btn" data-action="backToMainMenu" data-i18n="backToMenu">← Назад в меню</button>
+
             <div class="card">
-                <h2 class="card-title">💬 Отзыв / Предложение</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem;">
+                <h2 class="card-title" data-i18n="feedbackTitle">💬 Отзыв / Предложение</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem;" data-i18n="feedbackDesc">
                     Напишите нам! Мы ценим вашу обратную связь и постараемся учесть ваши пожелания.
                 </p>
-                
+
                 <div id="feedback-form">
-                    <textarea 
-                        id="feedback-text" 
+                    <textarea
+                        id="feedback-text"
+                        data-i18n-placeholder="feedbackPlaceholder"
                         placeholder="Напишите ваш отзыв или предложение..."
                         maxlength="1000"
                         style="
@@ -1182,57 +1183,75 @@ HTML_TEMPLATE = """
                     ></textarea>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                         <span id="feedback-char-count" style="font-size: 0.85rem; color: var(--text-secondary);">0 / 1000</span>
-                        <button type="button" class="btn btn-primary" data-action="submitFeedback" style="width: auto; padding: 12px 24px;">
+                        <button type="button" class="btn btn-primary" data-action="submitFeedback" style="width: auto; padding: 12px 24px;" data-i18n="send">
                             ✉️ Отправить
                         </button>
                     </div>
                 </div>
             </div>
-            
+
             <div class="card" id="feedback-history-card">
-                <h2 class="card-title">📋 Ваши обращения</h2>
+                <h2 class="card-title" data-i18n="yourRequests">📋 Ваши обращения</h2>
                 <div id="feedback-list">
-                    <div class="loading">Загрузка...</div>
+                    <div class="loading" data-i18n="loading">Загрузка...</div>
                 </div>
             </div>
         </section>
 
         <section id="settings" class="section" style="display: none;">
-            <button type="button" class="back-btn" data-action="backToMainMenu">← Назад в меню</button>
+            <button type="button" class="back-btn" data-action="backToMainMenu" data-i18n="backToMenu">← Назад в меню</button>
 
             <div class="card" style="margin-bottom: 16px;">
-                <h2 class="card-title">📚 Уровень</h2>
-                <div id="settings-level-info" style="margin-bottom: 12px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span style="color: var(--text-secondary);">Текущий уровень</span>
-                        <strong id="settings-current-level">—</strong>
-                    </div>
+                <h2 class="card-title" data-i18n="languageTitle">🌐 Язык интерфейса</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="color: var(--text-secondary);" data-i18n="languageLabel">Язык</span>
+                    <select id="settings-language-select" style="
+                        padding: 6px 12px;
+                        border-radius: 8px;
+                        border: 1px solid var(--border-color);
+                        background: var(--bg-secondary);
+                        color: var(--text-primary);
+                        font-family: inherit;
+                        font-size: 0.9rem;
+                        cursor: pointer;
+                    ">
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                    </select>
                 </div>
-                <button type="button" class="btn btn-secondary" style="width: 100%;" data-action="openDiagnosticFromMenu">🎯 Определить уровень</button>
             </div>
 
             <div class="card" style="margin-bottom: 16px;">
-                <h2 class="card-title">👤 Аккаунт</h2>
+                <h2 class="card-title" data-i18n="levelTitle">📚 Уровень</h2>
+                <div id="settings-level-info" style="margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="color: var(--text-secondary);" data-i18n="currentLevel">Текущий уровень</span>
+                        <strong id="settings-current-level">—</strong>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary" style="width: 100%;" data-action="openDiagnosticFromMenu" data-i18n="detectLevel">🎯 Определить уровень</button>
+            </div>
+
+            <div class="card" style="margin-bottom: 16px;">
+                <h2 class="card-title" data-i18n="accountTitle">👤 Аккаунт</h2>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="color: var(--text-secondary);">Статус</span>
+                    <span style="color: var(--text-secondary);" data-i18n="status">Статус</span>
                     <span id="settings-premium-badge" class="settings-badge">—</span>
                 </div>
             </div>
 
             <div class="card">
-                <h2 class="card-title">🎙️ Произношение</h2>
+                <h2 class="card-title" data-i18n="pronunciationTitle">🎙️ Произношение</h2>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="color: var(--text-secondary);">Сервис анализа</span>
+                    <span style="color: var(--text-secondary);" data-i18n="analysisService">Сервис анализа</span>
                     <span id="settings-pronun-engine" class="settings-badge">—</span>
                 </div>
                 <div id="settings-stt-mode" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="color: var(--text-secondary);">Режим оценки</span>
+                    <span style="color: var(--text-secondary);" data-i18n="assessmentMode">Режим оценки</span>
                     <span id="settings-stt-mode-value" style="font-size: 0.85rem;">—</span>
                 </div>
-                <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0;">
-                    Базовый: распознавание речи (OpenAI Whisper) + текстовый анализ.<br>
-                    Премиум: фонемный анализ произношения (Azure Pronunciation Assessment).
-                </p>
+                <p id="settings-pronun-desc" style="color: var(--text-secondary); font-size: 0.8rem; margin: 0;"></p>
             </div>
         </section>
     </div>
@@ -1243,7 +1262,585 @@ HTML_TEMPLATE = """
         const tg = window.Telegram?.WebApp || {};
         if (tg.ready) tg.ready();
         if (tg.expand) tg.expand();
-        
+
+        // ── i18n Translation System ──
+        const TRANSLATIONS = {
+            ru: {
+                // Header
+                subtitle: 'Учи немецкий легко и эффективно',
+                currentLevel: 'Текущий уровень',
+                // Menu tiles
+                menuWords: 'Слова', menuWordsDesc: 'Изучайте слова',
+                menuGrammar: 'Грамматика', menuGrammarDesc: 'Тесты по грамматике',
+                menuPhrases: 'Фразы', menuPhrasesDesc: 'Полезные фразы',
+                menuDialogues: 'Диалоги', menuDialoguesDesc: 'Практика диалогов',
+                menuCulture: 'Культура', menuCultureDesc: 'Традиции и реалии',
+                menuExercises: 'Упражнения', menuExercisesDesc: 'Проверь себя',
+                menuProgress: 'Прогресс', menuProgressDesc: 'Ваша статистика',
+                menuFeedback: 'Отзыв', menuFeedbackDesc: 'Предложения',
+                menuSettings: 'Настройки', menuSettingsDesc: 'Уровень и параметры',
+                // Navigation
+                backToMenu: '← Назад в меню',
+                backToCategories: '← Назад к категориям',
+                backToTests: '← Назад к тестам',
+                back: '← Назад',
+                backToDialogue: '← Назад к диалогу',
+                close: '← Закрыть',
+                // Common
+                loading: 'Загрузка...',
+                loadingOptions: 'Загрузка вариантов...',
+                loadingQuestions: 'Загрузка вопросов...',
+                loadingLevels: 'Загрузка уровней...',
+                loadingAudio: '⏳ Загрузка...',
+                // Flashcards
+                selectCategory: 'Выберите категорию',
+                wordNofM: 'Слово {n} из {m}',
+                phraseNofM: 'Фраза {n} из {m}',
+                listen: '🔊 Прослушать',
+                checkPronunciation: '🎤 Проверить произношение',
+                stopRecording: '⏹️ Остановить',
+                checking: '⏳ Проверяем...',
+                nextWord: 'Следующее слово →',
+                nextPhrase: 'Следующая фраза →',
+                finish: 'Завершить ✓',
+                exerciseComplete: 'Упражнение завершено!',
+                correctNofM: 'Правильно: {n} из {m}',
+                wordsCount: '{n} слов',
+                phrasesCount: '{n} фраз',
+                // Grammar
+                selectTest: 'Выберите тест',
+                questionNofM: 'Вопрос {n} из {m}',
+                questionPlaceholder: 'Вопрос...',
+                nextQuestion: 'Следующий вопрос →',
+                questionsCount: '{n} вопросов',
+                testComplete: '🎉 Тест завершён!\\nРезультат: {score} из {total} ({pct}%)',
+                // Dialogues
+                selectDialogue: 'Выберите диалог',
+                repliesCount: '{n} реплик',
+                exercise: 'Упражнение →',
+                exerciseNofM: 'Упражнение {n} из {m}',
+                nextExercise: 'Следующее упражнение →',
+                exercisesNotReady: 'Упражнения для этого диалога пока не готовы',
+                exerciseFinish: '🎉 Упражнение завершено!\\nРезультат: {score} из {total} ({pct}%)',
+                // Culture
+                selectTopic: 'Выберите тему',
+                miniQuiz: 'Мини-викторина',
+                questionN: 'Вопрос {n}',
+                next: 'Далее →',
+                quizComplete: 'Викторина завершена',
+                noTopicsYet: 'Тем пока нет',
+                facts: 'Факты',
+                tips: 'Советы',
+                // Exercises
+                selectSet: 'Выберите набор',
+                taskNofM: 'Задание {n} из {m}',
+                tasksCount: '{n} заданий',
+                noSetsYet: 'Наборов пока нет',
+                setComplete: '🎉 Набор завершён!\\nРезультат: {score} из {total} ({pct}%)',
+                // Progress
+                progressTitle: '📊 Трекер прогресса',
+                words: 'Слова',
+                phrases: 'Фразы',
+                grammar: 'Грамматика',
+                dialogues: 'Диалоги',
+                culture: 'Культура',
+                exercises: 'Упражнения',
+                pronunciation: 'Произношение',
+                learnedOfTotal: '{learned} изучено / {total} всего',
+                testsCompleted: '{n} из {m} тестов пройдено',
+                completed: '{n} из {m} пройдено',
+                viewed: '{n} из {m} просмотрено',
+                exercisesDone: '{n} из {m} выполнено',
+                pronAttempts: '{attempts} попыток • средний балл {score}',
+                excellent: 'Отлично',
+                good: 'Хорошо',
+                retry: 'Повторить',
+                excellentN: 'Отлично: {n}',
+                goodN: 'Хорошо: {n}',
+                retryN: 'Повторить: {n}',
+                noAttemptsYet: 'Пока нет попыток',
+                noData: 'Нет данных',
+                mastered: '{n} освоено',
+                errors: '{n} ошиб.',
+                notStudied: '{n} не изуч.',
+                notPassed: 'не пройден',
+                viewedStatus: 'просмотрено',
+                notViewed: 'не просмотрено',
+                phraseLabel: 'Фраза',
+                wordLabel: 'Слово',
+                // Feedback
+                feedbackTitle: '💬 Отзыв / Предложение',
+                feedbackDesc: 'Напишите нам! Мы ценим вашу обратную связь и постараемся учесть ваши пожелания.',
+                feedbackPlaceholder: 'Напишите ваш отзыв или предложение...',
+                send: '✉️ Отправить',
+                yourRequests: '📋 Ваши обращения',
+                noRequests: 'У вас пока нет обращений',
+                showingNofM: 'Показаны последние {n} из {m}',
+                feedbackSent: '📝 Отправлено',
+                feedbackViewed: '👀 Просмотрено',
+                feedbackAccepted: '✅ Принято',
+                feedbackInProgress: '🔧 В работе',
+                feedbackDone: '🎉 Готово!',
+                feedbackDeclined: '❌ Отклонено',
+                feedbackStatus: 'Статус {n}',
+                thanksFeedback: '✅ Спасибо за ваш отзыв!\\n\\nНомер обращения: #{id}',
+                enterFeedbackText: 'Пожалуйста, введите текст отзыва',
+                feedbackTooLong: 'Текст слишком длинный. Максимум 1000 символов.',
+                sendError: 'Ошибка отправки: {error}',
+                feedbackSendError: 'Ошибка отправки отзыва',
+                feedbackLoadError: 'Ошибка загрузки обращений',
+                // Settings
+                levelTitle: '📚 Уровень',
+                detectLevel: '🎯 Определить уровень',
+                accountTitle: '👤 Аккаунт',
+                status: 'Статус',
+                premium: 'Премиум',
+                basic: 'Базовый',
+                pronunciationTitle: '🎙️ Произношение',
+                analysisService: 'Сервис анализа',
+                assessmentMode: 'Режим оценки',
+                phonemeAnalysis: 'Фонемный анализ (Azure)',
+                textAnalysis: 'Текстовый анализ (Whisper)',
+                pronBasicDesc: 'Базовый: распознавание речи (OpenAI Whisper) + текстовый анализ.',
+                pronPremiumDesc: 'Премиум: фонемный анализ произношения (Azure Pronunciation Assessment).',
+                languageTitle: '🌐 Язык интерфейса',
+                languageLabel: 'Язык',
+                // Onboarding
+                halloUser: 'Hallo, {name}! 👋',
+                chooseHowToDetect: 'Перед началом выберите, как определить ваш уровень немецкого.',
+                takeTest: 'Пройти тест',
+                chooseManually: 'Выбрать уровень вручную',
+                levelDetection: 'Определение уровня',
+                levelDetectionDesc: 'Можно пройти тест или выбрать уровень вручную.',
+                diagnosticTest: 'Диагностический тест',
+                testUnavailable: 'Тест временно недоступен. Выберите уровень вручную.',
+                testLoadError: 'Не удалось загрузить тест. Выберите уровень вручную.',
+                stageComplete: 'Этап завершен',
+                diagnostics: 'Диагностика',
+                resultNofM: 'Результат: {n} из {m}',
+                continueStage: 'Продолжить: {name}',
+                finishAndGetResult: 'Завершить и получить результат',
+                testResult: 'Результат теста',
+                recommendedLevel: 'Рекомендуемый уровень: {name}',
+                accept: 'Принять ({name})',
+                chooseManuallyShort: 'Выбрать вручную',
+                chooseBaseLevel: 'Выберите базовый уровень',
+                chooseBaseLevelDesc: 'Сначала выберите A1, A2, B1, B2, C1 или C2.',
+                chooseSubLevel: 'Выберите подуровень',
+                selectedBaseLevel: 'Выбран базовый уровень: {level}.',
+                inDevelopment: '(в разработке)',
+                backToBaseLevels: '← Назад к базовым уровням',
+                levelsLoadError: 'Не удалось загрузить уровни',
+                saveLevelError: 'Не удалось сохранить уровень. Попробуйте ещё раз.',
+                // Errors
+                audioNotSupported: 'Запись аудио не поддерживается в этом браузере',
+                alreadyRecording: 'Запись уже выполняется',
+                categoriesLoadError: 'Ошибка загрузки категорий',
+                wordsLoadError: 'Ошибка загрузки слов',
+                playbackError: 'Ошибка воспроизведения',
+                audioLoadError: 'Ошибка загрузки аудио',
+                testsLoadError: 'Ошибка загрузки тестов',
+                grammarTestLoadError: 'Ошибка загрузки теста',
+                pronCheckError: 'Не удалось проверить произношение',
+                phrasesLoadError: 'Ошибка загрузки фраз',
+                dialoguesLoadError: 'Ошибка загрузки диалогов',
+                dialogueLoadError: 'Ошибка загрузки диалога',
+                exercisesLoadError: 'Ошибка загрузки упражнений',
+                topicsLoadError: 'Ошибка загрузки тем',
+                topicLoadError: 'Ошибка загрузки темы',
+                setsLoadError: 'Ошибка загрузки наборов',
+                tasksLoadError: 'Ошибка загрузки заданий',
+                statsLoadError: 'Ошибка загрузки статистики. Попробуйте позже.',
+                userNotDetected: 'Не удалось определить пользователя. Откройте приложение через Telegram.',
+                authRequired: 'Необходима авторизация через Telegram',
+                // Pronunciation result
+                score: 'Оценка',
+                recognized: 'Распознано',
+                mistakesLabel: 'Ошибки',
+                tipLabel: 'Подсказка',
+                accuracy: 'Точность',
+                fluency: 'Плавность',
+                completeness: 'Полнота',
+                nextStage: 'следующий этап',
+                quizLabel: 'Квиз',
+            },
+            en: {
+                subtitle: 'Learn German easily and effectively',
+                currentLevel: 'Current level',
+                menuWords: 'Words', menuWordsDesc: 'Learn vocabulary',
+                menuGrammar: 'Grammar', menuGrammarDesc: 'Grammar tests',
+                menuPhrases: 'Phrases', menuPhrasesDesc: 'Useful phrases',
+                menuDialogues: 'Dialogues', menuDialoguesDesc: 'Dialogue practice',
+                menuCulture: 'Culture', menuCultureDesc: 'Traditions & facts',
+                menuExercises: 'Exercises', menuExercisesDesc: 'Test yourself',
+                menuProgress: 'Progress', menuProgressDesc: 'Your statistics',
+                menuFeedback: 'Feedback', menuFeedbackDesc: 'Suggestions',
+                menuSettings: 'Settings', menuSettingsDesc: 'Level & options',
+                backToMenu: '← Back to menu',
+                backToCategories: '← Back to categories',
+                backToTests: '← Back to tests',
+                back: '← Back',
+                backToDialogue: '← Back to dialogue',
+                close: '← Close',
+                loading: 'Loading...',
+                loadingOptions: 'Loading options...',
+                loadingQuestions: 'Loading questions...',
+                loadingLevels: 'Loading levels...',
+                loadingAudio: '⏳ Loading...',
+                selectCategory: 'Select category',
+                wordNofM: 'Word {n} of {m}',
+                phraseNofM: 'Phrase {n} of {m}',
+                listen: '🔊 Listen',
+                checkPronunciation: '🎤 Check pronunciation',
+                stopRecording: '⏹️ Stop',
+                checking: '⏳ Checking...',
+                nextWord: 'Next word →',
+                nextPhrase: 'Next phrase →',
+                finish: 'Finish ✓',
+                exerciseComplete: 'Exercise complete!',
+                correctNofM: 'Correct: {n} of {m}',
+                wordsCount: '{n} words',
+                phrasesCount: '{n} phrases',
+                selectTest: 'Select test',
+                questionNofM: 'Question {n} of {m}',
+                questionPlaceholder: 'Question...',
+                nextQuestion: 'Next question →',
+                questionsCount: '{n} questions',
+                testComplete: '🎉 Test complete!\\nResult: {score} of {total} ({pct}%)',
+                selectDialogue: 'Select dialogue',
+                repliesCount: '{n} lines',
+                exercise: 'Exercise →',
+                exerciseNofM: 'Exercise {n} of {m}',
+                nextExercise: 'Next exercise →',
+                exercisesNotReady: 'Exercises for this dialogue are not ready yet',
+                exerciseFinish: '🎉 Exercise complete!\\nResult: {score} of {total} ({pct}%)',
+                selectTopic: 'Select topic',
+                miniQuiz: 'Mini quiz',
+                questionN: 'Question {n}',
+                next: 'Next →',
+                quizComplete: 'Quiz complete',
+                noTopicsYet: 'No topics yet',
+                facts: 'Facts',
+                tips: 'Tips',
+                selectSet: 'Select set',
+                taskNofM: 'Task {n} of {m}',
+                tasksCount: '{n} tasks',
+                noSetsYet: 'No sets yet',
+                setComplete: '🎉 Set complete!\\nResult: {score} of {total} ({pct}%)',
+                progressTitle: '📊 Progress tracker',
+                words: 'Words', phrases: 'Phrases', grammar: 'Grammar',
+                dialogues: 'Dialogues', culture: 'Culture', exercises: 'Exercises',
+                pronunciation: 'Pronunciation',
+                learnedOfTotal: '{learned} learned / {total} total',
+                testsCompleted: '{n} of {m} tests passed',
+                completed: '{n} of {m} completed',
+                viewed: '{n} of {m} viewed',
+                exercisesDone: '{n} of {m} done',
+                pronAttempts: '{attempts} attempts • avg score {score}',
+                excellent: 'Excellent', good: 'Good', retry: 'Retry',
+                excellentN: 'Excellent: {n}', goodN: 'Good: {n}', retryN: 'Retry: {n}',
+                noAttemptsYet: 'No attempts yet',
+                noData: 'No data',
+                mastered: '{n} mastered', errors: '{n} errors', notStudied: '{n} not started',
+                notPassed: 'not passed', viewedStatus: 'viewed', notViewed: 'not viewed',
+                phraseLabel: 'Phrase', wordLabel: 'Word',
+                feedbackTitle: '💬 Feedback / Suggestion',
+                feedbackDesc: 'Write to us! We appreciate your feedback and will try to consider your suggestions.',
+                feedbackPlaceholder: 'Write your feedback or suggestion...',
+                send: '✉️ Send',
+                yourRequests: '📋 Your requests',
+                noRequests: 'You have no requests yet',
+                showingNofM: 'Showing last {n} of {m}',
+                feedbackSent: '📝 Sent', feedbackViewed: '👀 Viewed',
+                feedbackAccepted: '✅ Accepted', feedbackInProgress: '🔧 In progress',
+                feedbackDone: '🎉 Done!', feedbackDeclined: '❌ Declined',
+                feedbackStatus: 'Status {n}',
+                thanksFeedback: '✅ Thank you for your feedback!\\n\\nRequest #: #{id}',
+                enterFeedbackText: 'Please enter your feedback',
+                feedbackTooLong: 'Text is too long. Maximum 1000 characters.',
+                sendError: 'Send error: {error}',
+                feedbackSendError: 'Failed to send feedback',
+                feedbackLoadError: 'Failed to load requests',
+                levelTitle: '📚 Level', detectLevel: '🎯 Detect level',
+                accountTitle: '👤 Account', status: 'Status',
+                premium: 'Premium', basic: 'Basic',
+                pronunciationTitle: '🎙️ Pronunciation',
+                analysisService: 'Analysis service', assessmentMode: 'Assessment mode',
+                phonemeAnalysis: 'Phoneme analysis (Azure)',
+                textAnalysis: 'Text analysis (Whisper)',
+                pronBasicDesc: 'Basic: speech recognition (OpenAI Whisper) + text analysis.',
+                pronPremiumDesc: 'Premium: phoneme pronunciation analysis (Azure Pronunciation Assessment).',
+                languageTitle: '🌐 Interface language', languageLabel: 'Language',
+                halloUser: 'Hallo, {name}! 👋',
+                chooseHowToDetect: 'Before starting, choose how to determine your German level.',
+                takeTest: 'Take test', chooseManually: 'Choose level manually',
+                levelDetection: 'Level detection',
+                levelDetectionDesc: 'You can take a test or choose a level manually.',
+                diagnosticTest: 'Diagnostic test',
+                testUnavailable: 'Test temporarily unavailable. Choose a level manually.',
+                testLoadError: 'Failed to load test. Choose a level manually.',
+                stageComplete: 'Stage complete', diagnostics: 'Diagnostics',
+                resultNofM: 'Result: {n} of {m}',
+                continueStage: 'Continue: {name}',
+                finishAndGetResult: 'Finish and get result',
+                testResult: 'Test result',
+                recommendedLevel: 'Recommended level: {name}',
+                accept: 'Accept ({name})', chooseManuallyShort: 'Choose manually',
+                chooseBaseLevel: 'Choose base level',
+                chooseBaseLevelDesc: 'First choose A1, A2, B1, B2, C1 or C2.',
+                chooseSubLevel: 'Choose sub-level',
+                selectedBaseLevel: 'Selected base level: {level}.',
+                inDevelopment: '(in development)',
+                backToBaseLevels: '← Back to base levels',
+                levelsLoadError: 'Failed to load levels',
+                saveLevelError: 'Failed to save level. Please try again.',
+                audioNotSupported: 'Audio recording is not supported in this browser',
+                alreadyRecording: 'Recording already in progress',
+                categoriesLoadError: 'Failed to load categories',
+                wordsLoadError: 'Failed to load words',
+                playbackError: 'Playback error', audioLoadError: 'Failed to load audio',
+                testsLoadError: 'Failed to load tests',
+                grammarTestLoadError: 'Failed to load test',
+                pronCheckError: 'Failed to check pronunciation',
+                phrasesLoadError: 'Failed to load phrases',
+                dialoguesLoadError: 'Failed to load dialogues',
+                dialogueLoadError: 'Failed to load dialogue',
+                exercisesLoadError: 'Failed to load exercises',
+                topicsLoadError: 'Failed to load topics',
+                topicLoadError: 'Failed to load topic',
+                setsLoadError: 'Failed to load sets',
+                tasksLoadError: 'Failed to load tasks',
+                statsLoadError: 'Failed to load statistics. Try again later.',
+                userNotDetected: 'Unable to detect user. Open the app via Telegram.',
+                authRequired: 'Telegram authorization required',
+                score: 'Score', recognized: 'Recognized',
+                mistakesLabel: 'Mistakes', tipLabel: 'Tip',
+                accuracy: 'Accuracy', fluency: 'Fluency', completeness: 'Completeness',
+                nextStage: 'next stage', quizLabel: 'Quiz',
+            },
+            de: {
+                subtitle: 'Deutsch lernen leicht und effektiv',
+                currentLevel: 'Aktuelles Niveau',
+                menuWords: 'Wörter', menuWordsDesc: 'Vokabeln lernen',
+                menuGrammar: 'Grammatik', menuGrammarDesc: 'Grammatiktests',
+                menuPhrases: 'Phrasen', menuPhrasesDesc: 'Nützliche Phrasen',
+                menuDialogues: 'Dialoge', menuDialoguesDesc: 'Dialogübungen',
+                menuCulture: 'Kultur', menuCultureDesc: 'Traditionen & Fakten',
+                menuExercises: 'Übungen', menuExercisesDesc: 'Teste dich',
+                menuProgress: 'Fortschritt', menuProgressDesc: 'Deine Statistik',
+                menuFeedback: 'Feedback', menuFeedbackDesc: 'Vorschläge',
+                menuSettings: 'Einstellungen', menuSettingsDesc: 'Niveau & Optionen',
+                backToMenu: '← Zurück zum Menü',
+                backToCategories: '← Zurück zu Kategorien',
+                backToTests: '← Zurück zu Tests',
+                back: '← Zurück',
+                backToDialogue: '← Zurück zum Dialog',
+                close: '← Schließen',
+                loading: 'Laden...',
+                loadingOptions: 'Optionen laden...',
+                loadingQuestions: 'Fragen laden...',
+                loadingLevels: 'Niveaus laden...',
+                loadingAudio: '⏳ Laden...',
+                selectCategory: 'Kategorie wählen',
+                wordNofM: 'Wort {n} von {m}',
+                phraseNofM: 'Phrase {n} von {m}',
+                listen: '🔊 Anhören',
+                checkPronunciation: '🎤 Aussprache prüfen',
+                stopRecording: '⏹️ Stopp',
+                checking: '⏳ Prüfe...',
+                nextWord: 'Nächstes Wort →',
+                nextPhrase: 'Nächste Phrase →',
+                finish: 'Fertig ✓',
+                exerciseComplete: 'Übung abgeschlossen!',
+                correctNofM: 'Richtig: {n} von {m}',
+                wordsCount: '{n} Wörter',
+                phrasesCount: '{n} Phrasen',
+                selectTest: 'Test wählen',
+                questionNofM: 'Frage {n} von {m}',
+                questionPlaceholder: 'Frage...',
+                nextQuestion: 'Nächste Frage →',
+                questionsCount: '{n} Fragen',
+                testComplete: '🎉 Test abgeschlossen!\\nErgebnis: {score} von {total} ({pct}%)',
+                selectDialogue: 'Dialog wählen',
+                repliesCount: '{n} Zeilen',
+                exercise: 'Übung →',
+                exerciseNofM: 'Übung {n} von {m}',
+                nextExercise: 'Nächste Übung →',
+                exercisesNotReady: 'Übungen für diesen Dialog sind noch nicht bereit',
+                exerciseFinish: '🎉 Übung abgeschlossen!\\nErgebnis: {score} von {total} ({pct}%)',
+                selectTopic: 'Thema wählen',
+                miniQuiz: 'Mini-Quiz',
+                questionN: 'Frage {n}',
+                next: 'Weiter →',
+                quizComplete: 'Quiz abgeschlossen',
+                noTopicsYet: 'Noch keine Themen',
+                facts: 'Fakten',
+                tips: 'Tipps',
+                selectSet: 'Set wählen',
+                taskNofM: 'Aufgabe {n} von {m}',
+                tasksCount: '{n} Aufgaben',
+                noSetsYet: 'Noch keine Sets',
+                setComplete: '🎉 Set abgeschlossen!\\nErgebnis: {score} von {total} ({pct}%)',
+                progressTitle: '📊 Fortschritt',
+                words: 'Wörter', phrases: 'Phrasen', grammar: 'Grammatik',
+                dialogues: 'Dialoge', culture: 'Kultur', exercises: 'Übungen',
+                pronunciation: 'Aussprache',
+                learnedOfTotal: '{learned} gelernt / {total} gesamt',
+                testsCompleted: '{n} von {m} Tests bestanden',
+                completed: '{n} von {m} abgeschlossen',
+                viewed: '{n} von {m} angesehen',
+                exercisesDone: '{n} von {m} erledigt',
+                pronAttempts: '{attempts} Versuche • Durchschnitt {score}',
+                excellent: 'Ausgezeichnet', good: 'Gut', retry: 'Wiederholen',
+                excellentN: 'Ausgezeichnet: {n}', goodN: 'Gut: {n}', retryN: 'Wiederholen: {n}',
+                noAttemptsYet: 'Noch keine Versuche',
+                noData: 'Keine Daten',
+                mastered: '{n} gemeistert', errors: '{n} Fehler', notStudied: '{n} nicht begonnen',
+                notPassed: 'nicht bestanden', viewedStatus: 'angesehen', notViewed: 'nicht angesehen',
+                phraseLabel: 'Phrase', wordLabel: 'Wort',
+                feedbackTitle: '💬 Feedback / Vorschlag',
+                feedbackDesc: 'Schreiben Sie uns! Wir schätzen Ihr Feedback und versuchen, Ihre Wünsche zu berücksichtigen.',
+                feedbackPlaceholder: 'Schreiben Sie Ihr Feedback oder Ihren Vorschlag...',
+                send: '✉️ Senden',
+                yourRequests: '📋 Ihre Anfragen',
+                noRequests: 'Sie haben noch keine Anfragen',
+                showingNofM: 'Letzte {n} von {m} angezeigt',
+                feedbackSent: '📝 Gesendet', feedbackViewed: '👀 Gesehen',
+                feedbackAccepted: '✅ Akzeptiert', feedbackInProgress: '🔧 In Bearbeitung',
+                feedbackDone: '🎉 Fertig!', feedbackDeclined: '❌ Abgelehnt',
+                feedbackStatus: 'Status {n}',
+                thanksFeedback: '✅ Vielen Dank für Ihr Feedback!\\n\\nAnfragenr.: #{id}',
+                enterFeedbackText: 'Bitte geben Sie Ihr Feedback ein',
+                feedbackTooLong: 'Text ist zu lang. Maximal 1000 Zeichen.',
+                sendError: 'Sendefehler: {error}',
+                feedbackSendError: 'Feedback konnte nicht gesendet werden',
+                feedbackLoadError: 'Anfragen konnten nicht geladen werden',
+                levelTitle: '📚 Niveau', detectLevel: '🎯 Niveau bestimmen',
+                accountTitle: '👤 Konto', status: 'Status',
+                premium: 'Premium', basic: 'Basis',
+                pronunciationTitle: '🎙️ Aussprache',
+                analysisService: 'Analysedienst', assessmentMode: 'Bewertungsmodus',
+                phonemeAnalysis: 'Phonemanalyse (Azure)',
+                textAnalysis: 'Textanalyse (Whisper)',
+                pronBasicDesc: 'Basis: Spracherkennung (OpenAI Whisper) + Textanalyse.',
+                pronPremiumDesc: 'Premium: Phonem-Ausspracheanalyse (Azure Pronunciation Assessment).',
+                languageTitle: '🌐 Sprache der Oberfläche', languageLabel: 'Sprache',
+                halloUser: 'Hallo, {name}! 👋',
+                chooseHowToDetect: 'Wählen Sie zunächst, wie Sie Ihr Deutschniveau bestimmen möchten.',
+                takeTest: 'Test machen', chooseManually: 'Niveau manuell wählen',
+                levelDetection: 'Niveaubestimmung',
+                levelDetectionDesc: 'Sie können einen Test machen oder ein Niveau manuell wählen.',
+                diagnosticTest: 'Diagnosetest',
+                testUnavailable: 'Test vorübergehend nicht verfügbar. Wählen Sie ein Niveau manuell.',
+                testLoadError: 'Test konnte nicht geladen werden. Wählen Sie ein Niveau manuell.',
+                stageComplete: 'Etappe abgeschlossen', diagnostics: 'Diagnostik',
+                resultNofM: 'Ergebnis: {n} von {m}',
+                continueStage: 'Weiter: {name}',
+                finishAndGetResult: 'Abschließen und Ergebnis erhalten',
+                testResult: 'Testergebnis',
+                recommendedLevel: 'Empfohlenes Niveau: {name}',
+                accept: 'Akzeptieren ({name})', chooseManuallyShort: 'Manuell wählen',
+                chooseBaseLevel: 'Basisniveau wählen',
+                chooseBaseLevelDesc: 'Wählen Sie zuerst A1, A2, B1, B2, C1 oder C2.',
+                chooseSubLevel: 'Unterniveau wählen',
+                selectedBaseLevel: 'Gewähltes Basisniveau: {level}.',
+                inDevelopment: '(in Entwicklung)',
+                backToBaseLevels: '← Zurück zu Basisniveaus',
+                levelsLoadError: 'Niveaus konnten nicht geladen werden',
+                saveLevelError: 'Niveau konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.',
+                audioNotSupported: 'Audioaufnahme wird in diesem Browser nicht unterstützt',
+                alreadyRecording: 'Aufnahme läuft bereits',
+                categoriesLoadError: 'Kategorien konnten nicht geladen werden',
+                wordsLoadError: 'Wörter konnten nicht geladen werden',
+                playbackError: 'Wiedergabefehler', audioLoadError: 'Audio konnte nicht geladen werden',
+                testsLoadError: 'Tests konnten nicht geladen werden',
+                grammarTestLoadError: 'Test konnte nicht geladen werden',
+                pronCheckError: 'Aussprache konnte nicht geprüft werden',
+                phrasesLoadError: 'Phrasen konnten nicht geladen werden',
+                dialoguesLoadError: 'Dialoge konnten nicht geladen werden',
+                dialogueLoadError: 'Dialog konnte nicht geladen werden',
+                exercisesLoadError: 'Übungen konnten nicht geladen werden',
+                topicsLoadError: 'Themen konnten nicht geladen werden',
+                topicLoadError: 'Thema konnte nicht geladen werden',
+                setsLoadError: 'Sets konnten nicht geladen werden',
+                tasksLoadError: 'Aufgaben konnten nicht geladen werden',
+                statsLoadError: 'Statistik konnte nicht geladen werden. Versuchen Sie es später.',
+                userNotDetected: 'Benutzer konnte nicht erkannt werden. Öffnen Sie die App über Telegram.',
+                authRequired: 'Telegram-Autorisierung erforderlich',
+                score: 'Bewertung', recognized: 'Erkannt',
+                mistakesLabel: 'Fehler', tipLabel: 'Tipp',
+                accuracy: 'Genauigkeit', fluency: 'Flüssigkeit', completeness: 'Vollständigkeit',
+                nextStage: 'nächste Etappe', quizLabel: 'Quiz',
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function t(key, params) {
+            let str = (TRANSLATIONS[currentLang] || TRANSLATIONS.ru)[key]
+                   || TRANSLATIONS.ru[key] || key;
+            if (params) {
+                Object.keys(params).forEach(k => {
+                    str = str.replace(new RegExp('\\{' + k + '\\}', 'g'), params[k]);
+                });
+            }
+            return str;
+        }
+
+        function detectLanguage() {
+            const tgLang = tg.initDataUnsafe?.user?.language_code || '';
+            if (tgLang.startsWith('de')) return 'de';
+            if (tgLang.startsWith('en')) return 'en';
+            if (tgLang.startsWith('ru') || tgLang.startsWith('uk') || tgLang.startsWith('be')) return 'ru';
+            return 'ru';
+        }
+
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.textContent = t(el.dataset.i18n);
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                el.placeholder = t(el.dataset.i18nPlaceholder);
+            });
+            // Update language selector if exists
+            const langSelect = document.getElementById('settings-language-select');
+            if (langSelect) langSelect.value = currentLang;
+        }
+
+        async function setLanguage(lang) {
+            currentLang = lang;
+            applyTranslations();
+            updateLevelHeader();
+            // Persist to server
+            if (userId) {
+                fetch('/api/language', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ user_id: userId, language: lang })
+                }).catch(() => {});
+            }
+        }
+
+        async function loadLanguagePreference() {
+            if (!userId) {
+                currentLang = detectLanguage();
+                applyTranslations();
+                return;
+            }
+            try {
+                const resp = await fetch(`/api/language?user_id=${userId}`);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    currentLang = data.language || detectLanguage();
+                } else {
+                    currentLang = detectLanguage();
+                }
+            } catch {
+                currentLang = detectLanguage();
+            }
+            applyTranslations();
+        }
+
         // Клики по тайлам главного меню
         document.getElementById('main-menu').addEventListener('click', function(e) {
             const tile = e.target.closest('.menu-tile');
@@ -1269,7 +1866,7 @@ HTML_TEMPLATE = """
         document.documentElement.style.setProperty('--text-secondary', theme.hint_color || '#a0a0b0');
         
         const userId = tg.initDataUnsafe?.user?.id;
-        const userFirstName = tg.initDataUnsafe?.user?.first_name || 'друг';
+        const userFirstName = tg.initDataUnsafe?.user?.first_name || 'Friend';
         
         let currentCategory = null;
         let currentWords = [];
@@ -1314,7 +1911,8 @@ HTML_TEMPLATE = """
         let recordingTimeout = null;
         let userIsPremium = false;
 
-        function setButtonLoading(button, isLoading, loadingText = 'Загрузка...') {
+        function setButtonLoading(button, isLoading, loadingText) {
+            if (!loadingText) loadingText = t('loading');
             if (!button) return;
             if (isLoading) {
                 if (!button.dataset.originalText) {
@@ -1346,10 +1944,10 @@ HTML_TEMPLATE = """
             };
             const engine = engineLabels[payload.engine] || '';
             const mistakes = (payload.mistakes || []).length
-                ? `<br><span style="color: var(--text-secondary)">Ошибки: ${(payload.mistakes || []).join('; ')}</span>`
+                ? `<br><span style="color: var(--text-secondary)">${t('mistakesLabel')}: ${(payload.mistakes || []).join('; ')}</span>`
                 : '';
             const tips = (payload.tips || []).length
-                ? `<br><span style="color: var(--text-secondary)">Подсказка: ${(payload.tips || []).join(' ')}</span>`
+                ? `<br><span style="color: var(--text-secondary)">${t('tipLabel')}: ${(payload.tips || []).join(' ')}</span>`
                 : '';
 
             let azureDetail = '';
@@ -1366,13 +1964,13 @@ HTML_TEMPLATE = """
                     return `<span style="color:${color};font-weight:600;cursor:default" ${title}>${w.word}</span>`;
                 }).join(' ');
                 azureDetail = `<br><span style="font-size:0.92em;color:var(--text-secondary)">`
-                    + `Точность: ${Math.round(az.accuracy_score)} · Плавность: ${Math.round(az.fluency_score)} · Полнота: ${Math.round(az.completeness_score)}`
+                    + `${t('accuracy')}: ${Math.round(az.accuracy_score)} · ${t('fluency')}: ${Math.round(az.fluency_score)} · ${t('completeness')}: ${Math.round(az.completeness_score)}`
                     + `</span><br>${wordSpans}`;
             }
 
             el.style.display = 'block';
-            el.innerHTML = `Оценка: <strong>${payload.score}/100</strong> — ${payload.verdict}${engine}<br>`
-                + `Распознано: "${payload.recognized_text}"${mistakes}${tips}${azureDetail}`;
+            el.innerHTML = `${t('score')}: <strong>${payload.score}/100</strong> — ${payload.verdict}${engine}<br>`
+                + `${t('recognized')}: "${payload.recognized_text}"${mistakes}${tips}${azureDetail}`;
         }
 
         function encodeWavFromFloat32(float32, sampleRate = 16000) {
@@ -1414,10 +2012,10 @@ HTML_TEMPLATE = """
 
         async function startRecording() {
             if (!navigator.mediaDevices?.getUserMedia) {
-                throw new Error('Запись аудио не поддерживается в этом браузере');
+                throw new Error(t('audioNotSupported'));
             }
             if (activeRecorder) {
-                throw new Error('Запись уже выполняется');
+                throw new Error(t('alreadyRecording'));
             }
 
             activeStream = await navigator.mediaDevices.getUserMedia({
@@ -1654,7 +2252,7 @@ HTML_TEMPLATE = """
             const titleEl = document.getElementById('main-level-title');
             const subtitleEl = document.getElementById('main-level-subtitle');
             if (titleEl) titleEl.textContent = `German ${levelName}`;
-            if (subtitleEl) subtitleEl.textContent = `Текущий уровень: ${levelName}`;
+            if (subtitleEl) subtitleEl.textContent = `${t('currentLevel')}: ${levelName}`;
             document.title = `German ${levelName} - Lernen`;
         }
 
@@ -1665,13 +2263,13 @@ HTML_TEMPLATE = """
         function openDiagnosticFromMenu() {
             showOnboardingOverlay();
             setOnboardingHTML(`
-                <h2>Определение уровня</h2>
-                <p>Можно пройти тест или выбрать уровень вручную.</p>
+                <h2>${t('levelDetection')}</h2>
+                <p>${t('levelDetectionDesc')}</p>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary" data-action="startDiagnosticOnboarding">Пройти тест</button>
-                    <button type="button" class="btn btn-secondary" data-action="showManualLevelSelection">Выбрать уровень вручную</button>
+                    <button type="button" class="btn btn-primary" data-action="startDiagnosticOnboarding">${t('takeTest')}</button>
+                    <button type="button" class="btn btn-secondary" data-action="showManualLevelSelection">${t('chooseManually')}</button>
                 </div>
-                <button type="button" class="back-btn" data-action="hideOnboardingOverlay">← Закрыть</button>
+                <button type="button" class="back-btn" data-action="hideOnboardingOverlay">${t('close')}</button>
             `);
         }
 
@@ -1697,17 +2295,17 @@ HTML_TEMPLATE = """
         function showOnboardingStart() {
             showOnboardingOverlay();
             setOnboardingHTML(`
-                <h2>Hallo, ${userFirstName}! 👋</h2>
-                <p>Перед началом выберите, как определить ваш уровень немецкого.</p>
+                <h2>${t('halloUser', {name: userFirstName})}</h2>
+                <p>${t('chooseHowToDetect')}</p>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary" data-action="startDiagnosticOnboarding">Пройти тест</button>
-                    <button type="button" class="btn btn-secondary" data-action="showManualLevelSelection">Выбрать уровень вручную</button>
+                    <button type="button" class="btn btn-primary" data-action="startDiagnosticOnboarding">${t('takeTest')}</button>
+                    <button type="button" class="btn btn-secondary" data-action="showManualLevelSelection">${t('chooseManually')}</button>
                 </div>
             `);
         }
 
         async function startDiagnosticOnboarding() {
-            setOnboardingHTML('<div class="loading">Загрузка вопросов...</div>');
+            setOnboardingHTML(`<div class="loading">${t('loadingQuestions')}</div>`);
             try {
                 const response = await fetch('/api/diagnostic/questions');
                 if (!response.ok) {
@@ -1719,14 +2317,14 @@ HTML_TEMPLATE = """
                 onboardingStageIndex = 0;
 
                 if (!onboardingStages.length) {
-                    tg.showAlert?.('Тест временно недоступен. Выберите уровень вручную.');
+                    tg.showAlert?.(t('testUnavailable'));
                     showManualLevelSelection();
                     return;
                 }
 
                 startOnboardingStage(0);
             } catch (error) {
-                tg.showAlert?.('Не удалось загрузить тест. Выберите уровень вручную.');
+                tg.showAlert?.(t('testLoadError'));
                 showManualLevelSelection();
             }
         }
@@ -1752,9 +2350,9 @@ HTML_TEMPLATE = """
                 .join('');
 
             setOnboardingHTML(`
-                <h2>Диагностический тест</h2>
+                <h2>${t('diagnosticTest')}</h2>
                 <p><strong>${stage.name || ''}</strong></p>
-                <p>Вопрос ${onboardingQuestionIndex + 1} из ${onboardingQuestions.length}</p>
+                <p>${t('questionNofM', {n: onboardingQuestionIndex + 1, m: onboardingQuestions.length})}</p>
                 <div class="question-card" style="margin-bottom: 12px;">
                     <div class="question-text">${q.question || ''}</div>
                 </div>
@@ -1785,17 +2383,17 @@ HTML_TEMPLATE = """
             const hasNext = onboardingStageIndex + 1 < onboardingStages.length;
             const threshold = Number(stage.offer_next_if_score_at_least ?? 1.1);
             if (hasNext && ratio >= threshold) {
-                const nextName = onboardingStages[onboardingStageIndex + 1]?.name || 'следующий этап';
+                const nextName = onboardingStages[onboardingStageIndex + 1]?.name || t('nextStage');
                 setOnboardingHTML(`
-                    <h2>Этап завершен</h2>
-                    <p><strong>${stage.name || 'Диагностика'}</strong></p>
-                    <p>Результат: ${onboardingCorrect} из ${total}</p>
+                    <h2>${t('stageComplete')}</h2>
+                    <p><strong>${stage.name || t('diagnostics')}</strong></p>
+                    <p>${t('resultNofM', {n: onboardingCorrect, m: total})}</p>
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary" data-action="continueDiagnosticStage">
-                            Продолжить: ${nextName}
+                            ${t('continueStage', {name: nextName})}
                         </button>
                         <button type="button" class="btn btn-secondary" data-action="finishDiagnosticNow">
-                            Завершить и получить результат
+                            ${t('finishAndGetResult')}
                         </button>
                     </div>
                 `);
@@ -1842,15 +2440,15 @@ HTML_TEMPLATE = """
                 .join('');
 
             setOnboardingHTML(`
-                <h2>Результат теста</h2>
+                <h2>${t('testResult')}</h2>
                 <ul style="margin: 0 0 12px 18px;">${stageSummary}</ul>
-                <p>Рекомендуемый уровень: <strong>${onboardingRecommended.name}</strong></p>
+                <p>${t('recommendedLevel', {name: onboardingRecommended.name})}</p>
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary" data-action="acceptDiagnosticRecommendation">
-                        Принять (${onboardingRecommended.name})
+                        ${t('accept', {name: onboardingRecommended.name})}
                     </button>
                     <button type="button" class="btn btn-secondary" data-action="showManualLevelSelection">
-                        Выбрать вручную
+                        ${t('chooseManuallyShort')}
                     </button>
                 </div>
             `);
@@ -1879,7 +2477,7 @@ HTML_TEMPLATE = """
                 loadCategories();
                 loadTests();
             } catch (error) {
-                tg.showAlert?.('Не удалось сохранить уровень. Попробуйте ещё раз.');
+                tg.showAlert?.(t('saveLevelError'));
             }
         }
 
@@ -1888,7 +2486,7 @@ HTML_TEMPLATE = """
         }
 
         async function showManualLevelSelection() {
-            setOnboardingHTML('<div class="loading">Загрузка уровней...</div>');
+            setOnboardingHTML(`<div class="loading">${t('loadingLevels')}</div>`);
             try {
                 const response = await fetch('/api/levels');
                 if (!response.ok) {
@@ -1914,10 +2512,10 @@ HTML_TEMPLATE = """
                         .join('');
 
                     setOnboardingHTML(`
-                        <h2>Выберите базовый уровень</h2>
-                        <p>Сначала выберите A1, A2, B1, B2, C1 или C2.</p>
+                        <h2>${t('chooseBaseLevel')}</h2>
+                        <p>${t('chooseBaseLevelDesc')}</p>
                         <div id="manual-major-list" class="btn-group">${majorButtonsHtml}</div>
-                        <button type="button" class="back-btn" data-action="showOnboardingStart">← Назад</button>
+                        <button type="button" class="back-btn" data-action="showOnboardingStart">${t('back')}</button>
                     `);
 
                     const root = document.getElementById('manual-major-list');
@@ -1937,16 +2535,16 @@ HTML_TEMPLATE = """
                     const subButtonsHtml = subLevels
                         .map(level => (
                             `<button type="button" class="btn btn-secondary" data-major="${level.major}" data-sub="${level.sub}">
-                                ${level.display_name}${level.has_content ? '' : ' (в разработке)'}
+                                ${level.display_name}${level.has_content ? '' : ' ' + t('inDevelopment')}
                             </button>`
                         ))
                         .join('');
 
                     setOnboardingHTML(`
-                        <h2>Выберите подуровень</h2>
-                        <p>Выбран базовый уровень: <strong>${major}</strong>.</p>
+                        <h2>${t('chooseSubLevel')}</h2>
+                        <p>${t('selectedBaseLevel', {level: major})}</p>
                         <div id="manual-level-list" class="btn-group">${subButtonsHtml}</div>
-                        <button type="button" class="back-btn" id="manual-back-to-major">← Назад к базовым уровням</button>
+                        <button type="button" class="back-btn" id="manual-back-to-major">${t('backToBaseLevels')}</button>
                     `);
 
                     const root = document.getElementById('manual-level-list');
@@ -1966,7 +2564,7 @@ HTML_TEMPLATE = """
 
                 renderMajorSelection();
             } catch (error) {
-                tg.showAlert?.('Не удалось загрузить уровни');
+                tg.showAlert?.(t('levelsLoadError'));
                 showOnboardingStart();
             }
         }
@@ -1984,14 +2582,14 @@ HTML_TEMPLATE = """
                     btn.className = 'category-btn';
                     btn.innerHTML = `
                         <span class="name">${cat.name}</span>
-                        <span class="count">${cat.count} слов</span>
+                        <span class="count">${t('wordsCount', {n: cat.count})}</span>
                     `;
                     btn.onclick = () => startFlashcards(cat.id);
                     list.appendChild(btn);
                 });
             } catch (error) {
-                document.getElementById('categories-list').innerHTML = 
-                    '<div class="error-msg">Ошибка загрузки категорий</div>';
+                document.getElementById('categories-list').innerHTML =
+                    `<div class="error-msg">${t('categoriesLoadError')}</div>`;
             }
         }
         
@@ -2009,7 +2607,7 @@ HTML_TEMPLATE = """
                 
                 showNextWord();
             } catch (error) {
-                tg.showAlert?.('Ошибка загрузки слов');
+                tg.showAlert?.(t('wordsLoadError'));
             }
         }
         
@@ -2028,10 +2626,10 @@ HTML_TEMPLATE = """
                 // Show results screen
                 const total = wordSessionCorrect + wordSessionWrong;
                 const pct = total > 0 ? Math.round(wordSessionCorrect / total * 100) : 0;
-                document.getElementById('word-progress').textContent = 'Упражнение завершено!';
+                document.getElementById('word-progress').textContent = t('exerciseComplete');
                 document.getElementById('word-de').textContent = `${pct}%`;
                 document.getElementById('word-example').textContent =
-                    `Правильно: ${wordSessionCorrect} из ${total}`;
+                    t('correctNofM', {n: wordSessionCorrect, m: total});
                 document.getElementById('word-options').innerHTML = '';
                 document.getElementById('next-btn').style.display = 'none';
                 document.getElementById('audio-btn').style.display = 'none';
@@ -2043,7 +2641,7 @@ HTML_TEMPLATE = """
                 const finishBtn = document.createElement('button');
                 finishBtn.className = 'btn btn-primary';
                 finishBtn.style.marginTop = '16px';
-                finishBtn.textContent = '← Назад к категориям';
+                finishBtn.textContent = t('backToCategories');
                 finishBtn.onclick = () => {
                     document.getElementById('audio-btn').style.display = '';
                     if (pronounceBtn) pronounceBtn.style.display = '';
@@ -2060,8 +2658,8 @@ HTML_TEMPLATE = """
             const optionsDiv = document.getElementById('word-options');
             const nextBtn = document.getElementById('next-btn');
             nextBtn.style.display = 'none';
-            optionsDiv.innerHTML = '<div class="loading">Загрузка вариантов...</div>';
-            
+            optionsDiv.innerHTML = `<div class="loading">${t('loadingOptions')}</div>`;
+
             // Reset audio
             const audio = document.getElementById('word-audio');
             const audioBtn = document.getElementById('audio-btn');
@@ -2070,7 +2668,7 @@ HTML_TEMPLATE = """
             audio.onerror = null;
             audio.onloadeddata = null;
             audio.src = '';
-            audioBtn.textContent = '🔊 Прослушать';
+            audioBtn.textContent = t('listen');
             audioBtn.disabled = false;
             if (pronounceResult) pronounceResult.style.display = 'none';
 
@@ -2093,7 +2691,7 @@ HTML_TEMPLATE = """
             }
 
             document.getElementById('word-progress').textContent =
-                `Слово ${currentWordIndex + 1} из ${currentWords.length}`;
+                t('wordNofM', {n: currentWordIndex + 1, m: currentWords.length});
             document.getElementById('word-de').textContent = word.de;
             document.getElementById('word-example').textContent = word.example || '';
             optionsDiv.innerHTML = '';
@@ -2124,19 +2722,19 @@ HTML_TEMPLATE = """
             try {
                 // Save original text before changing to stop label
                 btn.dataset.originalText = btn.textContent;
-                btn.textContent = '⏹️ Остановить';
+                btn.textContent = t('stopRecording');
                 btn.classList.add('recording');
                 tg.HapticFeedback?.impactOccurred('medium');
 
                 const wav = await startRecording();
                 btn.classList.remove('recording');
                 if (currentWordIndex !== capturedIndex) return;
-                setButtonLoading(btn, true, '⏳ Проверяем...');
+                setButtonLoading(btn, true, t('checking'));
                 const result = await submitPronunciation(wav, word.de, 'word', word.word_id);
                 if (currentWordIndex !== capturedIndex) return;
                 setPronunciationResult('pronunciation-word-result', result);
                 tg.HapticFeedback?.notificationOccurred(
-                    result.verdict === 'Отлично' ? 'success' : 'warning'
+                    result.verdict === t('excellent') ? 'success' : 'warning'
                 );
             } catch (error) {
                 btn.classList.remove('recording');
@@ -2144,7 +2742,7 @@ HTML_TEMPLATE = """
                 if (currentWordIndex !== capturedIndex) return;
                 setPronunciationResult(
                     'pronunciation-word-result',
-                    error?.message || 'Не удалось проверить произношение',
+                    error?.message || t('pronCheckError'),
                     true
                 );
                 tg.HapticFeedback?.notificationOccurred('error');
@@ -2154,7 +2752,7 @@ HTML_TEMPLATE = """
                 }
             }
         }
-        
+
         async function playAudio() {
             const word = currentWords[currentWordIndex];
             if (!word) return;
@@ -2164,34 +2762,34 @@ HTML_TEMPLATE = """
             
             if (audio.src && audio.src.includes(encodeURIComponent(word.de))) {
                 audio.currentTime = 0;
-                audio.play().catch(() => tg.showAlert?.('Ошибка воспроизведения'));
+                audio.play().catch(() => tg.showAlert?.(t('playbackError')));
                 return;
             }
-            
-            audioBtn.textContent = '⏳ Загрузка...';
+
+            audioBtn.textContent = t('loadingAudio');
             audioBtn.disabled = true;
-            
+
             try {
                 audio.src = `/api/audio/${encodeURIComponent(word.de)}`;
-                
+
                 audio.onloadeddata = () => {
-                    audioBtn.textContent = '🔊 Прослушать';
+                    audioBtn.textContent = t('listen');
                     audioBtn.disabled = false;
                     audio.play().catch(() => {
-                        tg.showAlert?.('Ошибка воспроизведения');
-                        audioBtn.textContent = '🔊 Прослушать';
+                        tg.showAlert?.(t('playbackError'));
+                        audioBtn.textContent = t('listen');
                     });
                 };
-                
+
                 audio.onerror = () => {
-                    audioBtn.textContent = '🔊 Прослушать';
+                    audioBtn.textContent = t('listen');
                     audioBtn.disabled = false;
-                    tg.showAlert?.('Ошибка загрузки аудио');
+                    tg.showAlert?.(t('audioLoadError'));
                 };
-                
+
                 audio.load();
             } catch (error) {
-                audioBtn.textContent = '🔊 Прослушать';
+                audioBtn.textContent = t('listen');
                 audioBtn.disabled = false;
             }
         }
@@ -2227,9 +2825,9 @@ HTML_TEMPLATE = """
 
             const nextBtn = document.getElementById('next-btn');
             if (currentWordIndex + 1 >= currentWords.length) {
-                nextBtn.textContent = 'Завершить ✓';
+                nextBtn.textContent = t('finish');
             } else {
-                nextBtn.textContent = 'Следующее слово →';
+                nextBtn.textContent = t('nextWord');
             }
             nextBtn.disabled = false;
             nextBtn.style.display = 'block';
@@ -2262,14 +2860,14 @@ HTML_TEMPLATE = """
                     btn.className = 'category-btn';
                     btn.innerHTML = `
                         <span class="name">${test.name}</span>
-                        <span class="count">${test.questions_count} вопросов</span>
+                        <span class="count">${t('questionsCount', {n: test.questions_count})}</span>
                     `;
                     btn.onclick = () => startTest(test.id);
                     list.appendChild(btn);
                 });
             } catch (error) {
-                document.getElementById('tests-list').innerHTML = 
-                    '<div class="error-msg">Ошибка загрузки тестов</div>';
+                document.getElementById('tests-list').innerHTML =
+                    `<div class="error-msg">${t('testsLoadError')}</div>`;
             }
         }
         
@@ -2286,10 +2884,10 @@ HTML_TEMPLATE = """
                 
                 showNextQuestion();
             } catch (error) {
-                tg.showAlert?.('Ошибка загрузки теста');
+                tg.showAlert?.(t('grammarTestLoadError'));
             }
         }
-        
+
         function backToTests() {
             document.getElementById('grammar-view').style.display = 'none';
             document.getElementById('tests-view').style.display = 'block';
@@ -2306,8 +2904,8 @@ HTML_TEMPLATE = """
             }
             
             const question = currentQuestions[currentQuestionIndex];
-            document.getElementById('question-number').textContent = 
-                `Вопрос ${currentQuestionIndex + 1} из ${currentQuestions.length}`;
+            document.getElementById('question-number').textContent =
+                t('questionNofM', {n: currentQuestionIndex + 1, m: currentQuestions.length});
             document.getElementById('question-text').textContent = question.question;
             
             const optionsDiv = document.getElementById('question-options');
@@ -2360,7 +2958,7 @@ HTML_TEMPLATE = """
                 })
             });
             
-            tg.showAlert?.(`🎉 Тест завершён!\\nРезультат: ${userScore} из ${total} (${percentage}%)`);
+            tg.showAlert?.(t('testComplete', {score: userScore, total: total, pct: percentage}));
             backToTests();
         }
         
@@ -2382,9 +2980,9 @@ HTML_TEMPLATE = """
                     </div>
                     <div class="progress-bar"><div class="progress-fill" style="width:${pct(c.learned, c.total)}%"></div></div>
                     <div class="prog-cat-meta">
-                        <span class="mastered">${c.mastered} освоено</span>
-                        ${c.errors > 0 ? `<span class="errors">${c.errors} ошиб.</span>` : ''}
-                        ${notStarted > 0 ? `<span>${notStarted} не изуч.</span>` : ''}
+                        <span class="mastered">${t('mastered', {n: c.mastered})}</span>
+                        ${c.errors > 0 ? `<span class="errors">${t('errors', {n: c.errors})}</span>` : ''}
+                        ${notStarted > 0 ? `<span>${t('notStudied', {n: notStarted})}</span>` : ''}
                     </div>
                 </div>`;
             }).join('');
@@ -2395,13 +2993,13 @@ HTML_TEMPLATE = """
                 let status, score;
                 if (type === 'grammar') {
                     status = item.completed ? '&#10004;' : '&#9711;';
-                    score = item.completed ? `${item.score}/${item.total} (${pct(item.score, item.total)}%)` : 'не пройден';
+                    score = item.completed ? `${item.score}/${item.total} (${pct(item.score, item.total)}%)` : t('notPassed');
                 } else if (type === 'culture') {
                     status = item.viewed ? '&#10004;' : '&#9711;';
-                    score = item.viewed ? (item.quiz_total > 0 ? `Квиз: ${item.quiz_correct}/${item.quiz_total}` : 'просмотрено') : 'не просмотрено';
+                    score = item.viewed ? (item.quiz_total > 0 ? `${t('quizLabel')}: ${item.quiz_correct}/${item.quiz_total}` : t('viewedStatus')) : t('notViewed');
                 } else {
                     status = item.completed ? '&#10004;' : '&#9711;';
-                    score = item.completed ? `${item.correct}/${item.total}` : 'не пройден';
+                    score = item.completed ? `${item.correct}/${item.total}` : t('notPassed');
                 }
                 return `<div class="prog-item">
                     <span class="prog-item-status" style="color:${item.completed || item.viewed ? '#4ade80' : '#6b7280'}">${status}</span>
@@ -2416,13 +3014,18 @@ HTML_TEMPLATE = """
             const levelEl = document.getElementById('settings-current-level');
             levelEl.textContent = `${currentLevelMajor}.${currentLevelSub}`;
 
+            // Language selector
+            const langSelect = document.getElementById('settings-language-select');
+            langSelect.value = currentLang;
+            langSelect.onchange = () => setLanguage(langSelect.value);
+
             // Premium status
             const premBadge = document.getElementById('settings-premium-badge');
             if (userIsPremium) {
-                premBadge.textContent = 'Премиум';
+                premBadge.textContent = t('premium');
                 premBadge.className = 'settings-badge premium';
             } else {
-                premBadge.textContent = 'Базовый';
+                premBadge.textContent = t('basic');
                 premBadge.className = 'settings-badge basic';
             }
 
@@ -2439,22 +3042,29 @@ HTML_TEMPLATE = """
             // Assessment mode
             const sttMode = document.getElementById('settings-stt-mode-value');
             if (userIsPremium) {
-                sttMode.textContent = 'Фонемный анализ (Azure)';
+                sttMode.textContent = t('phonemeAnalysis');
             } else {
-                sttMode.textContent = 'Текстовый анализ (Whisper)';
+                sttMode.textContent = t('textAnalysis');
+            }
+
+            // Pronunciation description
+            const pronDesc = document.getElementById('settings-pronun-desc');
+            if (pronDesc) {
+                pronDesc.innerHTML = t('pronBasicDesc') + '<br>' + t('pronPremiumDesc');
             }
         }
 
         function renderPronunciationRecent(items) {
             if (!items || !items.length) {
-                return '<div style="padding:8px 0;color:var(--text-secondary);font-size:0.85rem;">Пока нет попыток</div>';
+                return `<div style="padding:8px 0;color:var(--text-secondary);font-size:0.85rem;">${t('noAttemptsYet')}</div>`;
             }
+            const dateLocale = currentLang === 'de' ? 'de-DE' : currentLang === 'en' ? 'en-US' : 'ru-RU';
             return items.map(item => {
-                const label = item.item_type === 'phrase' ? 'Фраза' : 'Слово';
-                const date = new Date(item.created_at).toLocaleDateString('ru-RU');
-                const verdictColor = item.verdict === 'Отлично'
+                const label = item.item_type === 'phrase' ? t('phraseLabel') : t('wordLabel');
+                const date = new Date(item.created_at).toLocaleDateString(dateLocale);
+                const verdictColor = item.verdict === t('excellent')
                     ? '#4ade80'
-                    : item.verdict === 'Хорошо' ? '#f59e0b' : '#f87171';
+                    : item.verdict === t('good') ? '#f59e0b' : '#f87171';
                 return `<div class="prog-item">
                     <span class="prog-item-status" style="color:${verdictColor}">&#9679;</span>
                     <span class="prog-item-name">${label}${item.item_id ? ` (${item.item_id})` : ''} • ${date}</span>
@@ -2467,7 +3077,7 @@ HTML_TEMPLATE = """
             const container = document.getElementById('progress-content');
             try {
                 if (!userId) {
-                    container.innerHTML = '<div class="error-msg">Не удалось определить пользователя. Откройте приложение через Telegram.</div>';
+                    container.innerHTML = `<div class="error-msg">${t('userNotDetected')}</div>`;
                     return;
                 }
                 const response = await fetch(`/api/progress?user_id=${userId}`);
@@ -2481,50 +3091,50 @@ HTML_TEMPLATE = """
 
                 const sections = [
                     {
-                        icon: '&#128218;', title: 'Слова',
-                        sub: `${d.words.learned} изучено / ${d.words.total} всего`,
+                        icon: '&#128218;', title: t('words'),
+                        sub: t('learnedOfTotal', {learned: d.words.learned, total: d.words.total}),
                         pct: pct(d.words.learned, d.words.total),
                         details: renderCategoryDetails(d.words.categories)
                     },
                     {
-                        icon: '&#128172;', title: 'Фразы',
-                        sub: `${d.phrases.learned} изучено / ${d.phrases.total} всего`,
+                        icon: '&#128172;', title: t('phrases'),
+                        sub: t('learnedOfTotal', {learned: d.phrases.learned, total: d.phrases.total}),
                         pct: pct(d.phrases.learned, d.phrases.total),
                         details: renderCategoryDetails(d.phrases.categories)
                     },
                     {
-                        icon: '&#128221;', title: 'Грамматика',
-                        sub: `${d.grammar.completed} из ${d.grammar.total} тестов пройдено`,
+                        icon: '&#128221;', title: t('grammar'),
+                        sub: t('testsCompleted', {n: d.grammar.completed, m: d.grammar.total}),
                         pct: pct(d.grammar.completed, d.grammar.total),
                         details: renderItemDetails(d.grammar.tests, 'grammar')
                     },
                     {
-                        icon: '&#128483;', title: 'Диалоги',
-                        sub: `${d.dialogues.completed} из ${d.dialogues.total} пройдено`,
+                        icon: '&#128483;', title: t('dialogues'),
+                        sub: t('completed', {n: d.dialogues.completed, m: d.dialogues.total}),
                         pct: pct(d.dialogues.completed, d.dialogues.total),
                         details: renderItemDetails(d.dialogues.items, 'dialogues')
                     },
                     {
-                        icon: '&#127963;', title: 'Культура',
-                        sub: `${d.culture.viewed} из ${d.culture.total} просмотрено`,
+                        icon: '&#127963;', title: t('culture'),
+                        sub: t('viewed', {n: d.culture.viewed, m: d.culture.total}),
                         pct: pct(d.culture.viewed, d.culture.total),
                         details: renderItemDetails(d.culture.items, 'culture')
                     },
                     {
-                        icon: '&#9999;', title: 'Упражнения',
-                        sub: `${d.exercises.completed} из ${d.exercises.total} выполнено`,
+                        icon: '&#9999;', title: t('exercises'),
+                        sub: t('exercisesDone', {n: d.exercises.completed, m: d.exercises.total}),
                         pct: pct(d.exercises.completed, d.exercises.total),
                         details: renderItemDetails(d.exercises.items, 'exercises')
                     },
                     {
-                        icon: '&#127908;', title: 'Произношение',
-                        sub: `${d.pronunciation.attempts} попыток • средний балл ${Math.round(d.pronunciation.avg_score || 0)}`,
+                        icon: '&#127908;', title: t('pronunciation'),
+                        sub: t('pronAttempts', {attempts: d.pronunciation.attempts, score: Math.round(d.pronunciation.avg_score || 0)}),
                         pct: d.pronunciation.avg_score || 0,
                         details: `
                             <div class="prog-cat-meta" style="margin-bottom:8px;">
-                                <span class="mastered">Отлично: ${d.pronunciation.excellent}</span>
-                                <span>Хорошо: ${d.pronunciation.good}</span>
-                                <span class="errors">Повторить: ${d.pronunciation.retry}</span>
+                                <span class="mastered">${t('excellentN', {n: d.pronunciation.excellent})}</span>
+                                <span>${t('goodN', {n: d.pronunciation.good})}</span>
+                                <span class="errors">${t('retryN', {n: d.pronunciation.retry})}</span>
                             </div>
                             ${renderPronunciationRecent(d.pronunciation.recent)}
                         `
@@ -2544,12 +3154,12 @@ HTML_TEMPLATE = """
                         <div class="prog-section-bar">
                             <div class="progress-bar"><div class="progress-fill" style="width:${s.pct}%"></div></div>
                         </div>
-                        <div class="prog-section-details">${s.details || '<div style="padding:8px 0;color:var(--text-secondary);font-size:0.85rem;">Нет данных</div>'}</div>
+                        <div class="prog-section-details">${s.details || `<div style="padding:8px 0;color:var(--text-secondary);font-size:0.85rem;">${t('noData')}</div>`}</div>
                     </div>
                 `).join('');
             } catch (error) {
                 console.error('loadProgress error:', error);
-                container.innerHTML = '<div class="error-msg">Ошибка загрузки статистики. Попробуйте позже.</div>';
+                container.innerHTML = `<div class="error-msg">${t('statsLoadError')}</div>`;
             }
         }
         
@@ -2566,14 +3176,14 @@ HTML_TEMPLATE = """
                     btn.className = 'category-btn';
                     btn.innerHTML = `
                         <span class="name">${cat.name}</span>
-                        <span class="count">${cat.count} фраз</span>
+                        <span class="count">${t('phrasesCount', {n: cat.count})}</span>
                     `;
                     btn.onclick = () => startPhrases(cat.id);
                     list.appendChild(btn);
                 });
             } catch (error) {
-                document.getElementById('phrases-categories-list').innerHTML = 
-                    '<div class="error-msg">Ошибка загрузки категорий</div>';
+                document.getElementById('phrases-categories-list').innerHTML =
+                    `<div class="error-msg">${t('categoriesLoadError')}</div>`;
             }
         }
         
@@ -2594,7 +3204,7 @@ HTML_TEMPLATE = """
                 
                 showNextPhrase();
             } catch (error) {
-                tg.showAlert?.('Ошибка загрузки фраз');
+                tg.showAlert?.(t('phrasesLoadError'));
             }
         }
         
@@ -2613,10 +3223,10 @@ HTML_TEMPLATE = """
                 // Show results screen
                 const total = phraseSessionCorrect + phraseSessionWrong;
                 const pct = total > 0 ? Math.round(phraseSessionCorrect / total * 100) : 0;
-                document.getElementById('phrase-progress').textContent = 'Упражнение завершено!';
+                document.getElementById('phrase-progress').textContent = t('exerciseComplete');
                 document.getElementById('phrase-de').textContent = `${pct}%`;
                 document.getElementById('phrase-context').textContent =
-                    `Правильно: ${phraseSessionCorrect} из ${total}`;
+                    t('correctNofM', {n: phraseSessionCorrect, m: total});
                 document.getElementById('phrase-example').textContent = '';
                 document.getElementById('phrase-options').innerHTML = '';
                 document.getElementById('next-phrase-btn').style.display = 'none';
@@ -2630,7 +3240,7 @@ HTML_TEMPLATE = """
                 const finishBtn = document.createElement('button');
                 finishBtn.className = 'btn btn-primary';
                 finishBtn.style.marginTop = '16px';
-                finishBtn.textContent = '← Назад к категориям';
+                finishBtn.textContent = t('backToCategories');
                 finishBtn.onclick = () => {
                     if (phraseAudioBtn) phraseAudioBtn.style.display = '';
                     if (phrasePronBtn) phrasePronBtn.style.display = '';
@@ -2647,8 +3257,8 @@ HTML_TEMPLATE = """
             const optionsDiv = document.getElementById('phrase-options');
             const nextPhrBtn = document.getElementById('next-phrase-btn');
             nextPhrBtn.style.display = 'none';
-            optionsDiv.innerHTML = '<div class="loading">Загрузка вариантов...</div>';
-            
+            optionsDiv.innerHTML = `<div class="loading">${t('loadingOptions')}</div>`;
+
             // Reset audio
             const audio = document.getElementById('word-audio');
             const audioBtn = document.querySelector('#phrases-view .audio-btn');
@@ -2658,7 +3268,7 @@ HTML_TEMPLATE = """
             audio.onloadeddata = null;
             audio.src = '';
             if (audioBtn) {
-                audioBtn.textContent = '🔊 Прослушать';
+                audioBtn.textContent = t('listen');
                 audioBtn.disabled = false;
             }
             if (phrasePronRes) phrasePronRes.style.display = 'none';
@@ -2682,7 +3292,7 @@ HTML_TEMPLATE = """
             }
 
             document.getElementById('phrase-progress').textContent =
-                `Фраза ${currentPhraseIndex + 1} из ${currentPhrases.length}`;
+                t('phraseNofM', {n: currentPhraseIndex + 1, m: currentPhrases.length});
             document.getElementById('phrase-de').textContent = phrase.de;
             document.getElementById('phrase-context').textContent = phrase.context || '';
             document.getElementById('phrase-example').textContent = phrase.example || '';
@@ -2712,19 +3322,19 @@ HTML_TEMPLATE = """
             try {
                 // Save original text before changing to stop label
                 btn.dataset.originalText = btn.textContent;
-                btn.textContent = '⏹️ Остановить';
+                btn.textContent = t('stopRecording');
                 btn.classList.add('recording');
                 tg.HapticFeedback?.impactOccurred('medium');
 
                 const wav = await startRecording();
                 btn.classList.remove('recording');
                 if (currentPhraseIndex !== capturedIndex) return;
-                setButtonLoading(btn, true, '⏳ Проверяем...');
+                setButtonLoading(btn, true, t('checking'));
                 const result = await submitPronunciation(wav, phrase.de, 'phrase', phrase.phrase_id);
                 if (currentPhraseIndex !== capturedIndex) return;
                 setPronunciationResult('pronunciation-phrase-result', result);
                 tg.HapticFeedback?.notificationOccurred(
-                    result.verdict === 'Отлично' ? 'success' : 'warning'
+                    result.verdict === t('excellent') ? 'success' : 'warning'
                 );
             } catch (error) {
                 btn.classList.remove('recording');
@@ -2732,7 +3342,7 @@ HTML_TEMPLATE = """
                 if (currentPhraseIndex !== capturedIndex) return;
                 setPronunciationResult(
                     'pronunciation-phrase-result',
-                    error?.message || 'Не удалось проверить произношение',
+                    error?.message || t('pronCheckError'),
                     true
                 );
                 tg.HapticFeedback?.notificationOccurred('error');
@@ -2752,34 +3362,34 @@ HTML_TEMPLATE = """
             
             if (audio.src && audio.src.includes(encodeURIComponent(phrase.de))) {
                 audio.currentTime = 0;
-                audio.play().catch(() => tg.showAlert?.('Ошибка воспроизведения'));
+                audio.play().catch(() => tg.showAlert?.(t('playbackError')));
                 return;
             }
-            
-            audioBtn.textContent = '⏳ Загрузка...';
+
+            audioBtn.textContent = t('loadingAudio');
             audioBtn.disabled = true;
-            
+
             try {
                 audio.src = `/api/audio/${encodeURIComponent(phrase.de)}`;
-                
+
                 audio.onloadeddata = () => {
-                    audioBtn.textContent = '🔊 Прослушать';
+                    audioBtn.textContent = t('listen');
                     audioBtn.disabled = false;
                     audio.play().catch(() => {
-                        tg.showAlert?.('Ошибка воспроизведения');
-                        audioBtn.textContent = '🔊 Прослушать';
+                        tg.showAlert?.(t('playbackError'));
+                        audioBtn.textContent = t('listen');
                     });
                 };
-                
+
                 audio.onerror = () => {
-                    audioBtn.textContent = '🔊 Прослушать';
+                    audioBtn.textContent = t('listen');
                     audioBtn.disabled = false;
-                    tg.showAlert?.('Ошибка загрузки аудио');
+                    tg.showAlert?.(t('audioLoadError'));
                 };
-                
+
                 audio.load();
             } catch (error) {
-                audioBtn.textContent = '🔊 Прослушать';
+                audioBtn.textContent = t('listen');
                 audioBtn.disabled = false;
             }
         }
@@ -2813,9 +3423,9 @@ HTML_TEMPLATE = """
 
             const nextPhrBtn = document.getElementById('next-phrase-btn');
             if (currentPhraseIndex + 1 >= currentPhrases.length) {
-                nextPhrBtn.textContent = 'Завершить ✓';
+                nextPhrBtn.textContent = t('finish');
             } else {
-                nextPhrBtn.textContent = 'Следующая фраза →';
+                nextPhrBtn.textContent = t('nextPhrase');
             }
             nextPhrBtn.disabled = false;
             nextPhrBtn.style.display = 'block';
@@ -2848,14 +3458,14 @@ HTML_TEMPLATE = """
                     btn.className = 'category-btn';
                     btn.innerHTML = `
                         <span class="name">${topic.name}</span>
-                        <span class="count">${topic.dialogue_length} реплик</span>
+                        <span class="count">${t('repliesCount', {n: topic.dialogue_length})}</span>
                     `;
                     btn.onclick = () => startDialogue(topic.id);
                     list.appendChild(btn);
                 });
             } catch (error) {
-                document.getElementById('dialogues-topics-list').innerHTML = 
-                    '<div class="error-msg">Ошибка загрузки диалогов</div>';
+                document.getElementById('dialogues-topics-list').innerHTML =
+                    `<div class="error-msg">${t('dialoguesLoadError')}</div>`;
             }
         }
         
@@ -2871,7 +3481,7 @@ HTML_TEMPLATE = """
                 
                 showDialogue();
             } catch (error) {
-                tg.showAlert?.('Ошибка загрузки диалога');
+                tg.showAlert?.(t('dialogueLoadError'));
             }
         }
         
@@ -2922,7 +3532,7 @@ HTML_TEMPLATE = """
                 exerciseScore = 0;
                 
                 if (currentExercises.length === 0) {
-                    tg.showAlert?.('Упражнения для этого диалога пока не готовы');
+                    tg.showAlert?.(t('exercisesNotReady'));
                     return;
                 }
                 
@@ -2931,7 +3541,7 @@ HTML_TEMPLATE = """
                 
                 showNextExercise();
             } catch (error) {
-                tg.showAlert?.('Ошибка загрузки упражнений');
+                tg.showAlert?.(t('exercisesLoadError'));
             }
         }
         
@@ -2942,8 +3552,8 @@ HTML_TEMPLATE = """
             }
             
             const exercise = currentExercises[currentExerciseIndex];
-            document.getElementById('exercise-number').textContent = 
-                `Упражнение ${currentExerciseIndex + 1} из ${currentExercises.length}`;
+            document.getElementById('exercise-number').textContent =
+                t('exerciseNofM', {n: currentExerciseIndex + 1, m: currentExercises.length});
             document.getElementById('exercise-question').textContent = exercise.question;
             
             const optionsDiv = document.getElementById('exercise-options');
@@ -2996,7 +3606,7 @@ HTML_TEMPLATE = """
                 })
             });
             
-            tg.showAlert?.(`🎉 Упражнение завершено!\\nРезультат: ${exerciseScore} из ${total} (${percentage}%)`);
+            tg.showAlert?.(t('exerciseFinish', {score: exerciseScore, total: total, pct: percentage}));
             backToDialogue();
         }
         
@@ -3016,7 +3626,7 @@ HTML_TEMPLATE = """
                 const list = document.getElementById('culture-topics-list');
                 list.innerHTML = '';
                 if (topics.length === 0) {
-                    list.innerHTML = '<p style="color: var(--text-secondary);">Тем пока нет</p>';
+                    list.innerHTML = `<p style="color: var(--text-secondary);">${t('noTopicsYet')}</p>`;
                     return;
                 }
                 topics.forEach(topic => {
@@ -3027,8 +3637,8 @@ HTML_TEMPLATE = """
                     list.appendChild(btn);
                 });
             } catch (error) {
-                document.getElementById('culture-topics-list').innerHTML = 
-                    '<div class="error-msg">Ошибка загрузки тем</div>';
+                document.getElementById('culture-topics-list').innerHTML =
+                    `<div class="error-msg">${t('topicsLoadError')}</div>`;
             }
         }
         
@@ -3065,7 +3675,7 @@ HTML_TEMPLATE = """
                     }).catch(() => {});
                 }
             } catch (error) {
-                tg.showAlert?.('Ошибка загрузки темы');
+                tg.showAlert?.(t('topicLoadError'));
             }
         }
         
@@ -3076,12 +3686,12 @@ HTML_TEMPLATE = """
             if (content.title) html += `<h3 style="font-size: 1.1rem; color: var(--primary-light); margin-bottom: 12px;">${content.title}</h3>`;
             if (content.text) html += `<p style="color: var(--text-primary); line-height: 1.6; margin-bottom: 16px;">${content.text.replace(/\\n/g, '<br>')}</p>`;
             if (content.facts && content.facts.length) {
-                html += '<p class="card-title" style="margin-top: 16px;">Факты</p><ul style="margin-left: 20px; color: var(--text-primary); margin-bottom: 16px;">';
+                html += `<p class="card-title" style="margin-top: 16px;">${t('facts')}</p><ul style="margin-left: 20px; color: var(--text-primary); margin-bottom: 16px;">`;
                 content.facts.forEach(f => { html += `<li>${f}</li>`; });
                 html += '</ul>';
             }
             if (content.tips && content.tips.length) {
-                html += '<p class="card-title">Советы</p><ul style="margin-left: 20px; color: var(--text-primary);">';
+                html += `<p class="card-title">${t('tips')}</p><ul style="margin-left: 20px; color: var(--text-primary);">`;
                 content.tips.forEach(t => { html += `<li>${t}</li>`; });
                 html += '</ul>';
             }
@@ -3110,13 +3720,13 @@ HTML_TEMPLATE = """
                     }).catch(() => {});
                 }
                 document.getElementById('culture-quiz-number').textContent = '';
-                document.getElementById('culture-quiz-question').textContent = 'Викторина завершена';
+                document.getElementById('culture-quiz-question').textContent = t('quizComplete');
                 optionsDiv.innerHTML = '';
                 nextBtn.style.display = 'none';
                 return;
             }
             const q = currentCultureQuestions[currentCultureQuizIndex];
-            document.getElementById('culture-quiz-number').textContent = `Вопрос ${currentCultureQuizIndex + 1}`;
+            document.getElementById('culture-quiz-number').textContent = t('questionN', {n: currentCultureQuizIndex + 1});
             document.getElementById('culture-quiz-question').textContent = q.question;
             optionsDiv.innerHTML = '';
             nextBtn.style.display = 'none';
@@ -3170,7 +3780,7 @@ HTML_TEMPLATE = """
                 const list = document.getElementById('exercises-sets-list');
                 list.innerHTML = '';
                 if (sets.length === 0) {
-                    list.innerHTML = '<p style="color: var(--text-secondary);">Наборов пока нет</p>';
+                    list.innerHTML = `<p style="color: var(--text-secondary);">${t('noSetsYet')}</p>`;
                     return;
                 }
                 sets.forEach(s => {
@@ -3178,14 +3788,14 @@ HTML_TEMPLATE = """
                     btn.className = 'category-btn';
                     btn.innerHTML = `
                         <span class="name">${s.name}</span>
-                        <span class="count">${s.tasks_count} заданий</span>
+                        <span class="count">${t('tasksCount', {n: s.tasks_count})}</span>
                     `;
                     btn.onclick = () => startExerciseSet(s.id);
                     list.appendChild(btn);
                 });
             } catch (error) {
-                document.getElementById('exercises-sets-list').innerHTML = 
-                    '<div class="error-msg">Ошибка загрузки наборов</div>';
+                document.getElementById('exercises-sets-list').innerHTML =
+                    `<div class="error-msg">${t('setsLoadError')}</div>`;
             }
         }
         
@@ -3202,7 +3812,7 @@ HTML_TEMPLATE = """
                 
                 showExTask();
             } catch (error) {
-                tg.showAlert?.('Ошибка загрузки заданий');
+                tg.showAlert?.(t('tasksLoadError'));
             }
         }
         
@@ -3212,7 +3822,7 @@ HTML_TEMPLATE = """
                 return;
             }
             const task = currentExTasks[currentExTaskIndex];
-            document.getElementById('ex-task-number').textContent = `Задание ${currentExTaskIndex + 1} из ${currentExTasks.length}`;
+            document.getElementById('ex-task-number').textContent = t('taskNofM', {n: currentExTaskIndex + 1, m: currentExTasks.length});
             document.getElementById('ex-task-question').textContent = task.question;
             document.getElementById('ex-task-explanation').style.display = 'none';
             document.getElementById('ex-task-explanation').textContent = '';
@@ -3273,7 +3883,7 @@ HTML_TEMPLATE = """
                     })
                 }).catch(() => {});
             }
-            tg.showAlert?.(`🎉 Набор завершён!\\nРезультат: ${currentExScore} из ${total} (${percentage}%)`);
+            tg.showAlert?.(t('setComplete', {score: currentExScore, total: total, pct: percentage}));
             backToExercisesSets();
         }
         
@@ -3288,14 +3898,14 @@ HTML_TEMPLATE = """
         
         // ============= FEEDBACK FUNCTIONS =============
         
-        const FEEDBACK_STATUS_LABELS = {
-            0: "📝 Отправлено",
-            1: "👀 Просмотрено",
-            2: "✅ Принято",
-            3: "🔧 В работе",
-            4: "🎉 Готово!",
-            5: "❌ Отклонено"
-        };
+        function getFeedbackStatusLabel(status) {
+            const labels = {
+                0: t('feedbackSent'), 1: t('feedbackViewed'),
+                2: t('feedbackAccepted'), 3: t('feedbackInProgress'),
+                4: t('feedbackDone'), 5: t('feedbackDeclined')
+            };
+            return labels[status] || t('feedbackStatus', {n: status});
+        }
         
         // Character counter for feedback textarea
         document.addEventListener('DOMContentLoaded', () => {
@@ -3313,8 +3923,8 @@ HTML_TEMPLATE = """
         
         async function loadFeedback() {
             if (!userId) {
-                document.getElementById('feedback-list').innerHTML = 
-                    '<div class="error-msg">Необходима авторизация через Telegram</div>';
+                document.getElementById('feedback-list').innerHTML =
+                    `<div class="error-msg">${t('authRequired')}</div>`;
                 return;
             }
             
@@ -3325,7 +3935,7 @@ HTML_TEMPLATE = """
                 const list = document.getElementById('feedback-list');
                 
                 if (!data.feedback || data.feedback.length === 0) {
-                    list.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 20px;">У вас пока нет обращений</p>';
+                    list.innerHTML = `<p style="color: var(--text-secondary); text-align: center; padding: 20px;">${t('noRequests')}</p>`;
                     document.getElementById('feedback-history-card').style.display = 'none';
                     return;
                 }
@@ -3334,8 +3944,9 @@ HTML_TEMPLATE = """
                 list.innerHTML = '';
                 
                 data.feedback.forEach(fb => {
-                    const statusLabel = FEEDBACK_STATUS_LABELS[fb.status] || `Статус ${fb.status}`;
-                    const date = new Date(fb.created_at).toLocaleDateString('ru-RU', {
+                    const statusLabel = getFeedbackStatusLabel(fb.status);
+                    const dateLocale = currentLang === 'de' ? 'de-DE' : currentLang === 'en' ? 'en-US' : 'ru-RU';
+                    const date = new Date(fb.created_at).toLocaleDateString(dateLocale, {
                         day: '2-digit',
                         month: '2-digit',
                         year: 'numeric',
@@ -3368,32 +3979,32 @@ HTML_TEMPLATE = """
                 if (data.total > data.feedback.length) {
                     const moreText = document.createElement('p');
                     moreText.style.cssText = 'text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 12px;';
-                    moreText.textContent = `Показаны последние ${data.feedback.length} из ${data.total}`;
+                    moreText.textContent = t('showingNofM', {n: data.feedback.length, m: data.total});
                     list.appendChild(moreText);
                 }
                 
             } catch (error) {
-                document.getElementById('feedback-list').innerHTML = 
-                    '<div class="error-msg">Ошибка загрузки обращений</div>';
+                document.getElementById('feedback-list').innerHTML =
+                    `<div class="error-msg">${t('feedbackLoadError')}</div>`;
             }
         }
         
         async function submitFeedback() {
             if (!userId) {
-                tg.showAlert?.('Необходима авторизация через Telegram');
+                tg.showAlert?.(t('authRequired'));
                 return;
             }
-            
+
             const textarea = document.getElementById('feedback-text');
             const text = textarea.value.trim();
-            
+
             if (!text) {
-                tg.showAlert?.('Пожалуйста, введите текст отзыва');
+                tg.showAlert?.(t('enterFeedbackText'));
                 return;
             }
-            
+
             if (text.length > 1000) {
-                tg.showAlert?.('Текст слишком длинный. Максимум 1000 символов.');
+                tg.showAlert?.(t('feedbackTooLong'));
                 return;
             }
             
@@ -3410,23 +4021,24 @@ HTML_TEMPLATE = """
                 const result = await response.json();
                 
                 if (result.success) {
-                    tg.showAlert?.(`✅ Спасибо за ваш отзыв!\\n\\nНомер обращения: #${result.feedback_id}`);
+                    tg.showAlert?.(t('thanksFeedback', {id: result.feedback_id}));
                     tg.HapticFeedback?.notificationOccurred('success');
                     textarea.value = '';
                     document.getElementById('feedback-char-count').textContent = '0 / 1000';
                     loadFeedback(); // Reload list
                 } else {
-                    tg.showAlert?.('Ошибка отправки: ' + (result.error || 'Неизвестная ошибка'));
+                    tg.showAlert?.(t('sendError', {error: result.error || 'Unknown error'}));
                     tg.HapticFeedback?.notificationOccurred('error');
                 }
             } catch (error) {
-                tg.showAlert?.('Ошибка отправки отзыва');
+                tg.showAlert?.(t('feedbackSendError'));
                 tg.HapticFeedback?.notificationOccurred('error');
             }
         }
         
         // Initialize
         window.onload = async () => {
+            await loadLanguagePreference();
             updateLevelHeader();
             await checkOnboardingStatus();
             loadCategories();
@@ -3516,6 +4128,36 @@ def api_onboarding_status():
     except Exception as e:
         logger.error(f"Failed to get onboarding status for user {user_id}: {e}")
         return jsonify({"error": "Failed to load onboarding status"}), 500
+
+
+@app.route('/api/language', methods=['GET'])
+def api_get_language():
+    """Get user's UI language preference."""
+    user_id = request.args.get('user_id', type=int)
+    if not user_id:
+        return jsonify({"language": "ru"})
+    try:
+        lang = run_bot_async(get_user_language(user_id))
+        return jsonify({"language": lang})
+    except Exception as e:
+        logger.error(f"Failed to get language for user {user_id}: {e}")
+        return jsonify({"language": "ru"})
+
+
+@app.route('/api/language', methods=['POST'])
+def api_set_language():
+    """Set user's UI language preference."""
+    data = request.json or {}
+    user_id = data.get('user_id')
+    language = data.get('language', 'ru')
+    if not user_id:
+        return jsonify({"error": "user_id required"}), 400
+    try:
+        run_bot_async(set_user_language(int(user_id), language))
+        return jsonify({"success": True, "language": language})
+    except Exception as e:
+        logger.error(f"Failed to set language for user {user_id}: {e}")
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/api/diagnostic/questions')

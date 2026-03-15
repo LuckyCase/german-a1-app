@@ -941,6 +941,29 @@ async def set_diagnostic_completed(user_id: int, completed: bool = True):
         )
 
 
+async def get_user_language(user_id: int) -> str:
+    """Get user's UI language preference."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        val = await conn.fetchval(
+            "SELECT ui_language FROM users WHERE user_id = $1", user_id
+        )
+        return val or "ru"
+
+
+async def set_user_language(user_id: int, language: str):
+    """Persist user's UI language preference."""
+    if language not in ("ru", "en", "de"):
+        language = "ru"
+    await get_or_create_user(user_id, None, None)
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            "UPDATE users SET ui_language = $1 WHERE user_id = $2",
+            language, user_id
+        )
+
+
 async def reset_user_progress(user_id: int):
     """Delete ALL learning progress for user (irreversible)."""
     pool = await get_pool()
