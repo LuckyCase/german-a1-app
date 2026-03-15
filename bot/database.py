@@ -3,8 +3,11 @@ import os
 import ssl
 import threading
 import asyncio
+import logging
 from datetime import datetime, timedelta
 from bot.config import DATABASE_URL
+
+logger = logging.getLogger(__name__)
 
 # Thread-local storage for connection pools
 # Each thread (gunicorn worker) gets its own pool
@@ -807,27 +810,25 @@ async def get_reviewed_phrase_ids(user_id: int, phrase_ids: list) -> set:
 # Streak and Achievements
 # ============================================================
 
-async def update_user_activity(user_id: int) -> tuple:
-    """Update last_active_date and streak. Returns (new_streak, newly_unlocked_achievements)."""
-    import json
+async def update_user_activity(user_id: int) -> int:
+    """Update last_active_date and streak. Returns new streak value."""
     pool = await get_pool()
     today = datetime.now().strftime("%Y-%m-%d")
     yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
     async with pool.acquire() as conn:
         row = await conn.fetchrow(
-            "SELECT last_active_date, current_streak, achievements FROM users WHERE user_id = $1",
+            "SELECT last_active_date, current_streak FROM users WHERE user_id = $1",
             user_id
         )
         if not row:
-            return (1, [])
+            return 1
 
         last_date = row["last_active_date"]
         old_streak = row["current_streak"] or 0
 
         if last_date == today:
-            # Already active today, no change
-            return (old_streak, [])
+            return old_streak
         elif last_date == yesterday:
             new_streak = old_streak + 1
         else:
@@ -838,10 +839,24 @@ async def update_user_activity(user_id: int) -> tuple:
             today, new_streak, user_id
         )
 
-    # Check for new achievements
-    from bot.achievements import check_achievements
-    new_achievements = await check_achievements(user_id, new_streak)
-    return (new_streak, new_achievements)
+    return new_streak
+
+
+async def check_and_notify_achievements(user_id: int, bot, chat_id: int):
+    """Check for new achievements and send notification if any unlocked."""
+    from bot.achievements import check_achievements, ACHIEVEMENT_MAP
+    streak = await get_user_streak(user_id)
+    new_achievements = await check_achievements(user_id, streak)
+    if new_achievements:
+        lines = []
+        for ach in new_achievements:
+            lines.append(f"{ach['emoji']} {ach['name']} — {ach['description']}")
+        text = "🏅 Новое достижение!\n\n" + "\n".join(lines)
+        try:
+            await bot.send_message(chat_id=chat_id, text=text)
+        except Exception as e:
+            logger.error(f"Failed to send achievement notification: {e}")
+    return new_achievements
 
 
 async def get_user_streak(user_id: int) -> int:

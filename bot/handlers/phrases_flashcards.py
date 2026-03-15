@@ -11,7 +11,8 @@ from bot.content_manager import (
 from bot.database import (
     save_phrase_progress, update_daily_stats,
     get_priority_phrase_ids, get_all_error_phrase_ids,
-    get_due_phrase_ids, get_reviewed_phrase_ids, update_user_activity
+    get_due_phrase_ids, get_reviewed_phrase_ids, update_user_activity,
+    check_and_notify_achievements
 )
 
 logger = logging.getLogger(__name__)
@@ -386,6 +387,7 @@ async def pf_handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         phrase.get("category_id", ""),
         is_correct
     )
+    await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
 
     context.user_data["pf_index"] = context.user_data.get("pf_index", 0) + 1
 

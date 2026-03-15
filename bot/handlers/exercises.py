@@ -11,7 +11,7 @@ from bot.content_manager import (
     get_exercise_sets, get_exercise_tasks,
     get_current_level, get_levels_with_content
 )
-from bot.database import save_exercise_set_progress, update_user_activity
+from bot.database import save_exercise_set_progress, update_user_activity, check_and_notify_achievements
 
 logger = logging.getLogger(__name__)
 
@@ -475,6 +475,7 @@ async def _show_results(query, context):
     percentage = (correct / total * 100) if total > 0 else 0
 
     await save_exercise_set_progress(user_id, set_id, major, sub, total, correct)
+    await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
 
     await query.edit_message_text(
         f"Упражнение завершено!\n\n"

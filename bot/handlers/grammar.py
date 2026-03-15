@@ -6,7 +6,10 @@ from bot.content_manager import (
     get_all_tests, get_test, get_test_questions,
     get_current_level, get_current_level_str, get_levels_with_content
 )
-from bot.database import save_grammar_result, update_daily_stats, update_user_activity
+import logging
+from bot.database import save_grammar_result, update_daily_stats, update_user_activity, check_and_notify_achievements
+
+logger = logging.getLogger(__name__)
 
 # Conversation states (unique range to avoid overlap with flashcards 0-3 and phrases 10-13)
 GR_LEVEL_SELECT, GR_TEST_SELECT, GR_QUESTION, GR_RESULT = range(20, 24)
@@ -254,6 +257,7 @@ async def show_results(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Save result to database
     await save_grammar_result(user_id, test_id, score, total)
     await update_daily_stats(user_id, tests=1, correct=score, total=total)
+    await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
 
     # Determine grade
     if percentage >= 90:

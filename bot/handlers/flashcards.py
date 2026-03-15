@@ -11,7 +11,8 @@ from bot.content_manager import (
 from bot.database import (
     update_word_progress, update_daily_stats,
     get_priority_word_ids, get_all_error_word_ids,
-    get_due_word_ids, get_reviewed_word_ids, update_user_activity
+    get_due_word_ids, get_reviewed_word_ids, update_user_activity,
+    check_and_notify_achievements
 )
 from bot.handlers.audio import send_word_audio
 
@@ -461,6 +462,7 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         result_text = f"Неправильно! Правильный ответ: {word['ru']}"
 
     await update_word_progress(user_id, word.get("word_id", ""), is_correct)
+    await check_and_notify_achievements(user_id, context.bot, query.message.chat_id)
 
     context.user_data["fc_index"] = context.user_data.get("fc_index", 0) + 1
 
