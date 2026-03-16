@@ -2,80 +2,106 @@
   "id": "health_pharmacy",
   "name": "Здоровье и аптека",
   "name_de": "Gesundheit und Apotheke",
+  "name_en": "Health and Pharmacy",
   "description": "Лексика A2.1 для здоровья, симптомов и аптеки",
+  "description_en": "A2.1 vocabulary for health, symptoms, and pharmacy",
   "level": "A2",
   "words": [
     {
       "de": "die Erkältung",
       "ru": "простуда",
+      "en": "cold",
       "example": "Ich habe eine starke Erkältung.",
-      "example_ru": "У меня сильная простуда."
+      "example_ru": "У меня сильная простуда.",
+      "example_en": "I have a bad cold."
     },
     {
       "de": "die Kopfschmerzen",
       "ru": "головная боль",
+      "en": "headache",
       "example": "Seit gestern habe ich Kopfschmerzen.",
-      "example_ru": "Со вчерашнего дня у меня болит голова."
+      "example_ru": "Со вчерашнего дня у меня болит голова.",
+      "example_en": "I have had a headache since yesterday."
     },
     {
       "de": "die Tablette",
       "ru": "таблетка",
+      "en": "tablet",
       "example": "Nehmen Sie dreimal täglich eine Tablette.",
-      "example_ru": "Принимайте по одной таблетке три раза в день."
+      "example_ru": "Принимайте по одной таблетке три раза в день.",
+      "example_en": "Take one tablet three times a day."
     },
     {
       "de": "das Rezept",
       "ru": "рецепт (медицинский)",
+      "en": "prescription",
       "example": "Für dieses Medikament brauchen Sie ein Rezept.",
-      "example_ru": "Для этого лекарства нужен рецепт."
+      "example_ru": "Для этого лекарства нужен рецепт.",
+      "example_en": "You need a prescription for this medicine."
     },
     {
       "de": "die Apotheke",
       "ru": "аптека",
+      "en": "pharmacy",
       "example": "Die nächste Apotheke ist um die Ecke.",
-      "example_ru": "Ближайшая аптека за углом."
+      "example_ru": "Ближайшая аптека за углом.",
+      "example_en": "The nearest pharmacy is around the corner."
     },
     {
       "de": "der Husten",
       "ru": "кашель",
+      "en": "cough",
       "example": "Der Husten wird langsam besser.",
-      "example_ru": "Кашель постепенно проходит."
+      "example_ru": "Кашель постепенно проходит.",
+      "example_en": "The cough is slowly getting better."
     },
     {
       "de": "das Fieber",
       "ru": "температура, жар",
+      "en": "fever",
       "example": "Das Kind hat hohes Fieber.",
-      "example_ru": "У ребенка высокая температура."
+      "example_ru": "У ребенка высокая температура.",
+      "example_en": "The child has a high fever."
     },
     {
       "de": "die Krankmeldung",
       "ru": "больничный лист",
+      "en": "sick note",
       "example": "Ich schicke die Krankmeldung an meinen Arbeitgeber.",
-      "example_ru": "Я отправляю больничный своему работодателю."
+      "example_ru": "Я отправляю больничный своему работодателю.",
+      "example_en": "I send the sick note to my employer."
     },
     {
       "de": "sich ausruhen",
       "ru": "отдыхать",
+      "en": "to rest",
       "example": "Sie sollten sich zwei Tage ausruhen.",
-      "example_ru": "Вам стоит отдохнуть два дня."
+      "example_ru": "Вам стоит отдохнуть два дня.",
+      "example_en": "You should rest for two days."
     },
     {
       "de": "die Untersuchung",
       "ru": "обследование",
+      "en": "examination",
       "example": "Die Untersuchung dauert nur zehn Minuten.",
-      "example_ru": "Обследование занимает всего десять минут."
+      "example_ru": "Обследование занимает всего десять минут.",
+      "example_en": "The examination only takes ten minutes."
     },
     {
       "de": "verschreiben",
       "ru": "выписывать (лекарство)",
+      "en": "to prescribe",
       "example": "Der Arzt verschreibt ein neues Medikament.",
-      "example_ru": "Врач выписывает новое лекарство."
+      "example_ru": "Врач выписывает новое лекарство.",
+      "example_en": "The doctor prescribes a new medicine."
     },
     {
       "de": "die Krankenversicherung",
       "ru": "медицинская страховка",
+      "en": "health insurance",
       "example": "In Deutschland ist die Krankenversicherung Pflicht.",
-      "example_ru": "В Германии медицинская страховка обязательна."
+      "example_ru": "В Германии медицинская страховка обязательна.",
+      "example_en": "Health insurance is mandatory in Germany."
     }
   ]
 }

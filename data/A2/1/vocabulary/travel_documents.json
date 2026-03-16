@@ -2,80 +2,106 @@
   "id": "travel_documents",
   "name": "Путешествия и документы",
   "name_de": "Reisen und Dokumente",
+  "name_en": "Travel and Documents",
   "description": "Лексика A2.1 для поездок, регистрации и аэропорта",
+  "description_en": "A2.1 vocabulary for trips, check-in, and the airport",
   "level": "A2",
   "words": [
     {
       "de": "der Reisepass",
       "ru": "загранпаспорт",
+      "en": "passport",
       "example": "Bitte zeigen Sie Ihren Reisepass.",
-      "example_ru": "Пожалуйста, покажите ваш загранпаспорт."
+      "example_ru": "Пожалуйста, покажите ваш загранпаспорт.",
+      "example_en": "Please show your passport."
     },
     {
       "de": "das Visum",
       "ru": "виза",
+      "en": "visa",
       "example": "Für dieses Land brauche ich ein Visum.",
-      "example_ru": "Для этой страны мне нужна виза."
+      "example_ru": "Для этой страны мне нужна виза.",
+      "example_en": "I need a visa for this country."
     },
     {
       "de": "die Grenzkontrolle",
       "ru": "пограничный контроль",
+      "en": "border control",
       "example": "An der Grenzkontrolle war eine lange Schlange.",
-      "example_ru": "На пограничном контроле была длинная очередь."
+      "example_ru": "На пограничном контроле была длинная очередь.",
+      "example_en": "There was a long line at border control."
     },
     {
       "de": "das Gepäck",
       "ru": "багаж",
+      "en": "luggage",
       "example": "Mein Gepäck ist zu schwer.",
-      "example_ru": "Мой багаж слишком тяжелый."
+      "example_ru": "Мой багаж слишком тяжелый.",
+      "example_en": "My luggage is too heavy."
     },
     {
       "de": "der Anschlussflug",
       "ru": "стыковочный рейс",
+      "en": "connecting flight",
       "example": "Wir haben den Anschlussflug verpasst.",
-      "example_ru": "Мы пропустили стыковочный рейс."
+      "example_ru": "Мы пропустили стыковочный рейс.",
+      "example_en": "We missed the connecting flight."
     },
     {
       "de": "verspätet",
       "ru": "задержанный (о рейсе)",
+      "en": "delayed",
       "example": "Der Flug hat 40 Minuten Verspätung.",
-      "example_ru": "Рейс задерживается на 40 минут."
+      "example_ru": "Рейс задерживается на 40 минут.",
+      "example_en": "The flight is 40 minutes delayed."
     },
     {
       "de": "einchecken",
       "ru": "регистрироваться на рейс",
+      "en": "to check in",
       "example": "Wir müssen online einchecken.",
-      "example_ru": "Нам нужно зарегистрироваться онлайн."
+      "example_ru": "Нам нужно зарегистрироваться онлайн.",
+      "example_en": "We have to check in online."
     },
     {
       "de": "die Unterkunft",
       "ru": "жилье, размещение",
+      "en": "accommodation",
       "example": "Die Unterkunft liegt im Stadtzentrum.",
-      "example_ru": "Жилье находится в центре города."
+      "example_ru": "Жилье находится в центре города.",
+      "example_en": "The accommodation is in the city center."
     },
     {
       "de": "die Buchungsbestätigung",
       "ru": "подтверждение брони",
+      "en": "booking confirmation",
       "example": "Bitte drucken Sie die Buchungsbestätigung aus.",
-      "example_ru": "Пожалуйста, распечатайте подтверждение брони."
+      "example_ru": "Пожалуйста, распечатайте подтверждение брони.",
+      "example_en": "Please print out the booking confirmation."
     },
     {
       "de": "umsteigen",
       "ru": "делать пересадку",
+      "en": "to transfer",
       "example": "In München müssen wir umsteigen.",
-      "example_ru": "В Мюнхене нам нужно сделать пересадку."
+      "example_ru": "В Мюнхене нам нужно сделать пересадку.",
+      "example_en": "We have to transfer in Munich."
     },
     {
       "de": "die Abfahrt",
       "ru": "отправление",
+      "en": "departure",
       "example": "Die Abfahrt ist um 18:20 Uhr.",
-      "example_ru": "Отправление в 18:20."
+      "example_ru": "Отправление в 18:20.",
+      "example_en": "The departure is at 6:20 PM."
     },
     {
       "de": "die Ankunft",
       "ru": "прибытие",
+      "en": "arrival",
       "example": "Die Ankunft in Berlin ist um 22 Uhr.",
-      "example_ru": "Прибытие в Берлин в 22 часа."
+      "example_ru": "Прибытие в Берлин в 22 часа.",
+      "example_en": "The arrival in Berlin is at 10 PM."
     }
   ]
 }
