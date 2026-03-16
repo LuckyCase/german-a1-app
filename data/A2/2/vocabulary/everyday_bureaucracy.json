@@ -2,80 +2,106 @@
   "id": "everyday_bureaucracy",
   "name": "Быт и бюрократия",
   "name_de": "Alltag und Behörde",
+  "name_en": "Everyday Life and Bureaucracy",
   "description": "Словарь A2.2 для документов и официальных ситуаций",
+  "description_en": "A2.2 vocabulary for documents and official situations",
   "level": "A2",
   "words": [
     {
       "de": "der Termin",
       "ru": "встреча, запись",
+      "en": "appointment",
       "example": "Ich habe morgen einen Termin beim Amt.",
-      "example_ru": "Завтра у меня запись в ведомстве."
+      "example_ru": "Завтра у меня запись в ведомстве.",
+      "example_en": "I have an appointment at the office tomorrow."
     },
     {
       "de": "die Anmeldung",
       "ru": "регистрация",
+      "en": "registration",
       "example": "Die Anmeldung dauert nur zehn Minuten.",
-      "example_ru": "Регистрация занимает всего десять минут."
+      "example_ru": "Регистрация занимает всего десять минут.",
+      "example_en": "The registration only takes ten minutes."
     },
     {
       "de": "die Bescheinigung",
       "ru": "справка",
+      "en": "certificate",
       "example": "Ich brauche eine Bescheinigung für die Arbeit.",
-      "example_ru": "Мне нужна справка для работы."
+      "example_ru": "Мне нужна справка для работы.",
+      "example_en": "I need a certificate for work."
     },
     {
       "de": "das Formular",
       "ru": "формуляр, бланк",
+      "en": "form",
       "example": "Bitte füllen Sie dieses Formular aus.",
-      "example_ru": "Пожалуйста, заполните этот бланк."
+      "example_ru": "Пожалуйста, заполните этот бланк.",
+      "example_en": "Please fill out this form."
     },
     {
       "de": "beantragen",
       "ru": "подавать заявление",
+      "en": "to apply for",
       "example": "Ich möchte einen neuen Ausweis beantragen.",
-      "example_ru": "Я хочу подать заявление на новый документ."
+      "example_ru": "Я хочу подать заявление на новый документ.",
+      "example_en": "I would like to apply for a new ID card."
     },
     {
       "de": "die Frist",
       "ru": "срок",
+      "en": "deadline",
       "example": "Die Frist endet am 30. April.",
-      "example_ru": "Срок истекает 30 апреля."
+      "example_ru": "Срок истекает 30 апреля.",
+      "example_en": "The deadline ends on April 30th."
     },
     {
       "de": "verlängern",
       "ru": "продлевать",
+      "en": "to extend",
       "example": "Kann ich den Vertrag verlängern?",
-      "example_ru": "Могу ли я продлить договор?"
+      "example_ru": "Могу ли я продлить договор?",
+      "example_en": "Can I extend the contract?"
     },
     {
       "de": "die Gebühr",
       "ru": "сбор, пошлина",
+      "en": "fee",
       "example": "Die Gebühr beträgt 25 Euro.",
-      "example_ru": "Сбор составляет 25 евро."
+      "example_ru": "Сбор составляет 25 евро.",
+      "example_en": "The fee is 25 euros."
     },
     {
       "de": "gültig",
       "ru": "действительный",
+      "en": "valid",
       "example": "Ist dieser Pass noch gültig?",
-      "example_ru": "Этот паспорт еще действителен?"
+      "example_ru": "Этот паспорт еще действителен?",
+      "example_en": "Is this passport still valid?"
     },
     {
       "de": "die Unterschrift",
       "ru": "подпись",
+      "en": "signature",
       "example": "Hier fehlt noch Ihre Unterschrift.",
-      "example_ru": "Здесь еще не хватает вашей подписи."
+      "example_ru": "Здесь еще не хватает вашей подписи.",
+      "example_en": "Your signature is still missing here."
     },
     {
       "de": "der Nachweis",
       "ru": "подтверждение, доказательство",
+      "en": "proof",
       "example": "Sie brauchen einen Nachweis über Ihre Adresse.",
-      "example_ru": "Вам нужно подтверждение вашего адреса."
+      "example_ru": "Вам нужно подтверждение вашего адреса.",
+      "example_en": "You need proof of your address."
     },
     {
       "de": "vereinbaren",
       "ru": "договариваться, назначать",
+      "en": "to arrange",
       "example": "Können wir einen Termin vereinbaren?",
-      "example_ru": "Можем назначить встречу?"
+      "example_ru": "Можем назначить встречу?",
+      "example_en": "Can we arrange an appointment?"
     }
   ]
 }

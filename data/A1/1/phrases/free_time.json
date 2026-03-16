@@ -1,710 +1,182 @@
 {
   "id": "free_time",
   "name": "Свободное время",
+  "name_en": "Free Time",
   "name_de": "Freizeit",
   "description": "Хобби и отдых",
+  "description_en": "Hobbies and leisure",
   "level": "A1",
   "type": "situational",
   "phrases": [
     {
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
+      "en": "That is good.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
-      "example_ru": "А: Как тебе? Б: Это хорошо."
+      "example_ru": "А: Как тебе? Б: Это хорошо.",
+      "example_en": "A: What do you think? B: That is good."
     },
     {
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
+      "en": "Thank you very much!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
-      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!",
+      "example_en": "A: You're welcome. B: Thank you very much!"
     },
     {
       "de": "Entschuldigung!",
       "ru": "Извините!",
+      "en": "Excuse me!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
-      "example_ru": "Извините! Где туалет?"
+      "example_ru": "Извините! Где туалет?",
+      "example_en": "Excuse me! Where is the restroom?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
-      "example_ru": "Да, немного."
+      "example_ru": "Да, немного.",
+      "example_en": "Do you speak English? / Yes, a little."
     },
     {
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
+      "en": "I don't understand.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
-      "example_ru": "Я не понимаю. Повторите?"
+      "example_ru": "Я не понимаю. Повторите?",
+      "example_en": "I don't understand. Can you repeat that?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
-      "example_ru": "Как, простите? / Я спросил, который час."
+      "example_ru": "Как, простите? / Я спросил, который час.",
+      "example_en": "Pardon? / I asked what time it is."
     },
     {
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
+      "en": "One moment, please.",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Einen Moment, bitte.",
-      "example_ru": "Один момент, пожалуйста."
+      "example_ru": "Один момент, пожалуйста.",
+      "example_en": "One moment, please."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
-      "example_ru": "Нет проблем."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "A: Wie findest du das? B: Das ist gut.",
-      "example_ru": "А: Как тебе? Б: Это хорошо."
-    },
-    {
-      "de": "Danke schön!",
-      "ru": "Спасибо большое!",
-      "context": "Благодарность",
-      "example": "A: Bitte. B: Danke schön!",
-      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung! Wo ist die Toilette?",
-      "example_ru": "Извините! Где туалет?"
-    },
-    {
-      "de": "Sprechen Sie Englisch?",
-      "ru": "Вы говорите по-английски?",
-      "context": "Язык",
-      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
-      "example_ru": "Да, немного."
-    },
-    {
-      "de": "Ich verstehe nicht.",
-      "ru": "Я не понимаю.",
-      "context": "Непонимание",
-      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
-      "example_ru": "Я не понимаю. Повторите?"
-    },
-    {
-      "de": "Wie bitte?",
-      "ru": "Как, простите?",
-      "context": "Переспрос",
-      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
-      "example_ru": "Как, простите? / Я спросил, который час."
-    },
-    {
-      "de": "Einen Moment, bitte.",
-      "ru": "Один момент, пожалуйста.",
-      "context": "Просьба",
-      "example": "Einen Moment, bitte.",
-      "example_ru": "Один момент, пожалуйста."
-    },
-    {
-      "de": "Kein Problem.",
-      "ru": "Нет проблем.",
-      "context": "Ответ",
-      "example": "A: Entschuldigung! B: Kein Problem.",
-      "example_ru": "Нет проблем."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "A: Wie findest du das? B: Das ist gut.",
-      "example_ru": "А: Как тебе? Б: Это хорошо."
-    },
-    {
-      "de": "Danke schön!",
-      "ru": "Спасибо большое!",
-      "context": "Благодарность",
-      "example": "A: Bitte. B: Danke schön!",
-      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung! Wo ist die Toilette?",
-      "example_ru": "Извините! Где туалет?"
-    },
-    {
-      "de": "Sprechen Sie Englisch?",
-      "ru": "Вы говорите по-английски?",
-      "context": "Язык",
-      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
-      "example_ru": "Да, немного."
-    },
-    {
-      "de": "Ich verstehe nicht.",
-      "ru": "Я не понимаю.",
-      "context": "Непонимание",
-      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
-      "example_ru": "Я не понимаю. Повторите?"
-    },
-    {
-      "de": "Wie bitte?",
-      "ru": "Как, простите?",
-      "context": "Переспрос",
-      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
-      "example_ru": "Как, простите? / Я спросил, который час."
-    },
-    {
-      "de": "Einen Moment, bitte.",
-      "ru": "Один момент, пожалуйста.",
-      "context": "Просьба",
-      "example": "Einen Moment, bitte.",
-      "example_ru": "Один момент, пожалуйста."
-    },
-    {
-      "de": "Kein Problem.",
-      "ru": "Нет проблем.",
-      "context": "Ответ",
-      "example": "A: Entschuldigung! B: Kein Problem.",
-      "example_ru": "Нет проблем."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "A: Wie findest du das? B: Das ist gut.",
-      "example_ru": "А: Как тебе? Б: Это хорошо."
-    },
-    {
-      "de": "Danke schön!",
-      "ru": "Спасибо большое!",
-      "context": "Благодарность",
-      "example": "A: Bitte. B: Danke schön!",
-      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung! Wo ist die Toilette?",
-      "example_ru": "Извините! Где туалет?"
-    },
-    {
-      "de": "Sprechen Sie Englisch?",
-      "ru": "Вы говорите по-английски?",
-      "context": "Язык",
-      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
-      "example_ru": "Да, немного."
-    },
-    {
-      "de": "Ich verstehe nicht.",
-      "ru": "Я не понимаю.",
-      "context": "Непонимание",
-      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
-      "example_ru": "Я не понимаю. Повторите?"
-    },
-    {
-      "de": "Wie bitte?",
-      "ru": "Как, простите?",
-      "context": "Переспрос",
-      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
-      "example_ru": "Как, простите? / Я спросил, который час."
+      "example_ru": "Нет проблем.",
+      "example_en": "A: Excuse me! B: No problem."
     },
     {
       "de": "Was machst du am Wochenende?",
       "ru": "Что делаешь в выходные?",
+      "en": "What are you doing on the weekend?",
       "context": "Вопрос",
+      "context_en": "Question",
       "example": "Was machst du am Wochenende? / Ich fahre ins Kino.",
-      "example_ru": "Что делаешь в выходные? / Иду в кино."
+      "example_ru": "Что делаешь в выходные? / Иду в кино.",
+      "example_en": "What are you doing on the weekend? / I'm going to the cinema."
     },
     {
       "de": "Ich lese gern.",
       "ru": "Я люблю читать.",
+      "en": "I like to read.",
       "context": "Хобби",
+      "context_en": "Hobby",
       "example": "Ich lese gern. Und du? / Ich höre Musik.",
-      "example_ru": "Я люблю читать. А ты? / Я слушаю музыку."
+      "example_ru": "Я люблю читать. А ты? / Я слушаю музыку.",
+      "example_en": "I like to read. And you? / I listen to music."
     },
     {
       "de": "Lass uns ins Kino gehen.",
       "ru": "Давай сходим в кино.",
+      "en": "Let's go to the cinema.",
       "context": "Предложение",
+      "context_en": "Suggestion",
       "example": "Lass uns ins Kino gehen. / Gute Idee!",
-      "example_ru": "Давай в кино. / Хорошая идея!"
+      "example_ru": "Давай в кино. / Хорошая идея!",
+      "example_en": "Let's go to the cinema. / Good idea!"
     },
     {
       "de": "Hast du heute Abend Zeit?",
       "ru": "У тебя есть время сегодня вечером?",
+      "en": "Do you have time this evening?",
       "context": "Встреча",
+      "context_en": "Meeting",
       "example": "Hast du heute Abend Zeit? / Ja, wann?",
-      "example_ru": "У тебя есть время сегодня вечером? / Да, когда?"
+      "example_ru": "У тебя есть время сегодня вечером? / Да, когда?",
+      "example_en": "Do you have time this evening? / Yes, when?"
     },
     {
       "de": "Ich treibe Sport.",
       "ru": "Я занимаюсь спортом.",
+      "en": "I do sports.",
       "context": "Спорт",
+      "context_en": "Sports",
       "example": "Ich treibe Sport. Zweimal pro Woche.",
-      "example_ru": "Я занимаюсь спортом. Два раза в неделю."
-    },
-    {
-      "de": "Was machst du am Wochenende?",
-      "ru": "Что делаешь в выходные?",
-      "context": "Вопрос",
-      "example": "Was machst du am Wochenende? / Ich fahre ins Kino.",
-      "example_ru": "Что делаешь в выходные? / Иду в кино."
-    },
-    {
-      "de": "Ich lese gern.",
-      "ru": "Я люблю читать.",
-      "context": "Хобби",
-      "example": "Ich lese gern. Und du? / Ich höre Musik.",
-      "example_ru": "Я люблю читать. А ты? / Я слушаю музыку."
-    },
-    {
-      "de": "Lass uns ins Kino gehen.",
-      "ru": "Давай сходим в кино.",
-      "context": "Предложение",
-      "example": "Lass uns ins Kino gehen. / Gute Idee!",
-      "example_ru": "Давай в кино. / Хорошая идея!"
-    },
-    {
-      "de": "Hast du heute Abend Zeit?",
-      "ru": "У тебя есть время сегодня вечером?",
-      "context": "Встреча",
-      "example": "Hast du heute Abend Zeit? / Ja, wann?",
-      "example_ru": "У тебя есть время сегодня вечером? / Да, когда?"
-    },
-    {
-      "de": "Ich treibe Sport.",
-      "ru": "Я занимаюсь спортом.",
-      "context": "Спорт",
-      "example": "Ich treibe Sport. Zweimal pro Woche.",
-      "example_ru": "Я занимаюсь спортом. Два раза в неделю."
-    },
-    {
-      "de": "Was machst du am Wochenende?",
-      "ru": "Что делаешь в выходные?",
-      "context": "Вопрос",
-      "example": "Was machst du am Wochenende? / Ich fahre ins Kino.",
-      "example_ru": "Что делаешь в выходные? / Иду в кино."
-    },
-    {
-      "de": "Ich lese gern.",
-      "ru": "Я люблю читать.",
-      "context": "Хобби",
-      "example": "Ich lese gern. Und du? / Ich höre Musik.",
-      "example_ru": "Я люблю читать. А ты? / Я слушаю музыку."
-    },
-    {
-      "de": "Lass uns ins Kino gehen.",
-      "ru": "Давай сходим в кино.",
-      "context": "Предложение",
-      "example": "Lass uns ins Kino gehen. / Gute Idee!",
-      "example_ru": "Давай в кино. / Хорошая идея!"
-    },
-    {
-      "de": "Hast du heute Abend Zeit?",
-      "ru": "У тебя есть время сегодня вечером?",
-      "context": "Встреча",
-      "example": "Hast du heute Abend Zeit? / Ja, wann?",
-      "example_ru": "У тебя есть время сегодня вечером? / Да, когда?"
-    },
-    {
-      "de": "Ich treibe Sport.",
-      "ru": "Я занимаюсь спортом.",
-      "context": "Спорт",
-      "example": "Ich treibe Sport. Zweimal pro Woche.",
-      "example_ru": "Я занимаюсь спортом. Два раза в неделю."
-    },
-    {
-      "de": "Was machst du am Wochenende?",
-      "ru": "Что делаешь в выходные?",
-      "context": "Вопрос",
-      "example": "Was machst du am Wochenende? / Ich fahre ins Kino.",
-      "example_ru": "Что делаешь в выходные? / Иду в кино."
-    },
-    {
-      "de": "Ich lese gern.",
-      "ru": "Я люблю читать.",
-      "context": "Хобби",
-      "example": "Ich lese gern. Und du? / Ich höre Musik.",
-      "example_ru": "Я люблю читать. А ты? / Я слушаю музыку."
-    },
-    {
-      "de": "Lass uns ins Kino gehen.",
-      "ru": "Давай сходим в кино.",
-      "context": "Предложение",
-      "example": "Lass uns ins Kino gehen. / Gute Idee!",
-      "example_ru": "Давай в кино. / Хорошая идея!"
-    },
-    {
-      "de": "Hast du heute Abend Zeit?",
-      "ru": "У тебя есть время сегодня вечером?",
-      "context": "Встреча",
-      "example": "Hast du heute Abend Zeit? / Ja, wann?",
-      "example_ru": "У тебя есть время сегодня вечером? / Да, когда?"
-    },
-    {
-      "de": "Ich treibe Sport.",
-      "ru": "Я занимаюсь спортом.",
-      "context": "Спорт",
-      "example": "Ich treibe Sport. Zweimal pro Woche.",
-      "example_ru": "Я занимаюсь спортом. Два раза в неделю."
-    },
-    {
-      "de": "Was machst du am Wochenende?",
-      "ru": "Что делаешь в выходные?",
-      "context": "Вопрос",
-      "example": "Was machst du am Wochenende? / Ich fahre ins Kino.",
-      "example_ru": "Что делаешь в выходные? / Иду в кино."
-    },
-    {
-      "de": "Ich lese gern.",
-      "ru": "Я люблю читать.",
-      "context": "Хобби",
-      "example": "Ich lese gern. Und du? / Ich höre Musik.",
-      "example_ru": "Я люблю читать. А ты? / Я слушаю музыку."
-    },
-    {
-      "de": "Lass uns ins Kino gehen.",
-      "ru": "Давай сходим в кино.",
-      "context": "Предложение",
-      "example": "Lass uns ins Kino gehen. / Gute Idee!",
-      "example_ru": "Давай в кино. / Хорошая идея!"
-    },
-    {
-      "de": "Hast du heute Abend Zeit?",
-      "ru": "У тебя есть время сегодня вечером?",
-      "context": "Встреча",
-      "example": "Hast du heute Abend Zeit? / Ja, wann?",
-      "example_ru": "У тебя есть время сегодня вечером? / Да, когда?"
-    },
-    {
-      "de": "Ich treibe Sport.",
-      "ru": "Я занимаюсь спортом.",
-      "context": "Спорт",
-      "example": "Ich treibe Sport. Zweimal pro Woche.",
-      "example_ru": "Я занимаюсь спортом. Два раза в неделю."
-    },
-    {
-      "de": "Was machst du am Wochenende?",
-      "ru": "Что делаешь в выходные?",
-      "context": "Вопрос",
-      "example": "Was machst du am Wochenende? / Ich fahre ins Kino.",
-      "example_ru": "Что делаешь в выходные? / Иду в кино."
-    },
-    {
-      "de": "Ich lese gern.",
-      "ru": "Я люблю читать.",
-      "context": "Хобби",
-      "example": "Ich lese gern. Und du? / Ich höre Musik.",
-      "example_ru": "Я люблю читать. А ты? / Я слушаю музыку."
-    },
-    {
-      "de": "Lass uns ins Kino gehen.",
-      "ru": "Давай сходим в кино.",
-      "context": "Предложение",
-      "example": "Lass uns ins Kino gehen. / Gute Idee!",
-      "example_ru": "Давай в кино. / Хорошая идея!"
-    },
-    {
-      "de": "Hast du heute Abend Zeit?",
-      "ru": "У тебя есть время сегодня вечером?",
-      "context": "Встреча",
-      "example": "Hast du heute Abend Zeit? / Ja, wann?",
-      "example_ru": "У тебя есть время сегодня вечером? / Да, когда?"
-    },
-    {
-      "de": "Ich treibe Sport.",
-      "ru": "Я занимаюсь спортом.",
-      "context": "Спорт",
-      "example": "Ich treibe Sport. Zweimal pro Woche.",
-      "example_ru": "Я занимаюсь спортом. Два раза в неделю."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
+      "example_ru": "Я занимаюсь спортом. Два раза в неделю.",
+      "example_en": "I do sports. Twice a week."
     },
     {
       "de": "Danke!",
       "ru": "Спасибо!",
+      "en": "Thanks!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
+      "example_ru": "Спасибо!",
+      "example_en": "Thanks!"
     },
     {
       "de": "Bitte.",
       "ru": "Пожалуйста.",
+      "en": "Please. / You're welcome.",
       "context": "Вежливость",
+      "context_en": "Politeness",
       "example": "Bitte.",
-      "example_ru": "Пожалуйста."
+      "example_ru": "Пожалуйста.",
+      "example_en": "Please. / You're welcome."
     },
     {
       "de": "Ja.",
       "ru": "Да.",
+      "en": "Yes.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Ja.",
-      "example_ru": "Да."
+      "example_ru": "Да.",
+      "example_en": "Yes."
     },
     {
       "de": "Nein.",
       "ru": "Нет.",
+      "en": "No.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
+      "example_ru": "Нет.",
+      "example_en": "No."
     }
   ]
 }
