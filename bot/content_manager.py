@@ -37,6 +37,58 @@ _current_level: tuple = ("A1", "1")
 _cache: Dict[str, dict] = {}
 
 
+def _localized(data: dict, field: str, lang: str = "ru") -> str:
+    """Return localized value for a field based on language.
+
+    Mapping:
+        field='name':        ru -> 'name',  en -> 'name_en',  de -> 'name_de'
+        field='description': ru -> 'description', en -> 'description_en', de -> 'description_de'
+        field='ru' (translation of German word/phrase):
+                             ru -> 'ru',    en -> 'en',       de -> 'de'
+        field='example_ru':  ru -> 'example_ru', en -> 'example_en', de -> 'example'
+        field='context':     ru -> 'context', en -> 'context_en', de -> 'context_de'
+    Falls back to the Russian field if the localized field is missing.
+    """
+    if lang == "ru" or not lang:
+        return data.get(field, "")
+
+    FIELD_MAP = {
+        "name":        {"en": "name_en",        "de": "name_de"},
+        "description": {"en": "description_en", "de": "description_de"},
+        "ru":          {"en": "en",             "de": "de"},
+        "example_ru":  {"en": "example_en",     "de": "example"},
+        "context":     {"en": "context_en",     "de": "context_de"},
+    }
+
+    mapping = FIELD_MAP.get(field)
+    if not mapping:
+        return data.get(field, "")
+
+    localized_key = mapping.get(lang)
+    if localized_key and data.get(localized_key):
+        return data[localized_key]
+    # Fallback to Russian field
+    return data.get(field, "")
+
+
+def _localized_list(data: dict, field: str, lang: str = "ru") -> list:
+    """Return localized list field (e.g. distractors)."""
+    if lang == "ru" or not lang:
+        return data.get(field, [])
+
+    LIST_MAP = {
+        "distractors": {"en": "distractors_en", "de": "distractors_de"},
+    }
+    mapping = LIST_MAP.get(field)
+    if not mapping:
+        return data.get(field, [])
+
+    localized_key = mapping.get(lang)
+    if localized_key and data.get(localized_key):
+        return data[localized_key]
+    return data.get(field, [])
+
+
 def _get_level_key(major: str = None, sub: str = None) -> str:
     """Получить ключ для кэша на основе уровня."""
     if major is None:
@@ -329,47 +381,47 @@ def _load_all_exercises(major: str = None, sub: str = None) -> dict:
 # API совместимый с vocabulary.py (использует текущий уровень)
 # ============================================================
 
-def get_all_words(major: str = None, sub: str = None) -> list:
+def get_all_words(major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить все слова как плоский список."""
     vocabulary = _load_all_vocabulary(major, sub)
     all_words = []
-    
+
     level_key = _get_level_key(major, sub)
-    
+
     for category_id, category in vocabulary.items():
         for word in category.get("words", []):
             all_words.append({
                 "de": word.get("de", ""),
-                "ru": word.get("ru", ""),
+                "ru": _localized(word, "ru", lang),
                 "example": word.get("example", ""),
-                "example_ru": word.get("example_ru", ""),
+                "example_ru": _localized(word, "example_ru", lang),
                 "category_id": category_id,
-                "category_name": category.get("name", ""),
+                "category_name": _localized(category, "name", lang),
                 "word_id": f"{level_key}_{category_id}_{word.get('de', '')}",
                 "level": level_key
             })
-    
+
     return all_words
 
 
-def get_words_by_category(category_id: str, major: str = None, sub: str = None) -> list:
+def get_words_by_category(category_id: str, major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить слова из определённой категории."""
     vocabulary = _load_all_vocabulary(major, sub)
-    
+
     if category_id not in vocabulary:
         return []
-    
+
     category = vocabulary[category_id]
     level_key = _get_level_key(major, sub)
-    
+
     return [
         {
             "de": word.get("de", ""),
-            "ru": word.get("ru", ""),
+            "ru": _localized(word, "ru", lang),
             "example": word.get("example", ""),
-            "example_ru": word.get("example_ru", ""),
+            "example_ru": _localized(word, "example_ru", lang),
             "category_id": category_id,
-            "category_name": category.get("name", ""),
+            "category_name": _localized(category, "name", lang),
             "word_id": f"{level_key}_{category_id}_{word.get('de', '')}",
             "level": level_key
         }
@@ -377,28 +429,28 @@ def get_words_by_category(category_id: str, major: str = None, sub: str = None) 
     ]
 
 
-def get_category_distractors(category_id: str, major: str = None, sub: str = None) -> list:
+def get_category_distractors(category_id: str, major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить список distractors (отвлекающих слов) из категории."""
     vocabulary = _load_all_vocabulary(major, sub)
-    
+
     if category_id not in vocabulary:
         return []
-    
+
     category = vocabulary[category_id]
-    return category.get("distractors", [])
+    return _localized_list(category, "distractors", lang)
 
 
-def get_categories(major: str = None, sub: str = None) -> list:
+def get_categories(major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить список всех категорий."""
     vocabulary = _load_all_vocabulary(major, sub)
     level_key = _get_level_key(major, sub)
-    
+
     return [
         {
             "id": cat_id,
-            "name": cat.get("name", ""),
+            "name": _localized(cat, "name", lang),
             "name_de": cat.get("name_de", ""),
-            "description": cat.get("description", ""),
+            "description": _localized(cat, "description", lang),
             "count": len(cat.get("words", [])),
             "level": level_key
         }
@@ -410,17 +462,17 @@ def get_categories(major: str = None, sub: str = None) -> list:
 # API совместимый с grammar.py
 # ============================================================
 
-def get_all_tests(major: str = None, sub: str = None) -> list:
+def get_all_tests(major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить список всех тестов."""
     grammar = _load_all_grammar(major, sub)
     level_key = _get_level_key(major, sub)
-    
+
     return [
         {
             "id": test_id,
-            "name": test.get("name", ""),
+            "name": _localized(test, "name", lang),
             "name_de": test.get("name_de", ""),
-            "description": test.get("description", ""),
+            "description": _localized(test, "description", lang),
             "questions_count": len(test.get("questions", [])),
             "level": level_key
         }
@@ -492,17 +544,17 @@ def get_grammar_stats(major: str = None, sub: str = None) -> dict:
 # API для Phrases
 # ============================================================
 
-def get_phrases_categories(major: str = None, sub: str = None) -> list:
+def get_phrases_categories(major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить список всех категорий phrases."""
     phrases = _load_all_phrases(major, sub)
     level_key = _get_level_key(major, sub)
-    
+
     return [
         {
             "id": cat_id,
-            "name": cat.get("name", ""),
+            "name": _localized(cat, "name", lang),
             "name_de": cat.get("name_de", ""),
-            "description": cat.get("description", ""),
+            "description": _localized(cat, "description", lang),
             "count": len(cat.get("phrases", [])),
             "level": level_key
         }
@@ -510,25 +562,25 @@ def get_phrases_categories(major: str = None, sub: str = None) -> list:
     ]
 
 
-def get_phrases_by_category(category_id: str, major: str = None, sub: str = None) -> list:
+def get_phrases_by_category(category_id: str, major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить phrases из определённой категории."""
     phrases = _load_all_phrases(major, sub)
-    
+
     if category_id not in phrases:
         return []
-    
+
     category = phrases[category_id]
     level_key = _get_level_key(major, sub)
-    
+
     return [
         {
             "de": phrase.get("de", ""),
-            "ru": phrase.get("ru", ""),
-            "context": phrase.get("context", ""),
+            "ru": _localized(phrase, "ru", lang),
+            "context": _localized(phrase, "context", lang),
             "example": phrase.get("example", ""),
-            "example_ru": phrase.get("example_ru", ""),
+            "example_ru": _localized(phrase, "example_ru", lang),
             "category_id": category_id,
-            "category_name": category.get("name", ""),
+            "category_name": _localized(category, "name", lang),
             "phrase_id": f"{level_key}_{category_id}_{phrase.get('de', '')}",
             "level": level_key
         }
@@ -540,17 +592,17 @@ def get_phrases_by_category(category_id: str, major: str = None, sub: str = None
 # API для Dialogues
 # ============================================================
 
-def get_dialogue_topics(major: str = None, sub: str = None) -> list:
+def get_dialogue_topics(major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить список всех тем dialogues."""
     dialogues = _load_all_dialogues(major, sub)
     level_key = _get_level_key(major, sub)
-    
+
     return [
         {
             "id": topic_id,
-            "name": topic.get("name", ""),
+            "name": _localized(topic, "name", lang),
             "name_de": topic.get("name_de", ""),
-            "description": topic.get("description", ""),
+            "description": _localized(topic, "description", lang),
             "dialogue_length": len(topic.get("dialogue", [])),
             "level": level_key
         }
@@ -576,7 +628,7 @@ def get_dialogue_exercises(topic_id: str, major: str = None, sub: str = None) ->
 # API для Culture
 # ============================================================
 
-def get_culture_topics(major: str = None, sub: str = None) -> list:
+def get_culture_topics(major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить список всех тем культуры."""
     culture = _load_all_culture(major, sub)
     level_key = _get_level_key(major, sub)
@@ -584,9 +636,9 @@ def get_culture_topics(major: str = None, sub: str = None) -> list:
     return [
         {
             "id": topic_id,
-            "name": topic.get("name", ""),
+            "name": _localized(topic, "name", lang),
             "name_de": topic.get("name_de", ""),
-            "description": topic.get("description", ""),
+            "description": _localized(topic, "description", lang),
             "level": level_key
         }
         for topic_id, topic in culture.items()
@@ -603,7 +655,7 @@ def get_culture_topic(topic_id: str, major: str = None, sub: str = None) -> Opti
 # API для Exercises
 # ============================================================
 
-def get_exercise_sets(major: str = None, sub: str = None) -> list:
+def get_exercise_sets(major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить список всех наборов упражнений."""
     exercises = _load_all_exercises(major, sub)
     level_key = _get_level_key(major, sub)
@@ -611,9 +663,9 @@ def get_exercise_sets(major: str = None, sub: str = None) -> list:
     return [
         {
             "id": set_id,
-            "name": data.get("name", ""),
+            "name": _localized(data, "name", lang),
             "name_de": data.get("name_de", ""),
-            "description": data.get("description", ""),
+            "description": _localized(data, "description", lang),
             "tasks_count": len(data.get("tasks", [])),
             "level": level_key
         }
@@ -621,7 +673,7 @@ def get_exercise_sets(major: str = None, sub: str = None) -> list:
     ]
 
 
-def get_exercise_set(set_id: str, major: str = None, sub: str = None) -> Optional[dict]:
+def get_exercise_set(set_id: str, major: str = None, sub: str = None, lang: str = "ru") -> Optional[dict]:
     """Получить один набор упражнений (метаданные, без tasks)."""
     exercises = _load_all_exercises(major, sub)
     data = exercises.get(set_id)
@@ -629,9 +681,9 @@ def get_exercise_set(set_id: str, major: str = None, sub: str = None) -> Optiona
         return None
     return {
         "id": data.get("id"),
-        "name": data.get("name", ""),
+        "name": _localized(data, "name", lang),
         "name_de": data.get("name_de", ""),
-        "description": data.get("description", ""),
+        "description": _localized(data, "description", lang),
         "level": data.get("level", ""),
         "linked_to": data.get("linked_to", []),
     }
@@ -740,7 +792,7 @@ def recommend_diagnostic_level(stage_results: Dict[str, Dict[str, Any]]) -> dict
 # Поиск по ID (для режима "Работа над ошибками")
 # ============================================================
 
-def get_words_by_ids(word_ids: list) -> list:
+def get_words_by_ids(word_ids: list, lang: str = "ru") -> list:
     """Найти слова по word_id во всех уровнях с контентом.
 
     word_id format: "{major}_{sub}_{category_id}_{de_word}"
@@ -776,11 +828,11 @@ def get_words_by_ids(word_ids: list) -> list:
                 if wid in word_id_set:
                     result.append({
                         "de": word.get("de", ""),
-                        "ru": word.get("ru", ""),
+                        "ru": _localized(word, "ru", lang),
                         "example": word.get("example", ""),
-                        "example_ru": word.get("example_ru", ""),
+                        "example_ru": _localized(word, "example_ru", lang),
                         "category_id": category_id,
-                        "category_name": category.get("name", ""),
+                        "category_name": _localized(category, "name", lang),
                         "word_id": wid,
                         "level": level_key
                     })
@@ -791,7 +843,7 @@ def get_words_by_ids(word_ids: list) -> list:
     return result
 
 
-def get_all_phrases_flat(major: str = None, sub: str = None) -> list:
+def get_all_phrases_flat(major: str = None, sub: str = None, lang: str = "ru") -> list:
     """Получить все фразы как плоский список (без дубликатов по phrase_id)."""
     phrases = _load_all_phrases(major, sub)
     level_key = _get_level_key(major, sub)
@@ -805,19 +857,19 @@ def get_all_phrases_flat(major: str = None, sub: str = None) -> list:
             seen.add(pid)
             result.append({
                 "de": phrase.get("de", ""),
-                "ru": phrase.get("ru", ""),
-                "context": phrase.get("context", ""),
+                "ru": _localized(phrase, "ru", lang),
+                "context": _localized(phrase, "context", lang),
                 "example": phrase.get("example", ""),
-                "example_ru": phrase.get("example_ru", ""),
+                "example_ru": _localized(phrase, "example_ru", lang),
                 "category_id": category_id,
-                "category_name": category.get("name", ""),
+                "category_name": _localized(category, "name", lang),
                 "phrase_id": pid,
                 "level": level_key
             })
     return result
 
 
-def get_phrases_by_ids(phrase_ids: list) -> list:
+def get_phrases_by_ids(phrase_ids: list, lang: str = "ru") -> list:
     """Найти фразы по phrase_id во всех уровнях с контентом.
 
     phrase_id format: "{major}_{sub}_{category_id}_{de_phrase}"
@@ -852,12 +904,12 @@ def get_phrases_by_ids(phrase_ids: list) -> list:
                 if pid in phrase_id_set:
                     result.append({
                         "de": phrase.get("de", ""),
-                        "ru": phrase.get("ru", ""),
-                        "context": phrase.get("context", ""),
+                        "ru": _localized(phrase, "ru", lang),
+                        "context": _localized(phrase, "context", lang),
                         "example": phrase.get("example", ""),
-                        "example_ru": phrase.get("example_ru", ""),
+                        "example_ru": _localized(phrase, "example_ru", lang),
                         "category_id": category_id,
-                        "category_name": category.get("name", ""),
+                        "category_name": _localized(category, "name", lang),
                         "phrase_id": pid,
                         "level": level_key
                     })

@@ -1,710 +1,182 @@
 {
   "id": "bank",
   "name": "В банке",
+  "name_en": "At the Bank",
   "name_de": "In der Bank",
   "description": "Фразы в банке",
+  "description_en": "Phrases at the bank",
   "level": "A1",
   "type": "situational",
   "phrases": [
     {
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
+      "en": "That is good.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
-      "example_ru": "А: Как тебе? Б: Это хорошо."
+      "example_ru": "А: Как тебе? Б: Это хорошо.",
+      "example_en": "A: What do you think? B: That is good."
     },
     {
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
+      "en": "Thank you very much!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
-      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
+      "example_ru": "А: Пожалуйста. Б: Спасибо большое!",
+      "example_en": "A: You're welcome. B: Thank you very much!"
     },
     {
       "de": "Entschuldigung!",
       "ru": "Извините!",
+      "en": "Excuse me!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
-      "example_ru": "Извините! Где туалет?"
+      "example_ru": "Извините! Где туалет?",
+      "example_en": "Excuse me! Where is the restroom?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
-      "example_ru": "Да, немного."
+      "example_ru": "Да, немного.",
+      "example_en": "Do you speak English? / Yes, a little."
     },
     {
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
+      "en": "I don't understand.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
-      "example_ru": "Я не понимаю. Повторите?"
+      "example_ru": "Я не понимаю. Повторите?",
+      "example_en": "I don't understand. Can you repeat that?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
-      "example_ru": "Как, простите? / Я спросил, который час."
+      "example_ru": "Как, простите? / Я спросил, который час.",
+      "example_en": "Pardon? / I asked what time it is."
     },
     {
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
+      "en": "One moment, please.",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Einen Moment, bitte.",
-      "example_ru": "Один момент, пожалуйста."
+      "example_ru": "Один момент, пожалуйста.",
+      "example_en": "One moment, please."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
-      "example_ru": "Нет проблем."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "A: Wie findest du das? B: Das ist gut.",
-      "example_ru": "А: Как тебе? Б: Это хорошо."
-    },
-    {
-      "de": "Danke schön!",
-      "ru": "Спасибо большое!",
-      "context": "Благодарность",
-      "example": "A: Bitte. B: Danke schön!",
-      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung! Wo ist die Toilette?",
-      "example_ru": "Извините! Где туалет?"
-    },
-    {
-      "de": "Sprechen Sie Englisch?",
-      "ru": "Вы говорите по-английски?",
-      "context": "Язык",
-      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
-      "example_ru": "Да, немного."
-    },
-    {
-      "de": "Ich verstehe nicht.",
-      "ru": "Я не понимаю.",
-      "context": "Непонимание",
-      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
-      "example_ru": "Я не понимаю. Повторите?"
-    },
-    {
-      "de": "Wie bitte?",
-      "ru": "Как, простите?",
-      "context": "Переспрос",
-      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
-      "example_ru": "Как, простите? / Я спросил, который час."
-    },
-    {
-      "de": "Einen Moment, bitte.",
-      "ru": "Один момент, пожалуйста.",
-      "context": "Просьба",
-      "example": "Einen Moment, bitte.",
-      "example_ru": "Один момент, пожалуйста."
-    },
-    {
-      "de": "Kein Problem.",
-      "ru": "Нет проблем.",
-      "context": "Ответ",
-      "example": "A: Entschuldigung! B: Kein Problem.",
-      "example_ru": "Нет проблем."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "A: Wie findest du das? B: Das ist gut.",
-      "example_ru": "А: Как тебе? Б: Это хорошо."
-    },
-    {
-      "de": "Danke schön!",
-      "ru": "Спасибо большое!",
-      "context": "Благодарность",
-      "example": "A: Bitte. B: Danke schön!",
-      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung! Wo ist die Toilette?",
-      "example_ru": "Извините! Где туалет?"
-    },
-    {
-      "de": "Sprechen Sie Englisch?",
-      "ru": "Вы говорите по-английски?",
-      "context": "Язык",
-      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
-      "example_ru": "Да, немного."
-    },
-    {
-      "de": "Ich verstehe nicht.",
-      "ru": "Я не понимаю.",
-      "context": "Непонимание",
-      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
-      "example_ru": "Я не понимаю. Повторите?"
-    },
-    {
-      "de": "Wie bitte?",
-      "ru": "Как, простите?",
-      "context": "Переспрос",
-      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
-      "example_ru": "Как, простите? / Я спросил, который час."
-    },
-    {
-      "de": "Einen Moment, bitte.",
-      "ru": "Один момент, пожалуйста.",
-      "context": "Просьба",
-      "example": "Einen Moment, bitte.",
-      "example_ru": "Один момент, пожалуйста."
-    },
-    {
-      "de": "Kein Problem.",
-      "ru": "Нет проблем.",
-      "context": "Ответ",
-      "example": "A: Entschuldigung! B: Kein Problem.",
-      "example_ru": "Нет проблем."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "A: Wie findest du das? B: Das ist gut.",
-      "example_ru": "А: Как тебе? Б: Это хорошо."
-    },
-    {
-      "de": "Danke schön!",
-      "ru": "Спасибо большое!",
-      "context": "Благодарность",
-      "example": "A: Bitte. B: Danke schön!",
-      "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung! Wo ist die Toilette?",
-      "example_ru": "Извините! Где туалет?"
-    },
-    {
-      "de": "Sprechen Sie Englisch?",
-      "ru": "Вы говорите по-английски?",
-      "context": "Язык",
-      "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
-      "example_ru": "Да, немного."
-    },
-    {
-      "de": "Ich verstehe nicht.",
-      "ru": "Я не понимаю.",
-      "context": "Непонимание",
-      "example": "Ich verstehe nicht. Können Sie das wiederholen?",
-      "example_ru": "Я не понимаю. Повторите?"
-    },
-    {
-      "de": "Wie bitte?",
-      "ru": "Как, простите?",
-      "context": "Переспрос",
-      "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
-      "example_ru": "Как, простите? / Я спросил, который час."
+      "example_ru": "Нет проблем.",
+      "example_en": "A: Excuse me! B: No problem."
     },
     {
       "de": "Ich möchte Geld abheben.",
       "ru": "Я хочу снять деньги.",
+      "en": "I would like to withdraw money.",
       "context": "Банкомат",
+      "context_en": "ATM",
       "example": "Ich möchte Geld abheben. Wo ist der Geldautomat?",
-      "example_ru": "Я хочу снять деньги. Где банкомат?"
+      "example_ru": "Я хочу снять деньги. Где банкомат?",
+      "example_en": "I would like to withdraw money. Where is the ATM?"
     },
     {
       "de": "Kann ich hier wechseln?",
       "ru": "Здесь можно обменять?",
+      "en": "Can I exchange here?",
       "context": "Обмен",
+      "context_en": "Exchange",
       "example": "Kann ich hier Euro wechseln? / Ja, am Schalter 2.",
-      "example_ru": "Здесь можно обменять на евро? / Да, у окошка 2."
+      "example_ru": "Здесь можно обменять на евро? / Да, у окошка 2.",
+      "example_en": "Can I exchange euros here? / Yes, at counter 2."
     },
     {
       "de": "Ich brauche eine neue Karte.",
       "ru": "Мне нужна новая карта.",
+      "en": "I need a new card.",
       "context": "Карта",
+      "context_en": "Card",
       "example": "Ich brauche eine neue Karte. Die alte ist kaputt.",
-      "example_ru": "Мне нужна новая карта. Старая сломалась."
+      "example_ru": "Мне нужна новая карта. Старая сломалась.",
+      "example_en": "I need a new card. The old one is broken."
     },
     {
       "de": "Wo kann ich bezahlen?",
       "ru": "Где можно оплатить?",
+      "en": "Where can I pay?",
       "context": "Оплата",
+      "context_en": "Payment",
       "example": "Wo kann ich mit Karte bezahlen? / Überall.",
-      "example_ru": "Где можно оплатить картой? / Везде."
+      "example_ru": "Где можно оплатить картой? / Везде.",
+      "example_en": "Where can I pay by card? / Everywhere."
     },
     {
       "de": "Wie viel Gebühr kostet das?",
       "ru": "Сколько стоит комиссия?",
+      "en": "How much is the fee?",
       "context": "Комиссия",
+      "context_en": "Fee",
       "example": "Wie viel Gebühr kostet das? / Zwei Euro.",
-      "example_ru": "Сколько комиссия? / Два евро."
-    },
-    {
-      "de": "Ich möchte Geld abheben.",
-      "ru": "Я хочу снять деньги.",
-      "context": "Банкомат",
-      "example": "Ich möchte Geld abheben. Wo ist der Geldautomat?",
-      "example_ru": "Я хочу снять деньги. Где банкомат?"
-    },
-    {
-      "de": "Kann ich hier wechseln?",
-      "ru": "Здесь можно обменять?",
-      "context": "Обмен",
-      "example": "Kann ich hier Euro wechseln? / Ja, am Schalter 2.",
-      "example_ru": "Здесь можно обменять на евро? / Да, у окошка 2."
-    },
-    {
-      "de": "Ich brauche eine neue Karte.",
-      "ru": "Мне нужна новая карта.",
-      "context": "Карта",
-      "example": "Ich brauche eine neue Karte. Die alte ist kaputt.",
-      "example_ru": "Мне нужна новая карта. Старая сломалась."
-    },
-    {
-      "de": "Wo kann ich bezahlen?",
-      "ru": "Где можно оплатить?",
-      "context": "Оплата",
-      "example": "Wo kann ich mit Karte bezahlen? / Überall.",
-      "example_ru": "Где можно оплатить картой? / Везде."
-    },
-    {
-      "de": "Wie viel Gebühr kostet das?",
-      "ru": "Сколько стоит комиссия?",
-      "context": "Комиссия",
-      "example": "Wie viel Gebühr kostet das? / Zwei Euro.",
-      "example_ru": "Сколько комиссия? / Два евро."
-    },
-    {
-      "de": "Ich möchte Geld abheben.",
-      "ru": "Я хочу снять деньги.",
-      "context": "Банкомат",
-      "example": "Ich möchte Geld abheben. Wo ist der Geldautomat?",
-      "example_ru": "Я хочу снять деньги. Где банкомат?"
-    },
-    {
-      "de": "Kann ich hier wechseln?",
-      "ru": "Здесь можно обменять?",
-      "context": "Обмен",
-      "example": "Kann ich hier Euro wechseln? / Ja, am Schalter 2.",
-      "example_ru": "Здесь можно обменять на евро? / Да, у окошка 2."
-    },
-    {
-      "de": "Ich brauche eine neue Karte.",
-      "ru": "Мне нужна новая карта.",
-      "context": "Карта",
-      "example": "Ich brauche eine neue Karte. Die alte ist kaputt.",
-      "example_ru": "Мне нужна новая карта. Старая сломалась."
-    },
-    {
-      "de": "Wo kann ich bezahlen?",
-      "ru": "Где можно оплатить?",
-      "context": "Оплата",
-      "example": "Wo kann ich mit Karte bezahlen? / Überall.",
-      "example_ru": "Где можно оплатить картой? / Везде."
-    },
-    {
-      "de": "Wie viel Gebühr kostet das?",
-      "ru": "Сколько стоит комиссия?",
-      "context": "Комиссия",
-      "example": "Wie viel Gebühr kostet das? / Zwei Euro.",
-      "example_ru": "Сколько комиссия? / Два евро."
-    },
-    {
-      "de": "Ich möchte Geld abheben.",
-      "ru": "Я хочу снять деньги.",
-      "context": "Банкомат",
-      "example": "Ich möchte Geld abheben. Wo ist der Geldautomat?",
-      "example_ru": "Я хочу снять деньги. Где банкомат?"
-    },
-    {
-      "de": "Kann ich hier wechseln?",
-      "ru": "Здесь можно обменять?",
-      "context": "Обмен",
-      "example": "Kann ich hier Euro wechseln? / Ja, am Schalter 2.",
-      "example_ru": "Здесь можно обменять на евро? / Да, у окошка 2."
-    },
-    {
-      "de": "Ich brauche eine neue Karte.",
-      "ru": "Мне нужна новая карта.",
-      "context": "Карта",
-      "example": "Ich brauche eine neue Karte. Die alte ist kaputt.",
-      "example_ru": "Мне нужна новая карта. Старая сломалась."
-    },
-    {
-      "de": "Wo kann ich bezahlen?",
-      "ru": "Где можно оплатить?",
-      "context": "Оплата",
-      "example": "Wo kann ich mit Karte bezahlen? / Überall.",
-      "example_ru": "Где можно оплатить картой? / Везде."
-    },
-    {
-      "de": "Wie viel Gebühr kostet das?",
-      "ru": "Сколько стоит комиссия?",
-      "context": "Комиссия",
-      "example": "Wie viel Gebühr kostet das? / Zwei Euro.",
-      "example_ru": "Сколько комиссия? / Два евро."
-    },
-    {
-      "de": "Ich möchte Geld abheben.",
-      "ru": "Я хочу снять деньги.",
-      "context": "Банкомат",
-      "example": "Ich möchte Geld abheben. Wo ist der Geldautomat?",
-      "example_ru": "Я хочу снять деньги. Где банкомат?"
-    },
-    {
-      "de": "Kann ich hier wechseln?",
-      "ru": "Здесь можно обменять?",
-      "context": "Обмен",
-      "example": "Kann ich hier Euro wechseln? / Ja, am Schalter 2.",
-      "example_ru": "Здесь можно обменять на евро? / Да, у окошка 2."
-    },
-    {
-      "de": "Ich brauche eine neue Karte.",
-      "ru": "Мне нужна новая карта.",
-      "context": "Карта",
-      "example": "Ich brauche eine neue Karte. Die alte ist kaputt.",
-      "example_ru": "Мне нужна новая карта. Старая сломалась."
-    },
-    {
-      "de": "Wo kann ich bezahlen?",
-      "ru": "Где можно оплатить?",
-      "context": "Оплата",
-      "example": "Wo kann ich mit Karte bezahlen? / Überall.",
-      "example_ru": "Где можно оплатить картой? / Везде."
-    },
-    {
-      "de": "Wie viel Gebühr kostet das?",
-      "ru": "Сколько стоит комиссия?",
-      "context": "Комиссия",
-      "example": "Wie viel Gebühr kostet das? / Zwei Euro.",
-      "example_ru": "Сколько комиссия? / Два евро."
-    },
-    {
-      "de": "Ich möchte Geld abheben.",
-      "ru": "Я хочу снять деньги.",
-      "context": "Банкомат",
-      "example": "Ich möchte Geld abheben. Wo ist der Geldautomat?",
-      "example_ru": "Я хочу снять деньги. Где банкомат?"
-    },
-    {
-      "de": "Kann ich hier wechseln?",
-      "ru": "Здесь можно обменять?",
-      "context": "Обмен",
-      "example": "Kann ich hier Euro wechseln? / Ja, am Schalter 2.",
-      "example_ru": "Здесь можно обменять на евро? / Да, у окошка 2."
-    },
-    {
-      "de": "Ich brauche eine neue Karte.",
-      "ru": "Мне нужна новая карта.",
-      "context": "Карта",
-      "example": "Ich brauche eine neue Karte. Die alte ist kaputt.",
-      "example_ru": "Мне нужна новая карта. Старая сломалась."
-    },
-    {
-      "de": "Wo kann ich bezahlen?",
-      "ru": "Где можно оплатить?",
-      "context": "Оплата",
-      "example": "Wo kann ich mit Karte bezahlen? / Überall.",
-      "example_ru": "Где можно оплатить картой? / Везде."
-    },
-    {
-      "de": "Wie viel Gebühr kostet das?",
-      "ru": "Сколько стоит комиссия?",
-      "context": "Комиссия",
-      "example": "Wie viel Gebühr kostet das? / Zwei Euro.",
-      "example_ru": "Сколько комиссия? / Два евро."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
+      "example_ru": "Сколько комиссия? / Два евро.",
+      "example_en": "How much is the fee? / Two euros."
     },
     {
       "de": "Danke!",
       "ru": "Спасибо!",
+      "en": "Thanks!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
+      "example_ru": "Спасибо!",
+      "example_en": "Thanks!"
     },
     {
       "de": "Bitte.",
       "ru": "Пожалуйста.",
+      "en": "Please. / You're welcome.",
       "context": "Вежливость",
+      "context_en": "Politeness",
       "example": "Bitte.",
-      "example_ru": "Пожалуйста."
+      "example_ru": "Пожалуйста.",
+      "example_en": "Please. / You're welcome."
     },
     {
       "de": "Ja.",
       "ru": "Да.",
+      "en": "Yes.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Ja.",
-      "example_ru": "Да."
+      "example_ru": "Да.",
+      "example_en": "Yes."
     },
     {
       "de": "Nein.",
       "ru": "Нет.",
+      "en": "No.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
-    },
-    {
-      "de": "Ja.",
-      "ru": "Да.",
-      "context": "Ответ",
-      "example": "Ja.",
-      "example_ru": "Да."
-    },
-    {
-      "de": "Nein.",
-      "ru": "Нет.",
-      "context": "Ответ",
-      "example": "Nein.",
-      "example_ru": "Нет."
-    },
-    {
-      "de": "Das ist gut.",
-      "ru": "Это хорошо.",
-      "context": "Оценка",
-      "example": "Das ist gut.",
-      "example_ru": "Это хорошо."
-    },
-    {
-      "de": "Danke!",
-      "ru": "Спасибо!",
-      "context": "Благодарность",
-      "example": "Danke!",
-      "example_ru": "Спасибо!"
-    },
-    {
-      "de": "Entschuldigung!",
-      "ru": "Извините!",
-      "context": "Извинение",
-      "example": "Entschuldigung!",
-      "example_ru": "Извините!"
-    },
-    {
-      "de": "Bitte.",
-      "ru": "Пожалуйста.",
-      "context": "Вежливость",
-      "example": "Bitte.",
-      "example_ru": "Пожалуйста."
+      "example_ru": "Нет.",
+      "example_en": "No."
     }
   ]
 }

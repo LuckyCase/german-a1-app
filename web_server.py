@@ -2257,7 +2257,7 @@ HTML_TEMPLATE = """
         }
 
         function levelQuery() {
-            return `major=${encodeURIComponent(currentLevelMajor)}&sub=${encodeURIComponent(currentLevelSub)}`;
+            return `major=${encodeURIComponent(currentLevelMajor)}&sub=${encodeURIComponent(currentLevelSub)}&lang=${encodeURIComponent(currentLang)}`;
         }
 
         function openDiagnosticFromMenu() {
@@ -4227,12 +4227,13 @@ def api_categories():
     """Get categories for current level or specified level."""
     major = request.args.get('major')
     sub = request.args.get('sub')
-    
+    lang = request.args.get('lang', 'ru')
+
     if major and sub:
-        categories = get_categories(major, sub)
+        categories = get_categories(major, sub, lang=lang)
     else:
-        categories = get_categories()
-    
+        categories = get_categories(lang=lang)
+
     return jsonify(categories)
 
 @app.route('/api/words')
@@ -4241,12 +4242,13 @@ def api_words():
     category_id = request.args.get('category')
     major = request.args.get('major')
     sub = request.args.get('sub')
-    
+    lang = request.args.get('lang', 'ru')
+
     if category_id and category_id != 'all':
-        words = get_words_by_category(category_id, major, sub) if major and sub else get_words_by_category(category_id)
+        words = get_words_by_category(category_id, major, sub, lang=lang) if major and sub else get_words_by_category(category_id, lang=lang)
     else:
-        words = get_all_words(major, sub) if major and sub else get_all_words()
-    
+        words = get_all_words(major, sub, lang=lang) if major and sub else get_all_words(lang=lang)
+
     return jsonify(words)
 
 SESSION_SIZE = 10
@@ -4263,11 +4265,12 @@ def api_session_words():
     user_id = request.args.get('user_id', type=int)
     major = request.args.get('major')
     sub = request.args.get('sub')
+    lang = request.args.get('lang', 'ru')
 
     if category_id and category_id != 'all':
-        words = get_words_by_category(category_id, major, sub) if major and sub else get_words_by_category(category_id)
+        words = get_words_by_category(category_id, major, sub, lang=lang) if major and sub else get_words_by_category(category_id, lang=lang)
     else:
-        words = get_all_words(major, sub) if major and sub else get_all_words()
+        words = get_all_words(major, sub, lang=lang) if major and sub else get_all_words(lang=lang)
 
     if not words:
         return jsonify([])
@@ -4303,11 +4306,12 @@ def api_session_phrases():
     user_id = request.args.get('user_id', type=int)
     major = request.args.get('major')
     sub = request.args.get('sub')
+    lang = request.args.get('lang', 'ru')
 
     if category_id:
-        phrases = get_phrases_by_category(category_id, major, sub) if major and sub else get_phrases_by_category(category_id)
+        phrases = get_phrases_by_category(category_id, major, sub, lang=lang) if major and sub else get_phrases_by_category(category_id, lang=lang)
     else:
-        phrases = get_all_phrases_flat(major, sub) if major and sub else get_all_phrases_flat()
+        phrases = get_all_phrases_flat(major, sub, lang=lang) if major and sub else get_all_phrases_flat(lang=lang)
 
     if not phrases:
         return jsonify([])
@@ -4351,21 +4355,22 @@ def api_random_words():
     category = request.args.get('category', '')
     major = request.args.get('major')
     sub = request.args.get('sub')
+    lang = request.args.get('lang', 'ru')
 
     import random
 
     # If category specified, get words from that category only
     if category:
-        words = get_words_by_category(category, major, sub) if major and sub else get_words_by_category(category)
+        words = get_words_by_category(category, major, sub, lang=lang) if major and sub else get_words_by_category(category, lang=lang)
     else:
-        words = get_all_words(major, sub) if major and sub else get_all_words()
+        words = get_all_words(major, sub, lang=lang) if major and sub else get_all_words(lang=lang)
 
     filtered = [w for w in words
                 if w.get('word_id') != exclude and w.get('ru') != exclude_ru]
-    
+
     # If not enough words in category, use distractors first
     if len(filtered) < count and category:
-        distractors = get_category_distractors(category, major, sub) if major and sub else get_category_distractors(category)
+        distractors = get_category_distractors(category, major, sub, lang=lang) if major and sub else get_category_distractors(category, lang=lang)
         if distractors:
             # Create fake word objects from distractors
             needed = count - len(filtered)
@@ -4377,13 +4382,13 @@ def api_random_words():
                     "word_id": f"distractor_{d}",
                     "category_id": category
                 })
-    
+
     # If still not enough, supplement from all words
     if len(filtered) < count:
-        all_words = get_all_words(major, sub) if major and sub else get_all_words()
+        all_words = get_all_words(major, sub, lang=lang) if major and sub else get_all_words(lang=lang)
         extra = [w for w in all_words if w.get('word_id') != exclude and w not in filtered]
         filtered.extend(extra)
-    
+
     return jsonify(random.sample(filtered, min(count, len(filtered))))
 
 @app.route('/api/tests')
@@ -4391,8 +4396,9 @@ def api_tests():
     """Get tests for current level or specified level."""
     major = request.args.get('major')
     sub = request.args.get('sub')
-    
-    tests = get_all_tests(major, sub) if major and sub else get_all_tests()
+    lang = request.args.get('lang', 'ru')
+
+    tests = get_all_tests(major, sub, lang=lang) if major and sub else get_all_tests(lang=lang)
     return jsonify(tests)
 
 
@@ -4432,8 +4438,10 @@ def api_progress():
             "recent": []
         }
 
+    lang = request.args.get('lang', 'ru')
+
     # --- Words ---
-    all_words = get_all_words()
+    all_words = get_all_words(lang=lang)
     word_progress_map = {wp['word_id']: wp for wp in raw['words']}
 
     word_cats = {}
@@ -4451,7 +4459,7 @@ def api_progress():
                 word_cats[cid]['mastered'] += 1
 
     # --- Phrases ---
-    all_phrases = get_all_phrases_flat()
+    all_phrases = get_all_phrases_flat(lang=lang)
     phrase_progress_map = {pp['phrase_id']: pp for pp in raw['phrases']}
 
     phrase_cats = {}
@@ -4470,7 +4478,7 @@ def api_progress():
                 phrase_cats[cid]['mastered'] += 1
 
     # --- Grammar ---
-    all_tests = get_all_tests()
+    all_tests = get_all_tests(lang=lang)
     grammar_best = {}
     for gr in raw['grammar']:
         tid = gr['test_id']
@@ -4487,7 +4495,7 @@ def api_progress():
             grammar_items.append({'id': tid, 'name': test.get('name', tid), 'completed': False, 'score': 0, 'total': test.get('questions_count', 0)})
 
     # --- Dialogues ---
-    dialogue_topics = get_dialogue_topics()
+    dialogue_topics = get_dialogue_topics(lang=lang)
     dialogue_map = {d['dialogue_id']: d for d in raw['dialogues']}
 
     dialogue_items = []
@@ -4500,7 +4508,7 @@ def api_progress():
             dialogue_items.append({'id': did, 'name': topic.get('name', did), 'completed': False, 'correct': 0, 'total': 0})
 
     # --- Culture ---
-    culture_topics_list = get_culture_topics()
+    culture_topics_list = get_culture_topics(lang=lang)
     culture_map = {c['topic_id']: c for c in raw['culture']}
 
     culture_items = []
@@ -4513,7 +4521,7 @@ def api_progress():
             culture_items.append({'id': tid, 'name': topic.get('name', tid), 'viewed': False, 'quiz_correct': 0, 'quiz_total': 0})
 
     # --- Exercises ---
-    exercise_sets_list = get_exercise_sets()
+    exercise_sets_list = get_exercise_sets(lang=lang)
     exercise_map = {e['set_id']: e for e in raw['exercises']}
 
     exercise_items = []
@@ -4712,8 +4720,9 @@ def api_phrases_categories():
     """Get all phrases categories for current level or specified level."""
     major = request.args.get('major')
     sub = request.args.get('sub')
-    
-    categories = get_phrases_categories(major, sub) if major and sub else get_phrases_categories()
+    lang = request.args.get('lang', 'ru')
+
+    categories = get_phrases_categories(major, sub, lang=lang) if major and sub else get_phrases_categories(lang=lang)
     return jsonify(categories)
 
 
@@ -4723,9 +4732,10 @@ def api_phrases():
     category_id = request.args.get('category')
     major = request.args.get('major')
     sub = request.args.get('sub')
+    lang = request.args.get('lang', 'ru')
 
     if category_id:
-        phrases = get_phrases_by_category(category_id, major, sub) if major and sub else get_phrases_by_category(category_id)
+        phrases = get_phrases_by_category(category_id, major, sub, lang=lang) if major and sub else get_phrases_by_category(category_id, lang=lang)
     else:
         phrases = []
 
@@ -4742,8 +4752,9 @@ def api_random_phrases():
     exclude_ru = request.args.get('exclude_ru', '')
     major = request.args.get('major')
     sub = request.args.get('sub')
+    lang = request.args.get('lang', 'ru')
 
-    all_phrases = get_all_phrases_flat(major, sub) if major and sub else get_all_phrases_flat()
+    all_phrases = get_all_phrases_flat(major, sub, lang=lang) if major and sub else get_all_phrases_flat(lang=lang)
     filtered = [p for p in all_phrases
                 if p.get('phrase_id') != exclude and p.get('ru') != exclude_ru]
 
@@ -4757,8 +4768,9 @@ def api_dialogue_topics():
     """Get all dialogue topics for current level or specified level."""
     major = request.args.get('major')
     sub = request.args.get('sub')
-    
-    topics = get_dialogue_topics(major, sub) if major and sub else get_dialogue_topics()
+    lang = request.args.get('lang', 'ru')
+
+    topics = get_dialogue_topics(major, sub, lang=lang) if major and sub else get_dialogue_topics(lang=lang)
     return jsonify(topics)
 
 
@@ -4789,8 +4801,9 @@ def api_culture_topics():
     """Get all culture topics for current level or specified level."""
     major = request.args.get('major')
     sub = request.args.get('sub')
+    lang = request.args.get('lang', 'ru')
 
-    topics = get_culture_topics(major, sub) if major and sub else get_culture_topics()
+    topics = get_culture_topics(major, sub, lang=lang) if major and sub else get_culture_topics(lang=lang)
     return jsonify(topics)
 
 
@@ -4813,8 +4826,9 @@ def api_exercise_sets():
     """Get all exercise sets for current level or specified level."""
     major = request.args.get('major')
     sub = request.args.get('sub')
+    lang = request.args.get('lang', 'ru')
 
-    sets = get_exercise_sets(major, sub) if major and sub else get_exercise_sets()
+    sets = get_exercise_sets(major, sub, lang=lang) if major and sub else get_exercise_sets(lang=lang)
     return jsonify(sets)
 
 
@@ -4823,8 +4837,9 @@ def api_exercise_set(set_id):
     """Get one exercise set (metadata only)."""
     major = request.args.get('major')
     sub = request.args.get('sub')
+    lang = request.args.get('lang', 'ru')
 
-    data = get_exercise_set(set_id, major, sub) if major and sub else get_exercise_set(set_id)
+    data = get_exercise_set(set_id, major, sub, lang=lang) if major and sub else get_exercise_set(set_id, lang=lang)
     if not data:
         return jsonify({'error': 'Not found'}), 404
     return jsonify(data)

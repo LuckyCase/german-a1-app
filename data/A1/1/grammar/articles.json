@@ -1,173 +1,237 @@
 {
   "id": "articles",
   "name": "Артикли (der, die, das)",
+  "name_en": "Articles (der, die, das)",
   "name_de": "Artikel",
   "description": "Определённые артикли в немецком языке",
+  "description_en": "Definite articles in German",
   "level": "A1",
   "theory": {
     "title": "Определённые артикли",
+    "title_en": "Definite Articles",
     "content": "В немецком языке есть три рода существительных:\n\n• der — мужской род (Maskulinum)\n• die — женский род (Femininum)\n• das — средний род (Neutrum)\n\nРод существительного нужно запоминать вместе со словом!",
+    "content_en": "In German there are three grammatical genders for nouns:\n\n• der — masculine (Maskulinum)\n• die — feminine (Femininum)\n• das — neuter (Neutrum)\n\nYou need to memorize the gender together with the word!",
     "examples": [
       "der Mann (мужчина) — мужской род",
       "die Frau (женщина) — женский род",
       "das Kind (ребёнок) — средний род"
     ],
+    "examples_en": [
+      "der Mann (man) — masculine",
+      "die Frau (woman) — feminine",
+      "das Kind (child) — neuter"
+    ],
     "tips": [
       "Слова на -ung, -heit, -keit, -schaft — женского рода (die)",
       "Слова на -chen, -lein — среднего рода (das)",
       "Названия месяцев и дней недели — мужского рода (der)"
+    ],
+    "tips_en": [
+      "Words ending in -ung, -heit, -keit, -schaft are feminine (die)",
+      "Words ending in -chen, -lein are neuter (das)",
+      "Names of months and days of the week are masculine (der)"
     ]
   },
   "questions": [
     {
       "question": "___ Tisch ist groß.",
+      "question_en": "___ Tisch ist groß. (The table is big.)",
       "options": ["Der", "Die", "Das"],
       "correct": 0,
-      "explanation": "Tisch — мужской род (der Tisch)"
+      "explanation": "Tisch — мужской род (der Tisch)",
+      "explanation_en": "Tisch is masculine (der Tisch)"
     },
     {
       "question": "___ Lampe ist neu.",
+      "question_en": "___ Lampe ist neu. (The lamp is new.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Lampe — женский род (die Lampe)"
+      "explanation": "Lampe — женский род (die Lampe)",
+      "explanation_en": "Lampe is feminine (die Lampe)"
     },
     {
       "question": "___ Kind spielt.",
+      "question_en": "___ Kind spielt. (The child is playing.)",
       "options": ["Der", "Die", "Das"],
       "correct": 2,
-      "explanation": "Kind — средний род (das Kind)"
+      "explanation": "Kind — средний род (das Kind)",
+      "explanation_en": "Kind is neuter (das Kind)"
     },
     {
       "question": "___ Buch ist interessant.",
+      "question_en": "___ Buch ist interessant. (The book is interesting.)",
       "options": ["Der", "Die", "Das"],
       "correct": 2,
-      "explanation": "Buch — средний род (das Buch)"
+      "explanation": "Buch — средний род (das Buch)",
+      "explanation_en": "Buch is neuter (das Buch)"
     },
     {
       "question": "___ Frau arbeitet.",
+      "question_en": "___ Frau arbeitet. (The woman works.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Frau — женский род (die Frau)"
+      "explanation": "Frau — женский род (die Frau)",
+      "explanation_en": "Frau is feminine (die Frau)"
     },
     {
       "question": "___ Mann kommt.",
+      "question_en": "___ Mann kommt. (The man is coming.)",
       "options": ["Der", "Die", "Das"],
       "correct": 0,
-      "explanation": "Mann — мужской род (der Mann)"
+      "explanation": "Mann — мужской род (der Mann)",
+      "explanation_en": "Mann is masculine (der Mann)"
     },
     {
       "question": "___ Auto ist teuer.",
+      "question_en": "___ Auto ist teuer. (The car is expensive.)",
       "options": ["Der", "Die", "Das"],
       "correct": 2,
-      "explanation": "Auto — средний род (das Auto)"
+      "explanation": "Auto — средний род (das Auto)",
+      "explanation_en": "Auto is neuter (das Auto)"
     },
     {
       "question": "___ Kaffee ist heiß.",
+      "question_en": "___ Kaffee ist heiß. (The coffee is hot.)",
       "options": ["Der", "Die", "Das"],
       "correct": 0,
-      "explanation": "Kaffee — мужской род (der Kaffee)"
+      "explanation": "Kaffee — мужской род (der Kaffee)",
+      "explanation_en": "Kaffee is masculine (der Kaffee)"
     },
     {
       "question": "___ Milch ist kalt.",
+      "question_en": "___ Milch ist kalt. (The milk is cold.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Milch — женский род (die Milch)"
+      "explanation": "Milch — женский род (die Milch)",
+      "explanation_en": "Milch is feminine (die Milch)"
     },
     {
       "question": "___ Wasser ist frisch.",
+      "question_en": "___ Wasser ist frisch. (The water is fresh.)",
       "options": ["Der", "Die", "Das"],
       "correct": 2,
-      "explanation": "Wasser — средний род (das Wasser)"
+      "explanation": "Wasser — средний род (das Wasser)",
+      "explanation_en": "Wasser is neuter (das Wasser)"
     },
     {
       "question": "___ Tasche ist schwer.",
+      "question_en": "___ Tasche ist schwer. (The bag is heavy.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Tasche — женский род (die Tasche)"
+      "explanation": "Tasche — женский род (die Tasche)",
+      "explanation_en": "Tasche is feminine (die Tasche)"
     },
     {
       "question": "___ Stuhl ist bequem.",
+      "question_en": "___ Stuhl ist bequem. (The chair is comfortable.)",
       "options": ["Der", "Die", "Das"],
       "correct": 0,
-      "explanation": "Stuhl — мужской род (der Stuhl)"
+      "explanation": "Stuhl — мужской род (der Stuhl)",
+      "explanation_en": "Stuhl is masculine (der Stuhl)"
     },
     {
       "question": "___ Zimmer ist groß.",
+      "question_en": "___ Zimmer ist groß. (The room is big.)",
       "options": ["Der", "Die", "Das"],
       "correct": 2,
-      "explanation": "Zimmer — средний род (das Zimmer)"
+      "explanation": "Zimmer — средний род (das Zimmer)",
+      "explanation_en": "Zimmer is neuter (das Zimmer)"
     },
     {
       "question": "___ Straße ist lang.",
+      "question_en": "___ Straße ist lang. (The street is long.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Straße — женский род (die Straße)"
+      "explanation": "Straße — женский род (die Straße)",
+      "explanation_en": "Straße is feminine (die Straße)"
     },
     {
       "question": "___ Zeitung liegt hier.",
+      "question_en": "___ Zeitung liegt hier. (The newspaper is lying here.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Zeitung — женский род. Слова на -ung всегда женского рода (die)"
+      "explanation": "Zeitung — женский род. Слова на -ung всегда женского рода (die)",
+      "explanation_en": "Zeitung is feminine. Words ending in -ung are always feminine (die)"
     },
     {
       "question": "___ Mädchen spielt im Garten.",
+      "question_en": "___ Mädchen spielt im Garten. (The girl is playing in the garden.)",
       "options": ["Der", "Die", "Das"],
       "correct": 2,
-      "explanation": "Mädchen — средний род! Слова на -chen всегда среднего рода (das)"
+      "explanation": "Mädchen — средний род! Слова на -chen всегда среднего рода (das)",
+      "explanation_en": "Mädchen is neuter! Words ending in -chen are always neuter (das)"
     },
     {
       "question": "___ Möglichkeit ist gut.",
+      "question_en": "___ Möglichkeit ist gut. (The possibility is good.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Möglichkeit — женский род. Слова на -keit всегда женского рода (die)"
+      "explanation": "Möglichkeit — женский род. Слова на -keit всегда женского рода (die)",
+      "explanation_en": "Möglichkeit is feminine. Words ending in -keit are always feminine (die)"
     },
     {
       "question": "___ Lehrer ist nett.",
+      "question_en": "___ Lehrer ist nett. (The teacher is nice.)",
       "options": ["Der", "Die", "Das"],
       "correct": 0,
-      "explanation": "Lehrer — мужской род (der Lehrer)"
+      "explanation": "Lehrer — мужской род (der Lehrer)",
+      "explanation_en": "Lehrer is masculine (der Lehrer)"
     },
     {
       "question": "Какое предложение правильное?",
+      "question_en": "Which sentence is correct?",
       "options": ["Das Mädchen spielt.", "Die Mädchen spielt.", "Der Mädchen spielt."],
       "correct": 0,
-      "explanation": "Mädchen — средний род (das), несмотря на значение «девочка»"
+      "explanation": "Mädchen — средний род (das), несмотря на значение «девочка»",
+      "explanation_en": "Mädchen is neuter (das), despite meaning 'girl'"
     },
     {
       "question": "Какое предложение правильное?",
+      "question_en": "Which sentence is correct?",
       "options": ["Die Hund ist klein.", "Das Hund ist klein.", "Der Hund ist klein."],
       "correct": 2,
-      "explanation": "Hund — мужской род (der Hund)"
+      "explanation": "Hund — мужской род (der Hund)",
+      "explanation_en": "Hund is masculine (der Hund)"
     },
     {
       "question": "___ Kinder spielen im Park.",
+      "question_en": "___ Kinder spielen im Park. (The children are playing in the park.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Множественное число всегда с артиклем die"
+      "explanation": "Множественное число всегда с артиклем die",
+      "explanation_en": "Plural always takes the article die"
     },
     {
       "question": "___ Bücher sind interessant.",
+      "question_en": "___ Bücher sind interessant. (The books are interesting.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Множественное число — всегда die (die Bücher)"
+      "explanation": "Множественное число — всегда die (die Bücher)",
+      "explanation_en": "Plural is always die (die Bücher)"
     },
     {
       "question": "___ Butter ist frisch.",
+      "question_en": "___ Butter ist frisch. (The butter is fresh.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Butter — женский род в немецком (die Butter), хотя «масло» в русском — среднего"
+      "explanation": "Butter — женский род в немецком (die Butter), хотя «масло» в русском — среднего",
+      "explanation_en": "Butter is feminine in German (die Butter)"
     },
     {
       "question": "___ Sofa ist bequem.",
+      "question_en": "___ Sofa ist bequem. (The sofa is comfortable.)",
       "options": ["Der", "Die", "Das"],
       "correct": 2,
-      "explanation": "Sofa — средний род (das Sofa), хотя «диван» в русском — мужского"
+      "explanation": "Sofa — средний род (das Sofa), хотя «диван» в русском — мужского",
+      "explanation_en": "Sofa is neuter (das Sofa)"
     },
     {
       "question": "___ Freiheit ist wichtig.",
+      "question_en": "___ Freiheit ist wichtig. (Freedom is important.)",
       "options": ["Der", "Die", "Das"],
       "correct": 1,
-      "explanation": "Freiheit — женский род. Слова на -heit всегда женского рода (die)"
+      "explanation": "Freiheit — женский род. Слова на -heit всегда женского рода (die)",
+      "explanation_en": "Freiheit is feminine. Words ending in -heit are always feminine (die)"
     }
   ]
 }
