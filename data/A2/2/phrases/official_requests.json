@@ -1,8 +1,10 @@
 {
   "id": "official_requests",
   "name": "Официальные запросы",
+  "name_en": "Official Requests",
   "name_de": "Offizielle Anfragen",
   "description": "Вежливые фразы для ведомств и сервисов",
+  "description_en": "Polite phrases for offices and services",
   "level": "A2",
   "type": "situational",
   "phrases": [
@@ -31,6 +33,7 @@
       "de": "Könnten Sie das bitte schriftlich bestätigen?",
       "ru": "Не могли бы вы подтвердить это письменно?",
       "context": "Подтверждение",
+      "context_en": "Confirmation",
       "example": "Könnten Sie das bitte per E-Mail schriftlich bestätigen?",
       "example_ru": "Не могли бы вы подтвердить это письменно по e-mail?"
     },

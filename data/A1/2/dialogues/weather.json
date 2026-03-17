@@ -1,8 +1,10 @@
 {
   "id": "weather",
   "name": "Погода",
+  "name_en": "Weather",
   "name_de": "Wetter",
   "description": "Разговор о погоде",
+  "description_en": "Talking about weather",
   "level": "A2",
   "dialogue": [
     {

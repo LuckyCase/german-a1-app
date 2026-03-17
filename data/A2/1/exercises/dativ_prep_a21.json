@@ -1,15 +1,23 @@
 {
   "id": "dativ_prep_a21",
   "name": "Dativ с предлогами",
+  "name_en": "Dative with Prepositions",
   "name_de": "Dativ mit Präpositionen",
   "description": "Упражнения на предлоги mit/bei/nach/von/zu/aus/seit",
+  "description_en": "Exercises on prepositions mit/bei/nach/von/zu/aus/seit",
   "level": "A2",
-  "linked_to": ["dativ_prepositions"],
+  "linked_to": [
+    "dativ_prepositions"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Ich fahre jeden Tag ___ dem Zug zur Arbeit.",
-      "options": ["mit", "für", "ohne"],
+      "options": [
+        "mit",
+        "für",
+        "ohne"
+      ],
       "correct": 0,
       "explanation": "Mit требует Dativ."
     },
@@ -23,15 +31,28 @@
     {
       "type": "matching",
       "pairs": [
-        {"left": "mit", "right": "dem Bus"},
-        {"left": "bei", "right": "meiner Freundin"},
-        {"left": "von", "right": "dem Arzt"}
+        {
+          "left": "mit",
+          "right": "dem Bus"
+        },
+        {
+          "left": "bei",
+          "right": "meiner Freundin"
+        },
+        {
+          "left": "von",
+          "right": "dem Arzt"
+        }
       ]
     },
     {
       "type": "multiple_choice",
       "question": "Wir kommen gerade ___ der Schule.",
-      "options": ["von", "zu", "nach"],
+      "options": [
+        "von",
+        "zu",
+        "nach"
+      ],
       "correct": 0,
       "explanation": "Von + Dativ используется для источника/места."
     }

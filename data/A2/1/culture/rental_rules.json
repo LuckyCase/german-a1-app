@@ -1,8 +1,10 @@
 {
   "id": "rental_rules",
   "name": "Правила аренды жилья",
+  "name_en": "Rental Housing Rules",
   "name_de": "Mietregeln in Deutschland",
   "description": "Что важно знать при аренде квартиры",
+  "description_en": "What's important to know when renting an apartment",
   "level": "A2",
   "content": {
     "title": "Mietvertrag und Nebenkosten",
@@ -21,19 +23,31 @@
   "questions": [
     {
       "question": "Что такое Kaution?",
-      "options": ["Ежемесячный налог", "Залог при аренде", "Плата за интернет"],
+      "options": [
+        "Ежемесячный налог",
+        "Залог при аренде",
+        "Плата за интернет"
+      ],
       "correct": 1,
       "explanation": "Kaution — это залог, который обычно возвращается при выезде."
     },
     {
       "question": "Что такое Nebenkosten?",
-      "options": ["Дополнительные коммунальные расходы", "Только аренда", "Штрафы"],
+      "options": [
+        "Дополнительные коммунальные расходы",
+        "Только аренда",
+        "Штрафы"
+      ],
       "correct": 0,
       "explanation": "Nebenkosten — дополнительные расходы, например вода и отопление."
     },
     {
       "question": "Какой часто срок уведомления о выезде?",
-      "options": ["1 неделя", "3 месяца", "1 год"],
+      "options": [
+        "1 неделя",
+        "3 месяца",
+        "1 год"
+      ],
       "correct": 1,
       "explanation": "Обычно действует срок уведомления в 3 месяца."
     }

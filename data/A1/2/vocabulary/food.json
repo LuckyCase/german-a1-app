@@ -1,73 +1,86 @@
 {
   "id": "food",
   "name": "Еда и напитки",
+  "name_en": "Food and Drinks",
   "name_de": "Essen und Trinken",
   "description": "Еда и напитки (уровень A2)",
+  "description_en": "Food and drinks (A2 level)",
   "level": "A2",
   "words": [
     {
       "de": "die Vorspeise",
       "ru": "закуска",
+      "en": "appetizer/starter",
       "example": "Als Vorspeise nehme ich Salat.",
       "example_ru": "На закуску я возьму салат."
     },
     {
       "de": "das Hauptgericht",
       "ru": "основное блюдо",
+      "en": "main course",
       "example": "Was ist das Hauptgericht heute?",
       "example_ru": "Какое сегодня основное блюдо?"
     },
     {
       "de": "der Nachtisch",
       "ru": "десерт",
+      "en": "dessert",
       "example": "Zum Nachtisch möchte ich Eis.",
       "example_ru": "На десерт я хочу мороженое."
     },
     {
       "de": "die Zutat",
       "ru": "ингредиент",
+      "en": "ingredient",
       "example": "Welche Zutaten brauchen wir?",
       "example_ru": "Какие ингредиенты нам нужны?"
     },
     {
       "de": "das Rezept",
       "ru": "рецепт",
+      "en": "prescription",
       "example": "Kannst du mir das Rezept geben?",
       "example_ru": "Можешь дать мне рецепт?"
     },
     {
       "de": "vegetarisch",
       "ru": "вегетарианский",
+      "en": "vegetarian",
       "example": "Ich esse nur vegetarisch.",
       "example_ru": "Я ем только вегетарианское."
     },
     {
       "de": "vegan",
       "ru": "веганский",
+      "en": "vegan",
       "example": "Haben Sie vegane Gerichte?",
       "example_ru": "У вас есть веганские блюда?"
     },
     {
       "de": "die Portion",
       "ru": "порция",
+      "en": "portion/serving",
       "example": "Eine große Portion, bitte.",
       "example_ru": "Большую порцию, пожалуйста."
     },
     {
       "de": "der Geschmack",
       "ru": "вкус",
+      "en": "taste",
       "example": "Das schmeckt gut! — Welcher Geschmack?",
       "example_ru": "Вкусно! — Какой вкус?"
     },
     {
       "de": "bestellen",
       "ru": "заказывать",
+      "en": "to order",
       "example": "Ich möchte bestellen.",
       "example_ru": "Я хочу сделать заказ."
     },
     {
       "de": "das Brot",
       "ru": "хлеб",
+      "en": "bread",
       "category": "bread",
       "example": "Ich kaufe Brot.",
       "example_ru": "Я покупаю хлеб."
@@ -75,6 +88,7 @@
     {
       "de": "das Brötchen",
       "ru": "булочка",
+      "en": "bread roll",
       "category": "bread",
       "example": "Zum Frühstück esse ich Brötchen.",
       "example_ru": "На завтрак я ем булочки."
@@ -82,6 +96,7 @@
     {
       "de": "die Butter",
       "ru": "масло",
+      "en": "butter",
       "category": "dairy",
       "example": "Butter auf dem Brot.",
       "example_ru": "Масло на хлебе."
@@ -89,6 +104,7 @@
     {
       "de": "der Käse",
       "ru": "сыр",
+      "en": "cheese",
       "category": "dairy",
       "example": "Ich mag Käse.",
       "example_ru": "Я люблю сыр."
@@ -96,6 +112,7 @@
     {
       "de": "die Milch",
       "ru": "молоко",
+      "en": "milk",
       "category": "dairy",
       "example": "Ich trinke Milch.",
       "example_ru": "Я пью молоко."
@@ -103,6 +120,7 @@
     {
       "de": "der Joghurt",
       "ru": "йогурт",
+      "en": "yogurt",
       "category": "dairy",
       "example": "Joghurt ist gesund.",
       "example_ru": "Йогурт полезен."
@@ -110,6 +128,7 @@
     {
       "de": "das Ei",
       "ru": "яйцо",
+      "en": "egg",
       "category": "protein",
       "example": "Ich esse ein Ei.",
       "example_ru": "Я ем яйцо."
@@ -117,6 +136,7 @@
     {
       "de": "das Fleisch",
       "ru": "мясо",
+      "en": "meat",
       "category": "protein",
       "example": "Ich esse kein Fleisch.",
       "example_ru": "Я не ем мясо."
@@ -124,6 +144,7 @@
     {
       "de": "der Fisch",
       "ru": "рыба",
+      "en": "fish",
       "category": "protein",
       "example": "Der Fisch ist gesund.",
       "example_ru": "Рыба полезна."
@@ -131,6 +152,7 @@
     {
       "de": "die Gurke",
       "ru": "огурец",
+      "en": "cucumber",
       "category": "vegetable",
       "example": "Gurken sind knackig.",
       "example_ru": "Огурцы хрустящие."
@@ -138,6 +160,7 @@
     {
       "de": "die Tomate",
       "ru": "помидор",
+      "en": "tomato",
       "category": "vegetable",
       "example": "Tomaten sind lecker.",
       "example_ru": "Помидоры вкусные."
@@ -145,6 +168,7 @@
     {
       "de": "die Zucchini",
       "ru": "цукини",
+      "en": "zucchini",
       "category": "vegetable",
       "example": "Zucchini ist vielseitig.",
       "example_ru": "Цукини универсальны."
@@ -152,6 +176,7 @@
     {
       "de": "die Banane",
       "ru": "банан",
+      "en": "banana",
       "category": "fruit",
       "example": "Ich esse eine Banane.",
       "example_ru": "Я ем банан."
@@ -159,6 +184,7 @@
     {
       "de": "der Apfel",
       "ru": "яблоко",
+      "en": "apple",
       "category": "fruit",
       "example": "Der Apfel ist rot.",
       "example_ru": "Яблоко красное."
@@ -166,6 +192,7 @@
     {
       "de": "die Orange",
       "ru": "апельсин",
+      "en": "orange",
       "category": "fruit",
       "example": "Orangen sind süß.",
       "example_ru": "Апельсины сладкие."
@@ -173,6 +200,7 @@
     {
       "de": "das Gemüse",
       "ru": "овощи",
+      "en": "vegetables",
       "category": "vegetable",
       "example": "Das Gemüse ist gesund.",
       "example_ru": "Овощи полезны."
@@ -180,6 +208,7 @@
     {
       "de": "die Kartoffel",
       "ru": "картофель",
+      "en": "potato",
       "category": "vegetable",
       "example": "Ich mag Kartoffeln.",
       "example_ru": "Я люблю картофель."
@@ -187,6 +216,7 @@
     {
       "de": "der Reis",
       "ru": "рис",
+      "en": "rice",
       "category": "grain",
       "example": "Reis mit Gemüse.",
       "example_ru": "Рис с овощами."
@@ -194,6 +224,7 @@
     {
       "de": "die Nudeln",
       "ru": "макароны",
+      "en": "pasta/noodles",
       "category": "grain",
       "example": "Kinder mögen Nudeln.",
       "example_ru": "Дети любят макароны."
@@ -201,6 +232,7 @@
     {
       "de": "das Wasser",
       "ru": "вода",
+      "en": "water",
       "category": "drink",
       "example": "Ich trinke Wasser.",
       "example_ru": "Я пью воду."
@@ -208,6 +240,7 @@
     {
       "de": "der Kaffee",
       "ru": "кофе",
+      "en": "coffee",
       "category": "drink",
       "example": "Ein Kaffee, bitte.",
       "example_ru": "Кофе, пожалуйста."
@@ -215,6 +248,7 @@
     {
       "de": "der Tee",
       "ru": "чай",
+      "en": "tea",
       "category": "drink",
       "example": "Ich trinke gern Tee.",
       "example_ru": "Я люблю пить чай."
@@ -222,6 +256,7 @@
     {
       "de": "der Saft",
       "ru": "сок",
+      "en": "juice",
       "category": "drink",
       "example": "Orangensaft schmeckt gut.",
       "example_ru": "Апельсиновый сок вкусный."
@@ -229,6 +264,7 @@
     {
       "de": "das Bier",
       "ru": "пиво",
+      "en": "beer",
       "category": "drink",
       "example": "Ein Bier, bitte.",
       "example_ru": "Пиво, пожалуйста."
@@ -236,6 +272,7 @@
     {
       "de": "der Wein",
       "ru": "вино",
+      "en": "wine",
       "category": "drink",
       "example": "Ein Glas Wein.",
       "example_ru": "Бокал вина."
@@ -243,6 +280,7 @@
     {
       "de": "der Zucker",
       "ru": "сахар",
+      "en": "sugar",
       "category": "spice",
       "example": "Kaffee mit Zucker.",
       "example_ru": "Кофе с сахаром."
@@ -250,6 +288,7 @@
     {
       "de": "das Salz",
       "ru": "соль",
+      "en": "salt",
       "category": "spice",
       "example": "Salz und Pfeffer.",
       "example_ru": "Соль и перец."
@@ -257,6 +296,7 @@
     {
       "de": "der Pfeffer",
       "ru": "перец",
+      "en": "pepper",
       "category": "spice",
       "example": "Pfeffer macht das Gericht würzig.",
       "example_ru": "Перец делает блюдо острее."
@@ -264,6 +304,7 @@
     {
       "de": "das Hähnchen",
       "ru": "курица",
+      "en": "chicken",
       "category": "protein",
       "example": "Ich esse gern Hähnchen.",
       "example_ru": "Я люблю есть курицу."
@@ -271,6 +312,7 @@
     {
       "de": "das Rindfleisch",
       "ru": "говядина",
+      "en": "beef",
       "category": "protein",
       "example": "Rindfleisch ist teuer.",
       "example_ru": "Говядина дорогая."
@@ -278,6 +320,7 @@
     {
       "de": "das Schweinefleisch",
       "ru": "свинина",
+      "en": "pork",
       "category": "protein",
       "example": "Ich esse kein Schweinefleisch.",
       "example_ru": "Я не ем свинину."
@@ -285,6 +328,7 @@
     {
       "de": "die Wurst",
       "ru": "колбаса",
+      "en": "sausage",
       "category": "protein",
       "example": "Die Wurst schmeckt gut.",
       "example_ru": "Колбаса вкусная."
@@ -292,6 +336,7 @@
     {
       "de": "der Schinken",
       "ru": "ветчина",
+      "en": "ham",
       "category": "protein",
       "example": "Schinken auf dem Brot.",
       "example_ru": "Ветчина на хлебе."
@@ -299,6 +344,7 @@
     {
       "de": "der Salat",
       "ru": "салат",
+      "en": "salad",
       "category": "vegetable",
       "example": "Ich esse einen Salat.",
       "example_ru": "Я ем салат."
@@ -306,6 +352,7 @@
     {
       "de": "die Suppe",
       "ru": "суп",
+      "en": "soup",
       "category": "meal",
       "example": "Die Suppe ist heiß.",
       "example_ru": "Суп горячий."
@@ -313,6 +360,7 @@
     {
       "de": "die Pizza",
       "ru": "пицца",
+      "en": "pizza",
       "category": "meal",
       "example": "Die Pizza ist lecker.",
       "example_ru": "Пицца вкусная."
@@ -320,6 +368,7 @@
     {
       "de": "der Kuchen",
       "ru": "пирог",
+      "en": "cake",
       "category": "dessert",
       "example": "Der Kuchen ist süß.",
       "example_ru": "Пирог сладкий."
@@ -327,6 +376,7 @@
     {
       "de": "der Keks",
       "ru": "печенье",
+      "en": "cookie/biscuit",
       "category": "dessert",
       "example": "Ich esse einen Keks.",
       "example_ru": "Я ем печенье."
@@ -334,6 +384,7 @@
     {
       "de": "die Schokolade",
       "ru": "шоколад",
+      "en": "chocolate",
       "category": "dessert",
       "example": "Schokolade schmeckt gut.",
       "example_ru": "Шоколад вкусный."
@@ -341,6 +392,7 @@
     {
       "de": "das Eis",
       "ru": "мороженое",
+      "en": "ice cream",
       "category": "dessert",
       "example": "Im Sommer esse ich Eis.",
       "example_ru": "Летом я ем мороженое."
@@ -348,6 +400,7 @@
     {
       "de": "die Erdbeere",
       "ru": "клубника",
+      "en": "strawberry",
       "category": "fruit",
       "example": "Erdbeeren sind süß.",
       "example_ru": "Клубника сладкая."
@@ -355,6 +408,7 @@
     {
       "de": "die Traube",
       "ru": "виноград",
+      "en": "grape",
       "category": "fruit",
       "example": "Trauben sind lecker.",
       "example_ru": "Виноград вкусный."
@@ -362,6 +416,7 @@
     {
       "de": "die Birne",
       "ru": "груша",
+      "en": "pear",
       "category": "fruit",
       "example": "Ich esse eine Birne.",
       "example_ru": "Я ем грушу."
@@ -369,6 +424,7 @@
     {
       "de": "die Zitrone",
       "ru": "лимон",
+      "en": "lemon",
       "category": "fruit",
       "example": "Die Zitrone ist sauer.",
       "example_ru": "Лимон кислый."
@@ -376,6 +432,7 @@
     {
       "de": "die Paprika",
       "ru": "перец (овощ)",
+      "en": "bell pepper",
       "category": "vegetable",
       "example": "Paprika ist gesund.",
       "example_ru": "Перец полезный."
@@ -383,6 +440,7 @@
     {
       "de": "die Karotte",
       "ru": "морковь",
+      "en": "carrot",
       "category": "vegetable",
       "example": "Karotten sind gesund.",
       "example_ru": "Морковь полезная."
@@ -390,6 +448,7 @@
     {
       "de": "die Zwiebel",
       "ru": "лук",
+      "en": "onion",
       "category": "vegetable",
       "example": "Die Zwiebel ist scharf.",
       "example_ru": "Лук острый."
@@ -397,6 +456,7 @@
     {
       "de": "der Knoblauch",
       "ru": "чеснок",
+      "en": "garlic",
       "category": "vegetable",
       "example": "Knoblauch ist gesund.",
       "example_ru": "Чеснок полезный."
@@ -404,6 +464,7 @@
     {
       "de": "der Honig",
       "ru": "мёд",
+      "en": "honey",
       "category": "sweet",
       "example": "Honig im Tee.",
       "example_ru": "Мёд в чае."
@@ -411,6 +472,7 @@
     {
       "de": "die Marmelade",
       "ru": "варенье",
+      "en": "jam",
       "category": "sweet",
       "example": "Marmelade auf dem Brot.",
       "example_ru": "Варенье на хлебе."
@@ -418,6 +480,7 @@
     {
       "de": "die Sahne",
       "ru": "сливки",
+      "en": "cream",
       "category": "dairy",
       "example": "Kaffee mit Sahne.",
       "example_ru": "Кофе со сливками."
@@ -425,6 +488,7 @@
     {
       "de": "der Quark",
       "ru": "творог",
+      "en": "quark/cottage cheese",
       "category": "dairy",
       "example": "Quark ist gesund.",
       "example_ru": "Творог полезный."
@@ -432,6 +496,7 @@
     {
       "de": "das Müsli",
       "ru": "мюсли",
+      "en": "muesli/cereal",
       "category": "grain",
       "example": "Ich esse Müsli zum Frühstück.",
       "example_ru": "Я ем мюсли на завтрак."
@@ -439,6 +504,7 @@
     {
       "de": "das Frühstück",
       "ru": "завтрак",
+      "en": "breakfast",
       "category": "meal",
       "example": "Das Frühstück ist um 8 Uhr.",
       "example_ru": "Завтрак в 8 часов."
@@ -446,6 +512,7 @@
     {
       "de": "das Mittagessen",
       "ru": "обед",
+      "en": "lunch",
       "category": "meal",
       "example": "Wir essen Mittagessen.",
       "example_ru": "Мы обедаем."
@@ -453,6 +520,7 @@
     {
       "de": "das Abendessen",
       "ru": "ужин",
+      "en": "dinner",
       "category": "meal",
       "example": "Das Abendessen ist fertig.",
       "example_ru": "Ужин готов."
@@ -460,6 +528,7 @@
     {
       "de": "der Snack",
       "ru": "перекус",
+      "en": "snack",
       "category": "meal",
       "example": "Ich esse einen Snack.",
       "example_ru": "Я ем перекус."
@@ -467,6 +536,7 @@
     {
       "de": "das Restaurant",
       "ru": "ресторан",
+      "en": "restaurant",
       "category": "place",
       "example": "Wir gehen ins Restaurant.",
       "example_ru": "Мы идём в ресторан."
@@ -474,6 +544,7 @@
     {
       "de": "das Café",
       "ru": "кафе",
+      "en": "café",
       "category": "place",
       "example": "Wir sitzen im Café.",
       "example_ru": "Мы сидим в кафе."
@@ -481,6 +552,7 @@
     {
       "de": "die Speisekarte",
       "ru": "меню",
+      "en": "menu",
       "category": "restaurant",
       "example": "Die Speisekarte ist lang.",
       "example_ru": "Меню длинное."
@@ -488,6 +560,7 @@
     {
       "de": "bezahlen",
       "ru": "платить",
+      "en": "to pay",
       "category": "restaurant",
       "example": "Ich bezahle die Rechnung.",
       "example_ru": "Я оплачиваю счёт."
@@ -495,6 +568,7 @@
     {
       "de": "die Rechnung",
       "ru": "счёт",
+      "en": "bill/check",
       "category": "restaurant",
       "example": "Die Rechnung, bitte.",
       "example_ru": "Счёт, пожалуйста."
@@ -502,6 +576,7 @@
     {
       "de": "kochen",
       "ru": "готовить",
+      "en": "to cook",
       "category": "kitchen",
       "example": "Ich koche gern.",
       "example_ru": "Я люблю готовить."
@@ -509,6 +584,7 @@
     {
       "de": "backen",
       "ru": "печь",
+      "en": "to bake",
       "category": "kitchen",
       "example": "Meine Mutter backt Kuchen.",
       "example_ru": "Моя мама печёт пирог."
@@ -516,6 +592,7 @@
     {
       "de": "braten",
       "ru": "жарить",
+      "en": "to fry",
       "category": "kitchen",
       "example": "Ich brate Fleisch.",
       "example_ru": "Я жарю мясо."
@@ -523,6 +600,7 @@
     {
       "de": "schneiden",
       "ru": "резать",
+      "en": "to cut",
       "category": "kitchen",
       "example": "Ich schneide Gemüse.",
       "example_ru": "Я режу овощи."
@@ -530,6 +608,7 @@
     {
       "de": "das Messer",
       "ru": "нож",
+      "en": "knife",
       "category": "kitchen",
       "example": "Das Messer ist scharf.",
       "example_ru": "Нож острый."
@@ -537,6 +616,7 @@
     {
       "de": "die Gabel",
       "ru": "вилка",
+      "en": "fork",
       "category": "kitchen",
       "example": "Ich esse mit der Gabel.",
       "example_ru": "Я ем вилкой."
@@ -544,6 +624,7 @@
     {
       "de": "der Löffel",
       "ru": "ложка",
+      "en": "spoon",
       "category": "kitchen",
       "example": "Ich esse Suppe mit dem Löffel.",
       "example_ru": "Я ем суп ложкой."
@@ -551,6 +632,7 @@
     {
       "de": "der Teller",
       "ru": "тарелка",
+      "en": "plate",
       "category": "kitchen",
       "example": "Der Teller ist voll.",
       "example_ru": "Тарелка полная."
@@ -558,6 +640,7 @@
     {
       "de": "das Glas",
       "ru": "стакан",
+      "en": "glass",
       "category": "kitchen",
       "example": "Ein Glas Wasser.",
       "example_ru": "Стакан воды."
@@ -565,6 +648,7 @@
     {
       "de": "die Tasse",
       "ru": "чашка",
+      "en": "cup",
       "category": "kitchen",
       "example": "Eine Tasse Kaffee.",
       "example_ru": "Чашка кофе."
@@ -572,6 +656,7 @@
     {
       "de": "der Hunger",
       "ru": "голод",
+      "en": "hunger",
       "category": "feeling",
       "example": "Ich habe Hunger.",
       "example_ru": "Я голоден."
@@ -579,6 +664,7 @@
     {
       "de": "der Durst",
       "ru": "жажда",
+      "en": "thirst",
       "category": "feeling",
       "example": "Ich habe Durst.",
       "example_ru": "Я хочу пить."
@@ -586,6 +672,7 @@
     {
       "de": "schmecken",
       "ru": "быть на вкус",
+      "en": "to taste",
       "category": "verb",
       "example": "Die Suppe schmeckt gut.",
       "example_ru": "Суп вкусный."
@@ -593,6 +680,7 @@
     {
       "de": "süß",
       "ru": "сладкий",
+      "en": "sweet",
       "category": "taste",
       "example": "Der Kuchen ist süß.",
       "example_ru": "Пирог сладкий."
@@ -600,6 +688,7 @@
     {
       "de": "sauer",
       "ru": "кислый",
+      "en": "sour",
       "category": "taste",
       "example": "Die Zitrone ist sauer.",
       "example_ru": "Лимон кислый."
@@ -607,6 +696,7 @@
     {
       "de": "die Kiwi",
       "ru": "киви",
+      "en": "kiwi",
       "category": "fruit",
       "example": "Kiwi ist gesund.",
       "example_ru": "Киви полезный."
@@ -614,6 +704,7 @@
     {
       "de": "die Melone",
       "ru": "дыня",
+      "en": "melon",
       "category": "fruit",
       "example": "Die Melone ist süß.",
       "example_ru": "Дыня сладкая."
@@ -621,6 +712,7 @@
     {
       "de": "die Ananas",
       "ru": "ананас",
+      "en": "pineapple",
       "category": "fruit",
       "example": "Ananas schmeckt gut.",
       "example_ru": "Ананас вкусный."
@@ -628,6 +720,7 @@
     {
       "de": "die Pflaume",
       "ru": "слива",
+      "en": "plum",
       "category": "fruit",
       "example": "Pflaumen sind lecker.",
       "example_ru": "Сливы вкусные."
@@ -635,6 +728,7 @@
     {
       "de": "die Kirsche",
       "ru": "вишня",
+      "en": "cherry",
       "category": "fruit",
       "example": "Kirschen sind rot.",
       "example_ru": "Вишни красные."
@@ -642,6 +736,7 @@
     {
       "de": "die Himbeere",
       "ru": "малина",
+      "en": "raspberry",
       "category": "fruit",
       "example": "Himbeeren sind süß.",
       "example_ru": "Малина сладкая."
@@ -649,6 +744,7 @@
     {
       "de": "die Blaubeere",
       "ru": "черника",
+      "en": "blueberry",
       "category": "fruit",
       "example": "Blaubeeren sind gesund.",
       "example_ru": "Черника полезна."
@@ -656,6 +752,7 @@
     {
       "de": "der Spinat",
       "ru": "шпинат",
+      "en": "spinach",
       "category": "vegetable",
       "example": "Spinat ist gesund.",
       "example_ru": "Шпинат полезный."
@@ -663,6 +760,7 @@
     {
       "de": "der Kohl",
       "ru": "капуста",
+      "en": "cabbage",
       "category": "vegetable",
       "example": "Kohl ist ein Gemüse.",
       "example_ru": "Капуста — это овощ."
@@ -670,6 +768,7 @@
     {
       "de": "die Bohne",
       "ru": "фасоль",
+      "en": "bean",
       "category": "vegetable",
       "example": "Bohnen sind nahrhaft.",
       "example_ru": "Фасоль питательная."
@@ -677,6 +776,7 @@
     {
       "de": "die Erbse",
       "ru": "горох",
+      "en": "pea",
       "category": "vegetable",
       "example": "Erbsen sind grün.",
       "example_ru": "Горох зелёный."
@@ -684,6 +784,7 @@
     {
       "de": "der Pilz",
       "ru": "гриб",
+      "en": "mushroom",
       "category": "vegetable",
       "example": "Pilze schmecken gut.",
       "example_ru": "Грибы вкусные."
@@ -691,6 +792,7 @@
     {
       "de": "die Aubergine",
       "ru": "баклажан",
+      "en": "eggplant",
       "category": "vegetable",
       "example": "Die Aubergine ist lila.",
       "example_ru": "Баклажан фиолетовый."
@@ -698,6 +800,7 @@
     {
       "de": "der Senf",
       "ru": "горчица",
+      "en": "mustard",
       "category": "spice",
       "example": "Senf auf der Wurst.",
       "example_ru": "Горчица на колбасе."
@@ -705,6 +808,7 @@
     {
       "de": "das Öl",
       "ru": "масло (растительное)",
+      "en": "oil",
       "category": "spice",
       "example": "Ich koche mit Öl.",
       "example_ru": "Я готовлю на масле."
@@ -712,6 +816,7 @@
     {
       "de": "die Soße",
       "ru": "соус",
+      "en": "sauce",
       "category": "spice",
       "example": "Die Soße ist lecker.",
       "example_ru": "Соус вкусный."
@@ -719,6 +824,7 @@
     {
       "de": "die Mayonnaise",
       "ru": "майонез",
+      "en": "mayonnaise",
       "category": "spice",
       "example": "Mayonnaise zum Salat.",
       "example_ru": "Майонез к салату."
@@ -726,6 +832,7 @@
     {
       "de": "der Toast",
       "ru": "тост",
+      "en": "toast",
       "category": "bread",
       "example": "Toast mit Marmelade.",
       "example_ru": "Тост с вареньем."
@@ -733,6 +840,7 @@
     {
       "de": "das Croissant",
       "ru": "круассан",
+      "en": "croissant",
       "category": "bread",
       "example": "Ein Croissant zum Kaffee.",
       "example_ru": "Круассан к кофе."
@@ -740,6 +848,7 @@
     {
       "de": "die Torte",
       "ru": "торт",
+      "en": "cake/tart",
       "category": "dessert",
       "example": "Die Torte ist für dich.",
       "example_ru": "Торт для тебя."
@@ -747,6 +856,7 @@
     {
       "de": "bitter",
       "ru": "горький",
+      "en": "bitter",
       "category": "taste",
       "example": "Der Kaffee ist bitter.",
       "example_ru": "Кофе горький."
@@ -754,6 +864,7 @@
     {
       "de": "salzig",
       "ru": "солёный",
+      "en": "salty",
       "category": "taste",
       "example": "Die Suppe ist salzig.",
       "example_ru": "Суп солёный."
@@ -761,6 +872,7 @@
     {
       "de": "lecker",
       "ru": "вкусный",
+      "en": "delicious",
       "category": "taste",
       "example": "Das Essen ist lecker.",
       "example_ru": "Еда вкусная."
@@ -768,6 +880,7 @@
     {
       "de": "die Nuss",
       "ru": "орех",
+      "en": "nut",
       "category": "other",
       "example": "Nüsse sind gesund.",
       "example_ru": "Орехи полезны."
@@ -775,6 +888,7 @@
     {
       "de": "der Apfelsaft",
       "ru": "яблочный сок",
+      "en": "apple juice",
       "category": "drink",
       "example": "Ich trinke Apfelsaft.",
       "example_ru": "Я пью яблочный сок."
@@ -782,6 +896,7 @@
     {
       "de": "die Limonade",
       "ru": "лимонад",
+      "en": "lemonade",
       "category": "drink",
       "example": "Limonade ist erfrischend.",
       "example_ru": "Лимонад освежающий."
@@ -789,6 +904,7 @@
     {
       "de": "die Küche",
       "ru": "кухня",
+      "en": "kitchen",
       "category": "place",
       "example": "Wir kochen in der Küche.",
       "example_ru": "Мы готовим на кухне."
@@ -796,6 +912,7 @@
     {
       "de": "die Serviette",
       "ru": "салфетка",
+      "en": "napkin",
       "category": "kitchen",
       "example": "Die Serviette liegt auf dem Tisch.",
       "example_ru": "Салфетка лежит на столе."
@@ -803,6 +920,7 @@
     {
       "de": "die Flasche",
       "ru": "бутылка",
+      "en": "bottle",
       "category": "kitchen",
       "example": "Eine Flasche Wasser.",
       "example_ru": "Бутылка воды."

@@ -1,64 +1,101 @@
 {
   "id": "zeitausdruecke",
   "name": "Временные выражения",
+  "name_en": "Time Expressions",
   "name_de": "Zeitausdrücke",
   "description": "Слова и фразы для обозначения времени в предложениях",
+  "description_en": "Words and phrases for expressing time in sentences",
   "level": "A1",
-  "linked_to": ["word_order", "present_tense"],
+  "linked_to": [
+    "word_order",
+    "present_tense"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Как сказать «каждый день»?",
-      "options": ["jede Woche", "jeden Tag", "jedes Jahr"],
+      "options": [
+        "jede Woche",
+        "jeden Tag",
+        "jedes Jahr"
+      ],
       "correct": 1,
       "explanation": "Jeden Tag — каждый день. Tag — мужской род, в Akkusativ: jeden."
     },
     {
       "type": "multiple_choice",
       "question": "«Ich gehe ___ ins Kino.» — Я иду сегодня вечером в кино.",
-      "options": ["heute Abend", "gestern Abend", "morgen früh"],
+      "options": [
+        "heute Abend",
+        "gestern Abend",
+        "morgen früh"
+      ],
       "correct": 0,
       "explanation": "Heute Abend — сегодня вечером. Gestern Abend — вчера вечером."
     },
     {
       "type": "multiple_choice",
       "question": "Что значит «übermorgen»?",
-      "options": ["Вчера", "Завтра", "Послезавтра"],
+      "options": [
+        "Вчера",
+        "Завтра",
+        "Послезавтра"
+      ],
       "correct": 2,
       "explanation": "Übermorgen — послезавтра. Morgen — завтра, über — через/сверх."
     },
     {
       "type": "multiple_choice",
       "question": "Что значит «vorgestern»?",
-      "options": ["Позавчера", "Послезавтра", "На прошлой неделе"],
+      "options": [
+        "Позавчера",
+        "Послезавтра",
+        "На прошлой неделе"
+      ],
       "correct": 0,
       "explanation": "Vorgestern — позавчера. Vor — перед, gestern — вчера."
     },
     {
       "type": "multiple_choice",
       "question": "«___ Montag habe ich einen Termin.» — В понедельник у меня встреча.",
-      "options": ["In", "Am", "Um"],
+      "options": [
+        "In",
+        "Am",
+        "Um"
+      ],
       "correct": 1,
       "explanation": "Am (= an dem) используется с днями недели: am Montag, am Dienstag."
     },
     {
       "type": "multiple_choice",
       "question": "Какой предлог используется с часами? «___ 8 Uhr»",
-      "options": ["Am", "Im", "Um"],
+      "options": [
+        "Am",
+        "Im",
+        "Um"
+      ],
       "correct": 2,
       "explanation": "Um используется с точным временем: um 8 Uhr — в 8 часов."
     },
     {
       "type": "multiple_choice",
       "question": "Какой предлог используется с месяцами? «___ Januar»",
-      "options": ["Am", "Im", "Um"],
+      "options": [
+        "Am",
+        "Im",
+        "Um"
+      ],
       "correct": 1,
       "explanation": "Im (= in dem) используется с месяцами и временами года: im Januar, im Sommer."
     },
     {
       "type": "multiple_choice",
       "question": "Что значит «manchmal»?",
-      "options": ["Всегда", "Иногда", "Никогда"],
+      "options": [
+        "Всегда",
+        "Иногда",
+        "Никогда"
+      ],
       "correct": 1,
       "explanation": "Manchmal — иногда. Immer — всегда, nie/niemals — никогда."
     }

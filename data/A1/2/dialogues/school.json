@@ -1,8 +1,10 @@
 {
   "id": "school",
   "name": "В школе",
+  "name_en": "At School",
   "name_de": "In der Schule",
   "description": "На уроке",
+  "description_en": "In the classroom",
   "level": "A2",
   "dialogue": [
     {

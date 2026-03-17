@@ -1,43 +1,67 @@
 {
   "id": "phrases_basics",
   "name": "Базовые фразы",
+  "name_en": "Basic Phrases",
   "name_de": "Grundlegende Sätze",
   "description": "Приветствия, благодарность и простые вопросы",
+  "description_en": "Greetings, gratitude and simple questions",
   "level": "A1",
-  "linked_to": ["phrases"],
+  "linked_to": [
+    "phrases"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Как сказать «Доброе утро»?",
-      "options": ["Guten Tag!", "Gute Nacht!", "Guten Morgen!"],
+      "options": [
+        "Guten Tag!",
+        "Gute Nacht!",
+        "Guten Morgen!"
+      ],
       "correct": 2,
       "explanation": "Guten Morgen! — доброе утро. Guten Tag! — добрый день."
     },
     {
       "type": "multiple_choice",
       "question": "Как ответить «пожалуйста» на благодарность?",
-      "options": ["Danke!", "Bitte!", "Tschüss!"],
+      "options": [
+        "Danke!",
+        "Bitte!",
+        "Tschüss!"
+      ],
       "correct": 1,
       "explanation": "Bitte! — пожалуйста (в ответ на Danke)."
     },
     {
       "type": "multiple_choice",
       "question": "Что значит «Entschuldigung»?",
-      "options": ["Спасибо", "Извините", "До свидания"],
+      "options": [
+        "Спасибо",
+        "Извините",
+        "До свидания"
+      ],
       "correct": 1,
       "explanation": "Entschuldigung — извините, простите."
     },
     {
       "type": "multiple_choice",
       "question": "Как спросить «Как дела?» неформально?",
-      "options": ["Wie heißen Sie?", "Wie geht es dir?", "Wo wohnen Sie?"],
+      "options": [
+        "Wie heißen Sie?",
+        "Wie geht es dir?",
+        "Wo wohnen Sie?"
+      ],
       "correct": 1,
       "explanation": "Wie geht es dir? — как дела? (обращение на «ты»)."
     },
     {
       "type": "multiple_choice",
       "question": "Как сказать «Я не понимаю»?",
-      "options": ["Ich verstehe.", "Ich verstehe nicht.", "Ich weiß."],
+      "options": [
+        "Ich verstehe.",
+        "Ich verstehe nicht.",
+        "Ich weiß."
+      ],
       "correct": 1,
       "explanation": "Ich verstehe nicht — я не понимаю."
     }

@@ -1,8 +1,10 @@
 {
   "id": "akkusativ",
   "name": "Аккузатив (Akkusativ)",
+  "name_en": "Accusative Case (Akkusativ)",
   "name_de": "Akkusativ",
   "description": "Винительный падеж в немецком языке",
+  "description_en": "Accusative case in German",
   "level": "A1",
   "theory": {
     "title": "Винительный падеж — Akkusativ",
@@ -11,20 +13,56 @@
       {
         "title": "Определённые артикли",
         "rows": [
-          ["", "Nominativ", "Akkusativ"],
-          ["м.р.", "der", "den"],
-          ["ж.р.", "die", "die"],
-          ["ср.р.", "das", "das"],
-          ["мн.ч.", "die", "die"]
+          [
+            "",
+            "Nominativ",
+            "Akkusativ"
+          ],
+          [
+            "м.р.",
+            "der",
+            "den"
+          ],
+          [
+            "ж.р.",
+            "die",
+            "die"
+          ],
+          [
+            "ср.р.",
+            "das",
+            "das"
+          ],
+          [
+            "мн.ч.",
+            "die",
+            "die"
+          ]
         ]
       },
       {
         "title": "Неопределённые артикли",
         "rows": [
-          ["", "Nominativ", "Akkusativ"],
-          ["м.р.", "ein", "einen"],
-          ["ж.р.", "eine", "eine"],
-          ["ср.р.", "ein", "ein"]
+          [
+            "",
+            "Nominativ",
+            "Akkusativ"
+          ],
+          [
+            "м.р.",
+            "ein",
+            "einen"
+          ],
+          [
+            "ж.р.",
+            "eine",
+            "eine"
+          ],
+          [
+            "ср.р.",
+            "ein",
+            "ein"
+          ]
         ]
       }
     ],
@@ -42,145 +80,241 @@
   "questions": [
     {
       "question": "Ich sehe ___ Mann. (der)",
-      "options": ["der", "den", "dem"],
+      "options": [
+        "der",
+        "den",
+        "dem"
+      ],
       "correct": 1,
       "explanation": "der → den в Akkusativ (муж. род)"
     },
     {
       "question": "Ich kaufe ___ Buch. (das)",
-      "options": ["das", "den", "dem"],
+      "options": [
+        "das",
+        "den",
+        "dem"
+      ],
       "correct": 0,
       "explanation": "das не меняется в Akkusativ"
     },
     {
       "question": "Ich trinke ___ Kaffee. (ein)",
-      "options": ["ein", "einen", "einem"],
+      "options": [
+        "ein",
+        "einen",
+        "einem"
+      ],
       "correct": 1,
       "explanation": "ein → einen в Akkusativ (муж. род)"
     },
     {
       "question": "Ich habe ___ Schwester. (eine)",
-      "options": ["eine", "einen", "einer"],
+      "options": [
+        "eine",
+        "einen",
+        "einer"
+      ],
       "correct": 0,
       "explanation": "eine не меняется в Akkusativ (жен. род)"
     },
     {
       "question": "Er liest ___ Zeitung. (die)",
-      "options": ["die", "der", "den"],
+      "options": [
+        "die",
+        "der",
+        "den"
+      ],
       "correct": 0,
       "explanation": "die не меняется в Akkusativ (жен. род)"
     },
     {
       "question": "Wir brauchen ___ Computer. (ein)",
-      "options": ["ein", "einen", "einem"],
+      "options": [
+        "ein",
+        "einen",
+        "einem"
+      ],
       "correct": 1,
       "explanation": "ein → einen в Akkusativ (муж. род)"
     },
     {
       "question": "Sie sucht ___ Wohnung. (eine)",
-      "options": ["eine", "einen", "einer"],
+      "options": [
+        "eine",
+        "einen",
+        "einer"
+      ],
       "correct": 0,
       "explanation": "eine не меняется в Akkusativ"
     },
     {
       "question": "Ich esse ___ Apfel. (der)",
-      "options": ["der", "den", "dem"],
+      "options": [
+        "der",
+        "den",
+        "dem"
+      ],
       "correct": 1,
       "explanation": "der → den в Akkusativ"
     },
     {
       "question": "Sie öffnet ___ Fenster. (das)",
-      "options": ["das", "den", "dem"],
+      "options": [
+        "das",
+        "den",
+        "dem"
+      ],
       "correct": 0,
       "explanation": "das не меняется в Akkusativ"
     },
     {
       "question": "Ich besuche ___ Freund. (ein)",
-      "options": ["ein", "einen", "einem"],
+      "options": [
+        "ein",
+        "einen",
+        "einem"
+      ],
       "correct": 1,
       "explanation": "ein → einen в Akkusativ (муж. род)"
     },
     {
       "question": "Wir haben ___ Hund. (ein)",
-      "options": ["ein", "einen", "einem"],
+      "options": [
+        "ein",
+        "einen",
+        "einem"
+      ],
       "correct": 1,
       "explanation": "ein → einen (муж. род, Akkusativ)"
     },
     {
       "question": "Er nimmt ___ Tasche. (die)",
-      "options": ["die", "der", "den"],
+      "options": [
+        "die",
+        "der",
+        "den"
+      ],
       "correct": 0,
       "explanation": "die не меняется в Akkusativ"
     },
     {
       "question": "Ich kenne ___ Lehrer. (der)",
-      "options": ["der", "den", "dem"],
+      "options": [
+        "der",
+        "den",
+        "dem"
+      ],
       "correct": 1,
       "explanation": "der → den в Akkusativ"
     },
     {
       "question": "Sie schreibt ___ Brief. (einen)",
-      "options": ["ein", "einen", "einem"],
+      "options": [
+        "ein",
+        "einen",
+        "einem"
+      ],
       "correct": 1,
       "explanation": "einen — муж. род в Akkusativ"
     },
     {
       "question": "Ich habe ___ Bruder.",
-      "options": ["kein", "keinen", "keine"],
+      "options": [
+        "kein",
+        "keinen",
+        "keine"
+      ],
       "correct": 1,
       "explanation": "keinen — kein в Akkusativ мужского рода (der Bruder → keinen Bruder)"
     },
     {
       "question": "Sie trinkt ___ Milch.",
-      "options": ["kein", "keinen", "keine"],
+      "options": [
+        "kein",
+        "keinen",
+        "keine"
+      ],
       "correct": 2,
       "explanation": "keine — женский род не меняется в Akkusativ (die Milch → keine Milch)"
     },
     {
       "question": "Wir haben ___ Geld.",
-      "options": ["kein", "keinen", "keine"],
+      "options": [
+        "kein",
+        "keinen",
+        "keine"
+      ],
       "correct": 0,
       "explanation": "kein — средний род не меняется в Akkusativ (das Geld → kein Geld)"
     },
     {
       "question": "Какое предложение правильное?",
-      "options": ["Ich sehe der Mann.", "Ich sehe den Mann.", "Ich sehe dem Mann."],
+      "options": [
+        "Ich sehe der Mann.",
+        "Ich sehe den Mann.",
+        "Ich sehe dem Mann."
+      ],
       "correct": 1,
       "explanation": "der → den в Akkusativ. «Я вижу мужчину.»"
     },
     {
       "question": "Какое предложение правильное?",
-      "options": ["Er kauft ein Kuchen.", "Er kauft einen Kuchen.", "Er kauft einem Kuchen."],
+      "options": [
+        "Er kauft ein Kuchen.",
+        "Er kauft einen Kuchen.",
+        "Er kauft einem Kuchen."
+      ],
       "correct": 1,
       "explanation": "ein → einen в Akkusativ мужского рода (der Kuchen)"
     },
     {
       "question": "Das Geschenk ist ___ meinen Bruder.",
-      "options": ["für", "mit", "von"],
+      "options": [
+        "für",
+        "mit",
+        "von"
+      ],
       "correct": 0,
       "explanation": "für + Akkusativ. Подарок для моего брата."
     },
     {
       "question": "Wir gehen ___ den Park.",
-      "options": ["durch", "mit", "bei"],
+      "options": [
+        "durch",
+        "mit",
+        "bei"
+      ],
       "correct": 0,
       "explanation": "durch + Akkusativ. Мы идём через парк."
     },
     {
       "question": "Er geht ___ seinen Hund spazieren.",
-      "options": ["für", "ohne", "gegen"],
+      "options": [
+        "für",
+        "ohne",
+        "gegen"
+      ],
       "correct": 1,
       "explanation": "ohne + Akkusativ. Он идёт гулять без своей собаки."
     },
     {
       "question": "Ich suche ___ Schlüssel.",
-      "options": ["den", "die", "das"],
+      "options": [
+        "den",
+        "die",
+        "das"
+      ],
       "correct": 0,
       "explanation": "Schlüssel — мужской род (der Schlüssel → den в Akkusativ)"
     },
     {
       "question": "Ich brauche ___ Handy.",
-      "options": ["den", "die", "das"],
+      "options": [
+        "den",
+        "die",
+        "das"
+      ],
       "correct": 2,
       "explanation": "Handy — средний род (das Handy), не меняется в Akkusativ"
     }

@@ -1,79 +1,93 @@
 {
   "id": "professions_workplace",
   "name": "Профессии и рабочее место",
+  "name_en": "Professions and Workplace",
   "name_de": "Berufe und Arbeitsplatz",
   "description": "Лексика A2.1 для работы и профессий",
+  "description_en": "A2.1 vocabulary for work and professions",
   "level": "A2",
   "words": [
     {
       "de": "der Lebenslauf",
       "ru": "резюме",
+      "en": "resume/CV",
       "example": "Ich habe meinen Lebenslauf aktualisiert.",
       "example_ru": "Я обновил свое резюме."
     },
     {
       "de": "die Bewerbung",
       "ru": "заявка на работу",
+      "en": "application (job)",
       "example": "Sie schreibt eine Bewerbung für die Stelle.",
       "example_ru": "Она пишет заявку на вакансию."
     },
     {
       "de": "das Vorstellungsgespräch",
       "ru": "собеседование",
+      "en": "job interview",
       "example": "Morgen habe ich ein Vorstellungsgespräch.",
       "example_ru": "Завтра у меня собеседование."
     },
     {
       "de": "der Arbeitgeber",
       "ru": "работодатель",
+      "en": "employer",
       "example": "Mein Arbeitgeber unterstützt Fortbildungen.",
       "example_ru": "Мой работодатель поддерживает повышение квалификации."
     },
     {
       "de": "der Arbeitnehmer",
       "ru": "работник",
+      "en": "employee",
       "example": "Der Arbeitnehmer beginnt um acht Uhr.",
       "example_ru": "Работник начинает в восемь часов."
     },
     {
       "de": "die Schicht",
       "ru": "смена",
+      "en": "shift/layer",
       "example": "Heute habe ich die Spätschicht.",
       "example_ru": "Сегодня у меня вечерняя смена."
     },
     {
       "de": "die Überstunden",
       "ru": "сверхурочные",
+      "en": "overtime",
       "example": "Diese Woche habe ich viele Überstunden gemacht.",
       "example_ru": "На этой неделе я работал много сверхурочно."
     },
     {
       "de": "die Besprechung",
       "ru": "совещание",
+      "en": "meeting/discussion",
       "example": "Die Besprechung beginnt um 10 Uhr.",
       "example_ru": "Совещание начинается в 10 часов."
     },
     {
       "de": "der Vertrag",
       "ru": "договор",
+      "en": "contract",
       "example": "Ich habe den Vertrag unterschrieben.",
       "example_ru": "Я подписал договор."
     },
     {
       "de": "kündigen",
       "ru": "увольняться, расторгать договор",
+      "en": "to quit/resign",
       "example": "Er möchte zum Monatsende kündigen.",
       "example_ru": "Он хочет уволиться в конце месяца."
     },
     {
       "de": "die Gehaltserhöhung",
       "ru": "повышение зарплаты",
+      "en": "salary raise",
       "example": "Sie hat eine Gehaltserhöhung bekommen.",
       "example_ru": "Она получила повышение зарплаты."
     },
     {
       "de": "die Weiterbildung",
       "ru": "повышение квалификации",
+      "en": "further education/training",
       "example": "Ich mache eine Weiterbildung im IT-Bereich.",
       "example_ru": "Я прохожу повышение квалификации в IT-сфере."
     }

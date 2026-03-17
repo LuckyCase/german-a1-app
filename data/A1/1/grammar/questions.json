@@ -1,8 +1,10 @@
 {
   "id": "questions",
   "name": "Вопросительные слова",
+  "name_en": "Question Words",
   "name_de": "Fragewörter",
   "description": "Wer, Was, Wo, Woher, Wohin, Wann, Wie",
+  "description_en": "Wer, Was, Wo, Woher, Wohin, Wann, Wie",
   "level": "A1",
   "theory": {
     "title": "Вопросительные слова — W-Fragen",

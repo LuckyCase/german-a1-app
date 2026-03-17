@@ -1,8 +1,10 @@
 {
   "id": "articles",
   "name": "Артикли (der, die, das)",
+  "name_en": "Articles (der, die, das)",
   "name_de": "Artikel",
   "description": "Артикли и нулевой артикль (уровень A2)",
+  "description_en": "Articles and zero article (A2 level)",
   "level": "A2",
   "theory": {
     "title": "Артикли и нулевой артикль",

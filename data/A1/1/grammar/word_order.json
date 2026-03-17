@@ -1,8 +1,10 @@
 {
   "id": "word_order",
   "name": "Порядок слов",
+  "name_en": "Word Order",
   "name_de": "Wortstellung",
   "description": "Порядок слов в немецком предложении",
+  "description_en": "Word order in German sentences",
   "level": "A1",
   "theory": {
     "title": "Порядок слов в предложении",

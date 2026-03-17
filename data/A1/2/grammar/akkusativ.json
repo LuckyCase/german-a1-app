@@ -1,8 +1,10 @@
 {
   "id": "akkusativ",
   "name": "Датив (Dativ)",
+  "name_en": "Dative Case (Dativ)",
   "name_de": "Dativ",
   "description": "Дательный падеж в немецком языке (уровень A2)",
+  "description_en": "Dative case in German (A2 level)",
   "level": "A2",
   "theory": {
     "title": "Датив — Dativ",

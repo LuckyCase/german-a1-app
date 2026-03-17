@@ -1,22 +1,102 @@
 {
   "id": "hotel",
   "name": "В отеле",
+  "name_en": "At the Hotel",
   "name_de": "Im Hotel",
   "description": "Диалог регистрации в отеле (уровень A2)",
+  "description_en": "Hotel check-in dialogue (A2 level)",
   "level": "A2",
   "dialogue": [
-    {"role": "Gast", "role_ru": "Гость", "text": "Guten Tag! Ich habe ein Zimmer reserviert.", "text_ru": "Добрый день! Я забронировал номер.", "audio_file": "hotel_01.mp3"},
-    {"role": "Rezeption", "role_ru": "Рецепция", "text": "Guten Tag! Unter welchem Namen bitte?", "text_ru": "Добрый день! На какую фамилию?", "audio_file": "hotel_02.mp3"},
-    {"role": "Gast", "role_ru": "Гость", "text": "Müller. Ich habe vor zwei Wochen reserviert.", "text_ru": "Мюллер. Я забронировал две недели назад.", "audio_file": "hotel_03.mp3"},
-    {"role": "Rezeption", "role_ru": "Рецепция", "text": "Einen Moment bitte. Ja, Sie haben ein Doppelzimmer für drei Nächte.", "text_ru": "Секунду. Да, у вас двухместный номер на три ночи.", "audio_file": "hotel_04.mp3"},
-    {"role": "Gast", "role_ru": "Гость", "text": "Genau. Gibt es Zimmer mit Balkon?", "text_ru": "Верно. Есть номера с балконом?", "audio_file": "hotel_05.mp3"},
-    {"role": "Rezeption", "role_ru": "Рецепция", "text": "Ja, Ihr Zimmer hat einen Balkon. Hier ist Ihr Schlüssel. Das Frühstück ist von 7 bis 10 Uhr.", "text_ru": "Да, у вашего номера есть балкон. Вот ключ. Завтрак с 7 до 10.", "audio_file": "hotel_06.mp3"},
-    {"role": "Gast", "role_ru": "Гость", "text": "Perfekt, danke! Wo ist der Aufzug?", "text_ru": "Отлично, спасибо! Где лифт?", "audio_file": "hotel_07.mp3"},
-    {"role": "Rezeption", "role_ru": "Рецепция", "text": "Da links. Sie haben Zimmer 305 im dritten Stock. Einen angenehmen Aufenthalt!", "text_ru": "Там слева. У вас номер 305 на третьем этаже. Приятного пребывания!", "audio_file": "hotel_08.mp3"}
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Guten Tag! Ich habe ein Zimmer reserviert.",
+      "text_ru": "Добрый день! Я забронировал номер.",
+      "audio_file": "hotel_01.mp3"
+    },
+    {
+      "role": "Rezeption",
+      "role_ru": "Рецепция",
+      "text": "Guten Tag! Unter welchem Namen bitte?",
+      "text_ru": "Добрый день! На какую фамилию?",
+      "audio_file": "hotel_02.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Müller. Ich habe vor zwei Wochen reserviert.",
+      "text_ru": "Мюллер. Я забронировал две недели назад.",
+      "audio_file": "hotel_03.mp3"
+    },
+    {
+      "role": "Rezeption",
+      "role_ru": "Рецепция",
+      "text": "Einen Moment bitte. Ja, Sie haben ein Doppelzimmer für drei Nächte.",
+      "text_ru": "Секунду. Да, у вас двухместный номер на три ночи.",
+      "audio_file": "hotel_04.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Genau. Gibt es Zimmer mit Balkon?",
+      "text_ru": "Верно. Есть номера с балконом?",
+      "audio_file": "hotel_05.mp3"
+    },
+    {
+      "role": "Rezeption",
+      "role_ru": "Рецепция",
+      "text": "Ja, Ihr Zimmer hat einen Balkon. Hier ist Ihr Schlüssel. Das Frühstück ist von 7 bis 10 Uhr.",
+      "text_ru": "Да, у вашего номера есть балкон. Вот ключ. Завтрак с 7 до 10.",
+      "audio_file": "hotel_06.mp3"
+    },
+    {
+      "role": "Gast",
+      "role_ru": "Гость",
+      "text": "Perfekt, danke! Wo ist der Aufzug?",
+      "text_ru": "Отлично, спасибо! Где лифт?",
+      "audio_file": "hotel_07.mp3"
+    },
+    {
+      "role": "Rezeption",
+      "role_ru": "Рецепция",
+      "text": "Da links. Sie haben Zimmer 305 im dritten Stock. Einen angenehmen Aufenthalt!",
+      "text_ru": "Там слева. У вас номер 305 на третьем этаже. Приятного пребывания!",
+      "audio_file": "hotel_08.mp3"
+    }
   ],
   "exercises": [
-    {"type": "fill_blank", "question": "Ich habe ein Zimmer ___.", "options": ["reserviert", "bestellt", "gebucht"], "correct": 0, "explanation": "reserviert — забронировал"},
-    {"type": "fill_blank", "question": "Das Frühstück ist ___ 7 bis 10 Uhr.", "options": ["von", "von dem", "ab"], "correct": 0, "explanation": "von ... bis — с ... до"},
-    {"type": "fill_blank", "question": "Sie haben Zimmer 305 im dritten ___.", "options": ["Stock", "Etage", "Stockwerk"], "correct": 0, "explanation": "im dritten Stock — на третьем этаже"}
+    {
+      "type": "fill_blank",
+      "question": "Ich habe ein Zimmer ___.",
+      "options": [
+        "reserviert",
+        "bestellt",
+        "gebucht"
+      ],
+      "correct": 0,
+      "explanation": "reserviert — забронировал"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Das Frühstück ist ___ 7 bis 10 Uhr.",
+      "options": [
+        "von",
+        "von dem",
+        "ab"
+      ],
+      "correct": 0,
+      "explanation": "von ... bis — с ... до"
+    },
+    {
+      "type": "fill_blank",
+      "question": "Sie haben Zimmer 305 im dritten ___.",
+      "options": [
+        "Stock",
+        "Etage",
+        "Stockwerk"
+      ],
+      "correct": 0,
+      "explanation": "im dritten Stock — на третьем этаже"
+    }
   ]
 }

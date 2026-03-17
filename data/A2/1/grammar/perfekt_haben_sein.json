@@ -1,8 +1,10 @@
 {
   "id": "perfekt_haben_sein",
   "name": "Perfekt: haben или sein",
+  "name_en": "Perfekt: haben or sein",
   "name_de": "Perfekt mit haben oder sein",
   "description": "Выбор вспомогательного глагола и базовая практика Perfekt",
+  "description_en": "Choosing auxiliary verbs and basic Perfekt practice",
   "level": "A2",
   "theory": {
     "title": "Perfekt в A2",
@@ -20,49 +22,81 @@
   "questions": [
     {
       "question": "Wir ___ gestern sehr spät angekommen.",
-      "options": ["haben", "sind", "werden"],
+      "options": [
+        "haben",
+        "sind",
+        "werden"
+      ],
       "correct": 1,
       "explanation": "Ankommen — глагол движения, используется sein."
     },
     {
       "question": "Ich ___ den Bericht schon geschrieben.",
-      "options": ["bin", "habe", "werde"],
+      "options": [
+        "bin",
+        "habe",
+        "werde"
+      ],
       "correct": 1,
       "explanation": "Schreiben с объектом — Perfekt с haben."
     },
     {
       "question": "Meine Kollegin ___ krank geworden.",
-      "options": ["ist", "hat", "wird"],
+      "options": [
+        "ist",
+        "hat",
+        "wird"
+      ],
       "correct": 0,
       "explanation": "Werden (изменение состояния) — с sein."
     },
     {
       "question": "___ ihr heute früh gefrühstückt?",
-      "options": ["Seid", "Habt", "Werdet"],
+      "options": [
+        "Seid",
+        "Habt",
+        "Werdet"
+      ],
       "correct": 1,
       "explanation": "Frühstücken — Perfekt с haben."
     },
     {
       "question": "Er ___ drei Stunden auf den Zug gewartet.",
-      "options": ["ist", "hat", "war"],
+      "options": [
+        "ist",
+        "hat",
+        "war"
+      ],
       "correct": 1,
       "explanation": "Warten — Perfekt с haben."
     },
     {
       "question": "Wir ___ um 5 Uhr losgefahren.",
-      "options": ["haben", "sind", "waren"],
+      "options": [
+        "haben",
+        "sind",
+        "waren"
+      ],
       "correct": 1,
       "explanation": "Losfahren — движение, Perfekt с sein."
     },
     {
       "question": "Ich ___ meine Tasche im Bus vergessen.",
-      "options": ["bin", "habe", "war"],
+      "options": [
+        "bin",
+        "habe",
+        "war"
+      ],
       "correct": 1,
       "explanation": "Vergessen — Perfekt с haben."
     },
     {
       "question": "Die Kinder ___ schnell eingeschlafen.",
-      "options": ["haben", "sind", "werden"],
+      "options": [
+        "haben",
+        "sind",
+        "werden"
+      ],
       "correct": 1,
       "explanation": "Einschlafen — изменение состояния, с sein."
     }

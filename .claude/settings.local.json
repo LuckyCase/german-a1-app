@@ -29,7 +29,8 @@
       "mcp__dbfbf6ea-84e5-4748-8cf4-8c58e64d967b__microsoft_code_sample_search",
       "Bash(find /c/Projects/german-a1-app -type f -name *.py -o -name *.js -o -name *.jsx -o -name *.ts -o -name *.tsx -o -name *.sql)",
       "Bash(python3 -c \":*)",
-      "Bash(python -c \":*)"
+      "Bash(python -c \":*)",
+      "Bash(chcp 65001)"
     ]
   }
 }

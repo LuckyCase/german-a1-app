@@ -1,8 +1,10 @@
 {
   "id": "doctor_pharmacy",
   "name": "У врача и в аптеке",
+  "name_en": "At the Doctor and Pharmacy",
   "name_de": "Beim Arzt und in der Apotheke",
   "description": "Фразы для посещения врача и покупки лекарств",
+  "description_en": "Phrases for visiting the doctor and buying medicine",
   "level": "A2",
   "type": "situational",
   "phrases": [
@@ -10,6 +12,7 @@
       "de": "Ich habe seit drei Tagen Halsschmerzen.",
       "ru": "У меня три дня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe seit drei Tagen Halsschmerzen und Fieber.",
       "example_ru": "У меня уже три дня болит горло и температура."
     },
@@ -31,6 +34,7 @@
       "de": "Ich brauche eine Krankmeldung für meinen Arbeitgeber.",
       "ru": "Мне нужен больничный лист для работодателя.",
       "context": "Документы",
+      "context_en": "Documents",
       "example": "Könnte ich bitte eine Krankmeldung für drei Tage bekommen?",
       "example_ru": "Можно, пожалуйста, больничный на три дня?"
     },

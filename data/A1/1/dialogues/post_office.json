@@ -1,8 +1,10 @@
 {
   "id": "post_office",
   "name": "На почте",
+  "name_en": "At the Post Office",
   "name_de": "Auf der Post",
   "description": "Отправка письма",
+  "description_en": "Sending a letter",
   "level": "A1",
   "dialogue": [
     {

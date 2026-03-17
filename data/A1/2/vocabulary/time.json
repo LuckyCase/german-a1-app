@@ -1,541 +1,632 @@
 {
   "id": "time",
   "name": "Время",
+  "name_en": "Time",
   "name_de": "Zeit",
   "description": "Время и даты (уровень A2)",
+  "description_en": "Time and dates (A2 level)",
   "level": "A2",
   "words": [
     {
       "de": "der Zeitpunkt",
       "ru": "момент времени",
+      "en": "point in time",
       "example": "Zu diesem Zeitpunkt war ich unterwegs.",
       "example_ru": "В этот момент я был в пути."
     },
     {
       "de": "die Zeitspanne",
       "ru": "промежуток времени",
+      "en": "time span",
       "example": "In einer Zeitspanne von zwei Wochen.",
       "example_ru": "В течение двух недель."
     },
     {
       "de": "die Pünktlichkeit",
       "ru": "пунктуальность",
+      "en": "punctuality",
       "example": "Pünktlichkeit ist in Deutschland wichtig.",
       "example_ru": "Пунктуальность в Германии важна."
     },
     {
       "de": "verspäten",
       "ru": "опаздывать",
+      "en": "to be late",
       "example": "Entschuldigung, ich habe mich verspätet.",
       "example_ru": "Извините, я опоздал."
     },
     {
       "de": "der Termin",
       "ru": "встреча, назначенное время",
+      "en": "appointment",
       "example": "Ich habe einen Termin beim Arzt.",
       "example_ru": "У меня приём у врача."
     },
     {
       "de": "verschieben",
       "ru": "переносить (на другое время)",
+      "en": "to postpone",
       "example": "Können wir den Termin verschieben?",
       "example_ru": "Можем мы перенести встречу?"
     },
     {
       "de": "die Verabredung",
       "ru": "договорённость, свидание",
+      "en": "appointment/date",
       "example": "Wir haben eine Verabredung um 18 Uhr.",
       "example_ru": "У нас встреча в 18 часов."
     },
     {
       "de": "der Feiertag",
       "ru": "праздничный день",
+      "en": "holiday",
       "example": "Am Feiertag haben die Geschäfte zu.",
       "example_ru": "В праздник магазины закрыты."
     },
     {
       "de": "der Urlaub",
       "ru": "отпуск",
+      "en": "vacation/leave",
       "example": "Wann nimmst du Urlaub?",
       "example_ru": "Когда ты берёшь отпуск?"
     },
     {
       "de": "die Freizeit",
       "ru": "свободное время",
+      "en": "free time/leisure",
       "example": "In meiner Freizeit lese ich gern.",
       "example_ru": "В свободное время я люблю читать."
     },
     {
       "de": "die Zeit",
       "ru": "время",
+      "en": "time",
       "example": "Ich habe keine Zeit.",
       "example_ru": "У меня нет времени."
     },
     {
       "de": "die Uhr",
       "ru": "часы",
+      "en": "clock",
       "example": "Wie viel Uhr ist es?",
       "example_ru": "Который час?"
     },
     {
       "de": "die Stunde",
       "ru": "час",
+      "en": "hour",
       "example": "Eine Stunde später.",
       "example_ru": "Час спустя."
     },
     {
       "de": "die Minute",
       "ru": "минута",
+      "en": "minute",
       "example": "Warte eine Minute.",
       "example_ru": "Подожди минуту."
     },
     {
       "de": "der Tag",
       "ru": "день",
+      "en": "day",
       "example": "Guten Tag!",
       "example_ru": "Добрый день!"
     },
     {
       "de": "die Woche",
       "ru": "неделя",
+      "en": "week",
       "example": "Nächste Woche.",
       "example_ru": "На следующей неделе."
     },
     {
       "de": "der Monat",
       "ru": "месяц",
+      "en": "month",
       "example": "Diesen Monat.",
       "example_ru": "В этом месяце."
     },
     {
       "de": "das Jahr",
       "ru": "год",
+      "en": "year",
       "example": "Dieses Jahr.",
       "example_ru": "В этом году."
     },
     {
       "de": "heute",
       "ru": "сегодня",
+      "en": "today",
       "example": "Heute ist Montag.",
       "example_ru": "Сегодня понедельник."
     },
     {
       "de": "morgen",
       "ru": "завтра",
+      "en": "tomorrow",
       "example": "Bis morgen!",
       "example_ru": "До завтра!"
     },
     {
       "de": "gestern",
       "ru": "вчера",
+      "en": "yesterday",
       "example": "Gestern war ich krank.",
       "example_ru": "Вчера я болел."
     },
     {
       "de": "jetzt",
       "ru": "сейчас",
+      "en": "now",
       "example": "Jetzt gehe ich.",
       "example_ru": "Сейчас я иду."
     },
     {
       "de": "später",
       "ru": "позже",
+      "en": "later",
       "example": "Bis später!",
       "example_ru": "До скорого!"
     },
     {
       "de": "früh",
       "ru": "рано",
+      "en": "early",
       "example": "Ich stehe früh auf.",
       "example_ru": "Я встаю рано."
     },
     {
       "de": "spät",
       "ru": "поздно",
+      "en": "late",
       "example": "Es ist spät.",
       "example_ru": "Уже поздно."
     },
     {
       "de": "Montag",
       "ru": "понедельник",
+      "en": "Monday",
       "example": "Am Montag arbeite ich.",
       "example_ru": "В понедельник я работаю."
     },
     {
       "de": "Dienstag",
       "ru": "вторник",
+      "en": "Tuesday",
       "example": "Am Dienstag habe ich Deutsch.",
       "example_ru": "Во вторник у меня немецкий."
     },
     {
       "de": "Mittwoch",
       "ru": "среда",
+      "en": "Wednesday",
       "example": "Mittwoch ist mein freier Tag.",
       "example_ru": "Среда — мой выходной."
     },
     {
       "de": "Donnerstag",
       "ru": "четверг",
+      "en": "Thursday",
       "example": "Am Donnerstag komme ich.",
       "example_ru": "В четверг я приду."
     },
     {
       "de": "Freitag",
       "ru": "пятница",
+      "en": "Friday",
       "example": "Freitag ist toll!",
       "example_ru": "Пятница — отлично!"
     },
     {
       "de": "Samstag",
       "ru": "суббота",
+      "en": "Saturday",
       "example": "Am Samstag gehe ich einkaufen.",
       "example_ru": "В субботу я иду за покупками."
     },
     {
       "de": "Sonntag",
       "ru": "воскресенье",
+      "en": "Sunday",
       "example": "Am Sonntag schlafe ich lange.",
       "example_ru": "В воскресенье я сплю долго."
     },
     {
       "de": "der Morgen",
       "ru": "утро",
+      "en": "morning",
       "example": "Am Morgen trinke ich Kaffee.",
       "example_ru": "Утром я пью кофе."
     },
     {
       "de": "der Vormittag",
       "ru": "предобеденное время",
+      "en": "late morning",
       "example": "Am Vormittag arbeite ich.",
       "example_ru": "До обеда я работаю."
     },
     {
       "de": "der Mittag",
       "ru": "полдень",
+      "en": "noon",
       "example": "Um Mittag esse ich.",
       "example_ru": "В полдень я обедаю."
     },
     {
       "de": "der Nachmittag",
       "ru": "послеобеденное время",
+      "en": "afternoon",
       "example": "Am Nachmittag habe ich frei.",
       "example_ru": "После обеда я свободен."
     },
     {
       "de": "der Abend",
       "ru": "вечер",
+      "en": "evening",
       "example": "Am Abend lese ich.",
       "example_ru": "Вечером я читаю."
     },
     {
       "de": "die Nacht",
       "ru": "ночь",
+      "en": "night",
       "example": "In der Nacht schlafe ich.",
       "example_ru": "Ночью я сплю."
     },
     {
       "de": "der Moment",
       "ru": "момент",
+      "en": "moment",
       "example": "Einen Moment bitte.",
       "example_ru": "Один момент."
     },
     {
       "de": "die Sekunde",
       "ru": "секунда",
+      "en": "second",
       "example": "Warte eine Sekunde.",
       "example_ru": "Подожди секунду."
     },
     {
       "de": "pünktlich",
       "ru": "вовремя",
+      "en": "punctual",
       "example": "Der Zug ist pünktlich.",
       "example_ru": "Поезд приходит вовремя."
     },
     {
       "de": "zu spät",
       "ru": "слишком поздно",
+      "en": "too late",
       "example": "Ich komme zu spät.",
       "example_ru": "Я приду слишком поздно."
     },
     {
       "de": "zu früh",
       "ru": "слишком рано",
+      "en": "too early",
       "example": "Es ist noch zu früh.",
       "example_ru": "Ещё слишком рано."
     },
     {
       "de": "der Werktag",
       "ru": "будний день",
+      "en": "workday",
       "example": "An Werktagen arbeite ich.",
       "example_ru": "В будни я работаю."
     },
     {
       "de": "das Wochenende",
       "ru": "выходные",
+      "en": "weekend",
       "example": "Am Wochenende schlafe ich aus.",
       "example_ru": "В выходные я высыпаюсь."
     },
     {
       "de": "die Jahreszeit",
       "ru": "время года",
+      "en": "season",
       "example": "Der Herbst ist meine Lieblingsjahreszeit.",
       "example_ru": "Осень — моё любимое время года."
     },
     {
       "de": "der Frühling",
       "ru": "весна",
+      "en": "spring",
       "example": "Im Frühling blühen die Blumen.",
       "example_ru": "Весной цветут цветы."
     },
     {
       "de": "der Sommer",
       "ru": "лето",
+      "en": "summer",
       "example": "Im Sommer ist es warm.",
       "example_ru": "Летом тепло."
     },
     {
       "de": "der Herbst",
       "ru": "осень",
+      "en": "autumn",
       "example": "Im Herbst fallen die Blätter.",
       "example_ru": "Осенью опадают листья."
     },
     {
       "de": "der Winter",
       "ru": "зима",
+      "en": "winter",
       "example": "Im Winter schneit es.",
       "example_ru": "Зимой идёт снег."
     },
     {
       "de": "der Januar",
       "ru": "январь",
+      "en": "January",
       "example": "Im Januar ist es kalt.",
       "example_ru": "В январе холодно."
     },
     {
       "de": "der Februar",
       "ru": "февраль",
+      "en": "February",
       "example": "Der Februar hat 28 Tage.",
       "example_ru": "В феврале 28 дней."
     },
     {
       "de": "der März",
       "ru": "март",
+      "en": "March",
       "example": "Im März wird es wärmer.",
       "example_ru": "В марте теплеет."
     },
     {
       "de": "der April",
       "ru": "апрель",
+      "en": "April",
       "example": "April, April!",
       "example_ru": "Первое апреля!"
     },
     {
       "de": "der Mai",
       "ru": "май",
+      "en": "May",
       "example": "Im Mai feiern wir.",
       "example_ru": "В мае мы празднуем."
     },
     {
       "de": "der Juni",
       "ru": "июнь",
+      "en": "June",
       "example": "Im Juni beginnt der Sommer.",
       "example_ru": "В июне начинается лето."
     },
     {
       "de": "der Juli",
       "ru": "июль",
+      "en": "July",
       "example": "Im Juli ist es heiß.",
       "example_ru": "В июле жарко."
     },
     {
       "de": "der August",
       "ru": "август",
+      "en": "August",
       "example": "Im August habe ich Urlaub.",
       "example_ru": "В августе у меня отпуск."
     },
     {
       "de": "der September",
       "ru": "сентябрь",
+      "en": "September",
       "example": "Im September beginnt die Schule.",
       "example_ru": "В сентябре начинается школа."
     },
     {
       "de": "der Oktober",
       "ru": "октябрь",
+      "en": "October",
       "example": "Im Oktober ist Herbst.",
       "example_ru": "В октябре осень."
     },
     {
       "de": "der November",
       "ru": "ноябрь",
+      "en": "November",
       "example": "Im November wird es kalt.",
       "example_ru": "В ноябре холодает."
     },
     {
       "de": "der Dezember",
       "ru": "декабрь",
+      "en": "December",
       "example": "Im Dezember ist Weihnachten.",
       "example_ru": "В декабре Рождество."
     },
     {
       "de": "das Datum",
       "ru": "дата",
+      "en": "date",
       "example": "Welches Datum haben wir heute?",
       "example_ru": "Какое сегодня число?"
     },
     {
       "de": "der Kalender",
       "ru": "календарь",
+      "en": "calendar",
       "example": "Ich schaue in den Kalender.",
       "example_ru": "Я смотрю в календарь."
     },
     {
       "de": "die Uhrzeit",
       "ru": "время (на часах)",
+      "en": "time (of day)",
       "example": "Wie ist die Uhrzeit?",
       "example_ru": "Который час?"
     },
     {
       "de": "halb",
       "ru": "половина",
+      "en": "half",
       "example": "Halb drei.",
       "example_ru": "Полтретьего."
     },
     {
       "de": "Viertel nach",
       "ru": "четверть первого",
+      "en": "Quarter past",
       "example": "Viertel nach zwei.",
       "example_ru": "Четверть третьего."
     },
     {
       "de": "Viertel vor",
       "ru": "без четверти",
+      "en": "Quarter to",
       "example": "Viertel vor zwölf.",
       "example_ru": "Без четверти двенадцать."
     },
     {
       "de": "Mitternacht",
       "ru": "полночь",
+      "en": "Midnight",
       "example": "Um Mitternacht schlafe ich.",
       "example_ru": "В полночь я сплю."
     },
     {
       "de": "morgens",
       "ru": "по утрам",
+      "en": "in the morning",
       "example": "Morgens trinke ich Tee.",
       "example_ru": "По утрам я пью чай."
     },
     {
       "de": "abends",
       "ru": "по вечерам",
+      "en": "in the evening",
       "example": "Abends sehe ich fern.",
       "example_ru": "По вечерам я смотрю телевизор."
     },
     {
       "de": "nachts",
       "ru": "по ночам",
+      "en": "at night",
       "example": "Nachts schlafe ich.",
       "example_ru": "По ночам я сплю."
     },
     {
       "de": "vorgestern",
       "ru": "позавчера",
+      "en": "day before yesterday",
       "example": "Vorgestern war ich krank.",
       "example_ru": "Позавчера я болел."
     },
     {
       "de": "übermorgen",
       "ru": "послезавтра",
+      "en": "Day after tomorrow",
       "example": "Übermorgen habe ich Zeit.",
       "example_ru": "Послезавтра у меня будет время."
     },
     {
       "de": "diese Woche",
       "ru": "на этой неделе",
+      "en": "this week",
       "example": "Diese Woche bin ich beschäftigt.",
       "example_ru": "На этой неделе я занят."
     },
     {
       "de": "letzte Woche",
       "ru": "на прошлой неделе",
+      "en": "last week",
       "example": "Letzte Woche war ich im Kino.",
       "example_ru": "На прошлой неделе я был в кино."
     },
     {
       "de": "nächste Woche",
       "ru": "на следующей неделе",
+      "en": "next week",
       "example": "Nächste Woche fahre ich in Urlaub.",
       "example_ru": "На следующей неделе я уезжаю в отпуск."
     },
     {
       "de": "dieser Monat",
       "ru": "в этом месяце",
+      "en": "this month",
       "example": "Dieser Monat ist lang.",
       "example_ru": "Этот месяц длинный."
     },
     {
       "de": "letztes Jahr",
       "ru": "в прошлом году",
+      "en": "last year",
       "example": "Letztes Jahr war ich in Berlin.",
       "example_ru": "В прошлом году я был в Берлине."
     },
     {
       "de": "nächstes Jahr",
       "ru": "в следующем году",
+      "en": "next year",
       "example": "Nächstes Jahr lerne ich Spanisch.",
       "example_ru": "В следующем году я буду учить испанский."
     },
     {
       "de": "der Augenblick",
       "ru": "мгновение",
+      "en": "moment",
       "example": "Einen Augenblick!",
       "example_ru": "Один момент!"
     },
     {
       "de": "die Ewigkeit",
       "ru": "вечность",
+      "en": "eternity",
       "example": "Es dauert eine Ewigkeit.",
       "example_ru": "Это длится целую вечность."
     },
     {
       "de": "rechtzeitig",
       "ru": "вовремя",
+      "en": "on time",
       "example": "Ich komme rechtzeitig.",
       "example_ru": "Я приду вовремя."
     },
     {
       "de": "die Zeitzone",
       "ru": "часовой пояс",
+      "en": "time zone",
       "example": "Deutschland hat eine Zeitzone.",
       "example_ru": "В Германии один часовой пояс."
     },
     {
       "de": "die Dauer",
       "ru": "длительность",
+      "en": "duration",
       "example": "Die Dauer beträgt zwei Stunden.",
       "example_ru": "Длительность два часа."
     },
     {
       "de": "dauern",
       "ru": "длиться",
+      "en": "to last/take time",
       "example": "Der Film dauert zwei Stunden.",
       "example_ru": "Фильм длится два часа."
     },
     {
       "de": "die Epoche",
       "ru": "эпоха",
+      "en": "epoch/era",
       "example": "Eine neue Epoche beginnt.",
       "example_ru": "Начинается новая эпоха."
     },
     {
       "de": "der Zeitraum",
       "ru": "период",
+      "en": "time period",
       "example": "In diesem Zeitraum.",
       "example_ru": "В этот период."
     },
     {
       "de": "die Ära",
       "ru": "эра",
+      "en": "era",
       "example": "Eine neue Ära beginnt.",
       "example_ru": "Начинается новая эра."
     }

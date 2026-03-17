@@ -1,8 +1,10 @@
 {
   "id": "modal_verbs",
   "name": "Модальные глаголы",
+  "name_en": "Modal Verbs",
   "name_de": "Modalverben",
   "description": "können, müssen, möchten и др.",
+  "description_en": "können, müssen, möchten etc.",
   "level": "A1",
   "theory": {
     "title": "Модальные глаголы",

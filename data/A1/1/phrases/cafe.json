@@ -1,10 +1,10 @@
 {
   "id": "cafe",
   "name": "В кафе",
-  "name_en": "At the Cafe",
+  "name_en": "At the Café",
   "name_de": "Im Café",
   "description": "Фразы для заказа в кафе",
-  "description_en": "Phrases for ordering at a cafe",
+  "description_en": "Phrases for ordering at a café",
   "level": "A1",
   "type": "situational",
   "phrases": [

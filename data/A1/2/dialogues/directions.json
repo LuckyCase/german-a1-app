@@ -1,8 +1,10 @@
 {
   "id": "directions",
   "name": "Дорога",
+  "name_en": "Directions",
   "name_de": "Wegbeschreibung",
   "description": "Спросить дорогу",
+  "description_en": "Asking for directions",
   "level": "A2",
   "dialogue": [
     {

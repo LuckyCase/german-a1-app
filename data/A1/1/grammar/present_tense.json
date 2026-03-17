@@ -1,8 +1,10 @@
 {
   "id": "present_tense",
   "name": "Настоящее время (Präsens)",
+  "name_en": "Present Tense (Präsens)",
   "name_de": "Präsens",
   "description": "Спряжение глаголов в настоящем времени",
+  "description_en": "Verb conjugation in present tense",
   "level": "A1",
   "theory": {
     "title": "Настоящее время — Präsens",
@@ -11,12 +13,30 @@
       {
         "title": "Окончания глаголов (на примере lernen — учить)",
         "rows": [
-          ["ich", "lern-e"],
-          ["du", "lern-st"],
-          ["er/sie/es", "lern-t"],
-          ["wir", "lern-en"],
-          ["ihr", "lern-t"],
-          ["sie/Sie", "lern-en"]
+          [
+            "ich",
+            "lern-e"
+          ],
+          [
+            "du",
+            "lern-st"
+          ],
+          [
+            "er/sie/es",
+            "lern-t"
+          ],
+          [
+            "wir",
+            "lern-en"
+          ],
+          [
+            "ihr",
+            "lern-t"
+          ],
+          [
+            "sie/Sie",
+            "lern-en"
+          ]
         ]
       }
     ],
@@ -33,121 +53,201 @@
   "questions": [
     {
       "question": "Ich ___ Deutsch. (lernen)",
-      "options": ["lerne", "lernst", "lernt"],
+      "options": [
+        "lerne",
+        "lernst",
+        "lernt"
+      ],
       "correct": 0,
       "explanation": "ich lerne (я учу)"
     },
     {
       "question": "Du ___ viel. (arbeiten)",
-      "options": ["arbeite", "arbeitest", "arbeitet"],
+      "options": [
+        "arbeite",
+        "arbeitest",
+        "arbeitet"
+      ],
       "correct": 1,
       "explanation": "du arbeitest (ты работаешь)"
     },
     {
       "question": "Er ___ Kaffee. (trinken)",
-      "options": ["trinke", "trinkst", "trinkt"],
+      "options": [
+        "trinke",
+        "trinkst",
+        "trinkt"
+      ],
       "correct": 2,
       "explanation": "er trinkt (он пьёт)"
     },
     {
       "question": "Wir ___ in Berlin. (wohnen)",
-      "options": ["wohne", "wohnst", "wohnen"],
+      "options": [
+        "wohne",
+        "wohnst",
+        "wohnen"
+      ],
       "correct": 2,
       "explanation": "wir wohnen (мы живём)"
     },
     {
       "question": "Sie ___ ein Buch. (lesen)",
-      "options": ["lese", "liest", "lesen"],
+      "options": [
+        "lese",
+        "liest",
+        "lesen"
+      ],
       "correct": 1,
       "explanation": "sie liest (она читает) — неправильный глагол"
     },
     {
       "question": "Ich ___ gern Pizza. (essen)",
-      "options": ["esse", "isst", "esst"],
+      "options": [
+        "esse",
+        "isst",
+        "esst"
+      ],
       "correct": 0,
       "explanation": "ich esse (я ем)"
     },
     {
       "question": "Du ___ gut Deutsch. (sprechen)",
-      "options": ["spreche", "sprichst", "spricht"],
+      "options": [
+        "spreche",
+        "sprichst",
+        "spricht"
+      ],
       "correct": 1,
       "explanation": "du sprichst (ты говоришь) — неправильный глагол"
     },
     {
       "question": "Er ___ nach Hause. (gehen)",
-      "options": ["gehe", "gehst", "geht"],
+      "options": [
+        "gehe",
+        "gehst",
+        "geht"
+      ],
       "correct": 2,
       "explanation": "er geht (он идёт)"
     },
     {
       "question": "Ihr ___ aus Deutschland. (kommen)",
-      "options": ["komme", "kommt", "kommen"],
+      "options": [
+        "komme",
+        "kommt",
+        "kommen"
+      ],
       "correct": 1,
       "explanation": "ihr kommt (вы приходите)"
     },
     {
       "question": "Sie ___ Anna. (heißen)",
-      "options": ["heiße", "heißt", "heißen"],
+      "options": [
+        "heiße",
+        "heißt",
+        "heißen"
+      ],
       "correct": 1,
       "explanation": "sie heißt (её зовут)"
     },
     {
       "question": "Du ___ die Tür. (öffnen)",
-      "options": ["öffne", "öffnest", "öffnet"],
+      "options": [
+        "öffne",
+        "öffnest",
+        "öffnet"
+      ],
       "correct": 1,
       "explanation": "du öffnest (ты открываешь)"
     },
     {
       "question": "Wir ___ Musik. (hören)",
-      "options": ["höre", "hört", "hören"],
+      "options": [
+        "höre",
+        "hört",
+        "hören"
+      ],
       "correct": 2,
       "explanation": "wir hören (мы слушаем)"
     },
     {
       "question": "Er ___ den Bus. (nehmen)",
-      "options": ["nehme", "nimmst", "nimmt"],
+      "options": [
+        "nehme",
+        "nimmst",
+        "nimmt"
+      ],
       "correct": 2,
       "explanation": "er nimmt (он берёт) — неправильный глагол"
     },
     {
       "question": "Er ___ jeden Tag zur Arbeit. (fahren)",
-      "options": ["fahrt", "fährt", "fahren"],
+      "options": [
+        "fahrt",
+        "fährt",
+        "fahren"
+      ],
       "correct": 1,
       "explanation": "fahren → er fährt (a → ä). Неправильный глагол с изменением корневой гласной"
     },
     {
       "question": "Das Kind ___ lange. (schlafen)",
-      "options": ["schlaft", "schläft", "schlafen"],
+      "options": [
+        "schlaft",
+        "schläft",
+        "schlafen"
+      ],
       "correct": 1,
       "explanation": "schlafen → es schläft (a → ä). Неправильный глагол"
     },
     {
       "question": "Sie ___ sehr schnell. (laufen)",
-      "options": ["lauft", "läuft", "laufen"],
+      "options": [
+        "lauft",
+        "läuft",
+        "laufen"
+      ],
       "correct": 1,
       "explanation": "laufen → sie läuft (au → äu). Неправильный глагол"
     },
     {
       "question": "Du ___ die Antwort. (finden)",
-      "options": ["findst", "findest", "findet"],
+      "options": [
+        "findst",
+        "findest",
+        "findet"
+      ],
       "correct": 1,
       "explanation": "Основа на -d → добавляется -e-: du findest"
     },
     {
       "question": "Er ___ auf den Bus. (warten)",
-      "options": ["wartt", "wartet", "wart"],
+      "options": [
+        "wartt",
+        "wartet",
+        "wart"
+      ],
       "correct": 1,
       "explanation": "Основа на -t → добавляется -e-: er wartet"
     },
     {
       "question": "Какая форма правильная? «Er ___ gut Deutsch.» (sprechen)",
-      "options": ["sprecht", "spricht", "sprechen"],
+      "options": [
+        "sprecht",
+        "spricht",
+        "sprechen"
+      ],
       "correct": 1,
       "explanation": "sprechen → er spricht (e → i). «Er sprecht» — частая ошибка!"
     },
     {
       "question": "Какая форма правильная? «Sie ___ gern Bücher.» (lesen)",
-      "options": ["lest", "liest", "lesen"],
+      "options": [
+        "lest",
+        "liest",
+        "lesen"
+      ],
       "correct": 1,
       "explanation": "lesen → sie liest (e → ie). Неправильный глагол"
     }

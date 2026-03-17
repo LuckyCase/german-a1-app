@@ -1,8 +1,10 @@
 {
   "id": "du_sie",
   "name": "Du и Sie — обращение на «ты» и «вы»",
+  "name_en": "Du and Sie — Formal and Informal Address",
   "name_de": "Du und Sie",
   "description": "Как правильно обращаться к людям в Германии",
+  "description_en": "How to address people properly in Germany",
   "level": "A1",
   "content": {
     "title": "Du und Sie — форма обращения",
@@ -21,13 +23,21 @@
   "questions": [
     {
       "question": "К кому в Германии обычно обращаются на Sie?",
-      "options": ["К друзьям", "К незнакомым людям", "К детям"],
+      "options": [
+        "К друзьям",
+        "К незнакомым людям",
+        "К детям"
+      ],
       "correct": 1,
       "explanation": "К незнакомым людям принято обращаться на Sie (вежливая форма)."
     },
     {
       "question": "Как пишется вежливое «вы» в немецком?",
-      "options": ["sie", "Sie", "du"],
+      "options": [
+        "sie",
+        "Sie",
+        "du"
+      ],
       "correct": 1,
       "explanation": "Sie (вежливая форма) всегда пишется с большой буквы."
     }

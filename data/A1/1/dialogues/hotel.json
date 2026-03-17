@@ -1,8 +1,10 @@
 {
   "id": "hotel",
   "name": "В отеле",
+  "name_en": "At the Hotel",
   "name_de": "Im Hotel",
   "description": "Регистрация в отеле",
+  "description_en": "Hotel check-in",
   "level": "A1",
   "dialogue": [
     {

@@ -1,8 +1,10 @@
 {
   "id": "greetings",
   "name": "Приветствия",
+  "name_en": "Greetings",
   "name_de": "Begrüßungen",
   "description": "Базовые диалоги приветствия и знакомства",
+  "description_en": "Basic greeting and introduction dialogues",
   "level": "A2",
   "dialogue": [
     {

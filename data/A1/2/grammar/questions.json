@@ -1,8 +1,10 @@
 {
   "id": "questions",
   "name": "Вопросительные слова",
+  "name_en": "Question Words",
   "name_de": "Fragewörter",
   "description": "Вопросительные слова уровня A2",
+  "description_en": "A2 level question words",
   "level": "A2",
   "theory": {
     "title": "Дополнительные вопросительные слова (A2)",

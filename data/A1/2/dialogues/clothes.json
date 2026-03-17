@@ -1,8 +1,10 @@
 {
   "id": "clothes",
   "name": "Магазин одежды",
+  "name_en": "Clothing Store",
   "name_de": "Im Bekleidungsgeschäft",
   "description": "Примерка",
+  "description_en": "Trying on clothes",
   "level": "A2",
   "dialogue": [
     {

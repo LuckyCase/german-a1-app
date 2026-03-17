@@ -1,8 +1,10 @@
 {
   "id": "apartment",
   "name": "Квартира",
+  "name_en": "Apartment",
   "name_de": "Wohnung",
   "description": "Просмотр квартиры",
+  "description_en": "Apartment viewing",
   "level": "A2",
   "dialogue": [
     {

@@ -1,64 +1,101 @@
 {
   "id": "verben_praepositionen",
   "name": "Глаголы с предлогами",
+  "name_en": "Verbs with Prepositions",
   "name_de": "Verben mit Präpositionen",
   "description": "Управление глаголов — какой предлог и падеж использовать",
+  "description_en": "Verb government — which preposition and case to use",
   "level": "A1",
-  "linked_to": ["akkusativ", "present_tense"],
+  "linked_to": [
+    "akkusativ",
+    "present_tense"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Wir warten ___ den Bus.",
-      "options": ["für", "auf", "mit"],
+      "options": [
+        "für",
+        "auf",
+        "mit"
+      ],
       "correct": 1,
       "explanation": "Warten auf + Akkusativ — ждать чего-то. Wir warten auf den Bus."
     },
     {
       "type": "multiple_choice",
       "question": "Ich interessiere mich ___ Musik.",
-      "options": ["auf", "für", "mit"],
+      "options": [
+        "auf",
+        "für",
+        "mit"
+      ],
       "correct": 1,
       "explanation": "Sich interessieren für + Akkusativ — интересоваться чем-то."
     },
     {
       "type": "multiple_choice",
       "question": "Er denkt ___ seine Familie.",
-      "options": ["über", "an", "für"],
+      "options": [
+        "über",
+        "an",
+        "für"
+      ],
       "correct": 1,
       "explanation": "Denken an + Akkusativ — думать о ком-то/чём-то."
     },
     {
       "type": "multiple_choice",
       "question": "Sie freut sich ___ das Geschenk.",
-      "options": ["auf", "über", "für"],
+      "options": [
+        "auf",
+        "über",
+        "für"
+      ],
       "correct": 1,
       "explanation": "Sich freuen über + Akkusativ — радоваться чему-то (уже случившемуся)."
     },
     {
       "type": "multiple_choice",
       "question": "Ich träume ___ einer Reise nach Deutschland.",
-      "options": ["über", "an", "von"],
+      "options": [
+        "über",
+        "an",
+        "von"
+      ],
       "correct": 2,
       "explanation": "Träumen von + Dativ — мечтать о чём-то."
     },
     {
       "type": "multiple_choice",
       "question": "Wir sprechen ___ das Problem.",
-      "options": ["über", "von", "auf"],
+      "options": [
+        "über",
+        "von",
+        "auf"
+      ],
       "correct": 0,
       "explanation": "Sprechen über + Akkusativ — говорить/обсуждать что-то."
     },
     {
       "type": "multiple_choice",
       "question": "Sie bittet ihn ___ Hilfe.",
-      "options": ["für", "auf", "um"],
+      "options": [
+        "für",
+        "auf",
+        "um"
+      ],
       "correct": 2,
       "explanation": "Bitten um + Akkusativ — просить о чём-то."
     },
     {
       "type": "multiple_choice",
       "question": "Er gehört ___ dieser Gruppe.",
-      "options": ["an", "zu", "bei"],
+      "options": [
+        "an",
+        "zu",
+        "bei"
+      ],
       "correct": 1,
       "explanation": "Gehören zu + Dativ — принадлежать к чему-то, относиться к группе."
     }

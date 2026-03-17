@@ -1,178 +1,698 @@
 {
   "id": "personal",
   "name": "Личная информация",
+  "name_en": "Personal Information",
   "name_de": "Persönliche Informationen",
   "description": "Слова для рассказа о себе",
+  "description_en": "Words for talking about yourself",
   "level": "A1",
   "words": [
     {
       "de": "der Name",
       "ru": "имя",
+      "en": "name",
       "example": "Mein Name ist Anna.",
       "example_ru": "Меня зовут Анна."
     },
     {
       "de": "der Vorname",
       "ru": "имя (первое)",
+      "en": "first name",
       "example": "Mein Vorname ist Peter.",
       "example_ru": "Моё имя Петер."
     },
     {
       "de": "der Nachname",
       "ru": "фамилия",
+      "en": "last name",
       "example": "Mein Nachname ist Müller.",
       "example_ru": "Моя фамилия Мюллер."
     },
     {
       "de": "das Alter",
       "ru": "возраст",
+      "en": "age",
       "example": "Ich bin 25 Jahre alt.",
       "example_ru": "Мне 25 лет."
     },
     {
       "de": "die Adresse",
       "ru": "адрес",
+      "en": "address",
       "example": "Meine Adresse ist Hauptstraße 10.",
       "example_ru": "Мой адрес: Хауптштрассе, 10."
     },
     {
       "de": "die Telefonnummer",
       "ru": "номер телефона",
+      "en": "phone number",
       "example": "Meine Telefonnummer ist 0176-12345.",
       "example_ru": "Мой номер телефона 0176-12345."
     },
     {
       "de": "die E-Mail",
       "ru": "электронная почта",
+      "en": "email",
       "example": "Meine E-Mail ist anna@mail.de",
       "example_ru": "Мой email — anna@mail.de"
     },
     {
       "de": "der Beruf",
       "ru": "профессия",
+      "en": "profession",
       "example": "Mein Beruf ist Lehrer.",
       "example_ru": "Моя профессия — учитель."
     },
     {
       "de": "das Land",
       "ru": "страна",
+      "en": "country",
       "example": "Ich komme aus Russland.",
       "example_ru": "Я из России."
     },
     {
       "de": "die Stadt",
       "ru": "город",
+      "en": "city",
       "example": "Ich wohne in Berlin.",
       "example_ru": "Я живу в Берлине."
     },
     {
       "de": "die Sprache",
       "ru": "язык",
+      "en": "language",
       "example": "Ich spreche Deutsch.",
       "example_ru": "Я говорю по-немецки."
     },
     {
       "de": "verheiratet",
       "ru": "женат/замужем",
+      "en": "married",
       "example": "Ich bin verheiratet.",
       "example_ru": "Я женат/замужем."
     },
     {
       "de": "ledig",
       "ru": "холост/не замужем",
+      "en": "single",
       "example": "Er ist ledig.",
       "example_ru": "Он холост."
     },
     {
       "de": "geboren",
       "ru": "родившийся",
+      "en": "born",
       "example": "Ich bin 1990 geboren.",
       "example_ru": "Я родился в 1990 году."
     },
-    {"de": "die Nationalität", "ru": "национальность", "example": "Meine Nationalität ist russisch.", "example_ru": "Моя национальность — русская."},
-    {"de": "der Geburtsort", "ru": "место рождения", "example": "Mein Geburtsort ist Moskau.", "example_ru": "Моё место рождения — Москва."},
-    {"de": "das Geburtsdatum", "ru": "дата рождения", "example": "Mein Geburtsdatum ist der 15. März.", "example_ru": "Моя дата рождения — 15 марта."},
-    {"de": "der Pass", "ru": "паспорт", "example": "Ich habe meinen Pass dabei.", "example_ru": "У меня с собой паспорт."},
-    {"de": "die Staatsangehörigkeit", "ru": "гражданство", "example": "Ich habe die deutsche Staatsangehörigkeit.", "example_ru": "У меня немецкое гражданство."},
-    {"de": "der Familienstand", "ru": "семейное положение", "example": "Was ist Ihr Familienstand?", "example_ru": "Какое у вас семейное положение?"},
-    {"de": "die Kinder", "ru": "дети", "example": "Ich habe zwei Kinder.", "example_ru": "У меня двое детей."},
-    {"de": "das Handy", "ru": "мобильный телефон", "example": "Mein Handy ist kaputt.", "example_ru": "Мой телефон сломан."},
-    {"de": "der Wohnort", "ru": "место жительства", "example": "Mein Wohnort ist Berlin.", "example_ru": "Моё место жительства — Берлин."},
-    {"de": "die Herkunft", "ru": "происхождение", "example": "Ich bin russischer Herkunft.", "example_ru": "Я русского происхождения."},
-    {"de": "die Muttersprache", "ru": "родной язык", "example": "Meine Muttersprache ist Russisch.", "example_ru": "Мой родной язык — русский."},
-    {"de": "das Hobby", "ru": "хобби", "example": "Mein Hobby ist Lesen.", "example_ru": "Моё хобби — чтение."},
-    {"de": "die Arbeit", "ru": "работа", "example": "Meine Arbeit ist interessant.", "example_ru": "Моя работа интересная."},
-    {"de": "die Firma", "ru": "фирма", "example": "Er arbeitet bei einer Firma.", "example_ru": "Он работает в фирме."},
-    {"de": "der Kollege", "ru": "коллега", "example": "Mein Kollege hilft mir.", "example_ru": "Мой коллега мне помогает."},
-    {"de": "die Kollegin", "ru": "коллега (ж.)", "example": "Meine Kollegin ist nett.", "example_ru": "Моя коллега приятная."},
-    {"de": "die Schule", "ru": "школа", "example": "Meine Kinder gehen zur Schule.", "example_ru": "Мои дети ходят в школу."},
-    {"de": "die Ausbildung", "ru": "обучение", "example": "Die Ausbildung dauert drei Jahre.", "example_ru": "Обучение длится три года."},
-    {"de": "der Abschluss", "ru": "диплом", "example": "Ich habe einen guten Abschluss.", "example_ru": "У меня хороший диплом."},
-    {"de": "die Erfahrung", "ru": "опыт", "example": "Ich habe viel Erfahrung.", "example_ru": "У меня большой опыт."},
-    {"de": "der Führerschein", "ru": "водительские права", "example": "Ich habe einen Führerschein.", "example_ru": "У меня есть водительские права."},
-    {"de": "die Unterschrift", "ru": "подпись", "example": "Hier ist meine Unterschrift.", "example_ru": "Вот моя подпись."},
-    {"de": "das Dokument", "ru": "документ", "example": "Ich brauche das Dokument.", "example_ru": "Мне нужен этот документ."},
-    {"de": "die Anmeldung", "ru": "регистрация", "example": "Die Anmeldung ist wichtig.", "example_ru": "Регистрация важна."},
-    {"de": "das Visum", "ru": "виза", "example": "Ich brauche ein Visum.", "example_ru": "Мне нужна виза."},
-    {"de": "das Studium", "ru": "учёба", "example": "Mein Studium ist schwer.", "example_ru": "Моя учёба сложная."},
-    {"de": "der Student", "ru": "студент", "example": "Ich bin Student.", "example_ru": "Я студент."},
-    {"de": "die Studentin", "ru": "студентка", "example": "Sie ist Studentin.", "example_ru": "Она студентка."},
-    {"de": "der Lehrer", "ru": "учитель", "example": "Mein Lehrer ist nett.", "example_ru": "Мой учитель приятный."},
-    {"de": "die Lehrerin", "ru": "учительница", "example": "Die Lehrerin erklärt gut.", "example_ru": "Учительница хорошо объясняет."},
-    {"de": "der Arzt", "ru": "врач", "example": "Ich bin Arzt.", "example_ru": "Я врач."},
-    {"de": "die Ärztin", "ru": "врач (ж.)", "example": "Sie ist Ärztin.", "example_ru": "Она врач."},
-    {"de": "der Ingenieur", "ru": "инженер", "example": "Er ist Ingenieur.", "example_ru": "Он инженер."},
-    {"de": "die Ingenieurin", "ru": "инженер (ж.)", "example": "Sie arbeitet als Ingenieurin.", "example_ru": "Она работает инженером."},
-    {"de": "der Kellner", "ru": "официант", "example": "Der Kellner bringt die Rechnung.", "example_ru": "Официант приносит счёт."},
-    {"de": "die Kellnerin", "ru": "официантка", "example": "Die Kellnerin ist freundlich.", "example_ru": "Официантка дружелюбная."},
-    {"de": "der Rentner", "ru": "пенсионер", "example": "Mein Vater ist Rentner.", "example_ru": "Мой отец пенсионер."},
-    {"de": "die Rentnerin", "ru": "пенсионерка", "example": "Sie ist Rentnerin.", "example_ru": "Она пенсионерка."},
-    {"de": "der Arbeitsplatz", "ru": "рабочее место", "example": "Mein Arbeitsplatz ist in Berlin.", "example_ru": "Моё рабочее место в Берлине."},
-    {"de": "die Arbeitszeit", "ru": "рабочее время", "example": "Die Arbeitszeit ist von 9 bis 17 Uhr.", "example_ru": "Рабочее время с 9 до 17."},
-    {"de": "die Pause", "ru": "перерыв", "example": "Ich mache eine Pause.", "example_ru": "Я делаю перерыв."},
-    {"de": "der Urlaub", "ru": "отпуск", "example": "Ich habe Urlaub.", "example_ru": "У меня отпуск."},
-    {"de": "die Freizeit", "ru": "свободное время", "example": "In meiner Freizeit lese ich.", "example_ru": "В свободное время я читаю."},
-    {"de": "das Interesse", "ru": "интерес", "example": "Mein Interesse ist Sport.", "example_ru": "Мой интерес — спорт."},
-    {"de": "der Sport", "ru": "спорт", "example": "Ich mache gern Sport.", "example_ru": "Я люблю заниматься спортом."},
-    {"de": "die Musik", "ru": "музыка", "example": "Ich höre gern Musik.", "example_ru": "Я люблю слушать музыку."},
-    {"de": "das Reisen", "ru": "путешествия", "example": "Reisen ist mein Hobby.", "example_ru": "Путешествия — моё хобби."},
-    {"de": "der Film", "ru": "фильм", "example": "Ich sehe gern Filme.", "example_ru": "Я люблю смотреть фильмы."},
-    {"de": "das Buch", "ru": "книга", "example": "Ich lese gern Bücher.", "example_ru": "Я люблю читать книги."},
-    {"de": "die Qualifikation", "ru": "квалификация", "example": "Ich habe die nötige Qualifikation.", "example_ru": "У меня есть нужная квалификация."},
-    {"de": "die Stelle", "ru": "должность", "example": "Ich suche eine Stelle.", "example_ru": "Я ищу работу."},
-    {"de": "bewerben", "ru": "подавать заявку", "example": "Ich bewerbe mich um die Stelle.", "example_ru": "Я подаю заявку на должность."},
-    {"de": "der Lebenslauf", "ru": "резюме", "example": "Hier ist mein Lebenslauf.", "example_ru": "Вот моё резюме."},
-    {"de": "das Vorstellungsgespräch", "ru": "собеседование", "example": "Das Vorstellungsgespräch war gut.", "example_ru": "Собеседование прошло хорошо."},
-    {"de": "der Lohn", "ru": "зарплата", "example": "Der Lohn ist gut.", "example_ru": "Зарплата хорошая."},
-    {"de": "das Gehalt", "ru": "оклад", "example": "Das Gehalt ist hoch.", "example_ru": "Оклад высокий."},
-    {"de": "die Steuer", "ru": "налог", "example": "Die Steuer ist hoch.", "example_ru": "Налог высокий."},
-    {"de": "die Versicherung", "ru": "страховка", "example": "Ich habe eine Versicherung.", "example_ru": "У меня есть страховка."},
-    {"de": "die Krankenversicherung", "ru": "медицинская страховка", "example": "Die Krankenversicherung ist Pflicht.", "example_ru": "Медицинская страховка обязательна."},
-    {"de": "die Rente", "ru": "пенсия", "example": "Er bekommt Rente.", "example_ru": "Он получает пенсию."},
-    {"de": "der Ausweis", "ru": "удостоверение", "example": "Zeigen Sie bitte Ihren Ausweis.", "example_ru": "Покажите, пожалуйста, удостоверение."},
-    {"de": "die Anschrift", "ru": "адрес", "example": "Was ist Ihre Anschrift?", "example_ru": "Какой ваш адрес?"},
-    {"de": "der Bezirk", "ru": "район", "example": "Ich wohne im Bezirk Mitte.", "example_ru": "Я живу в районе Митте."},
-    {"de": "die Postleitzahl", "ru": "почтовый индекс", "example": "Die Postleitzahl ist 10115.", "example_ru": "Почтовый индекс 10115."},
-    {"de": "das Viertel", "ru": "район", "example": "Das Viertel ist ruhig.", "example_ru": "Район тихий."},
-    {"de": "der Kontakt", "ru": "контакт", "example": "Halten Sie Kontakt.", "example_ru": "Поддерживайте контакт."},
-    {"de": "die Bekanntschaft", "ru": "знакомство", "example": "Freut mich die Bekanntschaft.", "example_ru": "Приятно познакомиться."},
-    {"de": "sich vorstellen", "ru": "представляться", "example": "Darf ich mich vorstellen?", "example_ru": "Разрешите представиться?"},
-    {"de": "die Bevölkerung", "ru": "население", "example": "Die Bevölkerung wächst.", "example_ru": "Население растёт."},
-    {"de": "der Ausländer", "ru": "иностранец", "example": "Er ist Ausländer.", "example_ru": "Он иностранец."},
-    {"de": "die Ausländerin", "ru": "иностранка", "example": "Sie ist Ausländerin.", "example_ru": "Она иностранка."},
-    {"de": "der Einwohner", "ru": "житель", "example": "Ich bin Einwohner von Berlin.", "example_ru": "Я житель Берлина."},
-    {"de": "die Einwohnerin", "ru": "жительница", "example": "Sie ist Einwohnerin von München.", "example_ru": "Она жительница Мюнхена."},
-    {"de": "die Heimat", "ru": "родина", "example": "Meine Heimat ist Russland.", "example_ru": "Моя родина — Россия."},
-    {"de": "auswandern", "ru": "эмигрировать", "example": "Sie wollen auswandern.", "example_ru": "Они хотят эмигрировать."},
-    {"de": "einwandern", "ru": "иммигрировать", "example": "Er ist eingewandert.", "example_ru": "Он иммигрировал."},
-    {"de": "integrieren", "ru": "интегрироваться", "example": "Es ist wichtig, sich zu integrieren.", "example_ru": "Важно интегрироваться."},
-    {"de": "die Integration", "ru": "интеграция", "example": "Die Integration ist ein Thema.", "example_ru": "Интеграция — важная тема."},
-    {"de": "die Straße", "ru": "улица", "example": "Ich wohne in der Hauptstraße.", "example_ru": "Я живу на Главной улице."},
-    {"de": "der Ort", "ru": "населённый пункт", "example": "Ein kleiner Ort.", "example_ru": "Небольшой населённый пункт."},
-    {"de": "die Region", "ru": "регион", "example": "Ich komme aus dieser Region.", "example_ru": "Я из этого региона."},
-    {"de": "der Kontinent", "ru": "континент", "example": "Europa ist ein Kontinent.", "example_ru": "Европа — континент."},
-    {"de": "die Hausnummer", "ru": "номер дома", "example": "Die Hausnummer ist 5.", "example_ru": "Номер дома 5."},
-    {"de": "die Ecke", "ru": "угол", "example": "An der Ecke links.", "example_ru": "На углу налево."}
+    {
+      "de": "die Nationalität",
+      "ru": "национальность",
+      "en": "nationality",
+      "example": "Meine Nationalität ist russisch.",
+      "example_ru": "Моя национальность — русская."
+    },
+    {
+      "de": "der Geburtsort",
+      "ru": "место рождения",
+      "en": "place of birth",
+      "example": "Mein Geburtsort ist Moskau.",
+      "example_ru": "Моё место рождения — Москва."
+    },
+    {
+      "de": "das Geburtsdatum",
+      "ru": "дата рождения",
+      "en": "date of birth",
+      "example": "Mein Geburtsdatum ist der 15. März.",
+      "example_ru": "Моя дата рождения — 15 марта."
+    },
+    {
+      "de": "der Pass",
+      "ru": "паспорт",
+      "en": "passport",
+      "example": "Ich habe meinen Pass dabei.",
+      "example_ru": "У меня с собой паспорт."
+    },
+    {
+      "de": "die Staatsangehörigkeit",
+      "ru": "гражданство",
+      "en": "citizenship/nationality",
+      "example": "Ich habe die deutsche Staatsangehörigkeit.",
+      "example_ru": "У меня немецкое гражданство."
+    },
+    {
+      "de": "der Familienstand",
+      "ru": "семейное положение",
+      "en": "marital status",
+      "example": "Was ist Ihr Familienstand?",
+      "example_ru": "Какое у вас семейное положение?"
+    },
+    {
+      "de": "die Kinder",
+      "ru": "дети",
+      "en": "children",
+      "example": "Ich habe zwei Kinder.",
+      "example_ru": "У меня двое детей."
+    },
+    {
+      "de": "das Handy",
+      "ru": "мобильный телефон",
+      "en": "cell phone",
+      "example": "Mein Handy ist kaputt.",
+      "example_ru": "Мой телефон сломан."
+    },
+    {
+      "de": "der Wohnort",
+      "ru": "место жительства",
+      "en": "place of residence",
+      "example": "Mein Wohnort ist Berlin.",
+      "example_ru": "Моё место жительства — Берлин."
+    },
+    {
+      "de": "die Herkunft",
+      "ru": "происхождение",
+      "en": "origin",
+      "example": "Ich bin russischer Herkunft.",
+      "example_ru": "Я русского происхождения."
+    },
+    {
+      "de": "die Muttersprache",
+      "ru": "родной язык",
+      "en": "native language",
+      "example": "Meine Muttersprache ist Russisch.",
+      "example_ru": "Мой родной язык — русский."
+    },
+    {
+      "de": "das Hobby",
+      "ru": "хобби",
+      "en": "hobby",
+      "example": "Mein Hobby ist Lesen.",
+      "example_ru": "Моё хобби — чтение."
+    },
+    {
+      "de": "die Arbeit",
+      "ru": "работа",
+      "en": "work",
+      "example": "Meine Arbeit ist interessant.",
+      "example_ru": "Моя работа интересная."
+    },
+    {
+      "de": "die Firma",
+      "ru": "фирма",
+      "en": "company/firm",
+      "example": "Er arbeitet bei einer Firma.",
+      "example_ru": "Он работает в фирме."
+    },
+    {
+      "de": "der Kollege",
+      "ru": "коллега",
+      "en": "colleague (m)",
+      "example": "Mein Kollege hilft mir.",
+      "example_ru": "Мой коллега мне помогает."
+    },
+    {
+      "de": "die Kollegin",
+      "ru": "коллега (ж.)",
+      "en": "colleague (f)",
+      "example": "Meine Kollegin ist nett.",
+      "example_ru": "Моя коллега приятная."
+    },
+    {
+      "de": "die Schule",
+      "ru": "школа",
+      "en": "school",
+      "example": "Meine Kinder gehen zur Schule.",
+      "example_ru": "Мои дети ходят в школу."
+    },
+    {
+      "de": "die Ausbildung",
+      "ru": "обучение",
+      "en": "training/education",
+      "example": "Die Ausbildung dauert drei Jahre.",
+      "example_ru": "Обучение длится три года."
+    },
+    {
+      "de": "der Abschluss",
+      "ru": "диплом",
+      "en": "degree/graduation",
+      "example": "Ich habe einen guten Abschluss.",
+      "example_ru": "У меня хороший диплом."
+    },
+    {
+      "de": "die Erfahrung",
+      "ru": "опыт",
+      "en": "experience",
+      "example": "Ich habe viel Erfahrung.",
+      "example_ru": "У меня большой опыт."
+    },
+    {
+      "de": "der Führerschein",
+      "ru": "водительские права",
+      "en": "driver's license",
+      "example": "Ich habe einen Führerschein.",
+      "example_ru": "У меня есть водительские права."
+    },
+    {
+      "de": "die Unterschrift",
+      "ru": "подпись",
+      "en": "signature",
+      "example": "Hier ist meine Unterschrift.",
+      "example_ru": "Вот моя подпись."
+    },
+    {
+      "de": "das Dokument",
+      "ru": "документ",
+      "en": "document",
+      "example": "Ich brauche das Dokument.",
+      "example_ru": "Мне нужен этот документ."
+    },
+    {
+      "de": "die Anmeldung",
+      "ru": "регистрация",
+      "en": "registration",
+      "example": "Die Anmeldung ist wichtig.",
+      "example_ru": "Регистрация важна."
+    },
+    {
+      "de": "das Visum",
+      "ru": "виза",
+      "en": "visa",
+      "example": "Ich brauche ein Visum.",
+      "example_ru": "Мне нужна виза."
+    },
+    {
+      "de": "das Studium",
+      "ru": "учёба",
+      "en": "studies",
+      "example": "Mein Studium ist schwer.",
+      "example_ru": "Моя учёба сложная."
+    },
+    {
+      "de": "der Student",
+      "ru": "студент",
+      "en": "student (m)",
+      "example": "Ich bin Student.",
+      "example_ru": "Я студент."
+    },
+    {
+      "de": "die Studentin",
+      "ru": "студентка",
+      "en": "student (f)",
+      "example": "Sie ist Studentin.",
+      "example_ru": "Она студентка."
+    },
+    {
+      "de": "der Lehrer",
+      "ru": "учитель",
+      "en": "teacher (m)",
+      "example": "Mein Lehrer ist nett.",
+      "example_ru": "Мой учитель приятный."
+    },
+    {
+      "de": "die Lehrerin",
+      "ru": "учительница",
+      "en": "teacher (f)",
+      "example": "Die Lehrerin erklärt gut.",
+      "example_ru": "Учительница хорошо объясняет."
+    },
+    {
+      "de": "der Arzt",
+      "ru": "врач",
+      "en": "doctor (m)",
+      "example": "Ich bin Arzt.",
+      "example_ru": "Я врач."
+    },
+    {
+      "de": "die Ärztin",
+      "ru": "врач (ж.)",
+      "en": "doctor (f)",
+      "example": "Sie ist Ärztin.",
+      "example_ru": "Она врач."
+    },
+    {
+      "de": "der Ingenieur",
+      "ru": "инженер",
+      "en": "engineer (m)",
+      "example": "Er ist Ingenieur.",
+      "example_ru": "Он инженер."
+    },
+    {
+      "de": "die Ingenieurin",
+      "ru": "инженер (ж.)",
+      "en": "engineer (f)",
+      "example": "Sie arbeitet als Ingenieurin.",
+      "example_ru": "Она работает инженером."
+    },
+    {
+      "de": "der Kellner",
+      "ru": "официант",
+      "en": "waiter",
+      "example": "Der Kellner bringt die Rechnung.",
+      "example_ru": "Официант приносит счёт."
+    },
+    {
+      "de": "die Kellnerin",
+      "ru": "официантка",
+      "en": "waitress",
+      "example": "Die Kellnerin ist freundlich.",
+      "example_ru": "Официантка дружелюбная."
+    },
+    {
+      "de": "der Rentner",
+      "ru": "пенсионер",
+      "en": "retiree (m)",
+      "example": "Mein Vater ist Rentner.",
+      "example_ru": "Мой отец пенсионер."
+    },
+    {
+      "de": "die Rentnerin",
+      "ru": "пенсионерка",
+      "en": "retiree (f)",
+      "example": "Sie ist Rentnerin.",
+      "example_ru": "Она пенсионерка."
+    },
+    {
+      "de": "der Arbeitsplatz",
+      "ru": "рабочее место",
+      "en": "workplace",
+      "example": "Mein Arbeitsplatz ist in Berlin.",
+      "example_ru": "Моё рабочее место в Берлине."
+    },
+    {
+      "de": "die Arbeitszeit",
+      "ru": "рабочее время",
+      "en": "working hours",
+      "example": "Die Arbeitszeit ist von 9 bis 17 Uhr.",
+      "example_ru": "Рабочее время с 9 до 17."
+    },
+    {
+      "de": "die Pause",
+      "ru": "перерыв",
+      "en": "break/pause",
+      "example": "Ich mache eine Pause.",
+      "example_ru": "Я делаю перерыв."
+    },
+    {
+      "de": "der Urlaub",
+      "ru": "отпуск",
+      "en": "vacation/leave",
+      "example": "Ich habe Urlaub.",
+      "example_ru": "У меня отпуск."
+    },
+    {
+      "de": "die Freizeit",
+      "ru": "свободное время",
+      "en": "free time/leisure",
+      "example": "In meiner Freizeit lese ich.",
+      "example_ru": "В свободное время я читаю."
+    },
+    {
+      "de": "das Interesse",
+      "ru": "интерес",
+      "en": "interest",
+      "example": "Mein Interesse ist Sport.",
+      "example_ru": "Мой интерес — спорт."
+    },
+    {
+      "de": "der Sport",
+      "ru": "спорт",
+      "en": "sport",
+      "example": "Ich mache gern Sport.",
+      "example_ru": "Я люблю заниматься спортом."
+    },
+    {
+      "de": "die Musik",
+      "ru": "музыка",
+      "en": "music",
+      "example": "Ich höre gern Musik.",
+      "example_ru": "Я люблю слушать музыку."
+    },
+    {
+      "de": "das Reisen",
+      "ru": "путешествия",
+      "en": "traveling",
+      "example": "Reisen ist mein Hobby.",
+      "example_ru": "Путешествия — моё хобби."
+    },
+    {
+      "de": "der Film",
+      "ru": "фильм",
+      "en": "movie/film",
+      "example": "Ich sehe gern Filme.",
+      "example_ru": "Я люблю смотреть фильмы."
+    },
+    {
+      "de": "das Buch",
+      "ru": "книга",
+      "en": "book",
+      "example": "Ich lese gern Bücher.",
+      "example_ru": "Я люблю читать книги."
+    },
+    {
+      "de": "die Qualifikation",
+      "ru": "квалификация",
+      "en": "qualification",
+      "example": "Ich habe die nötige Qualifikation.",
+      "example_ru": "У меня есть нужная квалификация."
+    },
+    {
+      "de": "die Stelle",
+      "ru": "должность",
+      "en": "position/spot",
+      "example": "Ich suche eine Stelle.",
+      "example_ru": "Я ищу работу."
+    },
+    {
+      "de": "bewerben",
+      "ru": "подавать заявку",
+      "en": "to apply",
+      "example": "Ich bewerbe mich um die Stelle.",
+      "example_ru": "Я подаю заявку на должность."
+    },
+    {
+      "de": "der Lebenslauf",
+      "ru": "резюме",
+      "en": "resume/CV",
+      "example": "Hier ist mein Lebenslauf.",
+      "example_ru": "Вот моё резюме."
+    },
+    {
+      "de": "das Vorstellungsgespräch",
+      "ru": "собеседование",
+      "en": "job interview",
+      "example": "Das Vorstellungsgespräch war gut.",
+      "example_ru": "Собеседование прошло хорошо."
+    },
+    {
+      "de": "der Lohn",
+      "ru": "зарплата",
+      "en": "wage/salary",
+      "example": "Der Lohn ist gut.",
+      "example_ru": "Зарплата хорошая."
+    },
+    {
+      "de": "das Gehalt",
+      "ru": "оклад",
+      "en": "salary",
+      "example": "Das Gehalt ist hoch.",
+      "example_ru": "Оклад высокий."
+    },
+    {
+      "de": "die Steuer",
+      "ru": "налог",
+      "en": "tax",
+      "example": "Die Steuer ist hoch.",
+      "example_ru": "Налог высокий."
+    },
+    {
+      "de": "die Versicherung",
+      "ru": "страховка",
+      "en": "insurance",
+      "example": "Ich habe eine Versicherung.",
+      "example_ru": "У меня есть страховка."
+    },
+    {
+      "de": "die Krankenversicherung",
+      "ru": "медицинская страховка",
+      "en": "health insurance",
+      "example": "Die Krankenversicherung ist Pflicht.",
+      "example_ru": "Медицинская страховка обязательна."
+    },
+    {
+      "de": "die Rente",
+      "ru": "пенсия",
+      "en": "pension",
+      "example": "Er bekommt Rente.",
+      "example_ru": "Он получает пенсию."
+    },
+    {
+      "de": "der Ausweis",
+      "ru": "удостоверение",
+      "en": "ID card",
+      "example": "Zeigen Sie bitte Ihren Ausweis.",
+      "example_ru": "Покажите, пожалуйста, удостоверение."
+    },
+    {
+      "de": "die Anschrift",
+      "ru": "адрес",
+      "en": "address",
+      "example": "Was ist Ihre Anschrift?",
+      "example_ru": "Какой ваш адрес?"
+    },
+    {
+      "de": "der Bezirk",
+      "ru": "район",
+      "en": "district",
+      "example": "Ich wohne im Bezirk Mitte.",
+      "example_ru": "Я живу в районе Митте."
+    },
+    {
+      "de": "die Postleitzahl",
+      "ru": "почтовый индекс",
+      "en": "postal code/ZIP code",
+      "example": "Die Postleitzahl ist 10115.",
+      "example_ru": "Почтовый индекс 10115."
+    },
+    {
+      "de": "das Viertel",
+      "ru": "район",
+      "en": "quarter",
+      "example": "Das Viertel ist ruhig.",
+      "example_ru": "Район тихий."
+    },
+    {
+      "de": "der Kontakt",
+      "ru": "контакт",
+      "en": "contact",
+      "example": "Halten Sie Kontakt.",
+      "example_ru": "Поддерживайте контакт."
+    },
+    {
+      "de": "die Bekanntschaft",
+      "ru": "знакомство",
+      "en": "acquaintance",
+      "example": "Freut mich die Bekanntschaft.",
+      "example_ru": "Приятно познакомиться."
+    },
+    {
+      "de": "sich vorstellen",
+      "ru": "представляться",
+      "en": "to introduce oneself",
+      "example": "Darf ich mich vorstellen?",
+      "example_ru": "Разрешите представиться?"
+    },
+    {
+      "de": "die Bevölkerung",
+      "ru": "население",
+      "en": "population",
+      "example": "Die Bevölkerung wächst.",
+      "example_ru": "Население растёт."
+    },
+    {
+      "de": "der Ausländer",
+      "ru": "иностранец",
+      "en": "foreigner (m)",
+      "example": "Er ist Ausländer.",
+      "example_ru": "Он иностранец."
+    },
+    {
+      "de": "die Ausländerin",
+      "ru": "иностранка",
+      "en": "foreigner (f)",
+      "example": "Sie ist Ausländerin.",
+      "example_ru": "Она иностранка."
+    },
+    {
+      "de": "der Einwohner",
+      "ru": "житель",
+      "en": "resident/inhabitant (m)",
+      "example": "Ich bin Einwohner von Berlin.",
+      "example_ru": "Я житель Берлина."
+    },
+    {
+      "de": "die Einwohnerin",
+      "ru": "жительница",
+      "en": "resident/inhabitant (f)",
+      "example": "Sie ist Einwohnerin von München.",
+      "example_ru": "Она жительница Мюнхена."
+    },
+    {
+      "de": "die Heimat",
+      "ru": "родина",
+      "en": "homeland",
+      "example": "Meine Heimat ist Russland.",
+      "example_ru": "Моя родина — Россия."
+    },
+    {
+      "de": "auswandern",
+      "ru": "эмигрировать",
+      "en": "to emigrate",
+      "example": "Sie wollen auswandern.",
+      "example_ru": "Они хотят эмигрировать."
+    },
+    {
+      "de": "einwandern",
+      "ru": "иммигрировать",
+      "en": "to immigrate",
+      "example": "Er ist eingewandert.",
+      "example_ru": "Он иммигрировал."
+    },
+    {
+      "de": "integrieren",
+      "ru": "интегрироваться",
+      "en": "to integrate",
+      "example": "Es ist wichtig, sich zu integrieren.",
+      "example_ru": "Важно интегрироваться."
+    },
+    {
+      "de": "die Integration",
+      "ru": "интеграция",
+      "en": "integration",
+      "example": "Die Integration ist ein Thema.",
+      "example_ru": "Интеграция — важная тема."
+    },
+    {
+      "de": "die Straße",
+      "ru": "улица",
+      "en": "street",
+      "example": "Ich wohne in der Hauptstraße.",
+      "example_ru": "Я живу на Главной улице."
+    },
+    {
+      "de": "der Ort",
+      "ru": "населённый пункт",
+      "en": "place/location",
+      "example": "Ein kleiner Ort.",
+      "example_ru": "Небольшой населённый пункт."
+    },
+    {
+      "de": "die Region",
+      "ru": "регион",
+      "en": "region",
+      "example": "Ich komme aus dieser Region.",
+      "example_ru": "Я из этого региона."
+    },
+    {
+      "de": "der Kontinent",
+      "ru": "континент",
+      "en": "continent",
+      "example": "Europa ist ein Kontinent.",
+      "example_ru": "Европа — континент."
+    },
+    {
+      "de": "die Hausnummer",
+      "ru": "номер дома",
+      "en": "house number",
+      "example": "Die Hausnummer ist 5.",
+      "example_ru": "Номер дома 5."
+    },
+    {
+      "de": "die Ecke",
+      "ru": "угол",
+      "en": "corner",
+      "example": "An der Ecke links.",
+      "example_ru": "На углу налево."
+    }
   ],
   "distractors": [
     "паспорт",
@@ -186,6 +706,28 @@
     "регистрация",
     "виза",
     "профессия",
+    "должность",
+    "работодатель",
+    "образование",
+    "хобби",
+    "увлечение",
+    "семейное положение",
+    "знак зодиака",
+    "рост",
+    "вес"
+  ],
+  "distractors_en": [
+    "passport",
+    "гражданство",
+    "nationality",
+    "место рождения",
+    "дата рождения",
+    "подпись",
+    "document",
+    "анкета",
+    "регистрация",
+    "виза",
+    "profession",
     "должность",
     "работодатель",
     "образование",

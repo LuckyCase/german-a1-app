@@ -1,8 +1,10 @@
 {
   "id": "business_etiquette",
   "name": "Деловой этикет",
+  "name_en": "Business Etiquette",
   "name_de": "Geschäftsetikette",
   "description": "Рукопожатие, обращение и правила поведения в деловой среде",
+  "description_en": "Handshake, form of address and business etiquette",
   "level": "A1",
   "content": {
     "title": "Geschäftsetikette — деловой этикет",
@@ -23,19 +25,31 @@
   "questions": [
     {
       "question": "Как обращаться к деловому партнёру в Германии?",
-      "options": ["По имени", "По фамилии с «Herr» или «Frau»", "Просто «du»"],
+      "options": [
+        "По имени",
+        "По фамилии с «Herr» или «Frau»",
+        "Просто «du»"
+      ],
       "correct": 1,
       "explanation": "В деловой среде принято обращаться «Herr/Frau + фамилия», пока не предложат перейти на «du»."
     },
     {
       "question": "Что считается невежливым на деловой встрече?",
-      "options": ["Крепкое рукопожатие", "Опоздание на 5 минут", "Обращение на «Sie»"],
+      "options": [
+        "Крепкое рукопожатие",
+        "Опоздание на 5 минут",
+        "Обращение на «Sie»"
+      ],
       "correct": 1,
       "explanation": "В Германии пунктуальность очень важна — опоздание даже на 5 минут считается неуважением."
     },
     {
       "question": "Как начать официальное деловое письмо?",
-      "options": ["Hallo!", "Sehr geehrter Herr/Frau...", "Lieber Freund"],
+      "options": [
+        "Hallo!",
+        "Sehr geehrter Herr/Frau...",
+        "Lieber Freund"
+      ],
       "correct": 1,
       "explanation": "«Sehr geehrter Herr/Frau...» — стандартное начало делового письма (Уважаемый/ая...)."
     }

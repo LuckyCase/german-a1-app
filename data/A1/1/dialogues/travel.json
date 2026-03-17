@@ -1,8 +1,10 @@
 {
   "id": "travel",
   "name": "В поездке",
+  "name_en": "Traveling",
   "name_de": "Unterwegs",
   "description": "В путешествии",
+  "description_en": "While traveling",
   "level": "A1",
   "dialogue": [
     {

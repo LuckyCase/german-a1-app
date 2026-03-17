@@ -1,64 +1,101 @@
 {
   "id": "perfekt_alltag",
   "name": "Перфект в повседневной жизни",
+  "name_en": "Perfekt in Everyday Life",
   "name_de": "Perfekt im Alltag",
   "description": "Прошедшее время (Perfekt) — рассказы о том, что произошло",
+  "description_en": "Past tense (Perfekt) — talking about what happened",
   "level": "A1",
-  "linked_to": ["present_tense", "sein_haben"],
+  "linked_to": [
+    "present_tense",
+    "sein_haben"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Ich ___ gestern einen Film gesehen.",
-      "options": ["bin", "habe", "werde"],
+      "options": [
+        "bin",
+        "habe",
+        "werde"
+      ],
       "correct": 1,
       "explanation": "Sehen → haben + gesehen. Большинство глаголов образуют Perfekt с haben."
     },
     {
       "type": "multiple_choice",
       "question": "Er ___ nach Berlin gefahren.",
-      "options": ["hat", "ist", "wird"],
+      "options": [
+        "hat",
+        "ist",
+        "wird"
+      ],
       "correct": 1,
       "explanation": "Fahren → sein + gefahren. Глаголы движения образуют Perfekt с sein."
     },
     {
       "type": "multiple_choice",
       "question": "Wir ___ im Restaurant gegessen.",
-      "options": ["sind", "haben", "werden"],
+      "options": [
+        "sind",
+        "haben",
+        "werden"
+      ],
       "correct": 1,
       "explanation": "Essen → haben + gegessen. Essen не выражает перемещение → haben."
     },
     {
       "type": "multiple_choice",
       "question": "Sie ___ um 7 Uhr aufgestanden.",
-      "options": ["hat", "ist", "wird"],
+      "options": [
+        "hat",
+        "ist",
+        "wird"
+      ],
       "correct": 1,
       "explanation": "Aufstehen → sein + aufgestanden. Глаголы изменения состояния используют sein."
     },
     {
       "type": "multiple_choice",
       "question": "Какая форма Partizip II от глагола «kaufen»?",
-      "options": ["gekauft", "gekaift", "gekaufen"],
+      "options": [
+        "gekauft",
+        "gekaift",
+        "gekaufen"
+      ],
       "correct": 0,
       "explanation": "Kaufen — правильный глагол: ge- + kauf + -t → gekauft."
     },
     {
       "type": "multiple_choice",
       "question": "Какая форма Partizip II от глагола «trinken»?",
-      "options": ["getrinkt", "getrunken", "trinken"],
+      "options": [
+        "getrinkt",
+        "getrunken",
+        "trinken"
+      ],
       "correct": 1,
       "explanation": "Trinken — неправильный глагол: trinken → getrunken (с изменением корневой гласной)."
     },
     {
       "type": "multiple_choice",
       "question": "Die Kinder ___ im Park gespielt.",
-      "options": ["sind", "haben", "werden"],
+      "options": [
+        "sind",
+        "haben",
+        "werden"
+      ],
       "correct": 1,
       "explanation": "Spielen → haben + gespielt. Spielen не обозначает движение → haben."
     },
     {
       "type": "multiple_choice",
       "question": "Ich ___ heute früh aufgewacht.",
-      "options": ["habe", "bin", "werde"],
+      "options": [
+        "habe",
+        "bin",
+        "werde"
+      ],
       "correct": 1,
       "explanation": "Aufwachen → sein + aufgewacht. Изменение состояния (сон → бодрствование) → sein."
     }

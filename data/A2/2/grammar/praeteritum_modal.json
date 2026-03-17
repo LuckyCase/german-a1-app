@@ -1,8 +1,10 @@
 {
   "id": "praeteritum_modal",
   "name": "Präteritum модальных глаголов",
+  "name_en": "Präteritum of Modal Verbs",
   "name_de": "Präteritum der Modalverben",
   "description": "Формы musste, wollte, konnte, durfte, sollte",
+  "description_en": "Forms musste, wollte, konnte, durfte, sollte",
   "level": "A2",
   "theory": {
     "title": "Präteritum Modalverben",
@@ -20,37 +22,61 @@
   "questions": [
     {
       "question": "Ich ___ gestern Überstunden machen.",
-      "options": ["muss", "musste", "gemusst"],
+      "options": [
+        "muss",
+        "musste",
+        "gemusst"
+      ],
       "correct": 1,
       "explanation": "Для прошедшего в Präteritum: musste."
     },
     {
       "question": "Wir ___ ein neues Auto kaufen, aber es war zu teuer.",
-      "options": ["wollten", "wollen", "gewollt"],
+      "options": [
+        "wollten",
+        "wollen",
+        "gewollt"
+      ],
       "correct": 0,
       "explanation": "Präteritum von wollen: wollten."
     },
     {
       "question": "Er ___ wegen Krankheit nicht kommen.",
-      "options": ["konnte", "kann", "gekonnt"],
+      "options": [
+        "konnte",
+        "kann",
+        "gekonnt"
+      ],
       "correct": 0,
       "explanation": "Präteritum von können: konnte."
     },
     {
       "question": "Ihr ___ hier nicht parken.",
-      "options": ["dürft", "durftet", "gedurft"],
+      "options": [
+        "dürft",
+        "durftet",
+        "gedurft"
+      ],
       "correct": 1,
       "explanation": "Präteritum von dürfen: durftet."
     },
     {
       "question": "Sie ___ früher ins Bett gehen.",
-      "options": ["sollte", "soll", "gesollt"],
+      "options": [
+        "sollte",
+        "soll",
+        "gesollt"
+      ],
       "correct": 0,
       "explanation": "Präteritum von sollen: sollte."
     },
     {
       "question": "Welche Form ist richtig? (ich, können)",
-      "options": ["ich konnte", "ich kannte", "ich gekonnt"],
+      "options": [
+        "ich konnte",
+        "ich kannte",
+        "ich gekonnt"
+      ],
       "correct": 0,
       "explanation": "Präteritum от können: ich konnte."
     }

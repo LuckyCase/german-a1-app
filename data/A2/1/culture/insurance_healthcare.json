@@ -1,8 +1,10 @@
 {
   "id": "insurance_healthcare",
   "name": "Медицинская страховка в Германии",
+  "name_en": "Health Insurance in Germany",
   "name_de": "Krankenversicherung in Deutschland",
   "description": "Базовые принципы медицинского страхования",
+  "description_en": "Basic principles of health insurance",
   "level": "A2",
   "content": {
     "title": "Krankenversicherung",
@@ -21,19 +23,31 @@
   "questions": [
     {
       "question": "Нужна ли медицинская страховка в Германии?",
-      "options": ["Нет, это по желанию", "Да, она обязательна", "Только для студентов"],
+      "options": [
+        "Нет, это по желанию",
+        "Да, она обязательна",
+        "Только для студентов"
+      ],
       "correct": 1,
       "explanation": "Страховка обязательна для всех."
     },
     {
       "question": "Что обычно нужно показать у врача?",
-      "options": ["Банковскую карту", "Страховую карту", "Паспорт"],
+      "options": [
+        "Банковскую карту",
+        "Страховую карту",
+        "Паспорт"
+      ],
       "correct": 1,
       "explanation": "Обычно предъявляют страховую карту."
     },
     {
       "question": "К кому часто идут сначала?",
-      "options": ["К Hausarzt", "Сразу к хирургу", "В аптеку"],
+      "options": [
+        "К Hausarzt",
+        "Сразу к хирургу",
+        "В аптеку"
+      ],
       "correct": 0,
       "explanation": "Часто сначала посещают семейного врача (Hausarzt)."
     }

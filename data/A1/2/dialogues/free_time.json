@@ -1,8 +1,10 @@
 {
   "id": "free_time",
   "name": "Свободное время",
+  "name_en": "Free Time",
   "name_de": "Freizeit",
   "description": "Планы на выходные",
+  "description_en": "Weekend plans",
   "level": "A2",
   "dialogue": [
     {

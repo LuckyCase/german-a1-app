@@ -1,8 +1,10 @@
 {
   "id": "word_order",
   "name": "Порядок слов и придаточные",
+  "name_en": "Word Order and Subordinate Clauses",
   "name_de": "Wortstellung und Nebensätze",
   "description": "Придаточные предложения weil, dass (уровень A2)",
+  "description_en": "Subordinate clauses weil, dass (A2 level)",
   "level": "A2",
   "theory": {
     "title": "Придаточные предложения (Nebensätze)",

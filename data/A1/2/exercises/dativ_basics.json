@@ -1,64 +1,101 @@
 {
   "id": "dativ_basics",
   "name": "Основы дательного падежа",
+  "name_en": "Dative Case Basics",
   "name_de": "Dativ-Grundlagen",
   "description": "Дательный падеж (Dativ) — кому? с предлогами и глаголами",
+  "description_en": "Dative case (Dativ) — to whom? with prepositions and verbs",
   "level": "A1",
-  "linked_to": ["akkusativ", "articles"],
+  "linked_to": [
+    "akkusativ",
+    "articles"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Ich gebe ___ Frau das Buch.",
-      "options": ["die", "der", "den"],
+      "options": [
+        "die",
+        "der",
+        "den"
+      ],
       "correct": 1,
       "explanation": "Женский род в Dativ: die → der. Ich gebe der Frau — я даю (кому?) женщине."
     },
     {
       "type": "multiple_choice",
       "question": "Er hilft ___ Kind.",
-      "options": ["das", "dem", "den"],
+      "options": [
+        "das",
+        "dem",
+        "den"
+      ],
       "correct": 1,
       "explanation": "Средний род в Dativ: das → dem. Er hilft dem Kind — он помогает ребёнку."
     },
     {
       "type": "multiple_choice",
       "question": "Wir fahren mit ___ Bus.",
-      "options": ["der", "dem", "den"],
+      "options": [
+        "der",
+        "dem",
+        "den"
+      ],
       "correct": 1,
       "explanation": "Mit + Dativ. Мужской род: der → dem. Mit dem Bus — на автобусе."
     },
     {
       "type": "multiple_choice",
       "question": "Sie wohnt bei ___ Eltern.",
-      "options": ["die", "der", "den"],
+      "options": [
+        "die",
+        "der",
+        "den"
+      ],
       "correct": 2,
       "explanation": "Bei + Dativ. Множественное число в Dativ: die → den. Bei den Eltern — у родителей."
     },
     {
       "type": "multiple_choice",
       "question": "Ich komme aus ___ Türkei.",
-      "options": ["die", "der", "dem"],
+      "options": [
+        "die",
+        "der",
+        "dem"
+      ],
       "correct": 1,
       "explanation": "Aus + Dativ. Женский род: die → der. Aus der Türkei — из Турции."
     },
     {
       "type": "multiple_choice",
       "question": "Er geht zu ___ Arzt.",
-      "options": ["der", "dem", "den"],
+      "options": [
+        "der",
+        "dem",
+        "den"
+      ],
       "correct": 1,
       "explanation": "Zu + Dativ. Мужской род: der → dem. Zum (= zu dem) Arzt — к врачу."
     },
     {
       "type": "multiple_choice",
       "question": "Das Geschenk ist von ___ Mutter.",
-      "options": ["die", "der", "dem"],
+      "options": [
+        "die",
+        "der",
+        "dem"
+      ],
       "correct": 1,
       "explanation": "Von + Dativ. Женский род: die → der. Von der Mutter — от матери."
     },
     {
       "type": "multiple_choice",
       "question": "Seit ___ Woche lerne ich Deutsch.",
-      "options": ["die", "einer", "einem"],
+      "options": [
+        "die",
+        "einer",
+        "einem"
+      ],
       "correct": 1,
       "explanation": "Seit + Dativ. Женский род, неопределённый артикль: eine → einer. Seit einer Woche — в течение одной недели."
     }

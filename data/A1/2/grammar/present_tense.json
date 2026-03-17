@@ -1,8 +1,10 @@
 {
   "id": "present_tense",
   "name": "Настоящее и прошедшее время",
+  "name_en": "Present and Past Tense",
   "name_de": "Präsens und Perfekt",
   "description": "Perfekt — прошедшее время (уровень A2)",
+  "description_en": "Perfekt — past tense (A2 level)",
   "level": "A2",
   "theory": {
     "title": "Perfekt — прошедшее время",

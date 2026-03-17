@@ -1,679 +1,793 @@
 {
   "id": "numbers",
   "name": "Числа",
+  "name_en": "Numbers",
   "name_de": "Zahlen",
   "description": "Числа и количественные выражения (уровень A2)",
+  "description_en": "Numbers and quantitative expressions (A2 level)",
   "level": "A2",
   "words": [
     {
       "de": "das Dutzend",
       "ru": "дюжина",
+      "en": "dozen",
       "example": "Ein Dutzend Eier, bitte.",
       "example_ru": "Дюжину яиц, пожалуйста."
     },
     {
       "de": "die Hälfte",
       "ru": "половина",
+      "en": "half",
       "example": "Die Hälfte der Teilnehmer kam.",
       "example_ru": "Половина участников пришла."
     },
     {
       "de": "das Drittel",
       "ru": "треть",
+      "en": "third (fraction)",
       "example": "Ein Drittel der Schüler.",
       "example_ru": "Треть учеников."
     },
     {
       "de": "das Paar",
       "ru": "пара",
+      "en": "pair/couple",
       "example": "Ich brauche ein neues Paar Schuhe.",
       "example_ru": "Мне нужна новая пара туфель."
     },
     {
       "de": "die Menge",
       "ru": "количество",
+      "en": "quantity/amount",
       "example": "Eine große Menge Menschen.",
       "example_ru": "Большое количество людей."
     },
     {
       "de": "ungefähr",
       "ru": "примерно",
+      "en": "approximately",
       "example": "Ungefähr 50 Gäste.",
       "example_ru": "Примерно 50 гостей."
     },
     {
       "de": "etwa",
       "ru": "около",
+      "en": "about/approximately",
       "example": "Das kostet etwa 20 Euro.",
       "example_ru": "Это стоит около 20 евро."
     },
     {
       "de": "genau",
       "ru": "ровно",
+      "en": "exactly",
       "example": "Genau 100 Euro.",
       "example_ru": "Ровно 100 евро."
     },
     {
       "de": "doppelt",
       "ru": "вдвое",
+      "en": "double",
       "example": "Doppelt so viel.",
       "example_ru": "Вдвое больше."
     },
     {
       "de": "halb",
       "ru": "половина (пол-)",
+      "en": "half",
       "example": "Es ist halb zehn.",
       "example_ru": "Полдесятого (9:30)."
     },
     {
       "de": "null",
       "ru": "ноль",
+      "en": "zero",
       "example": "Null Grad.",
       "example_ru": "Ноль градусов."
     },
     {
       "de": "eins",
       "ru": "один",
+      "en": "one",
       "example": "Ich habe eins.",
       "example_ru": "У меня один."
     },
     {
       "de": "zwei",
       "ru": "два",
+      "en": "two",
       "example": "Zwei Kaffee, bitte.",
       "example_ru": "Два кофе, пожалуйста."
     },
     {
       "de": "drei",
       "ru": "три",
+      "en": "three",
       "example": "Drei Euro.",
       "example_ru": "Три евро."
     },
     {
       "de": "vier",
       "ru": "четыре",
+      "en": "four",
       "example": "Vier Personen.",
       "example_ru": "Четыре человека."
     },
     {
       "de": "fünf",
       "ru": "пять",
+      "en": "five",
       "example": "Fünf Minuten.",
       "example_ru": "Пять минут."
     },
     {
       "de": "sechs",
       "ru": "шесть",
+      "en": "six",
       "example": "Um sechs Uhr.",
       "example_ru": "В шесть часов."
     },
     {
       "de": "sieben",
       "ru": "семь",
+      "en": "seven",
       "example": "Sieben Tage.",
       "example_ru": "Семь дней."
     },
     {
       "de": "acht",
       "ru": "восемь",
+      "en": "eight",
       "example": "Acht Stunden.",
       "example_ru": "Восемь часов."
     },
     {
       "de": "neun",
       "ru": "девять",
+      "en": "nine",
       "example": "Neun Euro.",
       "example_ru": "Девять евро."
     },
     {
       "de": "zehn",
       "ru": "десять",
+      "en": "ten",
       "example": "Zehn Prozent.",
       "example_ru": "Десять процентов."
     },
     {
       "de": "elf",
       "ru": "одиннадцать",
+      "en": "eleven",
       "example": "Um elf Uhr.",
       "example_ru": "В одиннадцать часов."
     },
     {
       "de": "zwölf",
       "ru": "двенадцать",
+      "en": "twelve",
       "example": "Zwölf Monate.",
       "example_ru": "Двенадцать месяцев."
     },
     {
       "de": "dreizehn",
       "ru": "тринадцать",
+      "en": "thirteen",
       "example": "Dreizehn Euro.",
       "example_ru": "Тринадцать евро."
     },
     {
       "de": "zwanzig",
       "ru": "двадцать",
+      "en": "twenty",
       "example": "Zwanzig Minuten.",
       "example_ru": "Двадцать минут."
     },
     {
       "de": "dreißig",
       "ru": "тридцать",
+      "en": "thirty",
       "example": "Dreißig Grad.",
       "example_ru": "Тридцать градусов."
     },
     {
       "de": "vierzig",
       "ru": "сорок",
+      "en": "forty",
       "example": "Vierzig Euro.",
       "example_ru": "Сорок евро."
     },
     {
       "de": "fünfzig",
       "ru": "пятьдесят",
+      "en": "fifty",
       "example": "Fünfzig Prozent.",
       "example_ru": "Пятьдесят процентов."
     },
     {
       "de": "hundert",
       "ru": "сто",
+      "en": "hundred",
       "example": "Hundert Euro.",
       "example_ru": "Сто евро."
     },
     {
       "de": "tausend",
       "ru": "тысяча",
+      "en": "thousand",
       "example": "Tausend Kilometer.",
       "example_ru": "Тысяча километров."
     },
     {
       "de": "vierzehn",
       "ru": "четырнадцать",
+      "en": "fourteen",
       "example": "Vierzehn Tage.",
       "example_ru": "Четырнадцать дней."
     },
     {
       "de": "fünfzehn",
       "ru": "пятнадцать",
+      "en": "fifteen",
       "example": "Fünfzehn Euro.",
       "example_ru": "Пятнадцать евро."
     },
     {
       "de": "sechzehn",
       "ru": "шестнадцать",
+      "en": "sixteen",
       "example": "Sechzehn Jahre.",
       "example_ru": "Шестнадцать лет."
     },
     {
       "de": "siebzehn",
       "ru": "семнадцать",
+      "en": "seventeen",
       "example": "Siebzehn Minuten.",
       "example_ru": "Семнадцать минут."
     },
     {
       "de": "achtzehn",
       "ru": "восемнадцать",
+      "en": "eighteen",
       "example": "Achtzehn Uhr.",
       "example_ru": "Восемнадцать часов."
     },
     {
       "de": "neunzehn",
       "ru": "девятнадцать",
+      "en": "nineteen",
       "example": "Neunzehn Grad.",
       "example_ru": "Девятнадцать градусов."
     },
     {
       "de": "sechzig",
       "ru": "шестьдесят",
+      "en": "sixty",
       "example": "Sechzig Prozent.",
       "example_ru": "Шестьдесят процентов."
     },
     {
       "de": "siebzig",
       "ru": "семьдесят",
+      "en": "seventy",
       "example": "Siebzig Euro.",
       "example_ru": "Семьдесят евро."
     },
     {
       "de": "achtzig",
       "ru": "восемьдесят",
+      "en": "eighty",
       "example": "Achtzig Kilometer.",
       "example_ru": "Восемьдесят километров."
     },
     {
       "de": "neunzig",
       "ru": "девяносто",
+      "en": "ninety",
       "example": "Neunzig Minuten.",
       "example_ru": "Девяносто минут."
     },
     {
       "de": "einundzwanzig",
       "ru": "двадцать один",
+      "en": "twenty-one",
       "example": "Einundzwanzig Euro.",
       "example_ru": "Двадцать один евро."
     },
     {
       "de": "zweiundzwanzig",
       "ru": "двадцать два",
+      "en": "twenty-two",
       "example": "Zweiundzwanzig Uhr.",
       "example_ru": "Двадцать два часа."
     },
     {
       "de": "dreiundzwanzig",
       "ru": "двадцать три",
+      "en": "twenty-three",
       "example": "Dreiundzwanzig Tage.",
       "example_ru": "Двадцать три дня."
     },
     {
       "de": "vierundzwanzig",
       "ru": "двадцать четыре",
+      "en": "twenty-four",
       "example": "Vierundzwanzig Personen.",
       "example_ru": "Двадцать четыре человека."
     },
     {
       "de": "fünfundzwanzig",
       "ru": "двадцать пять",
+      "en": "twenty-five",
       "example": "Fünfundzwanzig Jahre.",
       "example_ru": "Двадцать пять лет."
     },
     {
       "de": "sechsundzwanzig",
       "ru": "двадцать шесть",
+      "en": "twenty-six",
       "example": "Sechsundzwanzig Grad.",
       "example_ru": "Двадцать шесть градусов."
     },
     {
       "de": "siebenundzwanzig",
       "ru": "двадцать семь",
+      "en": "twenty-seven",
       "example": "Siebenundzwanzig Euro.",
       "example_ru": "Двадцать семь евро."
     },
     {
       "de": "achtundzwanzig",
       "ru": "двадцать восемь",
+      "en": "twenty-eight",
       "example": "Achtundzwanzig Minuten.",
       "example_ru": "Двадцать восемь минут."
     },
     {
       "de": "neunundzwanzig",
       "ru": "двадцать девять",
+      "en": "twenty-nine",
       "example": "Neunundzwanzig Prozent.",
       "example_ru": "Двадцать девять процентов."
     },
     {
       "de": "einunddreißig",
       "ru": "тридцать один",
+      "en": "thirty-one",
       "example": "Einunddreißig Tage.",
       "example_ru": "Тридцать один день."
     },
     {
       "de": "zweiunddreißig",
       "ru": "тридцать два",
+      "en": "thirty-two",
       "example": "Zweiunddreißig Euro.",
       "example_ru": "Тридцать два евро."
     },
     {
       "de": "dreiunddreißig",
       "ru": "тридцать три",
+      "en": "thirty-three",
       "example": "Dreiunddreißig Uhr.",
       "example_ru": "Тридцать три часа."
     },
     {
       "de": "vierunddreißig",
       "ru": "тридцать четыре",
+      "en": "thirty-four",
       "example": "Vierunddreißig Jahre.",
       "example_ru": "Тридцать четыре года."
     },
     {
       "de": "fünfunddreißig",
       "ru": "тридцать пять",
+      "en": "thirty-five",
       "example": "Fünfunddreißig Minuten.",
       "example_ru": "Тридцать пять минут."
     },
     {
       "de": "sechsunddreißig",
       "ru": "тридцать шесть",
+      "en": "thirty-six",
       "example": "Sechsunddreißig Grad.",
       "example_ru": "Тридцать шесть градусов."
     },
     {
       "de": "siebenunddreißig",
       "ru": "тридцать семь",
+      "en": "thirty-seven",
       "example": "Siebenunddreißig Euro.",
       "example_ru": "Тридцать семь евро."
     },
     {
       "de": "achtunddreißig",
       "ru": "тридцать восемь",
+      "en": "thirty-eight",
       "example": "Achtunddreißig Prozent.",
       "example_ru": "Тридцать восемь процентов."
     },
     {
       "de": "neununddreißig",
       "ru": "тридцать девять",
+      "en": "thirty-nine",
       "example": "Neununddreißig Tage.",
       "example_ru": "Тридцать девять дней."
     },
     {
       "de": "einundvierzig",
       "ru": "сорок один",
+      "en": "forty-one",
       "example": "Einundvierzig Euro.",
       "example_ru": "Сорок один евро."
     },
     {
       "de": "zweiundvierzig",
       "ru": "сорок два",
+      "en": "forty-two",
       "example": "Zweiundvierzig Uhr.",
       "example_ru": "Сорок два часа."
     },
     {
       "de": "dreiundvierzig",
       "ru": "сорок три",
+      "en": "forty-three",
       "example": "Dreiundvierzig Minuten.",
       "example_ru": "Сорок три минуты."
     },
     {
       "de": "vierundvierzig",
       "ru": "сорок четыре",
+      "en": "forty-four",
       "example": "Vierundvierzig Tage.",
       "example_ru": "Сорок четыре дня."
     },
     {
       "de": "fünfundvierzig",
       "ru": "сорок пять",
+      "en": "forty-five",
       "example": "Fünfundvierzig Jahre.",
       "example_ru": "Сорок пять лет."
     },
     {
       "de": "sechsundvierzig",
       "ru": "сорок шесть",
+      "en": "forty-six",
       "example": "Sechsundvierzig Grad.",
       "example_ru": "Сорок шесть градусов."
     },
     {
       "de": "siebenundvierzig",
       "ru": "сорок семь",
+      "en": "forty-seven",
       "example": "Siebenundvierzig Euro.",
       "example_ru": "Сорок семь евро."
     },
     {
       "de": "achtundvierzig",
       "ru": "сорок восемь",
+      "en": "forty-eight",
       "example": "Achtundvierzig Prozent.",
       "example_ru": "Сорок восемь процентов."
     },
     {
       "de": "neunundvierzig",
       "ru": "сорок девять",
+      "en": "forty-nine",
       "example": "Neunundvierzig Kilometer.",
       "example_ru": "Сорок девять километров."
     },
     {
       "de": "einundfünfzig",
       "ru": "пятьдесят один",
+      "en": "fifty-one",
       "example": "Einundfünfzig Euro.",
       "example_ru": "Пятьдесят один евро."
     },
     {
       "de": "zweiundfünfzig",
       "ru": "пятьдесят два",
+      "en": "fifty-two",
       "example": "Zweiundfünfzig Uhr.",
       "example_ru": "Пятьдесят два часа."
     },
     {
       "de": "dreiundfünfzig",
       "ru": "пятьдесят три",
+      "en": "fifty-three",
       "example": "Dreiundfünfzig Minuten.",
       "example_ru": "Пятьдесят три минуты."
     },
     {
       "de": "vierundfünfzig",
       "ru": "пятьдесят четыре",
+      "en": "fifty-four",
       "example": "Vierundfünfzig Tage.",
       "example_ru": "Пятьдесят четыре дня."
     },
     {
       "de": "fünfundfünfzig",
       "ru": "пятьдесят пять",
+      "en": "fifty-five",
       "example": "Fünfundfünfzig Jahre.",
       "example_ru": "Пятьдесят пять лет."
     },
     {
       "de": "sechsundfünfzig",
       "ru": "пятьдесят шесть",
+      "en": "fifty-six",
       "example": "Sechsundfünfzig Grad.",
       "example_ru": "Пятьдесят шесть градусов."
     },
     {
       "de": "siebenundfünfzig",
       "ru": "пятьдесят семь",
+      "en": "fifty-seven",
       "example": "Siebenundfünfzig Euro.",
       "example_ru": "Пятьдесят семь евро."
     },
     {
       "de": "achtundfünfzig",
       "ru": "пятьдесят восемь",
+      "en": "fifty-eight",
       "example": "Achtundfünfzig Prozent.",
       "example_ru": "Пятьдесят восемь процентов."
     },
     {
       "de": "neunundfünfzig",
       "ru": "пятьдесят девять",
+      "en": "fifty-nine",
       "example": "Neunundfünfzig Minuten.",
       "example_ru": "Пятьдесят девять минут."
     },
     {
       "de": "einundsechzig",
       "ru": "шестьдесят один",
+      "en": "sixty-one",
       "example": "Einundsechzig Euro.",
       "example_ru": "Шестьдесят один евро."
     },
     {
       "de": "zweiundsechzig",
       "ru": "шестьдесят два",
+      "en": "sixty-two",
       "example": "Zweiundsechzig Uhr.",
       "example_ru": "Шестьдесят два часа."
     },
     {
       "de": "dreiundsechzig",
       "ru": "шестьдесят три",
+      "en": "sixty-three",
       "example": "Dreiundsechzig Tage.",
       "example_ru": "Шестьдесят три дня."
     },
     {
       "de": "vierundsechzig",
       "ru": "шестьдесят четыре",
+      "en": "sixty-four",
       "example": "Vierundsechzig Minuten.",
       "example_ru": "Шестьдесят четыре минуты."
     },
     {
       "de": "fünfundsechzig",
       "ru": "шестьдесят пять",
+      "en": "sixty-five",
       "example": "Fünfundsechzig Jahre.",
       "example_ru": "Шестьдесят пять лет."
     },
     {
       "de": "sechsundsechzig",
       "ru": "шестьдесят шесть",
+      "en": "sixty-six",
       "example": "Sechsundsechzig Grad.",
       "example_ru": "Шестьдесят шесть градусов."
     },
     {
       "de": "siebenundsechzig",
       "ru": "шестьдесят семь",
+      "en": "sixty-seven",
       "example": "Siebenundsechzig Euro.",
       "example_ru": "Шестьдесят семь евро."
     },
     {
       "de": "achtundsechzig",
       "ru": "шестьдесят восемь",
+      "en": "sixty-eight",
       "example": "Achtundsechzig Prozent.",
       "example_ru": "Шестьдесят восемь процентов."
     },
     {
       "de": "neunundsechzig",
       "ru": "шестьдесят девять",
+      "en": "sixty-nine",
       "example": "Neunundsechzig Kilometer.",
       "example_ru": "Шестьдесят девять километров."
     },
     {
       "de": "einundsiebzig",
       "ru": "семьдесят один",
+      "en": "seventy-one",
       "example": "Einundsiebzig Euro.",
       "example_ru": "Семьдесят один евро."
     },
     {
       "de": "zweiundsiebzig",
       "ru": "семьдесят два",
+      "en": "seventy-two",
       "example": "Zweiundsiebzig Uhr.",
       "example_ru": "Семьдесят два часа."
     },
     {
       "de": "dreiundsiebzig",
       "ru": "семьдесят три",
+      "en": "seventy-three",
       "example": "Dreiundsiebzig Minuten.",
       "example_ru": "Семьдесят три минуты."
     },
     {
       "de": "vierundsiebzig",
       "ru": "семьдесят четыре",
+      "en": "seventy-four",
       "example": "Vierundsiebzig Tage.",
       "example_ru": "Семьдесят четыре дня."
     },
     {
       "de": "fünfundsiebzig",
       "ru": "семьдесят пять",
+      "en": "seventy-five",
       "example": "Fünfundsiebzig Jahre.",
       "example_ru": "Семьдесят пять лет."
     },
     {
       "de": "sechsundsiebzig",
       "ru": "семьдесят шесть",
+      "en": "seventy-six",
       "example": "Sechsundsiebzig Grad.",
       "example_ru": "Семьдесят шесть градусов."
     },
     {
       "de": "siebenundsiebzig",
       "ru": "семьдесят семь",
+      "en": "seventy-seven",
       "example": "Siebenundsiebzig Euro.",
       "example_ru": "Семьдесят семь евро."
     },
     {
       "de": "achtundsiebzig",
       "ru": "семьдесят восемь",
+      "en": "seventy-eight",
       "example": "Achtundsiebzig Prozent.",
       "example_ru": "Семьдесят восемь процентов."
     },
     {
       "de": "neunundsiebzig",
       "ru": "семьдесят девять",
+      "en": "seventy-nine",
       "example": "Neunundsiebzig Minuten.",
       "example_ru": "Семьдесят девять минут."
     },
     {
       "de": "einundachtzig",
       "ru": "восемьдесят один",
+      "en": "eighty-one",
       "example": "Einundachtzig Euro.",
       "example_ru": "Восемьдесят один евро."
     },
     {
       "de": "zweiundachtzig",
       "ru": "восемьдесят два",
+      "en": "eighty-two",
       "example": "Zweiundachtzig Uhr.",
       "example_ru": "Восемьдесят два часа."
     },
     {
       "de": "dreiundachtzig",
       "ru": "восемьдесят три",
+      "en": "eighty-three",
       "example": "Dreiundachtzig Tage.",
       "example_ru": "Восемьдесят три дня."
     },
     {
       "de": "vierundachtzig",
       "ru": "восемьдесят четыре",
+      "en": "eighty-four",
       "example": "Vierundachtzig Minuten.",
       "example_ru": "Восемьдесят четыре минуты."
     },
     {
       "de": "fünfundachtzig",
       "ru": "восемьдесят пять",
+      "en": "eighty-five",
       "example": "Fünfundachtzig Jahre.",
       "example_ru": "Восемьдесят пять лет."
     },
     {
       "de": "sechsundachtzig",
       "ru": "восемьдесят шесть",
+      "en": "eighty-six",
       "example": "Sechsundachtzig Grad.",
       "example_ru": "Восемьдесят шесть градусов."
     },
     {
       "de": "siebenundachtzig",
       "ru": "восемьдесят семь",
+      "en": "eighty-seven",
       "example": "Siebenundachtzig Euro.",
       "example_ru": "Восемьдесят семь евро."
     },
     {
       "de": "achtundachtzig",
       "ru": "восемьдесят восемь",
+      "en": "eighty-eight",
       "example": "Achtundachtzig Prozent.",
       "example_ru": "Восемьдесят восемь процентов."
     },
     {
       "de": "neunundachtzig",
       "ru": "восемьдесят девять",
+      "en": "eighty-nine",
       "example": "Neunundachtzig Kilometer.",
       "example_ru": "Восемьдесят девять километров."
     },
     {
       "de": "einundneunzig",
       "ru": "девяносто один",
+      "en": "ninety-one",
       "example": "Einundneunzig Euro.",
       "example_ru": "Девяносто один евро."
     },
     {
       "de": "zweiundneunzig",
       "ru": "девяносто два",
+      "en": "ninety-two",
       "example": "Zweiundneunzig Uhr.",
       "example_ru": "Девяносто два часа."
     },
     {
       "de": "dreiundneunzig",
       "ru": "девяносто три",
+      "en": "ninety-three",
       "example": "Dreiundneunzig Minuten.",
       "example_ru": "Девяносто три минуты."
     },
     {
       "de": "vierundneunzig",
       "ru": "девяносто четыре",
+      "en": "ninety-four",
       "example": "Vierundneunzig Tage.",
       "example_ru": "Девяносто четыре дня."
     },
     {
       "de": "fünfundneunzig",
       "ru": "девяносто пять",
+      "en": "ninety-five",
       "example": "Fünfundneunzig Jahre.",
       "example_ru": "Девяносто пять лет."
     },
     {
       "de": "sechsundneunzig",
       "ru": "девяносто шесть",
+      "en": "ninety-six",
       "example": "Sechsundneunzig Grad.",
       "example_ru": "Девяносто шесть градусов."
     },
     {
       "de": "siebenundneunzig",
       "ru": "девяносто семь",
+      "en": "ninety-seven",
       "example": "Siebenundneunzig Euro.",
       "example_ru": "Девяносто семь евро."
     },
     {
       "de": "achtundneunzig",
       "ru": "девяносто восемь",
+      "en": "ninety-eight",
       "example": "Achtundneunzig Prozent.",
       "example_ru": "Девяносто восемь процентов."
     },
     {
       "de": "neunundneunzig",
       "ru": "девяносто девять",
+      "en": "ninety-nine",
       "example": "Neunundneunzig Minuten.",
       "example_ru": "Девяносто девять минут."
     }

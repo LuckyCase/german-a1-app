@@ -1,15 +1,25 @@
 {
   "id": "a22_starter_mix",
   "name": "A2.2 Starter Mix",
+  "name_en": "A2.2 Starter Mix",
   "name_de": "A2.2 Starter Mix",
   "description": "Смешанные задания по Präteritum, dass/wenn и вежливым фразам",
+  "description_en": "Mixed exercises on Präteritum, dass/wenn and polite phrases",
   "level": "A2",
-  "linked_to": ["praeteritum_modal", "dass_wenn_konjunktiv2", "official_requests"],
+  "linked_to": [
+    "praeteritum_modal",
+    "dass_wenn_konjunktiv2",
+    "official_requests"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Gestern ___ ich leider länger arbeiten.",
-      "options": ["muss", "musste", "gemusst"],
+      "options": [
+        "muss",
+        "musste",
+        "gemusst"
+      ],
       "correct": 1,
       "explanation": "Präteritum от müssen: musste."
     },
@@ -22,7 +32,13 @@
     },
     {
       "type": "scramble",
-      "words": ["Könnten", "Sie", "mir", "bitte", "helfen"],
+      "words": [
+        "Könnten",
+        "Sie",
+        "mir",
+        "bitte",
+        "helfen"
+      ],
       "answer": "Könnten Sie mir bitte helfen",
       "translation": "Не могли бы Вы мне помочь",
       "explanation": "Вежливая просьба с Konjunktiv II."
@@ -30,9 +46,18 @@
     {
       "type": "matching",
       "pairs": [
-        {"left": "Ich würde gern", "right": "einen Termin vereinbaren."},
-        {"left": "Könnten Sie", "right": "das bitte wiederholen?"},
-        {"left": "Ich habe", "right": "eine Frage zu meinem Antrag."}
+        {
+          "left": "Ich würde gern",
+          "right": "einen Termin vereinbaren."
+        },
+        {
+          "left": "Könnten Sie",
+          "right": "das bitte wiederholen?"
+        },
+        {
+          "left": "Ich habe",
+          "right": "eine Frage zu meinem Antrag."
+        }
       ]
     }
   ]

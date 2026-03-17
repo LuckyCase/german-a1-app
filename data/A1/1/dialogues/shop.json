@@ -1,8 +1,10 @@
 {
   "id": "shop",
   "name": "В магазине",
+  "name_en": "At the Shop",
   "name_de": "Im Geschäft",
   "description": "Покупки",
+  "description_en": "Shopping",
   "level": "A1",
   "dialogue": [
     {

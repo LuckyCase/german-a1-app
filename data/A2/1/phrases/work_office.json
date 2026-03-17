@@ -1,8 +1,10 @@
 {
   "id": "work_office",
   "name": "Работа и офис",
+  "name_en": "Work and Office",
   "name_de": "Arbeit und Büro",
   "description": "Фразы для общения на работе",
+  "description_en": "Phrases for communicating at work",
   "level": "A2",
   "type": "situational",
   "phrases": [
@@ -10,6 +12,7 @@
       "de": "Könnten wir den Termin verschieben?",
       "ru": "Можем ли мы перенести встречу?",
       "context": "Планирование",
+      "context_en": "Planning",
       "example": "Könnten wir den Termin auf Freitag verschieben?",
       "example_ru": "Можем перенести встречу на пятницу?"
     },
@@ -30,7 +33,9 @@
     {
       "de": "Könnten Sie das bitte wiederholen?",
       "ru": "Не могли бы вы это повторить?",
+      "en": "Could you please repeat that?",
       "context": "Уточнение",
+      "context_en": "Clarification",
       "example": "Entschuldigung, könnten Sie das bitte wiederholen?",
       "example_ru": "Извините, не могли бы вы это повторить?"
     },
@@ -38,6 +43,7 @@
       "de": "Ich schicke Ihnen die Unterlagen per E-Mail.",
       "ru": "Я отправлю вам документы по e-mail.",
       "context": "Документы",
+      "context_en": "Documents",
       "example": "Ich schicke Ihnen die Unterlagen noch heute per E-Mail.",
       "example_ru": "Я отправлю вам документы по e-mail еще сегодня."
     },
@@ -59,6 +65,7 @@
       "de": "Das klingt nach einem guten Plan.",
       "ru": "Это звучит как хороший план.",
       "context": "Обсуждение",
+      "context_en": "Discussion",
       "example": "Ja, das klingt nach einem guten Plan.",
       "example_ru": "Да, это звучит как хороший план."
     }

@@ -1,8 +1,10 @@
 {
   "id": "cafe",
   "name": "В кафе",
+  "name_en": "At the Café",
   "name_de": "Im Café",
   "description": "Заказ в кафе",
+  "description_en": "Ordering at a café",
   "level": "A2",
   "dialogue": [
     {

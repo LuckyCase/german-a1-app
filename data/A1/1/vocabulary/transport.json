@@ -1,182 +1,656 @@
 {
   "id": "transport",
   "name": "Транспорт и город",
+  "name_en": "Transport and City",
   "name_de": "Verkehr und Stadt",
   "description": "Транспорт, ориентация в городе",
+  "description_en": "Transport, city navigation",
   "level": "A1",
   "words": [
     {
       "de": "der Bus",
       "ru": "автобус",
+      "en": "bus",
       "example": "Ich fahre mit dem Bus.",
       "example_ru": "Я еду на автобусе."
     },
     {
       "de": "die Bahn",
       "ru": "поезд",
+      "en": "railway/train",
       "example": "Die Bahn kommt um 10 Uhr.",
       "example_ru": "Поезд прибывает в 10 часов."
     },
     {
       "de": "die U-Bahn",
       "ru": "метро",
+      "en": "subway",
       "example": "Die U-Bahn ist schnell.",
       "example_ru": "Метро быстрое."
     },
     {
       "de": "die Straßenbahn",
       "ru": "трамвай",
+      "en": "tram",
       "example": "Die Straßenbahn Linie 5.",
       "example_ru": "Трамвай линии 5."
     },
     {
       "de": "das Auto",
       "ru": "машина",
+      "en": "car",
       "example": "Ich habe kein Auto.",
       "example_ru": "У меня нет машины."
     },
     {
       "de": "das Fahrrad",
       "ru": "велосипед",
+      "en": "bicycle",
       "example": "Ich fahre Fahrrad.",
       "example_ru": "Я езжу на велосипеде."
     },
     {
       "de": "das Taxi",
       "ru": "такси",
+      "en": "taxi",
       "example": "Ich nehme ein Taxi.",
       "example_ru": "Я беру такси."
     },
     {
       "de": "der Flughafen",
       "ru": "аэропорт",
+      "en": "airport",
       "example": "Zum Flughafen, bitte.",
       "example_ru": "В аэропорт, пожалуйста."
     },
     {
       "de": "der Bahnhof",
       "ru": "вокзал",
+      "en": "train station",
       "example": "Der Bahnhof ist hier.",
       "example_ru": "Вокзал здесь."
     },
     {
       "de": "die Haltestelle",
       "ru": "остановка",
+      "en": "stop",
       "example": "Die Haltestelle ist dort.",
       "example_ru": "Остановка там."
     },
     {
       "de": "die Straße",
       "ru": "улица",
+      "en": "street",
       "example": "Die Hauptstraße ist lang.",
       "example_ru": "Главная улица длинная."
     },
     {
       "de": "der Platz",
       "ru": "площадь",
+      "en": "place/square/seat",
       "example": "Der Marktplatz ist schön.",
       "example_ru": "Рыночная площадь красивая."
     },
     {
       "de": "links",
       "ru": "налево",
+      "en": "left",
       "example": "Gehen Sie links.",
       "example_ru": "Идите налево."
     },
     {
       "de": "rechts",
       "ru": "направо",
+      "en": "right",
       "example": "Dann rechts.",
       "example_ru": "Потом направо."
     },
     {
       "de": "geradeaus",
       "ru": "прямо",
+      "en": "straight ahead",
       "example": "Immer geradeaus.",
       "example_ru": "Всё время прямо."
     },
     {
       "de": "die Fahrkarte",
       "ru": "билет",
+      "en": "ticket",
       "example": "Eine Fahrkarte, bitte.",
       "example_ru": "Билет, пожалуйста."
     },
-    {"de": "das Flugzeug", "ru": "самолёт", "example": "Das Flugzeug startet um 10 Uhr.", "example_ru": "Самолёт вылетает в 10."},
-    {"de": "das Motorrad", "ru": "мотоцикл", "example": "Er fährt Motorrad.", "example_ru": "Он ездит на мотоцикле."},
-    {"de": "zu Fuß", "ru": "пешком", "example": "Ich gehe zu Fuß.", "example_ru": "Я иду пешком."},
-    {"de": "der Zebrastreifen", "ru": "пешеходный переход", "example": "Über den Zebrastreifen gehen.", "example_ru": "Переходить по зебре."},
-    {"de": "die Ampel", "ru": "светофор", "example": "Die Ampel ist rot.", "example_ru": "Светофор красный."},
-    {"de": "der Parkplatz", "ru": "парковка", "example": "Hier ist ein Parkplatz.", "example_ru": "Здесь парковка."},
-    {"de": "das Benzin", "ru": "бензин", "example": "Ich brauche Benzin.", "example_ru": "Мне нужен бензин."},
-    {"de": "der Fahrer", "ru": "водитель", "example": "Der Fahrer fährt vorsichtig.", "example_ru": "Водитель едет осторожно."},
-    {"de": "die Fahrerin", "ru": "водитель (ж.)", "example": "Die Fahrerin parkt das Auto.", "example_ru": "Водитель паркует машину."},
-    {"de": "der Passagier", "ru": "пассажир", "example": "Alle Passagiere steigen ein.", "example_ru": "Все пассажиры садятся."},
-    {"de": "die Passagierin", "ru": "пассажирка", "example": "Die Passagierin hat Gepäck.", "example_ru": "У пассажирки есть багаж."},
-    {"de": "der Fahrplan", "ru": "расписание", "example": "Der Fahrplan hat sich geändert.", "example_ru": "Расписание изменилось."},
-    {"de": "die Abfahrt", "ru": "отправление", "example": "Die Abfahrt ist um 8 Uhr.", "example_ru": "Отправление в 8."},
-    {"de": "die Ankunft", "ru": "прибытие", "example": "Die Ankunft in Berlin.", "example_ru": "Прибытие в Берлин."},
-    {"de": "einsteigen", "ru": "садиться", "example": "Bitte einsteigen!", "example_ru": "Пожалуйста, садитесь!"},
-    {"de": "aussteigen", "ru": "выходить", "example": "Nächste Station aussteigen.", "example_ru": "На следующей остановке выходим."},
-    {"de": "umsteigen", "ru": "пересаживаться", "example": "Ich muss in Berlin umsteigen.", "example_ru": "Мне нужно пересаживаться в Берлине."},
-    {"de": "die Fahrt", "ru": "поездка", "example": "Die Fahrt dauert zwei Stunden.", "example_ru": "Поездка длится два часа."},
-    {"de": "fahren", "ru": "ехать", "example": "Ich fahre mit dem Zug.", "example_ru": "Я еду поездом."},
-    {"de": "die Kreuzung", "ru": "перекрёсток", "example": "An der Kreuzung links.", "example_ru": "На перекрёстке налево."},
-    {"de": "die Brücke", "ru": "мост", "example": "Die Brücke ist lang.", "example_ru": "Мост длинный."},
-    {"de": "die Bushaltestelle", "ru": "автобусная остановка", "example": "An der Bushaltestelle warten.", "example_ru": "Ждать на автобусной остановке."},
-    {"de": "die U-Bahn-Station", "ru": "станция метро", "example": "Die nächste U-Bahn-Station.", "example_ru": "Следующая станция метро."},
-    {"de": "der Gleis", "ru": "путь/платформа", "example": "Der Zug fährt von Gleis 3.", "example_ru": "Поезд отправляется с 3 пути."},
-    {"de": "der Hauptbahnhof", "ru": "главный вокзал", "example": "Am Hauptbahnhof.", "example_ru": "На главном вокзале."},
-    {"de": "die S-Bahn", "ru": "городская электричка", "example": "Die S-Bahn fährt alle 10 Minuten.", "example_ru": "Электричка ходит каждые 10 минут."},
-    {"de": "der Nahverkehr", "ru": "местный транспорт", "example": "Der Nahverkehr ist gut.", "example_ru": "Местный транспорт хороший."},
-    {"de": "der Fernverkehr", "ru": "дальнее сообщение", "example": "Fernverkehr nach München.", "example_ru": "Поезда дальнего следования в Мюнхен."},
-    {"de": "die Fähre", "ru": "паром", "example": "Wir nehmen die Fähre.", "example_ru": "Мы едем на пароме."},
-    {"de": "die Tankstelle", "ru": "заправка", "example": "Wo ist die nächste Tankstelle?", "example_ru": "Где ближайшая заправка?"},
-    {"de": "tanken", "ru": "заправляться", "example": "Ich muss tanken.", "example_ru": "Мне нужно заправиться."},
-    {"de": "parken", "ru": "парковаться", "example": "Hier darf man parken.", "example_ru": "Здесь можно парковаться."},
-    {"de": "der Stau", "ru": "пробка", "example": "Es gibt einen Stau.", "example_ru": "Пробка."},
-    {"de": "die Autobahn", "ru": "автобан", "example": "Wir fahren auf der Autobahn.", "example_ru": "Мы едем по автобану."},
-    {"de": "die Landstraße", "ru": "трасса", "example": "Die Landstraße ist kurvenreich.", "example_ru": "Трасса извилистая."},
-    {"de": "der Gehweg", "ru": "тротуар", "example": "Gehen Sie auf dem Gehweg.", "example_ru": "Идите по тротуару."},
-    {"de": "der Radweg", "ru": "велосипедная дорожка", "example": "Der Radweg ist sicher.", "example_ru": "Велосипедная дорожка безопасна."},
-    {"de": "die Einbahnstraße", "ru": "улица с односторонним движением", "example": "Das ist eine Einbahnstraße.", "example_ru": "Это улица с односторонним движением."},
-    {"de": "die Geschwindigkeit", "ru": "скорость", "example": "Die Geschwindigkeit ist 50.", "example_ru": "Скорость 50."},
-    {"de": "der Führerschein", "ru": "водительские права", "example": "Ich habe meinen Führerschein dabei.", "example_ru": "У меня с собой права."},
-    {"de": "der Unfall", "ru": "авария", "example": "Es gab einen Unfall.", "example_ru": "Произошла авария."},
-    {"de": "die Polizei", "ru": "полиция", "example": "Die Polizei kommt.", "example_ru": "Едет полиция."},
-    {"de": "die Richtung", "ru": "направление", "example": "In welche Richtung?", "example_ru": "В каком направлении?"},
-    {"de": "die Stadtmitte", "ru": "центр города", "example": "Die Stadtmitte ist nah.", "example_ru": "Центр города близко."},
-    {"de": "der Rand", "ru": "край", "example": "Am Rand der Stadt.", "example_ru": "На окраине города."},
-    {"de": "die Gegend", "ru": "район", "example": "Eine ruhige Gegend.", "example_ru": "Тихий район."},
-    {"de": "die Sehenswürdigkeit", "ru": "достопримечательность", "example": "Das ist eine Sehenswürdigkeit.", "example_ru": "Это достопримечательность."},
-    {"de": "das Zentrum", "ru": "центр", "example": "Im Zentrum der Stadt.", "example_ru": "В центре города."},
-    {"de": "die Karte", "ru": "карта", "example": "Ich brauche eine Karte.", "example_ru": "Мне нужна карта."},
-    {"de": "der Stadtplan", "ru": "план города", "example": "Wo ist der Stadtplan?", "example_ru": "Где план города?"},
-    {"de": "sich verlaufen", "ru": "заблудиться", "example": "Ich habe mich verlaufen.", "example_ru": "Я заблудился."},
-    {"de": "der Weg", "ru": "путь", "example": "Welcher Weg ist der kürzeste?", "example_ru": "Какой путь самый короткий?"},
-    {"de": "die Strecke", "ru": "расстояние", "example": "Die Strecke ist lang.", "example_ru": "Расстояние большое."},
-    {"de": "die Entfernung", "ru": "расстояние", "example": "Die Entfernung beträgt 5 km.", "example_ru": "Расстояние 5 км."},
-    {"de": "nah", "ru": "близко", "example": "Das ist nah.", "example_ru": "Это близко."},
-    {"de": "weit", "ru": "далеко", "example": "Das ist weit.", "example_ru": "Это далеко."},
-    {"de": "die Reise", "ru": "путешествие", "example": "Eine schöne Reise!", "example_ru": "Хорошей поездки!"},
-    {"de": "reisen", "ru": "путешествовать", "example": "Ich reise gern.", "example_ru": "Я люблю путешествовать."},
-    {"de": "das Gepäck", "ru": "багаж", "example": "Wo ist mein Gepäck?", "example_ru": "Где мой багаж?"},
-    {"de": "der Koffer", "ru": "чемодан", "example": "Ich packe meinen Koffer.", "example_ru": "Я собираю чемодан."},
-    {"de": "die Tasche", "ru": "сумка", "example": "Meine Tasche ist schwer.", "example_ru": "Моя сумка тяжёлая."},
-    {"de": "der Rucksack", "ru": "рюкзак", "example": "Er trägt einen Rucksack.", "example_ru": "Он носит рюкзак."},
-    {"de": "die Reiseleitung", "ru": "гид", "example": "Die Reiseleitung erklärt alles.", "example_ru": "Гид всё объясняет."},
-    {"de": "die Tour", "ru": "тур/поездка", "example": "Wir machen eine Tour.", "example_ru": "Мы совершаем поездку."},
-    {"de": "die Rundfahrt", "ru": "обзорная экскурсия", "example": "Eine Rundfahrt durch die Stadt.", "example_ru": "Обзорная экскурсия по городу."},
-    {"de": "der Ausflug", "ru": "поездка", "example": "Am Wochenende machen wir einen Ausflug.", "example_ru": "В выходные мы едем на экскурсию."},
-    {"de": "das Ticket", "ru": "билет", "example": "Ich kaufe ein Ticket.", "example_ru": "Я покупаю билет."},
-    {"de": "die Reservierung", "ru": "бронирование", "example": "Ich habe eine Reservierung.", "example_ru": "У меня есть бронь."},
-    {"de": "reservieren", "ru": "бронировать", "example": "Ich reserviere einen Platz.", "example_ru": "Я бронирую место."},
-    {"de": "verspätet", "ru": "с опозданием", "example": "Der Zug ist verspätet.", "example_ru": "Поезд опаздывает."},
-    {"de": "ausfallen", "ru": "отменяться", "example": "Der Zug fällt aus.", "example_ru": "Поезд отменён."},
-    {"de": "die Verspätung", "ru": "опоздание", "example": "Entschuldigung die Verspätung.", "example_ru": "Извините за опоздание."},
-    {"de": "der Schaffner", "ru": "кондуктор", "example": "Der Schaffner kontrolliert die Tickets.", "example_ru": "Кондуктор проверяет билеты."},
-    {"de": "der Bahnsteig", "ru": "платформа", "example": "Der Zug fährt von Bahnsteig 5.", "example_ru": "Поезд отправляется с платформы 5."},
-    {"de": "der Zug", "ru": "поезд", "example": "Der Zug nach München.", "example_ru": "Поезд в Мюнхен."},
-    {"de": "die Fahrkartenkontrolle", "ru": "проверка билетов", "example": "Fahrkartenkontrolle!", "example_ru": "Проверка билетов!"}
+    {
+      "de": "das Flugzeug",
+      "ru": "самолёт",
+      "en": "airplane",
+      "example": "Das Flugzeug startet um 10 Uhr.",
+      "example_ru": "Самолёт вылетает в 10."
+    },
+    {
+      "de": "das Motorrad",
+      "ru": "мотоцикл",
+      "en": "motorcycle",
+      "example": "Er fährt Motorrad.",
+      "example_ru": "Он ездит на мотоцикле."
+    },
+    {
+      "de": "zu Fuß",
+      "ru": "пешком",
+      "en": "on foot",
+      "example": "Ich gehe zu Fuß.",
+      "example_ru": "Я иду пешком."
+    },
+    {
+      "de": "der Zebrastreifen",
+      "ru": "пешеходный переход",
+      "en": "crosswalk",
+      "example": "Über den Zebrastreifen gehen.",
+      "example_ru": "Переходить по зебре."
+    },
+    {
+      "de": "die Ampel",
+      "ru": "светофор",
+      "en": "traffic light",
+      "example": "Die Ampel ist rot.",
+      "example_ru": "Светофор красный."
+    },
+    {
+      "de": "der Parkplatz",
+      "ru": "парковка",
+      "en": "parking lot",
+      "example": "Hier ist ein Parkplatz.",
+      "example_ru": "Здесь парковка."
+    },
+    {
+      "de": "das Benzin",
+      "ru": "бензин",
+      "en": "gasoline",
+      "example": "Ich brauche Benzin.",
+      "example_ru": "Мне нужен бензин."
+    },
+    {
+      "de": "der Fahrer",
+      "ru": "водитель",
+      "en": "driver (m)",
+      "example": "Der Fahrer fährt vorsichtig.",
+      "example_ru": "Водитель едет осторожно."
+    },
+    {
+      "de": "die Fahrerin",
+      "ru": "водитель (ж.)",
+      "en": "driver (f)",
+      "example": "Die Fahrerin parkt das Auto.",
+      "example_ru": "Водитель паркует машину."
+    },
+    {
+      "de": "der Passagier",
+      "ru": "пассажир",
+      "en": "passenger (m)",
+      "example": "Alle Passagiere steigen ein.",
+      "example_ru": "Все пассажиры садятся."
+    },
+    {
+      "de": "die Passagierin",
+      "ru": "пассажирка",
+      "en": "passenger (f)",
+      "example": "Die Passagierin hat Gepäck.",
+      "example_ru": "У пассажирки есть багаж."
+    },
+    {
+      "de": "der Fahrplan",
+      "ru": "расписание",
+      "en": "schedule",
+      "example": "Der Fahrplan hat sich geändert.",
+      "example_ru": "Расписание изменилось."
+    },
+    {
+      "de": "die Abfahrt",
+      "ru": "отправление",
+      "en": "departure",
+      "example": "Die Abfahrt ist um 8 Uhr.",
+      "example_ru": "Отправление в 8."
+    },
+    {
+      "de": "die Ankunft",
+      "ru": "прибытие",
+      "en": "arrival",
+      "example": "Die Ankunft in Berlin.",
+      "example_ru": "Прибытие в Берлин."
+    },
+    {
+      "de": "einsteigen",
+      "ru": "садиться",
+      "en": "to board",
+      "example": "Bitte einsteigen!",
+      "example_ru": "Пожалуйста, садитесь!"
+    },
+    {
+      "de": "aussteigen",
+      "ru": "выходить",
+      "en": "to get off",
+      "example": "Nächste Station aussteigen.",
+      "example_ru": "На следующей остановке выходим."
+    },
+    {
+      "de": "umsteigen",
+      "ru": "пересаживаться",
+      "en": "to transfer",
+      "example": "Ich muss in Berlin umsteigen.",
+      "example_ru": "Мне нужно пересаживаться в Берлине."
+    },
+    {
+      "de": "die Fahrt",
+      "ru": "поездка",
+      "en": "ride/trip",
+      "example": "Die Fahrt dauert zwei Stunden.",
+      "example_ru": "Поездка длится два часа."
+    },
+    {
+      "de": "fahren",
+      "ru": "ехать",
+      "en": "to drive/go",
+      "example": "Ich fahre mit dem Zug.",
+      "example_ru": "Я еду поездом."
+    },
+    {
+      "de": "die Kreuzung",
+      "ru": "перекрёсток",
+      "en": "intersection",
+      "example": "An der Kreuzung links.",
+      "example_ru": "На перекрёстке налево."
+    },
+    {
+      "de": "die Brücke",
+      "ru": "мост",
+      "en": "bridge",
+      "example": "Die Brücke ist lang.",
+      "example_ru": "Мост длинный."
+    },
+    {
+      "de": "die Bushaltestelle",
+      "ru": "автобусная остановка",
+      "en": "bus stop",
+      "example": "An der Bushaltestelle warten.",
+      "example_ru": "Ждать на автобусной остановке."
+    },
+    {
+      "de": "die U-Bahn-Station",
+      "ru": "станция метро",
+      "en": "subway station",
+      "example": "Die nächste U-Bahn-Station.",
+      "example_ru": "Следующая станция метро."
+    },
+    {
+      "de": "der Gleis",
+      "ru": "путь/платформа",
+      "en": "track/platform",
+      "example": "Der Zug fährt von Gleis 3.",
+      "example_ru": "Поезд отправляется с 3 пути."
+    },
+    {
+      "de": "der Hauptbahnhof",
+      "ru": "главный вокзал",
+      "en": "main train station",
+      "example": "Am Hauptbahnhof.",
+      "example_ru": "На главном вокзале."
+    },
+    {
+      "de": "die S-Bahn",
+      "ru": "городская электричка",
+      "en": "suburban train",
+      "example": "Die S-Bahn fährt alle 10 Minuten.",
+      "example_ru": "Электричка ходит каждые 10 минут."
+    },
+    {
+      "de": "der Nahverkehr",
+      "ru": "местный транспорт",
+      "en": "local transport",
+      "example": "Der Nahverkehr ist gut.",
+      "example_ru": "Местный транспорт хороший."
+    },
+    {
+      "de": "der Fernverkehr",
+      "ru": "дальнее сообщение",
+      "en": "long-distance transport",
+      "example": "Fernverkehr nach München.",
+      "example_ru": "Поезда дальнего следования в Мюнхен."
+    },
+    {
+      "de": "die Fähre",
+      "ru": "паром",
+      "en": "ferry",
+      "example": "Wir nehmen die Fähre.",
+      "example_ru": "Мы едем на пароме."
+    },
+    {
+      "de": "die Tankstelle",
+      "ru": "заправка",
+      "en": "gas station",
+      "example": "Wo ist die nächste Tankstelle?",
+      "example_ru": "Где ближайшая заправка?"
+    },
+    {
+      "de": "tanken",
+      "ru": "заправляться",
+      "en": "to refuel",
+      "example": "Ich muss tanken.",
+      "example_ru": "Мне нужно заправиться."
+    },
+    {
+      "de": "parken",
+      "ru": "парковаться",
+      "en": "to park",
+      "example": "Hier darf man parken.",
+      "example_ru": "Здесь можно парковаться."
+    },
+    {
+      "de": "der Stau",
+      "ru": "пробка",
+      "en": "traffic jam",
+      "example": "Es gibt einen Stau.",
+      "example_ru": "Пробка."
+    },
+    {
+      "de": "die Autobahn",
+      "ru": "автобан",
+      "en": "highway/motorway",
+      "example": "Wir fahren auf der Autobahn.",
+      "example_ru": "Мы едем по автобану."
+    },
+    {
+      "de": "die Landstraße",
+      "ru": "трасса",
+      "en": "country road",
+      "example": "Die Landstraße ist kurvenreich.",
+      "example_ru": "Трасса извилистая."
+    },
+    {
+      "de": "der Gehweg",
+      "ru": "тротуар",
+      "en": "sidewalk",
+      "example": "Gehen Sie auf dem Gehweg.",
+      "example_ru": "Идите по тротуару."
+    },
+    {
+      "de": "der Radweg",
+      "ru": "велосипедная дорожка",
+      "en": "bike path",
+      "example": "Der Radweg ist sicher.",
+      "example_ru": "Велосипедная дорожка безопасна."
+    },
+    {
+      "de": "die Einbahnstraße",
+      "ru": "улица с односторонним движением",
+      "en": "one-way street",
+      "example": "Das ist eine Einbahnstraße.",
+      "example_ru": "Это улица с односторонним движением."
+    },
+    {
+      "de": "die Geschwindigkeit",
+      "ru": "скорость",
+      "en": "speed",
+      "example": "Die Geschwindigkeit ist 50.",
+      "example_ru": "Скорость 50."
+    },
+    {
+      "de": "der Führerschein",
+      "ru": "водительские права",
+      "en": "driver's license",
+      "example": "Ich habe meinen Führerschein dabei.",
+      "example_ru": "У меня с собой права."
+    },
+    {
+      "de": "der Unfall",
+      "ru": "авария",
+      "en": "accident",
+      "example": "Es gab einen Unfall.",
+      "example_ru": "Произошла авария."
+    },
+    {
+      "de": "die Polizei",
+      "ru": "полиция",
+      "en": "police",
+      "example": "Die Polizei kommt.",
+      "example_ru": "Едет полиция."
+    },
+    {
+      "de": "die Richtung",
+      "ru": "направление",
+      "en": "direction",
+      "example": "In welche Richtung?",
+      "example_ru": "В каком направлении?"
+    },
+    {
+      "de": "die Stadtmitte",
+      "ru": "центр города",
+      "en": "city center",
+      "example": "Die Stadtmitte ist nah.",
+      "example_ru": "Центр города близко."
+    },
+    {
+      "de": "der Rand",
+      "ru": "край",
+      "en": "edge/border",
+      "example": "Am Rand der Stadt.",
+      "example_ru": "На окраине города."
+    },
+    {
+      "de": "die Gegend",
+      "ru": "район",
+      "en": "area/region",
+      "example": "Eine ruhige Gegend.",
+      "example_ru": "Тихий район."
+    },
+    {
+      "de": "die Sehenswürdigkeit",
+      "ru": "достопримечательность",
+      "en": "sight/attraction",
+      "example": "Das ist eine Sehenswürdigkeit.",
+      "example_ru": "Это достопримечательность."
+    },
+    {
+      "de": "das Zentrum",
+      "ru": "центр",
+      "en": "center",
+      "example": "Im Zentrum der Stadt.",
+      "example_ru": "В центре города."
+    },
+    {
+      "de": "die Karte",
+      "ru": "карта",
+      "en": "card/map/ticket",
+      "example": "Ich brauche eine Karte.",
+      "example_ru": "Мне нужна карта."
+    },
+    {
+      "de": "der Stadtplan",
+      "ru": "план города",
+      "en": "city map",
+      "example": "Wo ist der Stadtplan?",
+      "example_ru": "Где план города?"
+    },
+    {
+      "de": "sich verlaufen",
+      "ru": "заблудиться",
+      "en": "to get lost",
+      "example": "Ich habe mich verlaufen.",
+      "example_ru": "Я заблудился."
+    },
+    {
+      "de": "der Weg",
+      "ru": "путь",
+      "en": "way/path",
+      "example": "Welcher Weg ist der kürzeste?",
+      "example_ru": "Какой путь самый короткий?"
+    },
+    {
+      "de": "die Strecke",
+      "ru": "расстояние",
+      "en": "route/stretch",
+      "example": "Die Strecke ist lang.",
+      "example_ru": "Расстояние большое."
+    },
+    {
+      "de": "die Entfernung",
+      "ru": "расстояние",
+      "en": "distance",
+      "example": "Die Entfernung beträgt 5 km.",
+      "example_ru": "Расстояние 5 км."
+    },
+    {
+      "de": "nah",
+      "ru": "близко",
+      "en": "near/close",
+      "example": "Das ist nah.",
+      "example_ru": "Это близко."
+    },
+    {
+      "de": "weit",
+      "ru": "далеко",
+      "en": "far/wide",
+      "example": "Das ist weit.",
+      "example_ru": "Это далеко."
+    },
+    {
+      "de": "die Reise",
+      "ru": "путешествие",
+      "en": "trip/journey",
+      "example": "Eine schöne Reise!",
+      "example_ru": "Хорошей поездки!"
+    },
+    {
+      "de": "reisen",
+      "ru": "путешествовать",
+      "en": "to travel",
+      "example": "Ich reise gern.",
+      "example_ru": "Я люблю путешествовать."
+    },
+    {
+      "de": "das Gepäck",
+      "ru": "багаж",
+      "en": "luggage",
+      "example": "Wo ist mein Gepäck?",
+      "example_ru": "Где мой багаж?"
+    },
+    {
+      "de": "der Koffer",
+      "ru": "чемодан",
+      "en": "suitcase",
+      "example": "Ich packe meinen Koffer.",
+      "example_ru": "Я собираю чемодан."
+    },
+    {
+      "de": "die Tasche",
+      "ru": "сумка",
+      "en": "bag/pocket",
+      "example": "Meine Tasche ist schwer.",
+      "example_ru": "Моя сумка тяжёлая."
+    },
+    {
+      "de": "der Rucksack",
+      "ru": "рюкзак",
+      "en": "backpack",
+      "example": "Er trägt einen Rucksack.",
+      "example_ru": "Он носит рюкзак."
+    },
+    {
+      "de": "die Reiseleitung",
+      "ru": "гид",
+      "en": "tour guide/management",
+      "example": "Die Reiseleitung erklärt alles.",
+      "example_ru": "Гид всё объясняет."
+    },
+    {
+      "de": "die Tour",
+      "ru": "тур/поездка",
+      "en": "tour",
+      "example": "Wir machen eine Tour.",
+      "example_ru": "Мы совершаем поездку."
+    },
+    {
+      "de": "die Rundfahrt",
+      "ru": "обзорная экскурсия",
+      "en": "tour/sightseeing trip",
+      "example": "Eine Rundfahrt durch die Stadt.",
+      "example_ru": "Обзорная экскурсия по городу."
+    },
+    {
+      "de": "der Ausflug",
+      "ru": "поездка",
+      "en": "excursion/trip",
+      "example": "Am Wochenende machen wir einen Ausflug.",
+      "example_ru": "В выходные мы едем на экскурсию."
+    },
+    {
+      "de": "das Ticket",
+      "ru": "билет",
+      "en": "ticket",
+      "example": "Ich kaufe ein Ticket.",
+      "example_ru": "Я покупаю билет."
+    },
+    {
+      "de": "die Reservierung",
+      "ru": "бронирование",
+      "en": "reservation",
+      "example": "Ich habe eine Reservierung.",
+      "example_ru": "У меня есть бронь."
+    },
+    {
+      "de": "reservieren",
+      "ru": "бронировать",
+      "en": "to reserve",
+      "example": "Ich reserviere einen Platz.",
+      "example_ru": "Я бронирую место."
+    },
+    {
+      "de": "verspätet",
+      "ru": "с опозданием",
+      "en": "delayed",
+      "example": "Der Zug ist verspätet.",
+      "example_ru": "Поезд опаздывает."
+    },
+    {
+      "de": "ausfallen",
+      "ru": "отменяться",
+      "en": "to be canceled",
+      "example": "Der Zug fällt aus.",
+      "example_ru": "Поезд отменён."
+    },
+    {
+      "de": "die Verspätung",
+      "ru": "опоздание",
+      "en": "delay",
+      "example": "Entschuldigung die Verspätung.",
+      "example_ru": "Извините за опоздание."
+    },
+    {
+      "de": "der Schaffner",
+      "ru": "кондуктор",
+      "en": "conductor",
+      "example": "Der Schaffner kontrolliert die Tickets.",
+      "example_ru": "Кондуктор проверяет билеты."
+    },
+    {
+      "de": "der Bahnsteig",
+      "ru": "платформа",
+      "en": "platform",
+      "example": "Der Zug fährt von Bahnsteig 5.",
+      "example_ru": "Поезд отправляется с платформы 5."
+    },
+    {
+      "de": "der Zug",
+      "ru": "поезд",
+      "en": "train",
+      "example": "Der Zug nach München.",
+      "example_ru": "Поезд в Мюнхен."
+    },
+    {
+      "de": "die Fahrkartenkontrolle",
+      "ru": "проверка билетов",
+      "en": "ticket inspection",
+      "example": "Fahrkartenkontrolle!",
+      "example_ru": "Проверка билетов!"
+    }
   ],
   "distractors": [
     "самолёт",
@@ -198,6 +672,28 @@
     "чемодан",
     "ручная кладь",
     "опоздание",
+    "отмена рейса"
+  ],
+  "distractors_en": [
+    "airplane",
+    "мотоцикл",
+    "пешком",
+    "переход",
+    "светофор",
+    "парковка",
+    "бензин",
+    "водитель",
+    "пассажир",
+    "schedule",
+    "train station",
+    "stop",
+    "route",
+    "flight",
+    "transfer",
+    "багаж",
+    "чемодан",
+    "ручная кладь",
+    "delay",
     "отмена рейса"
   ]
 }

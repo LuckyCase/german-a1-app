@@ -1,10 +1,16 @@
 {
   "id": "communication_a21",
   "name": "Коммуникация на работе и в быту",
+  "name_en": "Communication at Work and in Daily Life",
   "name_de": "Kommunikation im Alltag",
   "description": "Практика фраз A2.1 для офиса, аренды и аптеки",
+  "description_en": "A2.1 phrase practice for office, rental and pharmacy",
   "level": "A2",
-  "linked_to": ["work_office", "doctor_pharmacy", "apartment_rent"],
+  "linked_to": [
+    "work_office",
+    "doctor_pharmacy",
+    "apartment_rent"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
@@ -26,7 +32,15 @@
     },
     {
       "type": "scramble",
-      "words": ["Ich", "brauche", "ein", "Rezept", "für", "dieses", "Medikament"],
+      "words": [
+        "Ich",
+        "brauche",
+        "ein",
+        "Rezept",
+        "für",
+        "dieses",
+        "Medikament"
+      ],
       "answer": "Ich brauche ein Rezept für dieses Medikament",
       "translation": "Мне нужен рецепт на это лекарство",
       "explanation": "Порядок слов: подлежащее + сказуемое + дополнения."

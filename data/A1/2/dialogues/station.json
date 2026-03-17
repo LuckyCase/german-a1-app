@@ -1,8 +1,10 @@
 {
   "id": "station",
   "name": "На вокзале",
+  "name_en": "At the Station",
   "name_de": "Am Bahnhof",
   "description": "Покупка билета",
+  "description_en": "Buying a ticket",
   "level": "A2",
   "dialogue": [
     {

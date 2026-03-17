@@ -1,8 +1,10 @@
 {
   "id": "food_drinks",
   "name": "Еда и напитки в Германии",
+  "name_en": "Food and Drinks in Germany",
   "name_de": "Essen und Trinken",
   "description": "Традиции за столом и типичные блюда",
+  "description_en": "Table traditions and typical dishes",
   "level": "A1",
   "content": {
     "title": "Essen und Trinken — культура питания",
@@ -21,13 +23,21 @@
   "questions": [
     {
       "question": "Как по-немецки попросить счёт в ресторане?",
-      "options": ["Bitte zahlen!", "Die Rechnung, bitte.", "Ich habe Hunger."],
+      "options": [
+        "Bitte zahlen!",
+        "Die Rechnung, bitte.",
+        "Ich habe Hunger."
+      ],
       "correct": 1,
       "explanation": "«Die Rechnung, bitte» — вежливая просьба принести счёт."
     },
     {
       "question": "Что значит «still» при заказе воды?",
-      "options": ["С газом", "Без газа", "Холодная"],
+      "options": [
+        "С газом",
+        "Без газа",
+        "Холодная"
+      ],
       "correct": 1,
       "explanation": "Still — негазированная вода (без углекислого газа)."
     }

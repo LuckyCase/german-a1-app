@@ -1,8 +1,10 @@
 {
   "id": "sein_haben",
   "name": "Глаголы sein и haben",
+  "name_en": "Verbs sein and haben",
   "name_de": "Verben sein und haben",
   "description": "Спряжение глаголов sein (быть) и haben (иметь)",
+  "description_en": "Conjugation of sein (to be) and haben (to have)",
   "level": "A1",
   "theory": {
     "title": "Глаголы sein и haben",
@@ -11,23 +13,59 @@
       {
         "title": "sein (быть)",
         "rows": [
-          ["ich", "bin"],
-          ["du", "bist"],
-          ["er/sie/es", "ist"],
-          ["wir", "sind"],
-          ["ihr", "seid"],
-          ["sie/Sie", "sind"]
+          [
+            "ich",
+            "bin"
+          ],
+          [
+            "du",
+            "bist"
+          ],
+          [
+            "er/sie/es",
+            "ist"
+          ],
+          [
+            "wir",
+            "sind"
+          ],
+          [
+            "ihr",
+            "seid"
+          ],
+          [
+            "sie/Sie",
+            "sind"
+          ]
         ]
       },
       {
         "title": "haben (иметь)",
         "rows": [
-          ["ich", "habe"],
-          ["du", "hast"],
-          ["er/sie/es", "hat"],
-          ["wir", "haben"],
-          ["ihr", "habt"],
-          ["sie/Sie", "haben"]
+          [
+            "ich",
+            "habe"
+          ],
+          [
+            "du",
+            "hast"
+          ],
+          [
+            "er/sie/es",
+            "hat"
+          ],
+          [
+            "wir",
+            "haben"
+          ],
+          [
+            "ihr",
+            "habt"
+          ],
+          [
+            "sie/Sie",
+            "haben"
+          ]
         ]
       }
     ],
@@ -40,121 +78,201 @@
   "questions": [
     {
       "question": "Ich ___ Student.",
-      "options": ["bin", "bist", "ist"],
+      "options": [
+        "bin",
+        "bist",
+        "ist"
+      ],
       "correct": 0,
       "explanation": "ich bin (я есть)"
     },
     {
       "question": "Du ___ müde.",
-      "options": ["bin", "bist", "ist"],
+      "options": [
+        "bin",
+        "bist",
+        "ist"
+      ],
       "correct": 1,
       "explanation": "du bist (ты есть)"
     },
     {
       "question": "Er ___ Lehrer.",
-      "options": ["bin", "bist", "ist"],
+      "options": [
+        "bin",
+        "bist",
+        "ist"
+      ],
       "correct": 2,
       "explanation": "er ist (он есть)"
     },
     {
       "question": "Wir ___ aus Russland.",
-      "options": ["sind", "seid", "ist"],
+      "options": [
+        "sind",
+        "seid",
+        "ist"
+      ],
       "correct": 0,
       "explanation": "wir sind (мы есть)"
     },
     {
       "question": "Ihr ___ nett.",
-      "options": ["sind", "seid", "ist"],
+      "options": [
+        "sind",
+        "seid",
+        "ist"
+      ],
       "correct": 1,
       "explanation": "ihr seid (вы есть)"
     },
     {
       "question": "Ich ___ ein Auto.",
-      "options": ["habe", "hast", "hat"],
+      "options": [
+        "habe",
+        "hast",
+        "hat"
+      ],
       "correct": 0,
       "explanation": "ich habe (я имею)"
     },
     {
       "question": "Du ___ Zeit.",
-      "options": ["habe", "hast", "hat"],
+      "options": [
+        "habe",
+        "hast",
+        "hat"
+      ],
       "correct": 1,
       "explanation": "du hast (ты имеешь)"
     },
     {
       "question": "Sie ___ eine Schwester.",
-      "options": ["habe", "hast", "hat"],
+      "options": [
+        "habe",
+        "hast",
+        "hat"
+      ],
       "correct": 2,
       "explanation": "sie hat (она имеет)"
     },
     {
       "question": "Wir ___ Hunger.",
-      "options": ["haben", "habt", "hat"],
+      "options": [
+        "haben",
+        "habt",
+        "hat"
+      ],
       "correct": 0,
       "explanation": "wir haben (мы имеем)"
     },
     {
       "question": "Sie (они) ___ Kinder.",
-      "options": ["haben", "habt", "hat"],
+      "options": [
+        "haben",
+        "habt",
+        "hat"
+      ],
       "correct": 0,
       "explanation": "sie haben (они имеют)"
     },
     {
       "question": "Er ___ krank.",
-      "options": ["bin", "ist", "sind"],
+      "options": [
+        "bin",
+        "ist",
+        "sind"
+      ],
       "correct": 1,
       "explanation": "er ist (он есть)"
     },
     {
       "question": "Ihr ___ zwei Katzen.",
-      "options": ["habe", "habt", "hat"],
+      "options": [
+        "habe",
+        "habt",
+        "hat"
+      ],
       "correct": 1,
       "explanation": "ihr habt (вы имеете)"
     },
     {
       "question": "Ich ___ Hunger.",
-      "options": ["bin", "habe", "ist"],
+      "options": [
+        "bin",
+        "habe",
+        "ist"
+      ],
       "correct": 1,
       "explanation": "По-немецки «Я имею голод» (Ich habe Hunger), а не «Я есть голодный»"
     },
     {
       "question": "Er ___ Durst.",
-      "options": ["ist", "hat", "habt"],
+      "options": [
+        "ist",
+        "hat",
+        "habt"
+      ],
       "correct": 1,
       "explanation": "По-немецки: Er hat Durst (он имеет жажду)"
     },
     {
       "question": "Ich ___ müde.",
-      "options": ["habe", "bin", "hat"],
+      "options": [
+        "habe",
+        "bin",
+        "hat"
+      ],
       "correct": 1,
       "explanation": "Состояние → sein: Ich bin müde (Я устал/а)"
     },
     {
       "question": "Wir ___ 25 Jahre alt.",
-      "options": ["haben", "sind", "seid"],
+      "options": [
+        "haben",
+        "sind",
+        "seid"
+      ],
       "correct": 1,
       "explanation": "Возраст → sein: Wir sind 25 Jahre alt."
     },
     {
       "question": "Какое предложение правильное?",
-      "options": ["Ich bin Hunger.", "Ich habe Hunger.", "Ich hat Hunger."],
+      "options": [
+        "Ich bin Hunger.",
+        "Ich habe Hunger.",
+        "Ich hat Hunger."
+      ],
       "correct": 1,
       "explanation": "В немецком «голод имеют» (haben), а не «являются голодными»"
     },
     {
       "question": "Какое предложение правильное?",
-      "options": ["Er ist krank.", "Er hat krank.", "Er haben krank."],
+      "options": [
+        "Er ist krank.",
+        "Er hat krank.",
+        "Er haben krank."
+      ],
       "correct": 0,
       "explanation": "Состояние/болезнь → sein: Er ist krank."
     },
     {
       "question": "Sie ___ Frau Müller? (формальное обращение)",
-      "options": ["sind", "ist", "seid"],
+      "options": [
+        "sind",
+        "ist",
+        "seid"
+      ],
       "correct": 0,
       "explanation": "Sie (вежливое «Вы») → sind: Sie sind Frau Müller?"
     },
     {
       "question": "___ Sie aus Deutschland? (формальное обращение)",
-      "options": ["Sind", "Ist", "Seid"],
+      "options": [
+        "Sind",
+        "Ist",
+        "Seid"
+      ],
       "correct": 0,
       "explanation": "Sie (формальное) спрягается как sie (они): Sind Sie aus Deutschland?"
     }

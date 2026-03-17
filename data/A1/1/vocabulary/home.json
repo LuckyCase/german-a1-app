@@ -1,202 +1,726 @@
 {
   "id": "home",
   "name": "Дом и жильё",
+  "name_en": "Home and Housing",
   "name_de": "Wohnung und Haus",
   "description": "Дом, квартира, мебель",
+  "description_en": "House, apartment, furniture",
   "level": "A1",
   "words": [
     {
       "de": "das Haus",
       "ru": "дом",
+      "en": "house",
       "example": "Das Haus ist groß.",
       "example_ru": "Дом большой."
     },
     {
       "de": "die Wohnung",
       "ru": "квартира",
+      "en": "apartment",
       "example": "Meine Wohnung hat 3 Zimmer.",
       "example_ru": "В моей квартире 3 комнаты."
     },
     {
       "de": "das Zimmer",
       "ru": "комната",
+      "en": "room",
       "example": "Mein Zimmer ist klein.",
       "example_ru": "Моя комната маленькая."
     },
     {
       "de": "die Küche",
       "ru": "кухня",
+      "en": "kitchen",
       "example": "Die Küche ist modern.",
       "example_ru": "Кухня современная."
     },
     {
       "de": "das Bad",
       "ru": "ванная",
+      "en": "bathroom",
       "example": "Das Bad ist sauber.",
       "example_ru": "Ванная чистая."
     },
     {
       "de": "das Schlafzimmer",
       "ru": "спальня",
+      "en": "bedroom",
       "example": "Das Schlafzimmer ist ruhig.",
       "example_ru": "Спальня тихая."
     },
     {
       "de": "das Wohnzimmer",
       "ru": "гостиная",
+      "en": "living room",
       "example": "Das Wohnzimmer ist hell.",
       "example_ru": "Гостиная светлая."
     },
     {
       "de": "der Balkon",
       "ru": "балкон",
+      "en": "balcony",
       "example": "Wir haben einen Balkon.",
       "example_ru": "У нас есть балкон."
     },
     {
       "de": "der Garten",
       "ru": "сад",
+      "en": "garden",
       "example": "Der Garten ist schön.",
       "example_ru": "Сад красивый."
     },
     {
       "de": "die Tür",
       "ru": "дверь",
+      "en": "door",
       "example": "Die Tür ist offen.",
       "example_ru": "Дверь открыта."
     },
     {
       "de": "das Fenster",
       "ru": "окно",
+      "en": "window",
       "example": "Das Fenster ist groß.",
       "example_ru": "Окно большое."
     },
     {
       "de": "der Tisch",
       "ru": "стол",
+      "en": "table",
       "example": "Der Tisch ist aus Holz.",
       "example_ru": "Стол из дерева."
     },
     {
       "de": "der Stuhl",
       "ru": "стул",
+      "en": "chair",
       "example": "Der Stuhl ist bequem.",
       "example_ru": "Стул удобный."
     },
     {
       "de": "das Bett",
       "ru": "кровать",
+      "en": "bed",
       "example": "Das Bett ist weich.",
       "example_ru": "Кровать мягкая."
     },
     {
       "de": "der Schrank",
       "ru": "шкаф",
+      "en": "wardrobe/cabinet",
       "example": "Der Schrank ist voll.",
       "example_ru": "Шкаф полный."
     },
     {
       "de": "das Sofa",
       "ru": "диван",
+      "en": "sofa",
       "example": "Das Sofa ist neu.",
       "example_ru": "Диван новый."
     },
     {
       "de": "die Lampe",
       "ru": "лампа",
+      "en": "lamp",
       "example": "Die Lampe ist an.",
       "example_ru": "Лампа включена."
     },
     {
       "de": "die Miete",
       "ru": "аренда",
+      "en": "rent",
       "example": "Die Miete ist 500 Euro.",
       "example_ru": "Аренда стоит 500 евро."
     },
-    {"de": "der Keller", "ru": "подвал", "example": "Der Keller ist trocken.", "example_ru": "Подвал сухой."},
-    {"de": "der Dachboden", "ru": "чердак", "example": "Der Dachboden ist groß.", "example_ru": "Чердак большой."},
-    {"de": "der Flur", "ru": "коридор", "example": "Der Flur ist lang.", "example_ru": "Коридор длинный."},
-    {"de": "die Treppe", "ru": "лестница", "example": "Die Treppe ist steil.", "example_ru": "Лестница крутая."},
-    {"de": "der Aufzug", "ru": "лифт", "example": "Der Aufzug funktioniert.", "example_ru": "Лифт работает."},
-    {"de": "der Teppich", "ru": "ковёр", "example": "Der Teppich ist weich.", "example_ru": "Ковёр мягкий."},
-    {"de": "der Vorhang", "ru": "занавеска", "example": "Der Vorhang ist blau.", "example_ru": "Занавеска синяя."},
-    {"de": "das Regal", "ru": "полка", "example": "Das Regal ist voll.", "example_ru": "Полка полная."},
-    {"de": "der Spiegel", "ru": "зеркало", "example": "Der Spiegel hängt an der Wand.", "example_ru": "Зеркало висит на стене."},
-    {"de": "das Kissen", "ru": "подушка", "example": "Das Kissen ist weich.", "example_ru": "Подушка мягкая."},
-    {"de": "die Toilette", "ru": "туалет", "example": "Wo ist die Toilette?", "example_ru": "Где туалет?"},
-    {"de": "die Dusche", "ru": "душ", "example": "Ich dusche morgens.", "example_ru": "Я принимаю душ по утрам."},
-    {"de": "die Heizung", "ru": "отопление", "example": "Die Heizung ist an.", "example_ru": "Отопление включено."},
-    {"de": "der Kühlschrank", "ru": "холодильник", "example": "Der Kühlschrank ist leer.", "example_ru": "Холодильник пустой."},
-    {"de": "der Herd", "ru": "плита", "example": "Der Herd ist elektrisch.", "example_ru": "Плита электрическая."},
-    {"de": "die Mikrowelle", "ru": "микроволновка", "example": "Die Mikrowelle steht in der Küche.", "example_ru": "Микроволновка стоит на кухне."},
-    {"de": "der Mülleimer", "ru": "мусорное ведро", "example": "Der Mülleimer ist voll.", "example_ru": "Мусорное ведро полное."},
-    {"de": "die Steckdose", "ru": "розетка", "example": "Wo ist die Steckdose?", "example_ru": "Где розетка?"},
-    {"de": "der Schlüssel", "ru": "ключ", "example": "Ich habe meinen Schlüssel verloren.", "example_ru": "Я потерял ключ."},
-    {"de": "die Wand", "ru": "стена", "example": "Die Wand ist weiß.", "example_ru": "Стена белая."},
-    {"de": "der Boden", "ru": "пол", "example": "Der Boden ist sauber.", "example_ru": "Пол чистый."},
-    {"de": "die Decke", "ru": "потолок", "example": "Die Decke ist hoch.", "example_ru": "Потолок высокий."},
-    {"de": "das Licht", "ru": "свет", "example": "Das Licht ist an.", "example_ru": "Свет включён."},
-    {"de": "der Briefkasten", "ru": "почтовый ящик", "example": "Der Briefkasten ist voll.", "example_ru": "Почтовый ящик полный."},
-    {"de": "die Türklingel", "ru": "дверной звонок", "example": "Die Türklingel läutet.", "example_ru": "Дверной звонок звонит."},
-    {"de": "die Hausnummer", "ru": "номер дома", "example": "Die Hausnummer ist 10.", "example_ru": "Номер дома 10."},
-    {"de": "die Garage", "ru": "гараж", "example": "Die Garage ist leer.", "example_ru": "Гараж пустой."},
-    {"de": "der Parkplatz", "ru": "парковка", "example": "Es gibt einen Parkplatz.", "example_ru": "Есть парковка."},
-    {"de": "der Eingang", "ru": "вход", "example": "Der Eingang ist dort.", "example_ru": "Вход там."},
-    {"de": "der Ausgang", "ru": "выход", "example": "Wo ist der Ausgang?", "example_ru": "Где выход?"},
-    {"de": "die Terrasse", "ru": "терраса", "example": "Wir sitzen auf der Terrasse.", "example_ru": "Мы сидим на террасе."},
-    {"de": "das Büro", "ru": "кабинет", "example": "Das Büro ist im ersten Stock.", "example_ru": "Кабинет на первом этаже."},
-    {"de": "die Waschmaschine", "ru": "стиральная машина", "example": "Die Waschmaschine läuft.", "example_ru": "Стиральная машина работает."},
-    {"de": "die Couch", "ru": "диван", "example": "Die Couch ist bequem.", "example_ru": "Диван удобный."},
-    {"de": "die Gardine", "ru": "штора", "example": "Die Gardine ist zu.", "example_ru": "Штора закрыта."},
-    {"de": "die Rollläden", "ru": "жалюзи", "example": "Die Rollläden sind runter.", "example_ru": "Жалюзи опущены."},
-    {"de": "das Handtuch", "ru": "полотенце", "example": "Das Handtuch ist nass.", "example_ru": "Полотенце мокрое."},
-    {"de": "die Seife", "ru": "мыло", "example": "Die Seife steht am Waschbecken.", "example_ru": "Мыло стоит у раковины."},
-    {"de": "die Zahnbürste", "ru": "зубная щётка", "example": "Die Zahnbürste ist neu.", "example_ru": "Зубная щётка новая."},
-    {"de": "die Zahnpasta", "ru": "зубная паста", "example": "Ich brauche Zahnpasta.", "example_ru": "Мне нужна зубная паста."},
-    {"de": "das Shampoo", "ru": "шампунь", "example": "Das Shampoo ist leer.", "example_ru": "Шампунь закончился."},
-    {"de": "die Pflanze", "ru": "растение", "example": "Die Pflanze braucht Wasser.", "example_ru": "Растению нужна вода."},
-    {"de": "der Blumentopf", "ru": "цветочный горшок", "example": "Der Blumentopf steht auf dem Fenster.", "example_ru": "Цветочный горшок стоит на окне."},
-    {"de": "die Einrichtung", "ru": "обстановка", "example": "Die Einrichtung ist modern.", "example_ru": "Обстановка современная."},
-    {"de": "die Möbel", "ru": "мебель", "example": "Die Möbel sind teuer.", "example_ru": "Мебель дорогая."},
-    {"de": "die Etage", "ru": "этаж", "example": "Ich wohne in der dritten Etage.", "example_ru": "Я живу на третьем этаже."},
-    {"de": "das Erdgeschoss", "ru": "первый этаж", "example": "Das Geschäft ist im Erdgeschoss.", "example_ru": "Магазин на первом этаже."},
-    {"de": "der erste Stock", "ru": "второй этаж", "example": "Die Wohnung ist im ersten Stock.", "example_ru": "Квартира на втором этаже."},
-    {"de": "der Vermieter", "ru": "арендодатель", "example": "Der Vermieter kommt morgen.", "example_ru": "Арендодатель придёт завтра."},
-    {"de": "die Kaution", "ru": "залог", "example": "Die Kaution ist hoch.", "example_ru": "Залог высокий."},
-    {"de": "die Nebenkosten", "ru": "дополнительные расходы", "example": "Die Nebenkosten sind 50 Euro.", "example_ru": "Дополнительные расходы 50 евро."},
-    {"de": "der Vertrag", "ru": "договор", "example": "Der Vertrag ist unterschrieben.", "example_ru": "Договор подписан."},
-    {"de": "einziehen", "ru": "въезжать", "example": "Wir ziehen nächste Woche ein.", "example_ru": "Мы въезжаем на следующей неделе."},
-    {"de": "ausziehen", "ru": "выезжать", "example": "Er zieht im Mai aus.", "example_ru": "Он выезжает в мае."},
-    {"de": "renovieren", "ru": "ремонтировать", "example": "Wir renovieren die Küche.", "example_ru": "Мы ремонтируем кухню."},
-    {"de": "putzen", "ru": "убирать", "example": "Ich putze das Bad.", "example_ru": "Я убираю ванную."},
-    {"de": "aufräumen", "ru": "наводить порядок", "example": "Ich räume mein Zimmer auf.", "example_ru": "Я навожу порядок в комнате."},
-    {"de": "klingeln", "ru": "звонить (в дверь)", "example": "Es klingelt.", "example_ru": "Звонят в дверь."},
-    {"de": "reparieren", "ru": "чинить", "example": "Der Handwerker repariert die Heizung.", "example_ru": "Мастер чинит отопление."},
-    {"de": "die Wohnungstür", "ru": "дверь квартиры", "example": "Die Wohnungstür ist zu.", "example_ru": "Дверь квартиры закрыта."},
-    {"de": "die Haustür", "ru": "входная дверь", "example": "Die Haustür ist grün.", "example_ru": "Входная дверь зелёная."},
-    {"de": "das Schloss", "ru": "замок", "example": "Das Schloss ist kaputt.", "example_ru": "Замок сломан."},
-    {"de": "die Sicherheit", "ru": "безопасность", "example": "Die Sicherheit ist wichtig.", "example_ru": "Безопасность важна."},
-    {"de": "der Rauchmelder", "ru": "дымовой извещатель", "example": "Der Rauchmelder piepst.", "example_ru": "Дымовой извещатель пищит."},
-    {"de": "die Gegensprechanlage", "ru": "домофон", "example": "Die Gegensprechanlage funktioniert.", "example_ru": "Домофон работает."},
-    {"de": "die Stromrechnung", "ru": "счёт за электричество", "example": "Die Stromrechnung ist hoch.", "example_ru": "Счёт за электричество высокий."},
-    {"de": "die Heizkosten", "ru": "расходы на отопление", "example": "Die Heizkosten steigen.", "example_ru": "Расходы на отопление растут."},
-    {"de": "das Warmwasser", "ru": "горячая вода", "example": "Das Warmwasser ist aus.", "example_ru": "Горячей воды нет."},
-    {"de": "die Wohnungssuche", "ru": "поиск квартиры", "example": "Die Wohnungssuche ist schwer.", "example_ru": "Поиск квартиры сложный."},
-    {"de": "gemütlich", "ru": "уютный", "example": "Das Zimmer ist gemütlich.", "example_ru": "Комната уютная."},
-    {"de": "die Nachbarschaft", "ru": "соседство", "example": "Die Nachbarschaft ist ruhig.", "example_ru": "Окрестности тихие."},
-    {"de": "die Umgebung", "ru": "окрестности", "example": "Die Umgebung ist schön.", "example_ru": "Окрестности красивые."},
-    {"de": "der Nachbar", "ru": "сосед", "example": "Mein Nachbar ist nett.", "example_ru": "Мой сосед приятный."},
-    {"de": "das Waschbecken", "ru": "раковина", "example": "Das Waschbecken ist sauber.", "example_ru": "Раковина чистая."},
-    {"de": "die Badewanne", "ru": "ванна", "example": "Die Badewanne ist groß.", "example_ru": "Ванна большая."},
-    {"de": "der Kleiderschrank", "ru": "гардероб", "example": "Der Kleiderschrank ist voll.", "example_ru": "Гардероб полный."},
-    {"de": "der Schreibtisch", "ru": "письменный стол", "example": "Der Schreibtisch steht am Fenster.", "example_ru": "Письменный стол стоит у окна."},
-    {"de": "die Kommode", "ru": "комод", "example": "Die Kommode hat vier Schubladen.", "example_ru": "У комода четыре ящика."},
-    {"de": "die Schublade", "ru": "ящик", "example": "Die Schublade ist voll.", "example_ru": "Ящик полный."},
-    {"de": "die Stehlampe", "ru": "торшер", "example": "Die Stehlampe gibt warmes Licht.", "example_ru": "Торшер даёт тёплый свет."},
-    {"de": "die Deckenlampe", "ru": "люстра", "example": "Die Deckenlampe ist modern.", "example_ru": "Люстра современная."},
-    {"de": "der Teppichboden", "ru": "ковровое покрытие", "example": "Der Teppichboden ist weich.", "example_ru": "Ковровое покрытие мягкое."},
-    {"de": "der Fliesenboden", "ru": "пол из плитки", "example": "Der Fliesenboden ist im Bad.", "example_ru": "Пол из плитки в ванной."},
-    {"de": "die Klimaanlage", "ru": "кондиционер", "example": "Die Klimaanlage funktioniert.", "example_ru": "Кондиционер работает."}
+    {
+      "de": "der Keller",
+      "ru": "подвал",
+      "en": "basement/cellar",
+      "example": "Der Keller ist trocken.",
+      "example_ru": "Подвал сухой."
+    },
+    {
+      "de": "der Dachboden",
+      "ru": "чердак",
+      "en": "attic",
+      "example": "Der Dachboden ist groß.",
+      "example_ru": "Чердак большой."
+    },
+    {
+      "de": "der Flur",
+      "ru": "коридор",
+      "en": "hallway",
+      "example": "Der Flur ist lang.",
+      "example_ru": "Коридор длинный."
+    },
+    {
+      "de": "die Treppe",
+      "ru": "лестница",
+      "en": "stairs",
+      "example": "Die Treppe ist steil.",
+      "example_ru": "Лестница крутая."
+    },
+    {
+      "de": "der Aufzug",
+      "ru": "лифт",
+      "en": "elevator",
+      "example": "Der Aufzug funktioniert.",
+      "example_ru": "Лифт работает."
+    },
+    {
+      "de": "der Teppich",
+      "ru": "ковёр",
+      "en": "carpet",
+      "example": "Der Teppich ist weich.",
+      "example_ru": "Ковёр мягкий."
+    },
+    {
+      "de": "der Vorhang",
+      "ru": "занавеска",
+      "en": "curtain",
+      "example": "Der Vorhang ist blau.",
+      "example_ru": "Занавеска синяя."
+    },
+    {
+      "de": "das Regal",
+      "ru": "полка",
+      "en": "shelf",
+      "example": "Das Regal ist voll.",
+      "example_ru": "Полка полная."
+    },
+    {
+      "de": "der Spiegel",
+      "ru": "зеркало",
+      "en": "mirror",
+      "example": "Der Spiegel hängt an der Wand.",
+      "example_ru": "Зеркало висит на стене."
+    },
+    {
+      "de": "das Kissen",
+      "ru": "подушка",
+      "en": "pillow",
+      "example": "Das Kissen ist weich.",
+      "example_ru": "Подушка мягкая."
+    },
+    {
+      "de": "die Toilette",
+      "ru": "туалет",
+      "en": "toilet",
+      "example": "Wo ist die Toilette?",
+      "example_ru": "Где туалет?"
+    },
+    {
+      "de": "die Dusche",
+      "ru": "душ",
+      "en": "shower",
+      "example": "Ich dusche morgens.",
+      "example_ru": "Я принимаю душ по утрам."
+    },
+    {
+      "de": "die Heizung",
+      "ru": "отопление",
+      "en": "heating",
+      "example": "Die Heizung ist an.",
+      "example_ru": "Отопление включено."
+    },
+    {
+      "de": "der Kühlschrank",
+      "ru": "холодильник",
+      "en": "refrigerator",
+      "example": "Der Kühlschrank ist leer.",
+      "example_ru": "Холодильник пустой."
+    },
+    {
+      "de": "der Herd",
+      "ru": "плита",
+      "en": "stove",
+      "example": "Der Herd ist elektrisch.",
+      "example_ru": "Плита электрическая."
+    },
+    {
+      "de": "die Mikrowelle",
+      "ru": "микроволновка",
+      "en": "microwave",
+      "example": "Die Mikrowelle steht in der Küche.",
+      "example_ru": "Микроволновка стоит на кухне."
+    },
+    {
+      "de": "der Mülleimer",
+      "ru": "мусорное ведро",
+      "en": "trash can",
+      "example": "Der Mülleimer ist voll.",
+      "example_ru": "Мусорное ведро полное."
+    },
+    {
+      "de": "die Steckdose",
+      "ru": "розетка",
+      "en": "power outlet",
+      "example": "Wo ist die Steckdose?",
+      "example_ru": "Где розетка?"
+    },
+    {
+      "de": "der Schlüssel",
+      "ru": "ключ",
+      "en": "key",
+      "example": "Ich habe meinen Schlüssel verloren.",
+      "example_ru": "Я потерял ключ."
+    },
+    {
+      "de": "die Wand",
+      "ru": "стена",
+      "en": "wall",
+      "example": "Die Wand ist weiß.",
+      "example_ru": "Стена белая."
+    },
+    {
+      "de": "der Boden",
+      "ru": "пол",
+      "en": "floor/ground",
+      "example": "Der Boden ist sauber.",
+      "example_ru": "Пол чистый."
+    },
+    {
+      "de": "die Decke",
+      "ru": "потолок",
+      "en": "blanket/ceiling",
+      "example": "Die Decke ist hoch.",
+      "example_ru": "Потолок высокий."
+    },
+    {
+      "de": "das Licht",
+      "ru": "свет",
+      "en": "light",
+      "example": "Das Licht ist an.",
+      "example_ru": "Свет включён."
+    },
+    {
+      "de": "der Briefkasten",
+      "ru": "почтовый ящик",
+      "en": "mailbox",
+      "example": "Der Briefkasten ist voll.",
+      "example_ru": "Почтовый ящик полный."
+    },
+    {
+      "de": "die Türklingel",
+      "ru": "дверной звонок",
+      "en": "doorbell",
+      "example": "Die Türklingel läutet.",
+      "example_ru": "Дверной звонок звонит."
+    },
+    {
+      "de": "die Hausnummer",
+      "ru": "номер дома",
+      "en": "house number",
+      "example": "Die Hausnummer ist 10.",
+      "example_ru": "Номер дома 10."
+    },
+    {
+      "de": "die Garage",
+      "ru": "гараж",
+      "en": "garage",
+      "example": "Die Garage ist leer.",
+      "example_ru": "Гараж пустой."
+    },
+    {
+      "de": "der Parkplatz",
+      "ru": "парковка",
+      "en": "parking lot",
+      "example": "Es gibt einen Parkplatz.",
+      "example_ru": "Есть парковка."
+    },
+    {
+      "de": "der Eingang",
+      "ru": "вход",
+      "en": "entrance",
+      "example": "Der Eingang ist dort.",
+      "example_ru": "Вход там."
+    },
+    {
+      "de": "der Ausgang",
+      "ru": "выход",
+      "en": "exit",
+      "example": "Wo ist der Ausgang?",
+      "example_ru": "Где выход?"
+    },
+    {
+      "de": "die Terrasse",
+      "ru": "терраса",
+      "en": "terrace",
+      "example": "Wir sitzen auf der Terrasse.",
+      "example_ru": "Мы сидим на террасе."
+    },
+    {
+      "de": "das Büro",
+      "ru": "кабинет",
+      "en": "office",
+      "example": "Das Büro ist im ersten Stock.",
+      "example_ru": "Кабинет на первом этаже."
+    },
+    {
+      "de": "die Waschmaschine",
+      "ru": "стиральная машина",
+      "en": "washing machine",
+      "example": "Die Waschmaschine läuft.",
+      "example_ru": "Стиральная машина работает."
+    },
+    {
+      "de": "die Couch",
+      "ru": "диван",
+      "en": "couch",
+      "example": "Die Couch ist bequem.",
+      "example_ru": "Диван удобный."
+    },
+    {
+      "de": "die Gardine",
+      "ru": "штора",
+      "en": "curtain",
+      "example": "Die Gardine ist zu.",
+      "example_ru": "Штора закрыта."
+    },
+    {
+      "de": "die Rollläden",
+      "ru": "жалюзи",
+      "en": "shutters/blinds",
+      "example": "Die Rollläden sind runter.",
+      "example_ru": "Жалюзи опущены."
+    },
+    {
+      "de": "das Handtuch",
+      "ru": "полотенце",
+      "en": "towel",
+      "example": "Das Handtuch ist nass.",
+      "example_ru": "Полотенце мокрое."
+    },
+    {
+      "de": "die Seife",
+      "ru": "мыло",
+      "en": "soap",
+      "example": "Die Seife steht am Waschbecken.",
+      "example_ru": "Мыло стоит у раковины."
+    },
+    {
+      "de": "die Zahnbürste",
+      "ru": "зубная щётка",
+      "en": "toothbrush",
+      "example": "Die Zahnbürste ist neu.",
+      "example_ru": "Зубная щётка новая."
+    },
+    {
+      "de": "die Zahnpasta",
+      "ru": "зубная паста",
+      "en": "toothpaste",
+      "example": "Ich brauche Zahnpasta.",
+      "example_ru": "Мне нужна зубная паста."
+    },
+    {
+      "de": "das Shampoo",
+      "ru": "шампунь",
+      "en": "shampoo",
+      "example": "Das Shampoo ist leer.",
+      "example_ru": "Шампунь закончился."
+    },
+    {
+      "de": "die Pflanze",
+      "ru": "растение",
+      "en": "plant",
+      "example": "Die Pflanze braucht Wasser.",
+      "example_ru": "Растению нужна вода."
+    },
+    {
+      "de": "der Blumentopf",
+      "ru": "цветочный горшок",
+      "en": "flower pot",
+      "example": "Der Blumentopf steht auf dem Fenster.",
+      "example_ru": "Цветочный горшок стоит на окне."
+    },
+    {
+      "de": "die Einrichtung",
+      "ru": "обстановка",
+      "en": "furnishing/furniture",
+      "example": "Die Einrichtung ist modern.",
+      "example_ru": "Обстановка современная."
+    },
+    {
+      "de": "die Möbel",
+      "ru": "мебель",
+      "en": "furniture",
+      "example": "Die Möbel sind teuer.",
+      "example_ru": "Мебель дорогая."
+    },
+    {
+      "de": "die Etage",
+      "ru": "этаж",
+      "en": "floor/level",
+      "example": "Ich wohne in der dritten Etage.",
+      "example_ru": "Я живу на третьем этаже."
+    },
+    {
+      "de": "das Erdgeschoss",
+      "ru": "первый этаж",
+      "en": "ground floor",
+      "example": "Das Geschäft ist im Erdgeschoss.",
+      "example_ru": "Магазин на первом этаже."
+    },
+    {
+      "de": "der erste Stock",
+      "ru": "второй этаж",
+      "en": "first floor",
+      "example": "Die Wohnung ist im ersten Stock.",
+      "example_ru": "Квартира на втором этаже."
+    },
+    {
+      "de": "der Vermieter",
+      "ru": "арендодатель",
+      "en": "landlord",
+      "example": "Der Vermieter kommt morgen.",
+      "example_ru": "Арендодатель придёт завтра."
+    },
+    {
+      "de": "die Kaution",
+      "ru": "залог",
+      "en": "deposit",
+      "example": "Die Kaution ist hoch.",
+      "example_ru": "Залог высокий."
+    },
+    {
+      "de": "die Nebenkosten",
+      "ru": "дополнительные расходы",
+      "en": "utilities",
+      "example": "Die Nebenkosten sind 50 Euro.",
+      "example_ru": "Дополнительные расходы 50 евро."
+    },
+    {
+      "de": "der Vertrag",
+      "ru": "договор",
+      "en": "contract",
+      "example": "Der Vertrag ist unterschrieben.",
+      "example_ru": "Договор подписан."
+    },
+    {
+      "de": "einziehen",
+      "ru": "въезжать",
+      "en": "to move in",
+      "example": "Wir ziehen nächste Woche ein.",
+      "example_ru": "Мы въезжаем на следующей неделе."
+    },
+    {
+      "de": "ausziehen",
+      "ru": "выезжать",
+      "en": "to move out",
+      "example": "Er zieht im Mai aus.",
+      "example_ru": "Он выезжает в мае."
+    },
+    {
+      "de": "renovieren",
+      "ru": "ремонтировать",
+      "en": "to renovate",
+      "example": "Wir renovieren die Küche.",
+      "example_ru": "Мы ремонтируем кухню."
+    },
+    {
+      "de": "putzen",
+      "ru": "убирать",
+      "en": "to clean",
+      "example": "Ich putze das Bad.",
+      "example_ru": "Я убираю ванную."
+    },
+    {
+      "de": "aufräumen",
+      "ru": "наводить порядок",
+      "en": "to tidy up",
+      "example": "Ich räume mein Zimmer auf.",
+      "example_ru": "Я навожу порядок в комнате."
+    },
+    {
+      "de": "klingeln",
+      "ru": "звонить (в дверь)",
+      "en": "to ring (bell)",
+      "example": "Es klingelt.",
+      "example_ru": "Звонят в дверь."
+    },
+    {
+      "de": "reparieren",
+      "ru": "чинить",
+      "en": "to repair",
+      "example": "Der Handwerker repariert die Heizung.",
+      "example_ru": "Мастер чинит отопление."
+    },
+    {
+      "de": "die Wohnungstür",
+      "ru": "дверь квартиры",
+      "en": "apartment door",
+      "example": "Die Wohnungstür ist zu.",
+      "example_ru": "Дверь квартиры закрыта."
+    },
+    {
+      "de": "die Haustür",
+      "ru": "входная дверь",
+      "en": "front door",
+      "example": "Die Haustür ist grün.",
+      "example_ru": "Входная дверь зелёная."
+    },
+    {
+      "de": "das Schloss",
+      "ru": "замок",
+      "en": "lock",
+      "example": "Das Schloss ist kaputt.",
+      "example_ru": "Замок сломан."
+    },
+    {
+      "de": "die Sicherheit",
+      "ru": "безопасность",
+      "en": "safety/security",
+      "example": "Die Sicherheit ist wichtig.",
+      "example_ru": "Безопасность важна."
+    },
+    {
+      "de": "der Rauchmelder",
+      "ru": "дымовой извещатель",
+      "en": "smoke detector",
+      "example": "Der Rauchmelder piepst.",
+      "example_ru": "Дымовой извещатель пищит."
+    },
+    {
+      "de": "die Gegensprechanlage",
+      "ru": "домофон",
+      "en": "intercom",
+      "example": "Die Gegensprechanlage funktioniert.",
+      "example_ru": "Домофон работает."
+    },
+    {
+      "de": "die Stromrechnung",
+      "ru": "счёт за электричество",
+      "en": "electricity bill",
+      "example": "Die Stromrechnung ist hoch.",
+      "example_ru": "Счёт за электричество высокий."
+    },
+    {
+      "de": "die Heizkosten",
+      "ru": "расходы на отопление",
+      "en": "heating costs",
+      "example": "Die Heizkosten steigen.",
+      "example_ru": "Расходы на отопление растут."
+    },
+    {
+      "de": "das Warmwasser",
+      "ru": "горячая вода",
+      "en": "hot water",
+      "example": "Das Warmwasser ist aus.",
+      "example_ru": "Горячей воды нет."
+    },
+    {
+      "de": "die Wohnungssuche",
+      "ru": "поиск квартиры",
+      "en": "apartment search",
+      "example": "Die Wohnungssuche ist schwer.",
+      "example_ru": "Поиск квартиры сложный."
+    },
+    {
+      "de": "gemütlich",
+      "ru": "уютный",
+      "en": "cozy",
+      "example": "Das Zimmer ist gemütlich.",
+      "example_ru": "Комната уютная."
+    },
+    {
+      "de": "die Nachbarschaft",
+      "ru": "соседство",
+      "en": "neighborhood",
+      "example": "Die Nachbarschaft ist ruhig.",
+      "example_ru": "Окрестности тихие."
+    },
+    {
+      "de": "die Umgebung",
+      "ru": "окрестности",
+      "en": "surroundings",
+      "example": "Die Umgebung ist schön.",
+      "example_ru": "Окрестности красивые."
+    },
+    {
+      "de": "der Nachbar",
+      "ru": "сосед",
+      "en": "neighbor (m)",
+      "example": "Mein Nachbar ist nett.",
+      "example_ru": "Мой сосед приятный."
+    },
+    {
+      "de": "das Waschbecken",
+      "ru": "раковина",
+      "en": "sink",
+      "example": "Das Waschbecken ist sauber.",
+      "example_ru": "Раковина чистая."
+    },
+    {
+      "de": "die Badewanne",
+      "ru": "ванна",
+      "en": "bathtub",
+      "example": "Die Badewanne ist groß.",
+      "example_ru": "Ванна большая."
+    },
+    {
+      "de": "der Kleiderschrank",
+      "ru": "гардероб",
+      "en": "wardrobe",
+      "example": "Der Kleiderschrank ist voll.",
+      "example_ru": "Гардероб полный."
+    },
+    {
+      "de": "der Schreibtisch",
+      "ru": "письменный стол",
+      "en": "desk",
+      "example": "Der Schreibtisch steht am Fenster.",
+      "example_ru": "Письменный стол стоит у окна."
+    },
+    {
+      "de": "die Kommode",
+      "ru": "комод",
+      "en": "dresser/chest of drawers",
+      "example": "Die Kommode hat vier Schubladen.",
+      "example_ru": "У комода четыре ящика."
+    },
+    {
+      "de": "die Schublade",
+      "ru": "ящик",
+      "en": "drawer",
+      "example": "Die Schublade ist voll.",
+      "example_ru": "Ящик полный."
+    },
+    {
+      "de": "die Stehlampe",
+      "ru": "торшер",
+      "en": "floor lamp",
+      "example": "Die Stehlampe gibt warmes Licht.",
+      "example_ru": "Торшер даёт тёплый свет."
+    },
+    {
+      "de": "die Deckenlampe",
+      "ru": "люстра",
+      "en": "ceiling lamp",
+      "example": "Die Deckenlampe ist modern.",
+      "example_ru": "Люстра современная."
+    },
+    {
+      "de": "der Teppichboden",
+      "ru": "ковровое покрытие",
+      "en": "wall-to-wall carpet",
+      "example": "Der Teppichboden ist weich.",
+      "example_ru": "Ковровое покрытие мягкое."
+    },
+    {
+      "de": "der Fliesenboden",
+      "ru": "пол из плитки",
+      "en": "tiled floor",
+      "example": "Der Fliesenboden ist im Bad.",
+      "example_ru": "Пол из плитки в ванной."
+    },
+    {
+      "de": "die Klimaanlage",
+      "ru": "кондиционер",
+      "en": "air conditioning",
+      "example": "Die Klimaanlage funktioniert.",
+      "example_ru": "Кондиционер работает."
+    }
   ],
   "distractors": [
     "подвал",
@@ -210,6 +734,40 @@
     "зеркало",
     "подушка",
     "этаж",
+    "раковина",
+    "ванна",
+    "душ",
+    "туалет",
+    "полотенце",
+    "люстра",
+    "комод",
+    "гардероб",
+    "жалюзи",
+    "шторы",
+    "растение",
+    "кондиционер",
+    "стиральная машина",
+    "письменный стол",
+    "залог",
+    "аренда",
+    "сосед",
+    "ремонт",
+    "замок",
+    "терраса",
+    "кабинет"
+  ],
+  "distractors_en": [
+    "basement",
+    "attic",
+    "hallway",
+    "stairs",
+    "elevator",
+    "carpet",
+    "занавеска",
+    "shelf",
+    "mirror",
+    "подушка",
+    "floor/story",
     "раковина",
     "ванна",
     "душ",

@@ -1,8 +1,10 @@
 {
   "id": "greetings",
   "name": "Приветствия",
+  "name_en": "Greetings",
   "name_de": "Begrüßungen",
   "description": "Базовые диалоги приветствия и знакомства",
+  "description_en": "Basic greeting and introduction dialogues",
   "level": "A1",
   "dialogue": [
     {
@@ -66,21 +68,33 @@
     {
       "type": "fill_blank",
       "question": "Guten Tag! Wie ___ es Ihnen?",
-      "options": ["geht", "gehen", "gehst"],
+      "options": [
+        "geht",
+        "gehen",
+        "gehst"
+      ],
       "correct": 0,
       "explanation": "geht - правильная форма глагола gehen для вопроса 'Wie geht es Ihnen?'"
     },
     {
       "type": "fill_blank",
       "question": "Ich ___ Anna.",
-      "options": ["heiße", "heißt", "heißen"],
+      "options": [
+        "heiße",
+        "heißt",
+        "heißen"
+      ],
       "correct": 0,
       "explanation": "heiße - правильная форма глагола heißen для местоимения 'ich'"
     },
     {
       "type": "fill_blank",
       "question": "Freut mich! ___ Wiedersehen!",
-      "options": ["Auf", "Zu", "Von"],
+      "options": [
+        "Auf",
+        "Zu",
+        "Von"
+      ],
       "correct": 0,
       "explanation": "Auf Wiedersehen - стандартное прощание в немецком языке"
     }

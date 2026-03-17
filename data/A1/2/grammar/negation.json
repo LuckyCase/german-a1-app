@@ -1,8 +1,10 @@
 {
   "id": "negation",
   "name": "Отрицание (nicht / kein)",
+  "name_en": "Negation (nicht / kein)",
   "name_de": "Negation",
   "description": "Отрицание на уровне A2",
+  "description_en": "Negation at A2 level",
   "level": "A2",
   "theory": {
     "title": "Отрицание: nicht, kein, nie, niemand",

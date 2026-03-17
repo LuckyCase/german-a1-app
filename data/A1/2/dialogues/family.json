@@ -1,8 +1,10 @@
 {
   "id": "family",
   "name": "Семья",
+  "name_en": "Family",
   "name_de": "Familie",
   "description": "О семье",
+  "description_en": "About family",
   "level": "A2",
   "dialogue": [
     {

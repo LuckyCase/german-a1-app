@@ -1,8 +1,10 @@
 {
   "id": "restaurant",
   "name": "В ресторане",
+  "name_en": "At the Restaurant",
   "name_de": "Im Restaurant",
   "description": "Диалог заказа в ресторане",
+  "description_en": "Restaurant ordering dialogue",
   "level": "A2",
   "dialogue": [
     {

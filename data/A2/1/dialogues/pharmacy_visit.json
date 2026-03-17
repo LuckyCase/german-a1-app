@@ -1,8 +1,10 @@
 {
   "id": "pharmacy_visit",
   "name": "Визит в аптеку",
+  "name_en": "Pharmacy Visit",
   "name_de": "Besuch in der Apotheke",
   "description": "Диалог при покупке лекарства",
+  "description_en": "Buying medicine dialogue",
   "level": "A2",
   "dialogue": [
     {
@@ -40,14 +42,22 @@
     {
       "type": "multiple_choice",
       "question": "Welche Symptome hat der Kunde?",
-      "options": ["Halsschmerzen und Husten", "Nur Fieber", "Bauchschmerzen"],
+      "options": [
+        "Halsschmerzen und Husten",
+        "Nur Fieber",
+        "Bauchschmerzen"
+      ],
       "correct": 0,
       "explanation": "Он говорит о боли в горле и легком кашле."
     },
     {
       "type": "multiple_choice",
       "question": "Wie oft soll er die Tabletten nehmen?",
-      "options": ["Einmal täglich", "Zweimal täglich", "Dreimal täglich"],
+      "options": [
+        "Einmal täglich",
+        "Zweimal täglich",
+        "Dreimal täglich"
+      ],
       "correct": 2,
       "explanation": "Фармацевт говорит: dreimal täglich."
     }

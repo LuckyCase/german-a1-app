@@ -1,8 +1,10 @@
 {
   "id": "punctuality",
   "name": "Пунктуальность",
+  "name_en": "Punctuality",
   "name_de": "Pünktlichkeit",
   "description": "Почему немцы ценят точность во времени",
+  "description_en": "Why Germans value punctuality",
   "level": "A1",
   "content": {
     "title": "Pünktlichkeit — точность и надёжность",
@@ -21,13 +23,21 @@
   "questions": [
     {
       "question": "Что принято сделать, если вы опаздываете на встречу?",
-      "options": ["Ничего", "Позвонить или написать", "Прийти на следующий день"],
+      "options": [
+        "Ничего",
+        "Позвонить или написать",
+        "Прийти на следующий день"
+      ],
       "correct": 1,
       "explanation": "Принято предупредить о опоздании по телефону или сообщением."
     },
     {
       "question": "Как по-немецки «пунктуальность»?",
-      "options": ["Zeit", "Pünktlichkeit", "Uhr"],
+      "options": [
+        "Zeit",
+        "Pünktlichkeit",
+        "Uhr"
+      ],
       "correct": 1,
       "explanation": "Pünktlichkeit — пунктуальность; Uhr — часы; Zeit — время."
     }

@@ -1,8 +1,10 @@
 {
   "id": "shops",
   "name": "Магазины и покупки",
+  "name_en": "Shopping",
   "name_de": "Geschäfte und Einkaufen",
   "description": "Режим работы магазинов и этикет",
+  "description_en": "Shop opening hours and etiquette",
   "level": "A1",
   "content": {
     "title": "Einkaufen — где и когда покупать",
@@ -21,13 +23,21 @@
   "questions": [
     {
       "question": "Когда в Германии большинство магазинов закрыты?",
-      "options": ["В субботу", "В понедельник", "В воскресенье"],
+      "options": [
+        "В субботу",
+        "В понедельник",
+        "В воскресенье"
+      ],
       "correct": 2,
       "explanation": "По воскресеньям (Sonntag) обычные магазины не работают."
     },
     {
       "question": "Как вежливо попросить оплатить в магазине?",
-      "options": ["Geld!", "Kann ich bitte zahlen?", "Tschüss!"],
+      "options": [
+        "Geld!",
+        "Kann ich bitte zahlen?",
+        "Tschüss!"
+      ],
       "correct": 1,
       "explanation": "«Kann ich bitte zahlen?» — «Можно оплатить?»"
     }

@@ -1,8 +1,10 @@
 {
   "id": "transport",
   "name": "Транспорт в Германии",
+  "name_en": "Transport in Germany",
   "name_de": "Transport und Verkehr",
   "description": "Общественный транспорт и правила поведения",
+  "description_en": "Public transport and rules of conduct",
   "level": "A1",
   "content": {
     "title": "Transport — как пользоваться транспортом",
@@ -21,13 +23,21 @@
   "questions": [
     {
       "question": "Что нужно сделать с разовым билетом перед поездкой?",
-      "options": ["Показать водителю", "Компостировать (entwerten)", "Ничего"],
+      "options": [
+        "Показать водителю",
+        "Компостировать (entwerten)",
+        "Ничего"
+      ],
       "correct": 1,
       "explanation": "Разовый билет нужно компостировать в автомате на платформе или в транспорте."
     },
     {
       "question": "Как по-немецки «поезд»?",
-      "options": ["Bus", "Zug", "U-Bahn"],
+      "options": [
+        "Bus",
+        "Zug",
+        "U-Bahn"
+      ],
       "correct": 1,
       "explanation": "Zug — поезд; U-Bahn — метро; Bus — автобус."
     }

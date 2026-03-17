@@ -1,8 +1,10 @@
 {
   "id": "doctor",
   "name": "У врача",
+  "name_en": "At the Doctor",
   "name_de": "Beim Arzt",
   "description": "Визит к врачу",
+  "description_en": "Visit to the doctor",
   "level": "A1",
   "dialogue": [
     {

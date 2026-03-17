@@ -1,8 +1,10 @@
 {
   "id": "school",
   "name": "Учёба",
+  "name_en": "School",
   "name_de": "Schule und Lernen",
   "description": "В школе и на курсах",
+  "description_en": "At school and in courses",
   "level": "A1",
   "type": "situational",
   "phrases": [
@@ -10,6 +12,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -17,6 +20,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -24,13 +28,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Да, немного."
     },
@@ -38,13 +45,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -52,13 +62,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Einen Moment, bitte.",
       "example_ru": "Один момент, пожалуйста."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "Нет проблем."
     },
@@ -66,6 +79,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -73,6 +87,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -80,13 +95,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Да, немного."
     },
@@ -94,13 +112,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -108,13 +129,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Einen Moment, bitte.",
       "example_ru": "Один момент, пожалуйста."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "Нет проблем."
     },
@@ -122,6 +146,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -129,6 +154,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -136,13 +162,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Да, немного."
     },
@@ -150,13 +179,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -164,13 +196,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Einen Moment, bitte.",
       "example_ru": "Один момент, пожалуйста."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "Нет проблем."
     },
@@ -178,6 +213,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -185,6 +221,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -192,13 +229,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Да, немного."
     },
@@ -206,13 +246,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -220,6 +263,7 @@
       "de": "Ich lerne Deutsch.",
       "ru": "Я учу немецкий.",
       "context": "Учёба",
+      "context_en": "School",
       "example": "Ich lerne Deutsch. Seit einem Jahr.",
       "example_ru": "Я учу немецкий. Уже год."
     },
@@ -227,6 +271,7 @@
       "de": "Wann beginnt der Unterricht?",
       "ru": "Когда начинается урок?",
       "context": "Расписание",
+      "context_en": "Schedule",
       "example": "Wann beginnt der Unterricht? / Um 9 Uhr.",
       "example_ru": "Когда начинается урок? / В 9."
     },
@@ -240,7 +285,9 @@
     {
       "de": "Können Sie das wiederholen?",
       "ru": "Повторите, пожалуйста?",
+      "en": "Can you repeat that?",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Können Sie das wiederholen? / Natürlich.",
       "example_ru": "Повторите, пожалуйста? / Конечно."
     },
@@ -248,6 +295,7 @@
       "de": "Ich habe die Hausaufgaben vergessen.",
       "ru": "Я забыл домашнее задание.",
       "context": "Школа",
+      "context_en": "School",
       "example": "Ich habe die Hausaufgaben vergessen. Es tut mir leid.",
       "example_ru": "Я забыл домашнее задание. Извините."
     },
@@ -255,6 +303,7 @@
       "de": "Ich lerne Deutsch.",
       "ru": "Я учу немецкий.",
       "context": "Учёба",
+      "context_en": "School",
       "example": "Ich lerne Deutsch. Seit einem Jahr.",
       "example_ru": "Я учу немецкий. Уже год."
     },
@@ -262,6 +311,7 @@
       "de": "Wann beginnt der Unterricht?",
       "ru": "Когда начинается урок?",
       "context": "Расписание",
+      "context_en": "Schedule",
       "example": "Wann beginnt der Unterricht? / Um 9 Uhr.",
       "example_ru": "Когда начинается урок? / В 9."
     },
@@ -275,7 +325,9 @@
     {
       "de": "Können Sie das wiederholen?",
       "ru": "Повторите, пожалуйста?",
+      "en": "Can you repeat that?",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Können Sie das wiederholen? / Natürlich.",
       "example_ru": "Повторите, пожалуйста? / Конечно."
     },
@@ -283,6 +335,7 @@
       "de": "Ich habe die Hausaufgaben vergessen.",
       "ru": "Я забыл домашнее задание.",
       "context": "Школа",
+      "context_en": "School",
       "example": "Ich habe die Hausaufgaben vergessen. Es tut mir leid.",
       "example_ru": "Я забыл домашнее задание. Извините."
     },
@@ -290,6 +343,7 @@
       "de": "Ich lerne Deutsch.",
       "ru": "Я учу немецкий.",
       "context": "Учёба",
+      "context_en": "School",
       "example": "Ich lerne Deutsch. Seit einem Jahr.",
       "example_ru": "Я учу немецкий. Уже год."
     },
@@ -297,6 +351,7 @@
       "de": "Wann beginnt der Unterricht?",
       "ru": "Когда начинается урок?",
       "context": "Расписание",
+      "context_en": "Schedule",
       "example": "Wann beginnt der Unterricht? / Um 9 Uhr.",
       "example_ru": "Когда начинается урок? / В 9."
     },
@@ -310,7 +365,9 @@
     {
       "de": "Können Sie das wiederholen?",
       "ru": "Повторите, пожалуйста?",
+      "en": "Can you repeat that?",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Können Sie das wiederholen? / Natürlich.",
       "example_ru": "Повторите, пожалуйста? / Конечно."
     },
@@ -318,6 +375,7 @@
       "de": "Ich habe die Hausaufgaben vergessen.",
       "ru": "Я забыл домашнее задание.",
       "context": "Школа",
+      "context_en": "School",
       "example": "Ich habe die Hausaufgaben vergessen. Es tut mir leid.",
       "example_ru": "Я забыл домашнее задание. Извините."
     },
@@ -325,6 +383,7 @@
       "de": "Ich lerne Deutsch.",
       "ru": "Я учу немецкий.",
       "context": "Учёба",
+      "context_en": "School",
       "example": "Ich lerne Deutsch. Seit einem Jahr.",
       "example_ru": "Я учу немецкий. Уже год."
     },
@@ -332,6 +391,7 @@
       "de": "Wann beginnt der Unterricht?",
       "ru": "Когда начинается урок?",
       "context": "Расписание",
+      "context_en": "Schedule",
       "example": "Wann beginnt der Unterricht? / Um 9 Uhr.",
       "example_ru": "Когда начинается урок? / В 9."
     },
@@ -345,7 +405,9 @@
     {
       "de": "Können Sie das wiederholen?",
       "ru": "Повторите, пожалуйста?",
+      "en": "Can you repeat that?",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Können Sie das wiederholen? / Natürlich.",
       "example_ru": "Повторите, пожалуйста? / Конечно."
     },
@@ -353,6 +415,7 @@
       "de": "Ich habe die Hausaufgaben vergessen.",
       "ru": "Я забыл домашнее задание.",
       "context": "Школа",
+      "context_en": "School",
       "example": "Ich habe die Hausaufgaben vergessen. Es tut mir leid.",
       "example_ru": "Я забыл домашнее задание. Извините."
     },
@@ -360,6 +423,7 @@
       "de": "Ich lerne Deutsch.",
       "ru": "Я учу немецкий.",
       "context": "Учёба",
+      "context_en": "School",
       "example": "Ich lerne Deutsch. Seit einem Jahr.",
       "example_ru": "Я учу немецкий. Уже год."
     },
@@ -367,6 +431,7 @@
       "de": "Wann beginnt der Unterricht?",
       "ru": "Когда начинается урок?",
       "context": "Расписание",
+      "context_en": "Schedule",
       "example": "Wann beginnt der Unterricht? / Um 9 Uhr.",
       "example_ru": "Когда начинается урок? / В 9."
     },
@@ -380,7 +445,9 @@
     {
       "de": "Können Sie das wiederholen?",
       "ru": "Повторите, пожалуйста?",
+      "en": "Can you repeat that?",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Können Sie das wiederholen? / Natürlich.",
       "example_ru": "Повторите, пожалуйста? / Конечно."
     },
@@ -388,6 +455,7 @@
       "de": "Ich habe die Hausaufgaben vergessen.",
       "ru": "Я забыл домашнее задание.",
       "context": "Школа",
+      "context_en": "School",
       "example": "Ich habe die Hausaufgaben vergessen. Es tut mir leid.",
       "example_ru": "Я забыл домашнее задание. Извините."
     },
@@ -395,6 +463,7 @@
       "de": "Ich lerne Deutsch.",
       "ru": "Я учу немецкий.",
       "context": "Учёба",
+      "context_en": "School",
       "example": "Ich lerne Deutsch. Seit einem Jahr.",
       "example_ru": "Я учу немецкий. Уже год."
     },
@@ -402,6 +471,7 @@
       "de": "Wann beginnt der Unterricht?",
       "ru": "Когда начинается урок?",
       "context": "Расписание",
+      "context_en": "Schedule",
       "example": "Wann beginnt der Unterricht? / Um 9 Uhr.",
       "example_ru": "Когда начинается урок? / В 9."
     },
@@ -415,7 +485,9 @@
     {
       "de": "Können Sie das wiederholen?",
       "ru": "Повторите, пожалуйста?",
+      "en": "Can you repeat that?",
       "context": "Просьба",
+      "context_en": "Request",
       "example": "Können Sie das wiederholen? / Natürlich.",
       "example_ru": "Повторите, пожалуйста? / Конечно."
     },
@@ -423,6 +495,7 @@
       "de": "Ich habe die Hausaufgaben vergessen.",
       "ru": "Я забыл домашнее задание.",
       "context": "Школа",
+      "context_en": "School",
       "example": "Ich habe die Hausaufgaben vergessen. Es tut mir leid.",
       "example_ru": "Я забыл домашнее задание. Извините."
     },
@@ -430,6 +503,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "Das ist gut.",
       "example_ru": "Это хорошо."
     },
@@ -437,6 +511,7 @@
       "de": "Danke!",
       "ru": "Спасибо!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "Danke!",
       "example_ru": "Спасибо!"
     },
@@ -444,6 +519,7 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung!",
       "example_ru": "Извините!"
     },
@@ -458,6 +534,7 @@
       "de": "Ja.",
       "ru": "Да.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Ja.",
       "example_ru": "Да."
     },
@@ -465,6 +542,7 @@
       "de": "Nein.",
       "ru": "Нет.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Nein.",
       "example_ru": "Нет."
     },
@@ -472,6 +550,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "Das ist gut.",
       "example_ru": "Это хорошо."
     },
@@ -479,6 +558,7 @@
       "de": "Danke!",
       "ru": "Спасибо!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "Danke!",
       "example_ru": "Спасибо!"
     },
@@ -486,6 +566,7 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung!",
       "example_ru": "Извините!"
     },
@@ -500,6 +581,7 @@
       "de": "Ja.",
       "ru": "Да.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Ja.",
       "example_ru": "Да."
     },
@@ -507,6 +589,7 @@
       "de": "Nein.",
       "ru": "Нет.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Nein.",
       "example_ru": "Нет."
     },
@@ -514,6 +597,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "Das ist gut.",
       "example_ru": "Это хорошо."
     },
@@ -521,6 +605,7 @@
       "de": "Danke!",
       "ru": "Спасибо!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "Danke!",
       "example_ru": "Спасибо!"
     },
@@ -528,6 +613,7 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung!",
       "example_ru": "Извините!"
     },
@@ -542,6 +628,7 @@
       "de": "Ja.",
       "ru": "Да.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Ja.",
       "example_ru": "Да."
     },
@@ -549,6 +636,7 @@
       "de": "Nein.",
       "ru": "Нет.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Nein.",
       "example_ru": "Нет."
     },
@@ -556,6 +644,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "Das ist gut.",
       "example_ru": "Это хорошо."
     },
@@ -563,6 +652,7 @@
       "de": "Danke!",
       "ru": "Спасибо!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "Danke!",
       "example_ru": "Спасибо!"
     },
@@ -570,6 +660,7 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung!",
       "example_ru": "Извините!"
     },
@@ -584,6 +675,7 @@
       "de": "Ja.",
       "ru": "Да.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Ja.",
       "example_ru": "Да."
     },
@@ -591,6 +683,7 @@
       "de": "Nein.",
       "ru": "Нет.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Nein.",
       "example_ru": "Нет."
     },
@@ -598,6 +691,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "Das ist gut.",
       "example_ru": "Это хорошо."
     },
@@ -605,6 +699,7 @@
       "de": "Danke!",
       "ru": "Спасибо!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "Danke!",
       "example_ru": "Спасибо!"
     },
@@ -612,6 +707,7 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung!",
       "example_ru": "Извините!"
     },
@@ -626,6 +722,7 @@
       "de": "Ja.",
       "ru": "Да.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Ja.",
       "example_ru": "Да."
     },
@@ -633,6 +730,7 @@
       "de": "Nein.",
       "ru": "Нет.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Nein.",
       "example_ru": "Нет."
     },
@@ -640,6 +738,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "Das ist gut.",
       "example_ru": "Это хорошо."
     },
@@ -647,6 +746,7 @@
       "de": "Danke!",
       "ru": "Спасибо!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "Danke!",
       "example_ru": "Спасибо!"
     },
@@ -654,6 +754,7 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung!",
       "example_ru": "Извините!"
     },
@@ -668,6 +769,7 @@
       "de": "Ja.",
       "ru": "Да.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Ja.",
       "example_ru": "Да."
     },
@@ -675,6 +777,7 @@
       "de": "Nein.",
       "ru": "Нет.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "Nein.",
       "example_ru": "Нет."
     },
@@ -682,6 +785,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "Das ist gut.",
       "example_ru": "Это хорошо."
     },
@@ -689,6 +793,7 @@
       "de": "Danke!",
       "ru": "Спасибо!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "Danke!",
       "example_ru": "Спасибо!"
     },
@@ -696,6 +801,7 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung!",
       "example_ru": "Извините!"
     },

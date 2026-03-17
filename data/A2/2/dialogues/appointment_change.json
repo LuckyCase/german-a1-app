@@ -1,8 +1,10 @@
 {
   "id": "appointment_change",
   "name": "Перенос встречи",
+  "name_en": "Rescheduling an Appointment",
   "name_de": "Termin verschieben",
   "description": "Диалог о переносе записи",
+  "description_en": "Appointment rescheduling dialogue",
   "level": "A2",
   "dialogue": [
     {
@@ -40,14 +42,22 @@
     {
       "type": "multiple_choice",
       "question": "Auf welchen Tag wird der Termin verschoben?",
-      "options": ["Mittwoch", "Freitag", "Montag"],
+      "options": [
+        "Mittwoch",
+        "Freitag",
+        "Montag"
+      ],
       "correct": 1,
       "explanation": "Клиент просит перенести встречу на пятницу."
     },
     {
       "type": "multiple_choice",
       "question": "Um wie viel Uhr ist der neue Termin?",
-      "options": ["10 Uhr", "12 Uhr", "13 Uhr"],
+      "options": [
+        "10 Uhr",
+        "12 Uhr",
+        "13 Uhr"
+      ],
       "correct": 2,
       "explanation": "Новая запись назначена на 13:00."
     }

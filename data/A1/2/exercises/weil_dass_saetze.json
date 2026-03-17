@@ -1,64 +1,101 @@
 {
   "id": "weil_dass_saetze",
   "name": "Придаточные предложения с weil и dass",
+  "name_en": "Subordinate Clauses with weil and dass",
   "name_de": "Nebensätze mit weil und dass",
   "description": "Порядок слов в придаточных предложениях с «потому что» и «что»",
+  "description_en": "Word order in subordinate clauses with 'because' and 'that'",
   "level": "A1",
-  "linked_to": ["word_order", "negation"],
+  "linked_to": [
+    "word_order",
+    "negation"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Ich bleibe zu Hause, weil ich krank ___.",
-      "options": ["bin", "ist", "bist"],
+      "options": [
+        "bin",
+        "ist",
+        "bist"
+      ],
       "correct": 0,
       "explanation": "В придаточном с weil глагол стоит в конце. Weil ich krank bin — потому что я болен."
     },
     {
       "type": "multiple_choice",
       "question": "Какой порядок слов правильный после «weil»?",
-      "options": ["Подлежащее + глагол + ...", "Глагол + подлежащее + ...", "Подлежащее + ... + глагол"],
+      "options": [
+        "Подлежащее + глагол + ...",
+        "Глагол + подлежащее + ...",
+        "Подлежащее + ... + глагол"
+      ],
       "correct": 2,
       "explanation": "В придаточных с weil/dass глагол всегда стоит в конце предложения."
     },
     {
       "type": "multiple_choice",
       "question": "Ich glaube, dass er morgen ___.",
-      "options": ["kommt", "kommen", "er kommt"],
+      "options": [
+        "kommt",
+        "kommen",
+        "er kommt"
+      ],
       "correct": 0,
       "explanation": "В придаточном с dass глагол стоит в конце: ...dass er morgen kommt."
     },
     {
       "type": "multiple_choice",
       "question": "Er lernt Deutsch, weil er in Deutschland ___ ___.",
-      "options": ["arbeiten will", "will arbeiten", "arbeiten möchte"],
+      "options": [
+        "arbeiten will",
+        "will arbeiten",
+        "arbeiten möchte"
+      ],
       "correct": 0,
       "explanation": "В придаточном с модальным глаголом: модальный глагол уходит в конец. Weil er arbeiten will."
     },
     {
       "type": "multiple_choice",
       "question": "Sie sagt, dass sie keine Zeit ___.",
-      "options": ["haben", "hat", "habt"],
+      "options": [
+        "haben",
+        "hat",
+        "habt"
+      ],
       "correct": 1,
       "explanation": "В придаточном с dass глагол стоит в конце и спрягается: ...dass sie keine Zeit hat."
     },
     {
       "type": "multiple_choice",
       "question": "Ich kann nicht kommen, ___ ich arbeiten muss.",
-      "options": ["dass", "weil", "und"],
+      "options": [
+        "dass",
+        "weil",
+        "und"
+      ],
       "correct": 1,
       "explanation": "Weil — потому что (причина). Ich kann nicht kommen, weil ich arbeiten muss."
     },
     {
       "type": "multiple_choice",
       "question": "Wir wissen, ___ das Restaurant gut ist.",
-      "options": ["weil", "dass", "ob"],
+      "options": [
+        "weil",
+        "dass",
+        "ob"
+      ],
       "correct": 1,
       "explanation": "Dass — что (утверждение факта). Wir wissen, dass... — мы знаем, что..."
     },
     {
       "type": "multiple_choice",
       "question": "Er ist traurig, weil seine Freundin nach Hause ___.",
-      "options": ["gefahren ist", "ist gefahren", "fährt"],
+      "options": [
+        "gefahren ist",
+        "ist gefahren",
+        "fährt"
+      ],
       "correct": 0,
       "explanation": "Perfekt в придаточном: вспомогательный глагол (ist) стоит в самом конце, после причастия. ...weil sie gefahren ist."
     }

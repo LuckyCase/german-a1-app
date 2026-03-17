@@ -1,8 +1,10 @@
 {
   "id": "job_interview",
   "name": "Собеседование",
+  "name_en": "Job Interview",
   "name_de": "Vorstellungsgespräch",
   "description": "Короткий диалог на собеседовании",
+  "description_en": "Short job interview dialogue",
   "level": "A2",
   "dialogue": [
     {
@@ -40,14 +42,22 @@
     {
       "type": "multiple_choice",
       "question": "Wie lange arbeitet Pavel im Kundenservice?",
-      "options": ["Seit drei Jahren", "Seit einem Jahr", "Seit fünf Jahren"],
+      "options": [
+        "Seit drei Jahren",
+        "Seit einem Jahr",
+        "Seit fünf Jahren"
+      ],
       "correct": 0,
       "explanation": "В диалоге: seit drei Jahren."
     },
     {
       "type": "multiple_choice",
       "question": "Was ist Pavel wichtig?",
-      "options": ["Kurze Arbeitszeit", "Entwicklungsmöglichkeiten", "Kostenloses Essen"],
+      "options": [
+        "Kurze Arbeitszeit",
+        "Entwicklungsmöglichkeiten",
+        "Kostenloses Essen"
+      ],
       "correct": 1,
       "explanation": "Он говорит, что ему важны возможности развития."
     }

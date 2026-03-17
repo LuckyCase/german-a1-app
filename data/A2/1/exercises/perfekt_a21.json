@@ -1,15 +1,23 @@
 {
   "id": "perfekt_a21",
   "name": "Perfekt в контексте",
+  "name_en": "Perfekt in Context",
   "name_de": "Perfekt im Kontext",
   "description": "Практика Perfekt с haben/sein в повседневных ситуациях",
+  "description_en": "Perfekt practice with haben/sein in everyday situations",
   "level": "A2",
-  "linked_to": ["perfekt_haben_sein"],
+  "linked_to": [
+    "perfekt_haben_sein"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Wir ___ gestern erst um Mitternacht nach Hause gekommen.",
-      "options": ["haben", "sind", "werden"],
+      "options": [
+        "haben",
+        "sind",
+        "werden"
+      ],
       "correct": 1,
       "explanation": "Kommen в Perfekt идет с sein."
     },
@@ -23,13 +31,24 @@
     {
       "type": "multiple_choice",
       "question": "Sie ___ heute sehr früh aufgestanden.",
-      "options": ["hat", "ist", "war"],
+      "options": [
+        "hat",
+        "ist",
+        "war"
+      ],
       "correct": 1,
       "explanation": "Aufstehen — изменение состояния, нужен sein."
     },
     {
       "type": "scramble",
-      "words": ["Wir", "haben", "im", "Büro", "lange", "gearbeitet"],
+      "words": [
+        "Wir",
+        "haben",
+        "im",
+        "Büro",
+        "lange",
+        "gearbeitet"
+      ],
       "answer": "Wir haben im Büro lange gearbeitet",
       "translation": "Мы долго работали в офисе",
       "explanation": "В Perfekt вспомогательный глагол стоит на 2 месте."

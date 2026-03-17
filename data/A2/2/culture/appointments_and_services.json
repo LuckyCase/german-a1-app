@@ -1,8 +1,10 @@
 {
   "id": "appointments_and_services",
   "name": "Записи и сервисы в Германии",
+  "name_en": "Appointments and Services in Germany",
   "name_de": "Termine und Service in Deutschland",
   "description": "Почему в Германии важно заранее записываться",
+  "description_en": "Why making appointments in advance is important in Germany",
   "level": "A2",
   "content": {
     "title": "Terminpflicht im Alltag",
@@ -21,19 +23,31 @@
   "questions": [
     {
       "question": "Что такое Termin?",
-      "options": ["Штраф", "Запись/назначенная встреча", "Справка"],
+      "options": [
+        "Штраф",
+        "Запись/назначенная встреча",
+        "Справка"
+      ],
       "correct": 1,
       "explanation": "Termin — назначенное время приема."
     },
     {
       "question": "Что бывает при серьезном опоздании?",
-      "options": ["Прием всегда проводят", "Могут отменить прием", "Дают скидку"],
+      "options": [
+        "Прием всегда проводят",
+        "Могут отменить прием",
+        "Дают скидку"
+      ],
       "correct": 1,
       "explanation": "Опоздание может привести к отмене записи."
     },
     {
       "question": "Что стоит сделать, если не можете прийти?",
-      "options": ["Ничего", "Перенести/отменить запись заранее", "Прийти на следующий день без записи"],
+      "options": [
+        "Ничего",
+        "Перенести/отменить запись заранее",
+        "Прийти на следующий день без записи"
+      ],
       "correct": 1,
       "explanation": "Вежливо заранее отменить или перенести запись."
     }

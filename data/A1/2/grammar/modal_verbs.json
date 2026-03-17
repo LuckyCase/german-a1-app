@@ -1,8 +1,10 @@
 {
   "id": "modal_verbs",
   "name": "Модальные глаголы",
+  "name_en": "Modal Verbs",
   "name_de": "Modalverben",
   "description": "Модальные глаголы в Perfekt (уровень A2)",
+  "description_en": "Modal verbs in Perfekt (A2 level)",
   "level": "A2",
   "theory": {
     "title": "Модальные глаголы в Perfekt",

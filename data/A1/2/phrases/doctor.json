@@ -1,8 +1,10 @@
 {
   "id": "doctor",
   "name": "У врача",
+  "name_en": "At the Doctor",
   "name_de": "Beim Arzt",
   "description": "Фразы у врача (уровень A2)",
+  "description_en": "Doctor phrases (A2 level)",
   "level": "A2",
   "type": "situational",
   "phrases": [
@@ -45,6 +47,7 @@
       "de": "Ich habe Kopfschmerzen.",
       "ru": "У меня болит голова.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Patient: Ich habe Kopfschmerzen. / Arzt: Seit wann?",
       "example_ru": "Пациент: У меня болит голова. / Врач: С какого времени?"
     },
@@ -66,6 +69,7 @@
       "de": "Wie oft soll ich die Tabletten nehmen?",
       "ru": "Как часто принимать таблетки?",
       "context": "Лечение",
+      "context_en": "Treatment",
       "example": "Patient: Wie oft soll ich die Tabletten nehmen? / Arzt: Dreimal täglich.",
       "example_ru": "Пациент: Как часто принимать таблетки? / Врач: Три раза в день."
     },
@@ -73,6 +77,7 @@
       "de": "Ich habe Fieber.",
       "ru": "У меня температура.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Patient: Ich habe Fieber. / Arzt: Wie hoch?",
       "example_ru": "Пациент: У меня температура. / Врач: Какая?"
     },
@@ -80,6 +85,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -87,6 +93,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -94,13 +101,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -108,13 +118,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -122,13 +135,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -136,6 +152,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -143,6 +160,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -150,6 +168,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -157,6 +176,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -164,13 +184,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -178,13 +201,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -192,13 +218,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -206,6 +235,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -213,6 +243,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -220,6 +251,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -227,6 +259,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -234,13 +267,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -248,13 +284,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -262,13 +301,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -276,6 +318,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -283,6 +326,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -290,6 +334,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -311,6 +356,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -318,6 +364,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -325,6 +372,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -346,6 +394,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -353,6 +402,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -360,6 +410,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -381,6 +432,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -388,6 +440,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -395,6 +448,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -416,6 +470,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -423,6 +478,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -430,6 +486,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -451,6 +508,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -458,6 +516,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -465,6 +524,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -486,6 +546,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -493,6 +554,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -500,6 +562,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -521,6 +584,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -528,6 +592,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -535,6 +600,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -556,6 +622,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -563,6 +630,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -570,6 +638,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -591,6 +660,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -598,6 +668,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -605,6 +676,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -626,6 +698,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -633,6 +706,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -640,6 +714,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -661,6 +736,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -668,6 +744,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -675,6 +752,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -696,6 +774,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -703,6 +782,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     },
@@ -710,6 +790,7 @@
       "de": "Ich habe Halsschmerzen.",
       "ru": "У меня болит горло.",
       "context": "Симптомы",
+      "context_en": "Symptoms",
       "example": "Ich habe Halsschmerzen und Husten.",
       "example_ru": "У меня болит горло и кашель."
     },
@@ -731,6 +812,7 @@
       "de": "Sie müssen sich ausruhen.",
       "ru": "Вам нужно отдохнуть.",
       "context": "Рекомендация",
+      "context_en": "Recommendation",
       "example": "Sie müssen sich ausruhen und viel trinken.",
       "example_ru": "Вам нужно отдохнуть и много пить."
     },
@@ -738,6 +820,7 @@
       "de": "Wo tut es weh?",
       "ru": "Где болит?",
       "context": "Осмотр",
+      "context_en": "Viewing",
       "example": "Arzt: Wo tut es weh? / Patient: Hier, am Arm.",
       "example_ru": "Где болит? / Здесь, в руке."
     }

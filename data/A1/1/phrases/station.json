@@ -1,8 +1,10 @@
 {
   "id": "station",
   "name": "На вокзале",
+  "name_en": "At the Station",
   "name_de": "Am Bahnhof",
   "description": "Фразы для общения на вокзале",
+  "description_en": "Phrases for communicating at the station",
   "level": "A1",
   "type": "situational",
   "phrases": [
@@ -31,6 +33,7 @@
       "de": "Ist der Zug pünktlich?",
       "ru": "Поезд приходит вовремя?",
       "context": "Расписание",
+      "context_en": "Schedule",
       "example": "Reisender: Ist der Zug pünktlich? / Angestellter: Ja.",
       "example_ru": "Пассажир: Поезд вовремя? / Сотрудник: Да."
     },
@@ -45,6 +48,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -52,6 +56,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -59,13 +64,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -73,13 +81,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -87,13 +98,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -101,6 +115,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -108,6 +123,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -115,6 +131,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -122,6 +139,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -129,13 +147,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -143,13 +164,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -157,13 +181,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -171,6 +198,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -178,6 +206,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -185,6 +214,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -192,6 +222,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -199,13 +230,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -213,13 +247,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -227,13 +264,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -241,6 +281,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -248,6 +289,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -269,6 +311,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -304,6 +347,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -339,6 +383,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -374,6 +419,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -409,6 +455,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -444,6 +491,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -479,6 +527,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -514,6 +563,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -549,6 +599,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -584,6 +635,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -619,6 +671,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -654,6 +707,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },
@@ -689,6 +743,7 @@
       "de": "Der Zug hat Verspätung.",
       "ru": "Поезд опаздывает.",
       "context": "Информация",
+      "context_en": "Information",
       "example": "Der Zug hat 20 Minuten Verspätung.",
       "example_ru": "Поезд опаздывает на 20 минут."
     },

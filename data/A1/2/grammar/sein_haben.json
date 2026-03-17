@@ -1,8 +1,10 @@
 {
   "id": "sein_haben",
   "name": "Глаголы sein и haben",
+  "name_en": "Verbs sein and haben",
   "name_de": "Verben sein und haben",
   "description": "sein und haben в Perfekt (уровень A2)",
+  "description_en": "sein and haben in Perfekt (A2 level)",
   "level": "A2",
   "theory": {
     "title": "sein und haben как вспомогательные глаголы",

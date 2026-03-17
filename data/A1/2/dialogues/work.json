@@ -1,8 +1,10 @@
 {
   "id": "work",
   "name": "На работе",
+  "name_en": "At Work",
   "name_de": "Bei der Arbeit",
   "description": "В офисе",
+  "description_en": "At the office",
   "level": "A2",
   "dialogue": [
     {

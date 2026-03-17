@@ -1,8 +1,10 @@
 {
   "id": "home",
   "name": "Дома",
+  "name_en": "At Home",
   "name_de": "Zu Hause",
   "description": "Разговор дома",
+  "description_en": "Conversation at home",
   "level": "A1",
   "dialogue": [
     {

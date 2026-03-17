@@ -1,727 +1,849 @@
 {
   "id": "verbs",
   "name": "Важные глаголы",
+  "name_en": "Important Verbs",
   "name_de": "Wichtige Verben",
   "description": "Глаголы уровня A2",
+  "description_en": "A2 level verbs",
   "level": "A2",
   "words": [
     {
       "de": "erklären",
       "ru": "объяснять",
+      "en": "to explain",
       "example": "Kannst du mir das erklären?",
       "example_ru": "Можешь мне это объяснить?"
     },
     {
       "de": "verstehen",
       "ru": "понимать",
+      "en": "to understand",
       "example": "Ich verstehe dich gut.",
       "example_ru": "Я тебя хорошо понимаю."
     },
     {
       "de": "vergessen",
       "ru": "забывать",
+      "en": "to forget",
       "example": "Ich habe meinen Schlüssel vergessen.",
       "example_ru": "Я забыл ключ."
     },
     {
       "de": "erinnern",
       "ru": "напоминать",
+      "en": "to remember",
       "example": "Erinnerst du dich an mich?",
       "example_ru": "Ты меня помнишь?"
     },
     {
       "de": "entscheiden",
       "ru": "решать",
+      "en": "to decide",
       "example": "Ich habe mich entschieden.",
       "example_ru": "Я решил."
     },
     {
       "de": "vorschlagen",
       "ru": "предлагать",
+      "en": "to suggest",
       "example": "Ich schlage vor, ins Kino zu gehen.",
       "example_ru": "Я предлагаю пойти в кино."
     },
     {
       "de": "erlauben",
       "ru": "разрешать",
+      "en": "to allow",
       "example": "Meine Eltern erlauben das nicht.",
       "example_ru": "Родители не разрешают."
     },
     {
       "de": "verbieten",
       "ru": "запрещать",
+      "en": "to forbid",
       "example": "Das ist verboten.",
       "example_ru": "Это запрещено."
     },
     {
       "de": "reparieren",
       "ru": "чинить, ремонтировать",
+      "en": "to repair",
       "example": "Der Techniker repariert den Computer.",
       "example_ru": "Техник чинит компьютер."
     },
     {
       "de": "reservieren",
       "ru": "бронировать",
+      "en": "to reserve",
       "example": "Ich habe einen Tisch reserviert.",
       "example_ru": "Я забронировал столик."
     },
     {
       "de": "sein",
       "ru": "быть",
+      "en": "to be",
       "example": "Ich bin Student.",
       "example_ru": "Я студент."
     },
     {
       "de": "haben",
       "ru": "иметь",
+      "en": "to have",
       "example": "Ich habe ein Auto.",
       "example_ru": "У меня есть машина."
     },
     {
       "de": "machen",
       "ru": "делать",
+      "en": "to do/make",
       "example": "Was machst du?",
       "example_ru": "Что ты делаешь?"
     },
     {
       "de": "gehen",
       "ru": "идти",
+      "en": "to go",
       "example": "Ich gehe nach Hause.",
       "example_ru": "Я иду домой."
     },
     {
       "de": "kommen",
       "ru": "приходить",
+      "en": "to come",
       "example": "Woher kommen Sie?",
       "example_ru": "Откуда вы?"
     },
     {
       "de": "wohnen",
       "ru": "жить",
+      "en": "to live",
       "example": "Ich wohne in Berlin.",
       "example_ru": "Я живу в Берлине."
     },
     {
       "de": "arbeiten",
       "ru": "работать",
+      "en": "to work",
       "example": "Ich arbeite als Lehrer.",
       "example_ru": "Я работаю учителем."
     },
     {
       "de": "lernen",
       "ru": "учить",
+      "en": "to learn",
       "example": "Ich lerne Deutsch.",
       "example_ru": "Я учу немецкий."
     },
     {
       "de": "sprechen",
       "ru": "говорить",
+      "en": "to speak",
       "example": "Sprechen Sie Deutsch?",
       "example_ru": "Вы говорите по-немецки?"
     },
     {
       "de": "essen",
       "ru": "есть",
+      "en": "to eat",
       "example": "Ich esse gern Pizza.",
       "example_ru": "Я люблю есть пиццу."
     },
     {
       "de": "trinken",
       "ru": "пить",
+      "en": "to drink",
       "example": "Ich trinke Kaffee.",
       "example_ru": "Я пью кофе."
     },
     {
       "de": "schlafen",
       "ru": "спать",
+      "en": "to sleep",
       "example": "Ich schlafe 8 Stunden.",
       "example_ru": "Я сплю 8 часов."
     },
     {
       "de": "lesen",
       "ru": "читать",
+      "en": "to read",
       "example": "Ich lese ein Buch.",
       "example_ru": "Я читаю книгу."
     },
     {
       "de": "schreiben",
       "ru": "писать",
+      "en": "to write",
       "example": "Ich schreibe eine E-Mail.",
       "example_ru": "Я пишу имейл."
     },
     {
       "de": "kaufen",
       "ru": "покупать",
+      "en": "to buy",
       "example": "Ich kaufe Brot.",
       "example_ru": "Я покупаю хлеб."
     },
     {
       "de": "kosten",
       "ru": "стоить",
+      "en": "to cost",
       "example": "Was kostet das?",
       "example_ru": "Сколько это стоит?"
     },
     {
       "de": "brauchen",
       "ru": "нуждаться",
+      "en": "to need",
       "example": "Ich brauche Hilfe.",
       "example_ru": "Мне нужна помощь."
     },
     {
       "de": "möchten",
       "ru": "хотеть",
+      "en": "would like",
       "example": "Ich möchte Kaffee.",
       "example_ru": "Я хочу кофе."
     },
     {
       "de": "können",
       "ru": "мочь/уметь",
+      "en": "can/to be able",
       "example": "Ich kann schwimmen.",
       "example_ru": "Я умею плавать."
     },
     {
       "de": "müssen",
       "ru": "должен",
+      "en": "must/to have to",
       "example": "Ich muss gehen.",
       "example_ru": "Мне надо идти."
     },
     {
       "de": "heißen",
       "ru": "называться",
+      "en": "to be called",
       "example": "Ich heiße Anna.",
       "example_ru": "Меня зовут Анна."
     },
     {
       "de": "finden",
       "ru": "находить/считать",
+      "en": "to find",
       "example": "Ich finde das gut.",
       "example_ru": "Я считаю это хорошим."
     },
     {
       "de": "nehmen",
       "ru": "брать",
+      "en": "to take",
       "example": "Ich nehme das.",
       "example_ru": "Я беру это."
     },
     {
       "de": "wollen",
       "ru": "хотеть",
+      "en": "to want",
       "example": "Ich will Deutsch lernen.",
       "example_ru": "Я хочу учить немецкий."
     },
     {
       "de": "sollen",
       "ru": "должен (следует)",
+      "en": "should",
       "example": "Du sollst kommen.",
       "example_ru": "Тебе следует прийти."
     },
     {
       "de": "dürfen",
       "ru": "иметь право",
+      "en": "may/to be allowed",
       "example": "Hier darf man rauchen.",
       "example_ru": "Здесь можно курить."
     },
     {
       "de": "wissen",
       "ru": "знать",
+      "en": "to know",
       "example": "Ich weiß das nicht.",
       "example_ru": "Я не знаю этого."
     },
     {
       "de": "sehen",
       "ru": "видеть",
+      "en": "to see",
       "example": "Ich sehe dich.",
       "example_ru": "Я вижу тебя."
     },
     {
       "de": "hören",
       "ru": "слышать",
+      "en": "to hear",
       "example": "Ich höre Musik.",
       "example_ru": "Я слушаю музыку."
     },
     {
       "de": "sagen",
       "ru": "сказать",
+      "en": "to say",
       "example": "Was sagst du?",
       "example_ru": "Что ты говоришь?"
     },
     {
       "de": "geben",
       "ru": "давать",
+      "en": "to give",
       "example": "Gib mir das Buch.",
       "example_ru": "Дай мне книгу."
     },
     {
       "de": "helfen",
       "ru": "помогать",
+      "en": "to help",
       "example": "Kannst du mir helfen?",
       "example_ru": "Ты можешь мне помочь?"
     },
     {
       "de": "arbeiten",
       "ru": "работать",
+      "en": "to work",
       "example": "Ich arbeite viel.",
       "example_ru": "Я много работаю."
     },
     {
       "de": "öffnen",
       "ru": "открывать",
+      "en": "to open",
       "example": "Öffne die Tür.",
       "example_ru": "Открой дверь."
     },
     {
       "de": "schließen",
       "ru": "закрывать",
+      "en": "to close",
       "example": "Schließe das Fenster.",
       "example_ru": "Закрой окно."
     },
     {
       "de": "stehen",
       "ru": "стоять",
+      "en": "to stand",
       "example": "Ich stehe am Fenster.",
       "example_ru": "Я стою у окна."
     },
     {
       "de": "sitzen",
       "ru": "сидеть",
+      "en": "to sit",
       "example": "Wir sitzen im Café.",
       "example_ru": "Мы сидим в кафе."
     },
     {
       "de": "liegen",
       "ru": "лежать",
+      "en": "to lie down",
       "example": "Das Buch liegt auf dem Tisch.",
       "example_ru": "Книга лежит на столе."
     },
     {
       "de": "laufen",
       "ru": "бежать/идти",
+      "en": "to run/walk",
       "example": "Ich laufe schnell.",
       "example_ru": "Я бегу быстро."
     },
     {
       "de": "fahren",
       "ru": "ехать",
+      "en": "to drive/go",
       "example": "Ich fahre mit dem Bus.",
       "example_ru": "Я еду автобусом."
     },
     {
       "de": "fliegen",
       "ru": "летать",
+      "en": "to fly",
       "example": "Wir fliegen nach Berlin.",
       "example_ru": "Мы летим в Берлин."
     },
     {
       "de": "ankommen",
       "ru": "прибывать",
+      "en": "to arrive",
       "example": "Wann kommst du an?",
       "example_ru": "Когда ты приезжаешь?"
     },
     {
       "de": "abfahren",
       "ru": "отправляться",
+      "en": "to depart",
       "example": "Der Zug fährt um 8 Uhr ab.",
       "example_ru": "Поезд отправляется в 8."
     },
     {
       "de": "bleiben",
       "ru": "оставаться",
+      "en": "to stay",
       "example": "Ich bleibe zu Hause.",
       "example_ru": "Я остаюсь дома."
     },
     {
       "de": "wählen",
       "ru": "выбирать",
+      "en": "to choose/vote",
       "example": "Ich wähle die Nummer 3.",
       "example_ru": "Я выбираю номер 3."
     },
     {
       "de": "warten",
       "ru": "ждать",
+      "en": "to wait",
       "example": "Ich warte auf dich.",
       "example_ru": "Я жду тебя."
     },
     {
       "de": "suchen",
       "ru": "искать",
+      "en": "to search",
       "example": "Ich suche meinen Schlüssel.",
       "example_ru": "Я ищу ключ."
     },
     {
       "de": "glauben",
       "ru": "верить",
+      "en": "to believe",
       "example": "Ich glaube dir.",
       "example_ru": "Я тебе верю."
     },
     {
       "de": "denken",
       "ru": "думать",
+      "en": "to think",
       "example": "Ich denke an dich.",
       "example_ru": "Я думаю о тебе."
     },
     {
       "de": "meinen",
       "ru": "иметь в виду",
+      "en": "to mean/think",
       "example": "Was meinst du?",
       "example_ru": "Что ты имеешь в виду?"
     },
     {
       "de": "antworten",
       "ru": "отвечать",
+      "en": "to answer",
       "example": "Antworte bitte.",
       "example_ru": "Ответь, пожалуйста."
     },
     {
       "de": "fragen",
       "ru": "спрашивать",
+      "en": "to ask",
       "example": "Darf ich fragen?",
       "example_ru": "Можно спросить?"
     },
     {
       "de": "zeigen",
       "ru": "показывать",
+      "en": "to show",
       "example": "Zeig mir den Weg.",
       "example_ru": "Покажи мне дорогу."
     },
     {
       "de": "beginnen",
       "ru": "начинать",
+      "en": "to begin",
       "example": "Wir beginnen um 9 Uhr.",
       "example_ru": "Мы начинаем в 9."
     },
     {
       "de": "enden",
       "ru": "заканчивать",
+      "en": "to end",
       "example": "Der Film endet um 22 Uhr.",
       "example_ru": "Фильм заканчивается в 22."
     },
     {
       "de": "aufhören",
       "ru": "переставать",
+      "en": "to stop",
       "example": "Hör auf!",
       "example_ru": "Перестань!"
     },
     {
       "de": "versuchen",
       "ru": "пробовать",
+      "en": "to try",
       "example": "Ich versuche es.",
       "example_ru": "Я попробую."
     },
     {
       "de": "gelingen",
       "ru": "удаваться",
+      "en": "to succeed",
       "example": "Es ist mir gelungen.",
       "example_ru": "Мне удалось."
     },
     {
       "de": "fehlen",
       "ru": "отсутствовать",
+      "en": "to be missing/lacking",
       "example": "Was fehlt?",
       "example_ru": "Чего не хватает?"
     },
     {
       "de": "gehören",
       "ru": "принадлежать",
+      "en": "to belong",
       "example": "Das gehört mir.",
       "example_ru": "Это моё."
     },
     {
       "de": "passen",
       "ru": "подходить",
+      "en": "to fit",
       "example": "Das passt.",
       "example_ru": "Подходит."
     },
     {
       "de": "klingen",
       "ru": "звучать",
+      "en": "to sound",
       "example": "Das klingt gut.",
       "example_ru": "Звучит хорошо."
     },
     {
       "de": "scheinen",
       "ru": "казаться",
+      "en": "to seem/shine",
       "example": "Es scheint gut zu sein.",
       "example_ru": "Кажется, это хорошо."
     },
     {
       "de": "werden",
       "ru": "становиться",
+      "en": "to become",
       "example": "Es wird kalt.",
       "example_ru": "Становится холодно."
     },
     {
       "de": "bekommen",
       "ru": "получать",
+      "en": "to receive/get",
       "example": "Ich bekomme einen Brief.",
       "example_ru": "Я получаю письмо."
     },
     {
       "de": "treffen",
       "ru": "встречать",
+      "en": "to meet",
       "example": "Ich treffe meine Freundin.",
       "example_ru": "Я встречаю подругу."
     },
     {
       "de": "besuchen",
       "ru": "навещать",
+      "en": "to visit",
       "example": "Ich besuche meine Eltern.",
       "example_ru": "Я навещаю родителей."
     },
     {
       "de": "einladen",
       "ru": "приглашать",
+      "en": "to invite",
       "example": "Ich lade dich ein.",
       "example_ru": "Я приглашаю тебя."
     },
     {
       "de": "grüßen",
       "ru": "приветствовать",
+      "en": "to greet",
       "example": "Grüß deine Mutter!",
       "example_ru": "Передай привет маме!"
     },
     {
       "de": "danken",
       "ru": "благодарить",
+      "en": "to thank",
       "example": "Ich danke dir.",
       "example_ru": "Я благодарю тебя."
     },
     {
       "de": "entschuldigen",
       "ru": "извиняться",
+      "en": "to excuse/apologize",
       "example": "Entschuldige bitte!",
       "example_ru": "Извини, пожалуйста!"
     },
     {
       "de": "wünschen",
       "ru": "желать",
+      "en": "to wish",
       "example": "Ich wünsche dir viel Glück.",
       "example_ru": "Желаю тебе удачи."
     },
     {
       "de": "hoffen",
       "ru": "надеяться",
+      "en": "to hope",
       "example": "Ich hoffe es.",
       "example_ru": "Я на это надеюсь."
     },
     {
       "de": "spielen",
       "ru": "играть",
+      "en": "to play",
       "example": "Die Kinder spielen.",
       "example_ru": "Дети играют."
     },
     {
       "de": "tanzen",
       "ru": "танцевать",
+      "en": "to dance",
       "example": "Sie tanzt gern.",
       "example_ru": "Она любит танцевать."
     },
     {
       "de": "singen",
       "ru": "петь",
+      "en": "to sing",
       "example": "Er singt gut.",
       "example_ru": "Он хорошо поёт."
     },
     {
       "de": "schwimmen",
       "ru": "плавать",
+      "en": "to swim",
       "example": "Ich schwimme im See.",
       "example_ru": "Я плаваю в озере."
     },
     {
       "de": "sport treiben",
       "ru": "заниматься спортом",
+      "en": "to do sports",
       "example": "Ich treibe Sport.",
       "example_ru": "Я занимаюсь спортом."
     },
     {
       "de": "wandern",
       "ru": "ходить в походы",
+      "en": "to hike",
       "example": "Wir wandern im Wald.",
       "example_ru": "Мы гуляем в лесу."
     },
     {
       "de": "kochen",
       "ru": "готовить",
+      "en": "to cook",
       "example": "Ich koche gern.",
       "example_ru": "Я люблю готовить."
     },
     {
       "de": "backen",
       "ru": "печь",
+      "en": "to bake",
       "example": "Sie backt einen Kuchen.",
       "example_ru": "Она печёт пирог."
     },
     {
       "de": "aufstehen",
       "ru": "вставать",
+      "en": "to get up",
       "example": "Ich stehe um 7 Uhr auf.",
       "example_ru": "Я встаю в 7."
     },
     {
       "de": "anziehen",
       "ru": "одеваться",
+      "en": "to put on/dress",
       "example": "Ich ziehe mich an.",
       "example_ru": "Я одеваюсь."
     },
     {
       "de": "ausziehen",
       "ru": "раздеваться",
+      "en": "to move out",
       "example": "Ziehe die Jacke aus.",
       "example_ru": "Сними куртку."
     },
     {
       "de": "waschen",
       "ru": "мыть",
+      "en": "to wash",
       "example": "Ich wasche mich.",
       "example_ru": "Я умываюсь."
     },
     {
       "de": "putzen",
       "ru": "чистить",
+      "en": "to clean",
       "example": "Ich putze die Zähne.",
       "example_ru": "Я чищу зубы."
     },
     {
       "de": "wecken",
       "ru": "будить",
+      "en": "to wake up",
       "example": "Weck mich um 7 Uhr.",
       "example_ru": "Разбуди меня в 7."
     },
     {
       "de": "rufen",
       "ru": "звать/звонить",
+      "en": "to call/shout",
       "example": "Ruf mich an!",
       "example_ru": "Позвони мне!"
     },
     {
       "de": "anrufen",
       "ru": "звонить",
+      "en": "to call",
       "example": "Ich rufe dich an.",
       "example_ru": "Я тебе позвоню."
     },
     {
       "de": "schicken",
       "ru": "отправлять",
+      "en": "to send",
       "example": "Ich schicke dir eine E-Mail.",
       "example_ru": "Я отправлю тебе имейл."
     },
     {
       "de": "empfangen",
       "ru": "получать",
+      "en": "to receive",
       "example": "Ich habe deine Nachricht empfangen.",
       "example_ru": "Я получил твоё сообщение."
     },
     {
       "de": "bestellen",
       "ru": "заказывать",
+      "en": "to order",
       "example": "Ich bestelle Pizza.",
       "example_ru": "Я заказываю пиццу."
     },
     {
       "de": "bezahlen",
       "ru": "платить",
+      "en": "to pay",
       "example": "Ich bezahle die Rechnung.",
       "example_ru": "Я плачу по счёту."
     },
     {
       "de": "wechseln",
       "ru": "менять",
+      "en": "to change/exchange",
       "example": "Kann ich das wechseln?",
       "example_ru": "Можно обменять?"
     },
     {
       "de": "brechen",
       "ru": "ломать",
+      "en": "to break",
       "example": "Vorsicht, nicht brechen!",
       "example_ru": "Осторожно, не сломай!"
     },
     {
       "de": "verlieren",
       "ru": "терять/проигрывать",
+      "en": "to lose",
       "example": "Ich habe meinen Schlüssel verloren.",
       "example_ru": "Я потерял ключ."
     },
     {
       "de": "gewinnen",
       "ru": "выигрывать",
+      "en": "to win",
       "example": "Wir gewinnen das Spiel.",
       "example_ru": "Мы выигрываем игру."
     },
     {
       "de": "lieben",
       "ru": "любить",
+      "en": "to love",
       "example": "Ich liebe dich.",
       "example_ru": "Я люблю тебя."
     },
     {
       "de": "mögen",
       "ru": "нравиться",
+      "en": "to like",
       "example": "Ich mag Kaffee.",
       "example_ru": "Мне нравится кофе."
     },
     {
       "de": "hassen",
       "ru": "ненавидеть",
+      "en": "to hate",
       "example": "Ich hasse das.",
       "example_ru": "Я ненавижу это."
     },
     {
       "de": "lachen",
       "ru": "смеяться",
+      "en": "to laugh",
       "example": "Wir lachen.",
       "example_ru": "Мы смеёмся."
     },
     {
       "de": "weinen",
       "ru": "плакать",
+      "en": "to cry",
       "example": "Das Kind weint.",
       "example_ru": "Ребёнок плачет."
     },
     {
       "de": "lächeln",
       "ru": "улыбаться",
+      "en": "to smile",
       "example": "Sie lächelt.",
       "example_ru": "Она улыбается."
     },
     {
       "de": "studieren",
       "ru": "учиться (в вузе)",
+      "en": "to study",
       "example": "Sie studiert Medizin.",
       "example_ru": "Она изучает медицину."
     },
     {
       "de": "unterrichten",
       "ru": "преподавать",
+      "en": "to teach",
       "example": "Er unterrichtet Deutsch.",
       "example_ru": "Он преподаёт немецкий."
     },
     {
       "de": "sich freuen",
       "ru": "радоваться",
+      "en": "to be happy",
       "example": "Ich freue mich auf dich.",
       "example_ru": "Я рад тебя видеть."
     },
     {
       "de": "sich ärgern",
       "ru": "сердиться",
+      "en": "to be annoyed",
       "example": "Er ärgert sich.",
       "example_ru": "Он сердится."
     },
     {
       "de": "sich interessieren",
       "ru": "интересоваться",
+      "en": "to be interested",
       "example": "Ich interessiere mich für Sport.",
       "example_ru": "Я интересуюсь спортом."
     },
     {
       "de": "sich langweilen",
       "ru": "скучать",
+      "en": "to be bored",
       "example": "Ich langweile mich.",
       "example_ru": "Мне скучно."
     },
     {
       "de": "sich waschen",
       "ru": "умываться",
+      "en": "to wash oneself",
       "example": "Ich wasche mich.",
       "example_ru": "Я умываюсь."
     }

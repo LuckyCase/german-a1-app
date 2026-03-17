@@ -1,8 +1,10 @@
 {
   "id": "home",
   "name": "Дом",
+  "name_en": "Home",
   "name_de": "Zu Hause",
   "description": "Фразы о доме и быте",
+  "description_en": "Phrases about home and daily life",
   "level": "A2",
   "type": "situational",
   "phrases": [
@@ -10,6 +12,7 @@
       "de": "Ich wohne in einer Wohnung.",
       "ru": "Я живу в квартире.",
       "context": "Жильё",
+      "context_en": "Housing",
       "example": "Ich wohne in einer Wohnung mit drei Zimmern.",
       "example_ru": "Я живу в квартире с тремя комнатами."
     },
@@ -24,6 +27,7 @@
       "de": "Das Wohnzimmer ist groß.",
       "ru": "Гостиная большая.",
       "context": "Описание",
+      "context_en": "Description",
       "example": "Das Wohnzimmer ist groß und hell.",
       "example_ru": "Гостиная большая и светлая."
     },
@@ -52,6 +56,7 @@
       "de": "Wann kommst du nach Hause?",
       "ru": "Когда ты придёшь домой?",
       "context": "Семья",
+      "context_en": "Family",
       "example": "Wann kommst du nach Hause? / Um 18 Uhr.",
       "example_ru": "Когда ты придёшь домой? / В 18 часов."
     },
@@ -73,6 +78,7 @@
       "de": "Wir haben eine Terrasse.",
       "ru": "У нас есть терраса.",
       "context": "Дом",
+      "context_en": "Home",
       "example": "Wir haben eine Terrasse mit Blick auf den Garten.",
       "example_ru": "У нас есть терраса с видом на сад."
     },
@@ -80,6 +86,7 @@
       "de": "Ich wohne in einer Wohnung.",
       "ru": "Я живу в квартире.",
       "context": "Жильё",
+      "context_en": "Housing",
       "example": "Ich wohne in einer Wohnung mit drei Zimmern.",
       "example_ru": "Я живу в квартире с тремя комнатами."
     },
@@ -94,6 +101,7 @@
       "de": "Das Wohnzimmer ist groß.",
       "ru": "Гостиная большая.",
       "context": "Описание",
+      "context_en": "Description",
       "example": "Das Wohnzimmer ist groß und hell.",
       "example_ru": "Гостиная большая и светлая."
     },
@@ -122,6 +130,7 @@
       "de": "Wann kommst du nach Hause?",
       "ru": "Когда ты придёшь домой?",
       "context": "Семья",
+      "context_en": "Family",
       "example": "Wann kommst du nach Hause? / Um 18 Uhr.",
       "example_ru": "Когда ты придёшь домой? / В 18 часов."
     },
@@ -143,6 +152,7 @@
       "de": "Wir haben eine Terrasse.",
       "ru": "У нас есть терраса.",
       "context": "Дом",
+      "context_en": "Home",
       "example": "Wir haben eine Terrasse mit Blick auf den Garten.",
       "example_ru": "У нас есть терраса с видом на сад."
     },
@@ -150,6 +160,7 @@
       "de": "Ich wohne in einer Wohnung.",
       "ru": "Я живу в квартире.",
       "context": "Жильё",
+      "context_en": "Housing",
       "example": "Ich wohne in einer Wohnung mit drei Zimmern.",
       "example_ru": "Я живу в квартире с тремя комнатами."
     },
@@ -164,6 +175,7 @@
       "de": "Das Wohnzimmer ist groß.",
       "ru": "Гостиная большая.",
       "context": "Описание",
+      "context_en": "Description",
       "example": "Das Wohnzimmer ist groß und hell.",
       "example_ru": "Гостиная большая и светлая."
     },
@@ -192,6 +204,7 @@
       "de": "Wann kommst du nach Hause?",
       "ru": "Когда ты придёшь домой?",
       "context": "Семья",
+      "context_en": "Family",
       "example": "Wann kommst du nach Hause? / Um 18 Uhr.",
       "example_ru": "Когда ты придёшь домой? / В 18 часов."
     },
@@ -213,6 +226,7 @@
       "de": "Wir haben eine Terrasse.",
       "ru": "У нас есть терраса.",
       "context": "Дом",
+      "context_en": "Home",
       "example": "Wir haben eine Terrasse mit Blick auf den Garten.",
       "example_ru": "У нас есть терраса с видом на сад."
     },
@@ -220,6 +234,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -227,6 +242,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -234,13 +250,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -248,13 +267,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -262,13 +284,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -276,6 +301,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -283,6 +309,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -290,6 +317,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -297,6 +325,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -304,13 +333,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -318,13 +350,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -332,13 +367,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -346,6 +384,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -353,6 +392,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -360,6 +400,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -367,6 +408,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -374,13 +416,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -388,13 +433,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -402,13 +450,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -416,6 +467,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -423,6 +475,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -430,6 +483,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -437,6 +491,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -444,13 +499,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -458,13 +516,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -472,13 +533,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -486,6 +550,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -493,6 +558,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -500,6 +566,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -507,6 +574,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -514,13 +582,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -528,13 +599,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -542,13 +616,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -556,6 +633,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -563,6 +641,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -570,6 +649,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -577,6 +657,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -584,13 +665,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -598,13 +682,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -612,13 +699,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -626,6 +716,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -633,6 +724,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     },
@@ -640,6 +732,7 @@
       "de": "Das ist gut.",
       "ru": "Это хорошо.",
       "context": "Оценка",
+      "context_en": "Evaluation",
       "example": "A: Wie findest du das? B: Das ist gut.",
       "example_ru": "А: Как тебе? Б: Это хорошо."
     },
@@ -647,6 +740,7 @@
       "de": "Danke schön!",
       "ru": "Спасибо большое!",
       "context": "Благодарность",
+      "context_en": "Gratitude",
       "example": "A: Bitte. B: Danke schön!",
       "example_ru": "А: Пожалуйста. Б: Спасибо большое!"
     },
@@ -654,13 +748,16 @@
       "de": "Entschuldigung!",
       "ru": "Извините!",
       "context": "Извинение",
+      "context_en": "Apology",
       "example": "Entschuldigung! Wo ist die Toilette?",
       "example_ru": "Извините! Где туалет?"
     },
     {
       "de": "Sprechen Sie Englisch?",
       "ru": "Вы говорите по-английски?",
+      "en": "Do you speak English?",
       "context": "Язык",
+      "context_en": "Language",
       "example": "Sprechen Sie Englisch? / Ja, ein bisschen.",
       "example_ru": "Вы говорите по-английски? / Да, немного."
     },
@@ -668,13 +765,16 @@
       "de": "Ich verstehe nicht.",
       "ru": "Я не понимаю.",
       "context": "Непонимание",
+      "context_en": "Misunderstanding",
       "example": "Ich verstehe nicht. Können Sie das wiederholen?",
       "example_ru": "Я не понимаю. Повторите, пожалуйста?"
     },
     {
       "de": "Wie bitte?",
       "ru": "Как, простите?",
+      "en": "Pardon?/Excuse me?",
       "context": "Переспрос",
+      "context_en": "Asking again",
       "example": "Wie bitte? / Ich habe gefragt, wie spät es ist.",
       "example_ru": "Как, простите? / Я спросил, который час."
     },
@@ -682,13 +782,16 @@
       "de": "Einen Moment, bitte.",
       "ru": "Один момент, пожалуйста.",
       "context": "Просьба подождать",
+      "context_en": "Asking to wait",
       "example": "Einen Moment, bitte. Ich komme gleich.",
       "example_ru": "Один момент, пожалуйста. Сейчас подойду."
     },
     {
       "de": "Kein Problem.",
       "ru": "Нет проблем.",
+      "en": "No problem.",
       "context": "Ответ",
+      "context_en": "Response",
       "example": "A: Entschuldigung! B: Kein Problem.",
       "example_ru": "А: Извините! Б: Нет проблем."
     },
@@ -696,6 +799,7 @@
       "de": "Das stimmt.",
       "ru": "Верно.",
       "context": "Согласие",
+      "context_en": "Agreement",
       "example": "A: Heute ist Montag. B: Das stimmt.",
       "example_ru": "А: Сегодня понедельник. Б: Верно."
     },
@@ -703,6 +807,7 @@
       "de": "Ich weiß nicht.",
       "ru": "Я не знаю.",
       "context": "Незнание",
+      "context_en": "Not knowing",
       "example": "Wo ist Herr Müller? — Ich weiß nicht.",
       "example_ru": "Где господин Мюллер? — Я не знаю."
     }

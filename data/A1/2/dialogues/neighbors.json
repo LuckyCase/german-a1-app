@@ -1,8 +1,10 @@
 {
   "id": "neighbors",
   "name": "Соседи",
+  "name_en": "Neighbors",
   "name_de": "Nachbarn",
   "description": "Знакомство с соседом",
+  "description_en": "Meeting a neighbor",
   "level": "A2",
   "dialogue": [
     {

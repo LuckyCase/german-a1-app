@@ -1,8 +1,10 @@
 {
   "id": "restaurant",
   "name": "В ресторане",
+  "name_en": "At the Restaurant",
   "name_de": "Im Restaurant",
   "description": "Диалог заказа в ресторане",
+  "description_en": "Restaurant ordering dialogue",
   "level": "A1",
   "dialogue": [
     {
@@ -73,21 +75,33 @@
     {
       "type": "fill_blank",
       "question": "Guten Tag! Haben Sie ___?",
-      "options": ["reserviert", "bestellt", "bezahlt"],
+      "options": [
+        "reserviert",
+        "bestellt",
+        "bezahlt"
+      ],
       "correct": 0,
       "explanation": "reserviert - зарезервировали (столик)"
     },
     {
       "type": "fill_blank",
       "question": "Ich ___ das Schnitzel.",
-      "options": ["nehme", "nimmt", "nehmen"],
+      "options": [
+        "nehme",
+        "nimmt",
+        "nehmen"
+      ],
       "correct": 0,
       "explanation": "nehme - правильная форма глагола nehmen для местоимения 'ich'"
     },
     {
       "type": "fill_blank",
       "question": "Möchten Sie noch ___?",
-      "options": ["etwas", "nichts", "alles"],
+      "options": [
+        "etwas",
+        "nichts",
+        "alles"
+      ],
       "correct": 0,
       "explanation": "etwas - что-нибудь (в вопросе)"
     }

@@ -1,64 +1,101 @@
 {
   "id": "modalverben_kontext",
   "name": "Модальные глаголы в контексте",
+  "name_en": "Modal Verbs in Context",
   "name_de": "Modalverben im Kontext",
   "description": "Выбор правильного модального глагола в жизненных ситуациях",
+  "description_en": "Choosing the right modal verb in real-life situations",
   "level": "A1",
-  "linked_to": ["modal_verbs", "word_order"],
+  "linked_to": [
+    "modal_verbs",
+    "word_order"
+  ],
   "tasks": [
     {
       "type": "multiple_choice",
       "question": "Du bist krank. Du ___ zum Arzt gehen.",
-      "options": ["willst", "sollst", "darfst"],
+      "options": [
+        "willst",
+        "sollst",
+        "darfst"
+      ],
       "correct": 1,
       "explanation": "Sollen — следует, нужно (совет/рекомендация). Du sollst zum Arzt gehen — тебе следует пойти к врачу."
     },
     {
       "type": "multiple_choice",
       "question": "Im Kino ___ man nicht telefonieren.",
-      "options": ["muss", "darf", "will"],
+      "options": [
+        "muss",
+        "darf",
+        "will"
+      ],
       "correct": 1,
       "explanation": "Dürfen (отрицание) — нельзя, не разрешается. Man darf nicht telefonieren — нельзя звонить."
     },
     {
       "type": "multiple_choice",
       "question": "Ich bin müde. Ich ___ schlafen.",
-      "options": ["darf", "möchte", "soll"],
+      "options": [
+        "darf",
+        "möchte",
+        "soll"
+      ],
       "correct": 1,
       "explanation": "Möchten — хотел бы (вежливое желание). Ich möchte schlafen — я хотел бы поспать."
     },
     {
       "type": "multiple_choice",
       "question": "Er ___ sehr gut Gitarre spielen.",
-      "options": ["muss", "kann", "soll"],
+      "options": [
+        "muss",
+        "kann",
+        "soll"
+      ],
       "correct": 1,
       "explanation": "Können — мочь, уметь. Er kann Gitarre spielen — он умеет играть на гитаре."
     },
     {
       "type": "multiple_choice",
       "question": "Morgen ___ wir früh aufstehen. Der Zug fährt um 6 Uhr.",
-      "options": ["wollen", "dürfen", "müssen"],
+      "options": [
+        "wollen",
+        "dürfen",
+        "müssen"
+      ],
       "correct": 2,
       "explanation": "Müssen — должен (необходимость). Wir müssen früh aufstehen — мы должны рано встать."
     },
     {
       "type": "multiple_choice",
       "question": "Am Wochenende ___ ich nach Berlin fahren.",
-      "options": ["will", "muss", "soll"],
+      "options": [
+        "will",
+        "muss",
+        "soll"
+      ],
       "correct": 0,
       "explanation": "Wollen — хотеть (твёрдое намерение). Ich will nach Berlin fahren — я хочу поехать в Берлин."
     },
     {
       "type": "multiple_choice",
       "question": "Kinder unter 16 ___ keinen Alkohol trinken.",
-      "options": ["müssen", "wollen", "dürfen"],
+      "options": [
+        "müssen",
+        "wollen",
+        "dürfen"
+      ],
       "correct": 2,
       "explanation": "Dürfen (отрицание) — не разрешается. Kinder dürfen keinen Alkohol trinken — детям нельзя пить алкоголь."
     },
     {
       "type": "multiple_choice",
       "question": "___ du mir bitte helfen?",
-      "options": ["Musst", "Kannst", "Sollst"],
+      "options": [
+        "Musst",
+        "Kannst",
+        "Sollst"
+      ],
       "correct": 1,
       "explanation": "Können — мочь (вежливая просьба). Kannst du mir helfen? — Можешь мне помочь?"
     }

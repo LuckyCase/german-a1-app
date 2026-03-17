@@ -1,8 +1,10 @@
 {
   "id": "bank",
   "name": "В банке",
+  "name_en": "At the Bank",
   "name_de": "In der Bank",
   "description": "В банке",
+  "description_en": "At the bank",
   "level": "A2",
   "dialogue": [
     {

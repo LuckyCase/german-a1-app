@@ -1,8 +1,10 @@
 {
   "id": "negation",
   "name": "Отрицание (nicht / kein)",
+  "name_en": "Negation (nicht / kein)",
   "name_de": "Negation",
   "description": "Отрицание в немецком языке",
+  "description_en": "Negation in German",
   "level": "A1",
   "theory": {
     "title": "Отрицание: nicht и kein",
@@ -16,9 +18,27 @@
       {
         "title": "Склонение kein",
         "rows": [
-          ["", "м.р.", "ж.р.", "ср.р.", "мн.ч."],
-          ["Nominativ", "kein", "keine", "kein", "keine"],
-          ["Akkusativ", "keinen", "keine", "kein", "keine"]
+          [
+            "",
+            "м.р.",
+            "ж.р.",
+            "ср.р.",
+            "мн.ч."
+          ],
+          [
+            "Nominativ",
+            "kein",
+            "keine",
+            "kein",
+            "keine"
+          ],
+          [
+            "Akkusativ",
+            "keinen",
+            "keine",
+            "kein",
+            "keine"
+          ]
         ]
       }
     ],
@@ -30,73 +50,121 @@
   "questions": [
     {
       "question": "Ich habe ___ Auto.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 1,
       "explanation": "kein + существительное среднего рода"
     },
     {
       "question": "Das ist ___ richtig.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 0,
       "explanation": "nicht отрицает прилагательное"
     },
     {
       "question": "Ich trinke ___ Kaffee.",
-      "options": ["nicht", "kein", "keinen"],
+      "options": [
+        "nicht",
+        "kein",
+        "keinen"
+      ],
       "correct": 2,
       "explanation": "keinen + существительное муж. рода в Akkusativ"
     },
     {
       "question": "Er kommt heute ___.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 0,
       "explanation": "nicht в конце при отрицании глагола"
     },
     {
       "question": "Das ist ___ Buch, das ist eine Zeitschrift.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 1,
       "explanation": "kein + существительное среднего рода"
     },
     {
       "question": "Sie hat ___ Zeit.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 2,
       "explanation": "keine + существительное женского рода"
     },
     {
       "question": "Wir verstehen das ___.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 0,
       "explanation": "nicht отрицает глагол"
     },
     {
       "question": "Ich habe ___ Geschwister.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 2,
       "explanation": "keine + мн. число"
     },
     {
       "question": "Das Essen ist ___ gut.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 0,
       "explanation": "nicht отрицает прилагательное"
     },
     {
       "question": "Er ist ___ Arzt, er ist Lehrer.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 1,
       "explanation": "kein + профессия (сущ. муж. рода)"
     },
     {
       "question": "Ich habe ___ Problem.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 1,
       "explanation": "kein + существительное среднего рода"
     },
     {
       "question": "Das schmeckt ___ gut.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 0,
       "explanation": "nicht отрицает наречие/прилагательное"
     },
@@ -132,13 +200,21 @@
     },
     {
       "question": "Er ist ___ Lehrer.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 1,
       "explanation": "kein + профессия без артикля (Er ist kein Lehrer.)"
     },
     {
       "question": "Sie ist ___ krank.",
-      "options": ["nicht", "kein", "keine"],
+      "options": [
+        "nicht",
+        "kein",
+        "keine"
+      ],
       "correct": 0,
       "explanation": "nicht отрицает прилагательное (Sie ist nicht krank.)"
     },
