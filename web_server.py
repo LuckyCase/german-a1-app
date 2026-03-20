@@ -4537,7 +4537,7 @@ def api_progress():
             word_cats[cid]['learned'] += 1
             if wp['wrong_count'] > 0:
                 word_cats[cid]['errors'] += 1
-            if wp['correct_count'] >= 3 and wp['wrong_count'] == 0:
+            if wp['wrong_count'] == 0:
                 word_cats[cid]['mastered'] += 1
 
     # --- Phrases ---
@@ -4556,7 +4556,7 @@ def api_progress():
             phrase_cats[cid]['learned'] += 1
             if pp['wrong_count'] > 0:
                 phrase_cats[cid]['errors'] += 1
-            if pp['correct_count'] >= 3 and pp['wrong_count'] == 0:
+            if pp['wrong_count'] == 0:
                 phrase_cats[cid]['mastered'] += 1
 
     # --- Grammar ---
