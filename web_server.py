@@ -3072,7 +3072,7 @@ HTML_TEMPLATE = """
         async function loadSettings() {
             // Fetch premium status from server
             try {
-                const resp = await fetch(`/api/progress?user_id=${userId}`);
+                const resp = await fetch(`/api/progress?user_id=${userId}&${levelQuery()}`);
                 if (resp.ok) {
                     const d = await resp.json();
                     if (d.is_premium !== undefined) {
@@ -3153,7 +3153,7 @@ HTML_TEMPLATE = """
                     container.innerHTML = `<div class="error-msg">${t('userNotDetected')}</div>`;
                     return;
                 }
-                const response = await fetch(`/api/progress?user_id=${userId}`);
+                const response = await fetch(`/api/progress?user_id=${userId}&${levelQuery()}`);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const d = await response.json();
 
@@ -4519,9 +4519,11 @@ def api_progress():
         }
 
     lang = request.args.get('lang', 'ru')
+    major = request.args.get('major')
+    sub = request.args.get('sub')
 
     # --- Words ---
-    all_words = get_all_words(lang=lang)
+    all_words = get_all_words(major, sub, lang=lang) if major and sub else get_all_words(lang=lang)
     word_progress_map = {wp['word_id']: wp for wp in raw['words']}
 
     word_cats = {}
@@ -4539,7 +4541,7 @@ def api_progress():
                 word_cats[cid]['mastered'] += 1
 
     # --- Phrases ---
-    all_phrases = get_all_phrases_flat(lang=lang)
+    all_phrases = get_all_phrases_flat(major, sub, lang=lang) if major and sub else get_all_phrases_flat(lang=lang)
     phrase_progress_map = {pp['phrase_id']: pp for pp in raw['phrases']}
 
     phrase_cats = {}
@@ -4558,7 +4560,7 @@ def api_progress():
                 phrase_cats[cid]['mastered'] += 1
 
     # --- Grammar ---
-    all_tests = get_all_tests(lang=lang)
+    all_tests = get_all_tests(major, sub, lang=lang) if major and sub else get_all_tests(lang=lang)
     grammar_best = {}
     for gr in raw['grammar']:
         tid = gr['test_id']
@@ -4575,7 +4577,7 @@ def api_progress():
             grammar_items.append({'id': tid, 'name': test.get('name', tid), 'completed': False, 'score': 0, 'total': test.get('questions_count', 0)})
 
     # --- Dialogues ---
-    dialogue_topics = get_dialogue_topics(lang=lang)
+    dialogue_topics = get_dialogue_topics(major, sub, lang=lang) if major and sub else get_dialogue_topics(lang=lang)
     dialogue_map = {d['dialogue_id']: d for d in raw['dialogues']}
 
     dialogue_items = []
@@ -4588,7 +4590,7 @@ def api_progress():
             dialogue_items.append({'id': did, 'name': topic.get('name', did), 'completed': False, 'correct': 0, 'total': 0})
 
     # --- Culture ---
-    culture_topics_list = get_culture_topics(lang=lang)
+    culture_topics_list = get_culture_topics(major, sub, lang=lang) if major and sub else get_culture_topics(lang=lang)
     culture_map = {c['topic_id']: c for c in raw['culture']}
 
     culture_items = []
@@ -4601,7 +4603,7 @@ def api_progress():
             culture_items.append({'id': tid, 'name': topic.get('name', tid), 'viewed': False, 'quiz_correct': 0, 'quiz_total': 0})
 
     # --- Exercises ---
-    exercise_sets_list = get_exercise_sets(lang=lang)
+    exercise_sets_list = get_exercise_sets(major, sub, lang=lang) if major and sub else get_exercise_sets(lang=lang)
     exercise_map = {e['set_id']: e for e in raw['exercises']}
 
     exercise_items = []
