@@ -4,7 +4,8 @@ from telegram.ext import ContextTypes, ConversationHandler, CommandHandler, Call
 
 from bot.content_manager import (
     get_all_tests, get_test, get_test_questions,
-    get_current_level, get_current_level_str, get_levels_with_content
+    get_current_level, get_current_level_str, get_levels_with_content,
+    format_grammar_theory_text,
 )
 import logging
 from bot.database import save_grammar_result, update_daily_stats, update_user_activity, check_and_notify_achievements
@@ -13,6 +14,22 @@ logger = logging.getLogger(__name__)
 
 # Conversation states (unique range to avoid overlap with flashcards 0-3 and phrases 10-13)
 GR_LEVEL_SELECT, GR_TEST_SELECT, GR_QUESTION, GR_RESULT = range(20, 24)
+
+
+def _question_reply_markup(question: dict) -> InlineKeyboardMarkup:
+    keyboard = [
+        [InlineKeyboardButton(option, callback_data=f"gr_ans_{i}")]
+        for i, option in enumerate(question["options"])
+    ]
+    keyboard.append([InlineKeyboardButton("📖 Теория по теме", callback_data="gr_theory")])
+    return InlineKeyboardMarkup(keyboard)
+
+
+def _feedback_reply_markup() -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("Следующий вопрос", callback_data="gr_next")],
+        [InlineKeyboardButton("📖 Теория по теме", callback_data="gr_theory")],
+    ])
 
 
 def _get_gr_level(context) -> tuple:
@@ -186,17 +203,12 @@ async def show_next_question(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     question = questions[index]
     context.user_data["gr_current_question"] = question
-
-    keyboard = []
-    for i, option in enumerate(question["options"]):
-        keyboard.append([
-            InlineKeyboardButton(option, callback_data=f"gr_ans_{i}")
-        ])
+    context.user_data["gr_theory_from"] = "question"
 
     await query.edit_message_text(
         f"Вопрос {index + 1} из {len(questions)}\n\n"
         f"{question['question']}",
-        reply_markup=InlineKeyboardMarkup(keyboard)
+        reply_markup=_question_reply_markup(question),
     )
     return GR_QUESTION
 
@@ -228,15 +240,82 @@ async def handle_grammar_answer(update: Update, context: ContextTypes.DEFAULT_TY
     })
 
     context.user_data["gr_index"] = context.user_data.get("gr_index", 0) + 1
+    context.user_data["gr_theory_from"] = "feedback"
 
     await query.edit_message_text(
         f"{result_emoji} {'Правильно!' if is_correct else 'Неправильно!'}\n\n"
         f"Вопрос: {question['question']}\n"
         f"Правильный ответ: {question['options'][correct_index]}\n\n"
         f"{question.get('explanation', '')}",
+        reply_markup=_feedback_reply_markup(),
+    )
+    return GR_QUESTION
+
+
+async def show_grammar_theory(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Показать теорию по текущей теме теста."""
+    query = update.callback_query
+    await query.answer()
+
+    test_id = context.user_data.get("gr_test_id")
+    major, sub = _get_gr_level(context)
+    body = format_grammar_theory_text(test_id, major, sub) if test_id else None
+    if not body:
+        body = (
+            "Для этой темы пока нет отдельного блока теории. "
+            "Ориентируйтесь на пояснения после ответов."
+        )
+
+    test_name = context.user_data.get("gr_test_name", "")
+    header = f"Тема: {test_name}\n\n" if test_name else ""
+    full = header + body
+    if len(full) > 4096:
+        full = full[:4093] + "..."
+
+    await query.edit_message_text(
+        full,
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("Следующий вопрос", callback_data="gr_next")]
-        ])
+            [InlineKeyboardButton("Назад", callback_data="gr_theory_back")]
+        ]),
+    )
+    return GR_QUESTION
+
+
+async def theory_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Вернуться к вопросу или к экрану разбора после просмотра теории."""
+    query = update.callback_query
+    await query.answer()
+
+    from_kind = context.user_data.get("gr_theory_from", "question")
+    questions = context.user_data.get("gr_questions", [])
+    index = context.user_data.get("gr_index", 0)
+
+    if from_kind == "feedback":
+        answers = context.user_data.get("gr_answers", [])
+        question = context.user_data.get("gr_current_question", {})
+        if not answers or not question:
+            return await show_next_question(update, context)
+        last = answers[-1]
+        is_correct = last["is_correct"]
+        result_emoji = "✅" if is_correct else "❌"
+        correct_index = question.get("correct", 0)
+        await query.edit_message_text(
+            f"{result_emoji} {'Правильно!' if is_correct else 'Неправильно!'}\n\n"
+            f"Вопрос: {question['question']}\n"
+            f"Правильный ответ: {question['options'][correct_index]}\n\n"
+            f"{question.get('explanation', '')}",
+            reply_markup=_feedback_reply_markup(),
+        )
+        return GR_QUESTION
+
+    if index >= len(questions):
+        return await show_results(update, context)
+
+    question = questions[index]
+    context.user_data["gr_current_question"] = question
+    await query.edit_message_text(
+        f"Вопрос {index + 1} из {len(questions)}\n\n{question['question']}",
+        reply_markup=_question_reply_markup(question),
     )
     return GR_QUESTION
 
@@ -358,7 +437,9 @@ def get_grammar_handler():
             ],
             GR_QUESTION: [
                 CallbackQueryHandler(show_next_question, pattern="^gr_next$"),
-                CallbackQueryHandler(handle_grammar_answer, pattern="^gr_ans_")
+                CallbackQueryHandler(handle_grammar_answer, pattern="^gr_ans_"),
+                CallbackQueryHandler(show_grammar_theory, pattern="^gr_theory$"),
+                CallbackQueryHandler(theory_back, pattern="^gr_theory_back$"),
             ],
             GR_RESULT: [
                 CallbackQueryHandler(review_errors, pattern="^gr_review$"),

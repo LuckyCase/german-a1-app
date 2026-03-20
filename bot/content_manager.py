@@ -502,6 +502,44 @@ def get_grammar_theory(test_id: str, major: str = None, sub: str = None) -> Opti
     return test.get("theory")
 
 
+def format_grammar_theory_text(
+    test_id: str, major: str = None, sub: str = None, lang: str = "ru", max_len: int = 4000
+) -> Optional[str]:
+    """Собрать текст теории по теме теста для отправки пользователю (plain text)."""
+    theory = get_grammar_theory(test_id, major, sub)
+    if not theory or not isinstance(theory, dict):
+        return None
+
+    def pick(base: str) -> str:
+        if lang == "en":
+            return theory.get(f"{base}_en") or theory.get(base, "")
+        if lang == "de":
+            return theory.get(f"{base}_de") or theory.get(base, "")
+        return theory.get(base, "")
+
+    title = pick("title")
+    content = pick("content")
+    examples = theory.get("examples_en" if lang == "en" else "examples_de" if lang == "de" else "examples") or theory.get("examples", [])
+    tips = theory.get("tips_en" if lang == "en" else "tips_de" if lang == "de" else "tips") or theory.get("tips", [])
+
+    parts = []
+    if title:
+        parts.append(f"📖 {title}")
+    if content:
+        parts.append(content)
+    if examples:
+        parts.append("Примеры:" if lang == "ru" else "Examples:" if lang == "en" else "Beispiele:")
+        parts.extend(f"• {line}" for line in examples)
+    if tips:
+        parts.append("Советы:" if lang == "ru" else "Tips:" if lang == "en" else "Tipps:")
+        parts.extend(f"• {line}" for line in tips)
+
+    text = "\n\n".join(parts) if parts else None
+    if text and len(text) > max_len:
+        text = text[: max_len - 3].rstrip() + "..."
+    return text
+
+
 # ============================================================
 # Статистика
 # ============================================================
