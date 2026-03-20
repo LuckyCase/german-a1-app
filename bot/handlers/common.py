@@ -1,198 +1,78 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ContextTypes
 import logging
-import asyncio
-import time as _time
-import requests
 
-from bot.database import get_or_create_user, get_pool, get_user_settings, get_user_streak
-from bot.config import WEB_APP_URL, TELEGRAM_BOT_TOKEN, DATABASE_URL
+from bot.database import get_or_create_user, get_user_settings, get_user_streak
+from bot.config import WEB_APP_URL, DATABASE_URL
 
 logger = logging.getLogger(__name__)
 
-# Cache for bot status (avoid hitting Telegram API on every /start)
-_status_cache: dict = {}
-_STATUS_TTL = 300  # 5 minutes
 
-
-async def check_bot_status(context: ContextTypes.DEFAULT_TYPE = None) -> dict:
-    """Check bot systems status (cached for 5 min)."""
-    global _status_cache
-
-    now = _time.monotonic()
-    if _status_cache and now - _status_cache.get("_ts", 0) < _STATUS_TTL:
-        return _status_cache
-
-    status = {
-        "webhook": False,
-        "database": False,
-        "web_app": False,
-        "errors": []
-    }
-
-    # Check Webhook via Bot API (if context available) or Telegram API
-    if TELEGRAM_BOT_TOKEN:
-        try:
-            if context and context.bot:
-                webhook_info = await context.bot.get_webhook_info()
-                if webhook_info.url:
-                    status["webhook"] = True
-                else:
-                    status["errors"].append("Webhook не настроен")
-            else:
-                def get_webhook_sync():
-                    response = requests.get(
-                        f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getWebhookInfo',
-                        timeout=5
-                    )
-                    return response.json()
-
-                webhook_info = await asyncio.to_thread(get_webhook_sync)
-                if webhook_info.get('ok'):
-                    webhook_url = webhook_info.get('result', {}).get('url', '')
-                    if webhook_url:
-                        status["webhook"] = True
-                    else:
-                        status["errors"].append("Webhook не настроен")
-                else:
-                    status["errors"].append("Ошибка проверки webhook")
-        except Exception as e:
-            logger.error(f"Error checking webhook: {e}")
-            status["errors"].append(f"Webhook: {str(e)[:50]}")
-    else:
-        status["errors"].append("Telegram токен не настроен")
-
-    # Check Database
-    if DATABASE_URL:
-        try:
-            pool = await get_pool()
-            async with pool.acquire() as conn:
-                await conn.fetchval('SELECT 1')
-            status["database"] = True
-        except Exception as e:
-            logger.error(f"Error checking database: {e}")
-            status["errors"].append(f"БД: {str(e)[:50]}")
-    else:
-        status["errors"].append("DATABASE_URL не настроен")
-
-    # Check Web App URL (just check if configured, not accessibility)
-    if WEB_APP_URL:
-        status["web_app"] = True
-    else:
-        status["errors"].append("WEB_APP_URL не настроен")
-
-    status["_ts"] = now
-    _status_cache = status
-    return status
+async def redirect_commands_to_webapp(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Любая команда в чате кроме обработанных выше — напоминание открыть Web App."""
+    await update.message.reply_text(
+        "Все занятия и настройки доступны только в приложении.\n\n"
+        "Нажмите /start и откройте «🚀 Открыть приложение»."
+    )
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle /start command - show welcome message, status and Web App button."""
+    """Единственное пользовательское сообщение из чата: приветствие и кнопка Web App."""
     user = update.effective_user
-    
-    # Check system status
-    status = await check_bot_status(context)
-    all_ok = status["webhook"] and status["database"] and status["web_app"]
-    
-    # Try to register user if database is working
+
     diagnostic_completed = True
-    if status["database"]:
+    if DATABASE_URL:
         try:
             await get_or_create_user(user.id, user.username, user.first_name)
-            # Load persisted level into session
             settings = await get_user_settings(user.id)
             context.user_data["user_level"] = (
                 settings.get("major_level", "A1"),
                 settings.get("sub_level", "1"),
             )
-            # Check if diagnostic test is needed
             diagnostic_completed = bool(settings.get("diagnostic_completed", 1))
         except Exception as e:
             logger.error(f"Failed to register user: {e}")
 
-    # Get streak for greeting
     streak = 0
-    if status["database"]:
+    if DATABASE_URL:
         try:
             streak = await get_user_streak(user.id)
         except Exception:
             pass
 
-    # Build status message
-    status_icons = {
-        True: "✅",
-        False: "❌"
-    }
+    streak_text = (
+        f"\n🔥 Серия: {streak} {'день' if streak == 1 else 'дней'} подряд!\n"
+        if streak > 0
+        else ""
+    )
 
-    streak_text = f"\n🔥 Серия: {streak} {'день' if streak == 1 else 'дней'} подряд!\n" if streak > 0 else ""
+    diagnostic_hint = ""
+    if not diagnostic_completed:
+        diagnostic_hint = (
+            "\n\nℹ️ Тест на определение уровня и выбор уровня — внутри приложения."
+        )
+
+    if not WEB_APP_URL:
+        await update.message.reply_text(
+            "Приложение сейчас недоступно (не настроен адрес Web App). "
+            "Попробуйте позже или напишите администратору."
+        )
+        return
 
     message = (
         f"Hallo, {user.first_name}! 👋\n\n"
-        f"🇩🇪 German A1 Learning Bot\n\n"
-        f"Добро пожаловать в бота для изучения немецкого языка уровня A1!\n"
+        f"🇩🇪 German A1 — учите немецкий в удобном приложении.\n"
         f"{streak_text}\n"
-        f"━━━━━━━━━━━━━━━━━━━━\n"
-        f"📊 Статус систем:\n\n"
-        f"{status_icons[status['webhook']]} Webhook\n"
-        f"{status_icons[status['database']]} База данных\n"
-        f"{status_icons[status['web_app']]} Web приложение\n"
-        f"━━━━━━━━━━━━━━━━━━━━\n\n"
+        f"Слова, грамматика, фразы, диалоги, прогресс и напоминания — "
+        f"всё в одном месте. Откройте его кнопкой ниже."
+        f"{diagnostic_hint}"
     )
-    
-    if all_ok:
-        diagnostic_hint = ""
-        if not diagnostic_completed:
-            diagnostic_hint = (
-                "\n\nℹ️ Тест на определение уровня и ручной выбор уровня "
-                "доступны внутри Web App."
-            )
-        message += (
-            "🎉 Все системы работают и подключены!\n\n"
-            "Нажмите кнопку ниже, чтобы открыть приложение для изучения немецкого языка."
-            f"{diagnostic_hint}"
-        )
-        
-        keyboard = [
-            [InlineKeyboardButton(
-                "🚀 Открыть приложение", 
-                web_app=WebAppInfo(url=WEB_APP_URL)
-            )]
-        ]
-        
-        await update.message.reply_text(
-            message,
-            reply_markup=InlineKeyboardMarkup(keyboard)
-        )
-    else:
-        message += (
-            "⚠️ Обнаружены проблемы:\n\n"
-        )
-        for error in status["errors"]:
-            message += f"• {error}\n"
-        
-        message += "\nПопробуйте позже или обратитесь к администратору."
-        
-        await update.message.reply_text(message)
 
+    keyboard = [
+        [InlineKeyboardButton("🚀 Открыть приложение", web_app=WebAppInfo(url=WEB_APP_URL))]
+    ]
 
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle /help command."""
-    help_text = (
-        "🇩🇪 **German A1 Learning Bot** - Помощь\n\n"
-        "**Команды:**\n"
-        "/start - Главное меню\n"
-        "/help - Эта справка\n"
-        "/progress - Ваш прогресс\n"
-        "/settings - Настройки\n"
-        "/exercises - Упражнения\n"
-        "/reminder - Настройки напоминаний\n"
-        "/audio - Аудио материалы\n\n"
-        "**Как пользоваться:**\n"
-        "1. Нажмите /start\n"
-        "2. Откройте приложение кнопкой «🚀 Открыть приложение»\n"
-        "3. Изучайте слова, грамматику, фразы!\n\n"
-        "Настройки уровня, напоминаний и сброс прогресса — /settings\n"
-        "Есть вопросы или предложения? Используйте раздел «Отзыв» в настройках."
+    await update.message.reply_text(
+        message,
+        reply_markup=InlineKeyboardMarkup(keyboard),
     )
-    
-    await update.message.reply_text(help_text, parse_mode="Markdown")

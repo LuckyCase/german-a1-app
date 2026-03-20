@@ -163,8 +163,6 @@ async def cancel_feedback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def feedback_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Go back to main menu."""
-    from bot.handlers.common import start
-    
     if update.callback_query:
         await update.callback_query.answer()
         # Delete current message and show start

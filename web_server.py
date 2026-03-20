@@ -12,7 +12,7 @@ import random
 
 from bot.content_manager import (
     get_all_words, get_categories, get_words_by_category,
-    get_all_tests, get_test_questions, init_content,
+    get_all_tests, get_test_questions, init_content, format_grammar_theory_text,
     get_phrases_categories, get_phrases_by_category, get_all_phrases_flat,
     get_dialogue_topics, get_dialogue, get_dialogue_exercises,
     get_category_distractors,
@@ -43,7 +43,7 @@ from bot.services.pronunciation import evaluate_pronunciation
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
-from bot.handlers.common import start
+from bot.handlers.common import start, redirect_commands_to_webapp
 from bot.handlers.admin import broadcast_command, send_command
 
 # Setup logging
@@ -98,14 +98,6 @@ def run_bot_async(coro, timeout: int = 30):
     return future.result(timeout=timeout)
 
 
-async def _redirect_to_webapp(update: Update, context):
-    """Направить пользователя в Web App при любой команде кроме /start."""
-    await update.message.reply_text(
-        "Все функции (прогресс, карточки, грамматика, напоминания, аудио) доступны в веб-приложении.\n\n"
-        "Нажмите /start и выберите «🚀 Открыть приложение»."
-    )
-
-
 def create_bot_application():
     """Create and configure the bot application.
     В режиме Web App обрабатывается только /start; остальные команды ведут в приложение.
@@ -118,7 +110,7 @@ def create_bot_application():
     application.add_handler(CommandHandler("broadcast", broadcast_command))
     application.add_handler(CommandHandler("send", send_command))
     # Любая другая команда из чата — подсказка открыть Web App
-    application.add_handler(MessageHandler(filters.COMMAND, _redirect_to_webapp))
+    application.add_handler(MessageHandler(filters.COMMAND, redirect_commands_to_webapp))
 
     return application
 
@@ -1019,6 +1011,14 @@ HTML_TEMPLATE = """
                     <div class="question-text" id="question-text"></div>
                 </div>
 
+                <button type="button" class="btn btn-secondary" id="grammar-theory-btn" style="display: none; width: 100%; margin-top: 12px;" data-action="toggleGrammarTheory" data-i18n="grammarTheory">
+                    📖 Теория по теме
+                </button>
+                <div id="grammar-theory-panel" class="card" style="display: none; margin-top: 12px;">
+                    <h3 class="card-title" style="font-size: 1rem; margin-bottom: 8px;" data-i18n="grammarTheoryTitle">Теория по теме</h3>
+                    <div id="grammar-theory-body" class="flashcard-example" style="white-space: pre-wrap; text-align: left;"></div>
+                </div>
+
                 <div class="options" id="question-options"></div>
 
                 <button type="button" class="btn btn-primary" id="next-question-btn" style="display: none; margin-top: 16px;" data-action="nextQuestion" data-i18n="nextQuestion">
@@ -1314,6 +1314,9 @@ HTML_TEMPLATE = """
                 nextQuestion: 'Следующий вопрос →',
                 questionsCount: '{n} вопросов',
                 testComplete: '🎉 Тест завершён!\\nРезультат: {score} из {total} ({pct}%)',
+                grammarTheory: '📖 Теория по теме',
+                grammarTheoryHide: 'Скрыть теорию',
+                grammarTheoryTitle: 'Теория по теме',
                 // Dialogues
                 selectDialogue: 'Выберите диалог',
                 repliesCount: '{n} реплик',
@@ -1507,6 +1510,9 @@ HTML_TEMPLATE = """
                 nextQuestion: 'Next question →',
                 questionsCount: '{n} questions',
                 testComplete: '🎉 Test complete!\\nResult: {score} of {total} ({pct}%)',
+                grammarTheory: '📖 Theory for this topic',
+                grammarTheoryHide: 'Hide theory',
+                grammarTheoryTitle: 'Theory',
                 selectDialogue: 'Select dialogue',
                 repliesCount: '{n} lines',
                 exercise: 'Exercise →',
@@ -1661,6 +1667,9 @@ HTML_TEMPLATE = """
                 nextQuestion: 'Nächste Frage →',
                 questionsCount: '{n} Fragen',
                 testComplete: '🎉 Test abgeschlossen!\\nErgebnis: {score} von {total} ({pct}%)',
+                grammarTheory: '📖 Theorie zum Thema',
+                grammarTheoryHide: 'Theorie ausblenden',
+                grammarTheoryTitle: 'Theorie',
                 selectDialogue: 'Dialog wählen',
                 repliesCount: '{n} Zeilen',
                 exercise: 'Übung →',
@@ -1876,6 +1885,8 @@ HTML_TEMPLATE = """
         let currentQuestions = [];
         let currentQuestionIndex = 0;
         let userScore = 0;
+        let currentGrammarTheoryText = null;
+        let grammarTheoryVisible = false;
         let currentPhrasesCategory = null;
         let currentPhrases = [];
         let currentPhraseIndex = 0;
@@ -2874,14 +2885,27 @@ HTML_TEMPLATE = """
         async function startTest(testId) {
             try {
                 const response = await fetch(`/api/tests/${testId}/questions?${levelQuery()}`);
-                currentQuestions = await response.json();
+                const data = await response.json();
+                if (Array.isArray(data)) {
+                    currentQuestions = data;
+                    currentGrammarTheoryText = null;
+                } else {
+                    currentQuestions = data.questions || [];
+                    currentGrammarTheoryText = data.theory_text || null;
+                }
                 currentQuestionIndex = 0;
                 currentTest = testId;
                 userScore = 0;
-                
+                grammarTheoryVisible = false;
+
                 document.getElementById('tests-view').style.display = 'none';
                 document.getElementById('grammar-view').style.display = 'block';
-                
+
+                const theoryPanel = document.getElementById('grammar-theory-panel');
+                const theoryBtn = document.getElementById('grammar-theory-btn');
+                if (theoryPanel) theoryPanel.style.display = 'none';
+                if (theoryBtn) theoryBtn.style.display = 'none';
+
                 showNextQuestion();
             } catch (error) {
                 tg.showAlert?.(t('grammarTestLoadError'));
@@ -2889,8 +2913,23 @@ HTML_TEMPLATE = """
         }
 
         function backToTests() {
+            currentGrammarTheoryText = null;
+            grammarTheoryVisible = false;
+            const theoryPanel = document.getElementById('grammar-theory-panel');
+            const theoryBtn = document.getElementById('grammar-theory-btn');
+            if (theoryPanel) theoryPanel.style.display = 'none';
+            if (theoryBtn) theoryBtn.style.display = 'none';
             document.getElementById('grammar-view').style.display = 'none';
             document.getElementById('tests-view').style.display = 'block';
+        }
+
+        function toggleGrammarTheory() {
+            const panel = document.getElementById('grammar-theory-panel');
+            const btn = document.getElementById('grammar-theory-btn');
+            if (!panel || !btn || !currentGrammarTheoryText) return;
+            grammarTheoryVisible = !grammarTheoryVisible;
+            panel.style.display = grammarTheoryVisible ? 'block' : 'none';
+            btn.textContent = grammarTheoryVisible ? t('grammarTheoryHide') : t('grammarTheory');
         }
         
         function backToMainFromTests() {
@@ -2902,15 +2941,30 @@ HTML_TEMPLATE = """
                 finishTest();
                 return;
             }
-            
+
+            grammarTheoryVisible = false;
+            const theoryPanel = document.getElementById('grammar-theory-panel');
+            const theoryBtn = document.getElementById('grammar-theory-btn');
+            const theoryBody = document.getElementById('grammar-theory-body');
+            if (theoryPanel) theoryPanel.style.display = 'none';
+            if (theoryBody && currentGrammarTheoryText) theoryBody.textContent = currentGrammarTheoryText;
+            if (theoryBtn) {
+                if (currentGrammarTheoryText) {
+                    theoryBtn.style.display = 'block';
+                    theoryBtn.textContent = t('grammarTheory');
+                } else {
+                    theoryBtn.style.display = 'none';
+                }
+            }
+
             const question = currentQuestions[currentQuestionIndex];
             document.getElementById('question-number').textContent =
                 t('questionNofM', {n: currentQuestionIndex + 1, m: currentQuestions.length});
             document.getElementById('question-text').textContent = question.question;
-            
+
             const optionsDiv = document.getElementById('question-options');
             optionsDiv.innerHTML = '';
-            
+
             question.options.forEach((option, index) => {
                 const btn = document.createElement('button');
                 btn.className = 'option';
@@ -2918,11 +2972,17 @@ HTML_TEMPLATE = """
                 btn.onclick = () => selectGrammarAnswer(btn, index === question.correct, question.options[question.correct]);
                 optionsDiv.appendChild(btn);
             });
-            
+
             document.getElementById('next-question-btn').style.display = 'none';
         }
         
         async function selectGrammarAnswer(selectedBtn, isCorrect, correctAnswer) {
+            grammarTheoryVisible = false;
+            const theoryPanel = document.getElementById('grammar-theory-panel');
+            if (theoryPanel) theoryPanel.style.display = 'none';
+            const theoryBtn = document.getElementById('grammar-theory-btn');
+            if (theoryBtn && currentGrammarTheoryText) theoryBtn.textContent = t('grammarTheory');
+
             const buttons = document.querySelectorAll('#question-options .option');
             buttons.forEach(btn => {
                 btn.onclick = null;
@@ -2932,7 +2992,7 @@ HTML_TEMPLATE = """
                     btn.classList.add('correct');
                 }
             });
-            
+
             if (isCorrect) userScore++;
             tg.HapticFeedback?.notificationOccurred(isCorrect ? 'success' : 'error');
             document.getElementById('next-question-btn').style.display = 'block';
@@ -4404,12 +4464,19 @@ def api_tests():
 
 @app.route('/api/tests/<test_id>/questions')
 def api_test_questions(test_id):
-    """Get test questions for current level or specified level."""
+    """Get test questions and optional theory text (Web App)."""
     major = request.args.get('major')
     sub = request.args.get('sub')
-    
-    questions = get_test_questions(test_id, major, sub) if major and sub else get_test_questions(test_id)
-    return jsonify(questions)
+    lang = request.args.get('lang', 'ru')
+
+    if major and sub:
+        questions = get_test_questions(test_id, major, sub)
+        theory_text = format_grammar_theory_text(test_id, major, sub, lang=lang)
+    else:
+        questions = get_test_questions(test_id)
+        theory_text = format_grammar_theory_text(test_id, lang=lang)
+
+    return jsonify({"questions": questions, "theory_text": theory_text})
 
 @app.route('/api/progress')
 def api_progress():

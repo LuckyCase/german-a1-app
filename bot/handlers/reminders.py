@@ -1,10 +1,11 @@
 import random
-from datetime import time, datetime, timezone
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from datetime import datetime, timezone
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ContextTypes
 
-from bot.database import set_reminder, get_users_for_reminder, get_or_create_user
+from bot.database import get_users_for_reminder
 from bot.content_manager import get_all_words
+from bot.config import WEB_APP_URL
 
 # Motivational messages
 REMINDER_MESSAGES = [
@@ -16,49 +17,6 @@ REMINDER_MESSAGES = [
     "Los geht's! Пора учиться! 🚀",
     "Heute ist ein guter Tag zum Lernen! Сегодня хороший день для учёбы! ☀️",
 ]
-
-
-async def reminder_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Show reminder settings."""
-    keyboard = [
-        [InlineKeyboardButton("🔔 Включить (9:00)", callback_data="rem_on_9")],
-        [InlineKeyboardButton("🔔 Включить (12:00)", callback_data="rem_on_12")],
-        [InlineKeyboardButton("🔔 Включить (18:00)", callback_data="rem_on_18")],
-        [InlineKeyboardButton("🔔 Включить (21:00)", callback_data="rem_on_21")],
-        [InlineKeyboardButton("🔕 Выключить напоминания", callback_data="rem_off")],
-    ]
-
-    await update.message.reply_text(
-        "⏰ Настройка ежедневных напоминаний\n\n"
-        "Выберите время, когда бот будет напоминать вам об изучении немецкого.\n"
-        "Время указано в UTC (Москва = UTC+3).",
-        reply_markup=InlineKeyboardMarkup(keyboard)
-    )
-
-
-async def reminder_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Handle reminder settings callbacks."""
-    query = update.callback_query
-    await query.answer()
-
-    user_id = update.effective_user.id
-
-    if query.data == "rem_off":
-        await set_reminder(user_id, enabled=False)
-        await query.edit_message_text(
-            "🔕 Напоминания выключены.\n\n"
-            "Вы можете включить их снова командой /reminder"
-        )
-    else:
-        # Parse time from callback data
-        hour = int(query.data.replace("rem_on_", ""))
-        await set_reminder(user_id, enabled=True, hour=hour, minute=0)
-        await query.edit_message_text(
-            f"🔔 Напоминания включены!\n\n"
-            f"Время: {hour}:00 UTC\n"
-            f"Вы будете получать ежедневные напоминания об изучении немецкого.\n\n"
-            f"Изменить настройки: /reminder"
-        )
 
 
 async def send_reminder(context: ContextTypes.DEFAULT_TYPE):
@@ -83,21 +41,20 @@ async def send_reminder(context: ContextTypes.DEFAULT_TYPE):
                 f"📖 Слово дня:\n"
                 f"**{word['de']}** - {word['ru']}\n"
                 f"_{word.get('example', '')}_\n\n"
-                f"Команды:\n"
-                f"/flashcards - учить слова\n"
-                f"/grammar - грамматика\n"
-                f"/progress - ваш прогресс"
+                f"Продолжите занятия в приложении."
             )
 
-            keyboard = [
-                [InlineKeyboardButton("📚 Начать учиться", callback_data="start_flashcards")]
-            ]
+            reply_markup = None
+            if WEB_APP_URL:
+                reply_markup = InlineKeyboardMarkup(
+                    [[InlineKeyboardButton("🚀 Открыть приложение", web_app=WebAppInfo(url=WEB_APP_URL))]]
+                )
 
             await context.bot.send_message(
                 chat_id=user_id,
                 text=text,
                 parse_mode="Markdown",
-                reply_markup=InlineKeyboardMarkup(keyboard)
+                reply_markup=reply_markup,
             )
         except Exception as e:
             # User might have blocked the bot
