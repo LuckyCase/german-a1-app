@@ -3069,7 +3069,20 @@ HTML_TEMPLATE = """
             }).join('');
         }
 
-        function loadSettings() {
+        async function loadSettings() {
+            // Fetch premium status from server
+            try {
+                const resp = await fetch(`/api/progress?user_id=${userId}`);
+                if (resp.ok) {
+                    const d = await resp.json();
+                    if (d.is_premium !== undefined) {
+                        userIsPremium = !!d.is_premium;
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to fetch premium status:', e);
+            }
+
             // Current level
             const levelEl = document.getElementById('settings-current-level');
             levelEl.textContent = `${currentLevelMajor}.${currentLevelSub}`;
